@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter", "DataConverter\DataConverter.csproj", "{511E9649-44C8-480A-A622-CE074A4747C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWsShipBuilderDataStructures", "WoWsShipBuilderDataStructures\WoWsShipBuilderDataStructures.csproj", "{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{511E9649-44C8-480A-A622-CE074A4747C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511E9649-44C8-480A-A622-CE074A4747C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511E9649-44C8-480A-A622-CE074A4747C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511E9649-44C8-480A-A622-CE074A4747C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E26571F-D5CE-4017-95F0-AA0C2D63D8B5}
+	EndGlobalSection
+EndGlobal
