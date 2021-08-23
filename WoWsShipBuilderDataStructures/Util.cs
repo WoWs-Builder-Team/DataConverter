@@ -23,6 +23,6 @@
             Destroyer,
             Cruiser,
             Battleship,
-            AircraftCarrier
+            AirCarrier
         }
 }

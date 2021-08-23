@@ -13,7 +13,7 @@ namespace DataConverter.Converters
         public static List<Modernization> ConvertModernization()
         {
             //create a List of our Objects
-            List<Modernization> list = new List<Modernization>();
+            List<Modernization> modList = new List<Modernization>();
 
             //read the json we extracted
             string fileName = $"{Program.inputFolder}/Modernization/Common.json";
@@ -39,7 +39,7 @@ namespace DataConverter.Converters
                 foreach (var nation in nationList)
                 {
                     //this will get the respective Enum value
-                    Nation value = (Nation)Enum.Parse(typeof(Nation), nation); ;
+                    Nation value = (Nation)Enum.Parse(typeof(Nation), nation);
                     allowedNations.Add(value);
                 }
                 mod.AllowedNations = allowedNations;
@@ -52,17 +52,18 @@ namespace DataConverter.Converters
                 var classList = currentWGMod.shiptype;
                 foreach (var shipClass in classList)
                 {
-                    ShipClass value = (ShipClass)Enum.Parse(typeof(ShipClass), shipClass); ;
+                    ShipClass value = (ShipClass)Enum.Parse(typeof(ShipClass), shipClass);
                     allowedClasses.Add(value);
                 }
                 mod.ShipClasses = allowedClasses;
 
                 mod.Slot = currentWGMod.slot;
                 mod.BlacklistedShips = new List<string>(currentWGMod.excludes);
+                modList.Add(mod);
 
             }
 
-            return list;
+            return modList;
         }
     }
 }
