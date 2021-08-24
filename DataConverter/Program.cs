@@ -22,7 +22,7 @@ namespace DataConverter
         public static void ConvertData()
         {
             //insert here the other methods converting the stuff into Lists of our data structures
-            List<Modernization> modernizations = ModernizationConverter.ConvertModernization();
+            Dictionary<string,Modernization> modernizations = ModernizationConverter.ConvertModernization();
         }
 
         

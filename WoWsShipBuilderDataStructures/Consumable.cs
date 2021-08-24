@@ -17,5 +17,6 @@ namespace WoWsShipBuilderDataStructures
         public int NumConsumables { get; set; }
         public float ReloadTime { get; set; }
         public float WorkTime { get; set; }
+        public string ConsumableVariantName { get; set; }
     }
 }

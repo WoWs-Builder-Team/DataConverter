@@ -41,4 +41,21 @@
         TorpedoBomberTypeUnit,
 
     }
+
+    public enum ModuleTier
+    {
+        Stock,
+        UpgradeLevel1,
+        UpgradeLevel2,
+        None
+    }
+
+    public enum PlaneType
+    {
+        Fighter,
+        Bomber,
+        Dive,
+        Skip
+    }
+
 }
