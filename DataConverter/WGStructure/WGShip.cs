@@ -105,6 +105,11 @@ namespace DataConverter.WGStructure
         public int deckPlaceCount { get; set; }
         public int planesReserveCapacity { get; set; }
     }
+
+    public class PlaneType : ModuleArmaments
+    {
+        public string planeType { get; set; }
+    }
     #endregion
 
     #region Air Defense

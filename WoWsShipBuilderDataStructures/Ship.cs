@@ -22,9 +22,12 @@ namespace WoWsShipBuilderDataStructures
         public List<Engine> Engines { get; set; }
         public List<Hull> Hulls { get; set; }
         public List<PlaneType> CVPlaneTypes {get; set;}
+        public List<string> BomberPlaneNames { get; set; }
+        public List<string> TorpedoPlaneNames { get; set; }
+        public List<string> SkipPlaneNames { get; set; }
+        public List<string> RocketPlaneNames { get; set; }
         //may not need to be a List, but possibly an upgradeable module
         public List<PingerGun> PingerGunList { get; set; }
-
         public List<ShipConsumable> ShipConsumable { get; set; }
     }
 
@@ -196,4 +199,5 @@ namespace WoWsShipBuilderDataStructures
         public bool CanBuy { get; set; }
     }
     #endregion
+
 }
