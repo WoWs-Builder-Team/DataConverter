@@ -10,10 +10,10 @@ namespace DataConverter.Converters
     public class ModernizationConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
-        public static List<Modernization> ConvertModernization()
+        public static Dictionary<string,Modernization> ConvertModernization()
         {
             //create a List of our Objects
-            List<Modernization> modList = new List<Modernization>();
+            Dictionary<string, Modernization> modList = new Dictionary<string, Modernization>();
 
             //read the json we extracted
             string fileName = $"{Program.inputFolder}/Modernization/Common.json";
@@ -28,7 +28,7 @@ namespace DataConverter.Converters
                 //create our object type
                 Modernization mod = new Modernization();
                 //start mapping
-                mod.ID = currentWGMod.id;
+                mod.Id = currentWGMod.id;
                 mod.Index = currentWGMod.index;
                 mod.Effect = currentWGMod.modifiers;
                 mod.Name = currentWGMod.name;
@@ -59,7 +59,8 @@ namespace DataConverter.Converters
 
                 mod.Slot = currentWGMod.slot;
                 mod.BlacklistedShips = new List<string>(currentWGMod.excludes);
-                modList.Add(mod);
+                // dictionary with index as key, for easier search
+                modList.Add(currentWGMod.index,mod);
 
             }
 

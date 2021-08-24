@@ -4,7 +4,7 @@ namespace WoWsShipBuilderDataStructures
 {
     public class Modernization
     {
-        public long ID { get; set; }
+        public long Id { get; set; }
         public string Index { get; set; }
         public Dictionary<string,double> Effect { get; set; }
         public string Name { get; set; }

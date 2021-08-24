@@ -4,10 +4,7 @@ namespace DataConverter.WGStructure
 {
     public class WGModernization
     {
-        public int costCR { get; set; }
-        public int costGold { get; set; }
         public string[] excludes { get; set; }
-        public string[] group { get; set; }
         public long id { get; set; }
         public string index { get; set; }
         public Dictionary<string, double> modifiers { get; set; }
@@ -17,20 +14,6 @@ namespace DataConverter.WGStructure
         public string[] ships { get; set; }
         public string[] shiptype { get; set; }
         public int slot { get; set; }
-        public string[] tags { get; set; }
-        public int type { get; set; }
         public Typeinfo typeinfo { get; set; }
-    }
-
-    public class Modifiers
-    {
-        public float batteryCapacityCoeff { get; set; }
-    }
-
-    public class Typeinfo
-    {
-        public string nation { get; set; }
-        public string species { get; set; }
-        public string type { get; set; }
     }
 }
