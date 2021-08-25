@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace DataConverter.WGStructure
 {
-
     public class WGShip
     {
         public Dictionary<string, ModuleArmaments> ModulesArmaments { get; set; }
@@ -22,6 +21,8 @@ namespace DataConverter.WGStructure
     public class MainBattery : ModuleArmaments
     {
         Dictionary<string, MainBatteryGun> guns { get; set; }
+        public AAAura AuraFar { get; set; }
+        public AAAura AuraFar_Bubbles { get; set; }
         public float maxDist { get; set; }
         public bool normalDistribution { get; set; } //not needed
         public float sigmaCount { get; set; }
@@ -112,11 +113,33 @@ namespace DataConverter.WGStructure
     }
     #endregion
 
+    #region AirSupport
+
+    /// <summary>
+    /// Data for air strikes of ships.
+    /// </summary>
+    public class AirSupport : ModuleArmaments
+    {
+        public int chargesNum { get; set; }
+        public double flyAwayTime { get; set; }
+        public int maxDist { get; set; }
+        public int maxPlaneFlightDist { get; set; }
+        public int minDist { get; set; }
+        public string planeName { get; set; }
+        public double reloadTime { get; set; }
+        public double timeBetweenShots { get; set; }
+        public double timeFromHeaven { get; set; }
+    }
+
+    #endregion
+
     #region Air Defense
     public class AirDefense
     {
         public AAAura AuraMedium { get; set; }
         public AAAura AuraNear { get; set; }
+        public AAAura AuraFar { get; set; }
+        public AAAura AuraFar_Bubbles { get; set; }
     }
     public class AAAura
     {

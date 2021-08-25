@@ -1,6 +1,7 @@
 ﻿using DataConverter.Converters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter
@@ -21,8 +22,11 @@ namespace DataConverter
 
         public static void ConvertData()
         {
+            // TODO: fix with correct paths
+            string fileName = $"{inputFolder}/Modernization/Common.json";
+            string wgList = File.ReadAllText(fileName);
             //insert here the other methods converting the stuff into Lists of our data structures
-            Dictionary<string,Modernization> modernizations = ModernizationConverter.ConvertModernization();
+            Dictionary<string,Modernization> modernizations = ModernizationConverter.ConvertModernization(wgList);
         }
 
         

@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Title>DataConverter</Title>
-    <Authors>WoWs-Builder-Team</Authors>
-    <Description>The data converter used to convert WG gameparams data into the data format of the ShipBuilder application.</Description>
-    <PackageProjectUrl>https://github.com/WoWs-Builder-Team/DataConverter/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>DataConverter</Title>
+        <Authors>WoWs-Builder-Team</Authors>
+        <Description>The data converter used to convert WG gameparams data into the data format of the ShipBuilder application.</Description>
+        <PackageProjectUrl>https://github.com/WoWs-Builder-Team/DataConverter/</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
+    </PropertyGroup>
 
 </Project>

@@ -3,17 +3,17 @@
     public enum Nation
     {
         France,
-        USA,
+        Usa,
         Russia,
         Japan,
-        United_Kingdom,
+        UnitedKingdom,
         Germany,
         Italy,
         Europe,
         Netherlands,
         Spain,
-        Pan_Asia,
-        Pan_America,
+        PanAsia,
+        PanAmerica,
         Commonwealth
     }
 
@@ -39,7 +39,6 @@
         FlightControlUnit,
         SonarUnit,
         TorpedoBomberTypeUnit,
-
     }
 
     public enum ModuleTier
@@ -56,6 +55,13 @@
         Bomber,
         Dive,
         Skip
+    }
+
+    public enum PlaneCategory
+    {
+        Cv,
+        Consumable,
+        Airstrike
     }
 
 }

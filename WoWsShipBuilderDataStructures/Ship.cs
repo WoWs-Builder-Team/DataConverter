@@ -1,37 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace WoWsShipBuilderDataStructures
 {
-    class Ship
+    public class Ship
     {
         public long Id { get; set; }
         public string Index { get; set; }
         public string Name { get; set; }
         public int Tier { get; set; }
 
-        public List<TurretModule> MainBatteryModuleList { get; set; }
-        public List<FireControl> FireControlList { get; set; }
-        public List<TorpedoLauncher> TorpedoLauncherList { get; set; }
+        public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; }
+        public Dictionary<string, FireControl> FireControlList { get; set; }
+        public Dictionary<string, TorpedoLauncher> TorpedoLauncherList { get; set; }
+        // TODO: does this really work?
         public AntiAir AntiAir { get; set; }
-        public List<TurretModule> SecondariesList { get; set; }
+        public Dictionary<string, TurretModule> SecondariesList { get; set; }
         public DepthChargeArray DepthChargeArray { get; set; }
-        public List<Engine> Engines { get; set; }
-        public List<Hull> Hulls { get; set; }
-        public List<PlaneType> CVPlaneTypes {get; set;}
+        public Dictionary<string, Engine> Engines { get; set; }
+        public Dictionary<string, Hull> Hulls { get; set; }
+        public Dictionary<string, PlaneType> CvPlaneTypes { get; set; }
+        public Dictionary<string, AirStrike> AirStrikes { get; set; }
         public List<string> BomberPlaneNames { get; set; }
         public List<string> TorpedoPlaneNames { get; set; }
         public List<string> SkipPlaneNames { get; set; }
+
         public List<string> RocketPlaneNames { get; set; }
+
         //may not need to be a List, but possibly an upgradeable module
         public List<PingerGun> PingerGunList { get; set; }
         public List<ShipConsumable> ShipConsumable { get; set; }
+        public List<ShipUpgrades> ShipUpgradeInfo { get; set; }
     }
 
     #region Main Battery and Secondaries
+
     //small abuse, but we reuse this for secondaries.
     public class TurretModule
     {
@@ -60,12 +63,14 @@ namespace WoWsShipBuilderDataStructures
     #endregion
 
     #region Fire Control
+
     public class FireControl
     {
         public float MaxRangeModifier { get; set; }
         public float SigmaModifier { get; set; }
         public ModuleTier ModuleTier { get; set; }
     }
+
     #endregion
 
     #region Torpedo
@@ -81,14 +86,33 @@ namespace WoWsShipBuilderDataStructures
         public float HorizontalRotationSpeed { get; set; }
         public float VerticalRotationSpeed { get; set; }
         public float Reload { get; set; }
-        public float[] torpedoAngles { get; set; }
+        public float[] TorpedoAngles { get; set; }
         public ModuleTier ModuleTier { get; set; }
     }
 
     #endregion
 
+    #region AirStrike
+
+    public class AirStrike
+    {
+        public int Charges { get; set; }
+        public double FlyAwayTime { get; set; }
+        public int MaximumDistance { get; set; }
+        public int MaximumFlightDistance { get; set; }
+        public int MinimumDistance { get; set; }
+        public string PlaneName { get; set; }
+        public double ReloadTime { get; set; }
+        public double TimeBetweenShots { get; set; }
+        public double DropTime { get; set; }
+    }
+
+    #endregion
+
     #region AA
-    public class AntiAir{
+
+    public class AntiAir
+    {
         public AntiAirAura LongRangeAura { get; set; }
         public AntiAirAura MediumRangeAura { get; set; }
         public AntiAirAura ShortRangeAura { get; set; }
@@ -96,17 +120,19 @@ namespace WoWsShipBuilderDataStructures
 
     public class AntiAirAura
     {
-        public float ConstantDPS { get; set; }
-        public const float DAMAGE_INTERVAL = 0.285714285714F;
+        public float ConstantDps { get; set; }
+        public const float DamageInterval = 0.285714285714F;
         public float FlakDamage { get; set; }
         public int FlakCloudsNumber { get; set; }
         public float HitChance { get; set; }
         public float MaxRange { get; set; }
         public float MinRange { get; set; }
     }
+
     #endregion
 
     #region Depth Charges
+
     public class DepthChargeArray
     {
         public int MaxPacks { get; set; }
@@ -124,9 +150,11 @@ namespace WoWsShipBuilderDataStructures
         public int DepthChargesNumber { get; set; }
         public float[] RotationSpeed { get; set; }
     }
+
     #endregion
 
     #region Engine
+
     public class Engine
     {
         public float BackwardEngineUpTime { get; set; }
@@ -134,9 +162,11 @@ namespace WoWsShipBuilderDataStructures
         public float SpeedCoef { get; set; }
         public ModuleTier ModuleTier { get; set; }
     }
+
     #endregion
 
     #region Hull
+
     public class Hull
     {
         public float Health { get; set; }
@@ -147,10 +177,12 @@ namespace WoWsShipBuilderDataStructures
         public float SurfaceDetection { get; set; }
         public float AirDetection { get; set; }
     }
+
     #endregion
 
     #region PingerGun
-    //copy of WG value. No idea of what we need or what is ufseful
+
+    //copy of WG value. No idea of what we need or what is useful
     public class PingerGun
     {
         public float[] RotationSpeed { get; set; }
@@ -177,27 +209,31 @@ namespace WoWsShipBuilderDataStructures
         public float StartWaveWidth { get; set; }
         public float[] WaveSpeed { get; set; }
     }
+
     #endregion
 
     #region Ship Consumables
+
     public class ShipConsumable
     {
         public int Slot { get; set; }
         public string ConsumableName { get; set; }
         public string ConsumableVariantName { get; set; }
     }
+
     #endregion
 
     #region Ship Upgrades and Modules
+
     //pretty much a copy of WG structure
     public class ShipUpgrades
     {
         public Dictionary<string, string[]> Components { get; set; }
         public object[] NextShips { get; set; }
         public string Prev { get; set; }
-        public string UcType { get; set; }
+        public ModuleType UcType { get; set; }
         public bool CanBuy { get; set; }
     }
-    #endregion
 
+    #endregion
 }
