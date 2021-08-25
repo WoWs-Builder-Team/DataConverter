@@ -7,7 +7,7 @@ namespace DataConverter.WGStructure
     public class WGCaptain
     {
         public Dictionary<string, Skill> Skills { get; set; }
-        //public Dictionary<string, UniqueSkill> UniqueSkills { get; set; }
+        // public Dictionary<string, UniqueSkill> UniqueSkills { get; set; }
         public long id { get; set; }
         public string index { get; set; }
         public string name { get; set; }
@@ -46,16 +46,17 @@ namespace DataConverter.WGStructure
         public string triggerType { get; set; }
     }
 
-    //TODO find a way to deserialize this. First value can have different names, based on the effect.
-    //public class UniqueSkill
-    //{
-    //    public Dictionary<string,float> UniqueMainReloadBooster1 { get; set; }
-    //    public int maxTriggerNum { get; set; }
-    //    public int sortIndex { get; set; }
-    //    public ShipClass[] triggerAllowedShips { get; set; }
-    //    public bool triggerJoinRibbons { get; set; }
-    //    public int triggerRibbonsNum { get; set; }
-    //    public int[] triggerRibbonsTypes { get; set; }
-    //    public string triggerType { get; set; }
-    //}
+    //TODO: find a way to deserialize this. First value can have different names, based on the effect.
+    // public class UniqueSkill
+    // {
+    //     [JsonExtensionData]
+    //     public Dictionary<string, JToken> SkillEffects { get; set; } // value is actually Dictionary<string, object>, process in converter
+    //     public int maxTriggerNum { get; set; }
+    //     public int sortIndex { get; set; }
+    //     public ShipClass[] triggerAllowedShips { get; set; }
+    //     public bool triggerJoinRibbons { get; set; }
+    //     public int triggerRibbonsNum { get; set; }
+    //     public int[] triggerRibbonsTypes { get; set; }
+    //     public string triggerType { get; set; }
+    // }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WoWsShipBuilderDataStructures
 {
-    class Consumable
+    public class Consumable
     {
         public long Id { get; set; }
         public string Index { get; set; }

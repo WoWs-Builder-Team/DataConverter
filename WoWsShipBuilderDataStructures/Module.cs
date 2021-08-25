@@ -1,6 +1,6 @@
 ﻿namespace WoWsShipBuilderDataStructures
 {
-    class Module
+    public class Module
     {
         public int CostCr { get; set; }
         public int CostXp { get; set; }
