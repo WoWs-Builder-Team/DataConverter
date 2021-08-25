@@ -2,9 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
@@ -33,22 +30,22 @@ namespace DataConverter.Converters
                 };
 
                 //collecting consumable variants
-                var Variant = currentWgConsumable.variants;
-                List<string> variantsKeys = new List<string>(Variant.Keys);
-                foreach (var currentVairantKey in variantsKeys)
+                var variant = currentWgConsumable.variants;
+                List<string> variantsKeys = new List<string>(variant.Keys);
+                foreach (var currentVariantKey in variantsKeys)
                 {
                     //mapping all the variants
-                    Statistics stats = Variant[currentVairantKey];
+                    Statistics stats = variant[currentVariantKey];
                     consumable.DescId = stats.descIDs;
                     consumable.Group = stats.group;
                     consumable.IconId = stats.iconIDs;
                     consumable.NumConsumables = stats.numConsumables;
                     consumable.ReloadTime = stats.reloadTime;
                     consumable.WorkTime = stats.workTime;
-                    consumable.ConsumableVariantName = currentVairantKey;
+                    consumable.ConsumableVariantName = currentVariantKey;
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
-                    string consumableKey = $"{consumable.Name} {currentVairantKey}";
+                    string consumableKey = $"{consumable.Name} {currentVariantKey}";
                     consumableList.Add(consumableKey, consumable);
                 }
             }

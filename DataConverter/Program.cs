@@ -1,4 +1,5 @@
 ﻿using DataConverter.Converters;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,19 +18,70 @@ namespace DataConverter
             inputFolder = Console.ReadLine();
             Console.WriteLine("Insert Output folder");
             outputFolder = Console.ReadLine();
-            ConvertData();
+            //ConvertData();
         }
 
         public static void ConvertData()
         {
-            // TODO: fix with correct paths
-            string fileName = $"{inputFolder}/Modernization/Common.json";
-            string wgList = File.ReadAllText(fileName);
-            //insert here the other methods converting the stuff into Lists of our data structures
-            Dictionary<string,Modernization> modernizations = ModernizationConverter.ConvertModernization(wgList);
+            string[] categories = Directory.GetDirectories(inputFolder);
+
+            foreach (var category in categories)
+            {
+                string[] files = Directory.GetFiles(category);
+                var categoryName = Path.GetFileName(Path.GetDirectoryName(category));
+                foreach (var file in files)
+                {
+                    string wgList = File.ReadAllText(file);
+                    var fileName = Path.GetFileName(file);
+                    string ownStructure;
+                    object dict;
+                    switch (categoryName)
+                    {
+                        case "Ability":
+                            dict = ConsumableConverter.ConvertConsumable(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder,category,fileName), ownStructure);
+                            break;
+                        case "Aircraft":
+                            dict = AircraftConverter.ConvertAircraft(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
+                        case "Crew":
+                            dict = CaptainConverter.ConvertCaptain(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
+                        case "Modernization":
+                            dict = ModernizationConverter.ConvertModernization(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
+                        case "Projectile":
+                            dict = ProjectileConverter.ConvertProjectile(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
+                        case "Ship":
+                            dict = ShipConverter.ConvertShip(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
+                        case "Unit":
+                            dict = ModuleConverter.ConvertModule(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
+                        default:
+                            throw new KeyNotFoundException();
+                            break;
+                    }
+                }
+            }
+
+
         }
 
-        
 
     }
 }
