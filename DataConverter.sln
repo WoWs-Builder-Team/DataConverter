@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter", "DataConver
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWsShipBuilderDataStructures", "WoWsShipBuilderDataStructures\WoWsShipBuilderDataStructures.csproj", "{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Test", "DataConverter.Test\DataConverter.Test.csproj", "{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

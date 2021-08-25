@@ -1,0 +1,402 @@
+{
+  "ModulesArmaments": {
+    "AB1_FlightControl": {
+      "squadrons": [
+        "Fighter",
+        "Bomber",
+        "Dive"
+      ]
+    },
+    "A_ATBA": {
+      "antiAirAndSecondaries": {
+        "HP_AGS_1": {
+          "ammoList": [
+            "PAPA008_Shell_127mm_HE_HC_Mk_39"
+          ],
+          "id": 4263962608,
+          "index": "PAGS029",
+          "name": "PAGS029_5in51_Mk_7",
+          "numBarrels": 1.0,
+          "rotationSpeed": [
+            60.0,
+            1.0
+          ],
+          "shotDelay": 7.0,
+          "smallGun": true,
+          "typeinfo": {
+            "nation": "USA",
+            "species": "Secondary",
+            "type": "Gun"
+          }
+        },
+        "HP_AGS_2": {
+          "ammoList": [
+            "PAPA008_Shell_127mm_HE_HC_Mk_39"
+          ],
+          "id": 4263962608,
+          "index": "PAGS029",
+          "name": "PAGS029_5in51_Mk_7",
+          "numBarrels": 1.0,
+          "rotationSpeed": [
+            60.0,
+            1.0
+          ],
+          "shotDelay": 7.0,
+          "smallGun": true,
+          "typeinfo": {
+            "nation": "USA",
+            "species": "Secondary",
+            "type": "Gun"
+          }
+        }
+      },
+      "maxDist": 4000.0,
+      "sigmaCount": 1.0
+    },
+    "A_AirDefense": {
+      "AuraMedium": {
+        "areaDamage": 31.0,
+        "areaDamagePeriod": 0.285714285714,
+        "bubbleDamage": 0.0,
+        "hitChance": 1.0,
+        "innerBubbleCount": 0,
+        "maxDistance": 3500.0,
+        "minDistance": 100.0,
+        "type": "medium"
+      },
+      "AuraNear": {
+        "areaDamage": 29.0,
+        "areaDamagePeriod": 0.285714285714,
+        "bubbleDamage": 0.0,
+        "hitChance": 0.95,
+        "innerBubbleCount": 0,
+        "maxDistance": 2000.0,
+        "minDistance": 100.0,
+        "type": "near"
+      },
+      "isAA": true
+    },
+    "A_Hull": {
+      "health": 34900.0,
+      "maxSpeed": 16.5,
+      "rudderTime": 17.58,
+      "speedCoef": 1.0,
+      "visibilityCoefGKInSmoke": 1e-06,
+      "visibilityFactor": 11.88,
+      "visibilityFactorByPlane": 6.44
+    },
+    "B_ATBA": {
+      "AuraFar": {
+        "areaDamage": 6.0,
+        "areaDamagePeriod": 0.285714285714,
+        "bubbleDamage": 0.0,
+        "hitChance": 1.0,
+        "innerBubbleCount": 0.0,
+        "maxDistance": 5800.0,
+        "minDistance": 100.0,
+        "type": "far"
+      },
+      "AuraFar_Bubbles": {
+        "areaDamage": 0.0,
+        "areaDamagePeriod": 0.285714285714,
+        "bubbleDamage": 170.0,
+        "hitChance": 1.0,
+        "innerBubbleCount": 1.0,
+        "maxDistance": 5800.0,
+        "minDistance": 3500.0,
+        "type": "far"
+      },
+      "antiAirAndSecondaries": {
+        "HP_AGS_1": {
+          "ammoList": [
+            "PAPA018_Main_127mm_HE_C_Mk_32"
+          ],
+          "id": 4271302640,
+          "index": "PAGS022",
+          "name": "PAGS022_5in38_Mk24",
+          "numBarrels": 1.0,
+          "rotationSpeed": [
+            60.0,
+            1.0
+          ],
+          "shotDelay": 6.0,
+          "smallGun": true,
+          "typeinfo": {
+            "nation": "USA",
+            "species": "Secondary",
+            "type": "Gun"
+          }
+        },
+        "HP_AGS_2": {
+          "ammoList": [
+            "PAPA018_Main_127mm_HE_C_Mk_32"
+          ],
+          "id": 4271302640,
+          "index": "PAGS022",
+          "name": "PAGS022_5in38_Mk24",
+          "numBarrels": 1.0,
+          "rotationSpeed": [
+            60.0,
+            1.0
+          ],
+          "shotDelay": 6.0,
+          "smallGun": true,
+          "typeinfo": {
+            "nation": "USA",
+            "species": "Secondary",
+            "type": "Gun"
+          }
+        }
+      },
+      "maxDist": 4000.0,
+      "sigmaCount": 1.0
+    },
+    "B_AirDefense": {
+      "AuraMedium": {
+        "areaDamage": 50.0,
+        "areaDamagePeriod": 0.285714285714,
+        "bubbleDamage": 0.0,
+        "hitChance": 1.0,
+        "innerBubbleCount": 0,
+        "maxDistance": 3500.0,
+        "minDistance": 100.0,
+        "type": "medium"
+      },
+      "AuraNear": {
+        "areaDamage": 64.0,
+        "areaDamagePeriod": 0.285714285714,
+        "bubbleDamage": 0.0,
+        "hitChance": 0.95,
+        "innerBubbleCount": 0,
+        "maxDistance": 2000.0,
+        "minDistance": 100.0,
+        "type": "near"
+      },
+      "isAA": true
+    },
+    "B_Hull": {
+      "health": 36500.0,
+      "maxSpeed": 16.5,
+      "rudderTime": 12.56,
+      "speedCoef": 1.0,
+      "visibilityCoefGKInSmoke": 1e-06,
+      "visibilityFactor": 11.88,
+      "visibilityFactorByPlane": 6.44
+    },
+    "EngineDefault": {
+      "backwardEngineUpTime": 30.0,
+      "forwardEngineUpTime": 60.0,
+      "speedCoef": 0.0
+    },
+    "PAUB001_Douglas_TBD": {
+      "planeType": "PAAB001_Douglas_TBD"
+    },
+    "PAUD004_Douglas_SBD2": {
+      "planeType": "PAAD004_Douglas_SBD2"
+    },
+    "PAUI009_Grumman_F4F": {
+      "planeType": "PAAF104_Langley_stock"
+    },
+    "PAUI030_F4F_4": {
+      "planeType": "PAAF104_Langley_stock"
+    },
+    "PAUI031_FM_2": {
+      "planeType": "PAAF104_Langley_stock"
+    }
+  },
+  "ShipAbilities": {
+    "AbilitySlot0": {
+      "abils": [
+        [
+          "PCY001_CrashCrew",
+          "Default"
+        ],
+        [
+          "PCY009_CrashCrewPremium",
+          "Default_Gold"
+        ]
+      ],
+      "slot": 0
+    },
+    "AbilitySlot1": {
+      "abils": [],
+      "slot": 1
+    },
+    "AbilitySlot2": {
+      "abils": [],
+      "slot": 2
+    },
+    "AbilitySlot3": {
+      "abils": [],
+      "slot": 3
+    },
+    "AbilitySlot4": {
+      "abils": [],
+      "slot": 4
+    }
+  },
+  "ShipUpgradeInfo": {
+    "PAUB401_CV5_TB_STOCK": {
+      "canBuy": true,
+      "components": {
+        "torpedoBomber": [
+          "PAUB001_Douglas_TBD"
+        ]
+      },
+      "nextShips": [],
+      "prev": "",
+      "ucType": "_TorpedoBomber"
+    },
+    "PAUD401_CV5_DB_STOCK": {
+      "canBuy": true,
+      "components": {
+        "diveBomber": [
+          "PAUD004_Douglas_SBD2"
+        ]
+      },
+      "nextShips": [],
+      "prev": "",
+      "ucType": "_DiveBomber"
+    },
+    "PAUE421_CV5_ENG_STOCK": {
+      "canBuy": true,
+      "components": {
+        "engine": [
+          "EngineDefault"
+        ]
+      },
+      "nextShips": [],
+      "prev": "",
+      "ucType": "_Engine"
+    },
+    "PAUF411_FlightControl_1": {
+      "canBuy": true,
+      "components": {
+        "flightControl": [
+          "AB1_FlightControl"
+        ]
+      },
+      "nextShips": [],
+      "prepareTimeFactor": 0.5,
+      "prev": "",
+      "ucType": "_FlightControl"
+    },
+    "PAUH431_Bogue_1942": {
+      "canBuy": true,
+      "components": {
+        "airArmament": [
+          "A_AirArmament"
+        ],
+        "airDefense": [
+          "A_AirDefense"
+        ],
+        "artillery": [],
+        "atba": [
+          "A_ATBA"
+        ],
+        "depthCharges": [],
+        "directors": [
+          "A_Directors"
+        ],
+        "finders": [
+          "AB_Finders"
+        ],
+        "hull": [
+          "A_Hull"
+        ],
+        "pinger": [],
+        "radars": [
+          "A_Radars"
+        ],
+        "torpedoes": []
+      },
+      "disabledAbilities": [],
+      "nextShips": [],
+      "prev": "",
+      "ucType": "_Hull"
+    },
+    "PAUH432_Bogue_1943": {
+      "canBuy": true,
+      "components": {
+        "airArmament": [
+          "B_AirArmament"
+        ],
+        "airDefense": [
+          "B_AirDefense"
+        ],
+        "artillery": [],
+        "atba": [
+          "B_ATBA"
+        ],
+        "depthCharges": [],
+        "directors": [
+          "B_Directors"
+        ],
+        "finders": [
+          "AB_Finders"
+        ],
+        "hull": [
+          "B_Hull"
+        ],
+        "pinger": [],
+        "radars": [
+          "B_Radars"
+        ],
+        "torpedoes": []
+      },
+      "disabledAbilities": [],
+      "nextShips": [
+        "PASA006_Independence_1945"
+      ],
+      "prev": "PAUH431_Bogue_1942",
+      "ucType": "_Hull"
+    },
+    "PAUI401_CV5_F_STOCK": {
+      "canBuy": true,
+      "components": {
+        "fighter": [
+          "PAUI009_Grumman_F4F"
+        ]
+      },
+      "nextShips": [],
+      "prev": "",
+      "ucType": "_Fighter"
+    },
+    "PAUI402_CV5_F_MED": {
+      "canBuy": true,
+      "components": {
+        "fighter": [
+          "PAUI031_FM_2"
+        ]
+      },
+      "nextShips": [],
+      "prev": "PAUI401_CV5_F_STOCK",
+      "ucType": "_Fighter"
+    },
+    "PAUI403_CV5_F_TOP": {
+      "canBuy": true,
+      "components": {
+        "fighter": [
+          "PAUI030_F4F_4"
+        ]
+      },
+      "nextShips": [],
+      "prev": "PAUI402_CV5_F_MED",
+      "ucType": "_Fighter"
+    },
+    "costCR": 1650000,
+    "costGold": 0,
+    "costSaleGold": 0,
+    "costXP": 13500,
+    "value": 1
+  },
+  "id": 4292851696,
+  "index": "PASA002",
+  "level": 5,
+  "name": "PASA002_Bogue_1942",
+  "typeinfo": {
+    "nation": "USA",
+    "species": "AirCarrier",
+    "type": "Ship"
+  }
+}
