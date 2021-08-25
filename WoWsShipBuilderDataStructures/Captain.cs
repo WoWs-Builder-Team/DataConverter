@@ -7,6 +7,7 @@ namespace WoWsShipBuilderDataStructures
         public long Id { get; set; }
         public string Index { get; set; }
         public string Name { get; set; }
+        public bool HasSpecialSkills { get; set; }
         public Dictionary<string, Skill> Skills { get; set; }
     }
 

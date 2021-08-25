@@ -1,18 +1,24 @@
-﻿namespace WoWsShipBuilderDataStructures
+﻿using System.Text.Json.Serialization;
+
+namespace WoWsShipBuilderDataStructures
 {
     public enum Nation
     {
         France,
+        [JsonPropertyName("USA")]
         Usa,
         Russia,
         Japan,
+        [JsonPropertyName("United_Kingdom")]
         UnitedKingdom,
         Germany,
         Italy,
         Europe,
         Netherlands,
         Spain,
+        [JsonPropertyName("Pan_Asia")]
         PanAsia,
+        [JsonPropertyName("Pan_America")]
         PanAmerica,
         Commonwealth
     }
