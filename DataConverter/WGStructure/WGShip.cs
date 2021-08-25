@@ -2,6 +2,8 @@
 using JsonSubTypes;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace DataConverter.WGStructure
 {
@@ -9,7 +11,7 @@ namespace DataConverter.WGStructure
     {
         public Dictionary<string, ModuleArmaments> ModulesArmaments { get; set; }
         public Dictionary<string, ShipAbility> ShipAbilities { get; set; }
-        public Dictionary<string, ShipUpgrades> ShipUpgradeInfo { get; set; }
+        public ShipUpgradeInfo ShipUpgradeInfo { get; set; }
         public long id { get; set; }
         public string index { get; set; }
         public int level { get; set; }
@@ -134,7 +136,7 @@ namespace DataConverter.WGStructure
     #endregion
 
     #region Air Defense
-    public class AirDefense
+    public class AirDefense : ModuleArmaments
     {
         public AAAura AuraMedium { get; set; }
         public AAAura AuraNear { get; set; }
@@ -246,7 +248,28 @@ namespace DataConverter.WGStructure
     #endregion
 
     #region Ship Upgrades and modules
-    public class ShipUpgrades
+
+    public class ShipUpgradeInfo
+    {
+        public int costCR { get; set; }
+        public int costGold { get; set; }
+        public int costSaleGold { get; set; }
+        public int costXP { get; set; }
+        public int value { get; set; }
+        [JsonExtensionData]
+        public Dictionary<string, JToken> Upgrades { get; set; }
+
+        [JsonIgnore]
+        public Dictionary<string, ShipUpgrade> ConvertedUpgrades
+        {
+            get
+            {
+                return Upgrades.Select(entry => (entry.Key, entry.Value.ToObject<ShipUpgrade>())).ToDictionary(entry => entry.Key, entry => entry.Item2);
+            }
+        }
+    }
+    
+    public class ShipUpgrade
     {
         public bool canBuy { get; set; }
         public Dictionary<string, string[]> components { get; set; }
