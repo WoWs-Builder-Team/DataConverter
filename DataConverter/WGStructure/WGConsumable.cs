@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace DataConverter.WGStructure
 {
 
-    public class Rootobject
+    public class WGConsumable
     {
         public long id { get; set; }
         public string index { get; set; }
