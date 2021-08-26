@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using WoWsShipBuilderDataStructures;
 
 namespace DataConverter
 {
@@ -42,31 +41,31 @@ namespace DataConverter
                             ownStructure = JsonConvert.SerializeObject(dict);
                             File.WriteAllText(Path.Join(outputFolder,category,fileName), ownStructure);
                             break;
-                        case "Aircraft":
-                            dict = AircraftConverter.ConvertAircraft(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
-                            break;
-                        case "Crew":
-                            dict = CaptainConverter.ConvertCaptain(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
-                            break;
+                        // case "Aircraft":
+                        //     dict = AircraftConverter.ConvertAircraft(wgList);
+                        //     ownStructure = JsonConvert.SerializeObject(dict);
+                        //     File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                        //     break;
+                        // case "Crew":
+                        //     dict = CaptainConverter.ConvertCaptain(wgList);
+                        //     ownStructure = JsonConvert.SerializeObject(dict);
+                        //     File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                        //     break;
                         case "Modernization":
                             dict = ModernizationConverter.ConvertModernization(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
                             File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
                             break;
-                        case "Projectile":
-                            dict = ProjectileConverter.ConvertProjectile(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
-                            break;
-                        case "Ship":
-                            dict = ShipConverter.ConvertShip(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
-                            break;
+                        // case "Projectile":
+                        //     dict = ProjectileConverter.ConvertProjectile(wgList);
+                        //     ownStructure = JsonConvert.SerializeObject(dict);
+                        //     File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                        //     break;
+                        // case "Ship":
+                        //     dict = ShipConverter.ConvertShip(wgList);
+                        //     ownStructure = JsonConvert.SerializeObject(dict);
+                        //     File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                        //     break;
                         case "Unit":
                             dict = ModuleConverter.ConvertModule(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
@@ -74,7 +73,6 @@ namespace DataConverter
                             break;
                         default:
                             throw new KeyNotFoundException();
-                            break;
                     }
                 }
             }

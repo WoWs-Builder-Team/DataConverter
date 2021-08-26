@@ -6,7 +6,7 @@ using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
 {
-    public class ModernizationConverter
+    public static class ModernizationConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
         public static Dictionary<string, Modernization> ConvertModernization(string jsonInput)
@@ -36,7 +36,7 @@ namespace DataConverter.Converters
                 foreach (var nation in nationList)
                 {
                     //this will get the respective Enum value
-                    Nation value = (Nation)Enum.Parse(typeof(Nation), nation);
+                    Nation value = Enum.Parse<Nation>(nation);
                     allowedNations.Add(value);
                 }
 
@@ -50,7 +50,7 @@ namespace DataConverter.Converters
                 var classList = currentWgMod.shiptype;
                 foreach (var shipClass in classList)
                 {
-                    ShipClass value = (ShipClass)Enum.Parse(typeof(ShipClass), shipClass);
+                    ShipClass value = Enum.Parse<ShipClass>(shipClass);
                     allowedClasses.Add(value);
                 }
 

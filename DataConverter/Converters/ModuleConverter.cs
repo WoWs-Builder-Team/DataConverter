@@ -6,7 +6,7 @@ using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
 {
-    public class ModuleConverter
+    public static class ModuleConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
         public static Dictionary<string, Module> ConvertModule(string jsonInput)
@@ -31,7 +31,7 @@ namespace DataConverter.Converters
                     Name = currentWgModule.name
                 };
                 //for Type enum
-                ModuleType type = (ModuleType)Enum.Parse(typeof(ModuleType), currentWgModule.typeinfo.species);
+                ModuleType type = Enum.Parse<ModuleType>(currentWgModule.typeinfo.species);
                 module.Type = type;
                 //dictionary with Index as key
                 moduleList.Add(module.Index, module);

@@ -6,7 +6,7 @@ using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
 {
-    public class ConsumableConverter
+    public static class ConsumableConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
         public static Dictionary<string, Consumable> ConvertConsumable(string jsonInput)
