@@ -70,17 +70,17 @@ namespace DataConverter.Converters
 
                 if (currentWgAir.isConsumablePlane)
                 {
-                    air.PlaneCategory = (PlaneCategory)2;
+                    air.PlaneCategory = PlaneCategory.Consumable;
                 }
 
                 if (currentWgAir.isAirSupportPlane)
                 {
-                    air.PlaneCategory = (PlaneCategory)2;
+                    air.PlaneCategory = PlaneCategory.Airstrike;
                 }
 
                 if (currentWgAir.isConsumablePlane == false && currentWgAir.isAirSupportPlane == false)
                 {
-                    air.PlaneCategory = (PlaneCategory)2;
+                    air.PlaneCategory = PlaneCategory.Cv;
                 }
 
                 // dictionary with index as key, for easier search
