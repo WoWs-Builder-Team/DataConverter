@@ -3,11 +3,12 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>DataConverter</Title>
+        <Title>ShipBuilder Data structures</Title>
         <Authors>WoWs-Builder-Team</Authors>
-        <Description>The data converter used to convert WG gameparams data into the data format of the ShipBuilder application.</Description>
+        <Description>The data structures used to store gamedata required for the ShipBuilder application.</Description>
         <PackageProjectUrl>https://github.com/WoWs-Builder-Team/DataConverter/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
+        <PackageId>WoWsShipBuilder.DataStructures</PackageId>
     </PropertyGroup>
 
 </Project>

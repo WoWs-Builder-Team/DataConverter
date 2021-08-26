@@ -2,14 +2,15 @@ name: .NET
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - '*'
+      - '!master'
   pull_request:
-    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: windows-latest
+    name: Build solution and run tests
 
     steps:
     - uses: actions/checkout@v2
