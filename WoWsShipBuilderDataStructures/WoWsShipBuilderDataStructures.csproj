@@ -9,6 +9,7 @@
         <PackageProjectUrl>https://github.com/WoWs-Builder-Team/DataConverter/</PackageProjectUrl>
         <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
         <PackageId>WoWsShipBuilder.DataStructures</PackageId>
+        <PackageVersion>1.0.0</PackageVersion>
     </PropertyGroup>
 
 </Project>
