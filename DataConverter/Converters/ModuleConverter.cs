@@ -8,7 +8,7 @@ namespace DataConverter.Converters
 {
     public static class ModuleConverter
     {
-        //convert the list of modernizations from WG to our list of Modernizations
+        //convert the list of modules from WG to our list of Modules
         public static Dictionary<string, Module> ConvertModule(string jsonInput)
         {
             //create a List of our Objects

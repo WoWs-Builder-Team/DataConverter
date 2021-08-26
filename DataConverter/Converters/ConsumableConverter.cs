@@ -8,7 +8,7 @@ namespace DataConverter.Converters
 {
     public static class ConsumableConverter
     {
-        //convert the list of modernizations from WG to our list of Modernizations
+        //convert the list of consumables from WG to our list of Consumables
         public static Dictionary<string, Consumable> ConvertConsumable(string jsonInput)
         {
             //create a List of our Objects

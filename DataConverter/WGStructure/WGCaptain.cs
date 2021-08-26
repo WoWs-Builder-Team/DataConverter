@@ -9,7 +9,7 @@ namespace DataConverter.WGStructure
     public class WGCaptain
     {
         public CrewPersonality CrewPersonality { get; set; }
-        public Dictionary<string, Skill> Skills { get; set; }
+        public Dictionary<string, WGSkill> Skills { get; set; }
         // public Dictionary<string, UniqueSkill> UniqueSkills { get; set; }
         public long id { get; set; }
         public string index { get; set; }
@@ -30,7 +30,7 @@ namespace DataConverter.WGStructure
     }
 
     //big skill structure. modifiers contain always on effects.
-    public class Skill
+    public class WGSkill
     {
         public SkillTrigger LogicTrigger { get; set; }
         public bool canBeLearned { get; set; }

@@ -1,0 +1,82 @@
+﻿using DataConverter.WGStructure;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using WoWsShipBuilderDataStructures;
+
+namespace DataConverter.Converters
+{
+    public static class CaptainConverter
+    {
+        //convert the list of captains from WG to our list of Captains
+        public static Dictionary<string, Captain> ConvertCaptain(string jsonInput)
+        {
+            //create a List of our Objects
+            Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
+
+            //deserialize into an object
+            var wgCaptain = JsonConvert.DeserializeObject<List<WGCaptain>>(jsonInput) ?? throw new InvalidOperationException();
+
+            //iterate over the entire list to convert everything
+            foreach (var currentWgCaptain in wgCaptain)
+            {
+                //start mapping
+                Captain captain = new Captain
+                {
+                    Id = currentWgCaptain.id,
+                    Index = currentWgCaptain.index,
+                    Name = currentWgCaptain.name,
+                    HasSpecialSkills = false
+                };
+
+                //check if there are skills with special vaules 
+                if (currentWgCaptain.CrewPersonality.tags.Contains("upperks"))
+                {
+                    captain.HasSpecialSkills = true;
+                }
+
+                //create object SKill
+                Skill Skill = new Skill();
+                //initialize dictionaries for skills and skill's modifiers
+                Dictionary<string, Skill> Skills = new Dictionary<string, Skill>();
+                Dictionary<string, float> Modifiers = new Dictionary<string, float>();
+                Dictionary<string, float> ConditionalModifiers = new Dictionary<string, float>();
+
+                //iterate all captain's skills
+                foreach (var currentWgSkill in currentWgCaptain.Skills)
+                {
+                    //start mapping
+                    Skill.CanBeLearned = currentWgSkill.Value.canBeLearned;
+                    Skill.IsEpic = currentWgSkill.Value.isEpic;
+                    Skill.SkillNumber = currentWgSkill.Value.skillType;
+
+                    //collect all skill's modifiers
+                    foreach (var currentWgModifier in currentWgSkill.Value.modifiers)
+                    {
+                        Modifiers.Add(currentWgModifier.Key, (float)currentWgModifier.Value);
+                    }
+                    Skill.Modifiers = Modifiers;
+
+                    //collect all skill's modifiers with trigger condition
+                    var wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.modifiers;
+                    if (wgConditionalModifiers.Count > 0)
+                    {
+                        foreach (var currentWgConditionalModifier in wgConditionalModifiers)
+                        {
+                            ConditionalModifiers.Add(currentWgConditionalModifier.Key, (float)currentWgConditionalModifier.Value);
+                        }
+                    }
+                    Skill.ConditionalModifiers = ConditionalModifiers;
+
+                    Skills.Add(currentWgSkill.Key, Skill);
+                }
+                //mapp skills into object captain
+                captain.Skills = Skills;
+                //dictionary with captain's name as key
+                captainList.Add(captain.Name, captain);
+            }
+
+            return captainList;
+        }
+    }
+}

@@ -15,7 +15,7 @@ namespace WoWsShipBuilderDataStructures
     public class Skill
     {
         public bool CanBeLearned { get; set; }
-        public bool IsEpic { get; set; }
+        public bool IsEpic { get; set; } //true if the skill has buffed modifier
         public int SkillNumber { get; set; }
 
         public ShipClass LearnableOn { get; set; }
