@@ -2,11 +2,12 @@ using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
 {
-    public class AircraftConverter
+    public static class AircraftConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
         public static Dictionary<string, Aircraft> ConvertAircraft(string jsonInput)
@@ -21,7 +22,7 @@ namespace DataConverter.Converters
             foreach (var currentWgAir in wgAircraft)
             {
                 //create our object type
-                Aircraft air = new Aircraft()
+                Aircraft air = new Aircraft
                 {
                     //start mapping
                     Id = currentWgAir.id,
@@ -47,7 +48,7 @@ namespace DataConverter.Converters
                     InnerSalvoSize = currentWgAir.innerSalvoSize,
                 };
 
-                PlaneAttackData pad = new PlaneAttackData()
+                PlaneAttackData pad = new PlaneAttackData
                 {
                     //start mapping
                     AttackCooldown = currentWgAir.attackCooldown,
@@ -60,26 +61,31 @@ namespace DataConverter.Converters
                 };
                 air.AttackData = pad;
 
-                JatoData jd = new JatoData()
+                JatoData jd = new JatoData
                 {
                     //start mapping
                     JatoDuration = currentWgAir.jatoDuration,
                     JatoSpeedMultiplier = currentWgAir.jatoSpeedMultiplier
                 };
                 air.JatoData = jd;
-
-                //determine the needed enum for planecategory
+                
+                // Debug assertion to detect previously undetected constellations where both flags are true.
+                // If this happens, the enum has to be changed.
+                if (currentWgAir.isConsumablePlane && currentWgAir.isAirSupportPlane)
+                {
+                    Debug.Assert(false, $"Invalid combination of boolean flags. Check data structure again for aircraft {currentWgAir.index}.");
+                }
+                
+                //determine the needed enum for plane category
                 if (currentWgAir.isConsumablePlane)
                 {
                     air.PlaneCategory = PlaneCategory.Consumable;
                 }
-
-                if (currentWgAir.isAirSupportPlane)
+                else if (currentWgAir.isAirSupportPlane)
                 {
                     air.PlaneCategory = PlaneCategory.Airstrike;
                 }
-
-                if (currentWgAir.isConsumablePlane == false && currentWgAir.isAirSupportPlane == false)
+                else
                 {
                     air.PlaneCategory = PlaneCategory.Cv;
                 }

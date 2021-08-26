@@ -41,11 +41,11 @@ namespace DataConverter
                             ownStructure = JsonConvert.SerializeObject(dict);
                             File.WriteAllText(Path.Join(outputFolder,category,fileName), ownStructure);
                             break;
-                        // case "Aircraft":
-                        //     dict = AircraftConverter.ConvertAircraft(wgList);
-                        //     ownStructure = JsonConvert.SerializeObject(dict);
-                        //     File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
-                        //     break;
+                        case "Aircraft":
+                            dict = AircraftConverter.ConvertAircraft(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
                         // case "Crew":
                         //     dict = CaptainConverter.ConvertCaptain(wgList);
                         //     ownStructure = JsonConvert.SerializeObject(dict);
