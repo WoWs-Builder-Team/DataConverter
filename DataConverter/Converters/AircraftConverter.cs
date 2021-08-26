@@ -68,6 +68,7 @@ namespace DataConverter.Converters
                 };
                 air.JatoData = jd;
 
+                //determine the needed enum for planecategory
                 if (currentWgAir.isConsumablePlane)
                 {
                     air.PlaneCategory = PlaneCategory.Consumable;
