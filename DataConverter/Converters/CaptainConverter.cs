@@ -36,26 +36,26 @@ namespace DataConverter.Converters
                 }
 
                 //create object SKill
-                Skill Skill = new Skill();
+                Skill skill = new Skill();
                 //initialize dictionaries for skills and skill's modifiers
-                Dictionary<string, Skill> Skills = new Dictionary<string, Skill>();
-                Dictionary<string, float> Modifiers = new Dictionary<string, float>();
-                Dictionary<string, float> ConditionalModifiers = new Dictionary<string, float>();
+                Dictionary<string, Skill> skills = new Dictionary<string, Skill>();
+                Dictionary<string, float> modifiers = new Dictionary<string, float>();
+                Dictionary<string, float> conditionalModifiers = new Dictionary<string, float>();
 
                 //iterate all captain's skills
                 foreach (var currentWgSkill in currentWgCaptain.Skills)
                 {
                     //start mapping
-                    Skill.CanBeLearned = currentWgSkill.Value.canBeLearned;
-                    Skill.IsEpic = currentWgSkill.Value.isEpic;
-                    Skill.SkillNumber = currentWgSkill.Value.skillType;
+                    skill.CanBeLearned = currentWgSkill.Value.canBeLearned;
+                    skill.IsEpic = currentWgSkill.Value.isEpic;
+                    skill.SkillNumber = currentWgSkill.Value.skillType;
 
                     //collect all skill's modifiers
                     foreach (var currentWgModifier in currentWgSkill.Value.modifiers)
                     {
-                        Modifiers.Add(currentWgModifier.Key, (float)currentWgModifier.Value);
+                        modifiers.Add(currentWgModifier.Key, (float)currentWgModifier.Value);
                     }
-                    Skill.Modifiers = Modifiers;
+                    skill.Modifiers = modifiers;
 
                     //collect all skill's modifiers with trigger condition
                     var wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.modifiers;
@@ -63,15 +63,15 @@ namespace DataConverter.Converters
                     {
                         foreach (var currentWgConditionalModifier in wgConditionalModifiers)
                         {
-                            ConditionalModifiers.Add(currentWgConditionalModifier.Key, (float)currentWgConditionalModifier.Value);
+                            conditionalModifiers.Add(currentWgConditionalModifier.Key, currentWgConditionalModifier.Value);
                         }
                     }
-                    Skill.ConditionalModifiers = ConditionalModifiers;
+                    skill.ConditionalModifiers = conditionalModifiers;
 
-                    Skills.Add(currentWgSkill.Key, Skill);
+                    skills.Add(currentWgSkill.Key, skill);
                 }
-                //mapp skills into object captain
-                captain.Skills = Skills;
+                //map skills into object captain
+                captain.Skills = skills;
                 //dictionary with captain's name as key
                 captainList.Add(captain.Name, captain);
             }
