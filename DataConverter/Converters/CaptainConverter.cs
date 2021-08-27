@@ -2,15 +2,21 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
 {
     public static class CaptainConverter
     {
-        //convert the list of captains from WG to our list of Captains
-        //jsonCaptainInput contains all Captains' informations
-        //jsonSkillsInput contains all skills' tiers for all the classes
+        /// <summary>
+        /// Converter method that transforms a <see cref="WGCaptain"/> object into a <see cref="Captain"/> object.
+        /// </summary>
+        /// <param name="captainJsonInput">The file content of captain data extracted from game params.</param>
+        /// <param name="skillsJsonInput">The file content of the embedded captain data file.</param>
+        /// <returns>A dictionary mapping an ID to a <see cref="Captain"/> object that contains the transformed data based on WGs data.</returns>
+        /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
         public static Dictionary<string, Captain> ConvertCaptain(string captainJsonInput, string skillsJsonInput)
         {
             //create a List of our Objects
@@ -60,44 +66,50 @@ namespace DataConverter.Converters
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Cruiser, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            tiers.Add(ShipClass.Cruiser, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
                         }
                     }
+
                     foreach (var tier in skillsTiers.Auxiliary)
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Auxiliary, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            tiers.Add(ShipClass.Auxiliary, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
                         }
                     }
+
                     foreach (var tier in skillsTiers.Destroyer)
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Destroyer, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            tiers.Add(ShipClass.Destroyer, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
                         }
                     }
+
                     foreach (var tier in skillsTiers.AirCarrier)
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.AirCarrier, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            tiers.Add(ShipClass.AirCarrier, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
                         }
                     }
+
                     foreach (var tier in skillsTiers.Submarine)
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Submarine, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            tiers.Add(ShipClass.Submarine, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
                         }
                     }
+
                     foreach (var tier in skillsTiers.Battleship)
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Battleship, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            tiers.Add(ShipClass.Battleship, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
                         }
                     }
+
                     skill.Tiers = tiers;
                     //list of the classes that can use the skill
                     skill.LearnableOn = new List<ShipClass>(tiers.Keys);
@@ -107,6 +119,7 @@ namespace DataConverter.Converters
                     {
                         modifiers.Add(currentWgModifier.Key, (float)currentWgModifier.Value);
                     }
+
                     skill.Modifiers = modifiers;
 
                     //collect all skill's modifiers with trigger condition
@@ -118,10 +131,12 @@ namespace DataConverter.Converters
                             conditionalModifiers.Add(currentWgConditionalModifier.Key, currentWgConditionalModifier.Value);
                         }
                     }
+
                     skill.ConditionalModifiers = conditionalModifiers;
 
                     skills.Add(currentWgSkill.Key, skill);
                 }
+
                 //map skills into object captain
                 captain.Skills = skills;
                 //dictionary with captain's name as key
@@ -129,6 +144,19 @@ namespace DataConverter.Converters
             }
 
             return captainList;
+        }
+
+        /// <summary>
+        /// Utility method to load the skill data from the embedded SKILLS_BY_TIER.json file.
+        /// </summary>
+        /// <returns>The file content of the embedded file.</returns>
+        /// <exception cref="FileNotFoundException">Occurs if the embedded resource does not exist.</exception>
+        public static string LoadEmbeddedSkillData()
+        {
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DataConverter.JsonData.SKILLS_BY_TIER.json") ??
+                               throw new FileNotFoundException("Unable to locate embedded captain skill data.");
+            using var reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
     }
 }

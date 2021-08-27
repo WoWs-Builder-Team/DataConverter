@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace DataConverter
 {
@@ -47,7 +48,7 @@ namespace DataConverter
                             File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
                             break;
                         case "Crew":
-                            var skillsList = File.ReadAllText(Path.Combine("JSONs", "SKILLS_BY_TIER.json")); //TODO FIX THIS!
+                            var skillsList = CaptainConverter.LoadEmbeddedSkillData();
                             dict = CaptainConverter.ConvertCaptain(wgList, skillsList);
                             ownStructure = JsonConvert.SerializeObject(dict);
                             File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);

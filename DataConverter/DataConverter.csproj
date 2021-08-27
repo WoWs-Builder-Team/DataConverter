@@ -14,4 +14,9 @@
         <ProjectReference Include="..\WoWsShipBuilderDataStructures\WoWsShipBuilderDataStructures.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="JsonData\SKILLS_BY_TIER.json" />
+      <EmbeddedResource Include="JsonData\SKILLS_BY_TIER.json" />
+    </ItemGroup>
+
 </Project>
