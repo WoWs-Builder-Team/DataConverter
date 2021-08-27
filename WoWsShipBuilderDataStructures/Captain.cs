@@ -18,7 +18,7 @@ namespace WoWsShipBuilderDataStructures
         public bool IsEpic { get; set; } //true if the skill has buffed modifier
         public int SkillNumber { get; set; }
         public List<ShipClass> LearnableOn { get; set; }
-        public Dictionary<ShipClass, int> Tiers { get; set; } //contains the tier of the skill for all the classes that can use it
+        public Dictionary<ShipClass, int[]> Tiers { get; set; } //contains the tier of the skill for all the classes that can use it
         //modifiers for always on effects
         public Dictionary<string, float> Modifiers { get; set; }
         //modifiers for the skill in SkillTrigger

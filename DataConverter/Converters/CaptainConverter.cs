@@ -45,7 +45,7 @@ namespace DataConverter.Converters
                 Dictionary<string, Skill> skills = new Dictionary<string, Skill>();
                 Dictionary<string, float> modifiers = new Dictionary<string, float>();
                 Dictionary<string, float> conditionalModifiers = new Dictionary<string, float>();
-                Dictionary<ShipClass, int> tiers = new Dictionary<ShipClass, int>();
+                Dictionary<ShipClass, int[]> tiers = new Dictionary<ShipClass, int[]>();
 
                 //iterate all captain's skills
                 foreach (var currentWgSkill in currentWgCaptain.Skills)
@@ -55,30 +55,48 @@ namespace DataConverter.Converters
                     skill.IsEpic = currentWgSkill.Value.isEpic;
                     skill.SkillNumber = currentWgSkill.Value.skillType;
 
-                    //map skill's tier for each class
-                    if (skillsTiers.Cruiser.ContainsKey(skill.SkillNumber))
+                    //map skill's position in the skilltree of each class
+                    foreach (var tier in skillsTiers.Cruiser)
                     {
-                        tiers.Add(ShipClass.Cruiser, skillsTiers.Cruiser[skill.SkillNumber]);
+                        if (tier.Value.Contains(skill.SkillNumber))
+                        {
+                            tiers.Add(ShipClass.Cruiser, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                        }
                     }
-                    if (skillsTiers.Auxiliary.ContainsKey(skill.SkillNumber))
+                    foreach (var tier in skillsTiers.Auxiliary)
                     {
-                        tiers.Add(ShipClass.Auxiliary, skillsTiers.Auxiliary[skill.SkillNumber]);
+                        if (tier.Value.Contains(skill.SkillNumber))
+                        {
+                            tiers.Add(ShipClass.Auxiliary, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                        }
                     }
-                    if (skillsTiers.Destroyer.ContainsKey(skill.SkillNumber))
+                    foreach (var tier in skillsTiers.Destroyer)
                     {
-                        tiers.Add(ShipClass.Destroyer, skillsTiers.Destroyer[skill.SkillNumber]);
+                        if (tier.Value.Contains(skill.SkillNumber))
+                        {
+                            tiers.Add(ShipClass.Destroyer, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                        }
                     }
-                    if (skillsTiers.AirCarrier.ContainsKey(skill.SkillNumber))
+                    foreach (var tier in skillsTiers.AirCarrier)
                     {
-                        tiers.Add(ShipClass.AirCarrier, skillsTiers.AirCarrier[skill.SkillNumber]);
+                        if (tier.Value.Contains(skill.SkillNumber))
+                        {
+                            tiers.Add(ShipClass.AirCarrier, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                        }
                     }
-                    if (skillsTiers.Submarine.ContainsKey(skill.SkillNumber))
+                    foreach (var tier in skillsTiers.Submarine)
                     {
-                        tiers.Add(ShipClass.Submarine, skillsTiers.Submarine[skill.SkillNumber]);
+                        if (tier.Value.Contains(skill.SkillNumber))
+                        {
+                            tiers.Add(ShipClass.Submarine, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                        }
                     }
-                    if (skillsTiers.Battleship.ContainsKey(skill.SkillNumber))
+                    foreach (var tier in skillsTiers.Battleship)
                     {
-                        tiers.Add(ShipClass.Battleship, skillsTiers.Battleship[skill.SkillNumber]);
+                        if (tier.Value.Contains(skill.SkillNumber))
+                        {
+                            tiers.Add(ShipClass.Battleship, new int[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                        }
                     }
                     skill.Tiers = tiers;
                     //list of the classes that can use the skill

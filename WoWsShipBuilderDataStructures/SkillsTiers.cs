@@ -2,10 +2,10 @@
 
 public class SkillsTiers // collection of all the skills and their tier for each class
 {
-    public Dictionary<int, int> Cruiser { get; set; }
-    public Dictionary<int, int> Auxiliary { get; set; }
-    public Dictionary<int, int> Destroyer { get; set; }
-    public Dictionary<int, int> AirCarrier { get; set; }
-    public Dictionary<int, int> Submarine { get; set; }
-    public Dictionary<int, int> Battleship { get; set; }
+    public Dictionary<int, List<int>> Cruiser { get; set; }
+    public Dictionary<int, List<int>> Auxiliary { get; set; }
+    public Dictionary<int, List<int>> Destroyer { get; set; }
+    public Dictionary<int, List<int>> AirCarrier { get; set; }
+    public Dictionary<int, List<int>> Submarine { get; set; }
+    public Dictionary<int, List<int>> Battleship { get; set; }
 }

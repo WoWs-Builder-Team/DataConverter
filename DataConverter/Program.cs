@@ -47,7 +47,8 @@ namespace DataConverter
                             File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
                             break;
                         case "Crew":
-                            dict = CaptainConverter.ConvertCaptain(wgList);
+                            var skillsList = File.ReadAllText(Path.Combine("JSONs", "SKILLS_BY_TIER.json")); //TODO FIX THIS!
+                            dict = CaptainConverter.ConvertCaptain(wgList, skillsList);
                             ownStructure = JsonConvert.SerializeObject(dict);
                             File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
                             break;
