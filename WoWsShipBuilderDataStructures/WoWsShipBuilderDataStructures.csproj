@@ -7,9 +7,11 @@
         <Authors>WoWs-Builder-Team</Authors>
         <Description>The data structures used to store gamedata required for the ShipBuilder application.</Description>
         <PackageProjectUrl>https://github.com/WoWs-Builder-Team/DataConverter/</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
         <PackageId>WoWsShipBuilder.DataStructures</PackageId>
         <PackageVersion>1.0.1</PackageVersion>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
 </Project>
