@@ -137,10 +137,10 @@ namespace WoWsShipBuilderDataStructures
     {
         public int MaxPacks { get; set; }
         public float Reload { get; set; }
-        public List<DepthCharge> DepthCharges { get; set; }
+        public List<DepthChargeLauncher> DepthCharges { get; set; }
     }
 
-    public class DepthCharge
+    public class DepthChargeLauncher
     {
         public List<string> AmmoList { get; set; }
         public float[] HorizontalSector { get; set; }
