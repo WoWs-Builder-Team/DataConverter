@@ -186,9 +186,8 @@ namespace DataConverter.Converters
                             Id = currentWgProjectile.id,
                             Index = currentWgProjectile.index,
                             Name = currentWgProjectile.name,
+                            ProjectileType = currentWgProjectileType
                         };
-
-                        depthCharge.ProjectileType = currentWgProjectileType;
 
                         //cast WGProjectile object into a WGDepthCharge object
                         WGDepthCharge currentWgDepthCharge = (WGDepthCharge)currentWgProjectile;    
