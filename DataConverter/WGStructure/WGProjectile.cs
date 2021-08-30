@@ -28,7 +28,7 @@ namespace DataConverter.WGStructure
     {
         public bool affectedByPTZ { get; set; }
         public float alphaDamage { get; set; }
-        public int alphaPiercingCS { get; set; }
+        public float alphaPiercingCS { get; set; }
         public float alphaPiercingHE { get; set; }
         public string ammoType { get; set; }
         public bool applyPTZCoeff { get; set; }
@@ -42,7 +42,7 @@ namespace DataConverter.WGStructure
         public float bulletSpeed { get; set; }
         public float burnProb { get; set; }
         public float distTile { get; set; }
-        public object[] ignoreClasses { get; set; }      
+        public string[] ignoreClasses { get; set; }      
         public bool isBomb { get; set; }
     }
 
@@ -50,9 +50,16 @@ namespace DataConverter.WGStructure
     {
         public int alertDist { get; set; }
         public float alphaDamage { get; set; }
+        public float damage { get; set; }
         public string ammoType { get; set; }
         public float bulletDiametr { get; set; }
         public int maxDist { get; set; }
+        public string[] ignoreClasses { get; set; }
+        public float speed { get; set; }
+        public float armingTime { get; set; }
+        public float uwCritical { get; set; }
+        public float visibilityFactor { get; set; }
+
     }
 
 
@@ -74,7 +81,7 @@ namespace DataConverter.WGStructure
         public float bulletSpeed { get; set; }
         public float burnProb { get; set; }
         public float distTile { get; set; }
-        public object[] ignoreClasses { get; set; }
+        public string[] ignoreClasses { get; set; }
         public bool isBomb { get; set; }
     }
 
@@ -84,6 +91,9 @@ namespace DataConverter.WGStructure
         public float alphaDamage { get; set; }
         public string ammoType { get; set; }
         public float burnProb { get; set; }
+        public float uwCritical { get; set; }
+        public float timer { get; set; }
+        public float speed { get; set; }
     }
 
     public class WGRocket : WGProjectile
@@ -104,7 +114,7 @@ namespace DataConverter.WGStructure
         public float bulletSpeed { get; set; }
         public float burnProb { get; set; }
         public float distTile { get; set; }
-        public object[] ignoreClasses { get; set; }
+        public string[] ignoreClasses { get; set; }
         public bool isBomb { get; set; }
     }
 

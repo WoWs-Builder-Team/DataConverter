@@ -161,12 +161,12 @@ namespace DataConverter.WGStructure
     #region DepthCharges
     public class DepthChargesArray : ModuleArmaments
     {
-        Dictionary<string, DepthCharge> depthCharges { get; set; }
+        Dictionary<string, DepthChargeLauncher> depthCharges { get; set; }
         public int maxPacks { get; set; }
         public float reloadTime { get; set; }
     }
 
-    public class DepthCharge
+    public class DepthChargeLauncher
     {
         public string[] ammoList { get; set; }
         public float[] horizSector { get; set; }

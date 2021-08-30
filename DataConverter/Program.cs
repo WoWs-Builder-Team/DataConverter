@@ -58,11 +58,11 @@ namespace DataConverter
                             ownStructure = JsonConvert.SerializeObject(dict);
                             File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
                             break;
-                        // case "Projectile":
-                        //     dict = ProjectileConverter.ConvertProjectile(wgList);
-                        //     ownStructure = JsonConvert.SerializeObject(dict);
-                        //     File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
-                        //     break;
+                        case "Projectile":
+                            dict = ProjectileConverter.ConvertProjectile(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(outputFolder, category, fileName), ownStructure);
+                            break;
                         // case "Ship":
                         //     dict = ShipConverter.ConvertShip(wgList);
                         //     ownStructure = JsonConvert.SerializeObject(dict);
@@ -78,10 +78,6 @@ namespace DataConverter
                     }
                 }
             }
-
-
         }
-
-
     }
 }

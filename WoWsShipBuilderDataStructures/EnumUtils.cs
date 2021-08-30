@@ -70,4 +70,36 @@ namespace WoWsShipBuilderDataStructures
         Airstrike
     }
 
+    public enum ProjectileType
+    {
+        Artillery,
+        Bomb,
+        SkipBomb,
+        Torpedo,
+        DepthCharge,
+        Rocket        
+    }
+    public enum ShellType
+    {
+        SAP,
+        HE,
+        AP
+    }
+    public enum TorpedoType
+    {
+        Normal,
+        DeepWater,
+        Homing
+
+    }
+    public enum BombType
+    {
+        HE,
+        AP,
+    }
+    public enum RocketType
+    {
+        HE,
+        AP
+    }
 }
