@@ -38,8 +38,8 @@ namespace WoWsShipBuilderDataStructures
     //small abuse, but we reuse this for secondaries.
     public class TurretModule
     {
-        public float Sigma { get; set; }
-        public float MaxRange { get; set; }
+        public double Sigma { get; set; }
+        public double MaxRange { get; set; }
         public List<Gun> Guns { get; set; }
         public ModuleTier ModuleTier { get; set; }
     }
@@ -47,17 +47,18 @@ namespace WoWsShipBuilderDataStructures
     public class Gun
     {
         public List<string> AmmoList { get; set; }
-        public float BarrelDiameter { get; set; }
-        public float[] HorizontalSector { get; set; }
+        public double BarrelDiameter { get; set; }
+        public double[] HorizontalSector { get; set; }
+        public double[][] HorizontalDeadZones { get; set; }
         public long Id { get; set; }
         public string Index { get; set; }
         public int NumBarrels { get; set; }
-        public float HorizontalPosition { get; set; }
-        public float VerticalPosition { get; set; }
-        public float HorizontalRotationSpeed { get; set; }
-        public float VerticalRotationSpeed { get; set; }
-        public float Reload { get; set; }
-        public float SmokeDetectionWhenFiring { get; set; }
+        public double HorizontalPosition { get; set; }
+        public double VerticalPosition { get; set; }
+        public double HorizontalRotationSpeed { get; set; }
+        public double VerticalRotationSpeed { get; set; }
+        public double Reload { get; set; }
+        public double SmokeDetectionWhenFiring { get; set; }
     }
 
     #endregion
