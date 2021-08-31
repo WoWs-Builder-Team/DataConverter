@@ -1,7 +1,6 @@
 ﻿using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using WoWsShipBuilderDataStructures;
 
@@ -10,23 +9,15 @@ namespace DataConverter.Converters
     public static class ProjectileConverter
     {
         /// <summary>
-        /// Converter method that transforms a <see cref="WGProjectile"/> object into 5 different objects based on projectile type.
+        /// Converter method that transforms a <see cref="WGProjectile"/> object into a <see cref="Projectile"/> object
         /// </summary>
         /// <param name="jsonInput">The file content of projectile data extracted from game params.</param>
-        /// <returns>An Arraylist of dictionaries containing the transformed data based on WGs data.</returns>
+        /// <returns>A dictionary mapping an ID to a <see cref="Projectile"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-        /// <exception cref="ProjectileTypeNotFoundException">Occurs if it's not possible to find the projectile type.</exception>
-        public static ArrayList ConvertProjectile(string jsonInput)
+        public static Dictionary<string, Projectile> ConvertProjectile(string jsonInput)
         {
-            //Arraylist containing 5 dictionaries one for each prjectile type
-            //List<Dictionary<string, object>> projectileList = new List<Dictionary<string, object>>();
-            ArrayList projectileList = new ArrayList();
-
-            Dictionary<string, Artillery> artilleryList = new Dictionary<string, Artillery>();
-            Dictionary<string, Bomb> bombList = new Dictionary<string, Bomb>();
-            Dictionary<string, Torpedo> torpedoList = new Dictionary<string, Torpedo>();
-            Dictionary<string, DepthCharge> depthChargeList = new Dictionary<string, DepthCharge>();
-            Dictionary<string, Rocket> rocketList = new Dictionary<string, Rocket>();
+            //Dictionary containing all projectiles
+             Dictionary<string, Projectile> projectileList = new Dictionary<string, Projectile>();
 
             //deserialize into an object
             var wgProjectile = JsonConvert.DeserializeObject<List<WGProjectile>>(jsonInput) ?? throw new InvalidOperationException();
@@ -39,7 +30,7 @@ namespace DataConverter.Converters
                 {
                     case ProjectileType.Artillery:
                         //create our object type
-                        Artillery shell = new Artillery
+                        ArtilleryShell shell = new ArtilleryShell
                         {
                             Id = currentWgProjectile.id,
                             Index = currentWgProjectile.index,
@@ -50,35 +41,37 @@ namespace DataConverter.Converters
                         //cast WGProjectile object into a WGShell object
                         WGShell currentWgShell = (WGShell)currentWgProjectile;
 
+                        ShellType shellType;
                         //change SAP shell ammoType form CS to SAP
                         if (currentWgShell.ammoType.Equals("CS"))
                         {
-                            currentWgShell.ammoType = ShellType.SAP.ToString();
-                        }
+                            shellType = ShellType.SAP;
+                            shell.ShellType = shellType;
 
-                        ShellType shellType = Enum.Parse<ShellType>(currentWgShell.ammoType);
-                        shell.ShellType = shellType;
-
-                        if (shellType == ShellType.SAP)
-                        {
                             shell.Penetration = currentWgShell.alphaPiercingCS;
                             shell.RicochetAngle = currentWgShell.bulletRicochetAt;
                             //SAP FireChance = 0 => not relevant => shell.FireChance is set to default value
                             //SAP Krupp = 3 => not relevant => shell.Krupp is set to default value
                         }
-                        else if (shellType == ShellType.HE)
-                        {
-                            shell.Penetration = currentWgShell.alphaPiercingHE;
-                            //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
-                            shell.FireChance = currentWgShell.burnProb;
-                            //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
-                        }
                         else
                         {
-                            //AP Penetration is not a fixed value => shell.Penetration is set to default value
-                            shell.RicochetAngle = currentWgShell.bulletRicochetAt;
-                            //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
-                            shell.Krupp = currentWgShell.bulletKrupp;
+                            shellType = Enum.Parse<ShellType>(currentWgShell.ammoType);
+                            shell.ShellType = shellType;
+
+                            if (shellType == ShellType.HE)
+                            {
+                                shell.Penetration = currentWgShell.alphaPiercingHE;
+                                //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
+                                shell.FireChance = currentWgShell.burnProb;
+                                //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
+                            }
+                            else
+                            {
+                                //AP Penetration is not a fixed value => shell.Penetration is set to default value
+                                shell.RicochetAngle = currentWgShell.bulletRicochetAt;
+                                //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
+                                shell.Krupp = currentWgShell.bulletKrupp;
+                            }
                         }
 
                         shell.Damage = currentWgShell.alphaDamage;
@@ -89,7 +82,7 @@ namespace DataConverter.Converters
                         shell.Mass = currentWgShell.bulletMass;
                         shell.MuzzleVelocity = currentWgShell.bulletSpeed;
 
-                        artilleryList.Add(shell.Name, shell);
+                        projectileList.Add(shell.Name, shell);
                         break;
 
                     case ProjectileType.Bomb: 
@@ -132,7 +125,7 @@ namespace DataConverter.Converters
                         bomb.Mass = currentWgBomb.bulletMass;
                         bomb.MuzzleVelocity = currentWgBomb.bulletSpeed;
 
-                        bombList.Add(bomb.Name, bomb);
+                        projectileList.Add(bomb.Name, bomb);
                         break;
 
                     case ProjectileType.Torpedo:
@@ -149,17 +142,14 @@ namespace DataConverter.Converters
                         WGTorpedo currentWgTorpedo = (WGTorpedo)currentWgProjectile;
 
                         //change WGTorpedo ammoType to our TorpedoType
-                        if (currentWgTorpedo.ammoType.Equals("torpedo_alternative"))
-                        {
-                            currentWgTorpedo.ammoType = TorpedoType.Homing.ToString();
-                        }
                         if (currentWgTorpedo.ammoType.Equals("torpedo_deepwater"))
                         {
-                            currentWgTorpedo.ammoType = TorpedoType.DeepWater.ToString();
+                            torpedo.TorpedoType = TorpedoType.DeepWater;
                         }
-
-                        TorpedoType torpedoType = Enum.Parse<TorpedoType>(currentWgTorpedo.ammoType);
-                        torpedo.TorpedoType = torpedoType;
+                        else
+                        {
+                            torpedo.TorpedoType = TorpedoType.Normal;
+                        }
 
                         torpedo.Damage = (currentWgTorpedo.alphaDamage /3) + currentWgTorpedo.damage;
                         torpedo.SpottingRange = currentWgTorpedo.visibilityFactor;
@@ -176,7 +166,7 @@ namespace DataConverter.Converters
                         }
                         torpedo.IgnoreClasses = ignoreClasses;
 
-                        torpedoList.Add(torpedo.Name, torpedo);
+                        projectileList.Add(torpedo.Name, torpedo);
                         break;
 
                     case ProjectileType.DepthCharge:
@@ -198,7 +188,7 @@ namespace DataConverter.Converters
                         depthCharge.DetonationTimer = currentWgDepthCharge.timer;
                         depthCharge.SinkingSpeed = currentWgDepthCharge.speed;
 
-                        depthChargeList.Add(depthCharge.Name, depthCharge);
+                        projectileList.Add(depthCharge.Name, depthCharge);
                         break;
 
                     case ProjectileType.Rocket:
@@ -240,29 +230,15 @@ namespace DataConverter.Converters
                         rocket.Mass = currentWgRocket.bulletMass;
                         rocket.MuzzleVelocity = currentWgRocket.bulletSpeed;
 
-                        rocketList.Add(rocket.Name, rocket);
+                        projectileList.Add(rocket.Name, rocket);
                         break;
 
                     default:
-                        throw new ProjectileTypeNotFoundException();
+                        throw new InvalidOperationException($"Nation: {currentWgProjectile.typeinfo.nation}, ID: {currentWgProjectile.id}");
                 }
             }
-            //add all the dictionaries to the ArrayList
-            projectileList.Add(artilleryList);
-            projectileList.Add(bombList);
-            projectileList.Add(torpedoList);
-            projectileList.Add(depthChargeList);
-            projectileList.Add(rocketList);
-
+            //dictionary containing all the projectiles
             return projectileList;
         }
-    }
-
-    //custom exception to handle cases when the projectile type is not found
-    public class ProjectileTypeNotFoundException : Exception
-    {
-        public ProjectileTypeNotFoundException() { }
-        public ProjectileTypeNotFoundException(string message) : base(message) { }
-        public ProjectileTypeNotFoundException(string message, Exception inner) : base(message, inner) { }
     }
 }
