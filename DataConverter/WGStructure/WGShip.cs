@@ -54,6 +54,7 @@ namespace DataConverter.WGStructure
         public int numBarrels { get; set; }
         public float[] position { get; set; }
         public float[] rotationSpeed { get; set; }
+        public double[][] deadZone { get; set; }
         public float shotDelay { get; set; }
         public float smokePenalty { get; set; }
         public Typeinfo typeinfo { get; set; }
