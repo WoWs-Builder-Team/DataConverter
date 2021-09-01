@@ -38,7 +38,7 @@ namespace WoWsShipBuilderDataStructures
     {
         public double AttackCooldown { get; set; }
         public int AttackCount { get; set; }
-        public int AttackInterval { get; set; }
+        public double AttackInterval { get; set; }
         public double AttackSpeedMultiplier { get; set; }
         public double AttackSpeedMultiplierApplyTime { get; set; }
         public double AttackerDamageTakenMultiplier { get; set; }

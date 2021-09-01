@@ -8,7 +8,7 @@ namespace DataConverter.WGStructure
     {
         public double attackCooldown { get; set; }
         public int attackCount { get; set; }
-        public int attackInterval { get; set; }
+        public double attackInterval { get; set; }
         public double attackSpeedMultiplier { get; set; }
         public double attackSpeedMultiplierApplyTime { get; set; }
         public double attackerDamageTakenMultiplier { get; set; }
