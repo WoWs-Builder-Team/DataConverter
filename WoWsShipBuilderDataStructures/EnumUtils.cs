@@ -102,4 +102,11 @@ namespace WoWsShipBuilderDataStructures
         HE,
         AP
     }
+
+    public enum ExteriorType
+    {
+        Flag,
+        Camouflage,
+        Permoflage
+    }
 }
