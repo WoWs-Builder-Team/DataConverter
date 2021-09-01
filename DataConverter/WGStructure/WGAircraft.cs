@@ -28,7 +28,7 @@ namespace DataConverter.WGStructure
         public bool isJatoBoosterDetachable { get; set; }
         public double jatoDuration { get; set; }
         public double jatoSpeedMultiplier { get; set; }
-        public int maxHealth { get; set; }
+        public float maxHealth { get; set; }
         public string name { get; set; }
         public double naturalAcceleration { get; set; }
         public double naturalDeceleration { get; set; }

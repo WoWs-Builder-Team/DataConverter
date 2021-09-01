@@ -6,7 +6,7 @@ namespace WoWsShipBuilderDataStructures
     {
         public long Id { get; set; }
         public string Index { get; set; }
-        public int MaxHealth { get; set; }
+        public float MaxHealth { get; set; }
         public string Name { get; set; }
         public int NumPlanesInSquadron { get; set; }
         public float ReturnHeight { get; set; }

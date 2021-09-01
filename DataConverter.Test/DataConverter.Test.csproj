@@ -20,6 +20,12 @@
       <None Update="ShipTests\TestData\filtered_USA.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="ShipTests\TestData\filtered_USA_Aircraft.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="ShipTests\TestData\SingleAircraft.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="ShipTests\TestData\SingleShip.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

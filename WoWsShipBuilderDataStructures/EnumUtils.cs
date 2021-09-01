@@ -67,7 +67,8 @@ namespace WoWsShipBuilderDataStructures
     {
         Cv,
         Consumable,
-        Airstrike
+        Airstrike,
+        Asw
     }
 
     public enum ProjectileType
