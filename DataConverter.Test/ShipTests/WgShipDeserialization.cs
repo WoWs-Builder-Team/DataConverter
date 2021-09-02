@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using DataConverter.Converters;
 using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -31,6 +32,16 @@ namespace DataConverter.Test.ShipTests
             var ship = JsonConvert.DeserializeObject<WGShip>(fileContent);
             Assert.NotNull(ship);
             Assert.AreEqual(9, ship.ShipUpgradeInfo.ConvertedUpgrades.Count);
+        }
+
+        [Test]
+        public void ConvertShip()
+        {
+            var filePath = GetFilePath("ConverterTest.json");
+            var fileContent = File.ReadAllText(filePath);
+            var result = ShipConverter.ConvertShips(fileContent);
+            Assert.AreEqual(1, result.Count);
+            File.WriteAllText("output.json", JsonConvert.SerializeObject(result, Formatting.Indented));
         }
     }
 }

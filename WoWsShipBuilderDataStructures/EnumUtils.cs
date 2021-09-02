@@ -45,6 +45,27 @@ namespace WoWsShipBuilderDataStructures
         FlightControlUnit,
         SonarUnit,
         TorpedoBomberTypeUnit,
+        SkipBomberTypeUnit,
+    }
+
+    public enum ComponentType
+    {
+        DiveBomber,
+        Fighter,
+        Hull,
+        Torpedoes,
+        Suo,
+        Engine,
+        Artillery,
+        FlightControl,
+        Sonar,
+        TorpedoBomber,
+        SkipBomber,
+        Secondary,
+        AirDefense,
+        AirArmament,
+        DepthCharges,
+        None,
     }
 
     public enum ModuleTier
@@ -58,9 +79,9 @@ namespace WoWsShipBuilderDataStructures
     public enum PlaneType
     {
         Fighter,
-        Bomber,
-        Dive,
-        Skip
+        DiveBomber,
+        TorpedoBomber,
+        SkipBomber,
     }
 
     public enum PlaneCategory
@@ -101,5 +122,12 @@ namespace WoWsShipBuilderDataStructures
     {
         HE,
         AP
+    }
+
+    public enum AntiAirAuraType
+    {
+        Near,
+        Medium,
+        Far,
     }
 }
