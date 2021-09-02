@@ -6,7 +6,7 @@ namespace WoWsShipBuilderDataStructures
     {
         public long Id { get; set; }
         public string Index { get; set; }
-        public int MaxHealth { get; set; }
+        public float MaxHealth { get; set; }
         public string Name { get; set; }
         public int NumPlanesInSquadron { get; set; }
         public float ReturnHeight { get; set; }
@@ -38,7 +38,7 @@ namespace WoWsShipBuilderDataStructures
     {
         public double AttackCooldown { get; set; }
         public int AttackCount { get; set; }
-        public int AttackInterval { get; set; }
+        public double AttackInterval { get; set; }
         public double AttackSpeedMultiplier { get; set; }
         public double AttackSpeedMultiplierApplyTime { get; set; }
         public double AttackerDamageTakenMultiplier { get; set; }

@@ -69,15 +69,12 @@ namespace DataConverter.Converters
                 };
                 air.JatoData = jd;
                 
-                // Debug assertion to detect previously undetected constellations where both flags are true.
-                // If this happens, the enum has to be changed.
+                //determine the needed enum for plane category
                 if (currentWgAir.isConsumablePlane && currentWgAir.isAirSupportPlane)
                 {
-                    Debug.Assert(false, $"Invalid combination of boolean flags. Check data structure again for aircraft {currentWgAir.index}.");
+                    air.PlaneCategory = PlaneCategory.Asw;
                 }
-                
-                //determine the needed enum for plane category
-                if (currentWgAir.isConsumablePlane)
+                else if (currentWgAir.isConsumablePlane)
                 {
                     air.PlaneCategory = PlaneCategory.Consumable;
                 }

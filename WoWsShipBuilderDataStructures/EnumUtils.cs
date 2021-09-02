@@ -88,7 +88,8 @@ namespace WoWsShipBuilderDataStructures
     {
         Cv,
         Consumable,
-        Airstrike
+        Airstrike,
+        Asw
     }
 
     public enum ProjectileType
@@ -122,6 +123,13 @@ namespace WoWsShipBuilderDataStructures
     {
         HE,
         AP
+    }
+
+    public enum ExteriorType
+    {
+        Flag,
+        Camouflage,
+        Permoflage
     }
 
     public enum AntiAirAuraType
