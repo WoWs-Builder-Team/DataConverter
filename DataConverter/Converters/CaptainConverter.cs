@@ -1,8 +1,11 @@
 ﻿using DataConverter.WGStructure;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using WoWsShipBuilderDataStructures;
 
@@ -39,20 +42,14 @@ namespace DataConverter.Converters
                     HasSpecialSkills = false
                 };
 
-                //check if there are skills with special vaules 
-                if (currentWgCaptain.CrewPersonality.tags.Contains("upperks"))
-                {
-                    captain.HasSpecialSkills = true;
-                }
-
                 //create object SKill
                 Skill skill = new Skill();
                 //initialize dictionaries for skills, skill's modifiers and skill's tiers
                 Dictionary<string, Skill> skills = new Dictionary<string, Skill>();
                 Dictionary<string, float> modifiers = new Dictionary<string, float>();
                 Dictionary<string, float> conditionalModifiers = new Dictionary<string, float>();
-                Dictionary<ShipClass, int[]> tiers = new Dictionary<ShipClass, int[]>();
-
+                List<SkillPosition> tiers = new();
+                List<ShipClass> classes = new();
                 //iterate all captain's skills
                 foreach (var currentWgSkill in currentWgCaptain.Skills)
                 {
@@ -61,12 +58,25 @@ namespace DataConverter.Converters
                     skill.IsEpic = currentWgSkill.Value.isEpic;
                     skill.SkillNumber = currentWgSkill.Value.skillType;
 
+                    //check if there are skills with special vaules
+                    if (skill.IsEpic)
+                    {
+                        captain.HasSpecialSkills = true;
+                    }
+
                     //map skill's position in the skilltree of each class
                     foreach (var tier in skillsTiers.Cruiser)
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Cruiser, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Cruiser,
+                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
+                                Tier = tier.Key
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
                         }
                     }
 
@@ -74,7 +84,14 @@ namespace DataConverter.Converters
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Auxiliary, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Auxiliary,
+                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
+                                Tier = tier.Key
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
                         }
                     }
 
@@ -82,7 +99,14 @@ namespace DataConverter.Converters
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Destroyer, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Destroyer,
+                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
+                                Tier = tier.Key
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
                         }
                     }
 
@@ -90,7 +114,14 @@ namespace DataConverter.Converters
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.AirCarrier, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.AirCarrier,
+                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
+                                Tier = tier.Key
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
                         }
                     }
 
@@ -98,7 +129,14 @@ namespace DataConverter.Converters
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Submarine, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Submarine,
+                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
+                                Tier = tier.Key
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
                         }
                     }
 
@@ -106,18 +144,61 @@ namespace DataConverter.Converters
                     {
                         if (tier.Value.Contains(skill.SkillNumber))
                         {
-                            tiers.Add(ShipClass.Battleship, new[] { tier.Key, tier.Value.IndexOf(skill.SkillNumber) });
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Battleship,
+                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
+                                Tier = tier.Key
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
                         }
                     }
 
                     skill.Tiers = tiers;
                     //list of the classes that can use the skill
-                    skill.LearnableOn = new List<ShipClass>(tiers.Keys);
+                    skill.LearnableOn = classes;
 
                     //collect all modifiers of the skill
                     foreach (var currentWgModifier in currentWgSkill.Value.modifiers)
                     {
-                        modifiers.Add(currentWgModifier.Key, (float)currentWgModifier.Value);
+                        JToken jtoken = currentWgModifier.Value;
+                        Debug.WriteLine(jtoken.Type);
+                        if (jtoken.Type == JTokenType.Float)
+                        {
+                            var value = jtoken.Value<float>();
+                            modifiers.Add(currentWgModifier.Key, value);
+                        }
+                        else if (jtoken.Type == JTokenType.Integer)
+                        {
+                            var value = jtoken.Value<int>();
+                            modifiers.Add(currentWgModifier.Key, value);
+                        }
+                        else
+                        {
+                            JObject jObject = (JObject)jtoken;
+                            var values = jObject.ToObject<Dictionary<string, float>>();
+                            bool isEqual = true;
+                            var first = values.First().Value;
+                            foreach ((string key, float value) in values)
+                            {
+                                if (value != first)
+                                {
+                                    isEqual = false;
+                                }
+                            }
+                            if (isEqual)
+                            {
+                                modifiers.Add(currentWgModifier.Key, first);
+                            }
+                            else
+                            {
+                                foreach ((string key, float value) in values)
+                                {
+                                    modifiers.Add(currentWgModifier.Key + "_" + key, value);
+                                }
+                            }
+                        }
                     }
 
                     skill.Modifiers = modifiers;

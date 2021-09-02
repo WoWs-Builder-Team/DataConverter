@@ -7,6 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="ShipTests\TestData\SKILLS_BY_TIER.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="ShipTests\TestData\SKILLS_BY_TIER.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="NUnit" Version="3.12.0" />
         <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
@@ -23,7 +33,13 @@
       <None Update="ShipTests\TestData\filtered_USA_Aircraft.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="ShipTests\TestData\filtered_USA_Crew.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="ShipTests\TestData\SingleAircraft.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="ShipTests\TestData\SingleCrew.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="ShipTests\TestData\SingleShip.json">

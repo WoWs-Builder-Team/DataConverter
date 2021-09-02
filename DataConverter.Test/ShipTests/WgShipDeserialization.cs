@@ -54,5 +54,30 @@ namespace DataConverter.Test.ShipTests
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
+
+        [Test]
+        public void DeserializeWgCaptain_Succes()
+        {
+            var filePath = GetFilePath("SingleCrew.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var test = JsonConvert.DeserializeObject<WGCaptain>(fileContent);
+            Assert.NotNull(test);
+        }
+
+        [Test]
+        public void DeserializeCaptain_Succes()
+        {
+            var filePath = GetFilePath("filtered_USA_Crew.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var skillsJsonPath = GetFilePath("SKILLS_BY_TIER.json");
+            var skillsJsonContent = File.ReadAllText(skillsJsonPath);
+
+            object dict = CaptainConverter.ConvertCaptain(fileContent, skillsJsonContent);
+            string test = JsonConvert.SerializeObject(dict);
+            Assert.NotNull(test);
+        }
+
     }
 }
