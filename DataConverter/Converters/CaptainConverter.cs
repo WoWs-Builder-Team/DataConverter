@@ -44,12 +44,8 @@ namespace DataConverter.Converters
 
                 //create object SKill
                 Skill skill = new Skill();
-                //initialize dictionaries for skills, skill's modifiers and skill's tiers
+                //initialize dictionaries for skills and skill's tiers
                 Dictionary<string, Skill> skills = new Dictionary<string, Skill>();
-                Dictionary<string, float> modifiers = new Dictionary<string, float>();
-                Dictionary<string, float> conditionalModifiers = new Dictionary<string, float>();
-                List<SkillPosition> tiers = new();
-                List<ShipClass> classes = new();
                 //iterate all captain's skills
                 foreach (var currentWgSkill in currentWgCaptain.Skills)
                 {
@@ -63,6 +59,9 @@ namespace DataConverter.Converters
                     {
                         captain.HasSpecialSkills = true;
                     }
+                    //initialize lists for skill's tiers and classes 
+                    List<SkillPosition> tiers = new();
+                    List<ShipClass> classes = new();
 
                     //map skill's position in the skilltree of each class
                     foreach (var tier in skillsTiers.Cruiser)
@@ -158,6 +157,9 @@ namespace DataConverter.Converters
                     skill.Tiers = tiers;
                     //list of the classes that can use the skill
                     skill.LearnableOn = classes;
+                    //initialize dictionaries skill's modifiers
+                    Dictionary<string, dynamic> modifiers = new Dictionary<string, dynamic>();
+                    Dictionary<string, float> conditionalModifiers = new Dictionary<string, float>();
 
                     //collect all modifiers of the skill
                     foreach (var currentWgModifier in currentWgSkill.Value.modifiers)
@@ -166,13 +168,15 @@ namespace DataConverter.Converters
                         Debug.WriteLine(jtoken.Type);
                         if (jtoken.Type == JTokenType.Float)
                         {
-                            var value = jtoken.Value<float>();
-                            modifiers.Add(currentWgModifier.Key, value);
+                            modifiers.Add(currentWgModifier.Key, jtoken.Value<float>());
                         }
                         else if (jtoken.Type == JTokenType.Integer)
                         {
-                            var value = jtoken.Value<int>();
-                            modifiers.Add(currentWgModifier.Key, value);
+                            modifiers.Add(currentWgModifier.Key, jtoken.Value<int>());
+                        }
+                        else if (jtoken.Type == JTokenType.Boolean)
+                        {
+                            modifiers.Add(currentWgModifier.Key, jtoken.Value<bool>());
                         }
                         else
                         {
