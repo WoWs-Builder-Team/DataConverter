@@ -158,14 +158,12 @@ namespace DataConverter.Converters
                     //list of the classes that can use the skill
                     skill.LearnableOn = classes;
                     //initialize dictionaries skill's modifiers
-                    Dictionary<string, dynamic> modifiers = new Dictionary<string, dynamic>();
+                    Dictionary<string, float> modifiers = new Dictionary<string, float>();
                     Dictionary<string, float> conditionalModifiers = new Dictionary<string, float>();
-
                     //collect all modifiers of the skill
                     foreach (var currentWgModifier in currentWgSkill.Value.modifiers)
                     {
                         JToken jtoken = currentWgModifier.Value;
-                        Debug.WriteLine(jtoken.Type);
                         if (jtoken.Type == JTokenType.Float)
                         {
                             modifiers.Add(currentWgModifier.Key, jtoken.Value<float>());
@@ -174,11 +172,7 @@ namespace DataConverter.Converters
                         {
                             modifiers.Add(currentWgModifier.Key, jtoken.Value<int>());
                         }
-                        else if (jtoken.Type == JTokenType.Boolean)
-                        {
-                            modifiers.Add(currentWgModifier.Key, jtoken.Value<bool>());
-                        }
-                        else
+                        else if (jtoken.Type == JTokenType.Object)
                         {
                             JObject jObject = (JObject)jtoken;
                             var values = jObject.ToObject<Dictionary<string, float>>();
@@ -199,7 +193,7 @@ namespace DataConverter.Converters
                             {
                                 foreach ((string key, float value) in values)
                                 {
-                                    modifiers.Add(currentWgModifier.Key + "_" + key, value);
+                                    modifiers.Add($"{currentWgModifier.Key}_{key}", value);
                                 }
                             }
                         }

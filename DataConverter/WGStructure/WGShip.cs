@@ -110,7 +110,7 @@ namespace DataConverter.WGStructure
     {
         public string[] ammoList { get; set; }
         public decimal barrelDiameter { get; set; }
-        public decimal[] deadZone { get; set; }
+        public decimal[][] deadZone { get; set; }
         public decimal[] horizSector { get; set; }
         public long id { get; set; }
         public string index { get; set; }
@@ -155,9 +155,19 @@ namespace DataConverter.WGStructure
         [JsonIgnore]
         public Dictionary<string, AAAura> ConvertedAntiAirData
         {
-            get => AntiAirData.Select(entry => (entry.Key, entry.Value.ToObject<AAAura>()))
-                .Where(entry => entry.Item2 != null)
-                .ToDictionary(entry => entry.Key, entry => entry.Item2);
+            get 
+            {
+                if (AntiAirData == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return AntiAirData.Select(entry => (entry.Key, entry.Value.ToObject<AAAura>()))
+                           .Where(entry => entry.Item2 != null)
+                           .ToDictionary(entry => entry.Key, entry => entry.Item2);
+                } 
+            } 
         }
     }
 

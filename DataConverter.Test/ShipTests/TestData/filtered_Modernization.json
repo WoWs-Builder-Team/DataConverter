@@ -1,0 +1,4878 @@
+﻿[
+  {
+    "excludes": [],
+    "id": 4203925424,
+    "index": "PCM086",
+    "modifiers": {
+      "batteryCapacityCoeff": 1.2
+    },
+    "name": "PCM086_Autonomy_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Submarine"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PASB510_Ohio",
+      "PASB518_Massachusetts",
+      "PASB598_Black_Massachusetts",
+      "PASB729_Georgia",
+      "PJSB526_Ise",
+      "PASB519_Kearsarge",
+      "PJSB509_Musashi",
+      "PJSB510_Shikishima",
+      "PBSB510_Thunderer",
+      "PFSB518_Jean_Bart",
+      "PFSB599_Black_Jean_Bart"
+    ],
+    "id": 4202876848,
+    "index": "PCM087",
+    "modifiers": {
+      "asMaxHealthCoeff": 1.25,
+      "asReloadTimeCoeff": 0.8,
+      "dcAlphaDamageMultiplier": {
+        "AirCarrier": 1.15,
+        "Auxiliary": 1.15,
+        "Battleship": 1.15,
+        "Cruiser": 1.15,
+        "Destroyer": 1.15,
+        "Submarine": 1.15
+      }
+    },
+    "name": "PCM087_AirSupport_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Japan",
+      "United_Kingdom"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Battleship"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4264742832,
+    "index": "PCM028",
+    "modifiers": {
+      "GMMaxDist": 1.16,
+      "GSIdealRadius": 0.95,
+      "GSMaxDist": 1.05
+    },
+    "name": "PCM028_FireControl_Mod_I_US",
+    "nation": [
+      "USA"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912"
+    ],
+    "shiptype": [
+      "Battleship"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4254257072,
+    "index": "PCM038",
+    "modifiers": {
+      "scoutWorkTimeCoeff": 1.3
+    },
+    "name": "PCM038_Spotter_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PUSC506_Perth_1942",
+      "PFSB108_Richelieu",
+      "PFSB506_Dunkerque_1940",
+      "PFSB508_Gascogne",
+      "PFSC109_Saint_Louis",
+      "PGSB002_Tirpiz_1942",
+      "PGSB105_Koenig",
+      "PGSB106_Bayern",
+      "PGSB107_Gneisenau",
+      "PGSB108_Bismarck",
+      "PGSB109_Friedrich_der_Grosse",
+      "PGSB110_Grossdeutschland",
+      "PGSB507_Scharnhorst",
+      "PGSB508_Odin",
+      "PGSB597_Black_Scharnhorst",
+      "PGSB598_Black_Tirpitz",
+      "PGSB910_Grossdeutschland",
+      "PGSC109_Roon",
+      "PGSC110_Hindenburg",
+      "PGSC509_Siegfried",
+      "PGSC910_Hindenburg",
+      "PISB508_Roma",
+      "PISB708_Impero",
+      "PISC105_Raimondo_Montecuccoli",
+      "PISC106_Trento",
+      "PISC107_Zara",
+      "PISC108_Amalfi",
+      "PISC109_Brindisi",
+      "PISC110_Venezia",
+      "PISC505_Genova",
+      "PISC506_DucadAosta",
+      "PISC507_Duca_degli_Abruzzi",
+      "PISC607_Gorizia",
+      "PJSB003_Myogi_1912",
+      "PJSB006_Fuso_1943",
+      "PJSB007_Kongo_1942",
+      "PJSB715_HSF_Hiei",
+      "PJSB010_Nagato_1944",
+      "PJSB013_Amagi_1942",
+      "PJSB018_Yamato_1944",
+      "PJSB700_ARP_Yamato",
+      "PJSB021_Izumo_1938",
+      "PJSB506_Mutsu",
+      "PJSB508_Kii",
+      "PJSB509_Musashi",
+      "PJSB705_Kongou",
+      "PJSB706_Kirishima",
+      "PJSB707_Haruna",
+      "PJSB708_Hiei_Arpeggio",
+      "PJSB918_Yamato_1944",
+      "PJSC012_Ibuki_1944",
+      "PJSC034_Zao_1944",
+      "PJSC510_Azumaya",
+      "PJSC520_Yoshino",
+      "PJSC810_TST_ZAO",
+      "PJSC934_Zao_1944",
+      "PZSB509_Izumo_Bajie",
+      "PZSC518_Martel_Wukong",
+      "PRSC003_Murmansk_1944",
+      "PRSC105_Kirov",
+      "PRSC525_Kirov",
+      "PRSC106_Pr_94_Budeny",
+      "PRSC107_Schors",
+      "PRSC506_Molotov_1943",
+      "PRSC509_Kronshtadt",
+      "PRSC518_Lazo",
+      "PBSB002_Warspite_1941",
+      "PBSB105_Iron_Duke",
+      "PBSB106_Queen_Elizabeth",
+      "PBSB107_King_George_V",
+      "PBSB108_Monarch",
+      "PBSB109_Lion",
+      "PBSC105_Emerald",
+      "PBSC106_Leander",
+      "PBSC107_Fiji",
+      "PBSC108_Edinburgh",
+      "PBSC207_Surrey",
+      "PBSC208_Albemarle",
+      "PBSC209_Drake",
+      "PASB004_Arkansas_1912",
+      "PASB006_New_York_1934",
+      "PASB008_Colorado_1945",
+      "PASB012_North_Carolina_1945",
+      "PASB017_Montana_1945",
+      "PASB018_Iowa_1944",
+      "PASB034_New_Mexico_1941",
+      "PASB506_Arizona_1941",
+      "PASB507_West_Virginia",
+      "PASB508_Alabama",
+      "PASB510_Ohio",
+      "PASB518_Massachusetts",
+      "PASB598_Black_Massachusetts",
+      "PASB705_Texas_1944",
+      "PASB707_California",
+      "PASB708_Alabama",
+      "PASB729_Georgia",
+      "PASB810_TST_MONTANA",
+      "PASB917_Montana_1945",
+      "PASC019_Burlington_1944",
+      "PASC020_Des_Moines_1948",
+      "PASC109_Buffalo",
+      "PASC208_Cleveland",
+      "PASC209_Seattle",
+      "PASC210_Worcester",
+      "PASC508_Wichita",
+      "PASC510_Alaska",
+      "PASC599_Black_Alaska",
+      "PASC610_Puerto_Rico",
+      "PASC718_AZUR_Montpelier",
+      "PJSB510_Yashima",
+      "PRSC215_Kotovsky",
+      "PRSC209_Riga",
+      "PRSC515_Mikoyan",
+      "PFSB528_Champagne",
+      "PJSB878_Ignis_Purgatio",
+      "PJSB888_Ragnarok",
+      "PJSB510_Shikishima",
+      "PASC518_Anchorage",
+      "PISB708_AZUR_Littorio",
+      "PASB108_Kansas",
+      "PASB109_Minnesota",
+      "PASB110_Vermont",
+      "PASB910_Connecticut",
+      "PASB517_Florida",
+      "PASB505_Oklahoma",
+      "PJSB519_Hizen",
+      "PFSB507_Strasbourg",
+      "PISB108_Vittorio_Veneto",
+      "PISB110_Cristoforo_Colombo",
+      "PISB509_Marco_Polo",
+      "PISB109_Lepanto",
+      "PASB528_Alabama_VL",
+      "PASB538_Constellation",
+      "PUSB507_Yukon",
+      "PASC528_Congress",
+      "PHSC104_De_Ruyter",
+      "PHSC105_Celebes",
+      "PHSC106_Kijkduin",
+      "PHSC107_Eendracht",
+      "PGSC517_Weimar",
+      "PBSB526_Repulse",
+      "PGSB999_Hannover",
+      "PJSB999_Satsuma",
+      "PFSC509_Carnot",
+      "PGSB518_Brandenburg",
+      "PBSB610_Incomparable"
+    ],
+    "shiptype": [],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4229091248,
+    "index": "PCM062",
+    "modifiers": {
+      "planeForsageDrainRate": 1.2,
+      "planeMaxSpeedMultiplier": 1.15
+    },
+    "name": "PCM062_Special_Mod_I_Hakuryu",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSA110_Hakuryu"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster"
+    ],
+    "id": 4290957232,
+    "index": "PCM003",
+    "modifiers": {
+      "planeEmptyReturnSpeed": 1.2
+    },
+    "name": "PCM003_Airplanes_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PXSA005_Hellcarrier"
+    ],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4280471472,
+    "index": "PCM013",
+    "modifiers": {
+      "GMRotationSpeed": {
+        "AirCarrier": 0.87,
+        "Auxiliary": 0.87,
+        "Battleship": 0.87,
+        "Cruiser": 0.87,
+        "Destroyer": 0.87,
+        "Submarine": 0.87
+      },
+      "GMShotDelay": 0.88
+    },
+    "name": "PCM013_MainGun_Mod_III",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4283617200,
+    "index": "PCM010",
+    "modifiers": {
+      "fighterHealth": 1.04
+    },
+    "name": "PCM010_Airplanes_Mod_II",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4235382704,
+    "index": "PCM056",
+    "modifiers": {
+      "GTShotDelay": 0.85,
+      "torpedoVisibilityFactor": 0.9,
+      "visibilityFactor": 0.95,
+      "visibilityFactorByPlane": 0.95,
+      "visibilityForSubmarineCoeff": 0.95
+    },
+    "name": "PCM056_Special_Mod_I_Z_52",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PGSD110_Z_52"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4204974000,
+    "index": "PCM085",
+    "modifiers": {
+      "pingerWaveSpeedCoeff": 1.1
+    },
+    "name": "PCM085_Pinger_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Submarine"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4233285552,
+    "index": "PCM058",
+    "modifiers": {
+      "GMShotDelay": 1.15,
+      "GTShotDelay": 1.05,
+      "shootShift": 1.05,
+      "visibilityFactor": 0.85,
+      "visibilityFactorByPlane": 0.85,
+      "visibilityForSubmarineCoeff": 0.85
+    },
+    "name": "PCM058_Special_Mod_I_Gearing",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PASD013_Gearing_1945"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4251111344,
+    "index": "PCM041",
+    "modifiers": {
+      "sonarWorkTimeCoeff": 1.2
+    },
+    "name": "PCM041_SonarSearch_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSD528_Harekaze_2",
+      "PUSC506_Perth_1942",
+      "PUSD507_Haida",
+      "PWSD510_Friesland",
+      "PFSC104_Duguay_Trouin",
+      "PFSC105_Emile_Bertin",
+      "PFSC106_La_Galissonniere",
+      "PFSC107_Algerie",
+      "PFSC108_Charles_Martel",
+      "PFSC109_Saint_Louis",
+      "PFSC110_Henri_IV",
+      "PFSC506_De_Grasse",
+      "PFSC508_Bayard",
+      "PFSC510_Colbert",
+      "PFSC810_Henri_IV",
+      "PGSB108_Bismarck",
+      "PGSB109_Friedrich_der_Grosse",
+      "PGSB110_Grossdeutschland",
+      "PGSB508_Odin",
+      "PGSB910_Grossdeutschland",
+      "PGSC104_Karlsruhe",
+      "PGSC105_Konigsberg",
+      "PGSC106_Nurnberg",
+      "PGSC107_Yorck",
+      "PGSC108_Hipper",
+      "PGSC109_Roon",
+      "PGSC110_Hindenburg",
+      "PGSC506_Admiral_Graf_Spee",
+      "PGSC508_Prinz_Eugen",
+      "PGSC509_Siegfried",
+      "PGSC518_Mainz",
+      "PGSC706_HSF_Graf_Spee",
+      "PGSC910_Hindenburg",
+      "PGSD105_T_22",
+      "PGSD106_Ernst_Gaede",
+      "PGSD107_Leberecht_Maass",
+      "PGSD108_Z_23",
+      "PGSD109_Z_46",
+      "PGSD110_Z_52",
+      "PGSD506_T_61",
+      "PGSD508_Z_39",
+      "PISC506_DucadAosta",
+      "PISC507_Duca_degli_Abruzzi",
+      "PISC607_Gorizia",
+      "PJSC005_Furutaka_1926",
+      "PJSC007_Aoba_1943",
+      "PJSC008_Myoko_1945",
+      "PJSC009_Mogami_1935",
+      "PJSC012_Ibuki_1944",
+      "PJSC013_Kuma_1938",
+      "PJSC018_Tone",
+      "PJSC918_Tone_Second",
+      "PJSC919_Tone_Third",
+      "PJSC026_Iwaki_1944",
+      "PJSC034_Zao_1944",
+      "PJSC038_Atago_1944",
+      "PJSC505_Yahagi",
+      "PJSC510_Azumaya",
+      "PJSC520_Yoshino",
+      "PJSC598_Black_Atago",
+      "PJSC705_Myoko",
+      "PJSC707_Ashigara",
+      "PJSC708_ARP_Takao",
+      "PJSC718_ARP_Maya",
+      "PJSC709_Haguro",
+      "PJSC717_Yellow_Dragon",
+      "PJSC727_Blue_Dragon",
+      "PJSC737_Nachi",
+      "PJSC810_TST_ZAO",
+      "PJSC934_Zao_1944",
+      "PVSC507_Nueve_de_Julio_1951",
+      "PZSC506_Huang_he",
+      "PZSC508_Irian",
+      "PZSD208_Siliwangi_1959",
+      "PZSD508_LoYang",
+      "PRSC003_Murmansk_1944",
+      "PRSC104_Svetlana",
+      "PRSC105_Kirov",
+      "PRSC525_Kirov",
+      "PRSC106_Pr_94_Budeny",
+      "PRSC107_Schors",
+      "PRSC108_Pr_68_Chapaev",
+      "PRSC109_Dmitry_Donskoy",
+      "PRSC110_Pr_66_Moskva",
+      "PRSC505_KrasniKrym",
+      "PRSC506_Molotov_1943",
+      "PRSC508_Kutuzov_1952",
+      "PRSC518_Lazo",
+      "PRSC606_Admiral_Makarov",
+      "PRSC610_Smolensk",
+      "PRSC910_Pr_66_Moskva",
+      "PBSB527_Duke_of_York",
+      "PBSC104_Danae",
+      "PBSC105_Emerald",
+      "PBSC106_Leander",
+      "PBSC107_Fiji",
+      "PBSC108_Edinburgh",
+      "PBSC109_Neptune",
+      "PBSC110_Minotaur",
+      "PBSC205_Hawkins",
+      "PBSC206_Devonshire",
+      "PBSC207_Surrey",
+      "PBSC208_Albemarle",
+      "PBSC209_Drake",
+      "PBSC210_Goliath",
+      "PBSC910_Cyclops",
+      "PBSC505_Exeter",
+      "PBSC507_Belfast_1959",
+      "PBSC508_Cheshire",
+      "PBSC516_London",
+      "PBSD106_Icarus",
+      "PBSD107_Jervis",
+      "PBSD108_Lightning",
+      "PBSD109_Jutland",
+      "PBSD110_Daring",
+      "PBSD517_Cossack",
+      "PBSD598_Black_Cossack",
+      "PASC005_Omaha_1923",
+      "PASC006_Atlanta_1942",
+      "PASC587_Black_Atlanta",
+      "PASC016_Worcester_1948",
+      "PASC019_Burlington_1944",
+      "PASC020_Des_Moines_1948",
+      "PASC024_Phoenix_1917",
+      "PASC044_Marblehead_1924",
+      "PASC045_Marblehead_1924_Asus",
+      "PASC106_Pensacola_1944",
+      "PASC107_New_Orlean_1944",
+      "PASC108_Baltimore_1944",
+      "PASC109_Buffalo",
+      "PASC206_Dallas",
+      "PASC207_Helena",
+      "PASC208_Cleveland",
+      "PASC209_Seattle",
+      "PASC210_Worcester",
+      "PASC507_Indianapolis_1945",
+      "PASC508_Wichita",
+      "PASC510_Alaska",
+      "PASC597_Nueve_de_Julio_1951",
+      "PASC599_Black_Alaska",
+      "PASC610_Puerto_Rico",
+      "PASC707_Flint",
+      "PASC710_Salem",
+      "PASC718_AZUR_Montpelier",
+      "PGSB108_Bismarck",
+      "PGSB109_Friedrich_der_Grosse",
+      "PGSB110_Grossdeutschland",
+      "PGSB508_Odin",
+      "PGSB910_Grossdeutschland",
+      "PGSC519_Aegir",
+      "PRSC538_Petr_Bagration",
+      "PRSC548_Bagration",
+      "PRSC208_Tallin",
+      "PRSC210_Pr_84_Alexander_Nevsky",
+      "PRSC528_Ochakov",
+      "PRSC209_Riga",
+      "PRSC310_Petropavlovsk",
+      "PRSC215_Kotovsky",
+      "PRSC515_Mikoyan",
+      "PGSB509_Pommern",
+      "PGSD518_Z_35",
+      "PASC518_Anchorage",
+      "PGSC507_Munchen",
+      "PBSC528_Belfast_1943",
+      "PBSC510_Plymouth",
+      "PUSC516_Mysore",
+      "PUSD510_Vampire_2",
+      "PASC810_Austin",
+      "PGSC517_Weimar",
+      "PBSD510_Druid",
+      "PASC528_Congress",
+      "PHSC104_De_Ruyter",
+      "PHSC105_Celebes",
+      "PHSC106_Kijkduin",
+      "PHSC107_Eendracht",
+      "PHSC108_Haarlem",
+      "PHSC109_Johan_de_Witt",
+      "PHSC110_Gouden_Leeuw",
+      "PGSB999_Hannover",
+      "PASC538_Rochester",
+      "PFSC509_Carnot",
+      "PHSD509_Groningen",
+      "PGSB206_Mackensen",
+      "PGSB207_Prinz_Heinrich",
+      "PGSB208_Zieten",
+      "PGSB209_Prinz_Rupprecht",
+      "PGSB210_Schlieffen",
+      "PBSB610_Incomparable",
+      "PGSB206_Mackensen",
+      "PGSB207_Prinz_Heinrich",
+      "PGSB208_Zieten",
+      "PGSB209_Prinz_Rupprecht",
+      "PGSB210_Schlieffen",
+      "PBSB610_Incomparable"
+    ],
+    "shiptype": [],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4262645680,
+    "index": "PCM030",
+    "modifiers": {
+      "GMCritProb": 0.8,
+      "GMMaxHP": 1.5,
+      "GMRepairTime": 0.8,
+      "GTCritProb": 0.8,
+      "GTMaxHP": 1.5,
+      "GTRepairTime": 0.8
+    },
+    "name": "PCM030_MainWeapon_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "Submarine"
+    ],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PBSA508_Indomitable",
+      "PGSA510_Werner_Voss"
+    ],
+    "id": 4224896944,
+    "index": "PCM066",
+    "modifiers": {
+      "torpedoBomberAimingTime": 5
+    },
+    "name": "PCM066_TorpedoBomber_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4246917040,
+    "index": "PCM045",
+    "modifiers": {
+      "GMMaxDist": 0.92,
+      "GMShotDelay": 0.9,
+      "GSShotDelay": 0.85
+    },
+    "name": "PCM045_Special_Mod_I_GKurfurst",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PGSB110_Grossdeutschland"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4272082864,
+    "index": "PCM021",
+    "modifiers": {
+      "engineCritProb": 0.8,
+      "engineRepairTime": 0.8
+    },
+    "name": "PCM021_Engine_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4288860080,
+    "index": "PCM005",
+    "modifiers": {
+      "GSMaxHP": 1.2
+    },
+    "name": "PCM005_SecondaryGun_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PASA002_Bogue_1942",
+      "PASA006_Independence_1945",
+      "PASA507_Saipan_1946",
+      "PASC005_Omaha_1923",
+      "PASC006_Atlanta_1942",
+      "PASC587_Black_Atlanta",
+      "PASC016_Worcester_1948",
+      "PASC044_Marblehead_1924",
+      "PASC045_Marblehead_1924_Asus",
+      "PASC707_Flint",
+      "PBSC110_Minotaur",
+      "PRSC003_Murmansk_1944",
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PASC210_Worcester",
+      "PASC209_Seattle",
+      "PASA528_Saipan",
+      "PRSC610_Smolensk",
+      "PFSC510_Colbert",
+      "PRSC528_Ochakov",
+      "PJSC610_Kitakami",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship",
+      "PZSA508_Saipan_Sanzang",
+      "PASC810_Austin",
+      "PBSC518_Tiger_1959",
+      "PHSC105_Celebes",
+      "PHSC508_De_Zeven_Provincien",
+      "PHSC106_Kijkduin",
+      "PHSC107_Eendracht"
+    ],
+    "id": 4281520048,
+    "index": "PCM012",
+    "modifiers": {
+      "GSIdealRadius": 0.8,
+      "GSMaxDist": 1.2
+    },
+    "name": "PCM012_SecondaryGun_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "AirCarrier"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4265791408,
+    "index": "PCM027",
+    "modifiers": {
+      "planeVisibilityFactor": 0.9,
+      "shootShift": 1.05,
+      "visibilityFactor": 0.9,
+      "visibilityFactorByPlane": 0.9,
+      "visibilityForSubmarineCoeff": 0.9
+    },
+    "name": "PCM027_ConcealmentMeasures_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912",
+      "PBSC507_Belfast_1959",
+      "PGSD508_Z_39"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "AirCarrier"
+    ],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4274180016,
+    "index": "PCM019",
+    "modifiers": {
+      "GSShotDelay": 0.8
+    },
+    "name": "PCM019_SecondaryGun_Mod_III",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4244819888,
+    "index": "PCM047",
+    "modifiers": {
+      "SGRepairTime": 0.3,
+      "SGRudderTime": 0.7,
+      "burnTime": 0.9,
+      "floodTime": 0.9
+    },
+    "name": "PCM047_Special_Mod_I_Montana",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PASB017_Montana_1945"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4253208496,
+    "index": "PCM039",
+    "modifiers": {
+      "crashCrewWorkTimeCoeff": 1.4
+    },
+    "name": "PCM039_CrashCrew_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912"
+    ],
+    "shiptype": [
+      "Battleship",
+      "AirCarrier",
+      "Cruiser",
+      "Destroyer",
+      "Submarine"
+    ],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4273131440,
+    "index": "PCM020",
+    "modifiers": {
+      "burnProb": 0.95,
+      "floodProb": 0.97
+    },
+    "name": "PCM020_DamageControl_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "AirCarrier",
+      "Submarine"
+    ],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster"
+    ],
+    "id": 4209168304,
+    "index": "PCM081",
+    "modifiers": {
+      "skipBomberHealth": 1.075
+    },
+    "name": "PCM081_SkipBomber_Mod_I",
+    "nation": [
+      "Russia"
+    ],
+    "shiplevel": [
+      6,
+      8,
+      10
+    ],
+    "ships": [
+      "PGSA510_Werner_Voss",
+      "PGSA610_Max_Immelmann"
+    ],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4208119728,
+    "index": "PCM082",
+    "modifiers": {
+      "batteryBurnRateCoeff": 0.9
+    },
+    "name": "PCM082_Autonomy_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Submarine"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4237479856,
+    "index": "PCM054",
+    "modifiers": {
+      "GMIdealRadius": 0.93,
+      "GMMaxDist": 1.08,
+      "GMRotationSpeed": {
+        "AirCarrier": 0.8,
+        "Auxiliary": 0.8,
+        "Battleship": 0.8,
+        "Cruiser": 0.8,
+        "Destroyer": 0.8,
+        "Submarine": 0.8
+      }
+    },
+    "name": "PCM054_Special_Mod_I_Moskva",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PRSC110_Pr_66_Moskva"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4250062768,
+    "index": "PCM042",
+    "modifiers": {
+      "rlsWorkTimeCoeff": 1.2
+    },
+    "name": "PCM042_RLSSearch_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PBSC110_Minotaur",
+      "PBSC108_Edinburgh",
+      "PBSC109_Neptune",
+      "PASC017_Baltimore_1944",
+      "PBSC507_Belfast_1959",
+      "PASB509_Missouri",
+      "PASC006_Atlanta_1942",
+      "PASC587_Black_Atlanta",
+      "PRSC110_Pr_66_Moskva",
+      "PRSC509_Kronshtadt",
+      "PRSC510_Stalingrad",
+      "PRSC520_Stalingrad",
+      "PRSC910_Pr_66_Moskva",
+      "PRSC109_Dmitry_Donskoy",
+      "PRSC108_Pr_68_Chapaev",
+      "PASC020_Des_Moines_1948",
+      "PASC710_Salem",
+      "PASC019_Burlington_1944",
+      "PRSC999_Seal",
+      "PASD709_Black",
+      "PASC016_Worcester_1948",
+      "PZSD108_Hsien_Yang",
+      "PZSD109_Chung_Mu",
+      "PZSD110_Hsiang_Yang",
+      "PASC109_Buffalo",
+      "PASC208_Cleveland",
+      "PASC209_Seattle",
+      "PASC210_Worcester",
+      "PASC507_Indianapolis_1945",
+      "PASC508_Wichita",
+      "PASC510_Alaska",
+      "PASC610_Puerto_Rico",
+      "PASC718_AZUR_Montpelier",
+      "PASC599_Black_Alaska",
+      "PWSD610_Smaland",
+      "PASC108_Baltimore_1944",
+      "PWSD508_Orkan",
+      "PRSC208_Tallin",
+      "PRSC210_Pr_84_Alexander_Nevsky",
+      "PRSC528_Ochakov",
+      "PRSC209_Riga",
+      "PRSC310_Petropavlovsk",
+      "PRSB528_Borodino",
+      "PBSC528_Belfast_1943",
+      "PBSC510_Plymouth",
+      "PBSC518_Tiger_1959",
+      "PASB538_Constellation",
+      "PASC528_Congress",
+      "PWSD710_Ragnar"
+    ],
+    "shiptype": [],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB005_Bismarck_H2017",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4260548528,
+    "index": "PCM032",
+    "modifiers": {
+      "PMDetonationProb": 0.3
+    },
+    "name": "PCM032_PowderMagazine_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "Auxiliary"
+    ],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PJSC610_Kitakami"
+    ],
+    "id": 4258451376,
+    "index": "PCM034",
+    "modifiers": {
+      "GMIdealRadius": 0.6,
+      "GMRotationSpeed": {
+        "AirCarrier": 1.2,
+        "Auxiliary": 1.2,
+        "Battleship": 1.2,
+        "Cruiser": 1.2,
+        "Destroyer": 1.2,
+        "Submarine": 1.2
+      },
+      "GSIdealRadius": 0.6,
+      "GSMaxDist": 1.2,
+      "GTRotationSpeed": 1.2
+    },
+    "name": "PCM034_Guidance_Mod_0",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSC503_Katori",
+      "PJSC004_Yubari_1944",
+      "PJSC026_Iwaki_1944"
+    ],
+    "shiptype": [],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4242722736,
+    "index": "PCM049",
+    "modifiers": {
+      "GMRepairTime": 0.5,
+      "SGRudderTime": 0.8,
+      "burnTime": 0.6,
+      "floodTime": 0.3
+    },
+    "name": "PCM049_Special_Mod_I_Hindenburg",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PGSC110_Hindenburg"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4215459760,
+    "index": "PCM075",
+    "modifiers": {
+      "GTShotDelay": 0.9,
+      "torpedoDamageCoeff": 1.15
+    },
+    "name": "PCM075_Special_Mod_I_Daring",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PBSD110_Daring"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4241674160,
+    "index": "PCM050",
+    "modifiers": {
+      "GMMaxDist": 1.08,
+      "GMShotDelay": 0.88,
+      "SGRudderTime": 1.0,
+      "visibilityFactor": 1.1,
+      "visibilityFactorByPlane": 1.1,
+      "visibilityForSubmarineCoeff": 1.1
+    },
+    "name": "PCM050_Special_Mod_I_Henri_IV",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PFSC110_Henri_IV",
+      "PFSC810_Henri_IV"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4276277168,
+    "index": "PCM017",
+    "modifiers": {
+      "planeHealth": 1.075
+    },
+    "name": "PCM017_Airplanes_Mod_III",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [
+      "PASA508_Enterprise"
+    ],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4218605488,
+    "index": "PCM072",
+    "modifiers": {
+      "ConsumablesWorkTime": 1.1
+    },
+    "name": "PCM072_AbilityWorktimeBoost_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912",
+      "PGSD508_Z_39",
+      "PBSC507_Belfast_1959"
+    ],
+    "shiptype": [
+      "Cruiser",
+      "Destroyer",
+      "Battleship",
+      "Submarine"
+    ],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PISD506_Leone",
+      "PRSD505_Okhotnik_1917"
+    ],
+    "id": 4200779696,
+    "index": "PCM089",
+    "modifiers": {
+      "dcNumPacksBonus": 2
+    },
+    "name": "PCM089_DepthCharges_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PUSC506_Perth_1942",
+      "PGSC106_Nurnberg",
+      "PGSC107_Yorck",
+      "PGSC108_Hipper",
+      "PGSC109_Roon",
+      "PGSC110_Hindenburg",
+      "PGSC507_Munchen",
+      "PGSC508_Prinz_Eugen",
+      "PGSC518_Mainz",
+      "PGSC910_Hindenburg",
+      "PISC106_Trento",
+      "PISC107_Zara",
+      "PISC108_Amalfi",
+      "PISC109_Brindisi",
+      "PISC110_Venezia",
+      "PISC506_DucadAosta",
+      "PISC507_Duca_degli_Abruzzi",
+      "PJSC610_Kitakami",
+      "PRSC106_Pr_94_Budeny",
+      "PRSC107_Schors",
+      "PRSC108_Pr_68_Chapaev",
+      "PRSC109_Dmitry_Donskoy",
+      "PRSC210_Pr_84_Alexander_Nevsky",
+      "PRSC506_Molotov_1943",
+      "PRSC518_Lazo",
+      "PRSC528_Ochakov",
+      "PRSC538_Petr_Bagration",
+      "PRSC548_Bagration",
+      "PRSC610_Smolensk",
+      "PBSC106_Leander",
+      "PBSC107_Fiji",
+      "PBSC108_Edinburgh",
+      "PBSC109_Neptune",
+      "PBSC110_Minotaur",
+      "PBSC510_Plymouth",
+      "PASC006_Atlanta_1942",
+      "PASC587_Black_Atlanta",
+      "PASC707_Flint",
+      "PASC810_Austin"
+    ],
+    "shiptype": [
+      "Destroyer"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4282568624,
+    "index": "PCM011",
+    "modifiers": {
+      "AAAuraDamage": {
+        "AirCarrier": 1.15,
+        "Auxiliary": 1.15,
+        "Battleship": 1.15,
+        "Cruiser": 1.15,
+        "Destroyer": 1.15,
+        "Submarine": 1.15
+      },
+      "AABubbleDamage": {
+        "AirCarrier": 1.15,
+        "Auxiliary": 1.15,
+        "Battleship": 1.15,
+        "Cruiser": 1.15,
+        "Destroyer": 1.15,
+        "Submarine": 1.15
+      }
+    },
+    "name": "PCM011_AirDefense_Mod_II",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4216508336,
+    "index": "PCM074",
+    "modifiers": {
+      "AAAuraDamage": {
+        "AirCarrier": 1.15,
+        "Auxiliary": 1.15,
+        "Battleship": 1.15,
+        "Cruiser": 1.15,
+        "Destroyer": 1.15,
+        "Submarine": 1.15
+      },
+      "AABubbleDamage": {
+        "AirCarrier": 1.15,
+        "Auxiliary": 1.15,
+        "Battleship": 1.15,
+        "Cruiser": 1.15,
+        "Destroyer": 1.15,
+        "Submarine": 1.15
+      },
+      "AAInnerExtraBubbles": 2,
+      "GSShotDelay": 0.8
+    },
+    "name": "PCM074_AuxiliaryArmament_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "AirCarrier"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4243771312,
+    "index": "PCM048",
+    "modifiers": {
+      "GMIdealRadius": 0.93,
+      "GMMaxDist": 1.08
+    },
+    "name": "PCM048_Special_Mod_I_Zao",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSC034_Zao_1944"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PBSC106_Leander",
+      "PBSC107_Fiji",
+      "PBSC108_Edinburgh",
+      "PBSC109_Neptune",
+      "PBSC110_Minotaur",
+      "PBSC507_Belfast_1959",
+      "PBSD106_Icarus",
+      "PBSD107_Jervis",
+      "PBSD108_Lightning",
+      "PBSD109_Jutland",
+      "PBSD110_Daring",
+      "PBSD517_Cossack",
+      "PBSD598_Black_Cossack",
+      "PUSC506_Perth_1942",
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PBSC528_Belfast_1943",
+      "PBSC510_Plymouth",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship",
+      "PUSC516_Mysore",
+      "PUSD510_Vampire_2",
+      "PBSC518_Tiger_1959",
+      "PBSD510_Druid"
+    ],
+    "id": 4268937136,
+    "index": "PCM024",
+    "modifiers": {
+      "engineBackwardForsageMaxSpeed": 2.4,
+      "engineBackwardForsagePower": 1.0,
+      "engineBackwardUpTime": 0.5,
+      "engineForwardForsageMaxSpeed": 2.4,
+      "engineForwardForsagePower": 1.0,
+      "engineForwardUpTime": 0.5
+    },
+    "name": "PCM024_Engine_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912",
+      "PJSC026_Iwaki_1944"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "Submarine"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4249014192,
+    "index": "PCM043",
+    "modifiers": {
+      "GMRotationSpeed": {
+        "AirCarrier": 1.13,
+        "Auxiliary": 1.13,
+        "Battleship": 1.13,
+        "Cruiser": 1.13,
+        "Destroyer": 1.13,
+        "Submarine": 1.13
+      },
+      "SGRepairTime": 0.2,
+      "SGRudderTime": 0.6
+    },
+    "name": "PCM043_Special_Mod_I_Conqueror",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PBSB110_Conqueror"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PBSD103_Valkyrie",
+      "PBSD104_Wakeful",
+      "PBSD105_Acasta",
+      "PBSD106_Icarus",
+      "PBSD107_Jervis",
+      "PBSD108_Lightning",
+      "PBSD109_Jutland",
+      "PBSD110_Daring",
+      "PWSD510_Friesland",
+      "PZSD208_Siliwangi_1959",
+      "PGSD518_Z_35",
+      "PGSD207_Z_31",
+      "PGSD208_Gustav_Julius_Maerker",
+      "PGSD209_Felix_Schultz",
+      "PGSD210_Elbing",
+      "PBSD510_Druid",
+      "PHSD509_Groningen"
+    ],
+    "id": 4256354224,
+    "index": "PCM036",
+    "modifiers": {
+      "speedBoostersWorkTimeCoeff": 1.3
+    },
+    "name": "PCM036_SpeedBooster_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PFSB108_Richelieu",
+      "PFSB109_Alsace",
+      "PFSB110_France",
+      "PFSB508_Gascogne",
+      "PFSB510_Bourgogne",
+      "PFSB518_Jean_Bart",
+      "PFSB599_Black_Jean_Bart",
+      "PFSC106_La_Galissonniere",
+      "PFSC107_Algerie",
+      "PFSC108_Charles_Martel",
+      "PFSC109_Saint_Louis",
+      "PFSC110_Henri_IV",
+      "PFSC506_De_Grasse",
+      "PFSC508_Bayard",
+      "PFSC510_Colbert",
+      "PFSC810_Henri_IV",
+      "PJSC610_Kitakami",
+      "PJSC505_Yahagi",
+      "PASB729_Georgia",
+      "PFSB528_Champagne",
+      "PZSB519_Alsace_Wujing",
+      "PGSC517_Weimar",
+      "PHSC508_De_Zeven_Provincien",
+      "PBSB526_Repulse",
+      "PFSC509_Carnot",
+      "PBSB610_Incomparable"
+    ],
+    "shiptype": [
+      "Destroyer"
+    ],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4263694256,
+    "index": "PCM029",
+    "modifiers": {
+      "GMIdealRadius": 0.89
+    },
+    "name": "PCM029_FireControl_Mod_II_US",
+    "nation": [
+      "USA"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912"
+    ],
+    "shiptype": [
+      "Battleship"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4266839984,
+    "index": "PCM026",
+    "modifiers": {
+      "visionXRayTorpedoDist": 1800
+    },
+    "name": "PCM026_LookoutStation_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912",
+      "PBSC507_Belfast_1959",
+      "PGSD508_Z_39"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "Submarine"
+    ],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4245868464,
+    "index": "PCM046",
+    "modifiers": {
+      "GMIdealRadius": 0.93,
+      "GMRotationSpeed": {
+        "AirCarrier": 0.87,
+        "Auxiliary": 0.87,
+        "Battleship": 0.87,
+        "Cruiser": 0.87,
+        "Destroyer": 0.87,
+        "Submarine": 0.87
+      }
+    },
+    "name": "PCM046_Special_Mod_I_Yamato",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSB018_Yamato_1944"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PBSA508_Indomitable",
+      "PGSA510_Werner_Voss"
+    ],
+    "id": 4219654064,
+    "index": "PCM071",
+    "modifiers": {
+      "planeTorpedoSpeedMultiplier": 1.05
+    },
+    "name": "PCM071_TorpedoBombs_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4210216880,
+    "index": "PCM080",
+    "modifiers": {
+      "GMIdealRadius": 0.93,
+      "GMRotationSpeed": {
+        "AirCarrier": 0.87,
+        "Auxiliary": 0.87,
+        "Battleship": 0.87,
+        "Cruiser": 0.87,
+        "Destroyer": 0.87,
+        "Submarine": 0.87
+      }
+    },
+    "name": "PCM080_Special_Mod_I_ARP_Yamato",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSB700_ARP_Yamato"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PGSA610_Max_Immelmann",
+      "PRSA508_Chkalov"
+    ],
+    "id": 4228042672,
+    "index": "PCM063",
+    "modifiers": {
+      "fighterHealth": 1.075
+    },
+    "name": "PCM063_Fighter_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4199731120,
+    "index": "PCM090",
+    "modifiers": {
+      "SGRudderTime": 0.8,
+      "buoyancyRudderResetTimeCoeff": 0.8,
+      "buoyancyRudderTimeCoeff": 0.8
+    },
+    "name": "PCM090_SteeringGearSubmarine_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Submarine"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PVSB505_Rio_de_Janeiro",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship",
+      "PBSB505_Agincourt"
+    ],
+    "id": 4275228592,
+    "index": "PCM018",
+    "modifiers": {
+      "prioritySectorCooldownMultiplier": 0.8
+    },
+    "name": "PCM018_AirDefense_Mod_III",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PJSC026_Iwaki_1944"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSA004_Zuikaku_1944_H2017"
+    ],
+    "id": 4252159920,
+    "index": "PCM040",
+    "modifiers": {
+      "airDefenseDispReloadCoeff": 0.9,
+      "airDefenseDispWorkTimeCoeff": 1.2
+    },
+    "name": "PCM040_AirDefenseDisp_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PFSC106_La_Galissonniere",
+      "PFSC107_Algerie",
+      "PFSC108_Charles_Martel",
+      "PFSC109_Saint_Louis",
+      "PFSC110_Henri_IV",
+      "PFSC506_De_Grasse",
+      "PFSC508_Bayard",
+      "PFSC810_Henri_IV",
+      "PGSC106_Nurnberg",
+      "PGSC107_Yorck",
+      "PGSC108_Hipper",
+      "PGSC109_Roon",
+      "PGSC110_Hindenburg",
+      "PGSC506_Admiral_Graf_Spee",
+      "PGSC508_Prinz_Eugen",
+      "PGSC706_HSF_Graf_Spee",
+      "PGSC910_Hindenburg",
+      "PISC506_DucadAosta",
+      "PISC507_Duca_degli_Abruzzi",
+      "PJSC004_Yubari_1944",
+      "PJSC007_Aoba_1943",
+      "PJSC008_Myoko_1945",
+      "PJSC009_Mogami_1935",
+      "PJSC012_Ibuki_1944",
+      "PJSC018_Tone",
+      "PJSC918_Tone_Second",
+      "PJSC919_Tone_Third",
+      "PJSC034_Zao_1944",
+      "PJSC038_Atago_1944",
+      "PJSC510_Azumaya",
+      "PJSC520_Yoshino",
+      "PJSC598_Black_Atago",
+      "PJSC705_Myoko",
+      "PJSC707_Ashigara",
+      "PJSC708_ARP_Takao",
+      "PJSC718_ARP_Maya",
+      "PJSC709_Haguro",
+      "PJSC717_Yellow_Dragon",
+      "PJSC727_Blue_Dragon",
+      "PJSC737_Nachi",
+      "PJSC810_TST_ZAO",
+      "PJSC934_Zao_1944",
+      "PVSC507_Nueve_de_Julio_1951",
+      "PZSC518_Martel_Wukong",
+      "PZSD508_LoYang",
+      "PRSC106_Pr_94_Budeny",
+      "PRSC107_Schors",
+      "PRSC108_Pr_68_Chapaev",
+      "PRSC109_Dmitry_Donskoy",
+      "PRSC110_Pr_66_Moskva",
+      "PRSC506_Molotov_1943",
+      "PRSC508_Kutuzov_1952",
+      "PRSC509_Kronshtadt",
+      "PRSC510_Stalingrad",
+      "PRSC518_Lazo",
+      "PRSC606_Admiral_Makarov",
+      "PRSC910_Pr_66_Moskva",
+      "PRSD107_Pr_35_Udaloy",
+      "PRSD208_Pr_30",
+      "PRSD210_Grozovoy_pr_40N",
+      "PRSD709_Pr_41_Neustrashimy",
+      "PRSD910_Grozovoy_pr_40N",
+      "PBSB507_Hood",
+      "PBSD605_Anthony_Event",
+      "PASC006_Atlanta_1942",
+      "PASC587_Black_Atlanta",
+      "PASC016_Worcester_1948",
+      "PASC019_Burlington_1944",
+      "PASC020_Des_Moines_1948",
+      "PASC106_Pensacola_1944",
+      "PASC107_New_Orlean_1944",
+      "PASC108_Baltimore_1944",
+      "PASC109_Buffalo",
+      "PASC206_Dallas",
+      "PASC207_Helena",
+      "PASC208_Cleveland",
+      "PASC209_Seattle",
+      "PASC210_Worcester",
+      "PASC507_Indianapolis_1945",
+      "PASC508_Wichita",
+      "PASC510_Alaska",
+      "PASC597_Nueve_de_Julio_1951",
+      "PASC707_Flint",
+      "PASC710_Salem",
+      "PASC718_AZUR_Montpelier",
+      "PASD005_Farragut_1944",
+      "PASD006_Mahan_1936",
+      "PASD008_Benson_1945",
+      "PASD013_Gearing_1945",
+      "PASD014_Leader_1919",
+      "PASD021_Fletcher_1943",
+      "PASD029_Sims_1941",
+      "PASD506_Monaghan",
+      "PASD508_Kidd",
+      "PASD509_Benham",
+      "PASD597_Black_Sims",
+      "PASD709_Black",
+      "PASD810_TST_GEARING",
+      "PASD913_Gearing_1945",
+      "PFSC510_Colbert",
+      "PRSC610_Smolensk",
+      "PWSD510_Friesland",
+      "PBSB510_Thunderer",
+      "PGSC509_Siegfried",
+      "PASC610_Puerto_Rico",
+      "PFSD210_Marceau",
+      "PGSC518_Mainz",
+      "PASC599_Black_Alaska",
+      "PBSC208_Albemarle",
+      "PBSC209_Drake",
+      "PBSC210_Goliath",
+      "PBSC910_Cyclops",
+      "PBSC508_Cheshire",
+      "PWSD108_Oland",
+      "PWSD109_Ostergotland",
+      "PWSD110_Halland",
+      "PBSC205_Hawkins",
+      "PBSC206_Devonshire",
+      "PBSC207_Surrey",
+      "PRSC538_Petr_Bagration",
+      "PRSC548_Bagration",
+      "PRSC208_Tallin",
+      "PRSC210_Pr_84_Alexander_Nevsky",
+      "PRSC528_Ochakov",
+      "PRSC209_Riga",
+      "PRSC310_Petropavlovsk",
+      "PWSD910_Lappland",
+      "PGSC507_Munchen",
+      "PASB517_Florida",
+      "PASB108_Kansas",
+      "PASB109_Minnesota",
+      "PASB110_Vermont",
+      "PASB910_Connecticut",
+      "PASC810_Austin",
+      "PGSD209_Felix_Schultz",
+      "PGSD210_Elbing",
+      "PZSD518_Fen_Yang",
+      "PGSC517_Weimar",
+      "PBSC518_Tiger_1959",
+      "PGSD529_ZF_6",
+      "PASC528_Congress",
+      "PHSC110_Gouden_Leeuw",
+      "PHSC109_Johan_de_Witt",
+      "PHSC108_Haarlem",
+      "PASC538_Rochester",
+      "PFSC509_Carnot",
+      "PHSD509_Groningen"
+    ],
+    "shiptype": [],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4247965616,
+    "index": "PCM044",
+    "modifiers": {
+      "GMMaxDist": 0.76,
+      "GMShotDelay": 0.82
+    },
+    "name": "PCM044_Special_Mod_I_Republique",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PFSB110_France"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4292005808,
+    "index": "PCM002",
+    "modifiers": {
+      "GTCritProb": 0.8,
+      "GTRepairTime": 0.8
+    },
+    "name": "PCM002_Torpedo_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4293054384,
+    "index": "PCM001",
+    "modifiers": {
+      "GMCritProb": 0.8,
+      "GMRepairTime": 0.8,
+      "PMCritProb": 0.8,
+      "PMDetonationProb": 0.8,
+      "PMRepairTime": 0.8
+    },
+    "name": "PCM001_MainGun_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4287811504,
+    "index": "PCM006",
+    "modifiers": {
+      "GMRotationSpeed": {
+        "AirCarrier": 1.15,
+        "Auxiliary": 1.15,
+        "Battleship": 1.15,
+        "Cruiser": 1.15,
+        "Destroyer": 1.15,
+        "Submarine": 1.15
+      }
+    },
+    "name": "PCM006_MainGun_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912",
+      "PJSC026_Iwaki_1944"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4269985712,
+    "index": "PCM023",
+    "modifiers": {
+      "burnTime": 0.85,
+      "floodTime": 0.85
+    },
+    "name": "PCM023_DamageControl_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "AirCarrier",
+      "Submarine"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4285714352,
+    "index": "PCM008",
+    "modifiers": {
+      "GMIdealRadius": 0.93
+    },
+    "name": "PCM008_FireControl_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4198682544,
+    "index": "PCM091",
+    "modifiers": {
+      "SGRepairTime": 0.2,
+      "SGRudderTime": 0.6,
+      "buoyancyRudderResetTimeCoeff": 0.6,
+      "buoyancyRudderTimeCoeff": 0.6
+    },
+    "name": "PCM091_SteeringGearSubmarine_Mod_III",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Submarine"
+    ],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4206022576,
+    "index": "PCM084",
+    "modifiers": {
+      "pingerCritProb": 0.75,
+      "pingerRepairTime": 0.75
+    },
+    "name": "PCM084_Pinger_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Submarine"
+    ],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4234334128,
+    "index": "PCM057",
+    "modifiers": {
+      "GTCritProb": 1.5,
+      "GTRotationSpeed": 0.3,
+      "GTShotDelay": 0.75
+    },
+    "name": "PCM057_Special_Mod_I_Shimakaze",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSD012_Shimakaze_1943"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PRSC110_Pr_66_Moskva",
+      "PRSC910_Pr_66_Moskva",
+      "PASC020_Des_Moines_1948",
+      "PASC710_Salem",
+      "PASC016_Worcester_1948",
+      "PASC017_Baltimore_1944",
+      "PRSC509_Kronshtadt",
+      "PASC109_Buffalo",
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PASC209_Seattle",
+      "PASC210_Worcester",
+      "PRSC510_Stalingrad",
+      "PRSC520_Stalingrad",
+      "PASC510_Alaska",
+      "PJSC510_Azumaya",
+      "PFSC510_Colbert",
+      "PWSD510_Friesland",
+      "PASC610_Puerto_Rico",
+      "PASC599_Black_Alaska",
+      "PRSC209_Riga",
+      "PRSC310_Petropavlovsk",
+      "PXSD025_Berserk",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PBSD510_Druid",
+      "PASC528_Congress",
+      "PHSC110_Gouden_Leeuw",
+      "PHSC109_Johan_de_Witt",
+      "PWSD710_Ragnar",
+      "PFSC509_Carnot",
+      "PHSD509_Groningen"
+    ],
+    "id": 4279422896,
+    "index": "PCM014",
+    "modifiers": {
+      "GTCritProb": 1.5,
+      "GTShotDelay": 0.85
+    },
+    "name": "PCM014_Torpedo_Mod_III",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [
+      "PGSB509_Pommern",
+      "PGSB209_Prinz_Rupprecht",
+      "PGSB210_Schlieffen"
+    ],
+    "shiptype": [
+      "Cruiser",
+      "Destroyer",
+      "Submarine"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4267888560,
+    "index": "PCM025",
+    "modifiers": {
+      "SGRudderTime": 0.8
+    },
+    "name": "PCM025_SteeringGear_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PASB013_Arkansas_1912",
+      "PJSC026_Iwaki_1944"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4286762928,
+    "index": "PCM007",
+    "modifiers": {
+      "GTRepairTime": 0.9,
+      "GTRotationSpeed": 1.2
+    },
+    "name": "PCM007_Torpedo_Mod_II",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4201828272,
+    "index": "PCM088",
+    "modifiers": {
+      "asMaxHealthCoeff": 2.0,
+      "dcAlphaDamageMultiplier": {
+        "AirCarrier": 1.3,
+        "Auxiliary": 1.3,
+        "Battleship": 1.3,
+        "Cruiser": 1.3,
+        "Destroyer": 1.3,
+        "Submarine": 1.3
+      }
+    },
+    "name": "PCM088_AirSupport_Mod_II",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4289908656,
+    "index": "PCM004",
+    "modifiers": {
+      "AAMaxHP": 1.2
+    },
+    "name": "PCM004_AirDefense_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PGSA610_Max_Immelmann",
+      "PRSA110_Admiral_Nakhimov",
+      "PRSA106_Serov",
+      "PRSA108_Pobeda"
+    ],
+    "id": 4225945520,
+    "index": "PCM065",
+    "modifiers": {
+      "diveBomberHealth": 1.075
+    },
+    "name": "PCM065_DiveBomber_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSD008_Z_23_H2018",
+      "PXSD009_Kiev_H2018",
+      "PWSD105_Visby",
+      "PWSD106_Vasteras",
+      "PWSD107_Skane",
+      "PWSD108_Oland",
+      "PWSD109_Ostergotland",
+      "PWSD110_Halland",
+      "PWSD610_Smaland",
+      "PWSD910_Lappland",
+      "PFSD105_Jaguar",
+      "PFSD106_Guepard",
+      "PFSD107_Vauquelin",
+      "PFSD108_Le_Fantasque",
+      "PFSD109_Mogador",
+      "PFSD110_Kleber",
+      "PFSD210_Marceau",
+      "PFSD504_Siroco",
+      "PFSD508_Le_Terrible",
+      "PFSD808_TST_TERRIBLE",
+      "PBSD605_Anthony_Event",
+      "PISD509_Paolo_Emilio",
+      "PWSD508_Orkan",
+      "PISB108_Vittorio_Veneto",
+      "PISB110_Cristoforo_Colombo",
+      "PWSD710_Ragnar",
+      "PGSD516_Karl_von_Schonberg"
+    ],
+    "id": 4255305648,
+    "index": "PCM037",
+    "modifiers": {
+      "smokeGeneratorLifeTime": 0.95,
+      "smokeGeneratorWorkTimeCoeff": 1.3
+    },
+    "name": "PCM037_SmokeGenerator_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PUSC506_Perth_1942",
+      "PJSC610_Kitakami",
+      "PZSC506_Huang_he",
+      "PRSC508_Kutuzov_1952",
+      "PRSC610_Smolensk",
+      "PBSC105_Emerald",
+      "PBSC106_Leander",
+      "PBSC107_Fiji",
+      "PBSC108_Edinburgh",
+      "PBSC109_Neptune",
+      "PBSC110_Minotaur",
+      "PBSC507_Belfast_1959",
+      "PBSC516_London",
+      "PASC707_Flint",
+      "PJSC026_Iwaki_1944",
+      "PASC518_Anchorage",
+      "PBSC528_Belfast_1943",
+      "PUSC516_Mysore",
+      "PGSD519_Z_44",
+      "PBSC510_Plymouth",
+      "PBSC518_Tiger_1959",
+      "PASC538_Rochester"
+    ],
+    "shiptype": [
+      "Destroyer"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSB003_Zeekasa",
+      "PXSA001_Invisible_Air_Enemy_1",
+      "PXSA004_Zuikaku_1944_H2017",
+      "PXSA807_Ranger",
+      "PJSB799_Kirishima",
+      "PXSC503_SEABATTLE_CAP",
+      "PXSA002_Invisible_Air_Ally_1",
+      "PXSD007_Scnellboot_S38",
+      "PGSC103_Kolberg",
+      "PJSD001_Tachibana_1912",
+      "PJSD014_Tachibana_1912_Asus",
+      "PZSD102_Long_Jiang",
+      "PASC002_Chester_1908",
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PFSD102_Enseigne_Gabolde",
+      "PWSD102_Tatra",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4261597104,
+    "index": "PCM031",
+    "modifiers": {
+      "AAMaxHP": 2.0,
+      "GSMaxHP": 2.0
+    },
+    "name": "PCM031_SecondaryWeapon_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "AirCarrier"
+    ],
+    "slot": 0,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4207071152,
+    "index": "PCM083",
+    "modifiers": {
+      "hydrophoneUpdateFrequencyCoeff": 0.8,
+      "hydrophoneWaveSpeedCoeff": 1.0
+    },
+    "name": "PCM083_Hydrophone_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Submarine"
+    ],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PASB705_Texas_1944",
+      "PASB006_New_York_1934",
+      "PASB008_Colorado_1945",
+      "PASB012_North_Carolina_1945",
+      "PASB017_Montana_1945",
+      "PASB810_TST_MONTANA",
+      "PASB917_Montana_1945",
+      "PASB018_Iowa_1944",
+      "PASB034_New_Mexico_1941",
+      "PASB506_Arizona_1941",
+      "PASB508_Alabama",
+      "PASB509_Missouri",
+      "PASB708_Alabama",
+      "PASB518_Massachusetts",
+      "PASB598_Black_Massachusetts",
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PASB507_West_Virginia",
+      "PASB729_Georgia",
+      "PASB510_Ohio",
+      "PASB707_California",
+      "PASB108_Kansas",
+      "PASB109_Minnesota",
+      "PASB110_Vermont",
+      "PASB910_Connecticut",
+      "PASB517_Florida",
+      "PASB505_Oklahoma",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship",
+      "PASB528_Alabama_VL",
+      "PASB538_Constellation",
+      "PASB519_Kearsarge"
+    ],
+    "id": 4259499952,
+    "index": "PCM033",
+    "modifiers": {
+      "GMIdealRadius": 0.93,
+      "GSIdealRadius": 0.95,
+      "GSMaxDist": 1.05,
+      "GTRotationSpeed": 1.2
+    },
+    "name": "PCM033_Guidance_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PJSC026_Iwaki_1944"
+    ],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PBSA508_Indomitable",
+      "PGSA510_Werner_Voss"
+    ],
+    "id": 4226994096,
+    "index": "PCM064",
+    "modifiers": {
+      "torpedoBomberHealth": 1.075
+    },
+    "name": "PCM064_TorpedoBomber_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4217556912,
+    "index": "PCM073",
+    "modifiers": {
+      "planeConsumablesWorkTime": 1.5
+    },
+    "name": "PCM073_AbilityWorktimeBoostCV_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4239577008,
+    "index": "PCM052",
+    "modifiers": {
+      "SGRudderTime": 0.8,
+      "engineBackwardForsageMaxSpeed": 2.0,
+      "engineBackwardForsagePower": 1.15,
+      "engineBackwardUpTime": 0.5,
+      "engineForwardForsageMaxSpeed": 3.75,
+      "engineForwardForsagePower": 1.1,
+      "engineForwardUpTime": 0.5
+    },
+    "name": "PCM052_Special_Mod_I_Des_Moines",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PASC020_Des_Moines_1948"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PGSA610_Max_Immelmann",
+      "PRSA508_Chkalov"
+    ],
+    "id": 4223848368,
+    "index": "PCM067",
+    "modifiers": {
+      "fighterAimingTime": 2
+    },
+    "name": "PCM067_Fighter_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4230139824,
+    "index": "PCM061",
+    "modifiers": {
+      "bombAlphaDamageMultiplier": 1.1,
+      "diveBomberMaxSpeedMultiplier": 0.981,
+      "diveBomberMinSpeedMultiplier": 1.023,
+      "diveBomberSpeedMultiplier": 1.1
+    },
+    "name": "PCM061_Special_Mod_I_Midway",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PASA110_Midway"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4232236976,
+    "index": "PCM059",
+    "modifiers": {
+      "GMShotDelay": 0.85,
+      "rlsWorkTimeCoeff": 1.2,
+      "smokeGeneratorLifeTime": 1.2
+    },
+    "name": "PCM059_Special_Mod_I_Yueyang",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PZSD110_Hsiang_Yang"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4231188400,
+    "index": "PCM060",
+    "modifiers": {
+      "GMRotationSpeed": {
+        "AirCarrier": 0.93,
+        "Auxiliary": 0.93,
+        "Battleship": 0.93,
+        "Cruiser": 0.93,
+        "Destroyer": 0.93,
+        "Submarine": 0.93
+      },
+      "GMShotDelay": 0.82,
+      "GTShotDelay": 1.2
+    },
+    "name": "PCM060_Special_Mod_I_Grozovoi",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PRSD210_Grozovoy_pr_40N"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4211265456,
+    "index": "PCM079",
+    "modifiers": {
+      "SGRudderTime": 0.7,
+      "engineBackwardForsageMaxSpeed": 2.0,
+      "engineBackwardForsagePower": 1.15,
+      "engineBackwardUpTime": 0.5,
+      "engineForwardForsageMaxSpeed": 3.75,
+      "engineForwardForsagePower": 1.1,
+      "engineForwardUpTime": 0.5,
+      "planeForsageDrainRate": 0.8,
+      "visibilityFactor": 0.85,
+      "visibilityFactorByPlane": 0.85,
+      "visibilityForSubmarineCoeff": 0.85
+    },
+    "name": "PCM079_Special_Mod_I_Audacious",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PBSA210_Audacious"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4277325744,
+    "index": "PCM016",
+    "modifiers": {
+      "planeSpeed": 1.05
+    },
+    "name": "PCM016_FlightControl_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [
+      "PASA508_Enterprise"
+    ],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4238528432,
+    "index": "PCM053",
+    "modifiers": {
+      "ConsumableReloadTime": {
+        "AirCarrier": 0.8,
+        "Auxiliary": 0.8,
+        "Battleship": 0.8,
+        "Cruiser": 0.8,
+        "Destroyer": 0.8,
+        "Submarine": 0.8
+      },
+      "additionalConsumables": 1,
+      "prioritySectorCooldownMultiplier": 0.8
+    },
+    "name": "PCM053_Special_Mod_I_Worcester",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PASC210_Worcester"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4271034288,
+    "index": "PCM022",
+    "modifiers": {
+      "SGCritProb": 0.8,
+      "SGRepairTime": 0.8
+    },
+    "name": "PCM022_SteeringGear_Mod_I",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [],
+    "shiptype": [],
+    "slot": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship"
+    ],
+    "id": 4221751216,
+    "index": "PCM069",
+    "modifiers": {
+      "SGCritProb": 0.8,
+      "SGRepairTime": 0.8,
+      "engineCritProb": 0.8,
+      "engineRepairTime": 0.8
+    },
+    "name": "PCM069_Movement_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer",
+      "Submarine"
+    ],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PWSD510_Friesland",
+      "PFSC510_Colbert",
+      "PISC607_Gorizia",
+      "PJSC510_Azumaya",
+      "PVSC507_Nueve_de_Julio_1951",
+      "PRSC110_Pr_66_Moskva",
+      "PRSC509_Kronshtadt",
+      "PRSC510_Stalingrad",
+      "PRSC520_Stalingrad",
+      "PRSC910_Pr_66_Moskva",
+      "PBSC507_Belfast_1959",
+      "PASC016_Worcester_1948",
+      "PASC020_Des_Moines_1948",
+      "PASC106_Pensacola_1944",
+      "PASC107_New_Orlean_1944",
+      "PASC108_Baltimore_1944",
+      "PASC109_Buffalo",
+      "PASC206_Dallas",
+      "PASC207_Helena",
+      "PASC208_Cleveland",
+      "PASC209_Seattle",
+      "PASC210_Worcester",
+      "PASC507_Indianapolis_1945",
+      "PASC508_Wichita",
+      "PASC510_Alaska",
+      "PASC597_Nueve_de_Julio_1951",
+      "PASC599_Black_Alaska",
+      "PASC610_Puerto_Rico",
+      "PASC710_Salem",
+      "PASC718_AZUR_Montpelier",
+      "PRSC209_Riga",
+      "PRSC310_Petropavlovsk",
+      "PUSC516_Mysore",
+      "PXSD025_Berserk",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PBSC518_Tiger_1959",
+      "PBSD510_Druid",
+      "PASC528_Congress",
+      "PHSC105_Celebes",
+      "PHSC108_Haarlem",
+      "PHSC508_De_Zeven_Provincien",
+      "PHSC110_Gouden_Leeuw",
+      "PHSC106_Kijkduin",
+      "PHSC107_Eendracht",
+      "PHSC109_Johan_de_Witt",
+      "PWSD710_Ragnar",
+      "PASC538_Rochester",
+      "PFSC509_Carnot",
+      "PHSD509_Groningen"
+    ],
+    "id": 4220702640,
+    "index": "PCM070",
+    "modifiers": {
+      "GTCritProb": 0.6,
+      "GTRotationSpeed": 1.2,
+      "torpedoSpeedMultiplier": 1.05
+    },
+    "name": "PCM070_Torpedo_Mod_IV",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PGSB002_Tirpiz_1942",
+      "PGSB107_Gneisenau",
+      "PGSB507_Scharnhorst",
+      "PGSB508_Odin",
+      "PGSB597_Black_Scharnhorst",
+      "PGSB598_Black_Tirpitz",
+      "PJSB506_Mutsu",
+      "PJSB508_Kii",
+      "PJSC026_Iwaki_1944",
+      "PGSB509_Pommern",
+      "PASB538_Constellation",
+      "PGSB518_Brandenburg",
+      "PGSB207_Prinz_Heinrich",
+      "PGSB208_Zieten",
+      "PGSB209_Prinz_Rupprecht",
+      "PGSB210_Schlieffen"
+    ],
+    "shiptype": [
+      "Cruiser",
+      "Destroyer",
+      "Submarine"
+    ],
+    "slot": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020"
+    ],
+    "id": 4257402800,
+    "index": "PCM035",
+    "modifiers": {
+      "SGRepairTime": 0.2,
+      "SGRudderTime": 0.6
+    },
+    "name": "PCM035_SteeringGear_Mod_III",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      8,
+      9,
+      10
+    ],
+    "ships": [
+      "PBSC507_Belfast_1959",
+      "PGSD508_Z_39"
+    ],
+    "shiptype": [
+      "Cruiser",
+      "Destroyer"
+    ],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PASB012_North_Carolina_1945",
+      "PASB018_Iowa_1944",
+      "PASB017_Montana_1945",
+      "PASB810_TST_MONTANA",
+      "PASB917_Montana_1945",
+      "PASB509_Missouri",
+      "PRSD110_Pr_24_Khabarovsk",
+      "PRSD210_Grozovoy_pr_40N",
+      "PRSD409_Pr_20i_Tashkent",
+      "PRSD107_Pr_35_Udaloy",
+      "PRSD910_Grozovoy_pr_40N",
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin",
+      "PRSD709_Pr_41_Neustrashimy",
+      "PASB729_Georgia",
+      "PRSB109_Sovetsky_Soyuz",
+      "PRSB110_Sovetskaya_Rossiya",
+      "PRSB709_KIM",
+      "PASB510_Ohio",
+      "PRSD810_R_10",
+      "PASB108_Kansas",
+      "PASB109_Minnesota",
+      "PASB110_Vermont",
+      "PASB910_Connecticut",
+      "PXSB011_Montana_H2019",
+      "PXSB009_Yamato_H2019",
+      "PXSD025_Berserk",
+      "PXSC101_Hindenburg_H2020",
+      "PXSB103_France_H2020",
+      "PXSC016_Monster_Cruiser",
+      "PXSC102_Smolensk_H2020",
+      "PXSB015_Crab_Battleship",
+      "PASB519_Kearsarge"
+    ],
+    "id": 4278374320,
+    "index": "PCM015",
+    "modifiers": {
+      "GMMaxDist": 1.16
+    },
+    "name": "PCM015_FireControl_Mod_II",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "Battleship",
+      "Cruiser",
+      "Destroyer"
+    ],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster",
+      "PXSD002_Benson_1945_H2017",
+      "PXSD009_Kiev_H2018",
+      "PXSD008_Z_23_H2018",
+      "PXSC009_Mogami_H2018",
+      "PXSC002_Charles_Martel_H2017",
+      "PXSB008_North_Carolina_H2018",
+      "PXSB005_Bismarck_H2017",
+      "PXSB002_Rasputin"
+    ],
+    "id": 4284665776,
+    "index": "PCM009",
+    "modifiers": {
+      "planeExtraHangarSize": 2,
+      "planeSpawnTime": 0.95
+    },
+    "name": "PCM009_FlightControl_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4214411184,
+    "index": "PCM076",
+    "modifiers": {
+      "GMShotDelay": 1.8,
+      "visibilityFactor": 0.8,
+      "visibilityFactorByPlane": 0.8,
+      "visibilityForSubmarineCoeff": 0.8
+    },
+    "name": "PCM076_Special_Mod_I_Kleber",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PFSD110_Kleber"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [
+      "PXSA005_Hellcarrier",
+      "PXSB006_Paris",
+      "PXSB007_Alldestroyer",
+      "PXSC004_Galaxy",
+      "PXSC005_Zaya",
+      "PXSC006_Norma",
+      "PXSC007_Aurora",
+      "PXSD004_FlyFire",
+      "PXSD005_Blue_Aster"
+    ],
+    "id": 4222799792,
+    "index": "PCM068",
+    "modifiers": {
+      "planeForsageDrainRate": 0.9
+    },
+    "name": "PCM068_PlaneEngine_Mod_I",
+    "nation": [
+      "France",
+      "USA",
+      "Russia",
+      "Japan",
+      "United_Kingdom",
+      "Germany",
+      "Italy",
+      "Europe",
+      "Netherlands",
+      "Spain",
+      "Pan_Asia",
+      "Pan_America",
+      "Commonwealth"
+    ],
+    "shiplevel": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "ships": [],
+    "shiptype": [
+      "AirCarrier"
+    ],
+    "slot": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4236431280,
+    "index": "PCM055",
+    "modifiers": {
+      "ConsumablesWorkTime": 0.8,
+      "GMMaxDist": 1.1,
+      "GMShotDelay": 0.94
+    },
+    "name": "PCM055_Special_Mod_I_Khabarovsk",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PRSD110_Pr_24_Khabarovsk"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4213362608,
+    "index": "PCM077",
+    "modifiers": {
+      "additionalConsumables": 1,
+      "smokeGeneratorLifeTime": 1.3,
+      "smokeGeneratorWorkTimeCoeff": 2.0
+    },
+    "name": "PCM077_Special_Mod_I_Harugumo",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PJSD210_Harugumo"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4212314032,
+    "index": "PCM078",
+    "modifiers": {
+      "GMMaxDist": 0.88,
+      "GMShotDelay": 0.82,
+      "additionalConsumables": -1
+    },
+    "name": "PCM078_Special_Mod_I_Kremlin",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PRSB110_Sovetskaya_Rossiya"
+    ],
+    "shiptype": [],
+    "slot": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  },
+  {
+    "excludes": [],
+    "id": 4240625584,
+    "index": "PCM051",
+    "modifiers": {
+      "ConsumableReloadTime": {
+        "AirCarrier": 0.9,
+        "Auxiliary": 0.9,
+        "Battleship": 0.9,
+        "Cruiser": 0.9,
+        "Destroyer": 0.9,
+        "Submarine": 0.9
+      },
+      "smokeGeneratorLifeTime": 0.85,
+      "smokeGeneratorWorkTimeCoeff": 2.5,
+      "visibilityFactor": 0.95,
+      "visibilityFactorByPlane": 0.95,
+      "visibilityForSubmarineCoeff": 0.95
+    },
+    "name": "PCM051_Special_Mod_I_Minotaur",
+    "nation": [],
+    "shiplevel": [],
+    "ships": [
+      "PBSC110_Minotaur"
+    ],
+    "shiptype": [],
+    "slot": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Modernization"
+    }
+  }
+]

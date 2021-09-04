@@ -123,8 +123,7 @@ namespace DataConverter.Converters
                     SurfaceDetection = wgHull.visibilityFactor,
                     AirDetection = wgHull.visibilityFactorByPlane,
                 };
-                var wgHullSecondary = (ATBA)wgShip.ModulesArmaments[hullUpgradeInfo.Components[ComponentType.Secondary].First()];
-
+                                
                 // Process anti-air data
                 var antiAir = new AntiAir
                 {
@@ -132,7 +131,22 @@ namespace DataConverter.Converters
                     MediumRangeAura = new AntiAirAura(),
                     ShortRangeAura = new AntiAirAura(),
                 };
-                AssignAurasToProperty(wgHullSecondary.ConvertedAntiAirData, antiAir);
+
+                var components = hullUpgradeInfo.Components[ComponentType.Secondary];
+                if (components.Length > 0)
+                {
+                    var wgHullSecondary = (ATBA)wgShip.ModulesArmaments[components.First()];
+                    AssignAurasToProperty(wgHullSecondary.ConvertedAntiAirData, antiAir);
+                    // Process secondaries
+                    var secondary = new TurretModule
+                    {
+                        Sigma = wgHullSecondary.sigmaCount,
+                        MaxRange = wgHullSecondary.maxDist,
+                        Guns = wgHullSecondary.antiAirAndSecondaries.Values.Select(secondaryGun => (Gun)secondaryGun).ToList(),
+                    };
+                    hullModule.SecondaryModule = secondary;
+
+                }
 
                 if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out string[] airDefenseKeys))
                 {
@@ -144,15 +158,6 @@ namespace DataConverter.Converters
                 }
 
                 hullModule.AntiAir = antiAir;
-
-                // Process secondaries
-                var secondary = new TurretModule
-                {
-                    Sigma = wgHullSecondary.sigmaCount,
-                    MaxRange = wgHullSecondary.maxDist,
-                    Guns = wgHullSecondary.antiAirAndSecondaries.Values.Select(secondaryGun => (Gun)secondaryGun).ToList(),
-                };
-                hullModule.SecondaryModule = secondary;
 
                 // Process depth charge data
                 if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out string[] depthChargeKey) && depthChargeKey.Length > 0)
@@ -295,22 +300,48 @@ namespace DataConverter.Converters
             return thisDict.Where(module => module.Value is T)
                 .ToDictionary(entry => entry.Key, entry => (T)entry.Value);
         }
-
+    //TODO Check if/else logic. TargetAntiAir can be null i.e. low tier ships 
         private static void AssignAurasToProperty(Dictionary<string, AAAura> auras, AntiAir targetAntiAir)
         {
-            foreach ((_, AAAura aura) in auras)
+            if (auras != null && targetAntiAir != null)
             {
-                switch (aura.type)
+                foreach ((_, AAAura aura) in auras)
                 {
-                    case "far":
-                        targetAntiAir.LongRangeAura += aura;
-                        break;
-                    case "medium":
-                        targetAntiAir.MediumRangeAura += aura;
-                        break;
-                    case "near":
-                        targetAntiAir.ShortRangeAura += aura;
-                        break;
+                    switch (aura.type)
+                    {
+                        case "far":
+                            if (targetAntiAir.LongRangeAura != null)
+                            {
+                                targetAntiAir.LongRangeAura += aura;
+                            }
+                            else
+                            {
+                                targetAntiAir.LongRangeAura = aura;
+                            }
+                            break;
+
+                        case "medium":
+                            if (targetAntiAir.MediumRangeAura != null)
+                            {
+                                targetAntiAir.MediumRangeAura += aura;
+                            }
+                            else
+                            {
+                                targetAntiAir.MediumRangeAura = aura;
+                            }
+                            break;
+
+                        case "near":
+                            if (targetAntiAir.ShortRangeAura != null)
+                            {
+                                targetAntiAir.ShortRangeAura += aura;
+                            }
+                            else
+                            {
+                                targetAntiAir.ShortRangeAura = aura;
+                            }
+                            break;
+                    }
                 }
             }
         }

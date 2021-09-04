@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="ShipTests\TestData\NewFile1.txt" />
       <None Remove="ShipTests\TestData\SKILLS_BY_TIER.json" />
     </ItemGroup>
 
@@ -27,22 +28,28 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="ShipTests\TestData\filtered_USA.json">
+      <None Update="ShipTests\TestData\filtered_Consumable.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="ShipTests\TestData\filtered_Modernization.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="ShipTests\TestData\filtered_USA_Aircraft.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="ShipTests\TestData\filtered_USA_Consumable_Permacamos.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="ShipTests\TestData\filtered_USA_Crew.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="ShipTests\TestData\SingleAircraft.json">
+      <None Update="ShipTests\TestData\filtered_USA_Module.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="ShipTests\TestData\SingleCrew.json">
+      <None Update="ShipTests\TestData\filtered_USA_Projectile.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="ShipTests\TestData\SingleShip.json">
+      <None Update="ShipTests\TestData\filtered_USA_Ship.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="ShipTests\TestData\ConverterTest.json">

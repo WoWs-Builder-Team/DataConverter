@@ -1,8 +1,11 @@
 ﻿using DataConverter.WGStructure;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using WoWsShipBuilderDataStructures;
+using System.Linq;
 
 namespace DataConverter.Converters
 {
@@ -26,9 +29,50 @@ namespace DataConverter.Converters
                     //start mapping
                     Id = currentWgMod.id,
                     Index = currentWgMod.index,
-                    Effect = currentWgMod.modifiers,
                     Name = currentWgMod.name
                 };
+                
+                Dictionary<string, double> effects = new Dictionary<string, double>();
+                foreach (var currentWgModModifier in currentWgMod.modifiers)
+                {
+                    JToken jtoken = currentWgModModifier.Value;
+
+                    if (jtoken.Type == JTokenType.Float)
+                    {
+                        effects.Add(currentWgModModifier.Key, jtoken.Value<double>());
+                    }
+                    else if (jtoken.Type == JTokenType.Integer)
+                    {
+                        effects.Add(currentWgModModifier.Key, jtoken.Value<double>());
+                    }
+                    else
+                    {
+                        JObject jObject = (JObject)jtoken;
+                        var values = jObject.ToObject<Dictionary<string, double>>();
+                        bool isEqual = true;
+                        var first = values.First().Value;
+                        foreach ((string key, double value) in values)
+                        {
+                            if (value != first)
+                            {
+                                isEqual = false;
+                            }
+                        }
+                        if (isEqual)
+                        {
+                            effects.Add(currentWgModModifier.Key, first);
+                        }
+                        else
+                        {
+                            foreach ((string key, double value) in values)
+                            {
+                                effects.Add($"{currentWgModModifier.Key}_{key}", value);
+                            }
+                        }
+                    }
+                }
+            
+                mod.Effect = effects;
 
                 //for List of Enums
                 List<Nation> allowedNations = new List<Nation>();
@@ -36,7 +80,7 @@ namespace DataConverter.Converters
                 foreach (var nation in nationList)
                 {
                     //this will get the respective Enum value
-                    Nation value = Enum.Parse<Nation>(nation);
+                    Nation value = Enum.Parse<Nation>(nation.Replace("_",""), true);
                     allowedNations.Add(value);
                 }
 

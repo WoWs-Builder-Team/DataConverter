@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using DataConverter.Converters;
 using DataConverter.WGStructure;
 using Newtonsoft.Json;
@@ -12,26 +13,27 @@ namespace DataConverter.Test.ShipTests
         {
             return Path.Combine("ShipTests", "TestData", fileName);
         }
-        
+
+        #region Ship
         [Test]
         public void DeserializeWgShip_Success()
         {
-            var filePath = GetFilePath("SingleShip.json");
+            var filePath = GetFilePath("filtered_USA_Ship.json");
             var fileContent = File.ReadAllText(filePath);
 
-            var ship = JsonConvert.DeserializeObject<WGShip>(fileContent);
+            var ship = JsonConvert.DeserializeObject<List<WGShip>>(fileContent);
             Assert.NotNull(ship);
         }
-        
+
         [Test]
-        public void DeserializeWgShip_SuccessUpgradeInfoProcessing()
+        public void DeserializeShip_Succes()
         {
-            var filePath = GetFilePath("SingleShip.json");
+            var filePath = GetFilePath("filtered_USA_Ship.json");
             var fileContent = File.ReadAllText(filePath);
 
-            var ship = JsonConvert.DeserializeObject<WGShip>(fileContent);
-            Assert.NotNull(ship);
-            Assert.AreEqual(9, ship.ShipUpgradeInfo.ConvertedUpgrades.Count);
+            var dict = ShipConverter.ConvertShips(fileContent);
+            string test = JsonConvert.SerializeObject(dict);
+            Assert.NotNull(test);
         }
 
         [Test]
@@ -43,15 +45,17 @@ namespace DataConverter.Test.ShipTests
             Assert.AreEqual(1, result.Count);
             File.WriteAllText("output.json", JsonConvert.SerializeObject(result, Formatting.Indented));
         }
+        #endregion
 
+        #region Aircraft
         [Test]
         public void DeserializeWgAircraft_Succes()
         {
-            var filePath = GetFilePath("SingleAircraft.json");
+            var filePath = GetFilePath("filtered_USA_Aircraft.json");
             var fileContent = File.ReadAllText(filePath);
             
-            var aircraft = JsonConvert.DeserializeObject<WGAircraft>(fileContent);
-            Assert.NotNull(aircraft);
+            var test = JsonConvert.DeserializeObject<List<WGAircraft>>(fileContent);
+            Assert.NotNull(test);
         }
 
         [Test]
@@ -60,18 +64,20 @@ namespace DataConverter.Test.ShipTests
             var filePath = GetFilePath("filtered_USA_Aircraft.json");
             var fileContent = File.ReadAllText(filePath);
 
-            object dict = AircraftConverter.ConvertAircraft(fileContent);
+            var dict = AircraftConverter.ConvertAircraft(fileContent);
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
+        #endregion
 
+        #region Captain
         [Test]
         public void DeserializeWgCaptain_Succes()
         {
-            var filePath = GetFilePath("SingleCrew.json");
+            var filePath = GetFilePath("filtered_USA_Crew.json");
             var fileContent = File.ReadAllText(filePath);
 
-            var test = JsonConvert.DeserializeObject<WGCaptain>(fileContent);
+            var test = JsonConvert.DeserializeObject<List<WGCaptain>>(fileContent);
             Assert.NotNull(test);
         }
 
@@ -84,10 +90,128 @@ namespace DataConverter.Test.ShipTests
             var skillsJsonPath = GetFilePath("SKILLS_BY_TIER.json");
             var skillsJsonContent = File.ReadAllText(skillsJsonPath);
 
-            object dict = CaptainConverter.ConvertCaptain(fileContent, skillsJsonContent);
+            var dict = CaptainConverter.ConvertCaptain(fileContent, skillsJsonContent);
+            string test = JsonConvert.SerializeObject(dict);
+            Assert.NotNull(test);
+        }
+        #endregion
+
+        #region Projectile
+        [Test]
+        public void DeserializeWgProjectile_Succes()
+        {
+            var filePath = GetFilePath("filtered_USA_Projectile.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var test = JsonConvert.DeserializeObject<List<WGProjectile>>(fileContent);
+            Assert.NotNull(test);
+        }
+
+        [Test]
+        public void DeserializeProjectile_Succes()
+        {
+            var filePath = GetFilePath("filtered_USA_Projectile.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var dict = ProjectileConverter.ConvertProjectile(fileContent);
+            string test = JsonConvert.SerializeObject(dict);
+            Assert.NotNull(test);
+        }
+        #endregion
+
+        #region Modernization
+        [Test]
+        public void DeserializeWgModernization_Succes()
+        {
+            var filePath = GetFilePath("filtered_Modernization.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var test = JsonConvert.DeserializeObject<List<WGModernization>>(fileContent);
+            Assert.NotNull(test);
+        }
+
+        [Test]
+        public void DeserializeModernization_Succes()
+        {
+            var filePath = GetFilePath("filtered_Modernization.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var dict = ModernizationConverter.ConvertModernization(fileContent);
+            string test = JsonConvert.SerializeObject(dict);
+            Assert.NotNull(test);
+        }
+        #endregion
+
+        #region Consumable
+        [Test]
+        public void DeserializeWgConsumable_Succes()
+        {
+            var filePath = GetFilePath("filtered_Consumable.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var test = JsonConvert.DeserializeObject<List<WGConsumable>>(fileContent);
+            Assert.NotNull(test);
+        }
+
+        [Test]
+        public void DeserializeConsumable_Succes()
+        {
+            var filePath = GetFilePath("filtered_Consumable.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var dict = ConsumableConverter.ConvertConsumable(fileContent);
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
 
+        
+        #endregion
+
+        #region Module
+        [Test]
+        public void DeserializeWgModule_Succes()
+        {
+            var filePath = GetFilePath("filtered_USA_Module.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var test = JsonConvert.DeserializeObject<List<WGModule>>(fileContent);
+            Assert.NotNull(test);
+        }
+
+        [Test]
+        public void DeserializeModule_Succes()
+        {
+            var filePath = GetFilePath("filtered_USA_Module.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var dict = ModuleConverter.ConvertModule(fileContent);
+            string test = JsonConvert.SerializeObject(dict);
+            Assert.NotNull(test);
+        }
+        #endregion
+
+        #region Exterior
+        [Test]
+        public void DeserializeWgExterior_Succes()
+        {
+            var filePath = GetFilePath("filtered_USA_Consumable_Permacamos.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var test = JsonConvert.DeserializeObject<List<WGExterior>>(fileContent);
+            Assert.NotNull(test);
+        }
+
+        //[Test]
+        //public void DeserializeConsumablePermacamos_Succes()
+        //{
+        //    var filePath = GetFilePath("filtered_USA_Consumable_Permacamos.json");
+        //    var fileContent = File.ReadAllText(filePath);
+
+        //    var dict = ExteriorConverter.ConvertExterior(fileContent);
+        //    string test = JsonConvert.SerializeObject(dict);
+        //    Assert.NotNull(test);
+        //}
+        #endregion
     }
+    
 }

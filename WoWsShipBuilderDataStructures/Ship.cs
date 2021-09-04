@@ -87,7 +87,7 @@ namespace WoWsShipBuilderDataStructures
         public decimal VerticalRotationSpeed { get; set; }
         public decimal Reload { get; set; }
         public decimal[] HorizontalSector { get; set; }
-        public decimal[] HorizontalDeadZone { get; set; }
+        public decimal[][] HorizontalDeadZone { get; set; }
         public decimal[] TorpedoAngles { get; set; }
     }
 

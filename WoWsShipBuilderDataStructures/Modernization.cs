@@ -6,7 +6,7 @@ namespace WoWsShipBuilderDataStructures
     {
         public long Id { get; set; }
         public string Index { get; set; }
-        public Dictionary<string,double> Effect { get; set; }
+        public Dictionary<string, double> Effect { get; set; }
         public string Name { get; set; }
         public List<Nation> AllowedNations { get; set; }
         public List<int> ShipLevel { get; set; }
