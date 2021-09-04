@@ -5,6 +5,7 @@ using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilderDataStructures;
 using Hull = WoWsShipBuilderDataStructures.Hull;
+using ShipUpgrade = WoWsShipBuilderDataStructures.ShipUpgrade;
 
 namespace DataConverter.Converters
 {
@@ -49,7 +50,7 @@ namespace DataConverter.Converters
         {
             var upgradeInfo = new UpgradeInfo
             {
-                ShipUpgrades = new List<ShipUpgrades>(),
+                ShipUpgrades = new List<ShipUpgrade>(),
                 CostCredits = wgShip.ShipUpgradeInfo.costCR,
                 CostGold = wgShip.ShipUpgradeInfo.costGold,
                 CostXp = wgShip.ShipUpgradeInfo.costXP,
@@ -57,9 +58,9 @@ namespace DataConverter.Converters
                 Value = wgShip.ShipUpgradeInfo.value,
             };
 
-            foreach ((_, ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
+            foreach ((_, WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
             {
-                var newUpgrade = new ShipUpgrades
+                var newUpgrade = new ShipUpgrade
                 {
                     Components = upgrade.components.Select(entry => (FindModuleType(entry.Key), entry.Value))
                         .Where(entry => entry.Item1 != ComponentType.None)
@@ -109,7 +110,7 @@ namespace DataConverter.Converters
 
             foreach ((string key, WgHull wgHull) in hullModules)
             {
-                ShipUpgrades hullUpgradeInfo = upgradeInfo.ShipUpgrades.First(upgradeEntry =>
+                ShipUpgrade hullUpgradeInfo = upgradeInfo.ShipUpgrades.First(upgradeEntry =>
                     upgradeEntry.Components.ContainsKey(ComponentType.Hull) && upgradeEntry.Components[ComponentType.Hull].Contains(key));
 
                 // Initialize basic hull data.
