@@ -36,7 +36,7 @@ namespace DataConverter.Test.ShipTests
             Assert.NotNull(test);
         }
 
-        [Test]
+        
         public void ConvertShip()
         {
             var filePath = GetFilePath("ConverterTest.json");
@@ -224,6 +224,17 @@ namespace DataConverter.Test.ShipTests
             // var dict2 = ExteriorConverter.ConvertExterior(fileContent2);
             // string test2 = JsonConvert.SerializeObject(dict2);
             // Assert.NotNull(test2);
+            
+
+        }
+        [Test]
+        public void ConvertExterior()
+        {
+            var filePath = GetFilePath("ConverterETest.json");
+            var fileContent = File.ReadAllText(filePath);
+            var result = ExteriorConverter.ConvertExterior(fileContent);
+            Assert.AreEqual(1, result.Count);
+            File.WriteAllText("output.json", JsonConvert.SerializeObject(result, Formatting.Indented));
         }
         #endregion
     }

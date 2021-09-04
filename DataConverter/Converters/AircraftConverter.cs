@@ -9,7 +9,7 @@ namespace DataConverter.Converters
 {
     public static class AircraftConverter
     {
-        //convert the list of modernizations from WG to our list of Modernizations
+        //convert the list of aircrafts from WG to our list of Aircrafts
         public static Dictionary<string, Aircraft> ConvertAircraft(string jsonInput)
         {
             //create a List of our Objects
@@ -48,7 +48,7 @@ namespace DataConverter.Converters
                     InnerSalvoSize = currentWgAir.innerSalvoSize,
                 };
 
-                PlaneAttackData pad = new PlaneAttackData
+                PlaneAttackData planeattackdata = new PlaneAttackData
                 {
                     //start mapping
                     AttackCooldown = currentWgAir.attackCooldown,
@@ -59,15 +59,15 @@ namespace DataConverter.Converters
                     AttackerDamageTakenMultiplier = currentWgAir.attackerDamageTakenMultiplier,
                     AttackerSize = currentWgAir.attackerSize,
                 };
-                air.AttackData = pad;
+                air.AttackData = planeattackdata;
 
-                JatoData jd = new JatoData
+                JatoData jatodata = new JatoData
                 {
                     //start mapping
                     JatoDuration = currentWgAir.jatoDuration,
                     JatoSpeedMultiplier = currentWgAir.jatoSpeedMultiplier
                 };
-                air.JatoData = jd;
+                air.JatoData = jatodata;
                 
                 //determine the needed enum for plane category
                 if (currentWgAir.isConsumablePlane && currentWgAir.isAirSupportPlane)
