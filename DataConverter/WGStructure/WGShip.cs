@@ -59,13 +59,13 @@ namespace DataConverter.WGStructure
     {
         public string[] ammoList { get; set; }
         public decimal barrelDiameter { get; set; }
-        public decimal[] horizSector { get; set; }
+        public double[] horizSector { get; set; }
         public long id { get; set; }
         public string index { get; set; }
         public int numBarrels { get; set; }
-        public decimal[] position { get; set; }
+        public double[] position { get; set; }
         public decimal[] rotationSpeed { get; set; }
-        public decimal[][] deadZone { get; set; }
+        public double[][] deadZone { get; set; }
         public decimal shotDelay { get; set; }
         public decimal smokePenalty { get; set; }
         public Typeinfo typeinfo { get; set; }
@@ -76,7 +76,7 @@ namespace DataConverter.WGStructure
             {
                 AmmoList = gun.ammoList.ToList(),
                 BarrelDiameter = gun.barrelDiameter,
-                HorizontalSector = Array.ConvertAll(gun.horizSector, input => (decimal)input),
+                HorizontalSector = gun.horizSector,
                 HorizontalDeadZones = gun.deadZone,
                 Id = gun.id,
                 Index = gun.index,

@@ -43,13 +43,13 @@ namespace WoWsShipBuilderDataStructures
     {
         public List<string> AmmoList { get; set; }
         public decimal BarrelDiameter { get; set; }
-        public decimal[] HorizontalSector { get; set; }
-        public decimal[][] HorizontalDeadZones { get; set; }
+        public double[] HorizontalSector { get; set; }
+        public double[][] HorizontalDeadZones { get; set; }
         public long Id { get; set; }
         public string Index { get; set; }
         public int NumBarrels { get; set; }
-        public decimal HorizontalPosition { get; set; }
-        public decimal VerticalPosition { get; set; }
+        public double HorizontalPosition { get; set; }
+        public double VerticalPosition { get; set; }
         public decimal HorizontalRotationSpeed { get; set; }
         public decimal VerticalRotationSpeed { get; set; }
         public decimal Reload { get; set; }
