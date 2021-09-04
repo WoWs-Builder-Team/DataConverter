@@ -300,7 +300,7 @@ namespace DataConverter.Converters
             return thisDict.Where(module => module.Value is T)
                 .ToDictionary(entry => entry.Key, entry => (T)entry.Value);
         }
-    //TODO Check if/else logic. TargetAntiAir can be null i.e. low tier ships 
+
         private static void AssignAurasToProperty(Dictionary<string, AAAura> auras, AntiAir targetAntiAir)
         {
             if (auras != null && targetAntiAir != null)
