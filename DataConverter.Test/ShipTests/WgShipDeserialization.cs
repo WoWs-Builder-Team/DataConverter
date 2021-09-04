@@ -194,23 +194,36 @@ namespace DataConverter.Test.ShipTests
         [Test]
         public void DeserializeWgExterior_Succes()
         {
-            var filePath = GetFilePath("filtered_USA_Consumable_Permacamos.json");
+            var filePath = GetFilePath("filtered_USA_Exterior.json");
             var fileContent = File.ReadAllText(filePath);
 
             var test = JsonConvert.DeserializeObject<List<WGExterior>>(fileContent);
             Assert.NotNull(test);
+
+            var filePath2 = GetFilePath("filtered_Common_Exterior.json");
+            var fileContent2 = File.ReadAllText(filePath2);
+
+            var test2 = JsonConvert.DeserializeObject<List<WGExterior>>(fileContent2);
+            Assert.NotNull(test2);
         }
 
-        //[Test]
-        //public void DeserializeConsumablePermacamos_Succes()
-        //{
-        //    var filePath = GetFilePath("filtered_USA_Consumable_Permacamos.json");
-        //    var fileContent = File.ReadAllText(filePath);
+        [Test]
+        public void DeserializeConsumablePermacamos_Succes()
+        {
+            var filePath = GetFilePath("filtered_USA_Exterior.json");
+            var fileContent = File.ReadAllText(filePath);
 
-        //    var dict = ExteriorConverter.ConvertExterior(fileContent);
-        //    string test = JsonConvert.SerializeObject(dict);
-        //    Assert.NotNull(test);
-        //}
+            var dict = ExteriorConverter.ConvertExterior(fileContent);
+            string test = JsonConvert.SerializeObject(dict);
+            Assert.NotNull(test);
+
+            var filePath2 = GetFilePath("filtered_Common_Exterior.json");
+            var fileContent2 = File.ReadAllText(filePath2);
+
+            var dict2 = ExteriorConverter.ConvertExterior(fileContent2);
+            string test2 = JsonConvert.SerializeObject(dict2);
+            Assert.NotNull(test2);
+        }
         #endregion
     }
     

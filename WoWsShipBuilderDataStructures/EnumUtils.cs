@@ -123,9 +123,9 @@ namespace WoWsShipBuilderDataStructures
 
     public enum ExteriorType
     {
-        Flag,
+        Flags,
         Camouflage,
-        Permoflage
+        Permoflage,
     }
 
     public enum AntiAirAuraType

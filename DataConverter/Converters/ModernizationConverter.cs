@@ -37,11 +37,7 @@ namespace DataConverter.Converters
                 {
                     JToken jtoken = currentWgModModifier.Value;
 
-                    if (jtoken.Type == JTokenType.Float)
-                    {
-                        effects.Add(currentWgModModifier.Key, jtoken.Value<double>());
-                    }
-                    else if (jtoken.Type == JTokenType.Integer)
+                    if (jtoken.Type == JTokenType.Float || jtoken.Type == JTokenType.Integer)
                     {
                         effects.Add(currentWgModModifier.Key, jtoken.Value<double>());
                     }

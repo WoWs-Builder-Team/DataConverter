@@ -1,0 +1,3395 @@
+﻿[
+  {
+    "id": 4267536304,
+    "index": "PCEF026",
+    "modifiers": {
+      "creditsFactor": 1.25,
+      "crewExpFactor": 2.5,
+      "expFactor": 1.5
+    },
+    "name": "PCEF026_Scylla_Flag",
+    "sortOrder": 22,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4265439152,
+    "index": "PCEF028",
+    "modifiers": {
+      "smokeGeneratorWorkTimeCoeff": 1.15
+    },
+    "name": "PCEF028_Smoke_SignalFlag",
+    "sortOrder": 13,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_patrick_1",
+    "id": 3974655920,
+    "index": "PCEP305",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP305_Permo_Emerald_Edition",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_mgt_20_tile",
+    "id": 4281266096,
+    "index": "PCEC013",
+    "modifiers": {
+      "expFactor": 1.3,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC013_Camo_MGT",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4293750704,
+    "index": "PCEF001",
+    "modifiers": {
+      "creditsFactor": 1.2
+    },
+    "name": "PCEF001_Zulu_SignalFlag",
+    "sortOrder": 13,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "Commander_day",
+    "id": 4260294576,
+    "index": "PCEC033",
+    "modifiers": {
+      "crewExpFactor": 3.5,
+      "freeExpFactor": 3.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC033_commander_day",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Azure_tile",
+    "id": 4235128752,
+    "index": "PCEC057",
+    "modifiers": {
+      "crewExpFactor": 1.5,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC057_AzurLane",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "GamesCom_2018",
+    "id": 4230934448,
+    "index": "PCEC061",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 4.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC061_Camo_Gamescom_2018",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_CN_NY_2018_03_tile",
+    "id": 4241420208,
+    "index": "PCEC051",
+    "modifiers": {
+      "expFactor": 5.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC051_Dragon_3",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_valentine_tile",
+    "id": 4272877488,
+    "index": "PCEC021",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC021_Valentine_Tile",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_victoryday_tile",
+    "id": 4264488880,
+    "index": "PCEC029",
+    "modifiers": {
+      "crewExpFactor": 2.5,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC029_Sparks_of_Victory",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_CompasRose_tile",
+    "id": 4185845680,
+    "index": "PCEC104",
+    "modifiers": {
+      "creditsFactor": 1.3,
+      "crewExpFactor": 1.5,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC104_Cartography",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_GoldenWeek2021_tile",
+    "id": 4184797104,
+    "index": "PCEC105",
+    "modifiers": {
+      "creditsFactor": 1.5,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC105_GoldenWeek",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_sts_tile",
+    "id": 4262391728,
+    "index": "PCEC031",
+    "modifiers": {
+      "afterBattleRepair": 0.5,
+      "creditsFactor": 1.2,
+      "crewExpFactor": 3.5,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC031_Deserved_ST",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_newyear_tile",
+    "id": 4289654704,
+    "index": "PCEC005",
+    "modifiers": {
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC005_Camo_NY_3",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_new_year_3",
+    "id": 3976753072,
+    "index": "PCEP303",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP303_Permo_NY_2_CN",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4279070640,
+    "index": "PCEF015",
+    "modifiers": {
+      "crewExpFactor": 1.5
+    },
+    "name": "PCEF015_ZH_SignalFlag",
+    "sortOrder": 16,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_NewYear2021_tile",
+    "id": 4186894256,
+    "index": "PCEC103",
+    "modifiers": {
+      "creditsFactor": 1.3,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC103_NewYear2021",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "Black_friday",
+    "id": 4225691568,
+    "index": "PCEC066",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 1.75,
+      "freeExpFactor": 2.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC066_BlackFriday",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_HW_partners01",
+    "id": 4252954544,
+    "index": "PCEC040",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC040_NVIDIA_camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4286410672,
+    "index": "PCEF008",
+    "modifiers": {
+      "burnTime": 0.8
+    },
+    "name": "PCEF008_IY_SignalFlag",
+    "sortOrder": 11,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_wows_birthday_tile",
+    "id": 4277071792,
+    "index": "PCEC017",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC017_Camo_wows_birthday_tile",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4180176816,
+    "index": "PCEP109",
+    "modifiers": {
+      "afterBattleRepair": 0.8,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP109_Permo_Prem_9_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "PEV_color_tile_04",
+    "id": 4199477168,
+    "index": "PCEC091",
+    "modifiers": {
+      "creditsFactor": 1.3,
+      "expFactor": 1.5,
+      "freeExpFactor": 3.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC091_Activity4Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Red_Heat_01",
+    "id": 4216254384,
+    "index": "PCEC075",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC075_RedHeatCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_newyear_tile_3",
+    "id": 4249808816,
+    "index": "PCEC043",
+    "modifiers": {
+      "crewExpFactor": 2.25,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC043_Camo_New_Year_18",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_patrick_tile",
+    "id": 4270780336,
+    "index": "PCEC023",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC023_Camo_St_Patrick",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_NewYear_2019",
+    "id": 4287229872,
+    "index": "PCEM007",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEM007_HappyNY20_8lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [
+        8
+      ],
+      "nations": [],
+      "specificShips": [],
+      "subtype": [
+        "Battleship",
+        "Cruiser",
+        "Destroyer",
+        "AirCarrier"
+      ]
+    },
+    "sortOrder": 200,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_EU_special_tile",
+    "id": 4276023216,
+    "index": "PCEC018",
+    "modifiers": {
+      "crewExpFactor": 3.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC018_Restless_Fire",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_new_year_3",
+    "id": 3975704496,
+    "index": "PCEP304",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP304_Permo_NY_2_CN_Red",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4281167792,
+    "index": "PCEF013",
+    "modifiers": {
+      "freeExpFactor": 4.0
+    },
+    "name": "PCEF013_PP_SignalFlag",
+    "sortOrder": 17,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4275924912,
+    "index": "PCEF018",
+    "modifiers": {
+      "PMDetonationProb": 1.05,
+      "burnChanceFactorBig": 1.01,
+      "burnChanceFactorSmall": 1.005
+    },
+    "name": "PCEF018_IX_SignalFlag",
+    "sortOrder": 3,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Volunteer_tile_01",
+    "id": 4208914352,
+    "index": "PCEC082",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "crewExpFactor": 2.0,
+      "expFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC082_Volunteer",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_newyear_tile_2",
+    "id": 4273926064,
+    "index": "PCEC020",
+    "modifiers": {
+      "crewExpFactor": 1.5,
+      "expFactor": 1.75,
+      "freeExpFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC020_Camo_New_Year_17",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_2",
+    "id": 4159205296,
+    "index": "PCEP129",
+    "modifiers": {
+      "afterBattleRepair": 0.8,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP129_Permo_Upgr_9_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_new_year_2",
+    "id": 3977801648,
+    "index": "PCEP302",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP302_Permo_NY_2",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_SovietArc_2020",
+    "id": 4283035568,
+    "index": "PCEM011",
+    "modifiers": {},
+    "name": "PCEM011_SovietArc02_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4288507824,
+    "index": "PCEF006",
+    "modifiers": {
+      "collisionDamageApply": 1.5,
+      "collisionDamageNerf": 0.8
+    },
+    "name": "PCEF006_HY_SignalFlag",
+    "sortOrder": 6,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Steam_tile",
+    "id": 4248760240,
+    "index": "PCEC044",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 1.75,
+      "freeExpFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC044_Steam_Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_3_tile",
+    "id": 4287557552,
+    "index": "PCEC007",
+    "modifiers": {
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC007_Camo_3_Tile_Double",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4280119216,
+    "index": "PCEF014",
+    "modifiers": {
+      "ConsumableReloadTime": {
+        "AirCarrier": 0.95,
+        "Auxiliary": 0.95,
+        "Battleship": 0.95,
+        "Cruiser": 0.95,
+        "Destroyer": 0.95,
+        "Submarine": 0.95
+      }
+    },
+    "name": "PCEF014_NF_SignalFlag",
+    "sortOrder": 7,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_halloween_tile",
+    "id": 4291751856,
+    "index": "PCEC003",
+    "modifiers": {
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC003_Camo_Halloween",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "Eagles_tile",
+    "id": 4231983024,
+    "index": "PCEC060",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC060_RvR_Eagle",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4278022064,
+    "index": "PCEF016",
+    "modifiers": {
+      "AAAuraDamage": {
+        "AirCarrier": 1.05,
+        "Auxiliary": 1.05,
+        "Battleship": 1.05,
+        "Cruiser": 1.05,
+        "Destroyer": 1.05,
+        "Submarine": 1.05
+      },
+      "AABubbleDamage": {
+        "AirCarrier": 1.05,
+        "Auxiliary": 1.05,
+        "Battleship": 1.05,
+        "Cruiser": 1.05,
+        "Destroyer": 1.05,
+        "Submarine": 1.05
+      }
+    },
+    "name": "PCEF016_NE7_SignalFlag",
+    "sortOrder": 1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_KNGvsGODZ_Kong_tile",
+    "id": 4182699952,
+    "index": "PCEC107",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC107_KNG",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_thxGiving_tile",
+    "id": 4224642992,
+    "index": "PCEC067",
+    "modifiers": {
+      "creditsFactor": 1.1,
+      "expFactor": 1.5,
+      "freeExpFactor": 1.05,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC067_Cornucopia",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_generalBattle_tile",
+    "id": 4178505648,
+    "index": "PCEC111",
+    "modifiers": {
+      "creditsFactor": 1.3,
+      "crewExpFactor": 1.5,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC111_GeneralBattle",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_SwedenArc_style",
+    "id": 4286181296,
+    "index": "PCEM008",
+    "modifiers": {},
+    "name": "PCEM008_SwedenArc_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_new_year_1",
+    "id": 3978850224,
+    "index": "PCEP301",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP301_Permo_NY",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4271730608,
+    "index": "PCEF022",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0
+    },
+    "name": "PCEF022_Red_Dragon_Flag",
+    "sortOrder": 19,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_ACT_tile",
+    "id": 4214157232,
+    "index": "PCEC077",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC077_ACTCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4269633456,
+    "index": "PCEF024",
+    "modifiers": {
+      "crewExpFactor": 2.5,
+      "expFactor": 1.5,
+      "freeExpFactor": 3.5
+    },
+    "name": "PCEF024_Hydra_Flag",
+    "sortOrder": 22,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_NewYear_2019",
+    "id": 4278841264,
+    "index": "PCEM015",
+    "modifiers": {
+      "afterBattleRepair": 0.8,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEM015_HappyNY20_9lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [
+        9
+      ],
+      "nations": [],
+      "specificShips": [],
+      "subtype": [
+        "Battleship",
+        "Cruiser",
+        "Destroyer",
+        "AirCarrier"
+      ]
+    },
+    "sortOrder": 200,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4273827760,
+    "index": "PCEF020",
+    "modifiers": {
+      "crewExpFactor": 4.33
+    },
+    "name": "PCEF020_Blue_Dragon_Flag",
+    "sortOrder": 20,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Back_to_school01",
+    "id": 4258197424,
+    "index": "PCEC035",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC035_Back2School",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "Navy_day",
+    "id": 4261343152,
+    "index": "PCEC032",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 1.75,
+      "freeExpFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC032_navy_day",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_LOGH_Aliance",
+    "id": 4173262768,
+    "index": "PCEC116",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC116_Alliancecamo_logh",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_NY_2018",
+    "id": 3970461616,
+    "index": "PCEP309",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP309_Permo_NY_3",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Navy_day_CN_tile",
+    "id": 4179554224,
+    "index": "PCEC110",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC110_CnNavy",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_Ranked_bronze",
+    "id": 4190039984,
+    "index": "PCEC100",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC100_RankedBronze",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_WH40K_Chaos_tile_01",
+    "id": 4196331440,
+    "index": "PCEC094",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC094_Warhammer_Khorne_Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_womens_day_2018_tile",
+    "id": 4240371632,
+    "index": "PCEC052",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC052_Womens_Day",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_2",
+    "id": 4148719536,
+    "index": "PCEP139",
+    "modifiers": {
+      "afterBattleRepair": 0.8,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP139_Permo_Prem_9_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_basketball_tile_4",
+    "id": 4282314672,
+    "index": "PCEC012",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "crewExpFactor": 4.33,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC012_Camo_Basketball_Tile_4",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_DutchArc_tile",
+    "id": 4177457072,
+    "index": "PCEC112",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC112_HollandArcCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Contributors_01_tile",
+    "id": 4236177328,
+    "index": "PCEC056",
+    "modifiers": {
+      "crewExpFactor": 1.5,
+      "expFactor": 2.5,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC056_Contributor_Followers",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "WG_Fest_tile",
+    "id": 4226740144,
+    "index": "PCEC065",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 4.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC065_WGFest_2018",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_CanadaDay_tile_01",
+    "id": 4198428592,
+    "index": "PCEC092",
+    "modifiers": {
+      "crewExpFactor": 1.5,
+      "expFactor": 1.75,
+      "freeExpFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC092_CanadaDayCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_Ranked_golden",
+    "id": 4187942832,
+    "index": "PCEC102",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.25,
+      "freeExpFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC102_RankedGold",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_2",
+    "id": 4160253872,
+    "index": "PCEP128",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP128_Permo_Upgr_8_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4276973488,
+    "index": "PCEF017",
+    "modifiers": {
+      "burnChanceFactorBig": 1.01,
+      "burnChanceFactorSmall": 1.005,
+      "floodChanceFactor": 1.04,
+      "floodChanceFactorPlane": 1.04
+    },
+    "name": "PCEF017_VL_SignalFlag",
+    "sortOrder": 5,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_LOGH_Empire",
+    "id": 4174311344,
+    "index": "PCEC115",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC115_Empirecamo_logh",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4282216368,
+    "index": "PCEF012",
+    "modifiers": {
+      "GSIdealRadius": 0.95,
+      "GSMaxDist": 1.05,
+      "GSShotDelay": 0.95
+    },
+    "name": "PCEF012_MY6_SignalFlag",
+    "sortOrder": 2,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Contributors_02_tile",
+    "id": 4237225904,
+    "index": "PCEC055",
+    "modifiers": {
+      "crewExpFactor": 3.5,
+      "expFactor": 2.5,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC055_Contributor",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_cn_special_tile",
+    "id": 4279168944,
+    "index": "PCEC015",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC015_Camo_CN_Special",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_India_tile",
+    "id": 4215205808,
+    "index": "PCEC076",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC076_IndiaCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_basketball_tile_3",
+    "id": 4283363248,
+    "index": "PCEC011",
+    "modifiers": {
+      "creditsFactor": 1.25,
+      "expFactor": 2.25,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC011_Camo_Basketball_Tile_3",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Stream_Dream_tile",
+    "id": 4221497264,
+    "index": "PCEC070",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC070_StreamDream",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_basketball_tile_2",
+    "id": 4284411824,
+    "index": "PCEC010",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.25,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC010_Camo_Basketball_Tile_2",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Transformer_tile_02",
+    "id": 4192137136,
+    "index": "PCEC098",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC098_DecepticonCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4291653552,
+    "index": "PCEF003",
+    "modifiers": {
+      "expFactor": 1.5
+    },
+    "name": "PCEF003_EqualSpeed_SignalFlag",
+    "sortOrder": 15,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Humble_Bundle_tile",
+    "id": 4238274480,
+    "index": "PCEC054",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 1.75,
+      "freeExpFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC054_Humble_Bundle",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4170739632,
+    "index": "PCEP118",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP118_Permo_Upgr_8_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_HW2019_01",
+    "id": 4293521328,
+    "index": "PCEM001",
+    "modifiers": {},
+    "name": "PCEM001_Halloween19_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_ANZAC_tile",
+    "id": 4183748528,
+    "index": "PCEC106",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC106_ANZAC_Day",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_secretsanta2018_tile",
+    "id": 4223594416,
+    "index": "PCEC068",
+    "modifiers": {
+      "crewExpFactor": 2.5,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC068_NY2019",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_supertest_tile",
+    "id": 4288606128,
+    "index": "PCEC006",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC006_Tile_Supertest",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_WH40K_Imperial_tile_01",
+    "id": 4197380016,
+    "index": "PCEC093",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC093_Warhammer_Imperial_Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_birthday_tile",
+    "id": 4266586032,
+    "index": "PCEC027",
+    "modifiers": {
+      "afterBattleRepair": 0.5,
+      "creditsFactor": 1.5,
+      "crewExpFactor": 1.5,
+      "expFactor": 1.5,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC027_Players_Birthday",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4285362096,
+    "index": "PCEF009",
+    "modifiers": {
+      "floodTime": 0.8
+    },
+    "name": "PCEF009_JY2_SignalFlag",
+    "sortOrder": 10,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_sse_tile",
+    "id": 4269731760,
+    "index": "PCEC024",
+    "modifiers": {
+      "crewExpFactor": 3.5,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC024_Battle_Hardened",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_coewater_tile",
+    "id": 4268683184,
+    "index": "PCEC025",
+    "modifiers": {
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC025_CoE_Team_Water",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_RexMaris_tile_01",
+    "id": 4204720048,
+    "index": "PCEC086",
+    "modifiers": {
+      "expFactor": 2.5,
+      "freeExpFactor": 6,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC086_KOTSCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_HW_partners04",
+    "id": 4251905968,
+    "index": "PCEC041",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC041_MSI_camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4287459248,
+    "index": "PCEF007",
+    "modifiers": {
+      "planeRegenerationRate": 1.05,
+      "regenerationHPSpeed": 1.2
+    },
+    "name": "PCEF007_ID_SignalFlag",
+    "sortOrder": 9,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_coefire_tile",
+    "id": 4267634608,
+    "index": "PCEC026",
+    "modifiers": {
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC026_CoE_Team_Fire",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_SteelStyle2021",
+    "id": 4277792688,
+    "index": "PCEM016",
+    "modifiers": {},
+    "name": "PCEM016_Steel_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Leyte_Gulf_02",
+    "id": 4209962928,
+    "index": "PCEC081",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC081_Leyte2Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_Ranked_silver",
+    "id": 4188991408,
+    "index": "PCEC101",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "freeExpFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC101_RankedSilver",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4186468272,
+    "index": "PCEP103",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP103_Permo_Prem_Low_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_gamescon_tile",
+    "id": 4278120368,
+    "index": "PCEC016",
+    "modifiers": {
+      "creditsFactor": 1.5,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC016_Camo_Gamescom_2016",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_WowsBirthday5_tile_01",
+    "id": 4279889840,
+    "index": "PCEM014",
+    "modifiers": {
+      "afterBattleRepair": 0.8,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEM014_5Years_9lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [
+        9
+      ],
+      "nations": [],
+      "specificShips": [],
+      "subtype": [
+        "Battleship",
+        "Cruiser",
+        "Destroyer"
+      ]
+    },
+    "sortOrder": 210,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4172836784,
+    "index": "PCEP116",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP116_Permo_Upgr_6_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "PEV_color_tile_02",
+    "id": 4201574320,
+    "index": "PCEC089",
+    "modifiers": {
+      "crewExpFactor": 2.25,
+      "expFactor": 1.75,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC089_Activity2Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_basketball_tile_1",
+    "id": 4285460400,
+    "index": "PCEC009",
+    "modifiers": {
+      "expFactor": 2.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC009_Camo_Basketball_Tile_1",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_CN_NY_2018_02_tile",
+    "id": 4243517360,
+    "index": "PCEC049",
+    "modifiers": {
+      "expFactor": 3.0,
+      "freeExpFactor": 8.77,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC049_Dragon_1",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_SovietArc_2020",
+    "id": 4284084144,
+    "index": "PCEM010",
+    "modifiers": {},
+    "name": "PCEM010_SovietArc01_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4264390576,
+    "index": "PCEF029",
+    "modifiers": {
+      "airDefenseDispReloadCoeff": 0.9,
+      "sonarWorkTimeCoeff": 1.1
+    },
+    "name": "PCEF029_Sonar_AirDef_SignalFlag",
+    "sortOrder": 14,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4168642480,
+    "index": "PCEP120",
+    "modifiers": {
+      "afterBattleRepair": 0.5,
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP120_Permo_Upgr_10_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Postap_tile",
+    "id": 4218351536,
+    "index": "PCEC073",
+    "modifiers": {
+      "crewExpFactor": 2.5,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC073_ApocalypseCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Transformer_tile_01",
+    "id": 4193185712,
+    "index": "PCEC097",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC097_AutobotCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_halloween_2016_tile",
+    "id": 4274974640,
+    "index": "PCEC019",
+    "modifiers": {
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC019_Camo_Halloween_16",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Leyte_Gulf_01",
+    "id": 4211011504,
+    "index": "PCEC080",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC080_Leyte1Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4268584880,
+    "index": "PCEF025",
+    "modifiers": {
+      "creditsFactor": 1.3,
+      "expFactor": 1.75
+    },
+    "name": "PCEF025_Basilisk_Flag",
+    "sortOrder": 22,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4283264944,
+    "index": "PCEF011",
+    "modifiers": {
+      "afterBattleRepair": 0.9
+    },
+    "name": "PCEF011_IB3_SignalFlag",
+    "sortOrder": 14,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_CN_NY_2018_01_tile",
+    "id": 4242468784,
+    "index": "PCEC050",
+    "modifiers": {
+      "crewExpFactor": 6.55,
+      "expFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC050_Dragon_2",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Italian_Arc_tile",
+    "id": 4213108656,
+    "index": "PCEC078",
+    "modifiers": {
+      "crewExpFactor": 1.5,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC078_ItalyCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_2",
+    "id": 4181225392,
+    "index": "PCEP108",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP108_Permo_Prem_High_lvl_2",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4289556400,
+    "index": "PCEF005",
+    "modifiers": {
+      "speedCoef": 1.05
+    },
+    "name": "PCEF005_SM_SignalFlag",
+    "sortOrder": 8,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_GNB_tile",
+    "id": 4280217520,
+    "index": "PCEC014",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC014_Camo_GNB_May_2016",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4171788208,
+    "index": "PCEP117",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP117_Permo_Upgr_7_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_HW_partners02",
+    "id": 4255051696,
+    "index": "PCEC038",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC038_ASUS_camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_HW2019_01",
+    "id": 4290375600,
+    "index": "PCEM004",
+    "modifiers": {
+      "afterBattleRepair": 0.5,
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEM004_Halloween19_10lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [
+        10
+      ],
+      "nations": [],
+      "specificShips": [],
+      "subtype": [
+        "Battleship",
+        "Cruiser",
+        "Destroyer",
+        "AirCarrier"
+      ]
+    },
+    "sortOrder": 200,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Cimaron_civ",
+    "id": 3971510192,
+    "index": "PCEP308",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP308_Cimarron",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_France_arc_01",
+    "id": 4217302960,
+    "index": "PCEC074",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC074_FrenchArcCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_lunarnewyear_tile",
+    "id": 4222545840,
+    "index": "PCEC069",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC069_LunarNewYear",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_American_Arc_tile",
+    "id": 4234080176,
+    "index": "PCEC058",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.25,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC058_American_Arc",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_HW2019_01",
+    "id": 4291424176,
+    "index": "PCEM003",
+    "modifiers": {
+      "afterBattleRepair": 0.8,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEM003_Halloween19_9lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [
+        9
+      ],
+      "nations": [],
+      "specificShips": [],
+      "subtype": [
+        "Battleship",
+        "Cruiser",
+        "Destroyer"
+      ]
+    },
+    "sortOrder": 200,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4274876336,
+    "index": "PCEF019",
+    "modifiers": {
+      "PMDetonationProb": 1.05,
+      "floodChanceFactor": 1.15,
+      "floodChanceFactorPlane": 1.15
+    },
+    "name": "PCEF019_JW1_SignalFlag",
+    "sortOrder": 4,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_KNGvsGODZ_Godzilla_tile",
+    "id": 4181651376,
+    "index": "PCEC108",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC108_GDZ",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "PEV_color_tile_01",
+    "id": 4202622896,
+    "index": "PCEC088",
+    "modifiers": {
+      "creditsFactor": 1.3,
+      "crewExpFactor": 1.5,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC088_Activity1Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Viva_la_France_tile",
+    "id": 4247711664,
+    "index": "PCEC045",
+    "modifiers": {
+      "creditsFactor": 1.3,
+      "expFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC045_Vive_la_France",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_SteelStyle2021",
+    "id": 4276744112,
+    "index": "PCEM017",
+    "modifiers": {
+      "afterBattleRepair": 0.5,
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEM017_Steel_10lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [
+        10
+      ],
+      "nations": [],
+      "specificShips": [],
+      "subtype": [
+        "Battleship",
+        "Cruiser",
+        "Destroyer",
+        "AirCarrier"
+      ]
+    },
+    "sortOrder": 210,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4182273968,
+    "index": "PCEP107",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP107_Permo_Prem_High_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_France_arc_01",
+    "id": 4281986992,
+    "index": "PCEM012",
+    "modifiers": {},
+    "name": "PCEM012_FranceArc01_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4284313520,
+    "index": "PCEF010",
+    "modifiers": {
+      "PMDetonationProb": 0.0
+    },
+    "name": "PCEF010_JC_SignalFlag",
+    "sortOrder": 12,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Ionasi_tile_01",
+    "id": 4203671472,
+    "index": "PCEC087",
+    "modifiers": {
+      "creditsFactor": 1.1,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC087_RecruitingCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_SciFi_space01",
+    "id": 4259246000,
+    "index": "PCEC034",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC034_Sci_Fi_Space",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_SwedenArc_tile_01",
+    "id": 4205768624,
+    "index": "PCEC085",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC085_EUCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Ordem_e_Progresso_tile",
+    "id": 4191088560,
+    "index": "PCEC099",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC099_OrdemEProgresso",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Union_Jack_tile",
+    "id": 4229885872,
+    "index": "PCEC062",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC062_British_Flag",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_NewYear_2019",
+    "id": 4288278448,
+    "index": "PCEM006",
+    "modifiers": {},
+    "name": "PCEM006_HappyNY20_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "Super_ECO_Type_8",
+    "id": 4250857392,
+    "index": "PCEC042",
+    "modifiers": {
+      "expFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC042_Super_ECO_camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_WOWs_birthday_2",
+    "id": 3973607344,
+    "index": "PCEP306",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "crewExpFactor": 1.5,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP306_Birthday_2017",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 200,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_korea_tile",
+    "id": 4271828912,
+    "index": "PCEC022",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 1.75,
+      "freeExpFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC022_Camo_Arirang",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_hunt_tile",
+    "id": 4265537456,
+    "index": "PCEC028",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "crewExpFactor": 2.0,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC028_Hunt",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Ovechkin_tile",
+    "id": 4228837296,
+    "index": "PCEC063",
+    "modifiers": {
+      "crewExpFactor": 2.25,
+      "expFactor": 1.75,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC063_Ovechkin",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4272779184,
+    "index": "PCEF021",
+    "modifiers": {
+      "creditsFactor": 1.5
+    },
+    "name": "PCEF021_Wyvern_Flag",
+    "sortOrder": 18,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4173885360,
+    "index": "PCEP115",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP115_Permo_Upgr_5_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_1_tile",
+    "id": 4293849008,
+    "index": "PCEC001",
+    "modifiers": {
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC001_Camo_1",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_GermanArc_2020_tile",
+    "id": 4195282864,
+    "index": "PCEC095",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC095_ZumGefechtCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_ranked_tile",
+    "id": 4290703280,
+    "index": "PCEC004",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC004_Camo_XP_Boost",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_newYear_2019",
+    "id": 3969413040,
+    "index": "PCEP310",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP310_Permo_NY_4",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "PEV_color_tile_03",
+    "id": 4200525744,
+    "index": "PCEC090",
+    "modifiers": {
+      "crewExpFactor": 2.5,
+      "expFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC090_Activity3Camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "Sharks_tile",
+    "id": 4233031600,
+    "index": "PCEC059",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC059_RvR_Shark",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_TGS_2017_tile01",
+    "id": 4257148848,
+    "index": "PCEC036",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 4.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC036_Tokyo_Game_Show",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4266487728,
+    "index": "PCEF027",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "crewExpFactor": 2.0,
+      "expFactor": 1.5,
+      "freeExpFactor": 3.0
+    },
+    "name": "PCEF027_Leviathan_Flag",
+    "sortOrder": 22,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_economic_tile",
+    "id": 4286508976,
+    "index": "PCEC008",
+    "modifiers": {
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC008_Camo_Eco_Tile",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_permanent_1",
+    "id": 4169691056,
+    "index": "PCEP119",
+    "modifiers": {
+      "afterBattleRepair": 0.8,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP119_Permo_Upgr_9_lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "DMM_tile",
+    "id": 4227788720,
+    "index": "PCEC064",
+    "modifiers": {
+      "afterBattleRepair": 0.5,
+      "creditsFactor": 1.5,
+      "crewExpFactor": 1.5,
+      "expFactor": 1.5,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC064_Dmm",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_HW_partners03",
+    "id": 4254003120,
+    "index": "PCEC039",
+    "modifiers": {
+      "crewExpFactor": 2.0,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC039_GIGABYTE_camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_HW2019_01",
+    "id": 4292472752,
+    "index": "PCEM002",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEM002_Halloween19_8lvl",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [
+        8
+      ],
+      "nations": [],
+      "specificShips": [],
+      "subtype": [
+        "Battleship",
+        "Cruiser",
+        "Destroyer",
+        "AirCarrier"
+      ]
+    },
+    "sortOrder": 200,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_twitch_tile01",
+    "id": 4256100272,
+    "index": "PCEC037",
+    "modifiers": {
+      "expFactor": 2.25,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC037_Twitch_Prime",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_WowsBirthday5_tile_01",
+    "id": 4280938416,
+    "index": "PCEM013",
+    "modifiers": {},
+    "name": "PCEM013_WowsBirthday5_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Liberty_civ",
+    "id": 3972558768,
+    "index": "PCEP307",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "expFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEP307_Liberty",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Permoflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Soviet_Arc_tile",
+    "id": 4220448688,
+    "index": "PCEC071",
+    "modifiers": {
+      "crewExpFactor": 1.75,
+      "expFactor": 2.0,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC071_SovietVictory",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Jutland_tile_01",
+    "id": 4180602800,
+    "index": "PCEC109",
+    "modifiers": {
+      "expFactor": 2.0,
+      "freeExpFactor": 3.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC109_Jutland",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_lagoon_tile",
+    "id": 4263440304,
+    "index": "PCEC030",
+    "modifiers": {
+      "afterBattleRepair": 0.9,
+      "creditsFactor": 1.1,
+      "crewExpFactor": 1.5,
+      "expFactor": 1.75,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC030_Blue_Lagoon",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_LTT_tile",
+    "id": 4219400112,
+    "index": "PCEC072",
+    "modifiers": {
+      "crewExpFactor": 3.0,
+      "expFactor": 1.5,
+      "freeExpFactor": 1.5,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC072_LTTCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "mat_BlackFriday_2019",
+    "id": 4289327024,
+    "index": "PCEM005",
+    "modifiers": {},
+    "name": "PCEM005_BlackFriday19_MSkin",
+    "restrictions": {
+      "forbiddenShips": [],
+      "levels": [],
+      "nations": [],
+      "specificShips": [],
+      "subtype": []
+    },
+    "sortOrder": -1,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "MSkin",
+      "type": "Exterior"
+    }
+  },
+  {
+    "id": 4270682032,
+    "index": "PCEF023",
+    "modifiers": {
+      "freeExpFactor": 8.77
+    },
+    "name": "PCEF023_Ouroboros_Flag",
+    "sortOrder": 21,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Flags",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_Pi_day_2018_tile",
+    "id": 4239323056,
+    "index": "PCEC053",
+    "modifiers": {
+      "crewExpFactor": 4.14,
+      "freeExpFactor": 4.14,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC053_Pi_Day",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_2_tile",
+    "id": 4292800432,
+    "index": "PCEC002",
+    "modifiers": {
+      "shootShift": 1.04
+    },
+    "name": "PCEC002_Camo_2",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "camo_SummerSale2020_01",
+    "id": 4194234288,
+    "index": "PCEC096",
+    "modifiers": {
+      "crewExpFactor": 1.5,
+      "expFactor": 2.0,
+      "freeExpFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC096_SummerSaleCamo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  },
+  {
+    "camouflage": "Dragon_Boat_Festival",
+    "id": 4176408496,
+    "index": "PCEC113",
+    "modifiers": {
+      "creditsFactor": 1.2,
+      "expFactor": 2.0,
+      "shootShift": 1.04,
+      "visibilityFactor": 0.97
+    },
+    "name": "PCEC113_DragonBoat_camo",
+    "sortOrder": 2147483647,
+    "typeinfo": {
+      "nation": "Common",
+      "species": "Camouflage",
+      "type": "Exterior"
+    }
+  }
+]

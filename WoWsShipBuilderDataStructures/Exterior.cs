@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WoWsShipBuilderDataStructures
 {
-    class Exterior
+    public class Exterior
     {
         public long Id { get; set; }
         public string Index { get; set; }

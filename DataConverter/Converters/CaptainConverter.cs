@@ -164,13 +164,9 @@ namespace DataConverter.Converters
                     foreach (var currentWgModifier in currentWgSkill.Value.modifiers)
                     {
                         JToken jtoken = currentWgModifier.Value;
-                        if (jtoken.Type == JTokenType.Float)
+                        if (jtoken.Type == JTokenType.Float || jtoken.Type == JTokenType.Integer)
                         {
                             modifiers.Add(currentWgModifier.Key, jtoken.Value<float>());
-                        }
-                        else if (jtoken.Type == JTokenType.Integer)
-                        {
-                            modifiers.Add(currentWgModifier.Key, jtoken.Value<int>());
                         }
                         else if (jtoken.Type == JTokenType.Object)
                         {

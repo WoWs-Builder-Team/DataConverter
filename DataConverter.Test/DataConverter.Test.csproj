@@ -28,6 +28,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Update="ShipTests\TestData\filtered_Common_Exterior.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="ShipTests\TestData\filtered_Consumable.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
@@ -37,7 +40,7 @@
       <None Update="ShipTests\TestData\filtered_USA_Aircraft.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="ShipTests\TestData\filtered_USA_Consumable_Permacamos.json">
+      <None Update="ShipTests\TestData\filtered_USA_Exterior.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="ShipTests\TestData\filtered_USA_Crew.json">
