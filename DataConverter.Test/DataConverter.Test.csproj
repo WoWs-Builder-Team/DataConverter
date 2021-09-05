@@ -9,6 +9,9 @@
     <ItemGroup>
       <None Remove="ShipTests\TestData\NewFile1.txt" />
       <None Remove="ShipTests\TestData\SKILLS_BY_TIER.json" />
+      <None Update="ShipTests\TestData\ConverterETest.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
     <ItemGroup>
