@@ -1,4 +1,4 @@
-name: .NET
+name: Build and deploy data structure package
 
 on:
   push:
