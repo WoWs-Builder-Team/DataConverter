@@ -223,31 +223,20 @@ namespace DataConverter.Test.ShipTests
         public void DeserializeConsumablePermacamos_Succes()
         {
             // TODO: enable after adding exterior converter. Disabled to allow compilation.
-            // var filePath = GetFilePath("filtered_USA_Exterior.json");
-            // var fileContent = File.ReadAllText(filePath);
-            //
-            // var dict = ExteriorConverter.ConvertExterior(fileContent);
-            // string test = JsonConvert.SerializeObject(dict);
-            // Assert.NotNull(test);
-            //
-            // var filePath2 = GetFilePath("filtered_Common_Exterior.json");
-            // var fileContent2 = File.ReadAllText(filePath2);
-            //
-            // var dict2 = ExteriorConverter.ConvertExterior(fileContent2);
-            // string test2 = JsonConvert.SerializeObject(dict2);
-            // Assert.NotNull(test2);
+             var filePath = GetFilePath("filtered_USA_Exterior.json");
+             var fileContent = File.ReadAllText(filePath);
+            
+             var dict = ExteriorConverter.ConvertExterior(fileContent);
+             string test = JsonConvert.SerializeObject(dict);
+             Assert.NotNull(test);
+            
+             var filePath2 = GetFilePath("filtered_Common_Exterior.json");
+             var fileContent2 = File.ReadAllText(filePath2);
+            
+             var dict2 = ExteriorConverter.ConvertExterior(fileContent2);
+             string test2 = JsonConvert.SerializeObject(dict2);
+             Assert.NotNull(test2);
         }
-
-        [Test]
-        public void ConvertExterior()
-        {
-            var filePath = GetFilePath("ConverterETest.json");
-            var fileContent = File.ReadAllText(filePath);
-            var result = ExteriorConverter.ConvertExterior(fileContent);
-            Assert.AreEqual(1, result.Count);
-            File.WriteAllText("output.json", JsonConvert.SerializeObject(result, Formatting.Indented));
-        }
-
         #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace WoWsShipBuilderDataStructures
         public Restriction Restrictions { get; set; }
     }
 
+
     public class Restriction
     {
         public List<string> ForbiddenShips { get; set; }
