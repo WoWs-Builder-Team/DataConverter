@@ -41,7 +41,7 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Get and store tag version name
-        run: $Env:CURRENT_TAG = ${{ github.ref }}.Replace('refs/tags/data-', '') 
+        run: $Env:CURRENT_TAG = '${{ github.ref }}'.Replace('refs/tags/data-', '') 
       - name: Rebuild nuget package
         run: dotnet build WoWsShipBuilderDataStructures -c Release -p:PackageVersion=$Env:CURRENT_TAG
 #      - name: Publish nuget package
