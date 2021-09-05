@@ -1,51 +1,46 @@
 using DataConverter.WGStructure;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json.Linq;
 using WoWsShipBuilderDataStructures;
-
 
 namespace DataConverter.Converters
 {
-    public static class ExteriorConverter
+    public class ExteriorConverter
     {
-        //convert the list of Exteriors from WG to our list of Exteriors
         public static Dictionary<string, Exterior> ConvertExterior(string jsonInput)
         {
             //create a List of our Objects
-            Dictionary<string, Exterior> exteriorlist = new Dictionary<string, Exterior>();
+            Dictionary<string, Exterior> exteriorList = new Dictionary<string, Exterior>();
 
             //deserialize into an object
             var wgExterior = JsonConvert.DeserializeObject<List<WGExterior>>(jsonInput) ?? throw new InvalidOperationException();
-            
+
             //iterate over the entire list to convert everything
             foreach (var currentWgExterior in wgExterior)
             {
                 //create our object type
-                Exterior exterior = new Exterior()
+                Exterior exterior = new Exterior
                 {
+                    //start mapping
                     Id = currentWgExterior.id,
                     Index = currentWgExterior.index,
                     Name = currentWgExterior.name,
-                    SortOrder = currentWgExterior.sortOrder,
-                    };
-                
-                //converting one dictionary to another 
-                Dictionary<string, double> modifiers = new Dictionary<string, double>();
+                    SortOrder = currentWgExterior.sortOrder
+                };
 
+                Dictionary<string, double> modifiers = new Dictionary<string, double>();
                 foreach (var currentWgExteriorModifier in currentWgExterior.modifiers)
                 {
                     JToken jtoken = currentWgExteriorModifier.Value;
+
                     if (jtoken.Type == JTokenType.Float || jtoken.Type == JTokenType.Integer)
                     {
-                        modifiers.Add(currentWgExteriorModifier.Key, jtoken.Value<float>());
+                        modifiers.Add(currentWgExteriorModifier.Key, jtoken.Value<double>());
                     }
-                    else if (jtoken.Type == JTokenType.Object)
+                    else
                     {
                         JObject jObject = (JObject)jtoken;
                         var values = jObject.ToObject<Dictionary<string, double>>();
@@ -58,7 +53,6 @@ namespace DataConverter.Converters
                                 isEqual = false;
                             }
                         }
-
                         if (isEqual)
                         {
                             modifiers.Add(currentWgExteriorModifier.Key, first);
@@ -74,66 +68,41 @@ namespace DataConverter.Converters
                 }
 
                 exterior.Modifiers = modifiers;
-                
 
-
-                
-                //Exterior Type parsing
-                if (currentWgExterior.typeinfo.species.Equals("Flags", StringComparison.InvariantCultureIgnoreCase))
+                try
                 {
-                    exterior.Type = ExteriorType.Flags;
+                    exterior.Type = Enum.Parse<ExteriorType>(currentWgExterior.typeinfo.species);
                 }
-                else if (currentWgExterior.typeinfo.species.Equals("Camouflage", StringComparison.InvariantCultureIgnoreCase))
+                catch (ArgumentException)
                 {
-                    exterior.Type = ExteriorType.Camouflage;
-                } 
-                else if (currentWgExterior.typeinfo.species.Equals("Permoflage", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    exterior.Type = ExteriorType.Permoflage;
+                    var currentWgExteriorType = currentWgExterior.typeinfo.species;
+                    if (currentWgExteriorType != null)
+                    {
+                        if (currentWgExteriorType.Equals("Skin") || currentWgExteriorType.Equals("MSkin"))
+                        {
+                            exterior.Type = ExteriorType.Permoflage;
+                        }
+                        else
+                        {
+                            throw new ArgumentException($"Type: {currentWgExteriorType}, ID: {exterior.Id}");
+                        }
+                    }
                 }
 
-
-
-
-                Restriction restriction = new Restriction();
-                //{
-                //    ForbiddenShips = currentWgExterior.restrictions.forbiddenShips.ToList(),
-                //    Levels = currentWgExterior.restrictions.levels.ToList(),
-                //    Nations = currentWgExterior.restrictions.nations.ToList(),
-                //    SpecificShips = currentWgExterior.restrictions.specificShips.ToList(),
-                //    Subtype = currentWgExterior.restrictions.subtype.ToList()
-                //};
-                if (currentWgExterior.restrictions != null)
+                exterior.Restrictions = new Restriction()
                 {
-                    if (currentWgExterior.restrictions.forbiddenShips != null)
-                    {
-                        restriction.ForbiddenShips = currentWgExterior.restrictions.forbiddenShips.ToList();
-                    }
-                    else if (currentWgExterior.restrictions.levels != null)
-                    {
-                        restriction.Levels = currentWgExterior.restrictions.levels.ToList();
-                    }
-                    else if (currentWgExterior.restrictions.nations != null)
-                    {
-                        restriction.Nations = currentWgExterior.restrictions.nations.ToList();
-                    }
-                    else if (currentWgExterior.restrictions.nations != null)
-                    {
-                        restriction.SpecificShips = currentWgExterior.restrictions.specificShips.ToList();
-                    }
-                    else if (currentWgExterior.restrictions.subtype != null)
-                    {
-                        restriction.Subtype = currentWgExterior.restrictions.subtype.ToList();
-                    }
-                    exterior.Restrictions = restriction;
-                }
-                
-                
-                
-                exteriorlist.Add(currentWgExterior.index, exterior);
+                    ForbiddenShips = currentWgExterior.restrictions?.forbiddenShips?.ToList<string>(),
+                    Levels = currentWgExterior.restrictions?.levels?.ToList<string>(),
+                    Nations = currentWgExterior.restrictions?.nations?.ToList<string>(),
+                    SpecificShips = currentWgExterior.restrictions?.specificShips?.ToList<string>(),
+                    Subtype = currentWgExterior.restrictions?.subtype?.ToList<string>()
+                };
+
+                //dictionary with Index as key
+                exteriorList.Add(exterior.Index, exterior);
             }
 
-            return exteriorlist;
+            return exteriorList;
         }
     }
 }
