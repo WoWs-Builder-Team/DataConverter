@@ -41,7 +41,7 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Get and store tag version name
-        run: [System.Environment]::SetEnvironmentVariable('currentTag', '${{ github.ref }}'.Replace('refs/tags/data-', ''),[System.EnvironmentVariableTarget]::User)
+        run:  echo "Setting environment variable"; [System.Environment]::SetEnvironmentVariable('currentTag', '${{ github.ref }}'.Replace('refs/tags/data-', ''), [System.EnvironmentVariableTarget]::User)
       - name: Rebuild nuget package
         run: dotnet build WoWsShipBuilderDataStructures -c Release -p:PackageVersion=$Env:currentTag
 #      - name: Publish nuget package
