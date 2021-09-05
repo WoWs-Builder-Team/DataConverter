@@ -2,9 +2,6 @@ name: Regular build and test
 
 on:
   push:
-    branches:
-      - '*'
-      - '!master'
   pull_request:
 
 jobs:
