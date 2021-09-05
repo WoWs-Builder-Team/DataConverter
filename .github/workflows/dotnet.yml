@@ -2,6 +2,10 @@ name: Regular build and test
 
 on:
   push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*'
   pull_request:
 
 jobs:

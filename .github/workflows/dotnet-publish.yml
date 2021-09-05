@@ -44,5 +44,5 @@ jobs:
         run: echo ("CURRENT_TAG=" + $env:GITHUB_REF.Replace('refs/tags/data-', '')) >> $env:GITHUB_ENV 
       - name: Rebuild nuget package
         run: dotnet build WoWsShipBuilderDataStructures -c Release -p:PackageVersion="$env:CURRENT_TAG"
-#      - name: Publish nuget package
-#        run: dotnet nuget push "WoWsShipBuilderDataStructures\bin\Release\*.nupkg" --skip-duplicate
+      - name: Publish nuget package
+        run: dotnet nuget push "WoWsShipBuilderDataStructures\bin\Release\*.nupkg" --skip-duplicate
