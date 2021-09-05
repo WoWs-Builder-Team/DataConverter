@@ -15,6 +15,7 @@ namespace DataConverter.Test.ShipTests
         }
 
         #region Ship
+
         [Test]
         public void DeserializeWgShip_Success()
         {
@@ -36,7 +37,6 @@ namespace DataConverter.Test.ShipTests
             Assert.NotNull(test);
         }
 
-        
         public void ConvertShip()
         {
             var filePath = GetFilePath("ConverterTest.json");
@@ -45,15 +45,17 @@ namespace DataConverter.Test.ShipTests
             Assert.AreEqual(1, result.Count);
             File.WriteAllText("output.json", JsonConvert.SerializeObject(result, Formatting.Indented));
         }
+
         #endregion
 
         #region Aircraft
+
         [Test]
         public void DeserializeWgAircraft_Succes()
         {
             var filePath = GetFilePath("filtered_USA_Aircraft.json");
             var fileContent = File.ReadAllText(filePath);
-            
+
             var test = JsonConvert.DeserializeObject<List<WGAircraft>>(fileContent);
             Assert.NotNull(test);
         }
@@ -68,9 +70,11 @@ namespace DataConverter.Test.ShipTests
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
+
         #endregion
 
         #region Captain
+
         [Test]
         public void DeserializeWgCaptain_Succes()
         {
@@ -94,9 +98,11 @@ namespace DataConverter.Test.ShipTests
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
+
         #endregion
 
         #region Projectile
+
         [Test]
         public void DeserializeWgProjectile_Succes()
         {
@@ -117,9 +123,11 @@ namespace DataConverter.Test.ShipTests
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
+
         #endregion
 
         #region Modernization
+
         [Test]
         public void DeserializeWgModernization_Succes()
         {
@@ -140,9 +148,11 @@ namespace DataConverter.Test.ShipTests
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
+
         #endregion
 
         #region Consumable
+
         [Test]
         public void DeserializeWgConsumable_Succes()
         {
@@ -164,10 +174,10 @@ namespace DataConverter.Test.ShipTests
             Assert.NotNull(test);
         }
 
-        
         #endregion
 
         #region Module
+
         [Test]
         public void DeserializeWgModule_Succes()
         {
@@ -188,9 +198,11 @@ namespace DataConverter.Test.ShipTests
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
+
         #endregion
 
         #region Exterior
+
         [Test]
         public void DeserializeWgExterior_Succes()
         {
@@ -224,9 +236,8 @@ namespace DataConverter.Test.ShipTests
             // var dict2 = ExteriorConverter.ConvertExterior(fileContent2);
             // string test2 = JsonConvert.SerializeObject(dict2);
             // Assert.NotNull(test2);
-            
-
         }
+
         [Test]
         public void ConvertExterior()
         {
@@ -236,7 +247,7 @@ namespace DataConverter.Test.ShipTests
             Assert.AreEqual(1, result.Count);
             File.WriteAllText("output.json", JsonConvert.SerializeObject(result, Formatting.Indented));
         }
+
         #endregion
     }
-    
 }

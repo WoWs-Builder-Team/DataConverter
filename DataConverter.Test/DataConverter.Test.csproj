@@ -31,36 +31,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="ShipTests\TestData\filtered_Common_Exterior.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_Consumable.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_Modernization.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_USA_Aircraft.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_USA_Exterior.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_USA_Crew.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_USA_Module.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_USA_Projectile.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\filtered_USA_Ship.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="ShipTests\TestData\ConverterTest.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
+        <None Update="ShipTests\TestData\*.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>
