@@ -13,10 +13,22 @@ namespace DataConverter
 
         static void Main(string[] args)
         {
+            if (args.Length == 0)
+            {
             Console.WriteLine("Insert Input folder");
             InputFolder = Console.ReadLine();
             Console.WriteLine("Insert Output folder");
             OutputFolder = Console.ReadLine();
+            }
+            else if (args.Length == 2)
+            {
+                InputFolder = args[0];
+                OutputFolder = args[1];
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
             ConvertData();
         }
 
