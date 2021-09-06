@@ -214,6 +214,63 @@ namespace DataConverter.Converters
 
                 //map skills into object captain
                 captain.Skills = skills;
+
+                //map captain's talents
+                var uniqueSkills = new Dictionary<string, UniqueSkill>();
+                foreach ((var currentUniqueSkillKey, var currentUniqueSkillValue) in currentWgCaptain.uniqueSkills)
+                {
+                    UniqueSkill uniqueSkill = new()
+                    {
+                        MaxTriggerNum = currentUniqueSkillValue.maxTriggerNum,
+                        AllowedShips = currentUniqueSkillValue.triggerAllowedShips?.ToList<ShipClass>(),
+                        TriggerType = currentUniqueSkillValue.triggerType
+                    };
+
+                    var skillEffects = new Dictionary<string, double>();
+                    foreach ((var currentWgUniqueSkillEffectKey, var currentWgUniqueSkillEffectValue) in currentUniqueSkillValue.skillEffects)
+                    {
+                        if (currentWgUniqueSkillEffectKey.ToString().Contains("Unique"))
+                        {
+                            JObject jObject = (JObject)currentWgUniqueSkillEffectValue;
+                            var values = jObject.ToObject<Dictionary<string, JToken>>();
+                            foreach ((string key, JToken value) in values)
+                            {
+                                if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
+                                {
+                                    skillEffects.Add($"{currentWgUniqueSkillEffectKey}_{key}", value.Value<double>());
+                                }
+                                else if (value.Type == JTokenType.Object)
+                                {
+                                    JObject anotherJObject = (JObject)value;
+                                    var moreValues = anotherJObject.ToObject<Dictionary<string, double>>();
+                                    bool isEqual = true;
+                                    var first = moreValues.First().Value;
+                                    foreach ((string anotherKey, double anotherValue) in moreValues)
+                                    {
+                                        if (anotherValue != first)
+                                        {
+                                            isEqual = false;
+                                        }
+                                    }
+                                    if (isEqual)
+                                    {
+                                        skillEffects.Add($"{currentWgUniqueSkillEffectKey}_{key}", first);
+                                    }
+                                    else
+                                    {
+                                        foreach ((string anotherKey, double anotherValue) in moreValues)
+                                        {
+                                            skillEffects.Add($"{currentWgUniqueSkillEffectKey}_{key}_{anotherKey}", anotherValue);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        uniqueSkill.SkillEffects = skillEffects;
+                    }
+                    uniqueSkills.Add(currentUniqueSkillKey, uniqueSkill);
+                }
+                captain.UniqueSkills = uniqueSkills;            
                 //dictionary with captain's name as key
                 captainList.Add(captain.Name, captain);
             }

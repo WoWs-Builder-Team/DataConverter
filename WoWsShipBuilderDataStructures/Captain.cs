@@ -34,14 +34,9 @@ namespace WoWsShipBuilderDataStructures
     }
     public class UniqueSkill
     {
-        public Dictionary<string, Dictionary<string, double>> SkillEffects { get; set; } // value is actually Dictionary<string, object>, process in converter
+        public Dictionary<string, double> SkillEffects { get; set; } // value is actually Dictionary<string, object>, process in converter
         public int MaxTriggerNum { get; set; }
-        public int SortIndex { get; set; }
-        public ShipClass[] TriggerAllowedShips { get; set; }
-        public bool TriggerJoinRibbons { get; set; }
-        public int TriggerRibbonsNum { get; set; }
-        public int[] TriggerRibbonsTypes { get; set; }
+        public List<ShipClass> AllowedShips { get; set; }
         public string TriggerType { get; set; }
-        public string triggerAchievement { get; set; }
     }
 }

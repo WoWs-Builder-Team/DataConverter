@@ -16,7 +16,7 @@ namespace DataConverter.WGStructure
         public string index { get; set; }
         public string name { get; set; }
         public Typeinfo typeinfo { get; set; }
-        public Dictionary<string, UniqueSkill> uniqueSkills { get; set; }
+        public Dictionary<string, WGUniqueSkill> uniqueSkills { get; set; }
     }
 
     public class CrewPersonality
@@ -63,15 +63,10 @@ namespace DataConverter.WGStructure
         public string triggerType { get; set; }
     }
 
-     public class UniqueSkill
+     public class WGUniqueSkill
     {
         public int maxTriggerNum { get; set; }
-        public int sortIndex { get; set; }
         public ShipClass[] triggerAllowedShips { get; set; }
-        public bool triggerJoinRibbons { get; set; }
-        public int triggerRibbonsNum { get; set; }
-        public int[] triggerRibbonsTypes { get; set; }
-        public string triggerAchievement { get; set; }
         public string triggerType { get; set; }
 
         [JsonExtensionData]

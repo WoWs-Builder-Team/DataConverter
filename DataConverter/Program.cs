@@ -72,11 +72,11 @@ namespace DataConverter
                             ownStructure = JsonConvert.SerializeObject(dict);
                             File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
                             break;
-                      case "Exterior":
-                          dict = ExteriorConverter.ConvertExterior(wgList);
-                          ownStructure = JsonConvert.SerializeObject(dict);
-                          File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
-                          break;
+                        case "Exterior":
+                            dict = ExteriorConverter.ConvertExterior(wgList);
+                            ownStructure = JsonConvert.SerializeObject(dict);
+                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            break;
                         default:
                             throw new KeyNotFoundException();
                     }
