@@ -15,10 +15,10 @@ namespace DataConverter
         {
             if (args.Length == 0)
             {
-            Console.WriteLine("Insert Input folder");
-            InputFolder = Console.ReadLine();
-            Console.WriteLine("Insert Output folder");
-            OutputFolder = Console.ReadLine();
+                Console.WriteLine("Insert Input folder");
+                InputFolder = Console.ReadLine();
+                Console.WriteLine("Insert Output folder");
+                OutputFolder = Console.ReadLine();
             }
             else if (args.Length == 2)
             {
@@ -29,6 +29,7 @@ namespace DataConverter
             {
                 throw new InvalidOperationException();
             }
+
             ConvertData();
         }
 
@@ -51,7 +52,7 @@ namespace DataConverter
                         case "Ability":
                             dict = ConsumableConverter.ConvertConsumable(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder,category,fileName), ownStructure);
+                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
                             break;
                         case "Aircraft":
                             dict = AircraftConverter.ConvertAircraft(wgList);

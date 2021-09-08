@@ -37,9 +37,8 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
-          source-url: https://nuget.pkg.github.com/WoWs-Builder-Team/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.NUGET_TOKEN}}
       - name: Get and store tag version name
         run: echo ("CURRENT_TAG=" + $env:GITHUB_REF.Replace('refs/tags/data-', '')) >> $env:GITHUB_ENV 
       - name: Rebuild nuget package

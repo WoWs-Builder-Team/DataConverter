@@ -1,0 +1,41 @@
+name: Convert gameparams
+
+on:
+  push:
+    tags:
+      - 'convert-*'
+
+jobs: 
+  convertAndUploadData:
+    runs-on: windows-latest
+    name: Convert gameparams and upload data
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+          aws-region: eu-central-1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Get and store tag version name
+        run: echo ("GAME_VERSION=" + $env:GITHUB_REF.Replace('refs/tags/convert-', '')) >> $env:GITHUB_ENV
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Run gameparams extract
+        working-directory: gameparams
+        run: python GameParams2Json.py
+      - name: Run data converter
+        run: dotnet run -c Release --project DataConverter gameparams\entities gameparams\out
+      
+      - name: Backup old files
+        run: aws s3 mv s3://wows-shipbuilder-data/api s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION
+      - name: Upload files
+        run: aws s3 sync gameparams\out s3://wows-shipbuilder-data/api
+      - name: Invalidate cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/api/*"
