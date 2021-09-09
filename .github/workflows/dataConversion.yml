@@ -12,6 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Checkout gameparams repository
+        uses: actions/checkout@v2
+        with: 
+          repository: WoWs-Builder-Team/FilteredGameParams2Json
+          path: gameparams
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -26,10 +31,10 @@ jobs:
         run: echo ("GAME_VERSION=" + $env:GITHUB_REF.Replace('refs/tags/convert-', '')) >> $env:GITHUB_ENV
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.9'
       - name: Run gameparams extract
         working-directory: gameparams
-        run: python GameParams2Json.py
+        run: python GameParams2Json.py --path GameParams.data --filter
       - name: Run data converter
         run: dotnet run -c Release --project DataConverter gameparams\entities gameparams\out
       

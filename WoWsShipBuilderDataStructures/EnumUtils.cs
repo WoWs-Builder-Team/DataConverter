@@ -42,6 +42,8 @@ namespace WoWsShipBuilderDataStructures
         SonarUnit,
         TorpedoBomberTypeUnit,
         SkipBomberTypeUnit,
+        SecondaryWeaponsUnit,
+        PrimaryWeaponsUnit,
     }
 
     public enum ComponentType
@@ -95,7 +97,7 @@ namespace WoWsShipBuilderDataStructures
         SkipBomb,
         Torpedo,
         DepthCharge,
-        Rocket        
+        Rocket,
     }
     public enum ShellType
     {

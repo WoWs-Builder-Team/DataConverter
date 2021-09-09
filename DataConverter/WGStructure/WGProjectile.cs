@@ -12,6 +12,7 @@ namespace DataConverter.WGStructure
     [JsonConverter(typeof(JsonSubtypes), "typeinfo.species")]
     [JsonSubtypes.KnownSubType(typeof(WGShell), "Artillery")]
     [JsonSubtypes.KnownSubType(typeof(WGBomb), "Bomb")]
+    [JsonSubtypes.KnownSubType(typeof(WGBomb), "SkipBomb")]
     [JsonSubtypes.KnownSubType(typeof(WGTorpedo), "Torpedo")]
     [JsonSubtypes.KnownSubType(typeof(WGDepthCharge), "DepthCharge")]
     [JsonSubtypes.KnownSubType(typeof(WGRocket), "Rocket")]

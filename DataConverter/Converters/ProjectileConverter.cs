@@ -8,6 +8,8 @@ namespace DataConverter.Converters
 {
     public static class ProjectileConverter
     {
+        private static readonly HashSet<string> ReportedProjectileTypes = new();
+
         /// <summary>
         /// Converter method that transforms a <see cref="WGProjectile"/> object into a <see cref="Projectile"/> object
         /// </summary>
@@ -25,7 +27,19 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert and sort everything
             foreach (var currentWgProjectile in wgProjectile)
             {
-                ProjectileType currentWgProjectileType = Enum.Parse<ProjectileType>(currentWgProjectile.typeinfo.species);
+                ProjectileType currentWgProjectileType;
+                try
+                {
+                    currentWgProjectileType = Enum.Parse<ProjectileType>(currentWgProjectile.typeinfo.species);
+                }
+                catch (Exception)
+                {
+                    if (ReportedProjectileTypes.Add(currentWgProjectile.typeinfo.species))
+                    {
+                        Console.WriteLine("Projectile type not recognized: " + currentWgProjectile.typeinfo.species);
+                    }
+                    continue;
+                }
                 switch (currentWgProjectileType)
                 {
                     case ProjectileType.Artillery:

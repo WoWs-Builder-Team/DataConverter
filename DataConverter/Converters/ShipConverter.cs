@@ -11,6 +11,8 @@ namespace DataConverter.Converters
 {
     public static class ShipConverter
     {
+        private static readonly HashSet<string> ReportedTypes = new();
+
         public static Dictionary<string, Ship> ConvertShips(string jsonInput)
         {
             var results = new Dictionary<string, Ship>();
@@ -124,7 +126,7 @@ namespace DataConverter.Converters
                     SurfaceDetection = wgHull.visibilityFactor,
                     AirDetection = wgHull.visibilityFactorByPlane,
                 };
-                                
+
                 // Process anti-air data
                 var antiAir = new AntiAir
                 {
@@ -133,11 +135,12 @@ namespace DataConverter.Converters
                     ShortRangeAura = new AntiAirAura(),
                 };
 
-                var components = hullUpgradeInfo.Components[ComponentType.Secondary];
+                string[] components = hullUpgradeInfo.Components[ComponentType.Secondary];
                 if (components.Length > 0)
                 {
                     var wgHullSecondary = (ATBA)wgShip.ModulesArmaments[components.First()];
                     AssignAurasToProperty(wgHullSecondary.ConvertedAntiAirData, antiAir);
+
                     // Process secondaries
                     var secondary = new TurretModule
                     {
@@ -146,7 +149,6 @@ namespace DataConverter.Converters
                         Guns = wgHullSecondary.antiAirAndSecondaries.Values.Select(secondaryGun => (Gun)secondaryGun).ToList(),
                     };
                     hullModule.SecondaryModule = secondary;
-
                 }
 
                 if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out string[] airDefenseKeys))
@@ -319,6 +321,7 @@ namespace DataConverter.Converters
                             {
                                 targetAntiAir.LongRangeAura = aura;
                             }
+
                             break;
 
                         case "medium":
@@ -330,6 +333,7 @@ namespace DataConverter.Converters
                             {
                                 targetAntiAir.MediumRangeAura = aura;
                             }
+
                             break;
 
                         case "near":
@@ -341,6 +345,7 @@ namespace DataConverter.Converters
                             {
                                 targetAntiAir.ShortRangeAura = aura;
                             }
+
                             break;
                     }
                 }
@@ -373,7 +378,10 @@ namespace DataConverter.Converters
 
             if (componentType == ComponentType.None)
             {
-                Console.WriteLine($"Cannot find type for provided string: {normalizedInput}");
+                if (ReportedTypes.Add(normalizedInput))
+                {
+                    Console.WriteLine($"Cannot find type for provided string: {normalizedInput}");
+                }
             }
 
             return componentType;

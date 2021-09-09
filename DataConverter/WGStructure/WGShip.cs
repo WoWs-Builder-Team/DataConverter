@@ -249,7 +249,7 @@ namespace DataConverter.WGStructure
         [JsonIgnore]
         public Dictionary<string, AAAura> ConvertedAuras
         {
-            get => Auras.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>());
+            get => Auras?.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>()) ?? new Dictionary<string, AAAura>();
         }
     }
     public class AAAura

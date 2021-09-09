@@ -3,11 +3,13 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DataConverter
 {
     class Program
     {
+        private static HashSet<string> reportedTypes = new();
         public static string InputFolder;
         public static string OutputFolder;
 
@@ -31,67 +33,81 @@ namespace DataConverter
             }
 
             ConvertData();
+            Console.WriteLine("Conversion finished.");
         }
 
         public static void ConvertData()
         {
             string[] categories = Directory.GetDirectories(InputFolder);
 
+            var counter = 0;
             foreach (var category in categories)
             {
-                string[] files = Directory.GetFiles(category);
-                string categoryName = Path.GetFileName(Path.GetDirectoryName(category));
+                IEnumerable<string> files = Directory.GetFiles(category).Where(file => file.Contains("filtered") && !file.Contains("Event"));
+                string categoryName = Path.GetFileName(category);
                 foreach (string file in files)
                 {
+                    counter++;
+                    if (counter % 10 == 0)
+                    {
+                        Console.WriteLine($"Processed {counter} files.");
+                    }
                     string wgList = File.ReadAllText(file);
                     string fileName = Path.GetFileName(file);
                     string ownStructure;
                     object dict;
+                    var outputPath = Path.Join(OutputFolder, categoryName, fileName);
+                    new FileInfo(outputPath).Directory?.Create();
                     switch (categoryName)
                     {
                         case "Ability":
                             dict = ConsumableConverter.ConvertConsumable(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         case "Aircraft":
                             dict = AircraftConverter.ConvertAircraft(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         case "Crew":
                             string skillsList = CaptainConverter.LoadEmbeddedSkillData();
                             dict = CaptainConverter.ConvertCaptain(wgList, skillsList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         case "Modernization":
                             dict = ModernizationConverter.ConvertModernization(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         case "Projectile":
                             dict = ProjectileConverter.ConvertProjectile(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         case "Ship":
                             dict = ShipConverter.ConvertShips(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         case "Unit":
                             dict = ModuleConverter.ConvertModule(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         case "Exterior":
                             dict = ExteriorConverter.ConvertExterior(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            File.WriteAllText(Path.Join(OutputFolder, category, fileName), ownStructure);
+                            File.WriteAllText(outputPath, ownStructure);
                             break;
                         default:
-                            throw new KeyNotFoundException();
+                            if (reportedTypes.Add(categoryName))
+                            {
+                                Console.WriteLine("Type not found: " + categoryName);
+                            }
+
+                            break;
                     }
                 }
             }
