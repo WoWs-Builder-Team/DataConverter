@@ -39,7 +39,7 @@ jobs:
         run: dotnet run -c Release --project DataConverter gameparams\entities gameparams\out
       
       - name: Backup old files
-        run: aws s3 mv s3://wows-shipbuilder-data/api s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION
+        run: aws s3 mv s3://wows-shipbuilder-data/api s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION --recursive
       - name: Upload files
         run: aws s3 sync gameparams\out s3://wows-shipbuilder-data/api
       - name: Invalidate cache
