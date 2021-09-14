@@ -20,20 +20,21 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgConsumable in wgConsumable)
             {
-                //create our object type
-                Consumable consumable = new Consumable
-                {
-                    //start mapping
-                    Id = currentWgConsumable.id,
-                    Index = currentWgConsumable.index,
-                    Name = currentWgConsumable.name
-                };
-
                 //collecting consumable variants
                 var variant = currentWgConsumable.variants;
                 List<string> variantsKeys = new List<string>(variant.Keys);
+
                 foreach (var currentVariantKey in variantsKeys)
                 {
+                    //create our object type
+                    Consumable consumable = new Consumable
+                    {
+                        //start mapping
+                        Id = currentWgConsumable.id,
+                        Index = currentWgConsumable.index,
+                        Name = currentWgConsumable.name
+                    };
+
                     //mapping all the variants
                     Statistics stats = variant[currentVariantKey];
                     consumable.DescId = stats.descIDs;
