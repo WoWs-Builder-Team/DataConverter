@@ -2,8 +2,10 @@
 using System.IO;
 using DataConverter.Converters;
 using DataConverter.WGStructure;
+using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Test.ShipTests
 {
@@ -237,6 +239,23 @@ namespace DataConverter.Test.ShipTests
              string test2 = JsonConvert.SerializeObject(dict2);
              Assert.NotNull(test2);
         }
+        #endregion
+
+        #region VersionInfo
+
+        [Test]
+        public void DeserializeVersionInfo()
+        {
+            var filePath = GetFilePath("VersionInfo.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var versionInfo = JsonConvert.DeserializeObject<VersionInfo>(fileContent);
+            
+            Assert.NotNull(versionInfo);
+            versionInfo.CurrentVersionCode.Should().Be(1);
+            versionInfo.Categories.Should().NotBeEmpty();
+        }
+
         #endregion
     }
 }
