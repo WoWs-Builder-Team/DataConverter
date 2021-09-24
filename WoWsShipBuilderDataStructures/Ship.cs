@@ -48,6 +48,7 @@ namespace WoWsShipBuilderDataStructures
         public double[][] HorizontalDeadZones { get; set; }
         public long Id { get; set; }
         public string Index { get; set; }
+        public string Name { get; set; }
         public int NumBarrels { get; set; }
         public double HorizontalPosition { get; set; }
         public double VerticalPosition { get; set; }

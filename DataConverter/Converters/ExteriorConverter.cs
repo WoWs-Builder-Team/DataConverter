@@ -21,7 +21,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgExterior in wgExterior)
             {
-                Program.translationNames.Add(currentWgExterior.name);
+                Program.TranslationNames.Add(currentWgExterior.name);
                 //create our object type
                 Exterior exterior = new Exterior
                 {
