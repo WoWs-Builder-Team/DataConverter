@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
@@ -20,10 +21,11 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgConsumable in wgConsumable)
             {
+                Program.TranslationNames.Add(currentWgConsumable.name);
                 //collecting consumable variants
                 var variant = currentWgConsumable.variants;
                 List<string> variantsKeys = new List<string>(variant.Keys);
-                Program.TranslationNames.AddRange(variantsKeys);
+                Program.TranslationNames.AddRange(variant.Values.Select(variantValue => variantValue.descIDs));
 
                 foreach (var currentVariantKey in variantsKeys)
                 {

@@ -174,7 +174,7 @@ namespace DataConverter
             File.WriteAllText(versionInfoPath, versionerString);
 
             string translationNamesPath = Path.Join(outputFolder, "TranslationNames.csv");
-            File.WriteAllLines(translationNamesPath, TranslationNames.Distinct());
+            File.WriteAllLines(translationNamesPath, TranslationNames.Distinct().Where(translation => !string.IsNullOrEmpty(translation)));
         }
 
         private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, string nation, VersionInfo oldVersioner)
