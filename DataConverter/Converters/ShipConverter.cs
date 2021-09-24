@@ -21,6 +21,7 @@ namespace DataConverter.Converters
 
             foreach (WGShip wgShip in wgShipList)
             {
+                Program.translationNames.Add(wgShip.name);
                 var ship = new Ship
                 {
                     Id = wgShip.id,

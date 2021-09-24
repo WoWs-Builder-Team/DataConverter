@@ -23,6 +23,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgMod in wgModernizations)
             {
+                Program.translationNames.Add(currentWgMod.name);
                 //create our object type
                 Modernization mod = new Modernization
                 {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter
@@ -17,6 +18,8 @@ namespace DataConverter
 
         private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
         private static readonly HttpClient Client = new();
+
+        public static List<string> translationNames = new List<string>();
 
         static void Main(string[] args)
         {
@@ -170,6 +173,9 @@ namespace DataConverter
             string versionerString = JsonConvert.SerializeObject(newVersioner);
             string versionInfoPath = Path.Join(outputFolder, "VersionInfo.json");
             File.WriteAllText(versionInfoPath, versionerString);
+
+            string translationNamesPath = Path.Join(outputFolder, "TranslationNames.csv");
+            File.WriteAllLines(translationNamesPath, translationNames);
         }
 
         private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, string nation, VersionInfo oldVersioner)
