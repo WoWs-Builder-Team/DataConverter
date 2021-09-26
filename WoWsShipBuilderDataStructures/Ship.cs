@@ -38,6 +38,7 @@ namespace WoWsShipBuilderDataStructures
         public decimal MaxRange { get; set; }
         public List<Gun> Guns { get; set; }
         public AntiAirAura AntiAir { get; set; }
+        public Dispersion DispersionValues { get; set; }
     }
 
     public class Gun
@@ -58,6 +59,17 @@ namespace WoWsShipBuilderDataStructures
         public decimal SmokeDetectionWhenFiring { get; set; }
     }
 
+    public class Dispersion
+    {
+        public double IdealRadius { get; set; }
+        public double MinRadius { get; set; }
+        public double IdealDistance { get; set; }
+        public double minRadius { get; set; }
+        public double taperDist { get; set; }
+        public double RadiusOnZero { get; set; }
+        public double RadiusOnDelim { get; set; }
+        public double Delim { get; set; }
+    }
     #endregion
 
     #region Fire Control

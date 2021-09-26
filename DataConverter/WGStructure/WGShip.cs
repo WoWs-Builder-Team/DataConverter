@@ -42,9 +42,9 @@ namespace DataConverter.WGStructure
     {
         public Dictionary<string, MainBatteryGun> guns { get; set; }
         public decimal maxDist { get; set; }
-        public bool normalDistribution { get; set; } //not needed
         public decimal sigmaCount { get; set; }
-        
+        public decimal taperDistance { get; set; }
+
         [JsonExtensionData]
         public Dictionary<string, JToken> AntiAirAuras { get; set; }
 
@@ -69,6 +69,12 @@ namespace DataConverter.WGStructure
         public double[][] deadZone { get; set; }
         public decimal shotDelay { get; set; }
         public decimal smokePenalty { get; set; }
+        public double idealRadius { get; set; }
+        public double minRadius { get; set; }
+        public double idealDistance { get; set; }
+        public double radiusOnZero { get; set; }
+        public double radiusOnDelim { get; set; }
+        public double delim { get; set; }
         public Typeinfo typeinfo { get; set; }
 
         public static explicit operator Gun(MainBatteryGun gun)
