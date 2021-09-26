@@ -64,8 +64,7 @@ namespace WoWsShipBuilderDataStructures
         public double IdealRadius { get; set; }
         public double MinRadius { get; set; }
         public double IdealDistance { get; set; }
-        public double minRadius { get; set; }
-        public double taperDist { get; set; }
+        public double TaperDist { get; set; }
         public double RadiusOnZero { get; set; }
         public double RadiusOnDelim { get; set; }
         public double Delim { get; set; }

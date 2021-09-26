@@ -92,6 +92,18 @@ namespace DataConverter.Converters
                     MaxRange = wgMainBattery.maxDist,
                     Guns = wgMainBattery.guns.Select(entry => entry.Value).Select(entry => (Gun)entry).ToList(),
                 };
+                MainBatteryGun dispersionGun = wgMainBattery.guns.Values.First();
+                var turretDispersion = new Dispersion
+                {
+                    IdealRadius = dispersionGun.idealRadius,
+                    MinRadius = dispersionGun.minRadius,
+                    IdealDistance = dispersionGun.idealDistance,
+                    TaperDist = wgMainBattery.taperDist,
+                    RadiusOnZero = dispersionGun.radiusOnZero,
+                    RadiusOnDelim = dispersionGun.radiusOnDelim,
+                    Delim = dispersionGun.delim,
+                };
+                turretModule.DispersionValues = turretDispersion;
                 Program.TranslationNames.AddRange(turretModule.Guns.Select(gun => gun.Name).Distinct());
 
                 var targetAntiAir = new AntiAir();

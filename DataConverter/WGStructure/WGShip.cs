@@ -43,7 +43,9 @@ namespace DataConverter.WGStructure
         public Dictionary<string, MainBatteryGun> guns { get; set; }
         public decimal maxDist { get; set; }
         public decimal sigmaCount { get; set; }
-        public decimal taperDistance { get; set; }
+        public double taperDist { get; set; }
+        
+        public bool normalDistribution { get; set; }
 
         [JsonExtensionData]
         public Dictionary<string, JToken> AntiAirAuras { get; set; }
