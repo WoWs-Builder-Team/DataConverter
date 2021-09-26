@@ -20,7 +20,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgModule in wgModules)
             {
-                Program.translationNames.Add(currentWgModule.name);
+                Program.TranslationNames.Add(currentWgModule.name);
                 //create our object type
                 Module module = new Module
                 {

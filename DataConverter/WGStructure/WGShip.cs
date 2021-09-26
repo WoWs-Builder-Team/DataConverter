@@ -62,6 +62,7 @@ namespace DataConverter.WGStructure
         public double[] horizSector { get; set; }
         public long id { get; set; }
         public string index { get; set; }
+        public string name { get; set; }
         public int numBarrels { get; set; }
         public double[] position { get; set; }
         public decimal[] rotationSpeed { get; set; }
@@ -86,6 +87,7 @@ namespace DataConverter.WGStructure
                 HorizontalDeadZones = gun.deadZone,
                 Id = gun.id,
                 Index = gun.index,
+                Name = gun.name,
                 NumBarrels = gun.numBarrels,
                 HorizontalPosition = gun.position[1],
                 VerticalPosition = gun.position[0],

@@ -21,7 +21,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgAir in wgAircraft)
             {
-                Program.translationNames.Add(currentWgAir.name);
+                Program.TranslationNames.Add(currentWgAir.name);
                 //create our object type
                 Aircraft air = new Aircraft
                 {

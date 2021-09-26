@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter
@@ -19,7 +18,7 @@ namespace DataConverter
         private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
         private static readonly HttpClient Client = new();
 
-        public static List<string> translationNames = new List<string>();
+        public static readonly List<string> TranslationNames = new();
 
         static void Main(string[] args)
         {
@@ -175,7 +174,7 @@ namespace DataConverter
             File.WriteAllText(versionInfoPath, versionerString);
 
             string translationNamesPath = Path.Join(outputFolder, "TranslationNames.csv");
-            File.WriteAllLines(translationNamesPath, translationNames);
+            File.WriteAllLines(translationNamesPath, TranslationNames.Distinct().Where(translation => !string.IsNullOrEmpty(translation)));
         }
 
         private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, string nation, VersionInfo oldVersioner)

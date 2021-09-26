@@ -27,7 +27,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert and sort everything
             foreach (var currentWgProjectile in wgProjectile)
             {
-                Program.translationNames.Add(currentWgProjectile.name);
+                Program.TranslationNames.Add(currentWgProjectile.name);
                 ProjectileType currentWgProjectileType;
                 try
                 {

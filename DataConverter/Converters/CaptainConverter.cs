@@ -33,7 +33,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgCaptain in wgCaptain)
             {
-                Program.translationNames.Add(currentWgCaptain.name);
+                Program.TranslationNames.Add(currentWgCaptain.name);
                 //start mapping
                 Captain captain = new Captain
                 {
