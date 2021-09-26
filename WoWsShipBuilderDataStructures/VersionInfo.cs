@@ -7,11 +7,14 @@ namespace WoWsShipBuilderDataStructures
         public Dictionary<string, List<FileVersion>> Categories { get; }
 
         public int CurrentVersionCode { get; }
+        
+        public string VersionName { get; }
 
-        public VersionInfo(Dictionary<string, List<FileVersion>> categories, int currentVersionCode = 0)
+        public VersionInfo(Dictionary<string, List<FileVersion>> categories, int currentVersionCode = 0, string versionName = "")
         {
             Categories = categories;
             CurrentVersionCode = currentVersionCode;
+            VersionName = versionName;
         }
     }
 

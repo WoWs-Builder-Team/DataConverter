@@ -14,6 +14,7 @@ namespace DataConverter
         private static readonly HashSet<string> ReportedTypes = new();
         private static string inputFolder;
         private static string outputFolder;
+        private static string versionName = string.Empty;
 
         private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
         private static readonly HttpClient Client = new();
@@ -22,21 +23,30 @@ namespace DataConverter
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            switch (args.Length)
             {
-                Console.WriteLine("Insert Input folder");
-                inputFolder = Console.ReadLine();
-                Console.WriteLine("Insert Output folder");
-                outputFolder = Console.ReadLine();
+                case 0:
+                    Console.WriteLine("Insert Input folder");
+                    inputFolder = Console.ReadLine();
+                    Console.WriteLine("Insert Output folder");
+                    outputFolder = Console.ReadLine();
+                    Console.WriteLine("Specify Game version name");
+                    versionName = Console.ReadLine();
+                    break;
+                case 2:
+                    inputFolder = args[0];
+                    outputFolder = args[1];
+                    break;
+                case 3:
+                    versionName = args[2];
+                    goto case 2;
+                default:
+                    throw new InvalidOperationException();
             }
-            else if (args.Length == 2)
+
+            if (string.IsNullOrEmpty(versionName))
             {
-                inputFolder = args[0];
-                outputFolder = args[1];
-            }
-            else
-            {
-                throw new InvalidOperationException();
+                versionName = Environment.GetEnvironmentVariable("GAME_VERSION") ?? string.Empty;
             }
 
             ConvertData();
@@ -166,7 +176,7 @@ namespace DataConverter
                 }
             }
 
-            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1);
+            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName);
 
             //write the updated versioning file
             string versionerString = JsonConvert.SerializeObject(newVersioner);

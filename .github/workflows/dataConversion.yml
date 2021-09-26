@@ -36,7 +36,7 @@ jobs:
         working-directory: gameparams
         run: python GameParams2Json.py --path GameParams.data --filter
       - name: Run data converter
-        run: dotnet run -c Release --project DataConverter gameparams\entities gameparams\out
+        run: dotnet run -c Release --project DataConverter gameparams\entities gameparams\out "$env:GAME_VERSION"
       
       - name: Backup old files
         run: aws s3 mv s3://wows-shipbuilder-data/api s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION --recursive
