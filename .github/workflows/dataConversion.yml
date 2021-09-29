@@ -39,7 +39,7 @@ jobs:
         working-directory: gameparams
         run: pip install -r requirements.txt
       - name: Run gameparams extract
-        working-directory: gameparams\localization
+        working-directory: gameparams
         run: python GameParams2Json.py --path GameParams.data --filter
       - name: Run data converter
         run: dotnet run -c Release --project DataConverter gameparams\entities "gameparams\out\$env:OUTPUT_ADDITION" "$env:GAME_VERSION"
