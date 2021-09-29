@@ -29,14 +29,22 @@ jobs:
           dotnet-version: 5.0.x
       - name: Get and store tag version name
         run: echo ("GAME_VERSION=" + $env:GITHUB_REF.Replace('refs/tags/convert-', '')) >> $env:GITHUB_ENV
-      - uses: actions/setup-python@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-      - name: Run gameparams extract
+      - name: Install Python dependencies
         working-directory: gameparams
+        run: pip install -r requirements.txt
+      - name: Run gameparams extract
+        working-directory: gameparams\localization
         run: python GameParams2Json.py --path GameParams.data --filter
       - name: Run data converter
         run: dotnet run -c Release --project DataConverter gameparams\entities gameparams\out "$env:GAME_VERSION"
+      - name: Create localization output directory
+        run: New-Item -Path "gameparams\out\" -Name "Localization" -ItemType "directory"
+      - name: Run localization extraction
+        run: python gameparams\localization\mo2json.py --filter gameparams\out\TranslationNames.csv --mofile gameparams\localization\global.mo --out gameparams\out\Localization\en-EN.json
       
       - name: Backup old files
         run: aws s3 mv s3://wows-shipbuilder-data/api s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION --recursive

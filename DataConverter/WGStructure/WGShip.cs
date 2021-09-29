@@ -76,6 +76,7 @@ namespace DataConverter.WGStructure
         public double idealDistance { get; set; }
         public double radiusOnZero { get; set; }
         public double radiusOnDelim { get; set; }
+        public double radiusOnMax { get; set; }
         public double delim { get; set; }
         public Typeinfo typeinfo { get; set; }
 

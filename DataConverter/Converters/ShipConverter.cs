@@ -101,8 +101,25 @@ namespace DataConverter.Converters
                     TaperDist = wgMainBattery.taperDist,
                     RadiusOnZero = dispersionGun.radiusOnZero,
                     RadiusOnDelim = dispersionGun.radiusOnDelim,
+                    RadiusOnMax = dispersionGun.radiusOnMax,
                     Delim = dispersionGun.delim,
                 };
+
+                // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
+                double maxRange = decimal.ToDouble(turretModule.MaxRange) / 30;
+                double horizontalDispersion = maxRange * (turretDispersion.IdealRadius - turretDispersion.MinRadius) /
+                    turretDispersion.IdealDistance + turretDispersion.MinRadius;
+
+                double delimDist = turretDispersion.Delim * maxRange;
+                double verticalCoeff = turretDispersion.RadiusOnDelim +
+                                       (turretDispersion.RadiusOnMax - turretDispersion.RadiusOnDelim) * (maxRange - delimDist) / (maxRange - delimDist);
+                double verticalDispersion = horizontalDispersion * verticalCoeff;
+
+                var effectiveHorizontalDispersion = Convert.ToDecimal(horizontalDispersion * 30);
+                turretDispersion.MaximumHorizontalDispersion = Math.Round(effectiveHorizontalDispersion, 1);
+                var effectiveVerticalDispersion = Convert.ToDecimal(verticalDispersion * 30);
+                turretDispersion.MaximumVerticalDispersion = Math.Round(effectiveVerticalDispersion, 1);
+                    
                 turretModule.DispersionValues = turretDispersion;
                 Program.TranslationNames.AddRange(turretModule.Guns.Select(gun => gun.Name).Distinct());
 

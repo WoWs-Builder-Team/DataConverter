@@ -67,7 +67,10 @@ namespace WoWsShipBuilderDataStructures
         public double TaperDist { get; set; }
         public double RadiusOnZero { get; set; }
         public double RadiusOnDelim { get; set; }
+        public double RadiusOnMax { get; set; }
         public double Delim { get; set; }
+        public decimal MaximumHorizontalDispersion { get; set; }
+        public decimal MaximumVerticalDispersion { get; set; }
     }
     #endregion
 
