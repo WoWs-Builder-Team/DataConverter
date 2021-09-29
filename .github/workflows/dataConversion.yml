@@ -46,7 +46,7 @@ jobs:
       - name: Create localization output directory
         run: New-Item -Path "gameparams\out\$env:OUTPUT_ADDITION\" -Name "Localization" -ItemType "directory"
       - name: Run localization extraction
-        run: python gameparams\localization\mo2json.py --filter "gameparams\out\$env:OUTPUT_ADDITION\TranslationNames.csv" --mofile gameparams\localization\global.mo --out "gameparams\out\$env:OUTPUT_ADDITION\Localization\en-EN.json"
+        run: python gameparams\localization\mo2json.py --filter "gameparams\out\$env:OUTPUT_ADDITION\TranslationNames.csv" --mofile gameparams\localization\global.mo --out "gameparams\out\$env:OUTPUT_ADDITION\Localization\en-GB.json"
       
       - name: Backup old files
         run: aws s3 mv s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION-$env:OUTPUT_ADDITION --recursive
