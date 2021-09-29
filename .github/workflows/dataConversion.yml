@@ -29,6 +29,8 @@ jobs:
           dotnet-version: 5.0.x
       - name: Get and store tag version name
         run: echo ("GAME_VERSION=" + $env:GITHUB_REF.Replace('refs/tags/convert-', '')) >> $env:GITHUB_ENV
+      - name: Get base output path
+        run: if ("$env:GAME_VERSION".Contains("pts")) { echo ("OUTPUT_ADDITION=pts") >> $env:GITHUB_ENV } else { echo ("OUTPUT_ADDITION=live") >> $env:GITHUB_ENV }
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
@@ -40,15 +42,15 @@ jobs:
         working-directory: gameparams\localization
         run: python GameParams2Json.py --path GameParams.data --filter
       - name: Run data converter
-        run: dotnet run -c Release --project DataConverter gameparams\entities gameparams\out "$env:GAME_VERSION"
+        run: dotnet run -c Release --project DataConverter gameparams\entities "gameparams\out\$env:OUTPUT_ADDITION" "$env:GAME_VERSION"
       - name: Create localization output directory
-        run: New-Item -Path "gameparams\out\" -Name "Localization" -ItemType "directory"
+        run: New-Item -Path "gameparams\out\$env:OUTPUT_ADDITION\" -Name "Localization" -ItemType "directory"
       - name: Run localization extraction
-        run: python gameparams\localization\mo2json.py --filter gameparams\out\TranslationNames.csv --mofile gameparams\localization\global.mo --out gameparams\out\Localization\en-EN.json
+        run: python gameparams\localization\mo2json.py --filter "gameparams\out\$env:OUTPUT_ADDITION\TranslationNames.csv" --mofile gameparams\localization\global.mo --out "gameparams\out\$env:OUTPUT_ADDITION\Localization\en-EN.json"
       
       - name: Backup old files
-        run: aws s3 mv s3://wows-shipbuilder-data/api s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION --recursive
+        run: aws s3 mv s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION-$env:OUTPUT_ADDITION --recursive
       - name: Upload files
-        run: aws s3 sync gameparams\out s3://wows-shipbuilder-data/api
+        run: aws s3 sync "gameparams\out\$env:OUTPUT_ADDITION" "s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION"
       - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/api/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/api/$env:OUTPUT_ADDITION/*"
