@@ -51,6 +51,6 @@ jobs:
       - name: Backup old files
         run: aws s3 mv s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION-$env:OUTPUT_ADDITION --recursive
       - name: Upload files
-        run: aws s3 sync "gameparams\out\$env:OUTPUT_ADDITION" "s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION"
+        run: aws s3 sync "gameparams\out\$env:OUTPUT_ADDITION" "s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION" --exclude "*.csv"
       - name: Invalidate cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/api/$env:OUTPUT_ADDITION/*"

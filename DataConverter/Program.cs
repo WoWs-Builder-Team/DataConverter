@@ -56,14 +56,14 @@ namespace DataConverter
         private static void ConvertData()
         {
             string[] categories = Directory.GetDirectories(inputFolder);
-
             Dictionary<string, List<FileVersion>> versions = new();
-
             VersionInfo oldVersionInfo;
+
+            string versionType = outputFolder.Contains("live") ? "live" : "pts";
             try
             {
                 // Use GetAwaiter().GetResult() instead of Result to avoid receiving an aggregate exception.
-                using Stream stream = Client.GetStreamAsync($"{Host}/api/VersionInfo.json").GetAwaiter().GetResult();
+                using Stream stream = Client.GetStreamAsync($"{Host}/api/{versionType}/VersionInfo.json").GetAwaiter().GetResult();
                 using var streamReader = new StreamReader(stream);
                 using var jsonReader = new JsonTextReader(streamReader);
                 var jsonSerializer = new JsonSerializer();
@@ -92,7 +92,6 @@ namespace DataConverter
 
                     string wgList = File.ReadAllText(file);
                     string fileName = Path.GetFileName(file).Replace("filtered_", string.Empty);
-                    string nation = Path.GetFileNameWithoutExtension(file).Replace("filtered_", string.Empty);
                     string ownStructure;
                     object dict;
 
@@ -105,51 +104,51 @@ namespace DataConverter
                         case "Ability":
                             dict = ConsumableConverter.ConvertConsumable(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Aircraft":
                             dict = AircraftConverter.ConvertAircraft(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
 
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Crew":
                             string skillsList = CaptainConverter.LoadEmbeddedSkillData();
                             dict = CaptainConverter.ConvertCaptain(wgList, skillsList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Modernization":
                             dict = ModernizationConverter.ConvertModernization(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Projectile":
                             dict = ProjectileConverter.ConvertProjectile(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Ship":
                             dict = ShipConverter.ConvertShips(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Unit":
                             dict = ModuleConverter.ConvertModule(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Exterior":
                             dict = ExteriorConverter.ConvertExterior(wgList);
                             ownStructure = JsonConvert.SerializeObject(dict);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, nation, oldVersionInfo);
+                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         default:
@@ -176,6 +175,11 @@ namespace DataConverter
                 }
             }
 
+            string summaryString = JsonConvert.SerializeObject(ShipConverter.ShipSummaries);
+            new FileInfo(Path.Combine(outputFolder, "Summary", "Common.json")).Directory?.Create();
+            FileVersion summaryVersion = CheckVersionAndSave(summaryString, "Summary", "Common.json", oldVersionInfo, versionType);
+            versions.Add("Summary", new List<FileVersion> { summaryVersion });
+
             var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName);
 
             //write the updated versioning file
@@ -187,7 +191,7 @@ namespace DataConverter
             File.WriteAllLines(translationNamesPath, TranslationNames.Distinct().Where(translation => !string.IsNullOrEmpty(translation)));
         }
 
-        private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, string nation, VersionInfo oldVersioner)
+        private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, VersionInfo oldVersioner, string versionType)
         {
             string categoryName = Path.GetFileName(category);
             string outputPath = Path.Join(outputFolder, categoryName, fileName);
@@ -195,7 +199,7 @@ namespace DataConverter
             string oldData;
             try
             {
-                oldData = Client.GetStringAsync($"{Host}/api/{categoryName}/{fileName}").GetAwaiter().GetResult();
+                oldData = Client.GetStringAsync($"{Host}/api/{versionType}/{categoryName}/{fileName}").GetAwaiter().GetResult();
             }
             catch (HttpRequestException)
             {
@@ -210,7 +214,7 @@ namespace DataConverter
 
             if (!oldData.Equals(newData))
             {
-                fileVersion = new FileVersion(nation, oldVersioner.CurrentVersionCode + 1);
+                fileVersion = new FileVersion(fileName, oldVersioner.CurrentVersionCode + 1);
             }
             else
             {

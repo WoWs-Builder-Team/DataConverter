@@ -136,4 +136,14 @@ namespace WoWsShipBuilderDataStructures
         Medium,
         Far,
     }
+
+    public enum ShipCategory
+    {
+        TechTree,
+        Premium,
+        Special,
+        TestShip,
+        Disabled,
+        Clan,
+    }
 }

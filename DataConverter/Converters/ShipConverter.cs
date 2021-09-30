@@ -13,6 +13,8 @@ namespace DataConverter.Converters
     {
         private static readonly HashSet<string> ReportedTypes = new();
 
+        public static List<ShipSummary> ShipSummaries = new();
+
         public static Dictionary<string, Ship> ConvertShips(string jsonInput)
         {
             var results = new Dictionary<string, Ship>();
@@ -28,6 +30,8 @@ namespace DataConverter.Converters
                     Index = wgShip.index,
                     Name = wgShip.name,
                     Tier = wgShip.level,
+                    ShipClass = ProcessShipClass(wgShip.typeinfo.species),
+                    ShipCategory = ProcessShipCategory(wgShip.group, wgShip.level),
                     MainBatteryModuleList = ProcessMainBattery(wgShip),
                     ShipUpgradeInfo = ProcessUpgradeInfo(wgShip),
                     FireControlList = ProcessFireControl(wgShip),
@@ -42,12 +46,52 @@ namespace DataConverter.Converters
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
 
                 results[ship.Index] = ship;
+                ShipSummaries.Add(new ShipSummary(ship.Index, wgShip.typeinfo.nation, ship.Tier, ship.ShipClass, ship.ShipCategory));
             }
 
             return results;
         }
 
         #region Component converters
+
+        private static ShipCategory ProcessShipCategory(string wgCategory, int tier)
+        {
+            return wgCategory switch
+            {
+                "start" => ShipCategory.TechTree,
+                "upgradeable" => ShipCategory.TechTree,
+                "premium" => ShipCategory.Premium,
+                "ultimate" => ShipCategory.Special,
+                "specialUnsellable" when tier < 10 => ShipCategory.Premium,
+                "specialUnsellable" when tier == 10 => ShipCategory.Special,
+                "demoWithoutStats" => ShipCategory.TestShip,
+                "demoWithStats" => ShipCategory.TestShip,
+                "special" when tier < 10 => ShipCategory.Premium,
+                "special" when tier == 10 => ShipCategory.Special,
+                "disabled" => ShipCategory.Disabled,
+                "preserved" => ShipCategory.Disabled,
+                "clan" => ShipCategory.Clan,
+                "earlyAccess" => ShipCategory.TechTree,
+                "upgradeableExclusive" => ShipCategory.Premium,
+                "upgradeableUltimate" => ShipCategory.Special,
+                "unavailable" => ShipCategory.Disabled,
+                _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory)
+            };
+        }
+
+        private static ShipClass ProcessShipClass(string shipClass)
+        {
+            return shipClass.ToLowerInvariant() switch
+            {
+                "cruiser" => ShipClass.Cruiser,
+                "destroyer" => ShipClass.Destroyer,
+                "battleship" => ShipClass.Battleship,
+                "aircarrier" => ShipClass.AirCarrier,
+                "submarine" => ShipClass.Submarine,
+                "auxiliary" => ShipClass.Auxiliary,
+                _ => throw new InvalidOperationException("Ship class not recognized.")
+            };
+        }
 
         private static UpgradeInfo ProcessUpgradeInfo(WGShip wgShip)
         {

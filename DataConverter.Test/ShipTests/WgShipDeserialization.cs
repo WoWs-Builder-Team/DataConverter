@@ -257,5 +257,21 @@ namespace DataConverter.Test.ShipTests
         }
 
         #endregion
+
+        #region Summary
+
+        [Test]
+        public void DeserializeSummary()
+        {
+            var filePath = GetFilePath("Summary_Common.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var summaryList = JsonConvert.DeserializeObject<List<ShipSummary>>(fileContent);
+            
+            Assert.NotNull(summaryList);
+            summaryList.Should().HaveCountGreaterThan(0);
+        }
+
+        #endregion
     }
 }
