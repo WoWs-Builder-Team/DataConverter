@@ -105,10 +105,11 @@ namespace DataConverter.Converters
                 Value = wgShip.ShipUpgradeInfo.value,
             };
 
-            foreach ((_, WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
+            foreach ((string wgName, WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
             {
                 var newUpgrade = new ShipUpgrade
                 {
+                    Name = wgName,
                     Components = upgrade.components.Select(entry => (FindModuleType(entry.Key), entry.Value))
                         .Where(entry => entry.Item1 != ComponentType.None)
                         .ToDictionary(entry => entry.Item1, entry => entry.Value),
