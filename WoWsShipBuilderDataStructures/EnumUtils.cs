@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace WoWsShipBuilderDataStructures
+﻿namespace WoWsShipBuilderDataStructures
 {
     public enum Nation
     {
@@ -16,7 +14,8 @@ namespace WoWsShipBuilderDataStructures
         Spain,
         PanAsia,
         PanAmerica,
-        Commonwealth
+        Commonwealth,
+        Common,
     }
 
     public enum ShipClass
