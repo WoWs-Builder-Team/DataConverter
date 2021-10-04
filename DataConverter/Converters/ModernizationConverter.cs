@@ -68,7 +68,7 @@ namespace DataConverter.Converters
                         }
                     }
                 }
-            
+                Program.TranslationNames.UnionWith(effects.Keys);
                 mod.Effect = effects;
 
                 //for List of Enums

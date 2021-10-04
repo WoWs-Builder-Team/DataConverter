@@ -211,6 +211,7 @@ namespace DataConverter.Converters
 
                     skill.ConditionalModifiers = conditionalModifiers;
                     Program.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
+                    Program.TranslationNames.UnionWith(modifiers.Keys);
                     skills.Add(currentWgSkill.Key, skill);
                 }
 
