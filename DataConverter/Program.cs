@@ -19,7 +19,7 @@ namespace DataConverter
         private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
         private static readonly HttpClient Client = new();
 
-        public static readonly List<string> TranslationNames = new();
+        public static readonly HashSet<string> TranslationNames = new();
 
         static void Main(string[] args)
         {

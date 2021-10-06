@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
@@ -44,12 +45,12 @@ namespace DataConverter.Converters
                 };
 
                 //create object SKill
-                Skill skill = new Skill();
                 //initialize dictionaries for skills and skill's tiers
                 Dictionary<string, Skill> skills = new Dictionary<string, Skill>();
                 //iterate all captain's skills
                 foreach (var currentWgSkill in currentWgCaptain.Skills)
                 {
+                    Skill skill = new Skill();
                     //start mapping
                     skill.CanBeLearned = currentWgSkill.Value.canBeLearned;
                     skill.IsEpic = currentWgSkill.Value.isEpic;
@@ -67,13 +68,24 @@ namespace DataConverter.Converters
                     //map skill's position in the skilltree of each class
                     foreach (var tier in skillsTiers.Cruiser)
                     {
-                        if (tier.Value.Contains(skill.SkillNumber))
+                        if (tier.First.Contains(skill.SkillNumber))
                         {
                             var position = new SkillPosition
                             {
                                 ShipClass = ShipClass.Cruiser,
-                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
-                                Tier = tier.Key
+                                XPosition = tier.First.IndexOf(skill.SkillNumber),
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
+                        }
+                        else if (tier.Second.Contains(skill.SkillNumber))
+                        {
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Cruiser,
+                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
                             };
                             tiers.Add(position);
                             classes.Add(position.ShipClass);
@@ -82,13 +94,24 @@ namespace DataConverter.Converters
 
                     foreach (var tier in skillsTiers.Auxiliary)
                     {
-                        if (tier.Value.Contains(skill.SkillNumber))
+                        if (tier.First.Contains(skill.SkillNumber))
                         {
                             var position = new SkillPosition
                             {
                                 ShipClass = ShipClass.Auxiliary,
-                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
-                                Tier = tier.Key
+                                XPosition = tier.First.IndexOf(skill.SkillNumber),
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
+                        }
+                        else if (tier.Second.Contains(skill.SkillNumber))
+                        {
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Auxiliary,
+                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
                             };
                             tiers.Add(position);
                             classes.Add(position.ShipClass);
@@ -97,13 +120,24 @@ namespace DataConverter.Converters
 
                     foreach (var tier in skillsTiers.Destroyer)
                     {
-                        if (tier.Value.Contains(skill.SkillNumber))
+                        if (tier.First.Contains(skill.SkillNumber))
                         {
                             var position = new SkillPosition
                             {
                                 ShipClass = ShipClass.Destroyer,
-                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
-                                Tier = tier.Key
+                                XPosition = tier.First.IndexOf(skill.SkillNumber),
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
+                        }
+                        else if (tier.Second.Contains(skill.SkillNumber))
+                        {
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Destroyer,
+                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
                             };
                             tiers.Add(position);
                             classes.Add(position.ShipClass);
@@ -112,13 +146,24 @@ namespace DataConverter.Converters
 
                     foreach (var tier in skillsTiers.AirCarrier)
                     {
-                        if (tier.Value.Contains(skill.SkillNumber))
+                        if (tier.First.Contains(skill.SkillNumber))
                         {
                             var position = new SkillPosition
                             {
                                 ShipClass = ShipClass.AirCarrier,
-                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
-                                Tier = tier.Key
+                                XPosition = tier.First.IndexOf(skill.SkillNumber),
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
+                        }
+                        else if (tier.Second.Contains(skill.SkillNumber))
+                        {
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.AirCarrier,
+                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
                             };
                             tiers.Add(position);
                             classes.Add(position.ShipClass);
@@ -127,13 +172,24 @@ namespace DataConverter.Converters
 
                     foreach (var tier in skillsTiers.Submarine)
                     {
-                        if (tier.Value.Contains(skill.SkillNumber))
+                        if (tier.First.Contains(skill.SkillNumber))
                         {
                             var position = new SkillPosition
                             {
                                 ShipClass = ShipClass.Submarine,
-                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
-                                Tier = tier.Key
+                                XPosition = tier.First.IndexOf(skill.SkillNumber),
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
+                        }
+                        else if (tier.Second.Contains(skill.SkillNumber))
+                        {
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Submarine,
+                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
                             };
                             tiers.Add(position);
                             classes.Add(position.ShipClass);
@@ -142,13 +198,24 @@ namespace DataConverter.Converters
 
                     foreach (var tier in skillsTiers.Battleship)
                     {
-                        if (tier.Value.Contains(skill.SkillNumber))
+                        if (tier.First.Contains(skill.SkillNumber))
                         {
                             var position = new SkillPosition
                             {
                                 ShipClass = ShipClass.Battleship,
-                                XPosition = tier.Value.IndexOf(skill.SkillNumber),
-                                Tier = tier.Key
+                                XPosition = tier.First.IndexOf(skill.SkillNumber),
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
+                            };
+                            tiers.Add(position);
+                            classes.Add(position.ShipClass);
+                        }
+                        else if (tier.Second.Contains(skill.SkillNumber))
+                        {
+                            var position = new SkillPosition
+                            {
+                                ShipClass = ShipClass.Battleship,
+                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
+                                Tier = skillsTiers.Cruiser.IndexOf(tier),
                             };
                             tiers.Add(position);
                             classes.Add(position.ShipClass);
@@ -209,7 +276,8 @@ namespace DataConverter.Converters
                     }
 
                     skill.ConditionalModifiers = conditionalModifiers;
-
+                    Program.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
+                    Program.TranslationNames.UnionWith(modifiers.Keys);
                     skills.Add(currentWgSkill.Key, skill);
                 }
 
@@ -290,6 +358,34 @@ namespace DataConverter.Converters
                                throw new FileNotFoundException("Unable to locate embedded captain skill data.");
             using var reader = new StreamReader(stream);
             return reader.ReadToEnd();
+        }
+
+        private static string GetSkillTranslationId(string skillName)
+        {
+            if (skillName == null)
+            {
+                throw new ArgumentNullException(nameof(skillName));
+            }
+            if (skillName.Length < 2)
+            {
+                return skillName;
+            }
+            var sb = new StringBuilder();
+            sb.Append(char.ToLowerInvariant(skillName[0]));
+            for (int i = 1; i < skillName.Length; ++i)
+            {
+                char c = skillName[i];
+                if (char.IsUpper(c))
+                {
+                    sb.Append('_');
+                    sb.Append(char.ToLowerInvariant(c));
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
         }
     }
 }

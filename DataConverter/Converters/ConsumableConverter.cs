@@ -25,7 +25,7 @@ namespace DataConverter.Converters
                 //collecting consumable variants
                 var variant = currentWgConsumable.variants;
                 List<string> variantsKeys = new List<string>(variant.Keys);
-                Program.TranslationNames.AddRange(variant.Values.Select(variantValue => variantValue.descIDs));
+                Program.TranslationNames.UnionWith(variant.Values.Select(variantValue => variantValue.descIDs));
 
                 foreach (var currentVariantKey in variantsKeys)
                 {

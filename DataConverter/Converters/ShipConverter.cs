@@ -166,7 +166,7 @@ namespace DataConverter.Converters
                 turretDispersion.MaximumVerticalDispersion = Math.Round(effectiveVerticalDispersion, 1);
                     
                 turretModule.DispersionValues = turretDispersion;
-                Program.TranslationNames.AddRange(turretModule.Guns.Select(gun => gun.Name).Distinct());
+                Program.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
 
                 var targetAntiAir = new AntiAir();
                 AssignAurasToProperty(wgMainBattery.ConvertedAntiAirAuras, targetAntiAir);
@@ -224,7 +224,7 @@ namespace DataConverter.Converters
                         MaxRange = wgHullSecondary.maxDist,
                         Guns = wgHullSecondary.antiAirAndSecondaries.Values.Select(secondaryGun => (Gun)secondaryGun).ToList(),
                     };
-                    Program.TranslationNames.AddRange(secondary.Guns.Select(gun => gun.Name).Distinct());
+                    Program.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());
                     hullModule.SecondaryModule = secondary;
                 }
 
@@ -249,7 +249,7 @@ namespace DataConverter.Converters
                         Reload = wgDepthChargeArray.reloadTime,
                         DepthCharges = wgDepthChargeArray.depthCharges.Select(entry => (DepthChargeLauncher)entry.Value).ToList(),
                     };
-                    Program.TranslationNames.AddRange(hullModule.DepthChargeArray.DepthCharges.Select(depthChargeLauncher => depthChargeLauncher.Name)
+                    Program.TranslationNames.UnionWith(hullModule.DepthChargeArray.DepthCharges.Select(depthChargeLauncher => depthChargeLauncher.Name)
                         .Distinct());
                 }
 
@@ -289,7 +289,7 @@ namespace DataConverter.Converters
                 {
                     TorpedoLaunchers = wgTorpedoArray.torpedoArray.Select(entry => (TorpedoLauncher)entry.Value).ToList(),
                 };
-                Program.TranslationNames.AddRange(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
+                Program.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
 
                 resultDictionary[key] = torpedoModule;
             }
@@ -332,7 +332,7 @@ namespace DataConverter.Converters
                     }))
                     .ToList();
 
-                Program.TranslationNames.AddRange(planesOfType.Select(planeEntry => planeEntry.Item2.PlaneName).Distinct());
+                Program.TranslationNames.UnionWith(planesOfType.Select(planeEntry => planeEntry.Item2.PlaneName).Distinct());
                 foreach ((string moduleName, PlaneData planeData) in planesOfType)
                 {
                     resultDictionary[moduleName] = planeData;
@@ -367,7 +367,7 @@ namespace DataConverter.Converters
             Dictionary<string, AirStrike> result = wgShip.ModulesArmaments
                 .ModulesOfType<AirSupport>()
                 .ToDictionary(entry => entry.Key, entry => (AirStrike)entry.Value);
-            Program.TranslationNames.AddRange(result.Values.Select(airStrike => airStrike.PlaneName).Distinct());
+            Program.TranslationNames.UnionWith(result.Values.Select(airStrike => airStrike.PlaneName).Distinct());
             return result;
         }
 

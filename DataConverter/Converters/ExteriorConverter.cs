@@ -69,7 +69,7 @@ namespace DataConverter.Converters
                 }
 
                 exterior.Modifiers = modifiers;
-
+                Program.TranslationNames.UnionWith(modifiers.Keys);
                 try
                 {
                     exterior.Type = Enum.Parse<ExteriorType>(currentWgExterior.typeinfo.species);
