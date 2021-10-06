@@ -47,17 +47,17 @@
 
     public enum ComponentType
     {
-        DiveBomber,
-        Fighter,
+        Artillery,
         Hull,
+        Sonar,
         Torpedoes,
+        Fighter,
+        TorpedoBomber,
+        DiveBomber,
+        SkipBomber,
         Suo,
         Engine,
-        Artillery,
         FlightControl,
-        Sonar,
-        TorpedoBomber,
-        SkipBomber,
         Secondary,
         AirDefense,
         AirArmament,
