@@ -1,5 +1,10 @@
-﻿namespace WoWsShipBuilderDataStructures
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace WoWsShipBuilderDataStructures
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum Nation
     {
         France,
@@ -18,6 +23,7 @@
         Common,
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ShipClass
     {
         Submarine,
@@ -28,6 +34,7 @@
         Auxiliary
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ModuleType
     {
         DiveBomberTypeUnit,
@@ -45,34 +52,59 @@
         PrimaryWeaponsUnit,
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ComponentType
     {
+        [EnumMember(Value = "Artillery")]
         Artillery,
+
+        [EnumMember(Value = "Hull")]
         Hull,
+
+        [EnumMember(Value = "Sonar")]
         Sonar,
+
+        [EnumMember(Value = "Torpedoes")]
         Torpedoes,
+
+        [EnumMember(Value = "Fighter")]
         Fighter,
+
+        [EnumMember(Value = "TorpedoBomber")]
         TorpedoBomber,
+
+        [EnumMember(Value = "DiveBomber")]
         DiveBomber,
+
+        [EnumMember(Value = "SkipBomber")]
         SkipBomber,
+
+        [EnumMember(Value = "Suo")]
         Suo,
+
+        [EnumMember(Value = "Engine")]
         Engine,
+
+        [EnumMember(Value = "FlightControl")]
         FlightControl,
+
+        [EnumMember(Value = "Secondary")]
         Secondary,
+
+        [EnumMember(Value = "AirDefense")]
         AirDefense,
+
+        [EnumMember(Value = "AirArmament")]
         AirArmament,
+
+        [EnumMember(Value = "DepthCharges")]
         DepthCharges,
+
+        [EnumMember(Value = "None")]
         None,
     }
 
-    public enum ModuleTier
-    {
-        Stock,
-        UpgradeLevel1,
-        UpgradeLevel2,
-        None
-    }
-
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum PlaneType
     {
         Fighter,
@@ -81,6 +113,7 @@
         SkipBomber,
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum PlaneCategory
     {
         Cv,
@@ -89,6 +122,7 @@
         Asw
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ProjectileType
     {
         Artillery,
@@ -98,30 +132,38 @@
         DepthCharge,
         Rocket,
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ShellType
     {
         SAP,
         HE,
         AP
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum TorpedoType
     {
         Normal,
         DeepWater,
         Homing
-
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum BombType
     {
         HE,
         AP,
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum RocketType
     {
         HE,
         AP
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ExteriorType
     {
         Flags,
@@ -129,6 +171,7 @@
         Permoflage,
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum AntiAirAuraType
     {
         Near,
@@ -136,6 +179,7 @@
         Far,
     }
 
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum ShipCategory
     {
         TechTree,
