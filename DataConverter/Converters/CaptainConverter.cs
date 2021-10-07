@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -65,162 +64,9 @@ namespace DataConverter.Converters
                     List<SkillPosition> tiers = new();
                     List<ShipClass> classes = new();
 
-                    //map skill's position in the skilltree of each class
-                    foreach (var tier in skillsTiers.Cruiser)
-                    {
-                        if (tier.First.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Cruiser,
-                                XPosition = tier.First.IndexOf(skill.SkillNumber),
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                        else if (tier.Second.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Cruiser,
-                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                    }
-
-                    foreach (var tier in skillsTiers.Auxiliary)
-                    {
-                        if (tier.First.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Auxiliary,
-                                XPosition = tier.First.IndexOf(skill.SkillNumber),
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                        else if (tier.Second.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Auxiliary,
-                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                    }
-
-                    foreach (var tier in skillsTiers.Destroyer)
-                    {
-                        if (tier.First.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Destroyer,
-                                XPosition = tier.First.IndexOf(skill.SkillNumber),
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                        else if (tier.Second.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Destroyer,
-                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                    }
-
-                    foreach (var tier in skillsTiers.AirCarrier)
-                    {
-                        if (tier.First.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.AirCarrier,
-                                XPosition = tier.First.IndexOf(skill.SkillNumber),
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                        else if (tier.Second.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.AirCarrier,
-                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                    }
-
-                    foreach (var tier in skillsTiers.Submarine)
-                    {
-                        if (tier.First.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Submarine,
-                                XPosition = tier.First.IndexOf(skill.SkillNumber),
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                        else if (tier.Second.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Submarine,
-                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                    }
-
-                    foreach (var tier in skillsTiers.Battleship)
-                    {
-                        if (tier.First.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Battleship,
-                                XPosition = tier.First.IndexOf(skill.SkillNumber),
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                        else if (tier.Second.Contains(skill.SkillNumber))
-                        {
-                            var position = new SkillPosition
-                            {
-                                ShipClass = ShipClass.Battleship,
-                                XPosition = tier.Second.IndexOf(skill.SkillNumber) + 4,
-                                Tier = skillsTiers.Cruiser.IndexOf(tier),
-                            };
-                            tiers.Add(position);
-                            classes.Add(position.ShipClass);
-                        }
-                    }
+                    List<SkillPosition> skillPositions = FindSkillPosition(skillsTiers, skill.SkillNumber);
+                    tiers.AddRange(skillPositions);
+                    classes.AddRange(skillPositions.Select(pos => pos.ShipClass).Distinct());
 
                     skill.Tiers = tiers;
                     //list of the classes that can use the skill
@@ -358,6 +204,31 @@ namespace DataConverter.Converters
                                throw new FileNotFoundException("Unable to locate embedded captain skill data.");
             using var reader = new StreamReader(stream);
             return reader.ReadToEnd();
+        }
+
+        private static List<SkillPosition> FindSkillPosition(SkillsTiers skillsTiers, int skillNumber)
+        {
+            var positions = new List<SkillPosition>();
+            foreach ((ShipClass shipClass, List<SkillRow> skillRow) in skillsTiers.PositionsByClass)
+            {
+                for (var skillTier = 0; skillTier < skillRow.Count; skillTier++)
+                {
+                    List<int> skillsInRow = skillRow[skillTier].SkillGroups.SelectMany(group => group).ToList();
+                    int skillIndex = skillsInRow.IndexOf(skillNumber);
+                    if (skillIndex >= 0)
+                    {
+                        var position = new SkillPosition
+                        {
+                            ShipClass = shipClass,
+                            XPosition = skillIndex,
+                            Tier = skillTier,
+                        };
+                        positions.Add(position);
+                    }
+                }
+            }
+
+            return positions;
         }
 
         private static string GetSkillTranslationId(string skillName)

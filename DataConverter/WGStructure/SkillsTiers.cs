@@ -1,33 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
-
-//public class SkillsTiers // collection of all the skills and their tier for each class
-//{
-//    public Dictionary<int, List<int>> Cruiser { get; set; }
-//    public Dictionary<int, List<int>> Auxiliary { get; set; }
-//    public Dictionary<int, List<int>> Destroyer { get; set; }
-//    public Dictionary<int, List<int>> AirCarrier { get; set; }
-//    public Dictionary<int, List<int>> Submarine { get; set; }
-//    public Dictionary<int, List<int>> Battleship { get; set; }
-//}
-
+using Newtonsoft.Json.Linq;
+using WoWsShipBuilderDataStructures;
 
 public class SkillsTiers
 {
-    public List<SkillRow> Cruiser { get; set; }
-    public List<SkillRow> Auxiliary { get; set; }
-    public List<SkillRow> Destroyer { get; set; }
-    public List<SkillRow> AirCarrier { get; set; }
-    public List<SkillRow> Submarine { get; set; }
-    public List<SkillRow> Battleship { get; set; }
+    private Dictionary<ShipClass, List<SkillRow>> positionsByClass;
+
+    [JsonExtensionData]
+    public Dictionary<string, JToken> RawPositionsByClass { get; set; }
+
+    public Dictionary<ShipClass, List<SkillRow>> PositionsByClass => positionsByClass ??= RawPositionsByClass
+        .Select(entry => (Enum.Parse<ShipClass>(entry.Key, true), entry.Value.ToObject<List<SkillRow>>()))
+        .Where(entry => entry.Item2 != null)
+        .ToDictionary(entry => entry.Item1, entry => entry.Item2);
 }
 
 public class SkillRow
 {
-    [JsonProperty("0")]
-    public List<int> First { get; set; }
+    private List<List<int>> skillGroups;
 
-    [JsonProperty("1")]
-    public List<int> Second { get; set; }
+    [JsonExtensionData]
+    public Dictionary<string, JToken> RawSkillGroups { get; set; }
+
+    [JsonIgnore]
+    public List<List<int>> SkillGroups => skillGroups ??= RawSkillGroups.OrderBy(entry => entry.Key)
+        .Select(entry => entry.Value.ToObject<List<int>>())
+        .ToList();
 }
-
