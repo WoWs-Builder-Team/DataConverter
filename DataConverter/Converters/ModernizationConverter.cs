@@ -30,7 +30,8 @@ namespace DataConverter.Converters
                     //start mapping
                     Id = currentWgMod.id,
                     Index = currentWgMod.index,
-                    Name = currentWgMod.name
+                    Name = currentWgMod.name,
+                    Type = ConvertModernizationType(currentWgMod.type),
                 };
                 
                 Dictionary<string, double> effects = new Dictionary<string, double>();
@@ -104,6 +105,17 @@ namespace DataConverter.Converters
             }
 
             return modList;
+        }
+
+        private static ModernizationType ConvertModernizationType(int wgType)
+        {
+            return wgType switch
+            {
+                0 => ModernizationType.Normal,
+                1 => ModernizationType.Consumable,
+                3 => ModernizationType.Legendary,
+                _ => ModernizationType.Other,
+            };
         }
     }
 }

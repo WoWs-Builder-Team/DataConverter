@@ -16,6 +16,7 @@ namespace WoWsShipBuilderDataStructures
         public int Tier { get; set; }
         public ShipClass ShipClass { get; set; }
         public ShipCategory ShipCategory { get; set; }
+        public Nation ShipNation { get; set; }
 
         public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; }
         public Dictionary<string, FireControl> FireControlList { get; set; }

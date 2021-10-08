@@ -15,6 +15,7 @@ namespace DataConverter.WGStructure
         public string[] ships { get; set; }
         public string[] shiptype { get; set; }
         public int slot { get; set; }
+        public int type { get; set; }
         public Typeinfo typeinfo { get; set; }
     }
 }

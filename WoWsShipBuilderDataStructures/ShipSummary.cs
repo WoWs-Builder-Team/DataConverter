@@ -2,7 +2,7 @@
 {
     public class ShipSummary
     {
-        public ShipSummary(string index, string nation, int tier, ShipClass shipClass, ShipCategory category)
+        public ShipSummary(string index, Nation nation, int tier, ShipClass shipClass, ShipCategory category)
         {
             Index = index;
             Nation = nation;
@@ -13,7 +13,7 @@
         
         public string Index { get; }
         
-        public string Nation { get; }
+        public Nation Nation { get; }
         
         public int Tier { get; }
         

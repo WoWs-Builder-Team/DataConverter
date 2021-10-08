@@ -14,6 +14,7 @@ namespace WoWsShipBuilderDataStructures
         public List<ShipClass> ShipClasses { get; set; }
         public int Slot { get; set; }
         public List<string> BlacklistedShips { get; set; }
+        public ModernizationType Type { get; set; }
     }
 
 }

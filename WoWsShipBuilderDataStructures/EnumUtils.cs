@@ -189,4 +189,13 @@ namespace WoWsShipBuilderDataStructures
         Disabled,
         Clan,
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum ModernizationType
+    {
+        Normal,
+        Consumable,
+        Legendary,
+        Other,
+    }
 }

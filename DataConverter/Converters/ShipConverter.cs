@@ -32,6 +32,7 @@ namespace DataConverter.Converters
                     Tier = wgShip.level,
                     ShipClass = ProcessShipClass(wgShip.typeinfo.species),
                     ShipCategory = ProcessShipCategory(wgShip.group, wgShip.level),
+                    ShipNation = ConvertNationString(wgShip.typeinfo.nation),
                     MainBatteryModuleList = ProcessMainBattery(wgShip),
                     ShipUpgradeInfo = ProcessUpgradeInfo(wgShip),
                     FireControlList = ProcessFireControl(wgShip),
@@ -46,13 +47,22 @@ namespace DataConverter.Converters
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
 
                 results[ship.Index] = ship;
-                ShipSummaries.Add(new ShipSummary(ship.Index, wgShip.typeinfo.nation, ship.Tier, ship.ShipClass, ship.ShipCategory));
+                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory));
             }
 
             return results;
         }
 
         #region Component converters
+
+        private static Nation ConvertNationString(string wgNation)
+        {
+            return wgNation.Replace("_", "") switch
+            {
+                "USA" => Nation.Usa,
+                { } any => Enum.Parse<Nation>(any),
+            };
+        }
 
         private static ShipCategory ProcessShipCategory(string wgCategory, int tier)
         {
