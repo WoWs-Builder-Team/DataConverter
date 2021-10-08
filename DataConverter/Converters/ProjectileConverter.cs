@@ -65,6 +65,7 @@ namespace DataConverter.Converters
 
                             shell.Penetration = currentWgShell.alphaPiercingCS;
                             shell.RicochetAngle = currentWgShell.bulletRicochetAt;
+                            shell.AlwaysRicochetAngle = currentWgShell.bulletAlwayRiccochetAt;
                             //SAP FireChance = 0 => not relevant => shell.FireChance is set to default value
                             //SAP Krupp = 3 => not relevant => shell.Krupp is set to default value
                         }
@@ -84,6 +85,7 @@ namespace DataConverter.Converters
                             {
                                 //AP Penetration is not a fixed value => shell.Penetration is set to default value
                                 shell.RicochetAngle = currentWgShell.bulletRicochetAt;
+                                shell.AlwaysRicochetAngle = currentWgShell.bulletAlwayRiccochetAt;
                                 //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
                                 shell.Krupp = currentWgShell.bulletKrupp;
                             }
@@ -126,8 +128,9 @@ namespace DataConverter.Converters
                         }
                         else
                         {
-                            //AP Penetration is not a fixed value => shell.Penetration is set to default value
+                            //For bombs, AP Penetration is a fixed value. Don't know how to calculate it tho. => shell.Penetration is set to default value
                             bomb.RicochetAngle = currentWgBomb.bulletRicochetAt;
+                            bomb.AlwaysRicochetAngle = currentWgBomb.bulletAlwayRiccochetAt;
                             //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
                             bomb.Krupp = currentWgBomb.bulletKrupp;
                         }
@@ -232,6 +235,7 @@ namespace DataConverter.Converters
                         else
                         {
                             //AP Penetration is not a fixed value => shell.Penetration is set to default value
+                            rocket.AlwaysRicochetAngle = currentWgRocket.bulletAlwayRiccochetAt;
                             rocket.RicochetAngle = currentWgRocket.bulletRicochetAt;
                             //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
                             rocket.Krupp = currentWgRocket.bulletKrupp;

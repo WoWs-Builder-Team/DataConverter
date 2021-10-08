@@ -23,6 +23,11 @@ namespace DataConverter.Converters
 
             foreach (WGShip wgShip in wgShipList)
             {
+                if (wgShip.group.Equals("clan") || wgShip.group.Equals("disabled") || wgShip.group.Equals("preserved"))
+                {
+                    continue;
+                }
+
                 Program.TranslationNames.Add(wgShip.index);
                 var ship = new Ship
                 {

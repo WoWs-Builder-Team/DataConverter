@@ -22,6 +22,7 @@ namespace WoWsShipBuilderDataStructures
         public float Krupp { get; set; }
         public float Mass { get; set; }
         public float RicochetAngle { get; set; }
+        public float AlwaysRicochetAngle { get; set; }
         public float MuzzleVelocity { get; set; }
         public float FireChance { get; set; }
     }
@@ -38,6 +39,7 @@ namespace WoWsShipBuilderDataStructures
         public float Krupp { get; set; }
         public float Mass { get; set; }
         public float RicochetAngle { get; set; }
+        public float AlwaysRicochetAngle { get; set; }
         public float MuzzleVelocity { get; set; }
         public float FireChance { get; set; }
 
@@ -55,6 +57,7 @@ namespace WoWsShipBuilderDataStructures
         public float Krupp { get; set; }
         public float Mass { get; set; }
         public float RicochetAngle { get; set; }
+        public float AlwaysRicochetAngle { get; set; }
         public float MuzzleVelocity { get; set; }
         public float FireChance { get; set; }
     }
