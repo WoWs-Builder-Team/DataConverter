@@ -24,6 +24,7 @@ namespace WoWsShipBuilderDataStructures
         //modifiers for the skill in SkillTrigger
         public Dictionary<string, float> ConditionalModifiers { get; set; }
         //add stuff from WGCaptain.SkillTrigger if you deem necessary
+        public string ConditionalTriggerType { get; set; }
     }
 
     public class SkillPosition 
