@@ -23,7 +23,7 @@ namespace DataConverter.Converters
 
             foreach (WGShip wgShip in wgShipList)
             {
-                if (wgShip.group.Equals("clan") || wgShip.group.Equals("disabled") || wgShip.group.Equals("preserved"))
+                if (wgShip.typeinfo.species.Equals(ShipClass.Auxiliary.ToString()) || wgShip.group.Equals("clan") || wgShip.group.Equals("disabled") || wgShip.group.Equals("preserved") || wgShip.group.Equals("unavailable"))
                 {
                     continue;
                 }
