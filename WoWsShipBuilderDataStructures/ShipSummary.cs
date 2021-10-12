@@ -1,4 +1,6 @@
-﻿namespace WoWsShipBuilderDataStructures
+﻿using System.Collections.Generic;
+
+namespace WoWsShipBuilderDataStructures
 {
     public class ShipSummary
     {
@@ -17,6 +19,10 @@
         
         public int Tier { get; }
         
+        public string PrevShipIndex { get; set; }
+
+        public List<string> NextShipsIndex { get; set; }
+
         public ShipClass ShipClass { get; }
         
         public ShipCategory Category { get; }
