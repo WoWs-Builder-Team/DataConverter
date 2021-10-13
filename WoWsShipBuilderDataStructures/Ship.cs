@@ -311,7 +311,7 @@ namespace WoWsShipBuilderDataStructures
     {
         public Dictionary<ComponentType, string[]> Components { get; set; }
         public string Name { get; set; }
-        public object[] NextShips { get; set; }
+        public string[] NextShips { get; set; }
         public string Prev { get; set; }
         public ComponentType UcType { get; set; }
         public bool CanBuy { get; set; }

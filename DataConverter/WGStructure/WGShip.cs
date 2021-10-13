@@ -461,7 +461,7 @@ namespace DataConverter.WGStructure
     {
         public bool canBuy { get; set; }
         public Dictionary<string, string[]> components { get; set; }
-        public object[] nextShips { get; set; }
+        public string[] nextShips { get; set; }
         public string prev { get; set; }
         public string ucType { get; set; }
     }

@@ -21,9 +21,13 @@ namespace DataConverter.Converters
 
             List<WGShip> wgShipList = JsonConvert.DeserializeObject<List<WGShip>>(jsonInput) ?? throw new InvalidOperationException();
 
+            Dictionary<string, string> shipToPreviousShipMapper = new Dictionary<string, string>();
+            Dictionary<string, List<string>> shipToNextShipMapper = new Dictionary<string, List<string>>();
+
             foreach (WGShip wgShip in wgShipList)
             {
-                if (wgShip.typeinfo.species.Equals(ShipClass.Auxiliary.ToString()) || wgShip.group.Equals("clan") || wgShip.group.Equals("disabled") || wgShip.group.Equals("preserved") || wgShip.group.Equals("unavailable"))
+                if (wgShip.typeinfo.species.Equals(ShipClass.Auxiliary.ToString()) || wgShip.group.Equals("clan") || wgShip.group.Equals("disabled") ||
+                    wgShip.group.Equals("preserved") || wgShip.group.Equals("unavailable"))
                 {
                     continue;
                 }
@@ -52,7 +56,29 @@ namespace DataConverter.Converters
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
 
                 results[ship.Index] = ship;
-                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory));
+
+                if (ship.ShipCategory == ShipCategory.TechTree)
+                {
+                    shipToNextShipMapper[ship.Index] = ship.ShipUpgradeInfo.ShipUpgrades
+                        .SelectMany(shipUpgrade => shipUpgrade.NextShips)
+                        .Select(shipName => shipName.Split('_').First())
+                        .ToList();
+                }
+            }
+
+            foreach ((string shipIndex, List<string> nextShipIndexes) in shipToNextShipMapper)
+            {
+                foreach (string nextShipIndex in nextShipIndexes)
+                {
+                    shipToPreviousShipMapper[nextShipIndex] = shipIndex;
+                }
+            }
+
+            foreach ((_, Ship ship) in results)
+            {
+                shipToPreviousShipMapper.TryGetValue(ship.Index, out string previousShip);
+                shipToNextShipMapper.TryGetValue(ship.Index, out List<string> nextShips);
+                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips));
             }
 
             return results;
@@ -179,7 +205,7 @@ namespace DataConverter.Converters
                 turretDispersion.MaximumHorizontalDispersion = Math.Round(effectiveHorizontalDispersion, 1);
                 var effectiveVerticalDispersion = Convert.ToDecimal(verticalDispersion * 30);
                 turretDispersion.MaximumVerticalDispersion = Math.Round(effectiveVerticalDispersion, 1);
-                    
+
                 turretModule.DispersionValues = turretDispersion;
                 Program.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
 
