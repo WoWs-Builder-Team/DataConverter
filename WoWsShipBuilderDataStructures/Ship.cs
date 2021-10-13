@@ -165,14 +165,16 @@ namespace WoWsShipBuilderDataStructures
                 throw new InvalidOperationException("Cannot combine auras with different ranges or accuracies.");
             }
 
+            decimal minRange = newAura.FlakDamage > 0 ? thisAura.MinRange : newAura.MinRange; // Use minimum range of new aura only if it is no flak cloud aura
+            
             return new AntiAirAura
             {
                 ConstantDps = thisAura.ConstantDps + newAura.ConstantDps,
                 FlakDamage = thisAura.FlakDamage + newAura.FlakDamage,
                 FlakCloudsNumber = thisAura.FlakCloudsNumber + newAura.FlakCloudsNumber,
-                HitChance = thisAura.HitChance,
-                MaxRange = thisAura.MaxRange,
-                MinRange = thisAura.MinRange,
+                HitChance = newAura.HitChance,
+                MaxRange = newAura.MaxRange,
+                MinRange = minRange,
             };
         }
     }

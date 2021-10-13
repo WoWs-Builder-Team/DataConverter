@@ -245,12 +245,7 @@ namespace DataConverter.Converters
                 };
 
                 // Process anti-air data
-                var antiAir = new AntiAir
-                {
-                    LongRangeAura = new AntiAirAura(),
-                    MediumRangeAura = new AntiAirAura(),
-                    ShortRangeAura = new AntiAirAura(),
-                };
+                var antiAir = new AntiAir();
 
                 string[] components = hullUpgradeInfo.Components[ComponentType.Secondary];
                 if (components.Length > 0)
