@@ -116,7 +116,7 @@ namespace DataConverter
                             break;
                         case "Crew":
                             string skillsList = CaptainConverter.LoadEmbeddedSkillData();
-                            dict = CaptainConverter.ConvertCaptain(wgList, skillsList);
+                            dict = CaptainConverter.ConvertCaptain(wgList, skillsList, fileName.Contains("Common"));
                             ownStructure = JsonConvert.SerializeObject(dict);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 

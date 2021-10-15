@@ -20,7 +20,7 @@ namespace DataConverter.Converters
         /// <param name="skillsJsonInput">The file content of the embedded captain data file.</param>
         /// <returns>A dictionary mapping an ID to a <see cref="Captain"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-        public static Dictionary<string, Captain> ConvertCaptain(string captainJsonInput, string skillsJsonInput)
+        public static Dictionary<string, Captain> ConvertCaptain(string captainJsonInput, string skillsJsonInput, bool isCommon)
         {
             //create a List of our Objects
             Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
@@ -36,6 +36,10 @@ namespace DataConverter.Converters
             {
                 var tags = currentWgCaptain.CrewPersonality.tags;
                 // this way we add only one default captain and the nation special captains
+                if (tags == null && !isCommon)
+                {
+                    continue;
+                }
                 if (tags == null && !addedDefault)
                 {
                     addedDefault = true;

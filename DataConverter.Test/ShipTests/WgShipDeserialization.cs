@@ -96,7 +96,7 @@ namespace DataConverter.Test.ShipTests
             var skillsJsonPath = GetFilePath("SKILLS_BY_TIER.json");
             var skillsJsonContent = File.ReadAllText(skillsJsonPath);
 
-            var dict = CaptainConverter.ConvertCaptain(fileContent, skillsJsonContent);
+            var dict = CaptainConverter.ConvertCaptain(fileContent, skillsJsonContent, false);
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }
