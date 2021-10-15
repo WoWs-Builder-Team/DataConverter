@@ -90,7 +90,7 @@ namespace DataConverter.Test.ShipTests
         [Test]
         public void DeserializeCaptain_Succes()
         {
-            var filePath = GetFilePath("filtered_Germany_Crew.json");
+            var filePath = GetFilePath("filtered_USA_Crew.json");
             var fileContent = File.ReadAllText(filePath);
 
             var skillsJsonPath = GetFilePath("SKILLS_BY_TIER.json");

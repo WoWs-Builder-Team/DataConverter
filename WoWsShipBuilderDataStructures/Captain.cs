@@ -10,6 +10,7 @@ namespace WoWsShipBuilderDataStructures
         public bool HasSpecialSkills { get; set; }
         public Dictionary<string, Skill> Skills { get; set; }
         public Dictionary<string, UniqueSkill> UniqueSkills { get; set; }
+        public Nation Nation { get; set; }
     }
 
     public class Skill

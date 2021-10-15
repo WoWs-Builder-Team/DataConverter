@@ -30,9 +30,24 @@ namespace DataConverter.Converters
 
             var skillsTiers = JsonConvert.DeserializeObject<SkillsTiers>(skillsJsonInput) ?? throw new InvalidOperationException();
 
+            bool addedDefault = false;
             //iterate over the entire list to convert everything
             foreach (var currentWgCaptain in wgCaptain)
             {
+                var tags = currentWgCaptain.CrewPersonality.tags;
+                // this way we add only one default captain and the nation special captains
+                if (tags == null && !addedDefault)
+                {
+                    addedDefault = true;
+                }
+                if (tags == null && addedDefault)
+                {
+                    continue;
+                }
+                if (tags != null && (!tags.Contains("upperks") || !tags.Contains("talants")))
+                {
+                    continue;
+                }
                 Program.TranslationNames.Add(currentWgCaptain.name);
                 //start mapping
                 Captain captain = new Captain
@@ -40,7 +55,8 @@ namespace DataConverter.Converters
                     Id = currentWgCaptain.id,
                     Index = currentWgCaptain.index,
                     Name = currentWgCaptain.name,
-                    HasSpecialSkills = false
+                    HasSpecialSkills = false,
+                    Nation = ConvertNationString(currentWgCaptain.typeinfo.nation),
                 };
 
                 //create object SKill
@@ -231,6 +247,15 @@ namespace DataConverter.Converters
             }
 
             return positions;
+        }
+
+        private static Nation ConvertNationString(string wgNation)
+        {
+            return wgNation.Replace("_", "") switch
+            {
+                "USA" => Nation.Usa,
+                { } any => Enum.Parse<Nation>(any),
+            };
         }
 
         private static string GetSkillTranslationId(string skillName)
