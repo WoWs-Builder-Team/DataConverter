@@ -35,20 +35,24 @@ namespace DataConverter.Converters
             foreach (var currentWgCaptain in wgCaptain)
             {
                 var tags = currentWgCaptain.CrewPersonality.tags;
-                // this way we add only one default captain and the nation special captains
-                if (tags == null && !isCommon)
+                // if no tags and we are not processing Common, skip the captain. A captain with no tags is the default captain of the nation, a copy of the one in Common.
+                if ((tags == null || tags.Count == 0) && !isCommon)
                 {
                     continue;
                 }
-                if (tags == null && !addedDefault)
+                // if no tags and we already added the default captain in Common, skip all the next. They are copy of each other.
+                if (isCommon && (tags == null || tags.Count == 0) && addedDefault)
+                {
+                    continue;
+                }
+                // if no tags and we haven't added the default captain in Common, set the flag to true to skip future ones.
+                if (isCommon && (tags == null || tags.Count == 0) && !addedDefault)
                 {
                     addedDefault = true;
                 }
-                if (tags == null && addedDefault)
-                {
-                    continue;
-                }
-                if (tags != null && (!tags.Contains("upperks") || !tags.Contains("talants")))
+                // finally, if the tags are not null or empty and are different from upperks (boosted skill) or talants (wg doesn't know how to spell talent, it's the legendary captain)
+                // then skip them. No need to have all the cosmetic captain that are the same of the default one displayed.
+                if ((tags != null && tags.Count > 0) && (!tags.Contains("upperks") || !tags.Contains("talants")))
                 {
                     continue;
                 }

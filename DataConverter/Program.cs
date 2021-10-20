@@ -59,7 +59,7 @@ namespace DataConverter
             Dictionary<string, List<FileVersion>> versions = new();
             VersionInfo oldVersionInfo;
 
-            string versionType = outputFolder.Contains("live") ? "live" : "pts";
+            string versionType = outputFolder.Contains("live", StringComparison.InvariantCultureIgnoreCase) ? "live" : "pts";
             try
             {
                 // Use GetAwaiter().GetResult() instead of Result to avoid receiving an aggregate exception.
