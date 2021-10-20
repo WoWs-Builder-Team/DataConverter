@@ -12,6 +12,7 @@ namespace DataConverter.WGStructure
 {
     public class WGShip
     {
+        public BurstArtilleryModule BurstArtilleryModule { get; set; }
         public Dictionary<string, ModuleArmaments> ModulesArmaments { get; set; }
         public Dictionary<string, ShipAbility> ShipAbilities { get; set; }
         public ShipUpgradeInfo ShipUpgradeInfo { get; set; }
@@ -36,6 +37,7 @@ namespace DataConverter.WGStructure
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgFlightControl), "squadrons")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPingerGun), "waveReloadTime")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPlane), "planeType")]
+    [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgSpecialAbility), "RageMode")]
     public class ModuleArmaments { }
 
     #region Main battery
@@ -464,6 +466,38 @@ namespace DataConverter.WGStructure
         public string[] nextShips { get; set; }
         public string prev { get; set; }
         public string ucType { get; set; }
+    }
+    #endregion
+
+    #region Special abilities of super ship
+    public class BurstArtilleryModule
+    {
+        public decimal burstReloadTime { get; set; }
+        public decimal fullReloadTime { get; set; }
+        public Dictionary<string,float> modifiers { get; set; }
+        public int shotsCount { get; set; }
+    }
+
+    public class WgSpecialAbility : ModuleArmaments
+    {
+        public RageMode RageMode { get; set; }
+        public int buffsShiftMaxLevel { get; set; }
+        public double buffsShiftSpeed { get; set; }
+        public int buffsStartPool { get; set; }
+        public Dictionary<string, float> modifiers { get; set; }
+    }
+
+    public class RageMode
+    {
+        public double boostDuration { get; set; }
+        public int decrementCount { get; set; }
+        public double decrementDelay { get; set; }
+        public double decrementPeriod { get; set; }
+        public int gunsForSalvo { get; set; }
+        public Dictionary<string, float> modifiers { get; set; }
+        public double radius { get; set; }
+        public string rageModeName { get; set; }
+        public int requiredHits { get; set; }
     }
     #endregion
 
