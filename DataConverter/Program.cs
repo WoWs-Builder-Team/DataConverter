@@ -77,7 +77,8 @@ namespace DataConverter
 
             var serializerSettings = new JsonSerializerSettings()
             {
-                NullValueHandling = NullValueHandling.Ignore,                
+                NullValueHandling = NullValueHandling.Ignore,   
+                ContractResolver = new ShouldSerializeContractResolver()
             };
             var counter = 0;
             foreach (string category in categories)
