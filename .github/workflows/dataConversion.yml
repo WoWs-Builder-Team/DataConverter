@@ -40,11 +40,11 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: Run gameparams live extract
-        if: $env:OUTPUT_ADDITION == "live"
+        if: "!contains(github.ref, 'pts')"
         working-directory: gameparams
         run: python GameParams2Json.py --path GameParams.data --filter
       - name: Run gameparams pts extract
-        if: $env:OUTPUT_ADDITION == "pts"
+        if: "contains(github.ref, 'pts')"
         working-directory: gameparams
         run: python GameParams2Json.py --path GameParams_pt.data --filter --pts
         
