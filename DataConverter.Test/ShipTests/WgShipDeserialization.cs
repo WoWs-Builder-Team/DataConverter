@@ -90,13 +90,13 @@ namespace DataConverter.Test.ShipTests
         [Test]
         public void DeserializeCaptain_Succes()
         {
-            var filePath = GetFilePath("filtered_Germany_Crew.json");
+            var filePath = GetFilePath("filtered_USA_Crew.json");
             var fileContent = File.ReadAllText(filePath);
 
             var skillsJsonPath = GetFilePath("SKILLS_BY_TIER.json");
             var skillsJsonContent = File.ReadAllText(skillsJsonPath);
 
-            var dict = CaptainConverter.ConvertCaptain(fileContent, skillsJsonContent);
+            var dict = CaptainConverter.ConvertCaptain(fileContent, skillsJsonContent, false);
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
         }

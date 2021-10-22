@@ -20,7 +20,7 @@ namespace DataConverter.Converters
         /// <param name="skillsJsonInput">The file content of the embedded captain data file.</param>
         /// <returns>A dictionary mapping an ID to a <see cref="Captain"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-        public static Dictionary<string, Captain> ConvertCaptain(string captainJsonInput, string skillsJsonInput)
+        public static Dictionary<string, Captain> ConvertCaptain(string captainJsonInput, string skillsJsonInput, bool isCommon)
         {
             //create a List of our Objects
             Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
@@ -30,9 +30,32 @@ namespace DataConverter.Converters
 
             var skillsTiers = JsonConvert.DeserializeObject<SkillsTiers>(skillsJsonInput) ?? throw new InvalidOperationException();
 
+            bool addedDefault = false;
             //iterate over the entire list to convert everything
             foreach (var currentWgCaptain in wgCaptain)
             {
+                var tags = currentWgCaptain.CrewPersonality.tags;
+                // if no tags and we are not processing Common, skip the captain. A captain with no tags is the default captain of the nation, a copy of the one in Common.
+                if ((tags == null || tags.Count == 0) && !isCommon)
+                {
+                    continue;
+                }
+                // if no tags and we already added the default captain in Common, skip all the next. They are copy of each other.
+                if (isCommon && (tags == null || tags.Count == 0) && addedDefault)
+                {
+                    continue;
+                }
+                // if no tags and we haven't added the default captain in Common, set the flag to true to skip future ones.
+                if (isCommon && (tags == null || tags.Count == 0) && !addedDefault)
+                {
+                    addedDefault = true;
+                }
+                // finally, if the tags are not null or empty and are different from upperks (boosted skill) or talants (wg doesn't know how to spell talent, it's the legendary captain)
+                // then skip them. No need to have all the cosmetic captain that are the same of the default one displayed.
+                if ((tags != null && tags.Count > 0) && (!tags.Contains("upperks") || !tags.Contains("talants")))
+                {
+                    continue;
+                }
                 Program.TranslationNames.Add(currentWgCaptain.name);
                 //start mapping
                 Captain captain = new Captain
@@ -40,7 +63,8 @@ namespace DataConverter.Converters
                     Id = currentWgCaptain.id,
                     Index = currentWgCaptain.index,
                     Name = currentWgCaptain.name,
-                    HasSpecialSkills = false
+                    HasSpecialSkills = false,
+                    Nation = ConvertNationString(currentWgCaptain.typeinfo.nation),
                 };
 
                 //create object SKill
@@ -231,6 +255,15 @@ namespace DataConverter.Converters
             }
 
             return positions;
+        }
+
+        private static Nation ConvertNationString(string wgNation)
+        {
+            return wgNation.Replace("_", "") switch
+            {
+                "USA" => Nation.Usa,
+                { } any => Enum.Parse<Nation>(any),
+            };
         }
 
         private static string GetSkillTranslationId(string skillName)

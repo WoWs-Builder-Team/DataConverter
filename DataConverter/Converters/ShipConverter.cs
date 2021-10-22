@@ -50,11 +50,12 @@ namespace DataConverter.Converters
                     ShipConsumable = ProcessConsumables(wgShip),
                     AirStrikes = ProcessAirstrikes(wgShip),
                     PingerGunList = ProcessPingerGuns(wgShip),
+                    SpecialAbility = ProcessSpecialAbility(wgShip),
+                    BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule)
                 };
 
                 ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
-
                 results[ship.Index] = ship;
 
                 if (ship.ShipCategory == ShipCategory.TechTree)
@@ -86,6 +87,48 @@ namespace DataConverter.Converters
 
         #region Component converters
 
+        private static BurstModeAbility ProcessBurstModeAbility(BurstArtilleryModule module)
+        {
+            if (module != null)
+            {
+                var burstAbility = new BurstModeAbility()
+                {
+                    ShotInBurst = module.shotsCount,
+                    ReloadAfterBurst = module.fullReloadTime,
+                    ReloadDuringBurst = module.burstReloadTime,
+                    Modifiers = module.modifiers
+                };
+                Program.TranslationNames.UnionWith(burstAbility.Modifiers.Keys);
+                return burstAbility;
+            }
+            return null;
+        }
+
+        private static SpecialAbility ProcessSpecialAbility(WGShip wgShip)
+        {
+            Dictionary<string, WgSpecialAbility> wgSpecialAbilityList = wgShip.ModulesArmaments.ModulesOfType<WgSpecialAbility>();
+            if (wgSpecialAbilityList.Count > 1)
+            {
+                throw new InvalidOperationException($"Too many special abilities for ship {wgShip.index}");
+            }
+            else if (wgSpecialAbilityList.Count == 1)
+            {
+                var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
+                var specialAbility = new SpecialAbility()
+                {
+                    Duration = wgAbility.boostDuration,
+                    Modifiers = wgAbility.modifiers,
+                    Name = wgAbility.rageModeName,
+                    RadiusForSuccessfulHits = wgAbility.radius,
+                    RequiredHits = wgAbility.requiredHits
+                };
+                Program.TranslationNames.Add(specialAbility.Name);
+                Program.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
+                return specialAbility;
+            }
+            return null;
+        }
+
         private static Nation ConvertNationString(string wgNation)
         {
             return wgNation.Replace("_", "") switch
@@ -116,6 +159,7 @@ namespace DataConverter.Converters
                 "upgradeableExclusive" => ShipCategory.Premium,
                 "upgradeableUltimate" => ShipCategory.Special,
                 "unavailable" => ShipCategory.Disabled,
+                "legendaryBattle" => ShipCategory.TechTree,
                 _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory)
             };
         }

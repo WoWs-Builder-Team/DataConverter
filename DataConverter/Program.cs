@@ -59,7 +59,7 @@ namespace DataConverter
             Dictionary<string, List<FileVersion>> versions = new();
             VersionInfo oldVersionInfo;
 
-            string versionType = outputFolder.Contains("live") ? "live" : "pts";
+            string versionType = outputFolder.Contains("live", StringComparison.InvariantCultureIgnoreCase) ? "live" : "pts";
             try
             {
                 // Use GetAwaiter().GetResult() instead of Result to avoid receiving an aggregate exception.
@@ -75,6 +75,11 @@ namespace DataConverter
                 oldVersionInfo = new VersionInfo(new Dictionary<string, List<FileVersion>>());
             }
 
+            var serializerSettings = new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,   
+                ContractResolver = new ShouldSerializeContractResolver()
+            };
             var counter = 0;
             foreach (string category in categories)
             {
@@ -103,51 +108,51 @@ namespace DataConverter
                     {
                         case "Ability":
                             dict = ConsumableConverter.ConvertConsumable(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Aircraft":
                             dict = AircraftConverter.ConvertAircraft(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
 
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Crew":
                             string skillsList = CaptainConverter.LoadEmbeddedSkillData();
-                            dict = CaptainConverter.ConvertCaptain(wgList, skillsList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            dict = CaptainConverter.ConvertCaptain(wgList, skillsList, fileName.Contains("Common"));
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Modernization":
                             dict = ModernizationConverter.ConvertModernization(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Projectile":
                             dict = ProjectileConverter.ConvertProjectile(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Ship":
                             dict = ShipConverter.ConvertShips(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Unit":
                             dict = ModuleConverter.ConvertModule(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;
                         case "Exterior":
                             dict = ExteriorConverter.ConvertExterior(wgList);
-                            ownStructure = JsonConvert.SerializeObject(dict);
+                            ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
 
                             break;

@@ -30,6 +30,8 @@ namespace WoWsShipBuilderDataStructures
         public Dictionary<string, PingerGun> PingerGunList { get; set; }
         public List<ShipConsumable> ShipConsumable { get; set; }
         public UpgradeInfo ShipUpgradeInfo { get; set; }
+        public SpecialAbility SpecialAbility { get; set; }
+        public BurstModeAbility BurstModeAbility { get; set; }
     }
 
     #region Main Battery and Secondaries
@@ -359,5 +361,24 @@ namespace WoWsShipBuilderDataStructures
         public bool CanBuy { get; set; }
     }
 
+    #endregion
+
+    #region Special Abilities for super ship
+    public class SpecialAbility
+    {
+        public double Duration { get; set; }
+        public int RequiredHits {get; set;}
+        public double RadiusForSuccessfulHits { get; set; }
+        public Dictionary<string, float> Modifiers { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class BurstModeAbility
+    {
+        public decimal ReloadDuringBurst { get; set; }
+        public decimal ReloadAfterBurst { get; set; }
+        public Dictionary<string, float> Modifiers { get; set; }
+        public int ShotInBurst { get; set; }
+    }
     #endregion
 }

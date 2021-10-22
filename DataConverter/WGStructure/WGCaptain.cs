@@ -23,12 +23,6 @@ namespace DataConverter.WGStructure
     {
         public bool canResetSkillsForFree { get; set; }
         public List<string> tags { get; set; }
-        public CaptainShips ships { get; set; }
-    }
-
-    public class CaptainShips
-    {
-        public List<string> nation { get; set; }
     }
 
     //big skill structure. modifiers contain always on effects.
