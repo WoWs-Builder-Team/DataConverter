@@ -54,6 +54,8 @@ namespace DataConverter.Converters
                     BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule)
                 };
 
+                ship.Permaflages = wgShip.permoflages;
+                Program.TranslationNames.UnionWith(wgShip.permoflages);
                 ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
                 results[ship.Index] = ship;

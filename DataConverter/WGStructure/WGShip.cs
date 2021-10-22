@@ -22,6 +22,7 @@ namespace DataConverter.WGStructure
         public string name { get; set; }
         public string group { get; set; }
         public Typeinfo typeinfo { get; set; }
+        public List<string> permoflages { get; set; }
     }
 
     [JsonConverter(typeof(JsonSubtypes))]
