@@ -74,6 +74,38 @@ namespace WoWsShipBuilderDataStructures
         public double Delim { get; set; }
         public decimal MaximumHorizontalDispersion { get; set; }
         public decimal MaximumVerticalDispersion { get; set; }
+
+        public double CalculateHorizontalDispersion(double range)
+        {
+            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
+            double x = range / 30;
+            if (x <= TaperDist)
+            {
+                return x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / TaperDist);
+            }
+
+            return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius) * 30;
+        }
+
+        public double CalculateVerticalDispersion(double maxRange, double range = -1)
+        {
+            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
+            maxRange /= 30;
+            double x = range >= 0 ? range / 30 : maxRange;
+            double delimDist = maxRange * Delim;
+
+            double verticalCoeff;
+            if (x < delimDist)
+            {
+                verticalCoeff = RadiusOnZero + (RadiusOnDelim - RadiusOnZero) * (x / delimDist);
+            }
+            else
+            {
+                verticalCoeff = RadiusOnDelim + (RadiusOnMax - RadiusOnDelim) * (x - delimDist) / (maxRange - delimDist);
+            }
+
+            return CalculateHorizontalDispersion(range) * verticalCoeff * 30;
+        }
     }
     #endregion
 
@@ -228,6 +260,14 @@ namespace WoWsShipBuilderDataStructures
         public AntiAir AntiAir { get; set; }
         public TurretModule SecondaryModule { get; set; }
         public DepthChargeArray DepthChargeArray { get; set; }
+        public int FireSpots { get; set; }
+        public decimal FireResistance { get; set; }
+        public decimal FireTickDamage { get; set; }
+        public decimal FireDuration { get; set; }
+        public int FloodingSpots { get; set; }
+        public decimal FloodingResistance { get; set; }
+        public decimal FloodingTickDamage { get; set; }
+        public decimal FloodingDuration { get; set; }
     }
 
     #endregion

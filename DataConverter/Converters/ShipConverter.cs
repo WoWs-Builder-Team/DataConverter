@@ -192,20 +192,24 @@ namespace DataConverter.Converters
                 };
 
                 // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
-                double maxRange = decimal.ToDouble(turretModule.MaxRange) / 30;
-                double horizontalDispersion = maxRange * (turretDispersion.IdealRadius - turretDispersion.MinRadius) /
-                    turretDispersion.IdealDistance + turretDispersion.MinRadius;
+                // double maxRange = decimal.ToDouble(turretModule.MaxRange) / 30;
+                // double horizontalDispersion = maxRange * (turretDispersion.IdealRadius - turretDispersion.MinRadius) /
+                //     turretDispersion.IdealDistance + turretDispersion.MinRadius;
+                //
+                // double delimDist = turretDispersion.Delim * maxRange;
+                // double verticalCoeff = turretDispersion.RadiusOnDelim +
+                //                        (turretDispersion.RadiusOnMax - turretDispersion.RadiusOnDelim) * (maxRange - delimDist) / (maxRange - delimDist);
+                // double verticalDispersion = horizontalDispersion * verticalCoeff;
+                //
+                // var effectiveHorizontalDispersion = Convert.ToDecimal(horizontalDispersion * 30);
+                // turretDispersion.MaximumHorizontalDispersion = Math.Round(effectiveHorizontalDispersion, 1);
+                // var effectiveVerticalDispersion = Convert.ToDecimal(verticalDispersion * 30);
+                // turretDispersion.MaximumVerticalDispersion = Math.Round(effectiveVerticalDispersion, 1);
 
-                double delimDist = turretDispersion.Delim * maxRange;
-                double verticalCoeff = turretDispersion.RadiusOnDelim +
-                                       (turretDispersion.RadiusOnMax - turretDispersion.RadiusOnDelim) * (maxRange - delimDist) / (maxRange - delimDist);
-                double verticalDispersion = horizontalDispersion * verticalCoeff;
-
-                var effectiveHorizontalDispersion = Convert.ToDecimal(horizontalDispersion * 30);
-                turretDispersion.MaximumHorizontalDispersion = Math.Round(effectiveHorizontalDispersion, 1);
-                var effectiveVerticalDispersion = Convert.ToDecimal(verticalDispersion * 30);
-                turretDispersion.MaximumVerticalDispersion = Math.Round(effectiveVerticalDispersion, 1);
-
+                var maxRange = decimal.ToDouble(turretModule.MaxRange);
+                turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateHorizontalDispersion(maxRange)), 1);
+                turretDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateVerticalDispersion(maxRange)), 1);
+                
                 turretModule.DispersionValues = turretDispersion;
                 Program.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
 
@@ -242,6 +246,14 @@ namespace DataConverter.Converters
                     SmokeFiringDetection = wgHull.visibilityCoefGKInSmoke,
                     SurfaceDetection = wgHull.visibilityFactor,
                     AirDetection = wgHull.visibilityFactorByPlane,
+                    FireSpots = wgHull.burnNodes.Length,
+                    FireResistance = wgHull.burnNodes[0][0],
+                    FireTickDamage = wgHull.burnNodes[0][1],
+                    FireDuration = wgHull.burnNodes[0][2],
+                    FloodingSpots = wgHull.floodNodes.Length,
+                    FloodingResistance = wgHull.floodNodes[0][0],
+                    FloodingTickDamage = wgHull.floodNodes[0][1],
+                    FloodingDuration = wgHull.floodNodes[0][2],
                 };
 
                 // Process anti-air data

@@ -28,7 +28,7 @@ namespace DataConverter.WGStructure
 
     public class CaptainShips
     {
-        public List<Nation> nation { get; set; }
+        public List<string> nation { get; set; }
     }
 
     //big skill structure. modifiers contain always on effects.
