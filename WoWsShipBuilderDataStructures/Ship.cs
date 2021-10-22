@@ -84,7 +84,7 @@ namespace WoWsShipBuilderDataStructures
             double effectiveTaperDist = TaperDist / 30;
             if (x <= effectiveTaperDist)
             {
-                return x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / effectiveTaperDist);
+                return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / effectiveTaperDist)) * 30;
             }
 
             return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius) * 30;

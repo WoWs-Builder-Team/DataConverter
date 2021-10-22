@@ -29,11 +29,28 @@ namespace DataConverter.Test
         }
         
         [Test]
+        public void HorizontalDispersionCalculation_ShortRange()
+        {
+            double range = 3500;
+            var horizontalDispersion = dispersion.CalculateHorizontalDispersion(range);
+            Assert.True(Math.Abs(horizontalDispersion - 39.3) < 0.1);
+        }
+        
+        [Test]
         public void VerticalDispersionCalculation()
         {
             double range = 16230;
             var verticalDispersion = dispersion.CalculateVerticalDispersion(range);
             Assert.True(Math.Abs(verticalDispersion - 82) < 0.1);
+        }
+        
+        [Test]
+        public void VerticalDispersionCalculation_ShortRange()
+        {
+            double maxRange = 16230;
+            double range = 3500;
+            var verticalDispersion = dispersion.CalculateVerticalDispersion(maxRange, range);
+            Assert.True(Math.Abs(verticalDispersion - 13) < 0.1);
         }
     }
 }
