@@ -81,9 +81,10 @@ namespace WoWsShipBuilderDataStructures
         {
             // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
             double x = range / 30;
-            if (x <= TaperDist)
+            double effectiveTaperDist = TaperDist / 30;
+            if (x <= effectiveTaperDist)
             {
-                return x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / TaperDist);
+                return x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / effectiveTaperDist);
             }
 
             return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius) * 30;
@@ -106,7 +107,7 @@ namespace WoWsShipBuilderDataStructures
                 verticalCoeff = RadiusOnDelim + (RadiusOnMax - RadiusOnDelim) * (x - delimDist) / (maxRange - delimDist);
             }
 
-            return CalculateHorizontalDispersion(range) * verticalCoeff * 30;
+            return CalculateHorizontalDispersion(x * 30) * verticalCoeff;
         }
     }
     #endregion
