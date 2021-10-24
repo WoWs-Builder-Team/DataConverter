@@ -55,7 +55,10 @@ namespace DataConverter.Converters
                 };
 
                 ship.Permaflages = wgShip.permoflages;
-                Program.TranslationNames.UnionWith(wgShip.permoflages);
+                if (wgShip.permoflages != null)
+                {
+                    Program.TranslationNames.UnionWith(wgShip.permoflages);
+                }
                 ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
                 results[ship.Index] = ship;
