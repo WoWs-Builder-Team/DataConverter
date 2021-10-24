@@ -27,6 +27,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
+      - name: Prepare data converter
+        run: dotnet test -c Release --verbosity normal
+        
       - name: Get and store tag version name
         run: echo ("GAME_VERSION=" + $env:GITHUB_REF.Replace('refs/tags/convert-', '')) >> $env:GITHUB_ENV
       - name: Get base output path

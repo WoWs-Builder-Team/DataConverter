@@ -30,6 +30,7 @@ jobs:
   publish-nuget:
     runs-on: windows-latest
     name: Build and publish NuGet package
+    needs: build
 
     steps:
       - uses: actions/checkout@v2
