@@ -300,6 +300,7 @@ namespace DataConverter.Converters
                     FloodingResistance = wgHull.floodNodes[0][0],
                     FloodingTickDamage = wgHull.floodNodes[0][1],
                     FloodingDuration = wgHull.floodNodes[0][2],
+                    TurningRadius = wgHull.turningRadius,
                 };
 
                 // Process anti-air data
