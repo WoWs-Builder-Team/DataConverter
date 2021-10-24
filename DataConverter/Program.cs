@@ -185,7 +185,7 @@ namespace DataConverter
             FileVersion summaryVersion = CheckVersionAndSave(summaryString, "Summary", "Common.json", oldVersionInfo, versionType);
             versions.Add("Summary", new List<FileVersion> { summaryVersion });
 
-            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName);
+            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName, oldVersionInfo.VersionName);
 
             //write the updated versioning file
             string versionerString = JsonConvert.SerializeObject(newVersioner);
