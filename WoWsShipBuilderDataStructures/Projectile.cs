@@ -8,6 +8,7 @@ namespace WoWsShipBuilderDataStructures
     [JsonSubtypes.KnownSubType(typeof(ArtilleryShell), ProjectileType.Artillery)]
     [JsonSubtypes.KnownSubType(typeof(Bomb), ProjectileType.Bomb)]
     [JsonSubtypes.KnownSubType(typeof(Bomb), ProjectileType.SkipBomb)]
+    [JsonSubtypes.KnownSubType(typeof(Rocket), ProjectileType.Rocket)]
     [JsonSubtypes.KnownSubType(typeof(DepthCharge), ProjectileType.DepthCharge)]
     [JsonSubtypes.KnownSubType(typeof(Torpedo), ProjectileType.Torpedo)]
     public class Projectile

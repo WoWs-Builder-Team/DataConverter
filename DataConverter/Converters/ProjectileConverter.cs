@@ -65,7 +65,7 @@ namespace DataConverter.Converters
 
                             shell.Penetration = currentWgShell.alphaPiercingCS;
                             shell.RicochetAngle = currentWgShell.bulletRicochetAt;
-                            shell.AlwaysRicochetAngle = currentWgShell.bulletAlwayRiccochetAt;
+                            shell.AlwaysRicochetAngle = currentWgShell.bulletAlwaysRicochetAt;
                             //SAP FireChance = 0 => not relevant => shell.FireChance is set to default value
                             //SAP Krupp = 3 => not relevant => shell.Krupp is set to default value
                         }
@@ -85,7 +85,7 @@ namespace DataConverter.Converters
                             {
                                 //AP Penetration is not a fixed value => shell.Penetration is set to default value
                                 shell.RicochetAngle = currentWgShell.bulletRicochetAt;
-                                shell.AlwaysRicochetAngle = currentWgShell.bulletAlwayRiccochetAt;
+                                shell.AlwaysRicochetAngle = currentWgShell.bulletAlwaysRicochetAt;
                                 //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
                                 shell.Krupp = currentWgShell.bulletKrupp;
                             }

@@ -40,7 +40,7 @@ namespace DataConverter.WGStructure
         public float bulletKrupp { get; set; }
         public float bulletMass { get; set; }
         public float bulletRicochetAt { get; set; }
-        public float bulletAlwayRiccochetAt { get; set; }
+        public float bulletAlwaysRicochetAt { get; set; }
         public float bulletSpeed { get; set; }
         public float burnProb { get; set; }
         public float distTile { get; set; }

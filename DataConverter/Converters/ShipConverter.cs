@@ -208,9 +208,12 @@ namespace DataConverter.Converters
                     NextShips = upgrade.nextShips,
                     Prev = upgrade.prev,
                 };
-                upgradeInfo.ShipUpgrades.Add(newUpgrade);
+                if (newUpgrade.UcType != ComponentType.FlightControl)
+                {
+                    upgradeInfo.ShipUpgrades.Add(newUpgrade);
+                }
             }
-
+            
             return upgradeInfo;
         }
 
