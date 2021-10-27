@@ -1,7 +1,15 @@
 ﻿using System.Collections.Generic;
+using JsonSubTypes;
+using Newtonsoft.Json;
 
 namespace WoWsShipBuilderDataStructures
 {
+    [JsonConverter(typeof(JsonSubtypes), "ProjectileType")]
+    [JsonSubtypes.KnownSubType(typeof(ArtilleryShell), ProjectileType.Artillery)]
+    [JsonSubtypes.KnownSubType(typeof(Bomb), ProjectileType.Bomb)]
+    [JsonSubtypes.KnownSubType(typeof(Bomb), ProjectileType.SkipBomb)]
+    [JsonSubtypes.KnownSubType(typeof(DepthCharge), ProjectileType.DepthCharge)]
+    [JsonSubtypes.KnownSubType(typeof(Torpedo), ProjectileType.Torpedo)]
     public class Projectile
     {
         public long Id { get; set; }
