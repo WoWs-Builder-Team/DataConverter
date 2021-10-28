@@ -52,17 +52,23 @@ namespace DataConverter.Converters
                 }
                 // finally, if the tags are not null or empty and are different from upperks (boosted skill) or talants (wg doesn't know how to spell talent, it's the legendary captain)
                 // then skip them. No need to have all the cosmetic captain that are the same of the default one displayed.
-                if ((tags != null && tags.Count > 0) && (!tags.Contains("upperks") || !tags.Contains("talants")))
+                if ((tags != null && tags.Count > 0) && (!tags.Contains("upperks") && !tags.Contains("talants")))
                 {
                     continue;
                 }
-                Program.TranslationNames.Add(currentWgCaptain.name);
+                string name = currentWgCaptain.CrewPersonality.personName;
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = "Default";
+                }
+
+                Program.TranslationNames.Add(name);
                 //start mapping
                 Captain captain = new Captain
                 {
                     Id = currentWgCaptain.id,
                     Index = currentWgCaptain.index,
-                    Name = currentWgCaptain.name,
+                    Name = name,
                     HasSpecialSkills = false,
                     Nation = ConvertNationString(currentWgCaptain.typeinfo.nation),
                 };
