@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using WoWsShipBuilderDataStructures;
 
 namespace DataConverter.Converters
@@ -88,11 +89,33 @@ namespace DataConverter.Converters
                     air.PlaneCategory = PlaneCategory.Cv;
                 }
 
+                air.AircraftConsumable = ProcessConsumables(currentWgAir);
+
                 // dictionary with index as key, for easier search
                 airList.Add(currentWgAir.index, air);
             }
 
             return airList;
+        }
+
+        private static List<AircraftConsumable> ProcessConsumables(WGAircraft aircraft)
+        {
+            var resultList = new List<AircraftConsumable>();
+            foreach ((_, AircraftAbility wgAbility) in aircraft.AircraftAbilities)
+            {
+                IEnumerable<AircraftConsumable> consumableList = wgAbility.abils
+                    .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
+                    .Select(ability =>
+                        new AircraftConsumable
+                        {
+                            ConsumableName = ability.AbilityName,
+                            ConsumableVariantName = ability.AbilityVariant,
+                            Slot = wgAbility.slot,
+                        });
+                resultList.AddRange(consumableList);
+            }
+
+            return resultList;
         }
     }
 }

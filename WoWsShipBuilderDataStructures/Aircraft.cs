@@ -31,6 +31,7 @@ namespace WoWsShipBuilderDataStructures
         public PlaneCategory PlaneCategory { get; set; }
         public PlaneAttackData AttackData { get; set; }
         public JatoData JatoData { get; set; }
+        public List<AircraftConsumable> AircraftConsumable { get; set; }
 
     }
 
@@ -49,5 +50,12 @@ namespace WoWsShipBuilderDataStructures
     {
         public double JatoDuration { get; set; }
         public double JatoSpeedMultiplier { get; set; }
+    }
+
+    public class AircraftConsumable
+    {
+        public int Slot { get; set; }
+        public string ConsumableName { get; set; }
+        public string ConsumableVariantName { get; set; }
     }
 }

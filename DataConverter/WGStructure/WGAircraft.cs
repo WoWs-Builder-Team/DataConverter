@@ -6,6 +6,7 @@ namespace DataConverter.WGStructure
 {
     public class WGAircraft
     {
+        public Dictionary<string, AircraftAbility> AircraftAbilities { get; set; }
         public double attackCooldown { get; set; }
         public int attackCount { get; set; }
         public double attackInterval { get; set; }
@@ -46,5 +47,11 @@ namespace DataConverter.WGStructure
         public int restoreAmount { get; set; }
         public int startValue { get; set; }
         public float timeToRestore { get; set; }
+    }
+
+    public class AircraftAbility
+    {
+        public string[][] abils { get; set; }
+        public int slot { get; set; }
     }
 }
