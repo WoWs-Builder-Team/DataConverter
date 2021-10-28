@@ -6,7 +6,7 @@ namespace DataConverter.WGStructure
 {
     public class WGAircraft
     {
-        public Dictionary<string, AircraftAbility> AircraftAbilities { get; set; }
+        public Dictionary<string, AircraftAbility> PlaneAbilities { get; set; }
         public double attackCooldown { get; set; }
         public int attackCount { get; set; }
         public double attackInterval { get; set; }

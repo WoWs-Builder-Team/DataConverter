@@ -88,7 +88,6 @@ namespace DataConverter.Converters
                 {
                     air.PlaneCategory = PlaneCategory.Cv;
                 }
-
                 air.AircraftConsumable = ProcessConsumables(currentWgAir);
 
                 // dictionary with index as key, for easier search
@@ -101,7 +100,7 @@ namespace DataConverter.Converters
         private static List<AircraftConsumable> ProcessConsumables(WGAircraft aircraft)
         {
             var resultList = new List<AircraftConsumable>();
-            foreach ((_, AircraftAbility wgAbility) in aircraft.AircraftAbilities)
+            foreach ((_, AircraftAbility wgAbility) in aircraft.PlaneAbilities)
             {
                 IEnumerable<AircraftConsumable> consumableList = wgAbility.abils
                     .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
