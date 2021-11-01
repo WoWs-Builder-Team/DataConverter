@@ -142,6 +142,7 @@ namespace DataConverter.Converters
                     RequiredHits = wgAbility.requiredHits
                 };
                 Program.TranslationNames.Add(specialAbility.Name);
+                Program.TranslationNames.Add("RageMode");
                 Program.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
                 return specialAbility;
             }

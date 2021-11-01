@@ -26,10 +26,10 @@ namespace DataConverter.WGStructure
         public float workTime { get; set; }
         
         [JsonExtensionData]
-        public Dictionary<string, JToken> RawEffects { get; set; }
+        public Dictionary<string, JToken> RawModifiers { get; set; }
 
         [JsonIgnore]
-        public Dictionary<string, float> Effects => RawEffects
+        public Dictionary<string, float> Modifiers => RawModifiers
             ?.Select(entry => (entry.Key, Value: entry.Value.ToObject<float>()))
             ?.ToDictionary(entry => entry.Key, entry => entry.Value);
     }

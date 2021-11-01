@@ -14,6 +14,6 @@ namespace WoWsShipBuilderDataStructures
         public float ReloadTime { get; set; }
         public float WorkTime { get; set; }
         public string ConsumableVariantName { get; set; }
-        public Dictionary<string, float> Effects { get; set; }
+        public Dictionary<string, float> Modifiers { get; set; }
     }
 }

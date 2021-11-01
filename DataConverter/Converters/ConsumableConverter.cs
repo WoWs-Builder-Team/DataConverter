@@ -46,11 +46,11 @@ namespace DataConverter.Converters
                         ReloadTime = stats.reloadTime,
                         WorkTime = stats.workTime,
                         ConsumableVariantName = currentVariantKey,
-                        Effects = stats.Effects,
+                        Modifiers = stats.Modifiers,
                     };
-                    if (consumable.Effects?.Keys != null)
+                    if (consumable.Modifiers?.Keys != null)
                     {
-                        Program.TranslationNames.UnionWith(consumable.Effects.Keys);
+                        Program.TranslationNames.UnionWith(consumable.Modifiers.Keys);
                     }
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
