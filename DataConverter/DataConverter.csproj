@@ -17,6 +17,8 @@
     <ItemGroup>
       <None Remove="JsonData\SKILLS_BY_TIER.json" />
       <EmbeddedResource Include="JsonData\SKILLS_BY_TIER.json" />
+      <None Remove="JsonData\TurretPositionOverrides.json" />
+      <EmbeddedResource Include="JsonData\TurretPositionOverrides.json" />
     </ItemGroup>
 
 </Project>

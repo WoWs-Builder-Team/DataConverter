@@ -63,6 +63,8 @@ namespace WoWsShipBuilderDataStructures
         public decimal VerticalRotationSpeed { get; set; }
         public decimal Reload { get; set; }
         public decimal SmokeDetectionWhenFiring { get; set; }
+        public TurretOrientation TurretOrientation { get; set; }
+        public string WgGunIndex { get; set; }
     }
 
     public class Dispersion

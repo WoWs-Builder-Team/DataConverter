@@ -86,7 +86,7 @@ namespace DataConverter.WGStructure
 
         public static explicit operator Gun(MainBatteryGun gun)
         {
-            return new Gun
+            var newGun = new Gun
             {
                 AmmoList = gun.ammoList.ToList(),
                 BarrelDiameter = gun.barrelDiameter,
@@ -103,6 +103,9 @@ namespace DataConverter.WGStructure
                 Reload = gun.shotDelay,
                 SmokeDetectionWhenFiring = gun.smokePenalty,
             };
+            newGun.TurretOrientation = newGun.VerticalPosition < 3 ? TurretOrientation.Forward : TurretOrientation.Backward;
+
+            return newGun;
         }
     }
     #endregion

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilderDataStructures;
@@ -12,6 +14,8 @@ namespace DataConverter.Converters
     public static class ShipConverter
     {
         private static readonly HashSet<string> ReportedTypes = new();
+
+        private static readonly Dictionary<string, ShipTurretOverride> TurretPositionOverrides = LoadTurretOverrides();
 
         public static List<ShipSummary> ShipSummaries = new();
 
@@ -91,6 +95,16 @@ namespace DataConverter.Converters
         }
 
         #region Component converters
+
+        private static Dictionary<string, ShipTurretOverride> LoadTurretOverrides()
+        {
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DataConverter.JsonData.TurretPositionOverrides.json") ??
+                               throw new FileNotFoundException("Unable to locate embedded captain skill data.");
+            using var reader = new StreamReader(stream);
+            using var jsonReader = new JsonTextReader(reader);
+            var serializer = new JsonSerializer();
+            return serializer.Deserialize<Dictionary<string, ShipTurretOverride>>(jsonReader);
+        }
 
         private static BurstModeAbility ProcessBurstModeAbility(BurstArtilleryModule module)
         {
@@ -228,7 +242,7 @@ namespace DataConverter.Converters
                 {
                     Sigma = wgMainBattery.sigmaCount,
                     MaxRange = wgMainBattery.maxDist,
-                    Guns = wgMainBattery.guns.Select(entry => entry.Value).Select(entry => (Gun)entry).ToList(),
+                    Guns = wgMainBattery.guns.Select(entry => ConvertMainBatteryGun(entry.Value, key, entry.Key, wgShip.index)).ToList(),
                 };
                 MainBatteryGun dispersionGun = wgMainBattery.guns.Values.First();
                 var turretDispersion = new Dispersion
@@ -276,6 +290,21 @@ namespace DataConverter.Converters
             }
 
             return resultDictionary;
+        }
+
+        private static Gun ConvertMainBatteryGun(MainBatteryGun wgGun, string artilleryModuleKey, string mainGunKey, string shipIndex)
+        {
+            var newGun = (Gun)wgGun;
+            newGun.WgGunIndex = mainGunKey;
+            if (TurretPositionOverrides.TryGetValue(shipIndex, out var overrides))
+            {
+                if (overrides.ArtilleryTurretOverrides.TryGetValue(artilleryModuleKey, out var moduleOverrides) && moduleOverrides.TryGetValue(mainGunKey, out var turretOverride))
+                {
+                    newGun.TurretOrientation = turretOverride;
+                }
+            }
+
+            return newGun;
         }
 
         private static Dictionary<string, Hull> ProcessShipHull(WGShip wgShip, UpgradeInfo upgradeInfo)

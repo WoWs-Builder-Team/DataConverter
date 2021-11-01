@@ -198,4 +198,13 @@ namespace WoWsShipBuilderDataStructures
         Legendary,
         Other,
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum TurretOrientation
+    {
+        Forward,
+        Backward,
+        Right,
+        Left,
+    }
 }

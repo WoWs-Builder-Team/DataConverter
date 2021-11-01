@@ -1,4 +1,6 @@
-﻿namespace WoWsShipBuilderDataStructures
+﻿using System.Collections.Generic;
+
+namespace WoWsShipBuilderDataStructures
 {
     public class Consumable
     {
@@ -12,5 +14,6 @@
         public float ReloadTime { get; set; }
         public float WorkTime { get; set; }
         public string ConsumableVariantName { get; set; }
+        public Dictionary<string, float> Effects { get; set; }
     }
 }

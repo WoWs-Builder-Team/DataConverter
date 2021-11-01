@@ -1,0 +1,12 @@
+{
+  "1234" : {
+    "ArtilleryTurretOverrides" : {
+      "A1_Artillery": {
+        "Turret1" : "Forward",
+        "Turret2" : "Backward",
+        "Turret3" : "Left",
+        "Turret4" : "Right"
+      }
+    }
+  }
+}

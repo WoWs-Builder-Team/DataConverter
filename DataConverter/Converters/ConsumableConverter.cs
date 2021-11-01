@@ -27,29 +27,34 @@ namespace DataConverter.Converters
                 List<string> variantsKeys = new List<string>(variant.Keys);
                 Program.TranslationNames.UnionWith(variant.Values.Select(variantValue => variantValue.descIDs));
 
-                foreach (var currentVariantKey in variantsKeys)
+                foreach (string currentVariantKey in variantsKeys)
                 {
+                    //mapping all the variants
+                    Statistics stats = variant[currentVariantKey];
+
                     //create our object type
-                    Consumable consumable = new Consumable
+                    var consumable = new Consumable
                     {
                         //start mapping
                         Id = currentWgConsumable.id,
                         Index = currentWgConsumable.index,
-                        Name = currentWgConsumable.name
+                        Name = currentWgConsumable.name,
+                        DescId = stats.descIDs,
+                        Group = stats.group,
+                        IconId = stats.iconIDs,
+                        NumConsumables = stats.numConsumables,
+                        ReloadTime = stats.reloadTime,
+                        WorkTime = stats.workTime,
+                        ConsumableVariantName = currentVariantKey,
+                        Effects = stats.Effects,
                     };
-
-                    //mapping all the variants
-                    Statistics stats = variant[currentVariantKey];
-                    consumable.DescId = stats.descIDs;
-                    consumable.Group = stats.group;
-                    consumable.IconId = stats.iconIDs;
-                    consumable.NumConsumables = stats.numConsumables;
-                    consumable.ReloadTime = stats.reloadTime;
-                    consumable.WorkTime = stats.workTime;
-                    consumable.ConsumableVariantName = currentVariantKey;
+                    if (consumable.Effects?.Keys != null)
+                    {
+                        Program.TranslationNames.UnionWith(consumable.Effects.Keys);
+                    }
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
-                    string consumableKey = $"{consumable.Name} {currentVariantKey}";
+                    var consumableKey = $"{consumable.Name} {currentVariantKey}";
                     consumableList.Add(consumableKey, consumable);
                 }
             }
