@@ -47,6 +47,8 @@ namespace DataConverter.Converters
                     consumable.ReloadTime = stats.reloadTime;
                     consumable.WorkTime = stats.workTime;
                     consumable.ConsumableVariantName = currentVariantKey;
+                    consumable.Modifiers = stats.modifiers;
+                    Program.TranslationNames.UnionWith(stats.modifiers.Keys.ToList());
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
                     string consumableKey = $"{consumable.Name} {currentVariantKey}";
