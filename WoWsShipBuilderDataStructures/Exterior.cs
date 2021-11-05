@@ -15,6 +15,7 @@ namespace WoWsShipBuilderDataStructures
         public ExteriorType Type { get; set; }
         public int SortOrder { get; set; }
         public Restriction Restrictions { get; set; }
+        public int Group { get; set; }
     }
 
 

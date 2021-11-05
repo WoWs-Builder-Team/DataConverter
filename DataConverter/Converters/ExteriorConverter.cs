@@ -29,7 +29,8 @@ namespace DataConverter.Converters
                     Id = currentWgExterior.id,
                     Index = currentWgExterior.index,
                     Name = currentWgExterior.name,
-                    SortOrder = currentWgExterior.sortOrder
+                    SortOrder = currentWgExterior.sortOrder,
+                    Group = currentWgExterior.group
                 };
 
                 Dictionary<string, double> modifiers = new Dictionary<string, double>();

@@ -13,6 +13,7 @@ namespace DataConverter.WGStructure
         public Typeinfo typeinfo { get; set; }
         public int sortOrder { get; set; }
         public WGRestriction restrictions { get; set; }
+        public int group { get; set; }
     }
 
     //check if they are actually string, couldn't find one example
