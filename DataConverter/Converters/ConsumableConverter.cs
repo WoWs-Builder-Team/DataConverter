@@ -46,7 +46,7 @@ namespace DataConverter.Converters
                         ReloadTime = stats.reloadTime,
                         WorkTime = stats.workTime,
                         ConsumableVariantName = currentVariantKey,
-                        Modifiers = stats.Modifiers,
+                        Modifiers = ConvertModifiers(currentWgConsumable, stats),
                     };
                     if (consumable.Modifiers?.Keys != null)
                     {
@@ -60,6 +60,28 @@ namespace DataConverter.Converters
             }
 
             return consumableList;
+        }
+
+        private static Dictionary<string, float> ConvertModifiers(WGConsumable wgConsumable, Statistics consumableStats)
+        {
+            var results = new Dictionary<string, float>();
+            foreach ((string key, float modifier) in consumableStats.Modifiers ?? new Dictionary<string, float>())
+            {
+                switch (key)
+                {
+                    case "boostCoeff" when wgConsumable.index.Equals("PCY022"):
+                        results["artilleryReloadCoeff"] = modifier;
+                        break;
+                    case "boostCoeff" when wgConsumable.index.Equals("PCY034"):
+                        // Skip boost for plane consumable because it's invisible in UI anyway
+                        break;
+                    default:
+                        results[key] = modifier;
+                        break;
+                }
+            }
+
+            return results;
         }
     }
 }

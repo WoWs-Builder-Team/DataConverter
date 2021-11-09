@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace WoWsShipBuilderDataStructures
@@ -55,52 +54,21 @@ namespace WoWsShipBuilderDataStructures
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ComponentType
     {
-        [EnumMember(Value = "Artillery")]
         Artillery,
-
-        [EnumMember(Value = "Hull")]
         Hull,
-
-        [EnumMember(Value = "Sonar")]
         Sonar,
-
-        [EnumMember(Value = "Torpedoes")]
         Torpedoes,
-
-        [EnumMember(Value = "Fighter")]
         Fighter,
-
-        [EnumMember(Value = "TorpedoBomber")]
         TorpedoBomber,
-
-        [EnumMember(Value = "DiveBomber")]
         DiveBomber,
-
-        [EnumMember(Value = "SkipBomber")]
         SkipBomber,
-
-        [EnumMember(Value = "Suo")]
         Suo,
-
-        [EnumMember(Value = "Engine")]
         Engine,
-
-        [EnumMember(Value = "FlightControl")]
         FlightControl,
-
-        [EnumMember(Value = "Secondary")]
         Secondary,
-
-        [EnumMember(Value = "AirDefense")]
         AirDefense,
-
-        [EnumMember(Value = "AirArmament")]
         AirArmament,
-
-        [EnumMember(Value = "DepthCharges")]
         DepthCharges,
-
-        [EnumMember(Value = "None")]
         None,
     }
 

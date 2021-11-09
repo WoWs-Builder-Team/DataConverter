@@ -588,6 +588,7 @@ namespace DataConverter.Converters
                 "AirDefense" => ComponentType.AirDefense,
                 "AirArmament" => ComponentType.AirArmament,
                 "DepthCharges" => ComponentType.DepthCharges,
+                "Sonar" => ComponentType.Sonar,
                 _ => ComponentType.None,
             };
 
