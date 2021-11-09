@@ -39,6 +39,13 @@ namespace DataConverter.WGStructure
         public float speedMin { get; set; }
         public float speedMoveWithBomb { get; set; }
         public Typeinfo typeinfo { get; set; }
+        public decimal aimingAccuracyDecreaseRate { get; set; }
+        public decimal aimingAccuracyIncreaseRate { get; set; }
+        public decimal aimingTime { get; set; }
+        public decimal postAttackInvulnerabilityDuration { get; set; }
+        public decimal preparationAccuracyDecreaseRate { get; set; }
+        public decimal preparationAccuracyIncreaseRate { get; set; }
+        public decimal preparationTime { get; set; }
     }
 
     public class Hangarsettings
