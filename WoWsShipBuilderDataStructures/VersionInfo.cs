@@ -12,12 +12,12 @@ namespace WoWsShipBuilderDataStructures
 
         public string LastVersionName { get; }
 
-        public VersionInfo(Dictionary<string, List<FileVersion>> categories, int currentVersionCode = 0, string versionName = "", string oldVersionName = "")
+        public VersionInfo(Dictionary<string, List<FileVersion>> categories, int currentVersionCode = 0, string versionName = "", string lastVersionName = "")
         {
             Categories = categories;
             CurrentVersionCode = currentVersionCode;
             VersionName = versionName;
-            LastVersionName = oldVersionName;
+            LastVersionName = lastVersionName;
         }
     }
 
