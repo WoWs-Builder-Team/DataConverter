@@ -121,6 +121,7 @@ namespace DataConverter.WGStructure
     #region Torpedos
     public class WgTorpedoArray : ModuleArmaments
     {
+        public decimal timeToChangeAmmo { get; set; }
         public Dictionary<string, WgTorpedoLauncher> torpedoArray { get; set; }
     }
 
