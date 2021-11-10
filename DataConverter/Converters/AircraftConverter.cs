@@ -48,6 +48,13 @@ namespace DataConverter.Converters
                     FlightRadius = currentWgAir.flightRadius,
                     InnerBombsPercentage = currentWgAir.innerBombsPercentage,
                     InnerSalvoSize = currentWgAir.innerSalvoSize,
+                    AimingAccuracyDecreaseRate = currentWgAir.aimingAccuracyDecreaseRate,
+                    AimingAccuracyIncreaseRate = currentWgAir.aimingAccuracyIncreaseRate,
+                    AimingTime = currentWgAir.aimingTime,
+                    PostAttackInvulnerabilityDuration = currentWgAir.postAttackInvulnerabilityDuration,
+                    PreparationAccuracyDecreaseRate = currentWgAir.preparationAccuracyDecreaseRate,
+                    PreparationAccuracyIncreaseRate = currentWgAir.preparationAccuracyIncreaseRate,
+                    PreparationTime = currentWgAir.preparationTime,
                 };
 
                 PlaneAttackData planeattackdata = new PlaneAttackData

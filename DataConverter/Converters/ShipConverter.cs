@@ -418,6 +418,7 @@ namespace DataConverter.Converters
             {
                 var torpedoModule = new TorpedoModule
                 {
+                    TimeToChangeAmmo = wgTorpedoArray.torpedoArray.Values.Any(launcher => launcher.ammoList.Length > 1) ? wgTorpedoArray.timeToChangeAmmo : 0,
                     TorpedoLaunchers = wgTorpedoArray.torpedoArray.Select(entry => (TorpedoLauncher)entry.Value).ToList(),
                 };
                 Program.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
@@ -588,6 +589,7 @@ namespace DataConverter.Converters
                 "AirDefense" => ComponentType.AirDefense,
                 "AirArmament" => ComponentType.AirArmament,
                 "DepthCharges" => ComponentType.DepthCharges,
+                "Sonar" => ComponentType.Sonar,
                 _ => ComponentType.None,
             };
 

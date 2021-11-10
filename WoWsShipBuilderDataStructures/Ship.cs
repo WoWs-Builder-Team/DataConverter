@@ -129,6 +129,7 @@ namespace WoWsShipBuilderDataStructures
 
     public class TorpedoModule
     {
+        public decimal TimeToChangeAmmo { get; set; }
         public List<TorpedoLauncher> TorpedoLaunchers { get; set; }
     }
 

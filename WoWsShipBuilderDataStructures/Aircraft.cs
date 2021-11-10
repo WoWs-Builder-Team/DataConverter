@@ -32,7 +32,14 @@ namespace WoWsShipBuilderDataStructures
         public PlaneAttackData AttackData { get; set; }
         public JatoData JatoData { get; set; }
         public List<AircraftConsumable> AircraftConsumable { get; set; }
-
+        
+        public decimal AimingAccuracyDecreaseRate { get; set; }
+        public decimal AimingAccuracyIncreaseRate { get; set; }
+        public decimal AimingTime { get; set; }
+        public decimal PostAttackInvulnerabilityDuration { get; set; }
+        public decimal PreparationAccuracyDecreaseRate { get; set; }
+        public decimal PreparationAccuracyIncreaseRate { get; set; }
+        public decimal PreparationTime { get; set; }
     }
 
     public class PlaneAttackData
