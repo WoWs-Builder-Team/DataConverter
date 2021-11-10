@@ -8,7 +8,6 @@ namespace DataConverter.WGStructure
     {
         public Dictionary<string, AircraftAbility> PlaneAbilities { get; set; }
         public double attackCooldown { get; set; }
-        public int attackCount { get; set; }
         public double attackInterval { get; set; }
         public double attackSpeedMultiplier { get; set; }
         public double attackSpeedMultiplierApplyTime { get; set; }
@@ -16,7 +15,6 @@ namespace DataConverter.WGStructure
         public int attackerSize { get; set; }
         public double bombFallingTime { get; set; }
         public string bombName { get; set; }
-        public double damageTakenMultiplier { get; set; }
         public double flightHeight { get; set; }
         public double flightRadius { get; set; }
         public Hangarsettings hangarSettings { get; set; }
@@ -39,6 +37,7 @@ namespace DataConverter.WGStructure
         public float speedMin { get; set; }
         public float speedMoveWithBomb { get; set; }
         public Typeinfo typeinfo { get; set; }
+        public int projectilesPerAttack { get; set; }
     }
 
     public class Hangarsettings

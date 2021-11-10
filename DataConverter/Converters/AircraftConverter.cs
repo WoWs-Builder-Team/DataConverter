@@ -43,7 +43,7 @@ namespace DataConverter.Converters
                     RestorationTime = currentWgAir.hangarSettings.timeToRestore,
                     BombFallingTime = currentWgAir.bombFallingTime,
                     BombName = currentWgAir.bombName,
-                    DamageTakenMultiplier = currentWgAir.damageTakenMultiplier,
+                    DamageTakenMultiplier = currentWgAir.attackerDamageTakenMultiplier,
                     FlightHeight = currentWgAir.flightHeight,
                     FlightRadius = currentWgAir.flightRadius,
                     InnerBombsPercentage = currentWgAir.innerBombsPercentage,
@@ -54,11 +54,10 @@ namespace DataConverter.Converters
                 {
                     //start mapping
                     AttackCooldown = currentWgAir.attackCooldown,
-                    AttackCount = currentWgAir.attackCount,
+                    AttackCount = currentWgAir.projectilesPerAttack,
                     AttackInterval = currentWgAir.attackInterval,
                     AttackSpeedMultiplier = currentWgAir.attackSpeedMultiplier,
                     AttackSpeedMultiplierApplyTime = currentWgAir.attackSpeedMultiplierApplyTime,
-                    AttackerDamageTakenMultiplier = currentWgAir.attackerDamageTakenMultiplier,
                     AttackerSize = currentWgAir.attackerSize,
                 };
                 air.AttackData = planeattackdata;
