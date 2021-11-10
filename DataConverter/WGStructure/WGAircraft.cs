@@ -44,6 +44,7 @@ namespace DataConverter.WGStructure
         public decimal preparationAccuracyDecreaseRate { get; set; }
         public decimal preparationAccuracyIncreaseRate { get; set; }
         public decimal preparationTime { get; set; }
+        public int projectilesPerAttack { get; set; }
     }
 
     public class Hangarsettings
