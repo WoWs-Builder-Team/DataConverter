@@ -353,6 +353,7 @@ namespace DataConverter.WGStructure
         public decimal visibilityCoefGKInSmoke { get; set; }
         public decimal visibilityFactor { get; set; }
         public decimal visibilityFactorByPlane { get; set; }
+        public Dictionary<string, decimal> visibilityFactorsBySubmarine { get; set; }
         public decimal[][] burnNodes { get; set; } // Format: Fire resistance coeff, damage per second in %, burn time in s
         public decimal[][] floodNodes { get; set; } // Format: Torpedo belt reduction, damage per second in %, flood time in s
         public int turningRadius { get; set; }

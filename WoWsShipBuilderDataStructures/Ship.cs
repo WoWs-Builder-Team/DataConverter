@@ -264,6 +264,8 @@ namespace WoWsShipBuilderDataStructures
         public decimal SmokeFiringDetection { get; set; }
         public decimal SurfaceDetection { get; set; }
         public decimal AirDetection { get; set; }
+        public decimal DetectionBySubPeriscope { get; set; }
+        public decimal DetectionBySubOperating { get; set; }
         public AntiAir AntiAir { get; set; }
         public TurretModule SecondaryModule { get; set; }
         public DepthChargeArray DepthChargeArray { get; set; }
