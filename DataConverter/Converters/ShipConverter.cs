@@ -328,6 +328,8 @@ namespace DataConverter.Converters
                     SmokeFiringDetection = wgHull.visibilityCoefGKInSmoke,
                     SurfaceDetection = wgHull.visibilityFactor,
                     AirDetection = wgHull.visibilityFactorByPlane,
+                    DetectionBySubPeriscope = wgHull.visibilityFactorsBySubmarine["PERISCOPE"],
+                    DetectionBySubOperating = wgHull.visibilityFactorsBySubmarine["DEEP_WATER"],
                     FireSpots = wgHull.burnNodes.Length,
                     FireResistance = wgHull.burnNodes[0][0],
                     FireTickDamage = wgHull.burnNodes[0][1],
