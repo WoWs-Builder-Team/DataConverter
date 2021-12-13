@@ -34,6 +34,8 @@ namespace WoWsShipBuilderDataStructures
         public float AlwaysRicochetAngle { get; set; }
         public float MuzzleVelocity { get; set; }
         public float FireChance { get; set; }
+        public float SplashCoeff { get; set; }
+        public float ExplosionRadius { get; set; }
     }
 
     public class Bomb : Projectile
@@ -51,7 +53,8 @@ namespace WoWsShipBuilderDataStructures
         public float AlwaysRicochetAngle { get; set; }
         public float MuzzleVelocity { get; set; }
         public float FireChance { get; set; }
-
+        public float SplashCoeff { get; set; }
+        public float ExplosionRadius { get; set; }
     }
 
     public class Rocket : Projectile
@@ -69,6 +72,8 @@ namespace WoWsShipBuilderDataStructures
         public float AlwaysRicochetAngle { get; set; }
         public float MuzzleVelocity { get; set; }
         public float FireChance { get; set; }
+        public float SplashCoeff { get; set; }
+        public float ExplosionRadius { get; set; }
     }
 
     public class DepthCharge : Projectile
@@ -78,6 +83,7 @@ namespace WoWsShipBuilderDataStructures
         public float FloodChance { get; set; }
         public float DetonationTimer { get; set; }
         public float SinkingSpeed { get; set; }
+        public float ExplosionRadius { get; set; }
     }
 
     public class Torpedo : Projectile
@@ -91,5 +97,7 @@ namespace WoWsShipBuilderDataStructures
         public float Speed { get; set; }
         public float ArmingTime { get; set; }
         public float FloodChance { get; set; } // It's uwCritical
+        public float SplashCoeff { get; set; }
+        public float ExplosionRadius { get; set; }
     }
 }

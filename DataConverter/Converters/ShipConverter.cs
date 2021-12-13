@@ -325,6 +325,7 @@ namespace DataConverter.Converters
                     MaxSpeed = wgHull.maxSpeed,
                     RudderTime = wgHull.rudderTime,
                     SpeedCoef = wgHull.speedCoef,
+                    SgArmorCoeff = wgHull.armorCoeff,
                     SmokeFiringDetection = wgHull.visibilityCoefGKInSmoke,
                     SurfaceDetection = wgHull.visibilityFactor,
                     AirDetection = wgHull.visibilityFactorByPlane,
@@ -443,6 +444,7 @@ namespace DataConverter.Converters
                     BackwardEngineUpTime = wgEngine.backwardEngineUpTime,
                     ForwardEngineUpTime = wgEngine.forwardEngineUpTime,
                     SpeedCoef = wgEngine.speedCoef,
+                    ArmorCoeff = wgEngine.armorCoeff,
                 };
                 resultDictionary[key] = engine;
             }

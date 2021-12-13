@@ -44,6 +44,8 @@ namespace DataConverter.WGStructure
         public float bulletSpeed { get; set; }
         public float burnProb { get; set; }
         public float distTile { get; set; }
+        public float splashArmorCoeff { get; set; }
+        public float splashCubeSize { get; set; }
         public string[] ignoreClasses { get; set; }      
         public bool isBomb { get; set; }
     }
@@ -61,7 +63,8 @@ namespace DataConverter.WGStructure
         public float armingTime { get; set; }
         public float uwCritical { get; set; }
         public float visibilityFactor { get; set; }
-
+        public float splashArmorCoeff { get; set; }
+        public float splashCubeSize { get; set; }
     }
 
 
@@ -86,6 +89,8 @@ namespace DataConverter.WGStructure
         public float distTile { get; set; }
         public string[] ignoreClasses { get; set; }
         public bool isBomb { get; set; }
+        public float splashArmorCoeff { get; set; }
+        public float splashCubeSize { get; set; }
     }
 
     public class WGDepthCharge : WGProjectile
@@ -97,6 +102,7 @@ namespace DataConverter.WGStructure
         public float uwCritical { get; set; }
         public float timer { get; set; }
         public float speed { get; set; }
+        public float splashCubeSize { get; set; }
     }
 
     public class WGRocket : WGProjectile
@@ -120,6 +126,8 @@ namespace DataConverter.WGStructure
         public float distTile { get; set; }
         public string[] ignoreClasses { get; set; }
         public bool isBomb { get; set; }
+        public float splashArmorCoeff { get; set; }
+        public float splashCubeSize { get; set; }
     }
 
 }

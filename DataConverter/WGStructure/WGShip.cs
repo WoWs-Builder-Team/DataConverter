@@ -340,6 +340,7 @@ namespace DataConverter.WGStructure
         public decimal backwardEngineUpTime { get; set; }
         public decimal forwardEngineUpTime { get; set; }
         public decimal speedCoef { get; set; }
+        public decimal armorCoeff { get; set; }
     }
     #endregion
 
@@ -350,6 +351,7 @@ namespace DataConverter.WGStructure
         public decimal maxSpeed { get; set; }
         public decimal rudderTime { get; set; }
         public decimal speedCoef { get; set; }
+        public decimal armorCoeff { get; set; }
         public decimal visibilityCoefGKInSmoke { get; set; }
         public decimal visibilityFactor { get; set; }
         public decimal visibilityFactorByPlane { get; set; }

@@ -80,6 +80,8 @@ namespace DataConverter.Converters
                                 //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
                                 shell.FireChance = currentWgShell.burnProb;
                                 //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
+                                shell.SplashCoeff = currentWgShell.splashArmorCoeff;
+                                shell.ExplosionRadius = currentWgShell.splashCubeSize * 30 / 2;
                             }
                             else
                             {
@@ -125,6 +127,8 @@ namespace DataConverter.Converters
                             //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
                             bomb.FireChance = currentWgBomb.burnProb;
                             //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
+                            bomb.SplashCoeff = currentWgBomb.splashArmorCoeff;
+                            bomb.ExplosionRadius = currentWgBomb.splashCubeSize * 30 / 2;
                         }
                         else
                         {
@@ -169,13 +173,15 @@ namespace DataConverter.Converters
                             torpedo.TorpedoType = TorpedoType.Normal;
                         }
 
-                        torpedo.Damage = (currentWgTorpedo.alphaDamage /3) + currentWgTorpedo.damage;
+                        torpedo.Damage = (currentWgTorpedo.alphaDamage / 3) + currentWgTorpedo.damage;
                         torpedo.SpottingRange = currentWgTorpedo.visibilityFactor;
                         torpedo.ArmingTime = currentWgTorpedo.armingTime;
                         torpedo.Caliber = currentWgTorpedo.bulletDiametr;
-                        torpedo.MaxRange = currentWgTorpedo.maxDist *30;
+                        torpedo.MaxRange = currentWgTorpedo.maxDist * 30;
                         torpedo.Speed = currentWgTorpedo.speed;
                         torpedo.FloodChance = currentWgTorpedo.uwCritical;
+                        torpedo.SplashCoeff = currentWgTorpedo.splashArmorCoeff;
+                        torpedo.ExplosionRadius = currentWgTorpedo.splashCubeSize * 30 / 2;
 
                         List<ShipClass> ignoreClasses = new List<ShipClass>();
                         foreach (var shipClass in currentWgTorpedo.ignoreClasses)
@@ -205,6 +211,7 @@ namespace DataConverter.Converters
                         depthCharge.FloodChance = currentWgDepthCharge.uwCritical;
                         depthCharge.DetonationTimer = currentWgDepthCharge.timer;
                         depthCharge.SinkingSpeed = currentWgDepthCharge.speed;
+                        depthCharge.ExplosionRadius = currentWgDepthCharge.splashCubeSize * 30 / 2;
 
                         projectileList.Add(depthCharge.Name, depthCharge);
                         break;
@@ -231,6 +238,8 @@ namespace DataConverter.Converters
                             //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
                             rocket.FireChance = currentWgRocket.burnProb;
                             //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
+                            rocket.SplashCoeff = currentWgRocket.splashArmorCoeff;
+                            rocket.ExplosionRadius = currentWgRocket.splashCubeSize * 30 / 2;
                         }
                         else
                         {
