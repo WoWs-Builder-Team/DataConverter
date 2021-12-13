@@ -342,6 +342,15 @@ namespace DataConverter.Converters
                     TurningRadius = wgHull.turningRadius,
                 };
 
+                //Process ship size
+                ShipSize dim = new()
+                {
+                    Length = wgHull.size[0],
+                    Width = wgHull.size[1],
+                    Height = wgHull.size[2],
+                };
+                hullModule.Sizes = dim;
+
                 // Process anti-air data
                 var antiAir = new AntiAir();
 

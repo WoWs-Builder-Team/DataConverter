@@ -280,6 +280,14 @@ namespace WoWsShipBuilderDataStructures
         public decimal FloodingTickDamage { get; set; }
         public decimal FloodingDuration { get; set; }
         public int TurningRadius { get; set; }
+        public ShipSize Sizes { get; set; }
+    }
+
+    public class ShipSize
+    {
+        public decimal Length { get; set; }
+        public decimal Width { get; set; }
+        public decimal Height { get; set; }
     }
 
     #endregion
