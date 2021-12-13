@@ -211,7 +211,7 @@ namespace DataConverter
                 oldData = string.Empty;
             }
 
-            oldVersioner.Categories.TryGetValue(category, out List<FileVersion> oldCategoryVersions);
+            oldVersioner.Categories.TryGetValue(categoryName, out List<FileVersion> oldCategoryVersions);
             oldCategoryVersions ??= new List<FileVersion>();
             
             // Write data always. Even if the file was not changed, the existing remote data will be removed before publishing so the file needs to be recreated.
