@@ -262,7 +262,7 @@ namespace WoWsShipBuilderDataStructures
         public decimal MaxSpeed { get; set; }
         public decimal RudderTime { get; set; }
         public decimal SpeedCoef { get; set; }
-        public decimal SgArmorCoeff { get; set; }
+        public decimal SteeringGearArmorCoeff { get; set; }
         public decimal SmokeFiringDetection { get; set; }
         public decimal SurfaceDetection { get; set; }
         public decimal AirDetection { get; set; }

@@ -350,8 +350,8 @@ namespace DataConverter.WGStructure
         public decimal health { get; set; }
         public decimal maxSpeed { get; set; }
         public decimal rudderTime { get; set; }
+        public SteeringGear SG { get; set; }
         public decimal speedCoef { get; set; }
-        public decimal armorCoeff { get; set; }
         public decimal visibilityCoefGKInSmoke { get; set; }
         public decimal visibilityFactor { get; set; }
         public decimal visibilityFactorByPlane { get; set; }
@@ -360,6 +360,13 @@ namespace DataConverter.WGStructure
         public decimal[][] floodNodes { get; set; } // Format: Torpedo belt reduction, damage per second in %, flood time in s
         public int turningRadius { get; set; }
         public decimal[] size { get; set; }
+    }
+    #endregion
+
+    #region Steering Gear
+    public class SteeringGear
+    {
+        public decimal armorCoeff { get; set; }
     }
     #endregion
 

@@ -325,7 +325,7 @@ namespace DataConverter.Converters
                     MaxSpeed = wgHull.maxSpeed,
                     RudderTime = wgHull.rudderTime,
                     SpeedCoef = wgHull.speedCoef,
-                    SgArmorCoeff = wgHull.armorCoeff,
+                    SteeringGearArmorCoeff = wgHull.SG.armorCoeff,
                     SmokeFiringDetection = wgHull.visibilityCoefGKInSmoke,
                     SurfaceDetection = wgHull.visibilityFactor,
                     AirDetection = wgHull.visibilityFactorByPlane,

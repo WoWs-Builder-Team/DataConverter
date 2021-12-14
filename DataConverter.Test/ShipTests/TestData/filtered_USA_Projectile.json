@@ -43,6 +43,8 @@
   "maxDist": 166.7,
   "name": "PAPT014_Bliss_Leavitt_Mk3",
   "speed": 48.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -64,6 +66,8 @@
   "maxDist": 150.0,
   "name": "PAPT034_SMITH",
   "speed": 54.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -134,6 +138,8 @@
   "maxDist": 600.0,
   "name": "PAPT040_Mk18_mod1_Magnetic",
   "speed": 70.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -155,6 +161,8 @@
   "maxDist": 550.0,
   "name": "PAPT050_533_SHERMAN",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -424,6 +432,8 @@
   "maxDist": 366.7,
   "name": "PAPT048_Mk28_Sub",
   "speed": 86.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -778,6 +788,8 @@
   "maxDist": 305.0,
   "name": "PAPT047_MK_11_CONSTELLATION",
   "speed": 55.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -972,6 +984,8 @@
   "maxDist": 213.0,
   "name": "PAPT023_Mk_12",
   "speed": 64.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1055,6 +1069,8 @@
   "maxDist": 183.0,
   "name": "PAPT038_HILL",
   "speed": 56.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1107,6 +1123,8 @@
   "maxDist": 550.0,
   "name": "PAPT008_Mk_17",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1283,6 +1301,8 @@
   "maxDist": 350.0,
   "name": "PAPT046_MK17_AUSTIN",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.3,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1645,6 +1665,8 @@
   "maxDist": 350.0,
   "name": "PAPT015_Mk8_mod2B",
   "speed": 49.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1852,6 +1874,8 @@
   "maxDist": 273.0,
   "name": "PAPT024_Mk_14_mod_3",
   "speed": 52.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.1,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1953,6 +1977,8 @@
   "maxDist": 117.0,
   "name": "PAPT108_Lexington_stock",
   "speed": 35.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1974,6 +2000,8 @@
   "maxDist": 350.0,
   "name": "PAPT035_TST_GEARING_1",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.3,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -1995,6 +2023,8 @@
   "maxDist": 166.7,
   "name": "PAPT020_Bliss_Leavitt_Mk7_mod_0",
   "speed": 54.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2140,6 +2170,8 @@
   "maxDist": 183.0,
   "name": "PAPT009_Mk_11",
   "speed": 56.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2192,6 +2224,8 @@
   "maxDist": 350.0,
   "name": "PAPT037_533MM_BENHAM",
   "speed": 65.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.1,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2306,6 +2340,8 @@
   "maxDist": 183.0,
   "name": "PAPT007_Bliss_Leavitt_Mk7_mod_2A",
   "speed": 30.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2438,6 +2474,8 @@
   "maxDist": 133.0,
   "name": "PAPT510_ROOSEVELT_STOCK",
   "speed": 35.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.7,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2459,6 +2497,8 @@
   "maxDist": 117.0,
   "name": "PAPT508_Enterprise_stock",
   "speed": 35.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2542,6 +2582,8 @@
   "maxDist": 457.0,
   "name": "PAPT030_BLACK",
   "speed": 43.0,
+  "splashArmorCoeff": 2.0,
+  "splashCubeSize": 1.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2563,6 +2605,8 @@
   "maxDist": 133.0,
   "name": "PAPT110_Midway_stock",
   "speed": 35.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2584,6 +2628,8 @@
   "maxDist": 305.0,
   "name": "PAPT001_Torpedo_533mm_Mk_15",
   "speed": 55.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2605,6 +2651,8 @@
   "maxDist": 107.0,
   "name": "PAPT006_Bliss_Leavitt_Mk7_mod_5A",
   "speed": 35.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2657,6 +2705,8 @@
   "maxDist": 150.0,
   "name": "PAPT005_Bliss_Leavitt_Mk6",
   "speed": 57.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.7,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2709,6 +2759,8 @@
   "maxDist": 133.0,
   "name": "PAPT210_Midway_top",
   "speed": 35.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -2885,6 +2937,8 @@
   "maxDist": 400.0,
   "name": "PAPT044_Mk29_Sub_Magnetic",
   "speed": 89.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -3030,6 +3084,8 @@
   "maxDist": 233.0,
   "name": "PAPT028_TORPEDO_533MM_MK_15_SIMS",
   "speed": 65.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -3162,6 +3218,8 @@
   "maxDist": 383.33,
   "name": "PAPT049_Mk22_Sub_Crits",
   "speed": 66.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -3214,6 +3272,8 @@
   "maxDist": 305.0,
   "name": "PAPT031_KIDD",
   "speed": 55.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -3421,6 +3481,8 @@
   "maxDist": 117.0,
   "name": "PAPT518_Saipan_stock",
   "speed": 35.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -3659,6 +3721,8 @@
   "maxDist": 411.0,
   "name": "PAPT016_Mk8_mod3B",
   "speed": 49.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -3884,6 +3948,8 @@
   "maxDist": 400.0,
   "name": "PAPT043_Mk29_Sub",
   "speed": 89.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -3936,6 +4002,8 @@
   "maxDist": 457.0,
   "name": "PAPT017_Mk8_mod8",
   "speed": 51.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -4019,6 +4087,8 @@
   "maxDist": 77.0,
   "name": "PAPT013_Mk_25_mod3A",
   "speed": 40.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -4288,6 +4358,8 @@
   "maxDist": 60.0,
   "name": "PAPT910_Mk_13_mod0A_Independence",
   "speed": 65.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -4451,6 +4523,8 @@
   "maxDist": 166.7,
   "name": "PAPT019_Whitehead_Mk5",
   "speed": 49.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.7,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -4565,6 +4639,8 @@
   "maxDist": 274.0,
   "name": "PAPT022_Bliss_Leavitt_Mark_9_mod_1",
   "speed": 49.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.8,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -4648,6 +4724,8 @@
   "maxDist": 100.0,
   "name": "PAPT010_Mk_13_mod0A",
   "speed": 65.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -4700,6 +4778,8 @@
   "maxDist": 213.0,
   "name": "PAPT026_Mk_16_mod_0",
   "speed": 66.0,
+  "splashArmorCoeff": 0.5,
+  "splashCubeSize": 1.4,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -4814,6 +4894,8 @@
   "maxDist": 333.4,
   "name": "PAPT041_Mk22_Sub",
   "speed": 82.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5052,6 +5134,8 @@
   "maxDist": 150.0,
   "name": "PAPT029_MK_15_MOD_ATLANTA",
   "speed": 65.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5135,6 +5219,8 @@
   "maxDist": 100.0,
   "name": "PAPT206_Ranger_top",
   "speed": 35.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5311,6 +5397,8 @@
   "maxDist": 273.0,
   "name": "PAPT025_Mk_14_mod_0",
   "speed": 53.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5518,6 +5606,8 @@
   "maxDist": 350.0,
   "name": "PAPT027_Mk_16_mod_1",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.3,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5601,6 +5691,8 @@
   "maxDist": 117.0,
   "name": "PAPT208_Lexington_top",
   "speed": 35.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5622,6 +5714,8 @@
   "maxDist": 100.0,
   "name": "PAPT104_Langley_stock",
   "speed": 35.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.7,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5643,6 +5737,8 @@
   "maxDist": 550.0,
   "name": "PAPT036_TST_GEARING_2",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5850,6 +5946,8 @@
   "maxDist": 213.0,
   "name": "PAPT032_MONAGHAN",
   "speed": 64.0,
+  "splashArmorCoeff": 0.3,
+  "splashCubeSize": 1.0,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -5920,6 +6018,8 @@
   "maxDist": 366.7,
   "name": "PAPT042_Mk28_Sub_Magnetic",
   "speed": 86.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -6003,6 +6103,8 @@
   "maxDist": 550.0,
   "name": "PAPT039_SOMERS",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -6179,6 +6281,8 @@
   "maxDist": 350.0,
   "name": "PAPT045_533MM_ANCHORAGE",
   "speed": 66.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.3,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -6311,6 +6415,8 @@
   "maxDist": 305.0,
   "name": "PAPT033_MONAGHAN_MK15",
   "speed": 55.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -6332,6 +6438,8 @@
   "maxDist": 177.78,
   "name": "PAPT777_Torpedo_457_prototype",
   "speed": 50.0,
+  "splashArmorCoeff": 0.0,
+  "splashCubeSize": 0.934,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -6384,6 +6492,8 @@
   "maxDist": 100.0,
   "name": "PAPT106_Ranger_stock",
   "speed": 35.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -6516,6 +6626,8 @@
   "maxDist": 102.0,
   "name": "PAPT012_Bliss_Leavitt_Mk7_type_DA",
   "speed": 35.0,
+  "splashArmorCoeff": 0.1,
+  "splashCubeSize": 0.7,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -6710,6 +6822,8 @@
   "maxDist": 168.0,
   "name": "PAPT021_Bliss_Leavitt_Mark_9_mod_1b",
   "speed": 56.0,
+  "splashArmorCoeff": 0.2,
+  "splashCubeSize": 0.9,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
@@ -7103,6 +7217,8 @@
   "maxDist": 305.0,
   "name": "PAPT018_Mk_15_mod_3",
   "speed": 55.0,
+  "splashArmorCoeff": 0.4,
+  "splashCubeSize": 1.2,
   "typeinfo": {
    "nation": "USA",
    "species": "Torpedo",
