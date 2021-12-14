@@ -340,6 +340,11 @@ namespace DataConverter.WGStructure
         public decimal backwardEngineUpTime { get; set; }
         public decimal forwardEngineUpTime { get; set; }
         public decimal speedCoef { get; set; }
+        public HitLocationEngine HitLocationEngine { get; set; }
+    }
+
+    public class HitLocationEngine
+    {
         public decimal armorCoeff { get; set; }
     }
     #endregion
