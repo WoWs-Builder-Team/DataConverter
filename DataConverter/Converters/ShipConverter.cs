@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection;
 using DataConverter.WGStructure;
 using Newtonsoft.Json;
-using WoWsShipBuilderDataStructures;
-using Hull = WoWsShipBuilderDataStructures.Hull;
-using ShipUpgrade = WoWsShipBuilderDataStructures.ShipUpgrade;
+using WoWsShipBuilder.DataStructures;
+using Hull = WoWsShipBuilder.DataStructures.Hull;
+using ShipUpgrade = WoWsShipBuilder.DataStructures.ShipUpgrade;
 
 namespace DataConverter.Converters
 {

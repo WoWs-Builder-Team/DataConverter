@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\WoWsShipBuilderDataStructures\WoWsShipBuilderDataStructures.csproj" />
+        <ProjectReference Include="..\WoWsShipBuilder.DataStructures\WoWsShipBuilder.DataStructures.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -4,8 +4,8 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using WoWsShipBuilderDataStructures;
 using System.Linq;
+using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter.Converters
 {

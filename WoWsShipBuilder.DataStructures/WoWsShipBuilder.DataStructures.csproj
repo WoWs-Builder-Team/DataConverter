@@ -12,6 +12,7 @@
         <PackageId>WoWsShipBuilder.DataStructures</PackageId>
         <PackageVersion>1.2.0</PackageVersion>
         <RepositoryType>git</RepositoryType>
+        <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

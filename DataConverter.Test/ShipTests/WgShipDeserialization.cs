@@ -5,7 +5,7 @@ using DataConverter.WGStructure;
 using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using WoWsShipBuilderDataStructures;
+using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter.Test.ShipTests
 {

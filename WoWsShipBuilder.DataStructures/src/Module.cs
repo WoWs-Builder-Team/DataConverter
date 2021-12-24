@@ -1,4 +1,4 @@
-﻿namespace WoWsShipBuilderDataStructures
+﻿namespace WoWsShipBuilder.DataStructures
 {
     public class Module
     {
