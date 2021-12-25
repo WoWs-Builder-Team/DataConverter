@@ -1,180 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+// ReSharper disable NotAccessedPositionalProperty.Global
 
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable PropertyCanBeMadeInitOnly.Global
 
-namespace WoWsShipBuilder.DataStructures
+namespace WoWsShipBuilder.DataStructures.Ship
 {
-    public class Ship
-    {
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public string Name { get; set; }
-        public int Tier { get; set; }
-        public ShipClass ShipClass { get; set; }
-        public ShipCategory ShipCategory { get; set; }
-        public Nation ShipNation { get; set; }
-        public List<string> Permaflages { get; set; }
+#nullable enable
 
-        public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; }
-        public Dictionary<string, FireControl> FireControlList { get; set; }
-        public Dictionary<string, TorpedoModule> TorpedoModules { get; set; }
-        public Dictionary<string, Engine> Engines { get; set; }
-        public Dictionary<string, Hull> Hulls { get; set; }
-        public Dictionary<string, PlaneData> CvPlanes { get; set; }
-        public Dictionary<string, AirStrike> AirStrikes { get; set; }
+    public sealed record Ship(long Id, string Index, string Name, int Tier, ShipClass ShipClass, ShipCategory ShipCategory, Nation ShipNation)
+    {
+        public List<string> Permaflages { get; set; } = default!;
+
+        public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; } = default!;
+        public Dictionary<string, FireControl> FireControlList { get; set; } = default!;
+        public Dictionary<string, TorpedoModule> TorpedoModules { get; set; } = default!;
+        public Dictionary<string, Engine> Engines { get; set; } = default!;
+        public Dictionary<string, Hull> Hulls { get; set; } = default!;
+        public Dictionary<string, PlaneData> CvPlanes { get; set; } = default!;
+        public Dictionary<string, AirStrike> AirStrikes { get; set; } = default!;
 
         //may not need to be a List, but possibly an upgradeable module
-        public Dictionary<string, PingerGun> PingerGunList { get; set; }
-        public List<ShipConsumable> ShipConsumable { get; set; }
-        public UpgradeInfo ShipUpgradeInfo { get; set; }
-        public SpecialAbility SpecialAbility { get; set; }
-        public BurstModeAbility BurstModeAbility { get; set; }
+        public Dictionary<string, PingerGun> PingerGunList { get; set; } = default!;
+        public List<ShipConsumable> ShipConsumable { get; set; } = default!;
+        public UpgradeInfo ShipUpgradeInfo { get; set; } = default!;
+        public SpecialAbility? SpecialAbility { get; set; }
+        public BurstModeAbility? BurstModeAbility { get; set; }
     }
-
-    #region Main Battery and Secondaries
-
-    //small abuse, but we reuse this for secondaries.
-    public class TurretModule
-    {
-        public decimal Sigma { get; set; }
-        public decimal MaxRange { get; set; }
-        public List<Gun> Guns { get; set; }
-        public AntiAirAura AntiAir { get; set; }
-        public Dispersion DispersionValues { get; set; }
-    }
-
-    public class Gun
-    {
-        public List<string> AmmoList { get; set; }
-        public decimal BarrelDiameter { get; set; }
-        public double[] HorizontalSector { get; set; }
-        public double[][] HorizontalDeadZones { get; set; }
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public string Name { get; set; }
-        public int NumBarrels { get; set; }
-        public double HorizontalPosition { get; set; }
-        public double VerticalPosition { get; set; }
-        public decimal HorizontalRotationSpeed { get; set; }
-        public decimal VerticalRotationSpeed { get; set; }
-        public decimal Reload { get; set; }
-        public decimal SmokeDetectionWhenFiring { get; set; }
-        public TurretOrientation TurretOrientation { get; set; }
-        public string WgGunIndex { get; set; }
-    }
-
-    public class Dispersion
-    {
-        public double IdealRadius { get; set; }
-        public double MinRadius { get; set; }
-        public double IdealDistance { get; set; }
-        public double TaperDist { get; set; }
-        public double RadiusOnZero { get; set; }
-        public double RadiusOnDelim { get; set; }
-        public double RadiusOnMax { get; set; }
-        public double Delim { get; set; }
-        public decimal MaximumHorizontalDispersion { get; set; }
-        public decimal MaximumVerticalDispersion { get; set; }
-
-        public double CalculateHorizontalDispersion(double range)
-        {
-            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
-            double x = range / 30;
-            double effectiveTaperDist = TaperDist / 30;
-            if (x <= effectiveTaperDist)
-            {
-                return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / effectiveTaperDist)) * 30;
-            }
-
-            return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius) * 30;
-        }
-
-        public double CalculateVerticalDispersion(double maxRange, double range = -1)
-        {
-            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
-            maxRange /= 30;
-            double x = range >= 0 ? range / 30 : maxRange;
-            double delimDist = maxRange * Delim;
-
-            double verticalCoeff;
-            if (x < delimDist)
-            {
-                verticalCoeff = RadiusOnZero + (RadiusOnDelim - RadiusOnZero) * (x / delimDist);
-            }
-            else
-            {
-                verticalCoeff = RadiusOnDelim + (RadiusOnMax - RadiusOnDelim) * (x - delimDist) / (maxRange - delimDist);
-            }
-
-            return CalculateHorizontalDispersion(x * 30) * verticalCoeff;
-        }
-    }
-    #endregion
 
     #region Fire Control
 
-    public class FireControl
-    {
-        public decimal MaxRangeModifier { get; set; }
-        public decimal SigmaModifier { get; set; }
-    }
+    public sealed record FireControl(decimal MaxRangeModifier, decimal SigmaModifier);
 
     #endregion
 
     #region Torpedo
 
-    public class TorpedoModule
-    {
-        public decimal TimeToChangeAmmo { get; set; }
-        public List<TorpedoLauncher> TorpedoLaunchers { get; set; }
-    }
+    public sealed record TorpedoModule(decimal TimeToChangeAmmo, List<TorpedoLauncher> TorpedoLaunchers);
 
-    public class TorpedoLauncher
-    {
-        public List<string> AmmoList { get; set; }
-        public decimal BarrelDiameter { get; set; }
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public string Name { get; set; }
-        public int NumBarrels { get; set; }
-        public decimal HorizontalRotationSpeed { get; set; }
-        public decimal VerticalRotationSpeed { get; set; }
-        public decimal Reload { get; set; }
-        public decimal[] HorizontalSector { get; set; }
-        public decimal[][] HorizontalDeadZone { get; set; }
-        public decimal[] TorpedoAngles { get; set; }
-    }
+    public sealed record TorpedoLauncher(
+        List<string> AmmoList,
+        decimal BarrelDiameter,
+        long Id,
+        string Index,
+        string Name,
+        int NumBarrels,
+        decimal HorizontalRotationSpeed,
+        decimal VerticalRotationSpeed,
+        decimal Reload,
+        decimal[] HorizontalSector,
+        decimal[][] HorizontalDeadZone,
+        decimal[] TorpedoAngles);
 
     #endregion
 
     #region CvPlanes
 
-    public class PlaneData
-    {
-        public PlaneType PlaneType { get; set; }
-        public string PlaneName { get; set; }
-    }
+    public sealed record PlaneData(PlaneType PlaneType, string PlaneName);
 
     #endregion
 
     #region AirStrike
 
-    public class AirStrike
-    {
-        public int Charges { get; set; }
-        public decimal FlyAwayTime { get; set; }
-        public int MaximumDistance { get; set; }
-        public int MaximumFlightDistance { get; set; }
-        public int MinimumDistance { get; set; }
-        public string PlaneName { get; set; }
-        public decimal ReloadTime { get; set; }
-        public decimal TimeBetweenShots { get; set; }
-        public decimal DropTime { get; set; }
-    }
+    public sealed record AirStrike(
+        int Charges,
+        decimal FlyAwayTime,
+        int MaximumDistance,
+        int MaximumFlightDistance,
+        int MinimumDistance,
+        string PlaneName,
+        decimal ReloadTime,
+        decimal TimeBetweenShots,
+        decimal DropTime);
 
     #endregion
 
@@ -182,20 +82,18 @@ namespace WoWsShipBuilder.DataStructures
 
     public class AntiAir
     {
-        public AntiAirAura LongRangeAura { get; set; }
-        public AntiAirAura MediumRangeAura { get; set; }
-        public AntiAirAura ShortRangeAura { get; set; }
+        public AntiAirAura? LongRangeAura { get; set; }
+        public AntiAirAura? MediumRangeAura { get; set; }
+        public AntiAirAura? ShortRangeAura { get; set; }
     }
 
-    public class AntiAirAura
+    public sealed record AntiAirAura(decimal HitChance, decimal MaxRange, decimal MinRange)
     {
-        public decimal ConstantDps { get; set; }
         public const decimal DamageInterval = 0.285714285714m;
+
+        public decimal ConstantDps { get; set; }
         public decimal FlakDamage { get; set; }
         public int FlakCloudsNumber { get; set; }
-        public decimal HitChance { get; set; }
-        public decimal MaxRange { get; set; }
-        public decimal MinRange { get; set; }
 
         public static AntiAirAura operator +(AntiAirAura thisAura, AntiAirAura newAura)
         {
@@ -206,18 +104,16 @@ namespace WoWsShipBuilder.DataStructures
 
             decimal minRange = newAura.FlakDamage > 0 ? thisAura.MinRange : newAura.MinRange; // Use minimum range of new aura only if it is no flak cloud aura
             
-            return new AntiAirAura
+            return new(newAura.HitChance, newAura.MaxRange, minRange)
             {
                 ConstantDps = thisAura.ConstantDps + newAura.ConstantDps,
                 FlakDamage = thisAura.FlakDamage + newAura.FlakDamage,
                 FlakCloudsNumber = thisAura.FlakCloudsNumber + newAura.FlakCloudsNumber,
-                HitChance = newAura.HitChance,
-                MaxRange = newAura.MaxRange,
-                MinRange = minRange,
             };
         }
     }
 
+    #nullable restore
     #endregion
 
     #region Depth Charges

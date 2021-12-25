@@ -6,8 +6,9 @@ using System.Reflection;
 using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
-using Hull = WoWsShipBuilder.DataStructures.Hull;
-using ShipUpgrade = WoWsShipBuilder.DataStructures.ShipUpgrade;
+using WoWsShipBuilder.DataStructures.Ship;
+using Hull = WoWsShipBuilder.DataStructures.Ship.Hull;
+using ShipUpgrade = WoWsShipBuilder.DataStructures.Ship.ShipUpgrade;
 
 namespace DataConverter.Converters
 {
@@ -37,15 +38,11 @@ namespace DataConverter.Converters
                 }
 
                 Program.TranslationNames.Add(wgShip.index);
-                var ship = new Ship
+                var shipClass = ProcessShipClass(wgShip.typeinfo.species);
+                var shipCategory = ProcessShipCategory(wgShip.group, wgShip.level);
+                var shipNation = ConvertNationString(wgShip.typeinfo.nation);
+                var ship = new Ship(wgShip.id, wgShip.index, wgShip.name, wgShip.level, shipClass, shipCategory, shipNation)
                 {
-                    Id = wgShip.id,
-                    Index = wgShip.index,
-                    Name = wgShip.name,
-                    Tier = wgShip.level,
-                    ShipClass = ProcessShipClass(wgShip.typeinfo.species),
-                    ShipCategory = ProcessShipCategory(wgShip.group, wgShip.level),
-                    ShipNation = ConvertNationString(wgShip.typeinfo.nation),
                     MainBatteryModuleList = ProcessMainBattery(wgShip),
                     ShipUpgradeInfo = ProcessUpgradeInfo(wgShip),
                     FireControlList = ProcessFireControl(wgShip),
@@ -55,14 +52,15 @@ namespace DataConverter.Converters
                     AirStrikes = ProcessAirstrikes(wgShip),
                     PingerGunList = ProcessPingerGuns(wgShip),
                     SpecialAbility = ProcessSpecialAbility(wgShip),
-                    BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule)
+                    BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule),
+                    Permaflages = wgShip.permoflages,
                 };
 
-                ship.Permaflages = wgShip.permoflages;
                 if (wgShip.permoflages != null)
                 {
                     Program.TranslationNames.UnionWith(wgShip.permoflages);
                 }
+
                 ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
                 results[ship.Index] = ship;
@@ -120,6 +118,7 @@ namespace DataConverter.Converters
                 Program.TranslationNames.UnionWith(burstAbility.Modifiers.Keys);
                 return burstAbility;
             }
+
             return null;
         }
 
@@ -146,6 +145,7 @@ namespace DataConverter.Converters
                 Program.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
                 return specialAbility;
             }
+
             return null;
         }
 
@@ -202,7 +202,7 @@ namespace DataConverter.Converters
         {
             var upgradeInfo = new UpgradeInfo
             {
-                ShipUpgrades = new List<ShipUpgrade>(),
+                ShipUpgrades = new(),
                 CostCredits = wgShip.ShipUpgradeInfo.costCR,
                 CostGold = wgShip.ShipUpgradeInfo.costGold,
                 CostXp = wgShip.ShipUpgradeInfo.costXP,
@@ -228,7 +228,7 @@ namespace DataConverter.Converters
                     upgradeInfo.ShipUpgrades.Add(newUpgrade);
                 }
             }
-            
+
             return upgradeInfo;
         }
 
@@ -239,24 +239,12 @@ namespace DataConverter.Converters
 
             foreach ((string key, MainBattery wgMainBattery) in artilleryModules)
             {
-                var turretModule = new TurretModule
-                {
-                    Sigma = wgMainBattery.sigmaCount,
-                    MaxRange = wgMainBattery.maxDist,
-                    Guns = wgMainBattery.guns.Select(entry => ConvertMainBatteryGun(entry.Value, key, entry.Key, wgShip.index)).ToList(),
-                };
+                var guns = wgMainBattery.guns.Select(entry => ConvertMainBatteryGun(entry.Value, key, entry.Key, wgShip.index)).ToList();
+                var turretModule = new TurretModule(wgMainBattery.sigmaCount, wgMainBattery.maxDist, guns);
                 MainBatteryGun dispersionGun = wgMainBattery.guns.Values.First();
-                var turretDispersion = new Dispersion
-                {
-                    IdealRadius = dispersionGun.idealRadius,
-                    MinRadius = dispersionGun.minRadius,
-                    IdealDistance = dispersionGun.idealDistance,
-                    TaperDist = wgMainBattery.taperDist,
-                    RadiusOnZero = dispersionGun.radiusOnZero,
-                    RadiusOnDelim = dispersionGun.radiusOnDelim,
-                    RadiusOnMax = dispersionGun.radiusOnMax,
-                    Delim = dispersionGun.delim,
-                };
+                var turretDispersion = new Dispersion(dispersionGun.idealRadius, dispersionGun.minRadius, dispersionGun.idealDistance, wgMainBattery.taperDist,
+                    dispersionGun.radiusOnZero, dispersionGun.radiusOnDelim, dispersionGun.radiusOnMax, dispersionGun.delim
+                );
 
                 // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
                 // double maxRange = decimal.ToDouble(turretModule.MaxRange) / 30;
@@ -276,7 +264,7 @@ namespace DataConverter.Converters
                 var maxRange = decimal.ToDouble(turretModule.MaxRange);
                 turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateHorizontalDispersion(maxRange)), 1);
                 turretDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateVerticalDispersion(maxRange)), 1);
-                
+
                 turretModule.DispersionValues = turretDispersion;
                 Program.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
 
@@ -299,7 +287,8 @@ namespace DataConverter.Converters
             newGun.WgGunIndex = mainGunKey;
             if (TurretPositionOverrides.TryGetValue(shipIndex, out var overrides))
             {
-                if (overrides.ArtilleryTurretOverrides.TryGetValue(artilleryModuleKey, out var moduleOverrides) && moduleOverrides.TryGetValue(mainGunKey, out var turretOverride))
+                if (overrides.ArtilleryTurretOverrides.TryGetValue(artilleryModuleKey, out var moduleOverrides) &&
+                    moduleOverrides.TryGetValue(mainGunKey, out var turretOverride))
                 {
                     newGun.TurretOrientation = turretOverride;
                 }
@@ -361,12 +350,8 @@ namespace DataConverter.Converters
                     AssignAurasToProperty(wgHullSecondary.ConvertedAntiAirData, antiAir);
 
                     // Process secondaries
-                    var secondary = new TurretModule
-                    {
-                        Sigma = wgHullSecondary.sigmaCount,
-                        MaxRange = wgHullSecondary.maxDist,
-                        Guns = wgHullSecondary.antiAirAndSecondaries.Values.Select(secondaryGun => (Gun)secondaryGun).ToList(),
-                    };
+                    var guns = wgHullSecondary.antiAirAndSecondaries.Values.Select(secondaryGun => (Gun)secondaryGun).ToList();
+                    var secondary = new TurretModule(wgHullSecondary.sigmaCount, wgHullSecondary.maxDist, guns);
                     Program.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());
                     hullModule.SecondaryModule = secondary;
                 }
@@ -410,11 +395,7 @@ namespace DataConverter.Converters
 
             foreach ((string key, WgFireControl wgFireControl) in fireControlModules)
             {
-                var fireControl = new FireControl
-                {
-                    MaxRangeModifier = wgFireControl.maxDistCoef,
-                    SigmaModifier = wgFireControl.sigmaCountCoef,
-                };
+                var fireControl = new FireControl(wgFireControl.maxDistCoef, wgFireControl.sigmaCountCoef);
                 resultDictionary[key] = fireControl;
             }
 
@@ -428,11 +409,9 @@ namespace DataConverter.Converters
 
             foreach ((string key, WgTorpedoArray wgTorpedoArray) in wgTorpedoList)
             {
-                var torpedoModule = new TorpedoModule
-                {
-                    TimeToChangeAmmo = wgTorpedoArray.torpedoArray.Values.Any(launcher => launcher.ammoList.Length > 1) ? wgTorpedoArray.timeToChangeAmmo : 0,
-                    TorpedoLaunchers = wgTorpedoArray.torpedoArray.Select(entry => (TorpedoLauncher)entry.Value).ToList(),
-                };
+                var torpedoModule = new TorpedoModule(
+                    wgTorpedoArray.torpedoArray.Values.Any(launcher => launcher.ammoList.Length > 1) ? wgTorpedoArray.timeToChangeAmmo : 0,
+                    wgTorpedoArray.torpedoArray.Select(entry => (TorpedoLauncher)entry.Value).ToList());
                 Program.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
 
                 resultDictionary[key] = torpedoModule;
@@ -470,11 +449,7 @@ namespace DataConverter.Converters
                     .Where(upgrade => upgrade.UcType == type.ToComponentType())
                     .Select(planeUpgrade => planeUpgrade.Components[type.ToComponentType()].First())
                     .Select(moduleKey => (moduleKey, (WgPlane)wgShip.ModulesArmaments[moduleKey]))
-                    .Select(wgPlane => (wgPlane.moduleKey, new PlaneData
-                    {
-                        PlaneName = wgPlane.Item2.planeType,
-                        PlaneType = type,
-                    }))
+                    .Select(wgPlane => (wgPlane.moduleKey, new PlaneData(type, wgPlane.Item2.planeType)))
                     .ToList();
 
                 Program.TranslationNames.UnionWith(planesOfType.Select(planeEntry => planeEntry.Item2.PlaneName).Distinct());

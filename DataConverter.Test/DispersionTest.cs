@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Ship;
 
 namespace DataConverter.Test
 {
@@ -8,17 +8,7 @@ namespace DataConverter.Test
     public class DispersionTest
     {
         // Dispersion data for Zao
-        private Dispersion dispersion = new()
-        {
-            IdealRadius = 8.0,
-            MinRadius = 0.5,
-            IdealDistance = 1000,
-            TaperDist = 4000,
-            RadiusOnZero = 0.2,
-            RadiusOnDelim = 0.5,
-            RadiusOnMax = 0.6,
-            Delim = 0.5,
-        };
+        private Dispersion dispersion = new(8.0, 0.5, 1000, 4000, 0.2, 0.5, 0.6, 0.5);
 
         [Test]
         public void HorizontalDispersionCalculation()
@@ -27,7 +17,7 @@ namespace DataConverter.Test
             var horizontalDispersion = dispersion.CalculateHorizontalDispersion(range);
             Assert.True(Math.Abs(horizontalDispersion - 136.7) < 0.1);
         }
-        
+
         [Test]
         public void HorizontalDispersionCalculation_ShortRange()
         {
@@ -35,7 +25,7 @@ namespace DataConverter.Test
             var horizontalDispersion = dispersion.CalculateHorizontalDispersion(range);
             Assert.True(Math.Abs(horizontalDispersion - 39.3) < 0.1);
         }
-        
+
         [Test]
         public void VerticalDispersionCalculation()
         {
@@ -43,7 +33,7 @@ namespace DataConverter.Test
             var verticalDispersion = dispersion.CalculateVerticalDispersion(range);
             Assert.True(Math.Abs(verticalDispersion - 82) < 0.1);
         }
-        
+
         [Test]
         public void VerticalDispersionCalculation_ShortRange()
         {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Ship;
 
 namespace DataConverter.WGStructure
 {
@@ -86,22 +87,23 @@ namespace DataConverter.WGStructure
 
         public static explicit operator Gun(MainBatteryGun gun)
         {
-            var newGun = new Gun
+            var newGun = new Gun(
+                gun.ammoList.ToList(),
+                gun.barrelDiameter,
+                gun.id,
+                gun.index,
+                gun.name,
+                gun.numBarrels,
+                gun.rotationSpeed[0],
+                gun.rotationSpeed[1],
+                gun.shotDelay)
             {
-                AmmoList = gun.ammoList.ToList(),
-                BarrelDiameter = gun.barrelDiameter,
                 HorizontalSector = gun.horizSector,
                 HorizontalDeadZones = gun.deadZone,
-                Id = gun.id,
-                Index = gun.index,
-                Name = gun.name,
-                NumBarrels = gun.numBarrels,
                 HorizontalPosition = gun.position[1],
                 VerticalPosition = gun.position[0],
-                HorizontalRotationSpeed = gun.rotationSpeed[0],
-                VerticalRotationSpeed = gun.rotationSpeed[1],
-                Reload = gun.shotDelay,
                 SmokeDetectionWhenFiring = gun.smokePenalty,
+                WgGunIndex = gun.index,
             };
             newGun.TurretOrientation = newGun.VerticalPosition < 3 ? TurretOrientation.Forward : TurretOrientation.Backward;
 
@@ -142,21 +144,19 @@ namespace DataConverter.WGStructure
 
         public static implicit operator TorpedoLauncher(WgTorpedoLauncher thisLauncher)
         {
-            return new TorpedoLauncher
-            {
-                AmmoList = thisLauncher.ammoList.ToList(),
-                BarrelDiameter = thisLauncher.barrelDiameter,
-                HorizontalRotationSpeed = thisLauncher.rotationSpeed[0],
-                VerticalRotationSpeed = thisLauncher.rotationSpeed[1],
-                Id = thisLauncher.id,
-                Index = thisLauncher.index,
-                Name = thisLauncher.name,
-                NumBarrels = thisLauncher.numBarrels,
-                Reload = thisLauncher.shotDelay,
-                HorizontalSector = thisLauncher.horizSector,
-                HorizontalDeadZone = thisLauncher.deadZone,
-                TorpedoAngles = thisLauncher.torpedoAngles,
-            };
+            return new TorpedoLauncher(
+                thisLauncher.ammoList.ToList(),
+                thisLauncher.barrelDiameter,
+                thisLauncher.id,
+                thisLauncher.index,
+                thisLauncher.name,
+                thisLauncher.numBarrels,
+                thisLauncher.rotationSpeed[0],
+                thisLauncher.rotationSpeed[1],
+                thisLauncher.shotDelay,
+                thisLauncher.horizSector,
+                thisLauncher.deadZone,
+                thisLauncher.torpedoAngles);
         }
     }
     #endregion
@@ -205,18 +205,17 @@ namespace DataConverter.WGStructure
 
         public static explicit operator Gun(AntiAirAndSecondaries wgSecondary)
         {
-            return new Gun
-            {
-                AmmoList = wgSecondary.ammoList.ToList(),
-                BarrelDiameter = wgSecondary.barrelDiameter,
-                Id = wgSecondary.id,
-                Index = wgSecondary.index,
-                Name = wgSecondary.name,
-                NumBarrels = wgSecondary.numBarrels,
-                HorizontalRotationSpeed = wgSecondary.rotationSpeed[0],
-                VerticalRotationSpeed = wgSecondary.rotationSpeed[1],
-                Reload = wgSecondary.shotDelay,
-            };
+            return new Gun(
+                wgSecondary.ammoList.ToList(),
+                wgSecondary.barrelDiameter,
+                wgSecondary.id,
+                wgSecondary.index,
+                wgSecondary.name,
+                wgSecondary.numBarrels,
+                wgSecondary.rotationSpeed[0],
+                wgSecondary.rotationSpeed[1],
+                wgSecondary.shotDelay
+            );
         }
     }
 
@@ -241,18 +240,16 @@ namespace DataConverter.WGStructure
         
         public static implicit operator AirStrike(AirSupport thisAirSupport)
         {
-            return new AirStrike
-            {
-                Charges = thisAirSupport.chargesNum,
-                FlyAwayTime = thisAirSupport.flyAwayTime,
-                MaximumDistance = thisAirSupport.maxDist,
-                MaximumFlightDistance = thisAirSupport.maxPlaneFlightDist,
-                MinimumDistance = thisAirSupport.minDist,
-                PlaneName = thisAirSupport.planeName,
-                DropTime = thisAirSupport.timeFromHeaven,
-                ReloadTime = thisAirSupport.reloadTime,
-                TimeBetweenShots = thisAirSupport.timeBetweenShots,
-            };
+            return new AirStrike(
+                thisAirSupport.chargesNum,
+                thisAirSupport.flyAwayTime,
+                thisAirSupport.maxDist,
+                thisAirSupport.maxPlaneFlightDist,
+                thisAirSupport.minDist,
+                thisAirSupport.planeName,
+                thisAirSupport.reloadTime,
+                thisAirSupport.timeBetweenShots,
+                thisAirSupport.timeFromHeaven);
         }
     }
 
@@ -285,14 +282,11 @@ namespace DataConverter.WGStructure
 
         public static implicit operator AntiAirAura(AAAura aura)
         {
-            return new AntiAirAura
+            return new AntiAirAura(aura.hitChance, aura.maxDistance, aura.minDistance)
             {
                 ConstantDps = aura.areaDamage,
                 FlakDamage = aura.bubbleDamage,
                 FlakCloudsNumber = aura.innerBubbleCount,
-                HitChance = aura.hitChance,
-                MaxRange = aura.maxDistance,
-                MinRange = aura.minDistance,
             };
         }
     }
