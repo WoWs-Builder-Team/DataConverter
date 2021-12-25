@@ -1,32 +1,10 @@
 ﻿using System.Collections.Generic;
+// ReSharper disable NotAccessedPositionalProperty.Global
 
+#nullable enable
 namespace WoWsShipBuilder.DataStructures
 {
-    public class ShipSummary
-    {
-        public ShipSummary(string index, Nation nation, int tier, ShipClass shipClass, ShipCategory category, string prevShipIndex, List<string> nextShipsIndex)
-        {
-            Index = index;
-            Nation = nation;
-            Tier = tier;
-            ShipClass = shipClass;
-            Category = category;
-            PrevShipIndex = prevShipIndex;
-            NextShipsIndex = nextShipsIndex ?? new List<string>();
-        }
-        
-        public string Index { get; }
-        
-        public Nation Nation { get; }
-        
-        public int Tier { get; }
-        
-        public string PrevShipIndex { get; }
-
-        public List<string> NextShipsIndex { get; }
-
-        public ShipClass ShipClass { get; }
-        
-        public ShipCategory Category { get; }
-    }
+    public sealed record ShipSummary(string Index, Nation Nation, int Tier, ShipClass ShipClass, ShipCategory Category, string PrevShipIndex, List<string> NextShipsIndex);
 }
+
+#nullable restore

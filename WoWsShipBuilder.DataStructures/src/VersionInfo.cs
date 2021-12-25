@@ -1,35 +1,9 @@
 ﻿using System.Collections.Generic;
+// ReSharper disable NotAccessedPositionalProperty.Global
 
 namespace WoWsShipBuilder.DataStructures
 {
-    public class VersionInfo
-    {
-        public Dictionary<string, List<FileVersion>> Categories { get; }
+    public sealed record VersionInfo(Dictionary<string, List<FileVersion>> Categories, int CurrentVersionCode = 0, string VersionName = "", string LastVersionName = "");
 
-        public int CurrentVersionCode { get; }
-        
-        public string VersionName { get; }
-
-        public string LastVersionName { get; }
-
-        public VersionInfo(Dictionary<string, List<FileVersion>> categories, int currentVersionCode = 0, string versionName = "", string lastVersionName = "")
-        {
-            Categories = categories;
-            CurrentVersionCode = currentVersionCode;
-            VersionName = versionName;
-            LastVersionName = lastVersionName;
-        }
-    }
-
-    public class FileVersion
-    {
-        public string FileName { get; }
-        public int Version { get; }
-
-        public FileVersion(string fileName, int version)
-        {
-            FileName = fileName;
-            Version = version;
-        }
-    }
+    public sealed record FileVersion(string FileName, int Version);
 }
