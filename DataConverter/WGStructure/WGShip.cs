@@ -314,16 +314,14 @@ namespace DataConverter.WGStructure
 
         public static implicit operator DepthChargeLauncher(WgDepthChargeLauncher wgLauncher)
         {
-            return new DepthChargeLauncher
-            {
-                AmmoList = wgLauncher.ammoList.ToList(),
-                DepthChargesNumber = wgLauncher.numBombs,
-                HorizontalSector = wgLauncher.horizSector,
-                Id = wgLauncher.id,
-                Index = wgLauncher.index,
-                Name = wgLauncher.name,
-                RotationSpeed = wgLauncher.rotationSpeed,
-            };
+            return new DepthChargeLauncher(
+                wgLauncher.ammoList.ToList(),
+                wgLauncher.horizSector,
+                wgLauncher.id,
+                wgLauncher.index,
+                wgLauncher.name,
+                wgLauncher.numBombs,
+                wgLauncher.rotationSpeed);
         }
     }
     #endregion
@@ -395,16 +393,14 @@ namespace DataConverter.WGStructure
 
         public static implicit operator PingerGun(WgPingerGun thisWgPingerGun)
         {
-            return new PingerGun
-            {
-                RotationSpeed = thisWgPingerGun.rotationSpeed,
-                SectorParams = thisWgPingerGun.sectorParams.Select(wgSectorParam => (SectorParam)wgSectorParam).ToArray(),
-                WaveDistance = thisWgPingerGun.waveDistance,
-                WaveHitAlertTime = thisWgPingerGun.waveHitAlertTime,
-                WaveHitLifeTime = thisWgPingerGun.waveHitLifeTime,
-                WaveParams = thisWgPingerGun.waveParams.Select(wgWaveParam => (WaveParam)wgWaveParam).ToArray(),
-                WaveReloadTime = thisWgPingerGun.waveReloadTime,
-            };
+            return new PingerGun(
+                RotationSpeed: thisWgPingerGun.rotationSpeed,
+                SectorParams: thisWgPingerGun.sectorParams.Select(wgSectorParam => (SectorParam)wgSectorParam).ToArray(),
+                WaveDistance: thisWgPingerGun.waveDistance,
+                WaveHitAlertTime: thisWgPingerGun.waveHitAlertTime,
+                WaveHitLifeTime: thisWgPingerGun.waveHitLifeTime,
+                WaveParams: thisWgPingerGun.waveParams.Select(wgWaveParam => (WaveParam)wgWaveParam).ToArray(),
+                WaveReloadTime: thisWgPingerGun.waveReloadTime);
         }
     }
 
@@ -417,13 +413,12 @@ namespace DataConverter.WGStructure
 
         public static implicit operator SectorParam(WgSectorParam thisSectorParam)
         {
-            return new SectorParam
-            {
-                AlertTime = thisSectorParam.alertTime,
-                Lifetime = thisSectorParam.lifetime,
-                Width = thisSectorParam.width,
-                WidthParams = thisSectorParam.widthParams,
-            };
+            return new SectorParam(
+                AlertTime: thisSectorParam.alertTime,
+                Lifetime: thisSectorParam.lifetime,
+                Width: thisSectorParam.width,
+                WidthParams: thisSectorParam.widthParams
+            );
         }
     }
 
@@ -437,12 +432,12 @@ namespace DataConverter.WGStructure
         public static implicit operator WaveParam(WgWaveParam thisWaveParam)
         {
             return new WaveParam
-            {
-                EndWaveWidth = thisWaveParam.endWaveWidth,
-                EnergyCost = thisWaveParam.energyCost,
-                StartWaveWidth = thisWaveParam.startWaveWidth,
-                WaveSpeed = thisWaveParam.waveSpeed,
-            };
+            (
+                EndWaveWidth: thisWaveParam.endWaveWidth,
+                EnergyCost: thisWaveParam.energyCost,
+                StartWaveWidth: thisWaveParam.startWaveWidth,
+                WaveSpeed: thisWaveParam.waveSpeed
+            );
         }
     }
 

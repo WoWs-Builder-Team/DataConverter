@@ -113,135 +113,90 @@ namespace WoWsShipBuilder.DataStructures.Ship
         }
     }
 
-    #nullable restore
     #endregion
 
     #region Depth Charges
 
-    public class DepthChargeArray
-    {
-        public int MaxPacks { get; set; }
-        public decimal Reload { get; set; }
-        public List<DepthChargeLauncher> DepthCharges { get; set; }
-    }
+    public sealed record DepthChargeArray(int MaxPacks, decimal Reload, List<DepthChargeLauncher> DepthCharges);
 
-    public class DepthChargeLauncher
-    {
-        public List<string> AmmoList { get; set; }
-        public decimal[] HorizontalSector { get; set; }
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public string Name { get; set; }
-        public int DepthChargesNumber { get; set; }
-        public decimal[] RotationSpeed { get; set; }
-    }
+    public sealed record DepthChargeLauncher(
+        List<string> AmmoList,
+        decimal[] HorizontalSector,
+        long Id,
+        string Index,
+        string Name,
+        int DepthChargesNumber,
+        decimal[] RotationSpeed);
 
     #endregion
 
     #region Engine
 
-    public class Engine
-    {
-        public decimal BackwardEngineUpTime { get; set; }
-        public decimal ForwardEngineUpTime { get; set; }
-        public decimal SpeedCoef { get; set; }
-        public decimal ArmorCoeff { get; set; }
-    }
+    public sealed record Engine(decimal BackwardEngineUpTime, decimal ForwardEngineUpTime, decimal SpeedCoef, decimal ArmorCoeff);
 
     #endregion
 
     #region Hull
 
-    public class Hull
+    public sealed record Hull(
+        decimal Health,
+        decimal MaxSpeed,
+        decimal RudderTime,
+        decimal SpeedCoef,
+        decimal SteeringGearArmorCoeff,
+        decimal SmokeFiringDetection,
+        decimal SurfaceDetection,
+        decimal AirDetection,
+        decimal DetectionBySubPeriscope,
+        decimal DetectionBySubOperating,
+        int FireSpots,
+        decimal FireResistance,
+        decimal FireTickDamage,
+        decimal FireDuration,
+        int FloodingSpots,
+        decimal FloodingResistance,
+        decimal FloodingTickDamage,
+        decimal FloodingDuration,
+        int TurningRadius,
+        ShipSize Sizes)
     {
-        public decimal Health { get; set; }
-        public decimal MaxSpeed { get; set; }
-        public decimal RudderTime { get; set; }
-        public decimal SpeedCoef { get; set; }
-        public decimal SteeringGearArmorCoeff { get; set; }
-        public decimal SmokeFiringDetection { get; set; }
-        public decimal SurfaceDetection { get; set; }
-        public decimal AirDetection { get; set; }
-        public decimal DetectionBySubPeriscope { get; set; }
-        public decimal DetectionBySubOperating { get; set; }
-        public AntiAir AntiAir { get; set; }
-        public TurretModule SecondaryModule { get; set; }
-        public DepthChargeArray DepthChargeArray { get; set; }
-        public int FireSpots { get; set; }
-        public decimal FireResistance { get; set; }
-        public decimal FireTickDamage { get; set; }
-        public decimal FireDuration { get; set; }
-        public int FloodingSpots { get; set; }
-        public decimal FloodingResistance { get; set; }
-        public decimal FloodingTickDamage { get; set; }
-        public decimal FloodingDuration { get; set; }
-        public int TurningRadius { get; set; }
-        public ShipSize Sizes { get; set; }
+        public AntiAir AntiAir { get; set; } = new();
+        public TurretModule? SecondaryModule { get; set; }
+        public DepthChargeArray? DepthChargeArray { get; set; }
     }
 
-    public class ShipSize
-    {
-        public decimal Length { get; set; }
-        public decimal Width { get; set; }
-        public decimal Height { get; set; }
-    }
+    public sealed record ShipSize(decimal Length, decimal Width, decimal Height);
 
     #endregion
 
     #region PingerGun
 
     //copy of WG value. No idea of what we need or what is useful
-    public class PingerGun
-    {
-        public decimal[] RotationSpeed { get; set; }
-        public SectorParam[] SectorParams { get; set; }
-        public decimal WaveDistance { get; set; }
-        public int WaveHitAlertTime { get; set; }
-        public int WaveHitLifeTime { get; set; }
-        public WaveParam[] WaveParams { get; set; }
-        public decimal WaveReloadTime { get; set; }
-    }
+    public sealed record PingerGun(
+        decimal[] RotationSpeed,
+        SectorParam[] SectorParams,
+        decimal WaveDistance,
+        int WaveHitAlertTime,
+        int WaveHitLifeTime,
+        WaveParam[] WaveParams,
+        decimal WaveReloadTime);
 
-    public class SectorParam
-    {
-        public decimal AlertTime { get; set; }
-        public decimal Lifetime { get; set; }
-        public decimal Width { get; set; }
-        public decimal[][] WidthParams { get; set; }
-    }
+    public sealed record SectorParam(decimal AlertTime, decimal Lifetime, decimal Width, decimal[][] WidthParams);
 
-    public class WaveParam
-    {
-        public decimal EndWaveWidth { get; set; }
-        public decimal EnergyCost { get; set; }
-        public decimal StartWaveWidth { get; set; }
-        public decimal[] WaveSpeed { get; set; }
-    }
+    public sealed record WaveParam(decimal EndWaveWidth, decimal EnergyCost, decimal StartWaveWidth, decimal[] WaveSpeed);
 
     #endregion
 
     #region Ship Consumables
 
-    public class ShipConsumable
-    {
-        public int Slot { get; set; }
-        public string ConsumableName { get; set; }
-        public string ConsumableVariantName { get; set; }
-    }
+    public sealed record ShipConsumable(int Slot, string ConsumableName, string ConsumableVariantName);
 
     #endregion
 
     #region Ship Upgrades and Modules
 
-    public class UpgradeInfo
+    public sealed record UpgradeInfo(List<ShipUpgrade> ShipUpgrades, int CostCredits, int CostGold, int CostSaleGold, int CostXp, int Value)
     {
-        public List<ShipUpgrade> ShipUpgrades { get; set; }
-        public int CostCredits { get; set; }
-        public int CostGold { get; set; }
-        public int CostSaleGold { get; set; }
-        public int CostXp { get; set; }
-        public int Value { get; set; }
-
         /// <summary>
         /// Helper method to easily filter all upgrade configurations of a specific type.
         /// </summary>
@@ -259,40 +214,31 @@ namespace WoWsShipBuilder.DataStructures.Ship
         /// Stock upgrades appear first.</returns>
         public Dictionary<ComponentType, List<ShipUpgrade>> GroupUpgradesByType()
         {
-            return ShipUpgrades.GroupBy(upgrade => upgrade.UcType)
-                .ToDictionary(group => group.Key, group => group.OrderByDescending(upgrade => string.IsNullOrEmpty(upgrade.Prev)).ToList());
+            return ShipUpgrades
+                .GroupBy(upgrade => upgrade.UcType)
+                .ToDictionary(
+                    group => group.Key, 
+                    group => group.OrderByDescending(upgrade => string.IsNullOrEmpty(upgrade.Prev)).ToList());
         }
     }
 
     //pretty much a copy of WG structure
-    public class ShipUpgrade
-    {
-        public Dictionary<ComponentType, string[]> Components { get; set; }
-        public string Name { get; set; }
-        public string[] NextShips { get; set; }
-        public string Prev { get; set; }
-        public ComponentType UcType { get; set; }
-        public bool CanBuy { get; set; }
-    }
+    public sealed record ShipUpgrade(
+        Dictionary<ComponentType, string[]> Components,
+        string Name,
+        string[] NextShips,
+        string Prev,
+        ComponentType UcType,
+        bool CanBuy);
 
     #endregion
 
     #region Special Abilities for super ship
-    public class SpecialAbility
-    {
-        public double Duration { get; set; }
-        public int RequiredHits {get; set;}
-        public double RadiusForSuccessfulHits { get; set; }
-        public Dictionary<string, float> Modifiers { get; set; }
-        public string Name { get; set; }
-    }
 
-    public class BurstModeAbility
-    {
-        public decimal ReloadDuringBurst { get; set; }
-        public decimal ReloadAfterBurst { get; set; }
-        public Dictionary<string, float> Modifiers { get; set; }
-        public int ShotInBurst { get; set; }
-    }
+    public sealed record SpecialAbility(double Duration, int RequiredHits, double RadiusForSuccessfulHits, Dictionary<string, float> Modifiers, string Name);
+
+    public sealed record BurstModeAbility(decimal ReloadDuringBurst, decimal ReloadAfterBurst, Dictionary<string, float> Modifiers, int ShotInBurst);
+
     #endregion
 }
+#nullable restore

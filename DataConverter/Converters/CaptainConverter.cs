@@ -115,7 +115,7 @@ namespace DataConverter.Converters
                         else if (jtoken.Type == JTokenType.Object)
                         {
                             JObject jObject = (JObject)jtoken;
-                            var values = jObject.ToObject<Dictionary<string, float>>();
+                            var values = jObject.ToObject<Dictionary<string, float>>()!;
                             bool isEqual = true;
                             var first = values.First().Value;
                             foreach ((string key, float value) in values)
@@ -179,7 +179,7 @@ namespace DataConverter.Converters
                         if (currentWgUniqueSkillEffectKey.ToString().Contains("Unique"))
                         {
                             JObject jObject = (JObject)currentWgUniqueSkillEffectValue;
-                            var values = jObject.ToObject<Dictionary<string, JToken>>();
+                            var values = jObject.ToObject<Dictionary<string, JToken>>()!;
                             foreach ((string key, JToken value) in values)
                             {
                                 if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
@@ -189,7 +189,7 @@ namespace DataConverter.Converters
                                 else if (value.Type == JTokenType.Object)
                                 {
                                     JObject anotherJObject = (JObject)value;
-                                    var moreValues = anotherJObject.ToObject<Dictionary<string, double>>();
+                                    var moreValues = anotherJObject.ToObject<Dictionary<string, double>>()!;
                                     bool isEqual = true;
                                     var first = moreValues.First().Value;
                                     foreach ((string anotherKey, double anotherValue) in moreValues)

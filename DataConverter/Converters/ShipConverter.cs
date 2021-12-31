@@ -53,7 +53,7 @@ namespace DataConverter.Converters
                     PingerGunList = ProcessPingerGuns(wgShip),
                     SpecialAbility = ProcessSpecialAbility(wgShip),
                     BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule),
-                    Permaflages = wgShip.permoflages,
+                    Permaflages = wgShip.permoflages ?? new(),
                 };
 
                 if (wgShip.permoflages != null)
@@ -84,9 +84,9 @@ namespace DataConverter.Converters
 
             foreach ((_, Ship ship) in results)
             {
-                shipToPreviousShipMapper.TryGetValue(ship.Index, out string previousShip);
-                shipToNextShipMapper.TryGetValue(ship.Index, out List<string> nextShips);
-                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips));
+                shipToPreviousShipMapper.TryGetValue(ship.Index, out string? previousShip);
+                shipToNextShipMapper.TryGetValue(ship.Index, out List<string>? nextShips);
+                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip!, nextShips!));
             }
 
             return results;
@@ -101,20 +101,18 @@ namespace DataConverter.Converters
             using var reader = new StreamReader(stream);
             using var jsonReader = new JsonTextReader(reader);
             var serializer = new JsonSerializer();
-            return serializer.Deserialize<Dictionary<string, ShipTurretOverride>>(jsonReader);
+            return serializer.Deserialize<Dictionary<string, ShipTurretOverride>>(jsonReader)!;
         }
 
-        private static BurstModeAbility ProcessBurstModeAbility(BurstArtilleryModule module)
+        private static BurstModeAbility? ProcessBurstModeAbility(BurstArtilleryModule? module)
         {
             if (module != null)
             {
-                var burstAbility = new BurstModeAbility()
-                {
-                    ShotInBurst = module.shotsCount,
-                    ReloadAfterBurst = module.fullReloadTime,
-                    ReloadDuringBurst = module.burstReloadTime,
-                    Modifiers = module.modifiers
-                };
+                var burstAbility = new BurstModeAbility(
+                    ShotInBurst: module.shotsCount,
+                    ReloadAfterBurst: module.fullReloadTime,
+                    ReloadDuringBurst: module.burstReloadTime,
+                    Modifiers: module.modifiers);
                 Program.TranslationNames.UnionWith(burstAbility.Modifiers.Keys);
                 return burstAbility;
             }
@@ -122,24 +120,24 @@ namespace DataConverter.Converters
             return null;
         }
 
-        private static SpecialAbility ProcessSpecialAbility(WGShip wgShip)
+        private static SpecialAbility? ProcessSpecialAbility(WGShip wgShip)
         {
             Dictionary<string, WgSpecialAbility> wgSpecialAbilityList = wgShip.ModulesArmaments.ModulesOfType<WgSpecialAbility>();
             if (wgSpecialAbilityList.Count > 1)
             {
                 throw new InvalidOperationException($"Too many special abilities for ship {wgShip.index}");
             }
-            else if (wgSpecialAbilityList.Count == 1)
+            
+            if (wgSpecialAbilityList.Count == 1)
             {
                 var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
-                var specialAbility = new SpecialAbility()
-                {
-                    Duration = wgAbility.boostDuration,
-                    Modifiers = wgAbility.modifiers,
-                    Name = wgAbility.rageModeName,
-                    RadiusForSuccessfulHits = wgAbility.radius,
-                    RequiredHits = wgAbility.requiredHits
-                };
+                var specialAbility = new SpecialAbility(
+                    Duration: wgAbility.boostDuration,
+                    Modifiers: wgAbility.modifiers,
+                    Name: wgAbility.rageModeName,
+                    RadiusForSuccessfulHits: wgAbility.radius,
+                    RequiredHits: wgAbility.requiredHits
+                );
                 Program.TranslationNames.Add(specialAbility.Name);
                 Program.TranslationNames.Add("RageMode");
                 Program.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
@@ -200,29 +198,28 @@ namespace DataConverter.Converters
 
         private static UpgradeInfo ProcessUpgradeInfo(WGShip wgShip)
         {
-            var upgradeInfo = new UpgradeInfo
-            {
-                ShipUpgrades = new(),
-                CostCredits = wgShip.ShipUpgradeInfo.costCR,
-                CostGold = wgShip.ShipUpgradeInfo.costGold,
-                CostXp = wgShip.ShipUpgradeInfo.costXP,
-                CostSaleGold = wgShip.ShipUpgradeInfo.costSaleGold,
-                Value = wgShip.ShipUpgradeInfo.value,
-            };
+            var upgradeInfo = new UpgradeInfo(
+                ShipUpgrades: new(),
+                CostCredits: wgShip.ShipUpgradeInfo.costCR,
+                CostGold: wgShip.ShipUpgradeInfo.costGold,
+                CostXp: wgShip.ShipUpgradeInfo.costXP,
+                CostSaleGold: wgShip.ShipUpgradeInfo.costSaleGold,
+                Value: wgShip.ShipUpgradeInfo.value);
 
             foreach ((string wgName, WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
             {
-                var newUpgrade = new ShipUpgrade
-                {
-                    Name = wgName,
-                    Components = upgrade.components.Select(entry => (FindModuleType(entry.Key), entry.Value))
-                        .Where(entry => entry.Item1 != ComponentType.None)
-                        .ToDictionary(entry => entry.Item1, entry => entry.Value),
-                    UcType = FindModuleType(upgrade.ucType),
-                    CanBuy = upgrade.canBuy,
-                    NextShips = upgrade.nextShips,
-                    Prev = upgrade.prev,
-                };
+                Dictionary<ComponentType, string[]> upgradeComponents = upgrade.components
+                    .Select(entry => (FindModuleType(entry.Key), entry.Value))
+                    .Where(entry => entry.Item1 != ComponentType.None)
+                    .ToDictionary(entry => entry.Item1, entry => entry.Value);
+                var newUpgrade = new ShipUpgrade(
+                    Name: wgName,
+                    Components: upgradeComponents,
+                    UcType: FindModuleType(upgrade.ucType),
+                    CanBuy: upgrade.canBuy,
+                    NextShips: upgrade.nextShips,
+                    Prev: upgrade.prev);
+                
                 if (newUpgrade.UcType != ComponentType.FlightControl)
                 {
                     upgradeInfo.ShipUpgrades.Add(newUpgrade);
@@ -307,38 +304,34 @@ namespace DataConverter.Converters
                 ShipUpgrade hullUpgradeInfo = upgradeInfo.ShipUpgrades.First(upgradeEntry =>
                     upgradeEntry.Components.ContainsKey(ComponentType.Hull) && upgradeEntry.Components[ComponentType.Hull].Contains(key));
 
-                // Initialize basic hull data.
-                var hullModule = new Hull
-                {
-                    Health = wgHull.health,
-                    MaxSpeed = wgHull.maxSpeed,
-                    RudderTime = wgHull.rudderTime,
-                    SpeedCoef = wgHull.speedCoef,
-                    SteeringGearArmorCoeff = wgHull.SG.armorCoeff,
-                    SmokeFiringDetection = wgHull.visibilityCoefGKInSmoke,
-                    SurfaceDetection = wgHull.visibilityFactor,
-                    AirDetection = wgHull.visibilityFactorByPlane,
-                    DetectionBySubPeriscope = wgHull.visibilityFactorsBySubmarine["PERISCOPE"],
-                    DetectionBySubOperating = wgHull.visibilityFactorsBySubmarine["DEEP_WATER"],
-                    FireSpots = wgHull.burnNodes.Length,
-                    FireResistance = wgHull.burnNodes[0][0],
-                    FireTickDamage = wgHull.burnNodes[0][1],
-                    FireDuration = wgHull.burnNodes[0][2],
-                    FloodingSpots = wgHull.floodNodes.Length,
-                    FloodingResistance = wgHull.floodNodes[0][0],
-                    FloodingTickDamage = wgHull.floodNodes[0][1],
-                    FloodingDuration = wgHull.floodNodes[0][2],
-                    TurningRadius = wgHull.turningRadius,
-                };
-
                 //Process ship size
-                ShipSize dim = new()
-                {
-                    Length = wgHull.size[0],
-                    Width = wgHull.size[1],
-                    Height = wgHull.size[2],
-                };
-                hullModule.Sizes = dim;
+                ShipSize shipSize = new(
+                    Length: wgHull.size[0],
+                    Width: wgHull.size[1],
+                    Height: wgHull.size[2]);
+                
+                // Initialize basic hull data.
+                var hullModule = new Hull(
+                    Health: wgHull.health,
+                    MaxSpeed: wgHull.maxSpeed,
+                    RudderTime: wgHull.rudderTime,
+                    SpeedCoef: wgHull.speedCoef,
+                    SteeringGearArmorCoeff: wgHull.SG.armorCoeff,
+                    SmokeFiringDetection: wgHull.visibilityCoefGKInSmoke,
+                    SurfaceDetection: wgHull.visibilityFactor,
+                    AirDetection: wgHull.visibilityFactorByPlane,
+                    DetectionBySubPeriscope: wgHull.visibilityFactorsBySubmarine["PERISCOPE"],
+                    DetectionBySubOperating: wgHull.visibilityFactorsBySubmarine["DEEP_WATER"],
+                    FireSpots: wgHull.burnNodes.Length,
+                    FireResistance: wgHull.burnNodes[0][0],
+                    FireTickDamage: wgHull.burnNodes[0][1],
+                    FireDuration: wgHull.burnNodes[0][2],
+                    FloodingSpots: wgHull.floodNodes.Length,
+                    FloodingResistance: wgHull.floodNodes[0][0],
+                    FloodingTickDamage: wgHull.floodNodes[0][1],
+                    FloodingDuration: wgHull.floodNodes[0][2],
+                    TurningRadius: wgHull.turningRadius,
+                    Sizes: shipSize);
 
                 // Process anti-air data
                 var antiAir = new AntiAir();
@@ -356,7 +349,7 @@ namespace DataConverter.Converters
                     hullModule.SecondaryModule = secondary;
                 }
 
-                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out string[] airDefenseKeys))
+                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out string[]? airDefenseKeys))
                 {
                     foreach (string airDefenseKey in airDefenseKeys)
                     {
@@ -368,17 +361,16 @@ namespace DataConverter.Converters
                 hullModule.AntiAir = antiAir;
 
                 // Process depth charge data
-                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out string[] depthChargeKey) && depthChargeKey.Length > 0)
+                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out string[]? depthChargeKey) && depthChargeKey.Length > 0)
                 {
                     var wgDepthChargeArray = (WgDepthChargesArray)wgShip.ModulesArmaments[depthChargeKey.First()];
-                    hullModule.DepthChargeArray = new DepthChargeArray
-                    {
-                        MaxPacks = wgDepthChargeArray.maxPacks,
-                        Reload = wgDepthChargeArray.reloadTime,
-                        DepthCharges = wgDepthChargeArray.depthCharges.Select(entry => (DepthChargeLauncher)entry.Value).ToList(),
-                    };
-                    Program.TranslationNames.UnionWith(hullModule.DepthChargeArray.DepthCharges.Select(depthChargeLauncher => depthChargeLauncher.Name)
-                        .Distinct());
+                    hullModule.DepthChargeArray = new(
+                        wgDepthChargeArray.maxPacks,
+                        wgDepthChargeArray.reloadTime,
+                        wgDepthChargeArray.depthCharges.Select(entry => (DepthChargeLauncher)entry.Value).ToList());
+                    Program.TranslationNames
+                        .UnionWith(hullModule.DepthChargeArray.DepthCharges.Select(depthChargeLauncher => depthChargeLauncher.Name)
+                            .Distinct());
                 }
 
                 resultDictionary[key] = hullModule;
@@ -427,13 +419,11 @@ namespace DataConverter.Converters
 
             foreach ((string key, WgEngine wgEngine) in wgEngineList)
             {
-                var engine = new Engine
-                {
-                    BackwardEngineUpTime = wgEngine.backwardEngineUpTime,
-                    ForwardEngineUpTime = wgEngine.forwardEngineUpTime,
-                    SpeedCoef = wgEngine.speedCoef,
-                    ArmorCoeff = wgEngine.HitLocationEngine.armorCoeff,
-                };
+                var engine = new Engine(
+                    wgEngine.backwardEngineUpTime,
+                    wgEngine.forwardEngineUpTime,
+                    wgEngine.speedCoef,
+                    wgEngine.HitLocationEngine.armorCoeff);
                 resultDictionary[key] = engine;
             }
 
@@ -469,13 +459,7 @@ namespace DataConverter.Converters
             {
                 IEnumerable<ShipConsumable> consumableList = wgAbility.abils
                     .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
-                    .Select(ability =>
-                        new ShipConsumable
-                        {
-                            ConsumableName = ability.AbilityName,
-                            ConsumableVariantName = ability.AbilityVariant,
-                            Slot = wgAbility.slot,
-                        });
+                    .Select(ability => new ShipConsumable(wgAbility.slot, ability.AbilityName, ability.AbilityVariant));
                 resultList.AddRange(consumableList);
             }
 

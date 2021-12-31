@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -22,7 +17,7 @@ namespace DataConverter
             {
                 property.ShouldSerialize = instance =>
                 {
-                    IEnumerable enumerable = null;
+                    IEnumerable? enumerable = null;
                     // this value could be in a public field or public property
                     switch (member.MemberType)
                     {
@@ -36,7 +31,7 @@ namespace DataConverter
                             enumerable = instance
                                 .GetType()
                                 .GetField(member.Name)
-                                .GetValue(instance) as IEnumerable;
+                                ?.GetValue(instance) as IEnumerable;
                             break;
                     }
 
