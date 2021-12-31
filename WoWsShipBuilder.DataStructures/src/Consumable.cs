@@ -2,18 +2,18 @@
 
 namespace WoWsShipBuilder.DataStructures
 {
-    public class Consumable
+    public sealed record Consumable
     {
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public string Name { get; set; }
-        public string DescId { get; set; }
-        public string Group { get; set; }
-        public string IconId { get; set; }
-        public int NumConsumables { get; set; }
-        public float ReloadTime { get; set; }
-        public float WorkTime { get; set; }
-        public string ConsumableVariantName { get; set; }
-        public Dictionary<string, float> Modifiers { get; set; }
+        public long Id { get; init; }
+        public string Index { get; init; } = string.Empty;
+        public string Name { get; init; } = string.Empty;
+        public string DescId { get; init; } = string.Empty;
+        public string Group { get; init; } = string.Empty;
+        public string IconId { get; init; } = string.Empty;
+        public int NumConsumables { get; init; }
+        public float ReloadTime { get; init; }
+        public float WorkTime { get; init; }
+        public string ConsumableVariantName { get; init; } = string.Empty;
+        public Dictionary<string, float> Modifiers { get; init; } = new();
     }
 }

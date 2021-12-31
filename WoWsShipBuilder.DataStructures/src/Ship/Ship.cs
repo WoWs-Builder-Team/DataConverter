@@ -9,8 +9,6 @@ using System.Linq;
 
 namespace WoWsShipBuilder.DataStructures.Ship
 {
-#nullable enable
-
     public sealed record Ship(long Id, string Index, string Name, int Tier, ShipClass ShipClass, ShipCategory ShipCategory, Nation ShipNation)
     {
         public List<string> Permaflages { get; set; } = default!;
@@ -241,4 +239,3 @@ namespace WoWsShipBuilder.DataStructures.Ship
 
     #endregion
 }
-#nullable restore

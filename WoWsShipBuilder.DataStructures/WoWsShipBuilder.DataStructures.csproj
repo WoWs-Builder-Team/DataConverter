@@ -13,7 +13,7 @@
         <PackageVersion>1.2.0</PackageVersion>
         <RepositoryType>git</RepositoryType>
         <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
-        <Nullable>disable</Nullable>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>

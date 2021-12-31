@@ -1,12 +1,12 @@
 ﻿namespace WoWsShipBuilder.DataStructures
 {
-    public class Module
+    public sealed record Module
     {
-        public int CostCr { get; set; }
-        public int CostXp { get; set; }
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public string Name { get; set; }
+        public int CostCr { get; init; }
+        public int CostXp { get; init; }
+        public long Id { get; init; }
+        public string Index { get; init; } = string.Empty;
+        public string Name { get; init; } = string.Empty;
         public ModuleType Type { get; set; }
     }
 }

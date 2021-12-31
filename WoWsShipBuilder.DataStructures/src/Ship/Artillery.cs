@@ -2,8 +2,6 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-#nullable enable
-
 namespace WoWsShipBuilder.DataStructures.Ship
 {
     //small abuse, but we reuse this for secondaries.
@@ -88,5 +86,3 @@ namespace WoWsShipBuilder.DataStructures.Ship
         }
     }
 }
-
-#nullable restore

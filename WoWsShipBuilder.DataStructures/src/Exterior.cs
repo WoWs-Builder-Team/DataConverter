@@ -2,25 +2,25 @@
 
 namespace WoWsShipBuilder.DataStructures
 {
-    public class Exterior
+    public sealed record Exterior
     {
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public Dictionary<string,double> Modifiers { get; set; }
-        public string Name { get; set; }
+        public long Id { get; init; }
+        public string Index { get; init; }  = string.Empty;
+        public Dictionary<string,double>? Modifiers { get; set; }
+        public string Name { get; init; } = string.Empty;
         public ExteriorType Type { get; set; }
-        public int SortOrder { get; set; }
-        public Restriction Restrictions { get; set; }
-        public int Group { get; set; }
+        public int SortOrder { get; init; }
+        public Restriction Restrictions { get; set; } = new();
+        public int Group { get; init; }
     }
 
 
-    public class Restriction
+    public sealed record Restriction
     {
-        public List<string> ForbiddenShips { get; set; }
-        public List<string> Levels { get; set; }
-        public List<string> Nations { get; set; }
-        public List<string> SpecificShips { get; set; }
-        public List<string> Subtype { get; set; }
+        public List<string>? ForbiddenShips { get; init; }
+        public List<string>? Levels { get; init; }
+        public List<string>? Nations { get; init; }
+        public List<string>? SpecificShips { get; init; }
+        public List<string>? Subtype { get; init; }
     }
 }

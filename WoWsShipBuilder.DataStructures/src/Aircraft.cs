@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+// TODO: support nullability
+#nullable disable
 namespace WoWsShipBuilder.DataStructures
 {
     public class Aircraft
@@ -66,3 +68,4 @@ namespace WoWsShipBuilder.DataStructures
         public string ConsumableVariantName { get; set; }
     }
 }
+#nullable restore

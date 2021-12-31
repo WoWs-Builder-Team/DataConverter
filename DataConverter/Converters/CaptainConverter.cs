@@ -79,11 +79,12 @@ namespace DataConverter.Converters
                 //iterate all captain's skills
                 foreach (var currentWgSkill in currentWgCaptain.Skills)
                 {
-                    Skill skill = new Skill();
-                    //start mapping
-                    skill.CanBeLearned = currentWgSkill.Value.canBeLearned;
-                    skill.IsEpic = currentWgSkill.Value.isEpic;
-                    skill.SkillNumber = currentWgSkill.Value.skillType;
+                    var skill = new Skill
+                    {
+                        CanBeLearned = currentWgSkill.Value.canBeLearned,
+                        IsEpic = currentWgSkill.Value.isEpic,
+                        SkillNumber = currentWgSkill.Value.skillType,
+                    };
 
                     //check if there are skills with special vaules
                     if (skill.IsEpic)
@@ -169,7 +170,7 @@ namespace DataConverter.Converters
                     UniqueSkill uniqueSkill = new()
                     {
                         MaxTriggerNum = currentUniqueSkillValue.maxTriggerNum,
-                        AllowedShips = currentUniqueSkillValue.triggerAllowedShips?.ToList<ShipClass>(),
+                        AllowedShips = currentUniqueSkillValue.triggerAllowedShips?.ToList(),
                         TriggerType = currentUniqueSkillValue.triggerType
                     };
 
@@ -249,12 +250,7 @@ namespace DataConverter.Converters
                     int skillIndex = skillsInRow.IndexOf(skillNumber);
                     if (skillIndex >= 0)
                     {
-                        var position = new SkillPosition
-                        {
-                            ShipClass = shipClass,
-                            XPosition = skillIndex,
-                            Tier = skillTier,
-                        };
+                        var position = new SkillPosition(skillTier, skillIndex, shipClass);
                         positions.Add(position);
                     }
                 }

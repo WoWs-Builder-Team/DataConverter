@@ -2,6 +2,8 @@
 using JsonSubTypes;
 using Newtonsoft.Json;
 
+// TODO: support nullability
+#nullable disable
 namespace WoWsShipBuilder.DataStructures
 {
     [JsonConverter(typeof(JsonSubtypes), "ProjectileType")]
@@ -101,3 +103,4 @@ namespace WoWsShipBuilder.DataStructures
         public float ExplosionRadius { get; set; }
     }
 }
+#nullable restore
