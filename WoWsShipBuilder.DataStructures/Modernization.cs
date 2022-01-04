@@ -1,20 +1,22 @@
-﻿using System.Collections.Generic;
+﻿#nullable enable
+using System.Collections.Generic;
 
 namespace WoWsShipBuilder.DataStructures
 {
-    public class Modernization
+    public sealed record Modernization
     {
         public long Id { get; set; }
-        public string Index { get; set; }
-        public Dictionary<string, double> Effect { get; set; }
-        public string Name { get; set; }
-        public List<Nation> AllowedNations { get; set; }
-        public List<int> ShipLevel { get; set; }
-        public List<string> AdditionalShips { get; set; }
-        public List<ShipClass> ShipClasses { get; set; }
+        public string Index { get; set; } = string.Empty;
+        public Dictionary<string, double> Effect { get; set; } = new();
+        public string Name { get; set; } = string.Empty;
+        public List<Nation> AllowedNations { get; set; } = new();
+        public List<int> ShipLevel { get; set; } = new();
+        public List<string> AdditionalShips { get; set; } = new();
+        public List<ShipClass> ShipClasses { get; set; } = new();
         public int Slot { get; set; }
-        public List<string> BlacklistedShips { get; set; }
+        public List<string> BlacklistedShips { get; set; } = new();
         public ModernizationType Type { get; set; }
     }
 
 }
+#nullable restore
