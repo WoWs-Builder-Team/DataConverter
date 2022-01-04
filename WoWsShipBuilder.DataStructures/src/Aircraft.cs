@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
+using WoWsShipBuilder.DataStructures.Common;
 
-// TODO: support nullability
-#nullable disable
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace WoWsShipBuilder.DataStructures
 {
-    public class Aircraft
+    public sealed record Aircraft
     {
         public long Id { get; set; }
-        public string Index { get; set; }
+        public string Index { get; set; } = default!;
         public float MaxHealth { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
         public int NumPlanesInSquadron { get; set; }
         public float ReturnHeight { get; set; }
         public float SpeedMaxModifier { get; set; }
@@ -23,17 +24,17 @@ namespace WoWsShipBuilder.DataStructures
         public float RestorationTime { get; set; }
         
         public double BombFallingTime { get; set; }
-        public string BombName { get; set; }
+        public string BombName { get; set; } = default!;
         public double DamageTakenMultiplier { get; set; }
         public double FlightHeight { get; set; }
         public double FlightRadius { get; set; }
         public double InnerBombsPercentage { get; set; }
-        public List<double> InnerSalvoSize { get; set; }
+        public List<double>? InnerSalvoSize { get; set; }
         
         public PlaneCategory PlaneCategory { get; set; }
-        public PlaneAttackData AttackData { get; set; }
-        public JatoData JatoData { get; set; }
-        public List<AircraftConsumable> AircraftConsumable { get; set; }
+        public PlaneAttackData AttackData { get; set; } = default!;
+        public JatoData? JatoData { get; set; }
+        public List<AircraftConsumable>? AircraftConsumable { get; set; }
         
         public decimal AimingAccuracyDecreaseRate { get; set; }
         public decimal AimingAccuracyIncreaseRate { get; set; }
@@ -44,7 +45,7 @@ namespace WoWsShipBuilder.DataStructures
         public decimal PreparationTime { get; set; }
     }
 
-    public class PlaneAttackData
+    public sealed record PlaneAttackData
     {
         public double AttackCooldown { get; set; }
         public int AttackCount { get; set; }
@@ -55,17 +56,7 @@ namespace WoWsShipBuilder.DataStructures
         public int AttackerSize { get; set; }
     }
 
-    public class JatoData
-    {
-        public double JatoDuration { get; set; }
-        public double JatoSpeedMultiplier { get; set; }
-    }
+    public sealed record JatoData(double JatoDuration, double JatoSpeedMultiplier);
 
-    public class AircraftConsumable
-    {
-        public int Slot { get; set; }
-        public string ConsumableName { get; set; }
-        public string ConsumableVariantName { get; set; }
-    }
+    public sealed record AircraftConsumable(int Slot, string ConsumableName, string ConsumableVariantName);
 }
-#nullable restore

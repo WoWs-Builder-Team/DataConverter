@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using JsonSubTypes;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Common;
 
 namespace DataConverter.WGStructure
 {

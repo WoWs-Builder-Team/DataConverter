@@ -6,6 +6,8 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Common;
+using WoWsShipBuilder.DataStructures.Ship;
 
 namespace DataConverter.Test.ShipTests
 {
@@ -71,6 +73,19 @@ namespace DataConverter.Test.ShipTests
             var dict = AircraftConverter.ConvertAircraft(fileContent);
             string test = JsonConvert.SerializeObject(dict);
             Assert.NotNull(test);
+        }
+
+        [Test]
+        public void VerifyInitPropertyDeserialization()
+        {
+            var filePath = GetFilePath("filtered_USA_Aircraft.json");
+            var fileContent = File.ReadAllText(filePath);
+
+            var convertedDictionary = AircraftConverter.ConvertAircraft(fileContent);
+            string serializedContent = JsonConvert.SerializeObject(convertedDictionary);
+            var deserializedDictionary = JsonConvert.DeserializeObject<Dictionary<string, Aircraft>>(serializedContent)!;
+
+            convertedDictionary.Should().BeEquivalentTo(deserializedDictionary);
         }
 
         #endregion

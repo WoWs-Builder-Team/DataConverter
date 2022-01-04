@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Common;
 
 namespace DataConverter
 {

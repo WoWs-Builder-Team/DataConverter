@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WoWsShipBuilder.DataStructures.Common;
+
 // ReSharper disable NotAccessedPositionalProperty.Global
 
 // ReSharper disable ClassNeverInstantiated.Global
@@ -13,17 +15,17 @@ namespace WoWsShipBuilder.DataStructures.Ship
     {
         public List<string> Permaflages { get; set; } = default!;
 
-        public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; } = default!;
-        public Dictionary<string, FireControl> FireControlList { get; set; } = default!;
-        public Dictionary<string, TorpedoModule> TorpedoModules { get; set; } = default!;
+        public Dictionary<string, TurretModule>? MainBatteryModuleList { get; set; }
+        public Dictionary<string, FireControl>? FireControlList { get; set; }
+        public Dictionary<string, TorpedoModule>? TorpedoModules { get; set; }
         public Dictionary<string, Engine> Engines { get; set; } = default!;
         public Dictionary<string, Hull> Hulls { get; set; } = default!;
-        public Dictionary<string, PlaneData> CvPlanes { get; set; } = default!;
-        public Dictionary<string, AirStrike> AirStrikes { get; set; } = default!;
+        public Dictionary<string, PlaneData>? CvPlanes { get; set; }
+        public Dictionary<string, AirStrike>? AirStrikes { get; set; }
 
         //may not need to be a List, but possibly an upgradeable module
-        public Dictionary<string, PingerGun> PingerGunList { get; set; } = default!;
-        public List<ShipConsumable> ShipConsumable { get; set; } = default!;
+        public Dictionary<string, PingerGun>? PingerGunList { get; set; }
+        public List<ShipConsumable>? ShipConsumable { get; set; }
         public UpgradeInfo ShipUpgradeInfo { get; set; } = default!;
         public SpecialAbility? SpecialAbility { get; set; }
         public BurstModeAbility? BurstModeAbility { get; set; }

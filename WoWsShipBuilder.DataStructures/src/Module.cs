@@ -1,4 +1,6 @@
-﻿namespace WoWsShipBuilder.DataStructures
+﻿using WoWsShipBuilder.DataStructures.Common;
+
+namespace WoWsShipBuilder.DataStructures
 {
     public sealed record Module
     {

@@ -2,9 +2,9 @@ using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Common;
 
 namespace DataConverter.Converters
 {
@@ -65,16 +65,12 @@ namespace DataConverter.Converters
                     AttackInterval = currentWgAir.attackInterval,
                     AttackSpeedMultiplier = currentWgAir.attackSpeedMultiplier,
                     AttackSpeedMultiplierApplyTime = currentWgAir.attackSpeedMultiplierApplyTime,
+                    AttackerDamageTakenMultiplier = currentWgAir.attackerDamageTakenMultiplier,
                     AttackerSize = currentWgAir.attackerSize,
                 };
                 air.AttackData = planeattackdata;
 
-                JatoData jatodata = new JatoData
-                {
-                    //start mapping
-                    JatoDuration = currentWgAir.jatoDuration,
-                    JatoSpeedMultiplier = currentWgAir.jatoSpeedMultiplier
-                };
+                JatoData jatodata = new JatoData(currentWgAir.jatoDuration, currentWgAir.jatoSpeedMultiplier);
                 air.JatoData = jatodata;
                 
                 //determine the needed enum for plane category
@@ -110,13 +106,10 @@ namespace DataConverter.Converters
             {
                 IEnumerable<AircraftConsumable> consumableList = wgAbility.abils
                     .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
-                    .Select(ability =>
-                        new AircraftConsumable
-                        {
-                            ConsumableName = ability.AbilityName,
-                            ConsumableVariantName = ability.AbilityVariant,
-                            Slot = wgAbility.slot,
-                        });
+                    .Select(ability => new AircraftConsumable(
+                        ConsumableName: ability.AbilityName,
+                        ConsumableVariantName: ability.AbilityVariant,
+                        Slot: wgAbility.slot));
                 resultList.AddRange(consumableList);
             }
 

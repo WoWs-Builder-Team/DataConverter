@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using JsonSubTypes;
 using Newtonsoft.Json;
+using WoWsShipBuilder.DataStructures.Common;
 
-// TODO: support nullability
-#nullable disable
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+
 namespace WoWsShipBuilder.DataStructures
 {
     [JsonConverter(typeof(JsonSubtypes), "ProjectileType")]
@@ -13,15 +14,15 @@ namespace WoWsShipBuilder.DataStructures
     [JsonSubtypes.KnownSubType(typeof(Rocket), ProjectileType.Rocket)]
     [JsonSubtypes.KnownSubType(typeof(DepthCharge), ProjectileType.DepthCharge)]
     [JsonSubtypes.KnownSubType(typeof(Torpedo), ProjectileType.Torpedo)]
-    public class Projectile
+    public record Projectile
     {
         public long Id { get; set; }
-        public string Index { get; set; }
-        public string Name { get; set; }
+        public string Index { get; set; } = default!;
+        public string Name { get; set; } = default!;
         public ProjectileType ProjectileType { get; set; }
     }
 
-    public class ArtilleryShell : Projectile
+    public record ArtilleryShell : Projectile
     {
         public float Damage { get; set; }
         public float Penetration { get; set; }
@@ -40,7 +41,7 @@ namespace WoWsShipBuilder.DataStructures
         public float ExplosionRadius { get; set; }
     }
 
-    public class Bomb : Projectile
+    public record Bomb : Projectile
     {
         public float Damage { get; set; }
         public float Penetration { get; set; }
@@ -59,7 +60,7 @@ namespace WoWsShipBuilder.DataStructures
         public float ExplosionRadius { get; set; }
     }
 
-    public class Rocket : Projectile
+    public record Rocket : Projectile
     {
         public float Damage { get; set; }
         public float Penetration { get; set; }
@@ -78,7 +79,7 @@ namespace WoWsShipBuilder.DataStructures
         public float ExplosionRadius { get; set; }
     }
 
-    public class DepthCharge : Projectile
+    public record DepthCharge : Projectile
     {
         public float Damage { get; set; }
         public float FireChance { get; set; }
@@ -88,14 +89,14 @@ namespace WoWsShipBuilder.DataStructures
         public float ExplosionRadius { get; set; }
     }
 
-    public class Torpedo : Projectile
+    public record Torpedo : Projectile
     {
         public float SpottingRange { get; set; } //It's visibilityFactor
         public float Damage { get; set; } //(alphaDamage/3)+damage 
         public TorpedoType TorpedoType { get; set; }
         public float Caliber { get; set; }
         public float MaxRange { get; set; }//MaxDist*30
-        public List<ShipClass> IgnoreClasses { get; set; }
+        public List<ShipClass>? IgnoreClasses { get; set; }
         public float Speed { get; set; }
         public float ArmingTime { get; set; }
         public float FloodChance { get; set; } // It's uwCritical
@@ -103,4 +104,3 @@ namespace WoWsShipBuilder.DataStructures
         public float ExplosionRadius { get; set; }
     }
 }
-#nullable restore

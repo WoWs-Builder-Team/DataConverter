@@ -6,6 +6,7 @@ using System.Reflection;
 using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Common;
 using WoWsShipBuilder.DataStructures.Ship;
 using Hull = WoWsShipBuilder.DataStructures.Ship.Hull;
 using ShipUpgrade = WoWsShipBuilder.DataStructures.Ship.ShipUpgrade;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WoWsShipBuilder.DataStructures.Common;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 

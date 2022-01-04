@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace WoWsShipBuilder.DataStructures
+namespace WoWsShipBuilder.DataStructures.Common
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Nation

@@ -4,6 +4,10 @@
         <TargetFramework>net5.0</TargetFramework>
 
         <IsPackable>false</IsPackable>
+
+        <OutputType>Library</OutputType>
+
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
