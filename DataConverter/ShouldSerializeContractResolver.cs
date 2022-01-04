@@ -22,7 +22,7 @@ namespace DataConverter
             {
                 property.ShouldSerialize = instance =>
                 {
-                    IEnumerable enumerable = null;
+                    IEnumerable? enumerable = null;
                     // this value could be in a public field or public property
                     switch (member.MemberType)
                     {
@@ -36,7 +36,7 @@ namespace DataConverter
                             enumerable = instance
                                 .GetType()
                                 .GetField(member.Name)
-                                .GetValue(instance) as IEnumerable;
+                                ?.GetValue(instance) as IEnumerable;
                             break;
                     }
 

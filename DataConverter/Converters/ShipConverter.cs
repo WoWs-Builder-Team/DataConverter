@@ -86,9 +86,9 @@ namespace DataConverter.Converters
 
             foreach ((_, Ship ship) in results)
             {
-                shipToPreviousShipMapper.TryGetValue(ship.Index, out string previousShip);
-                shipToNextShipMapper.TryGetValue(ship.Index, out List<string> nextShips);
-                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips));
+                shipToPreviousShipMapper.TryGetValue(ship.Index, out string? previousShip);
+                shipToNextShipMapper.TryGetValue(ship.Index, out List<string>? nextShips);
+                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip ?? string.Empty, nextShips));
             }
 
             return results;
@@ -103,10 +103,10 @@ namespace DataConverter.Converters
             using var reader = new StreamReader(stream);
             using var jsonReader = new JsonTextReader(reader);
             var serializer = new JsonSerializer();
-            return serializer.Deserialize<Dictionary<string, ShipTurretOverride>>(jsonReader);
+            return serializer.Deserialize<Dictionary<string, ShipTurretOverride>>(jsonReader)!;
         }
 
-        private static BurstModeAbility ProcessBurstModeAbility(BurstArtilleryModule module)
+        private static BurstModeAbility? ProcessBurstModeAbility(BurstArtilleryModule? module)
         {
             if (module != null)
             {
@@ -123,7 +123,7 @@ namespace DataConverter.Converters
             return null;
         }
 
-        private static SpecialAbility ProcessSpecialAbility(WGShip wgShip)
+        private static SpecialAbility? ProcessSpecialAbility(WGShip wgShip)
         {
             Dictionary<string, WgSpecialAbility> wgSpecialAbilityList = wgShip.ModulesArmaments.ModulesOfType<WgSpecialAbility>();
             if (wgSpecialAbilityList.Count > 1)
@@ -371,7 +371,7 @@ namespace DataConverter.Converters
                     hullModule.SecondaryModule = secondary;
                 }
 
-                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out string[] airDefenseKeys))
+                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out string[]? airDefenseKeys))
                 {
                     foreach (string airDefenseKey in airDefenseKeys)
                     {
@@ -383,7 +383,7 @@ namespace DataConverter.Converters
                 hullModule.AntiAir = antiAir;
 
                 // Process depth charge data
-                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out string[] depthChargeKey) && depthChargeKey.Length > 0)
+                if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out string[]? depthChargeKey) && depthChargeKey.Length > 0)
                 {
                     var wgDepthChargeArray = (WgDepthChargesArray)wgShip.ModulesArmaments[depthChargeKey.First()];
                     hullModule.DepthChargeArray = new DepthChargeArray
@@ -533,7 +533,7 @@ namespace DataConverter.Converters
                 .ToDictionary(entry => entry.Key, entry => (T)entry.Value);
         }
 
-        private static void AssignAurasToProperty(Dictionary<string, AAAura> auras, AntiAir targetAntiAir)
+        private static void AssignAurasToProperty(Dictionary<string, AAAura>? auras, AntiAir? targetAntiAir)
         {
             if (auras != null && targetAntiAir != null)
             {

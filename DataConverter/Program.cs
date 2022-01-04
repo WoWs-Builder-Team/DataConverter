@@ -12,8 +12,8 @@ namespace DataConverter
     internal static class Program
     {
         private static readonly HashSet<string> ReportedTypes = new();
-        private static string inputFolder;
-        private static string outputFolder;
+        private static string inputFolder = default!;
+        private static string outputFolder = default!;
         private static string versionName = string.Empty;
 
         private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
@@ -27,11 +27,11 @@ namespace DataConverter
             {
                 case 0:
                     Console.WriteLine("Insert Input folder");
-                    inputFolder = Console.ReadLine();
+                    inputFolder = Console.ReadLine()!;
                     Console.WriteLine("Insert Output folder");
-                    outputFolder = Console.ReadLine();
+                    outputFolder = Console.ReadLine()!;
                     Console.WriteLine("Specify Game version name");
-                    versionName = Console.ReadLine();
+                    versionName = Console.ReadLine()!;
                     break;
                 case 2:
                     inputFolder = args[0];
@@ -103,7 +103,7 @@ namespace DataConverter
                     string outputPath = Path.Join(outputFolder, categoryName, fileName);
                     new FileInfo(outputPath).Directory?.Create();
 
-                    FileVersion fileVersion;
+                    FileVersion? fileVersion;
                     switch (categoryName)
                     {
                         case "Ability":
@@ -211,15 +211,15 @@ namespace DataConverter
                 oldData = string.Empty;
             }
 
-            oldVersioner.Categories.TryGetValue(categoryName, out List<FileVersion> oldCategoryVersions);
-            oldCategoryVersions ??= new List<FileVersion>();
+            oldVersioner.Categories.TryGetValue(categoryName, out List<FileVersion>? oldCategoryVersions);
+            oldCategoryVersions ??= new();
             
             // Write data always. Even if the file was not changed, the existing remote data will be removed before publishing so the file needs to be recreated.
             File.WriteAllText(outputPath, newData);
 
             if (!oldData.Equals(newData))
             {
-                fileVersion = new FileVersion(fileName, oldVersioner.CurrentVersionCode + 1);
+                fileVersion = new(fileName, oldVersioner.CurrentVersionCode + 1);
             }
             else
             {

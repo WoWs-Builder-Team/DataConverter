@@ -45,7 +45,7 @@ namespace DataConverter.Converters
                     else
                     {
                         JObject jObject = (JObject)jtoken;
-                        var values = jObject.ToObject<Dictionary<string, double>>();
+                        var values = jObject.ToObject<Dictionary<string, double>>()!;
                         bool isEqual = true;
                         var first = values.First().Value;
                         foreach ((string key, double value) in values)
