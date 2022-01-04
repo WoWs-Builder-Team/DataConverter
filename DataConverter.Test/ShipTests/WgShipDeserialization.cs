@@ -267,7 +267,7 @@ namespace DataConverter.Test.ShipTests
             var versionInfo = JsonConvert.DeserializeObject<VersionInfo>(fileContent);
             
             Assert.NotNull(versionInfo);
-            versionInfo.CurrentVersionCode.Should().Be(1);
+            versionInfo!.CurrentVersionCode.Should().Be(1);
             versionInfo.Categories.Should().NotBeEmpty();
         }
 

@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>ShipBuilder Data structures</Title>
         <Authors>WoWs-Builder-Team</Authors>
@@ -14,6 +13,7 @@
         <RepositoryType>git</RepositoryType>
         <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
         <Nullable>enable</Nullable>
+        <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
