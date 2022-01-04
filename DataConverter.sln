@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter", "DataConverter\DataConverter.csproj", "{511E9649-44C8-480A-A622-CE074A4747C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWsShipBuilderDataStructures", "WoWsShipBuilderDataStructures\WoWsShipBuilderDataStructures.csproj", "{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWsShipBuilder.DataStructures", "WoWsShipBuilder.DataStructures\WoWsShipBuilder.DataStructures.csproj", "{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Test", "DataConverter.Test\DataConverter.Test.csproj", "{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}"
 EndProject

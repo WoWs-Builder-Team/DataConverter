@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using WoWsShipBuilderDataStructures;
+using WoWsShipBuilder.DataStructures;
 using JsonSubTypes;
 
 namespace DataConverter.WGStructure

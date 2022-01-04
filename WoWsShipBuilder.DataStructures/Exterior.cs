@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WoWsShipBuilderDataStructures
+namespace WoWsShipBuilder.DataStructures
 {
     public class Exterior
     {

@@ -43,6 +43,6 @@ jobs:
       - name: Get and store tag version name
         run: echo ("CURRENT_TAG=" + $env:GITHUB_REF.Replace('refs/tags/data-', '')) >> $env:GITHUB_ENV 
       - name: Rebuild nuget package
-        run: dotnet build WoWsShipBuilderDataStructures -c Release -p:PackageVersion="$env:CURRENT_TAG"
+        run: dotnet build WoWsShipBuilder.DataStructures -c Release -p:PackageVersion="$env:CURRENT_TAG"
       - name: Publish nuget package
-        run: dotnet nuget push "WoWsShipBuilderDataStructures\bin\Release\*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }} --skip-duplicate
+        run: dotnet nuget push "WoWsShipBuilder.DataStructures\bin\Release\*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }} --skip-duplicate

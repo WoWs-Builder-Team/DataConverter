@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WoWsShipBuilderDataStructures
+namespace WoWsShipBuilder.DataStructures
 {
     public class Modernization
     {

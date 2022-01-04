@@ -2,7 +2,7 @@
 using JsonSubTypes;
 using Newtonsoft.Json;
 
-namespace WoWsShipBuilderDataStructures
+namespace WoWsShipBuilder.DataStructures
 {
     [JsonConverter(typeof(JsonSubtypes), "ProjectileType")]
     [JsonSubtypes.KnownSubType(typeof(ArtilleryShell), ProjectileType.Artillery)]

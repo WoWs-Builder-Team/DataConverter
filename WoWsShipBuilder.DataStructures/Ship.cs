@@ -6,7 +6,7 @@ using System.Linq;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable PropertyCanBeMadeInitOnly.Global
 
-namespace WoWsShipBuilderDataStructures
+namespace WoWsShipBuilder.DataStructures
 {
     public class Ship
     {
