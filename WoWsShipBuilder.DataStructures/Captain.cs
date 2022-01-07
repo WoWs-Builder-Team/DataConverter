@@ -40,5 +40,7 @@ namespace WoWsShipBuilder.DataStructures
         public int MaxTriggerNum { get; set; }
         public List<ShipClass> AllowedShips { get; set; }
         public string TriggerType { get; set; }
+        public string TranslationId { get; set; }
+        public bool isPercent { get; set; }
     }
 }

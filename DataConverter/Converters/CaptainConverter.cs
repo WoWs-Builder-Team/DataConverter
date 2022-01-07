@@ -176,12 +176,21 @@ namespace DataConverter.Converters
                     var skillEffects = new Dictionary<string, double>();
                     foreach ((var currentWgUniqueSkillEffectKey, var currentWgUniqueSkillEffectValue) in currentUniqueSkillValue.skillEffects)
                     {
+                        var uniqueType = -1;
                         if (currentWgUniqueSkillEffectKey.ToString().Contains("Unique"))
                         {
                             JObject jObject = (JObject)currentWgUniqueSkillEffectValue;
                             var values = jObject.ToObject<Dictionary<string, JToken>>()!;
                             foreach ((string key, JToken value) in values)
                             {
+                                if (key.Contains("uniqueType"))
+                                {
+                                    uniqueType = value.Value<int>();
+                                }
+                                if (key.Contains("percentTalent"))
+                                {
+                                    uniqueSkill.isPercent = value.Value<bool>();
+                                }
                                 if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
                                 {
                                     skillEffects.Add($"{currentWgUniqueSkillEffectKey}_{key}", value.Value<double>());
@@ -214,6 +223,10 @@ namespace DataConverter.Converters
                             }
                         }
                         uniqueSkill.SkillEffects = skillEffects;
+
+                        var translationId = $"TALENT_{captain.Index}_{uniqueSkill.TriggerType}_{uniqueType}";
+                        uniqueSkill.TranslationId = translationId;
+                        Program.TranslationNames.Add(translationId);
                     }
                     uniqueSkills.Add(currentUniqueSkillKey, uniqueSkill);
                 }
