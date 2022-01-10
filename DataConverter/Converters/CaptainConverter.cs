@@ -163,9 +163,13 @@ namespace DataConverter.Converters
                 captain.Skills = skills;
 
                 //map captain's talents
-                var uniqueSkills = new Dictionary<string, UniqueSkill>();
+
+                //Create dictionary for unique skills, aka talents
+                var uniqueSkillDictionary = new Dictionary<string, UniqueSkill>();
+                //iterate over the various skills from wg data
                 foreach ((var currentUniqueSkillKey, var currentUniqueSkillValue) in currentWgCaptain.uniqueSkills)
                 {
+                    //create our talent data
                     UniqueSkill uniqueSkill = new()
                     {
                         MaxTriggerNum = currentUniqueSkillValue.maxTriggerNum,
@@ -173,64 +177,72 @@ namespace DataConverter.Converters
                         TriggerType = currentUniqueSkillValue.triggerType
                     };
 
-                    var skillEffects = new Dictionary<string, double>();
+                    //initialize an empty dictionary for effect name and effect modifiers/stats.
+                    var skillEffectDictionary = new Dictionary<string, UniqueSKillEffect>();
+
+                    //uniqueIds for translation key
+                    var uniqueIds = new List<int>();
+
+                    //iterate through the various fields
                     foreach ((var currentWgUniqueSkillEffectKey, var currentWgUniqueSkillEffectValue) in currentUniqueSkillValue.skillEffects)
                     {
-                        var uniqueType = -1;
+                        //create the skill effect object
+                        var skillEffect = new UniqueSKillEffect();
+
+                        // take into account only the properties containing "unique", that are the talent effects.
                         if (currentWgUniqueSkillEffectKey.ToString().Contains("Unique"))
                         {
+                            //create a modifiers dictionary for the current effect
+                            var effectsModifiers = new Dictionary<string, double>();
+
                             JObject jObject = (JObject)currentWgUniqueSkillEffectValue;
                             var values = jObject.ToObject<Dictionary<string, JToken>>()!;
+                            //iterate through the entire object fields
                             foreach ((string key, JToken value) in values)
                             {
+                                //if the field is "uniqueType", i'll save it in the skillEffect, it's not a modifier
                                 if (key.Contains("uniqueType"))
                                 {
-                                    uniqueType = value.Value<int>();
+                                    skillEffect.UniqueType = value.Value<int>();
+                                    uniqueIds.Add(value.Value<int>());
                                 }
-                                if (key.Contains("percentTalent"))
+                                //else if the field is "percentTalent", i'll save it in the skillEffect, it's not a modifier
+                                else if (key.Contains("percentTalent"))
                                 {
-                                    uniqueSkill.isPercent = value.Value<bool>();
+                                    skillEffect.IsPercent = value.Value<bool>();
                                 }
-                                if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
+                                //else if the field is a number, it's a modifier. save it in the dictionary of modifiers
+                                else if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
                                 {
-                                    skillEffects.Add($"{currentWgUniqueSkillEffectKey}_{key}", value.Value<double>());
+                                    effectsModifiers.Add($"{key}", value.Value<double>());
+                                    Program.TranslationNames.Add(key);
                                 }
-                                else if (value.Type == JTokenType.Object)
-                                {
-                                    JObject anotherJObject = (JObject)value;
-                                    var moreValues = anotherJObject.ToObject<Dictionary<string, double>>()!;
-                                    bool isEqual = true;
-                                    var first = moreValues.First().Value;
-                                    foreach ((string anotherKey, double anotherValue) in moreValues)
-                                    {
-                                        if (anotherValue != first)
-                                        {
-                                            isEqual = false;
-                                        }
-                                    }
-                                    if (isEqual)
-                                    {
-                                        skillEffects.Add($"{currentWgUniqueSkillEffectKey}_{key}", first);
-                                    }
-                                    else
-                                    {
-                                        foreach ((string anotherKey, double anotherValue) in moreValues)
-                                        {
-                                            skillEffects.Add($"{currentWgUniqueSkillEffectKey}_{key}_{anotherKey}", anotherValue);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        uniqueSkill.SkillEffects = skillEffects;
 
-                        var translationId = $"TALENT_{captain.Index}_{uniqueSkill.TriggerType}_{uniqueType}";
-                        uniqueSkill.TranslationId = translationId;
-                        Program.TranslationNames.Add(translationId);
+                            }
+                            //after iterating through the entire thing, put the modifiers in the skill effect
+                            skillEffect.Modifiers = effectsModifiers;
+                        }
+                        //value is not an actual modifier/effect, skip it
+                        else
+                        {
+                            continue;
+                        }
+                        //add the current skill effect name and data t the dictionary
+                        skillEffectDictionary.Add(currentWgUniqueSkillEffectKey, skillEffect);
+                        
                     }
-                    uniqueSkills.Add(currentUniqueSkillKey, uniqueSkill);
+                    //calculate the localization string
+                    uniqueIds.Sort();
+                    var uniqueIdsString = string.Join("_", uniqueIds);
+                    var translationId = $"TALENT_{captain.Index}_{uniqueSkill.TriggerType}_{uniqueIdsString}";
+                    uniqueSkill.TranslationId = translationId;
+                    Program.TranslationNames.Add(translationId);
+
+                    //add the unique skill to the dictionary
+                    uniqueSkill.SkillEffects = skillEffectDictionary;
+                    uniqueSkillDictionary.Add(currentUniqueSkillKey, uniqueSkill);
                 }
-                captain.UniqueSkills = uniqueSkills;            
+                captain.UniqueSkills = uniqueSkillDictionary;            
                 //dictionary with captain's name as key
                 captainList.Add(captain.Name, captain);
             }

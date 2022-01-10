@@ -36,11 +36,17 @@ namespace WoWsShipBuilder.DataStructures
     }
     public class UniqueSkill
     {
-        public Dictionary<string, double> SkillEffects { get; set; } // value is actually Dictionary<string, object>, process in converter
+        public Dictionary<string,UniqueSKillEffect> SkillEffects { get; set; } // dictionary of the effects and their names
         public int MaxTriggerNum { get; set; }
         public List<ShipClass> AllowedShips { get; set; }
         public string TriggerType { get; set; }
         public string TranslationId { get; set; }
-        public bool isPercent { get; set; }
+    }
+
+    public class UniqueSKillEffect
+    {
+        public bool IsPercent { get; set; }
+        public int UniqueType { get; set; }
+        public Dictionary<string, double> Modifiers { get; set; }
     }
 }
