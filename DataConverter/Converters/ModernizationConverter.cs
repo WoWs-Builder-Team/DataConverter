@@ -33,7 +33,7 @@ namespace DataConverter.Converters
                     Name = currentWgMod.name,
                     Type = ConvertModernizationType(currentWgMod.type),
                 };
-                
+
                 Dictionary<string, double> effects = new Dictionary<string, double>();
                 foreach (var currentWgModModifier in currentWgMod.modifiers)
                 {
@@ -78,7 +78,7 @@ namespace DataConverter.Converters
                 foreach (var nation in nationList)
                 {
                     //this will get the respective Enum value
-                    Nation value = Enum.Parse<Nation>(nation.Replace("_",""), true);
+                    Nation value = Enum.Parse<Nation>(nation.Replace("_", string.Empty), true);
                     allowedNations.Add(value);
                 }
 

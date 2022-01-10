@@ -16,24 +16,22 @@ namespace WoWsShipBuilder.DataStructures
     public class Skill
     {
         public bool CanBeLearned { get; set; }
-        public bool IsEpic { get; set; } //true if the skill has buffed modifier
+        public bool IsEpic { get; set; } // true if the skill has buffed modifier
         public int SkillNumber { get; set; }
         public List<ShipClass> LearnableOn { get; set; }
-        public List<SkillPosition> Tiers { get; set; } //contains the tier of the skill for all the classes that can use it
-        //modifiers for always on effects
-        public Dictionary<string, float> Modifiers { get; set; }
-        //modifiers for the skill in SkillTrigger
-        public Dictionary<string, float> ConditionalModifiers { get; set; }
-        //add stuff from WGCaptain.SkillTrigger if you deem necessary
-        public string ConditionalTriggerType { get; set; }
+        public List<SkillPosition> Tiers { get; set; } // contains the tier of the skill for all the classes that can use it
+        public Dictionary<string, float> Modifiers { get; set; } // modifiers for always on effects
+        public Dictionary<string, float> ConditionalModifiers { get; set; } // modifiers for the skill in SkillTrigger
+        public string ConditionalTriggerType { get; set; } // add stuff from WGCaptain.SkillTrigger if you deem necessary
     }
 
-    public class SkillPosition 
+    public class SkillPosition
     {
         public int Tier { get; set; }
         public int XPosition { get; set; }
         public ShipClass ShipClass { get; set; }
     }
+
     public class UniqueSkill
     {
         public Dictionary<string, UniqueSkillEffect> SkillEffects { get; set; } // dictionary of the effects and their names

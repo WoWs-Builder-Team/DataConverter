@@ -90,7 +90,7 @@ namespace DataConverter.Converters
                     {
                         captain.HasSpecialSkills = true;
                     }
-                    //initialize lists for skill's tiers and classes 
+                    //initialize lists for skill's tiers and classes
                     List<SkillPosition> tiers = new();
                     List<ShipClass> classes = new();
 
@@ -174,7 +174,7 @@ namespace DataConverter.Converters
                     {
                         MaxTriggerNum = currentUniqueSkillValue.maxTriggerNum,
                         AllowedShips = currentUniqueSkillValue.triggerAllowedShips?.ToList<ShipClass>(),
-                        TriggerType = currentUniqueSkillValue.triggerType
+                        TriggerType = currentUniqueSkillValue.triggerType,
                     };
 
                     //initialize an empty dictionary for effect name and effect modifiers/stats.
@@ -217,7 +217,6 @@ namespace DataConverter.Converters
                                     effectsModifiers.Add($"{key}", value.Value<double>());
                                     Program.TranslationNames.Add(key);
                                 }
-
                             }
                             //after iterating through the entire thing, put the modifiers in the skill effect
                             skillEffect.Modifiers = effectsModifiers;
@@ -229,7 +228,6 @@ namespace DataConverter.Converters
                         }
                         //add the current skill effect name and data t the dictionary
                         skillEffectDictionary.Add(currentWgUniqueSkillEffectKey, skillEffect);
-                        
                     }
                     //calculate the localization string
                     uniqueIds.Sort();
@@ -242,7 +240,7 @@ namespace DataConverter.Converters
                     uniqueSkill.SkillEffects = skillEffectDictionary;
                     uniqueSkillDictionary.Add(currentUniqueSkillKey, uniqueSkill);
                 }
-                captain.UniqueSkills = uniqueSkillDictionary;            
+                captain.UniqueSkills = uniqueSkillDictionary;
                 //dictionary with captain's name as key
                 captainList.Add(captain.Name, captain);
             }

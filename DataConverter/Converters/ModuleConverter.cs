@@ -29,7 +29,7 @@ namespace DataConverter.Converters
                     CostXp = currentWgModule.costXP,
                     Id = currentWgModule.id,
                     Index = currentWgModule.index,
-                    Name = currentWgModule.name
+                    Name = currentWgModule.name,
                 };
                 //for Type enum
                 ModuleType type = Enum.Parse<ModuleType>(currentWgModule.typeinfo.species);

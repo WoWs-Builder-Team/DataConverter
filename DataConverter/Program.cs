@@ -11,13 +11,13 @@ namespace DataConverter
 {
     internal static class Program
     {
+        private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
+
         private static readonly HashSet<string> ReportedTypes = new();
+        private static readonly HttpClient Client = new();
         private static string inputFolder = default!;
         private static string outputFolder = default!;
         private static string versionName = string.Empty;
-
-        private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
-        private static readonly HttpClient Client = new();
 
         public static readonly HashSet<string> TranslationNames = new();
 
@@ -77,8 +77,8 @@ namespace DataConverter
 
             var serializerSettings = new JsonSerializerSettings()
             {
-                NullValueHandling = NullValueHandling.Ignore,   
-                ContractResolver = new ShouldSerializeContractResolver()
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new ShouldSerializeContractResolver(),
             };
             var counter = 0;
             foreach (string category in categories)
@@ -213,7 +213,7 @@ namespace DataConverter
 
             oldVersioner.Categories.TryGetValue(categoryName, out List<FileVersion>? oldCategoryVersions);
             oldCategoryVersions ??= new();
-            
+
             // Write data always. Even if the file was not changed, the existing remote data will be removed before publishing so the file needs to be recreated.
             File.WriteAllText(outputPath, newData);
 

@@ -88,11 +88,11 @@ namespace WoWsShipBuilder.DataStructures
 
     public class Torpedo : Projectile
     {
-        public float SpottingRange { get; set; } //It's visibilityFactor
-        public float Damage { get; set; } //(alphaDamage/3)+damage 
+        public float SpottingRange { get; set; } // It's visibilityFactor
+        public float Damage { get; set; } // (alphaDamage/3)+damage
         public TorpedoType TorpedoType { get; set; }
         public float Caliber { get; set; }
-        public float MaxRange { get; set; }//MaxDist*30
+        public float MaxRange { get; set; } // MaxDist*30
         public List<ShipClass> IgnoreClasses { get; set; }
         public float Speed { get; set; }
         public float ArmingTime { get; set; }

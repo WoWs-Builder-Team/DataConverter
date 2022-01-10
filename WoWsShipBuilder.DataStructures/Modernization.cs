@@ -17,6 +17,5 @@ namespace WoWsShipBuilder.DataStructures
         public List<string> BlacklistedShips { get; set; } = new();
         public ModernizationType Type { get; set; }
     }
-
 }
 #nullable restore

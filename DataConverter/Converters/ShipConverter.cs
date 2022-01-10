@@ -17,7 +17,9 @@ namespace DataConverter.Converters
 
         private static readonly Dictionary<string, ShipTurretOverride> TurretPositionOverrides = LoadTurretOverrides();
 
+#pragma warning disable SA1401
         public static List<ShipSummary> ShipSummaries = new();
+#pragma warning restore SA1401
 
         public static Dictionary<string, Ship> ConvertShips(string jsonInput)
         {
@@ -55,7 +57,7 @@ namespace DataConverter.Converters
                     AirStrikes = ProcessAirstrikes(wgShip),
                     PingerGunList = ProcessPingerGuns(wgShip),
                     SpecialAbility = ProcessSpecialAbility(wgShip),
-                    BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule)
+                    BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule),
                 };
 
                 ship.Permaflages = wgShip.permoflages;
@@ -115,7 +117,7 @@ namespace DataConverter.Converters
                     ShotInBurst = module.shotsCount,
                     ReloadAfterBurst = module.fullReloadTime,
                     ReloadDuringBurst = module.burstReloadTime,
-                    Modifiers = module.modifiers
+                    Modifiers = module.modifiers,
                 };
                 Program.TranslationNames.UnionWith(burstAbility.Modifiers.Keys);
                 return burstAbility;
@@ -139,7 +141,7 @@ namespace DataConverter.Converters
                     Modifiers = wgAbility.modifiers,
                     Name = wgAbility.rageModeName,
                     RadiusForSuccessfulHits = wgAbility.radius,
-                    RequiredHits = wgAbility.requiredHits
+                    RequiredHits = wgAbility.requiredHits,
                 };
                 Program.TranslationNames.Add(specialAbility.Name);
                 Program.TranslationNames.Add("RageMode");
@@ -180,7 +182,7 @@ namespace DataConverter.Converters
                 "upgradeableUltimate" => ShipCategory.Special,
                 "unavailable" => ShipCategory.Disabled,
                 "legendaryBattle" => ShipCategory.TechTree,
-                _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory)
+                _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
             };
         }
 
@@ -194,7 +196,7 @@ namespace DataConverter.Converters
                 "aircarrier" => ShipClass.AirCarrier,
                 "submarine" => ShipClass.Submarine,
                 "auxiliary" => ShipClass.Auxiliary,
-                _ => throw new InvalidOperationException("Ship class not recognized.")
+                _ => throw new InvalidOperationException("Ship class not recognized."),
             };
         }
 
@@ -228,7 +230,7 @@ namespace DataConverter.Converters
                     upgradeInfo.ShipUpgrades.Add(newUpgrade);
                 }
             }
-            
+
             return upgradeInfo;
         }
 
@@ -258,7 +260,7 @@ namespace DataConverter.Converters
                     Delim = dispersionGun.delim,
                 };
 
-                // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
+                // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
                 // double maxRange = decimal.ToDouble(turretModule.MaxRange) / 30;
                 // double horizontalDispersion = maxRange * (turretDispersion.IdealRadius - turretDispersion.MinRadius) /
                 //     turretDispersion.IdealDistance + turretDispersion.MinRadius;
@@ -276,7 +278,7 @@ namespace DataConverter.Converters
                 var maxRange = decimal.ToDouble(turretModule.MaxRange);
                 turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateHorizontalDispersion(maxRange)), 1);
                 turretDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateVerticalDispersion(maxRange)), 1);
-                
+
                 turretModule.DispersionValues = turretDispersion;
                 Program.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
 

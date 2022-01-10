@@ -82,7 +82,7 @@ namespace WoWsShipBuilder.DataStructures
 
         public double CalculateHorizontalDispersion(double range)
         {
-            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
+            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
             double x = range / 30;
             double effectiveTaperDist = TaperDist / 30;
             if (x <= effectiveTaperDist)
@@ -95,7 +95,7 @@ namespace WoWsShipBuilder.DataStructures
 
         public double CalculateVerticalDispersion(double maxRange, double range = -1)
         {
-            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/ 
+            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
             maxRange /= 30;
             double x = range >= 0 ? range / 30 : maxRange;
             double delimDist = maxRange * Delim;
@@ -205,7 +205,7 @@ namespace WoWsShipBuilder.DataStructures
             }
 
             decimal minRange = newAura.FlakDamage > 0 ? thisAura.MinRange : newAura.MinRange; // Use minimum range of new aura only if it is no flak cloud aura
-            
+
             return new AntiAirAura
             {
                 ConstantDps = thisAura.ConstantDps + newAura.ConstantDps,
@@ -349,7 +349,7 @@ namespace WoWsShipBuilder.DataStructures
         /// <summary>
         /// Helper method to easily filter all upgrade configurations of a specific type.
         /// </summary>
-        /// <param name="componentType"></param>
+        /// <param name="componentType">The type of the component to look for.</param>
         /// <returns>A list of all ship upgrades with the specified type.</returns>
         public List<ShipUpgrade> FindUpgradesOfType(ComponentType componentType)
         {
@@ -385,7 +385,7 @@ namespace WoWsShipBuilder.DataStructures
     public class SpecialAbility
     {
         public double Duration { get; set; }
-        public int RequiredHits {get; set;}
+        public int RequiredHits { get; set; }
         public double RadiusForSuccessfulHits { get; set; }
         public Dictionary<string, float> Modifiers { get; set; }
         public string Name { get; set; }

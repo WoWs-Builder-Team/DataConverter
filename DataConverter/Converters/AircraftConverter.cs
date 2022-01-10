@@ -73,10 +73,10 @@ namespace DataConverter.Converters
                 {
                     //start mapping
                     JatoDuration = currentWgAir.jatoDuration,
-                    JatoSpeedMultiplier = currentWgAir.jatoSpeedMultiplier
+                    JatoSpeedMultiplier = currentWgAir.jatoSpeedMultiplier,
                 };
                 air.JatoData = jatodata;
-                
+
                 //determine the needed enum for plane category
                 if (currentWgAir.isConsumablePlane && currentWgAir.isAirSupportPlane)
                 {

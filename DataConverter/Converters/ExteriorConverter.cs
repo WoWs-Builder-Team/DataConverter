@@ -30,7 +30,7 @@ namespace DataConverter.Converters
                     Index = currentWgExterior.index,
                     Name = currentWgExterior.name,
                     SortOrder = currentWgExterior.sortOrder,
-                    Group = currentWgExterior.group
+                    Group = currentWgExterior.group,
                 };
 
                 Dictionary<string, double> modifiers = new Dictionary<string, double>();
@@ -97,7 +97,7 @@ namespace DataConverter.Converters
                     Levels = currentWgExterior.restrictions?.levels?.ToList<string>(),
                     Nations = currentWgExterior.restrictions?.nations?.ToList<string>(),
                     SpecificShips = currentWgExterior.restrictions?.specificShips?.ToList<string>(),
-                    Subtype = currentWgExterior.restrictions?.subtype?.ToList<string>()
+                    Subtype = currentWgExterior.restrictions?.subtype?.ToList<string>(),
                 };
 
                 //dictionary with Index as key

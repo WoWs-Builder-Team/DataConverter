@@ -30,7 +30,7 @@ namespace WoWsShipBuilder.DataStructures
         Cruiser,
         Battleship,
         AirCarrier,
-        Auxiliary
+        Auxiliary,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
@@ -87,7 +87,7 @@ namespace WoWsShipBuilder.DataStructures
         Cv,
         Consumable,
         Airstrike,
-        Asw
+        Asw,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
@@ -106,7 +106,7 @@ namespace WoWsShipBuilder.DataStructures
     {
         SAP,
         HE,
-        AP
+        AP,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
@@ -114,7 +114,7 @@ namespace WoWsShipBuilder.DataStructures
     {
         Normal,
         DeepWater,
-        Homing
+        Homing,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
@@ -128,7 +128,7 @@ namespace WoWsShipBuilder.DataStructures
     public enum RocketType
     {
         HE,
-        AP
+        AP,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
