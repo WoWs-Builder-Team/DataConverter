@@ -88,7 +88,7 @@ namespace DataConverter.Converters
             {
                 shipToPreviousShipMapper.TryGetValue(ship.Index, out string? previousShip);
                 shipToNextShipMapper.TryGetValue(ship.Index, out List<string>? nextShips);
-                ShipSummaries.Add(new ShipSummary(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip ?? string.Empty, nextShips));
+                ShipSummaries.Add(new(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips));
             }
 
             return results;

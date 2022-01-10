@@ -178,7 +178,7 @@ namespace DataConverter.Converters
                     };
 
                     //initialize an empty dictionary for effect name and effect modifiers/stats.
-                    var skillEffectDictionary = new Dictionary<string, UniqueSKillEffect>();
+                    var skillEffectDictionary = new Dictionary<string, UniqueSkillEffect>();
 
                     //uniqueIds for translation key
                     var uniqueIds = new List<int>();
@@ -187,10 +187,10 @@ namespace DataConverter.Converters
                     foreach ((var currentWgUniqueSkillEffectKey, var currentWgUniqueSkillEffectValue) in currentUniqueSkillValue.skillEffects)
                     {
                         //create the skill effect object
-                        var skillEffect = new UniqueSKillEffect();
+                        var skillEffect = new UniqueSkillEffect();
 
                         // take into account only the properties containing "unique", that are the talent effects.
-                        if (currentWgUniqueSkillEffectKey.ToString().Contains("Unique"))
+                        if (currentWgUniqueSkillEffectKey.Contains("Unique"))
                         {
                             //create a modifiers dictionary for the current effect
                             var effectsModifiers = new Dictionary<string, double>();
