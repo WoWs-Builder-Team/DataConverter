@@ -1,4 +1,4 @@
-﻿using DataConverter.WGStructure;
+using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -193,7 +193,7 @@ namespace DataConverter.Converters
                         if (currentWgUniqueSkillEffectKey.Contains("Unique"))
                         {
                             //create a modifiers dictionary for the current effect
-                            var effectsModifiers = new Dictionary<string, double>();
+                            var effectsModifiers = new Dictionary<string, float>();
 
                             JObject jObject = (JObject)currentWgUniqueSkillEffectValue;
                             var values = jObject.ToObject<Dictionary<string, JToken>>()!;
@@ -214,7 +214,7 @@ namespace DataConverter.Converters
                                 //else if the field is a number, it's a modifier. save it in the dictionary of modifiers
                                 else if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
                                 {
-                                    effectsModifiers.Add($"{key}", value.Value<double>());
+                                    effectsModifiers.Add($"{key}", value.Value<float>());
                                     Program.TranslationNames.Add(key);
                                 }
                             }

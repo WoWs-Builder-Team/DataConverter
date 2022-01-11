@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace WoWsShipBuilder.DataStructures
 {
@@ -45,6 +45,6 @@ namespace WoWsShipBuilder.DataStructures
     {
         public bool IsPercent { get; set; }
         public int UniqueType { get; set; }
-        public Dictionary<string, double> Modifiers { get; set; }
+        public Dictionary<string, float> Modifiers { get; set; }
     }
 }
