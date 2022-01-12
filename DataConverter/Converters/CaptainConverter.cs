@@ -18,6 +18,7 @@ namespace DataConverter.Converters
         /// </summary>
         /// <param name="captainJsonInput">The file content of captain data extracted from game params.</param>
         /// <param name="skillsJsonInput">The file content of the embedded captain data file.</param>
+        /// <param name="isCommon">If the file is the Common one.</param>
         /// <returns>A dictionary mapping an ID to a <see cref="Captain"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
         public static Dictionary<string, Captain> ConvertCaptain(string captainJsonInput, string skillsJsonInput, bool isCommon)
@@ -216,6 +217,25 @@ namespace DataConverter.Converters
                                 {
                                     effectsModifiers.Add($"{key}", value.Value<float>());
                                     Program.TranslationNames.Add(key);
+                                }
+                                else if (value.Type == JTokenType.Object)
+                                {
+                                    JObject jObjectModifier = (JObject)value;
+                                    var modifiers = jObjectModifier.ToObject<Dictionary<string, float>>();
+                                    bool allEquals = modifiers!.Values.Distinct().Count() == 1;
+                                    if (allEquals)
+                                    {
+                                        effectsModifiers.Add($"{key}", modifiers.First().Value);
+                                        Program.TranslationNames.Add(key);
+                                    }
+                                    else
+                                    {
+                                        foreach ((var modifierName, var modifierValue) in modifiers)
+                                        {
+                                            effectsModifiers.Add($"{key}_{modifierName}", modifierValue);
+                                            Program.TranslationNames.Add($"{key}_{modifierName}");
+                                        }
+                                    }
                                 }
                             }
                             //after iterating through the entire thing, put the modifiers in the skill effect
