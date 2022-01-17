@@ -3037,6 +3037,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40
    },
    "A_Engine": {
@@ -7951,6 +7952,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "AirDefenseDefault": {
@@ -10277,6 +10279,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_AirDefense": {
@@ -11107,6 +11110,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40
    },
    "A_Hull": {
@@ -16650,6 +16654,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_AirDefense": {
@@ -19852,6 +19857,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40
    },
    "A_Engine": {
@@ -27301,6 +27307,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Engine": {
@@ -30413,6 +30420,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Torpedoes": {
@@ -35978,6 +35986,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Engine": {
@@ -40239,6 +40248,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "AB_Engine": {
@@ -42194,6 +42204,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_AirDefense": {
@@ -43242,6 +43253,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 2,
     "reloadTime": 40
    },
    "AB_Engine": {
@@ -43798,6 +43810,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Torpedoes": {
@@ -52206,6 +52219,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "AirDefenseDefault": {
@@ -57185,6 +57199,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_AirDefense": {
@@ -69605,6 +69620,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Engine": {
@@ -73049,6 +73065,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Engine": {
@@ -83054,6 +83071,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Engine": {
@@ -85627,6 +85645,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40
    },
    "A_Engine": {
@@ -86884,6 +86903,7 @@
      }
     },
     "maxPacks": 2,
+    "numShots": 1,
     "reloadTime": 40.0
    },
    "A_Engine": {

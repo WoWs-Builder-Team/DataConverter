@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -391,6 +391,7 @@ namespace DataConverter.Converters
                     hullModule.DepthChargeArray = new DepthChargeArray
                     {
                         MaxPacks = wgDepthChargeArray.maxPacks,
+                        NumShots = wgDepthChargeArray.numShots,
                         Reload = wgDepthChargeArray.reloadTime,
                         DepthCharges = wgDepthChargeArray.depthCharges.Select(entry => (DepthChargeLauncher)entry.Value).ToList(),
                     };

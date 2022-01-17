@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -225,6 +225,7 @@ namespace WoWsShipBuilder.DataStructures
     public class DepthChargeArray
     {
         public int MaxPacks { get; set; }
+        public int NumShots { get; set; }
         public decimal Reload { get; set; }
         public List<DepthChargeLauncher> DepthCharges { get; set; }
     }
