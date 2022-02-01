@@ -24,7 +24,7 @@ namespace WoWsShipBuilder.DataStructures
         public Dictionary<string, TorpedoModule> TorpedoModules { get; set; }
         public Dictionary<string, Engine> Engines { get; set; }
         public Dictionary<string, Hull> Hulls { get; set; }
-        public Dictionary<string, PlaneData> CvPlanes { get; set; }
+        public Dictionary<string, List<PlaneData>> CvPlanes { get; set; }
         public Dictionary<string, AirStrike> AirStrikes { get; set; }
 
         //may not need to be a List, but possibly an upgradeable module
