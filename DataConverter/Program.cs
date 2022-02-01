@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter
@@ -185,7 +186,11 @@ namespace DataConverter
             FileVersion summaryVersion = CheckVersionAndSave(summaryString, "Summary", "Common.json", oldVersionInfo, versionType);
             versions.Add("Summary", new List<FileVersion> { summaryVersion });
 
-            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName, oldVersionInfo.VersionName);
+            var structureAssembly = Assembly.GetAssembly(typeof(Ship));
+            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName, oldVersionInfo.VersionName)
+            {
+                DataStructuresVersion = structureAssembly!.GetName().Version!,
+            };
 
             //write the updated versioning file
             string versionerString = JsonConvert.SerializeObject(newVersioner);
