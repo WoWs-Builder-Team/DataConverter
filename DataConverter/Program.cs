@@ -184,10 +184,14 @@ namespace DataConverter
             string summaryString = JsonConvert.SerializeObject(ShipConverter.ShipSummaries);
             new FileInfo(Path.Combine(outputFolder, "Summary", "Common.json")).Directory?.Create();
             FileVersion summaryVersion = CheckVersionAndSave(summaryString, "Summary", "Common.json", oldVersionInfo, versionType);
-            versions.Add("Summary", new List<FileVersion> { summaryVersion });
+            versions.Add("Summary", new() { summaryVersion });
 
             var structureAssembly = Assembly.GetAssembly(typeof(Ship));
-            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName, oldVersionInfo.VersionName)
+#pragma warning disable CS0618
+            var lastVersion = oldVersionInfo.LastVersion ?? VersionConverter.FromVersionString(oldVersionInfo.LastVersionName);
+#pragma warning restore CS0618
+            var currentVersion = VersionConverter.FromVersionString(versionName);
+            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, currentVersion, lastVersion)
             {
                 DataStructuresVersion = structureAssembly!.GetName().Version!,
             };
