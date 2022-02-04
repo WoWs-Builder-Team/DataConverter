@@ -2,7 +2,6 @@ using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using WoWsShipBuilder.DataStructures;
 
@@ -57,7 +56,7 @@ namespace DataConverter.Converters
                     PreparationTime = currentWgAir.preparationTime,
                 };
 
-                PlaneAttackData planeattackdata = new PlaneAttackData
+                PlaneAttackData planeAttackData = new PlaneAttackData
                 {
                     //start mapping
                     AttackCooldown = currentWgAir.attackCooldown,
@@ -67,7 +66,7 @@ namespace DataConverter.Converters
                     AttackSpeedMultiplierApplyTime = currentWgAir.attackSpeedMultiplierApplyTime,
                     AttackerSize = currentWgAir.attackerSize,
                 };
-                air.AttackData = planeattackdata;
+                air.AttackData = planeAttackData;
 
                 JatoData jatodata = new JatoData
                 {
@@ -78,15 +77,29 @@ namespace DataConverter.Converters
                 air.JatoData = jatodata;
 
                 //determine the needed enum for plane category
-                if (currentWgAir.isConsumablePlane && currentWgAir.isAirSupportPlane)
+                bool isAirSupport;
+                bool isConsumable;
+                if (currentWgAir.planeSubtype == null)
+                {
+                    isAirSupport = currentWgAir.isAirSupportPlane == true;
+                    isConsumable = currentWgAir.isConsumablePlane == true;
+                }
+                else
+                {
+                    var subtypes = currentWgAir.planeSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
+                    isAirSupport = subtypes.Contains("airsupport");
+                    isConsumable = subtypes.Contains("consumable");
+                }
+
+                if (isConsumable && isAirSupport)
                 {
                     air.PlaneCategory = PlaneCategory.Asw;
                 }
-                else if (currentWgAir.isConsumablePlane)
+                else if (isConsumable)
                 {
                     air.PlaneCategory = PlaneCategory.Consumable;
                 }
-                else if (currentWgAir.isAirSupportPlane)
+                else if (isAirSupport)
                 {
                     air.PlaneCategory = PlaneCategory.Airstrike;
                 }
@@ -94,6 +107,7 @@ namespace DataConverter.Converters
                 {
                     air.PlaneCategory = PlaneCategory.Cv;
                 }
+
                 air.AircraftConsumable = ProcessConsumables(currentWgAir);
 
                 // dictionary with index as key, for easier search
