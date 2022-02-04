@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>ShipBuilder Data structures</Title>
         <Authors>WoWs-Builder-Team</Authors>
@@ -10,9 +9,11 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
         <PackageId>WoWsShipBuilder.DataStructures</PackageId>
-        <VersionPrefix>1.20.1</VersionPrefix>
+        <VersionPrefix>2.0.0</VersionPrefix>
         <RepositoryType>git</RepositoryType>
         <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
+        <LangVersion>10</LangVersion>
+        <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
