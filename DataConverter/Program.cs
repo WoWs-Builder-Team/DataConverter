@@ -194,6 +194,7 @@ namespace DataConverter
             var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, currentVersion, lastVersion)
             {
                 DataStructuresVersion = structureAssembly!.GetName().Version!,
+                ReplayVersionDetails = GenerateReplayVersionDetails(),
             };
 
             //write the updated versioning file
@@ -237,6 +238,14 @@ namespace DataConverter
             }
 
             return fileVersion;
+        }
+
+        private static Dictionary<Version, ReplayVersionDetails> GenerateReplayVersionDetails()
+        {
+            return new()
+            {
+                { new(0, 11, 0), new ReplayVersionDetails(122, 124) },
+            };
         }
     }
 }

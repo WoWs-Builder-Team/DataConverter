@@ -13,6 +13,8 @@ namespace WoWsShipBuilder.DataStructures
         public string? LastVersionName { get; init; } = null;
 
         public Version DataStructuresVersion { get; init; } = new("0.0.0");
+
+        public Dictionary<Version, ReplayVersionDetails> ReplayVersionDetails { get; init; } = new();
     }
 
     public sealed record FileVersion(string FileName, int Version);
