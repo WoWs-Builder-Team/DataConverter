@@ -17,7 +17,7 @@ namespace WoWsShipBuilder.DataStructures
         public ShipClass ShipClass { get; set; }
         public ShipCategory ShipCategory { get; set; }
         public Nation ShipNation { get; set; }
-        public List<string> Permaflages { get; set; }
+        public List<string> Permoflages { get; set; }
 
         public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; }
         public Dictionary<string, FireControl> FireControlList { get; set; }

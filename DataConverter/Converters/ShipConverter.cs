@@ -60,7 +60,7 @@ namespace DataConverter.Converters
                     BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule),
                 };
 
-                ship.Permaflages = wgShip.permoflages;
+                ship.Permoflages = wgShip.permoflages;
                 if (wgShip.permoflages != null)
                 {
                     Program.TranslationNames.UnionWith(wgShip.permoflages);
