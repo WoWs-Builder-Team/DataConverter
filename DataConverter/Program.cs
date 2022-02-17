@@ -187,9 +187,8 @@ namespace DataConverter
             versions.Add("Summary", new() { summaryVersion });
 
             var structureAssembly = Assembly.GetAssembly(typeof(Ship));
-#pragma warning disable CS0618
-            var lastVersion = oldVersionInfo.LastVersion ?? VersionConverter.FromVersionString(oldVersionInfo.LastVersionName);
-#pragma warning restore CS0618
+            var lastVersion = oldVersionInfo.CurrentVersion ?? VersionConverter.FromVersionString(oldVersionInfo.VersionName);
+
             var currentVersion = VersionConverter.FromVersionString(versionName);
             var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, currentVersion, lastVersion)
             {
