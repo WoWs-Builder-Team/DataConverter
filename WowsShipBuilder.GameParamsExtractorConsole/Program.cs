@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Diagnostics;
+using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor;
 
@@ -9,7 +11,11 @@ namespace GameParamsFilter
     {
         private static string GameparamsPath = @"D:\Desktop\GameParamsFilter\GameParamsFilter\GameParamsFilter\Data\GameParams.data";
         private static string baseDir = @"D:\Desktop\GameParamsFilter\output\";
+
         private static string[] groupsToProcess = new string[] { "Gun", "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
+        private static string[] armamentsNames = new string[] { "_Artillery", "_FireControl", "_Torpedoes", "_ATBA", "_AirArmament", "_AirDefense",
+            "_DepthChargeGuns", "_TorpedoBomber", "_DiveBomber", "_Fighter", "_SkipBomber",  "_Engine", "_Hull" };
+        private static string moduleContainerName = "ModuleArmaments";
 
         static void Main(string[] args)
         {
@@ -51,9 +57,26 @@ namespace GameParamsFilter
                 foreach (var nation in nationGroups)
                 {
                     //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
-                    var groupDict = nation.Select(x => new SortedDictionary<object,object>(x.Value));
+                    var groupDict = nation.Select(x => new SortedDictionary<object, object>(x.Value));
                     // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
+
+                    if (group.Key.Equals("Ship"))
+                    {
+                        foreach (var shipDatas in groupDict)
+                        {
+                            var keysToMove = shipDatas.Where(shipData => armamentsNames.Any(s => ((string)shipData.Key).IndexOf(s, StringComparison.OrdinalIgnoreCase) >= 0)).ToDictionary(x => x.Key, x => x.Value);
+                            SortedDictionary<object, object> moduleArmaments = new(keysToMove);
+                            shipDatas.Add(moduleContainerName, moduleArmaments);
+
+                            foreach (var keysToRemove in keysToMove.Keys)
+                            {
+                                shipDatas.Remove(keysToRemove);
+                            }
+                        }
+                    }
                     var data = JsonConvert.SerializeObject(groupDict, Formatting.Indented);
+                    //var dict = JsonConvert.DeserializeObject<List<WGAircraft>>(data);
+                    //data = JsonConvert.SerializeObject(dict, Formatting.Indented);
                     File.WriteAllText(baseDir + group.Key + @"\" + nation.Key + ".json", data);
                 }
             });
