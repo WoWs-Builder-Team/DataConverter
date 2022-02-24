@@ -50,7 +50,9 @@ namespace GameParamsFilter
 
                 foreach (var nation in nationGroups)
                 {
-                    var groupDict = nation.ToDictionary(x => x.Key, x => x.Value);
+                    //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
+                    var groupDict = nation.Select(x => new SortedDictionary<object,object>(x.Value));
+                    // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
                     var data = JsonConvert.SerializeObject(groupDict, Formatting.Indented);
                     File.WriteAllText(baseDir + group.Key + @"\" + nation.Key + ".json", data);
                 }
