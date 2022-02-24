@@ -1,13 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31613.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter", "DataConverter\DataConverter.csproj", "{511E9649-44C8-480A-A622-CE074A4747C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter", "DataConverter\DataConverter.csproj", "{511E9649-44C8-480A-A622-CE074A4747C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WoWsShipBuilder.DataStructures", "WoWsShipBuilder.DataStructures\WoWsShipBuilder.DataStructures.csproj", "{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WoWsShipBuilder.DataStructures", "WoWsShipBuilder.DataStructures\WoWsShipBuilder.DataStructures.csproj", "{721F12F4-50D8-4B1C-9BCF-FCDDE451A6D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Test", "DataConverter.Test\DataConverter.Test.csproj", "{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Test", "DataConverter.Test\DataConverter.Test.csproj", "{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WowsShipBuilder.GameParamsExtractor", "WowsShipBuilder.GameParamsExtractor\WowsShipBuilder.GameParamsExtractor.csproj", "{885F6499-5FE8-442C-8A81-FFF52FFDA173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowsShipBuilder.GameParamsExtractorConsole", "WowsShipBuilder.GameParamsExtractorConsole\WowsShipBuilder.GameParamsExtractorConsole.csproj", "{48B96EC8-8FA7-43D1-8910-7C66645DFE45}"
+	ProjectSection(ProjectDependencies) = postProject
+		{885F6499-5FE8-442C-8A81-FFF52FFDA173} = {885F6499-5FE8-442C-8A81-FFF52FFDA173}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +34,14 @@ Global
 		{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3C2057D-9B09-4DD9-93A7-6BE71C5F4E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{885F6499-5FE8-442C-8A81-FFF52FFDA173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{885F6499-5FE8-442C-8A81-FFF52FFDA173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{885F6499-5FE8-442C-8A81-FFF52FFDA173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{885F6499-5FE8-442C-8A81-FFF52FFDA173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
