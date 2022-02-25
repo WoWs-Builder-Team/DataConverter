@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Diagnostics;
+using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor;
 
@@ -10,14 +11,16 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
         private const string GameParamsPath = "GameParams.data";
         private const string BaseDir = "output/";
 
-        private static readonly string[] GroupsToProcess = { "Gun", "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
+        private static readonly string[] GroupsToProcess = { "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
 
         private static readonly string[] ArmamentsNames = {
-            "_Artillery", "_FireControl", "_Torpedoes", "_ATBA", "_AirArmament", "_AirDefense",
+            "_Artillery", "_FireControl", "_Torpedoes", "_ATBA", "_AirArmament", "_AirDefense", "PingerGun",
             "_DepthChargeGuns", "_TorpedoBomber", "_DiveBomber", "_Fighter", "_SkipBomber", "_Engine", "_Hull"
         };
+        private static readonly string artilleryName = "_Artillery";
+        private static readonly string burstFireModuleName = "BurstArtilleryModule";
 
-        private static string moduleContainerName = "ModuleArmaments";
+        private static string moduleContainerName = "ModulesArmaments";
 
         public static void Main(string[] args)
         {
@@ -71,6 +74,22 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
                             Dictionary<string, object> keysToMove = shipData
                                 .Where(dataPair => ArmamentsNames.Any(s => dataPair.Key.Contains(s, StringComparison.OrdinalIgnoreCase)))
                                 .ToDictionary(x => x.Key, x => x.Value);
+
+                            //move BurstArtilleryFire in the root
+                            if (keysToMove.Any(x => x.Key.Contains(artilleryName)))
+                            {
+                                var artilleryPair = keysToMove.Where(x => x.Key.Contains(artilleryName)).First();
+
+                                var artilleryKey = artilleryPair.Key;
+                                var artilleryDataDict = GameParamsUtility.ConvertDataValue(artilleryPair.Value);
+                                if (artilleryDataDict.ContainsKey(burstFireModuleName))
+                                {
+                                    var burstFireModule = artilleryDataDict[burstFireModuleName];
+                                    GameParamsUtility.ConvertDataValue(keysToMove[artilleryKey]).Remove(burstFireModuleName);
+                                    shipData.Add(burstFireModuleName, burstFireModule);
+                                }
+                            }
+
                             SortedDictionary<string, object> moduleArmaments = new(keysToMove);
                             shipData.Add(moduleContainerName, moduleArmaments);
 
@@ -78,7 +97,6 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
                             {
                                 shipData.Remove(keyToRemove);
                             }
-
                             filteredEntries.Add(shipData);
                         }
                     }
@@ -89,7 +107,8 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
 
                     string data = JsonConvert.SerializeObject(filteredEntries, Formatting.Indented);
 
-                    //var dict = JsonConvert.DeserializeObject<List<WGAircraft>>(data);
+                    //var type = GameParamsUtility.GetWgObjectClassList(group.Key.ToString()!);
+                    //var dict = JsonConvert.DeserializeObject(data, type);
                     //data = JsonConvert.SerializeObject(dict, Formatting.Indented);
                     File.WriteAllText(@$"{BaseDir}{group.Key}\{nation.Key}.json", data);
                 }
