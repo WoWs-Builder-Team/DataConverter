@@ -7,28 +7,28 @@ namespace WowsShipBuilder.GameParamsExtractor
 {
     public class CustomUnpicklerClass : IObjectConstructor
     {
-        public readonly string module;
-        public readonly string name;
+        public readonly string Module;
+        public readonly string Name;
 
         public CustomUnpicklerClass(string module, string name)
         {
-            this.module = module;
-            this.name = name;
+            Module = module;
+            Name = name;
         }
 
         public object construct(object[] args)
         {
-            return new CustomClassDict(module, name);
+            return new CustomClassDict(Module, Name);
         }
     }
 
-    public class CustomClassDict : Dictionary<object, object>
+    public class CustomClassDict : Dictionary<string, object>
     {
         public string ClassName { get; }
 
         public CustomClassDict(string modulename, string classname)
         {
-            ClassName = (string.IsNullOrEmpty(modulename)) ? classname : modulename + "." + classname;
+            ClassName = string.IsNullOrEmpty(modulename) ? classname : modulename + "." + classname;
             //Add("__class__", ClassName);
         }
 
@@ -38,19 +38,18 @@ namespace WowsShipBuilder.GameParamsExtractor
             //Add("__class__", ClassName);
             if (values.ContainsKey("damageDistribution"))
             {
-                Hashtable HashtableTemp = (Hashtable)values["damageDistribution"]!;
-                Hashtable HashtableTempNew = new Hashtable();
-                foreach (DictionaryEntry DictionaryEntryTemp in HashtableTemp)
+                var hashtableTemp = (Hashtable)values["damageDistribution"]!;
+                var hashtableTempNew = new Hashtable();
+                foreach (DictionaryEntry dictionaryEntryTemp in hashtableTemp)
                 {
-                    HashtableTempNew.Add(DictionaryEntryTemp.Value!, DictionaryEntryTemp.Key);
+                    hashtableTempNew.Add(dictionaryEntryTemp.Value!, dictionaryEntryTemp.Key);
                 }
-                values["damageDistribution"] = HashtableTempNew;
+                values["damageDistribution"] = hashtableTempNew;
             }
             foreach (string x in values.Keys)
             {
                 Add(x, values[x]!);
             }
-
         }
     }
 }

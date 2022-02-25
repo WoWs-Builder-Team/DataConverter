@@ -1,52 +1,53 @@
-using System;
 using System.Collections;
 using System.Diagnostics;
-using DataConverter.WGStructure;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor;
 
-namespace GameParamsFilter
+namespace WowsShipBuilder.GameParamsExtractorConsole
 {
     internal class Program
     {
-        private static string GameparamsPath = @"D:\Desktop\GameParamsFilter\GameParamsFilter\GameParamsFilter\Data\GameParams.data";
-        private static string baseDir = @"D:\Desktop\GameParamsFilter\output\";
+        private const string GameParamsPath = "GameParams.data";
+        private const string BaseDir = "output/";
 
-        private static string[] groupsToProcess = new string[] { "Gun", "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
-        private static string[] armamentsNames = new string[] { "_Artillery", "_FireControl", "_Torpedoes", "_ATBA", "_AirArmament", "_AirDefense",
-            "_DepthChargeGuns", "_TorpedoBomber", "_DiveBomber", "_Fighter", "_SkipBomber",  "_Engine", "_Hull" };
+        private static readonly string[] GroupsToProcess = { "Gun", "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
+
+        private static readonly string[] ArmamentsNames = {
+            "_Artillery", "_FireControl", "_Torpedoes", "_ATBA", "_AirArmament", "_AirDefense",
+            "_DepthChargeGuns", "_TorpedoBomber", "_DiveBomber", "_Fighter", "_SkipBomber", "_Engine", "_Hull"
+        };
+
         private static string moduleContainerName = "ModuleArmaments";
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine("Start");
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            var gpBytes = File.ReadAllBytes(GameparamsPath);
+            byte[] gpBytes = File.ReadAllBytes(GameParamsPath);
             Array.Reverse(gpBytes);
-            var decompressedGpBytes = GameParamsUtility.Decompress(gpBytes);
-            Hashtable UnpickledGP = GameParamsUtility.UnpickleGameParams(decompressedGpBytes);
+            byte[] decompressedGpBytes = GameParamsUtility.Decompress(gpBytes);
+            var unpickledGp = GameParamsUtility.UnpickleGameParams(decompressedGpBytes);
 
-            Dictionary<object, Dictionary<object, object>> dict = new();
-            foreach (DictionaryEntry UnpickledJSONEntry in UnpickledGP)
+            Dictionary<object, Dictionary<string, object>> dict = new();
+            foreach (DictionaryEntry unpickledJsonEntry in unpickledGp)
             {
-                string UnpickledJSONEntry_Key = UnpickledJSONEntry.Key.ToString()!;
-                Dictionary<object, object> UnpickledJSONEntry_Value = GameParamsUtility.ConvertDataValue(UnpickledJSONEntry.Value!);
-                dict.Add(UnpickledJSONEntry_Key, UnpickledJSONEntry_Value);
+                var unpickledJsonEntryKey = unpickledJsonEntry.Key.ToString()!;
+                Dictionary<string, object> unpickledJsonEntryValue = GameParamsUtility.ConvertDataValue(unpickledJsonEntry.Value!);
+                dict.Add(unpickledJsonEntryKey, unpickledJsonEntryValue);
             }
+
             stopwatch.Stop();
             Console.WriteLine("Time in ms for pickling: " + stopwatch.ElapsedMilliseconds);
-
-            GC.Collect();
 
             stopwatch.Reset();
             Console.WriteLine("start json");
             stopwatch.Start();
-            var groups = dict.GroupBy(x => GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["type"]).Where(x => groupsToProcess.Contains(x.Key));
+            var groups = dict.GroupBy(x => GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["type"]).Where(x => GroupsToProcess.Contains(x.Key));
             Parallel.ForEach(groups, group =>
             {
                 Debug.WriteLine(group.Key);
-                var dir = baseDir + group.Key;
+                var dir = BaseDir + group.Key;
                 if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
@@ -57,33 +58,45 @@ namespace GameParamsFilter
                 foreach (var nation in nationGroups)
                 {
                     //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
-                    var groupDict = nation.Select(x => new SortedDictionary<object, object>(x.Value));
+                    IEnumerable<SortedDictionary<string, object>> nationEntries = nation.Select(x => new SortedDictionary<string, object>(x.Value));
+
                     // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
+
+                    var filteredEntries = new List<SortedDictionary<string, object>>();
 
                     if (group.Key.Equals("Ship"))
                     {
-                        foreach (var shipDatas in groupDict)
+                        foreach (SortedDictionary<string, object> shipData in nationEntries)
                         {
-                            var keysToMove = shipDatas.Where(shipData => armamentsNames.Any(s => ((string)shipData.Key).IndexOf(s, StringComparison.OrdinalIgnoreCase) >= 0)).ToDictionary(x => x.Key, x => x.Value);
-                            SortedDictionary<object, object> moduleArmaments = new(keysToMove);
-                            shipDatas.Add(moduleContainerName, moduleArmaments);
+                            Dictionary<string, object> keysToMove = shipData
+                                .Where(dataPair => ArmamentsNames.Any(s => dataPair.Key.Contains(s, StringComparison.OrdinalIgnoreCase)))
+                                .ToDictionary(x => x.Key, x => x.Value);
+                            SortedDictionary<string, object> moduleArmaments = new(keysToMove);
+                            shipData.Add(moduleContainerName, moduleArmaments);
 
-                            foreach (var keysToRemove in keysToMove.Keys)
+                            foreach (string keyToRemove in keysToMove.Keys)
                             {
-                                shipDatas.Remove(keysToRemove);
+                                shipData.Remove(keyToRemove);
                             }
+
+                            filteredEntries.Add(shipData);
                         }
                     }
-                    var data = JsonConvert.SerializeObject(groupDict, Formatting.Indented);
+                    else
+                    {
+                        filteredEntries = nationEntries.ToList();
+                    }
+
+                    string data = JsonConvert.SerializeObject(filteredEntries, Formatting.Indented);
+
                     //var dict = JsonConvert.DeserializeObject<List<WGAircraft>>(data);
                     //data = JsonConvert.SerializeObject(dict, Formatting.Indented);
-                    File.WriteAllText(baseDir + group.Key + @"\" + nation.Key + ".json", data);
+                    File.WriteAllText(@$"{BaseDir}{group.Key}\{nation.Key}.json", data);
                 }
             });
             stopwatch.Stop();
             Console.WriteLine("Time in ms for json: " + stopwatch.ElapsedMilliseconds);
             Console.WriteLine("end");
         }
-
     }
 }

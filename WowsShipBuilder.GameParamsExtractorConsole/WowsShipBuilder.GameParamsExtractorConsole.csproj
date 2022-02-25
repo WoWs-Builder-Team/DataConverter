@@ -16,4 +16,10 @@
     <ProjectReference Include="..\WowsShipBuilder.GameParamsExtractor\WowsShipBuilder.GameParamsExtractor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="GameParams.data">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

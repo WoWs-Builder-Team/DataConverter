@@ -9,53 +9,30 @@ namespace WowsShipBuilder.GameParamsExtractor
         public static byte[] Decompress(byte[] data)
         {
             var outputStream = new MemoryStream();
-            using (var compressedStream = new MemoryStream(data))
-            using (var inputStream = new InflaterInputStream(compressedStream))
-            {
-                inputStream.CopyTo(outputStream);
-                outputStream.Position = 0;
-                return outputStream.ToArray();
-            }
+            using var compressedStream = new MemoryStream(data);
+            using var inputStream = new InflaterInputStream(compressedStream);
+            inputStream.CopyTo(outputStream);
+            outputStream.Position = 0;
+            return outputStream.ToArray();
         }
 
         public static Hashtable UnpickleGameParams(byte[] decompressedGpBytes)
         {
-            Hashtable UnpickledGP = new Hashtable();
-            using (Unpickler UnpicklerTemp = new Unpickler())
-            {
-                Unpickler.registerConstructor("copy_reg", "_reconstructor", new CustomUnpicklerClass("copy_reg", "_reconstructor"));
-                object[] UnpickledObjectTemp = (object[])UnpicklerTemp.loads(decompressedGpBytes);
-                UnpickledGP = (Hashtable)UnpickledObjectTemp[0];
-                UnpicklerTemp.close();
-            }
-            return UnpickledGP;
+            using var unpickler = new Unpickler();
+            Unpickler.registerConstructor("copy_reg", "_reconstructor", new CustomUnpicklerClass("copy_reg", "_reconstructor"));
+            var unpickledObjectTemp = (object[])unpickler.loads(decompressedGpBytes);
+            var unpickledGp = (Hashtable)unpickledObjectTemp[0];
+            return unpickledGp;
         }
 
-        public static Dictionary<object, object> ConvertDataValue(object ObjectPass)
+        public static Dictionary<string, object> ConvertDataValue(object objectPass)
         {
-            switch (ObjectPass.GetType().Name)
+            return objectPass switch
             {
-                case "Hashtable":
-                    {
-                        return new Dictionary<object, object>(((Hashtable)ObjectPass).Cast<DictionaryEntry>().ToDictionary(kvp => kvp.Key, kvp => kvp.Value!));
-                    }
-
-                case "ClassDict": //Unable to cast object of type 'Razorvine.Pickle.Objects.ClassDict' to type 'System.Collections.Generic.Dictionary`2[System.Object,System.Object]'.
-                    {
-
-                        Dictionary<object, object> SortedDictionaryTemp = new Dictionary<object, object>();
-                        foreach (KeyValuePair<string, object> kvp in (Dictionary<string, object>)ObjectPass)
-                        {
-                            SortedDictionaryTemp.Add(kvp.Key, kvp.Value);
-                        }
-                        return SortedDictionaryTemp;
-                    }
-
-                default:
-                    {
-                        return new Dictionary<object, object>((Dictionary<object, object>)ObjectPass);
-                    }
-            }
+                Hashtable hashtable => hashtable.Cast<DictionaryEntry>().ToDictionary(kvp => kvp.Key.ToString()!, kvp => kvp.Value!),
+                Dictionary<string, object> dictionary => dictionary,
+                _ => throw new ArgumentException("The parameter has an invalid type", nameof(objectPass)),
+            };
         }
     }
 }
