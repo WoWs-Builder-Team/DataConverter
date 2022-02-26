@@ -51,5 +51,43 @@ namespace WowsShipBuilder.GameParamsExtractor
                 _ => throw new ArgumentException("The parameter has an invalid type", nameof(name)),
             };
         }
+
+        public static SortedDictionary<string, object> AggregateGuns(Dictionary<string,object> modulesDict, string gunsName)
+        {
+            var keysToMove = new SortedDictionary<string, object>();
+            //iterate over the ATBAs and process them all
+            foreach (var module in modulesDict)
+            {
+                //get the module data
+                var moduleData = ConvertDataValue(module.Value);
+                var gunsDictionary = new SortedDictionary<string, object>();
+                var ATBAsGuns = new SortedDictionary<string, object>();
+                //iterate through all the stats of the module
+                foreach (var singleStat in moduleData)
+                {
+                    if (singleStat.Value is CustomClassDict gunData)
+                    {
+                        //if it has typeinfo, it's always a gun and not a dictionary fo values.
+                        if (gunData.ContainsKey("typeinfo"))
+                        {
+                            ATBAsGuns.Add(singleStat.Key, singleStat.Value);
+                        }
+                        else
+                        {
+                            gunsDictionary.Add(singleStat.Key, singleStat.Value);
+                        }
+                    }
+                    else
+                    {
+                        gunsDictionary.Add(singleStat.Key, singleStat.Value);
+                    }
+
+                }
+                //insert the guns with their own key
+                gunsDictionary.Add(gunsName, ATBAsGuns);
+                keysToMove.Add(module.Key, gunsDictionary);
+            }
+            return keysToMove;
+        }
     }
 }
