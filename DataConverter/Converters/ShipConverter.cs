@@ -57,7 +57,6 @@ namespace DataConverter.Converters
                     AirStrikes = ProcessAirstrikes(wgShip),
                     PingerGunList = ProcessPingerGuns(wgShip),
                     SpecialAbility = ProcessSpecialAbility(wgShip),
-                    BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule),
                 };
 
                 ship.Permoflages = wgShip.permoflages;
@@ -249,6 +248,7 @@ namespace DataConverter.Converters
                     Sigma = wgMainBattery.sigmaCount,
                     MaxRange = wgMainBattery.maxDist,
                     Guns = wgMainBattery.guns.Select(entry => ConvertMainBatteryGun(entry.Value, key, entry.Key, wgShip.index)).ToList(),
+                    BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
                 };
                 MainBatteryGun dispersionGun = wgMainBattery.guns.Values.First();
                 var turretDispersion = new Dispersion

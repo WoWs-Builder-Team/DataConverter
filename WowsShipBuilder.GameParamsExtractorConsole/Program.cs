@@ -14,8 +14,8 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
         private static readonly string[] GroupsToProcess = { "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
 
         private static readonly string[] ArmamentsNames = {
-            "_FireControl", "_Torpedoes", "_AirArmament", "PingerGun",
-            "_DepthChargeGuns", "_TorpedoBomber", "_DiveBomber", "_Fighter", "_SkipBomber", "_Engine", "_Hull"
+            "_FireControl", "_AirArmament", "PingerGun",
+            "_TorpedoBomber", "_DiveBomber", "_Fighter", "_SkipBomber", "_Engine", "_Hull"
         };
         private static readonly string artilleryName = "_Artillery";
         private static readonly string burstFireModuleName = "BurstArtilleryModule";
@@ -103,21 +103,14 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
                                 keysToMove = keysToMove.Union(artilleries).ToDictionary(x => x.Key, x => x.Value);
                             }
 
-                            //move BurstArtilleryFire in the root need to fix
-                            if (keysToMove.Any(x => x.Key.Contains(artilleryName)))
+                            //Torps special processing 
+                            var torpedoModules = shipData.Where(dataPair => dataPair.Key.Contains("_Torpedoes", StringComparison.OrdinalIgnoreCase))
+                               .ToDictionary(x => x.Key, x => x.Value);
+                            if (torpedoModules.Count > 0)
                             {
-                                var artilleryPair = keysToMove.Where(x => x.Key.Contains(artilleryName)).First();
-
-                                var artilleryKey = artilleryPair.Key;
-                                var artilleryDataDict = GameParamsUtility.ConvertDataValue(artilleryPair.Value);
-                                if (artilleryDataDict.ContainsKey(burstFireModuleName))
-                                {
-                                    var burstFireModule = artilleryDataDict[burstFireModuleName];
-                                    GameParamsUtility.ConvertDataValue(keysToMove[artilleryKey]).Remove(burstFireModuleName);
-                                    shipData.Add(burstFireModuleName, burstFireModule);
-                                }
+                                var torpedoArrays = GameParamsUtility.AggregateGuns(torpedoModules, "torpedoArray");
+                                keysToMove = keysToMove.Union(torpedoArrays).ToDictionary(x => x.Key, x => x.Value);
                             }
-
 
                             //Add isAA to the AirDefense
                             var airDefenseModules = shipData.Where(dataPair => dataPair.Key.Contains("_AirDefense", StringComparison.OrdinalIgnoreCase))
@@ -134,12 +127,21 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
                                 keysToMove = keysToMove.Union(aaModuleLists).ToDictionary(x => x.Key, x => x.Value);
                             }
 
+                            //Depth charges special processing 
+                            var depthChargesModules = shipData.Where(dataPair => dataPair.Key.Contains("_DepthCharge", StringComparison.OrdinalIgnoreCase))
+                               .ToDictionary(x => x.Key, x => x.Value);
+                            if (depthChargesModules.Count > 0)
+                            {
+                                var depthChargeArrays = GameParamsUtility.AggregateGuns(depthChargesModules, "depthCharges");
+                                keysToMove = keysToMove.Union(depthChargeArrays).ToDictionary(x => x.Key, x => x.Value);
+                            }
+
                             //add the rest of the keys
                             var otherKeysToMove = shipData
                                 .Where(dataPair => ArmamentsNames.Any(s => dataPair.Key.Contains(s, StringComparison.OrdinalIgnoreCase)))
                                 .ToDictionary(x => x.Key, x => x.Value);
 
-                            keysToMove = keysToMove = keysToMove.Union(otherKeysToMove).ToDictionary(x => x.Key, x => x.Value);
+                            keysToMove = keysToMove.Union(otherKeysToMove).ToDictionary(x => x.Key, x => x.Value);
 
                             SortedDictionary<string, object> moduleArmaments = new(keysToMove);
                             shipData.Add(moduleContainerName, moduleArmaments);

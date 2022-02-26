@@ -32,7 +32,6 @@ namespace WoWsShipBuilder.DataStructures
         public List<ShipConsumable> ShipConsumable { get; set; }
         public UpgradeInfo ShipUpgradeInfo { get; set; }
         public SpecialAbility SpecialAbility { get; set; }
-        public BurstModeAbility BurstModeAbility { get; set; }
     }
 
     #region Main Battery and Secondaries
@@ -45,6 +44,7 @@ namespace WoWsShipBuilder.DataStructures
         public List<Gun> Guns { get; set; }
         public AntiAirAura AntiAir { get; set; }
         public Dispersion DispersionValues { get; set; }
+        public BurstModeAbility BurstModeAbility { get; set; }
     }
 
     public class Gun

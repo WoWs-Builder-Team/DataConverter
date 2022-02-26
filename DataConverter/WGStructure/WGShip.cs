@@ -12,7 +12,6 @@ namespace DataConverter.WGStructure
 {
     public class WGShip
     {
-        public BurstArtilleryModule BurstArtilleryModule { get; set; }
         public Dictionary<string, ModuleArmaments> ModulesArmaments { get; set; }
         public Dictionary<string, ShipAbility> ShipAbilities { get; set; }
         public ShipUpgradeInfo ShipUpgradeInfo { get; set; }
@@ -46,6 +45,7 @@ namespace DataConverter.WGStructure
     public class MainBattery : ModuleArmaments
     {
         public Dictionary<string, MainBatteryGun> guns { get; set; }
+        public BurstArtilleryModule BurstArtilleryModule { get; set; }
         public decimal maxDist { get; set; }
         public decimal sigmaCount { get; set; }
         public double taperDist { get; set; }
