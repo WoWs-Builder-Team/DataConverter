@@ -17,14 +17,14 @@ namespace WoWsShipBuilder.DataStructures
         public ShipClass ShipClass { get; set; }
         public ShipCategory ShipCategory { get; set; }
         public Nation ShipNation { get; set; }
-        public List<string> Permaflages { get; set; }
+        public List<string> Permoflages { get; set; }
 
         public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; }
         public Dictionary<string, FireControl> FireControlList { get; set; }
         public Dictionary<string, TorpedoModule> TorpedoModules { get; set; }
         public Dictionary<string, Engine> Engines { get; set; }
         public Dictionary<string, Hull> Hulls { get; set; }
-        public Dictionary<string, PlaneData> CvPlanes { get; set; }
+        public Dictionary<string, List<PlaneData>> CvPlanes { get; set; }
         public Dictionary<string, AirStrike> AirStrikes { get; set; }
 
         //may not need to be a List, but possibly an upgradeable module

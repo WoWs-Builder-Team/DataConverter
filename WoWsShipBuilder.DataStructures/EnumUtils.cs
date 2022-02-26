@@ -175,4 +175,12 @@ namespace WoWsShipBuilder.DataStructures
         Right,
         Left,
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum GameVersionType
+    {
+        Live,
+        Pts,
+        Dev,
+    }
 }

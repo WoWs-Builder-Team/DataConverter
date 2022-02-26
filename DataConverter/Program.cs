@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter
@@ -183,9 +184,17 @@ namespace DataConverter
             string summaryString = JsonConvert.SerializeObject(ShipConverter.ShipSummaries);
             new FileInfo(Path.Combine(outputFolder, "Summary", "Common.json")).Directory?.Create();
             FileVersion summaryVersion = CheckVersionAndSave(summaryString, "Summary", "Common.json", oldVersionInfo, versionType);
-            versions.Add("Summary", new List<FileVersion> { summaryVersion });
+            versions.Add("Summary", new() { summaryVersion });
 
-            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, versionName, oldVersionInfo.VersionName);
+            var structureAssembly = Assembly.GetAssembly(typeof(Ship));
+            var lastVersion = oldVersionInfo.CurrentVersion ?? VersionConverter.FromVersionString(oldVersionInfo.VersionName);
+
+            var currentVersion = VersionConverter.FromVersionString(versionName);
+            var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, currentVersion, lastVersion)
+            {
+                DataStructuresVersion = structureAssembly!.GetName().Version!,
+                ReplayVersionDetails = GenerateReplayVersionDetails(),
+            };
 
             //write the updated versioning file
             string versionerString = JsonConvert.SerializeObject(newVersioner);
@@ -228,6 +237,14 @@ namespace DataConverter
             }
 
             return fileVersion;
+        }
+
+        private static Dictionary<Version, ReplayVersionDetails> GenerateReplayVersionDetails()
+        {
+            return new()
+            {
+                { new(0, 11, 0), new ReplayVersionDetails(122, 124) },
+            };
         }
     }
 }

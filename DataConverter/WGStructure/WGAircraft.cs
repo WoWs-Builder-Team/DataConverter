@@ -22,8 +22,9 @@ namespace DataConverter.WGStructure
         public string index { get; set; }
         public double innerBombsPercentage { get; set; }
         public List<double> innerSalvoSize { get; set; }
-        public bool isAirSupportPlane { get; set; }
-        public bool isConsumablePlane { get; set; }
+        public bool? isAirSupportPlane { get; set; } // deprecated by WG with 0.11.1
+        public bool? isConsumablePlane { get; set; } // deprecated by WG with 0.11.1
+        public string[] planeSubtype { get; set; }
         public bool isJatoBoosterDetachable { get; set; }
         public double jatoDuration { get; set; }
         public double jatoSpeedMultiplier { get; set; }

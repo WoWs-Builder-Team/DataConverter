@@ -15,7 +15,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build Debug
@@ -37,12 +37,12 @@ jobs:
       - name: Setup .NET with NuGet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: 6.0.x
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_TOKEN}}
       - name: Get and store tag version name
         run: echo ("CURRENT_TAG=" + $env:GITHUB_REF.Replace('refs/tags/data-', '')) >> $env:GITHUB_ENV 
       - name: Rebuild nuget package
-        run: dotnet build WoWsShipBuilder.DataStructures -c Release -p:PackageVersion="$env:CURRENT_TAG"
+        run: dotnet build WoWsShipBuilder.DataStructures -c Release
       - name: Publish nuget package
-        run: dotnet nuget push "WoWsShipBuilder.DataStructures\bin\Release\*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }} --skip-duplicate
+        run: dotnet nuget push "WoWsShipBuilder.DataStructures\bin\Release\*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }}

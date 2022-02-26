@@ -60,11 +60,12 @@ namespace DataConverter.Converters
                     BurstModeAbility = ProcessBurstModeAbility(wgShip.BurstArtilleryModule),
                 };
 
-                ship.Permaflages = wgShip.permoflages;
+                ship.Permoflages = wgShip.permoflages;
                 if (wgShip.permoflages != null)
                 {
                     Program.TranslationNames.UnionWith(wgShip.permoflages);
                 }
+
                 ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
                 ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
                 results[ship.Index] = ship;
@@ -122,6 +123,7 @@ namespace DataConverter.Converters
                 Program.TranslationNames.UnionWith(burstAbility.Modifiers.Keys);
                 return burstAbility;
             }
+
             return null;
         }
 
@@ -148,6 +150,7 @@ namespace DataConverter.Converters
                 Program.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
                 return specialAbility;
             }
+
             return null;
         }
 
@@ -464,26 +467,44 @@ namespace DataConverter.Converters
             return resultDictionary;
         }
 
-        private static Dictionary<string, PlaneData> ProcessPlanes(WGShip wgShip, UpgradeInfo upgradeInfo)
+        private static Dictionary<string, List<PlaneData>> ProcessPlanes(WGShip wgShip, UpgradeInfo upgradeInfo)
         {
-            var resultDictionary = new Dictionary<string, PlaneData>();
+            var resultDictionary = new Dictionary<string, List<PlaneData>>();
             foreach (PlaneType type in Enum.GetValues(typeof(PlaneType)))
             {
-                IEnumerable<(string moduleKey, PlaneData)> planesOfType = upgradeInfo.ShipUpgrades
+                IEnumerable<KeyValuePair<string, PlaneData>> planesOfType = upgradeInfo.ShipUpgrades
                     .Where(upgrade => upgrade.UcType == type.ToComponentType())
                     .Select(planeUpgrade => planeUpgrade.Components[type.ToComponentType()].First())
                     .Select(moduleKey => (moduleKey, (WgPlane)wgShip.ModulesArmaments[moduleKey]))
-                    .Select(wgPlane => (wgPlane.moduleKey, new PlaneData
+                    .SelectMany(wgPlane =>
                     {
-                        PlaneName = wgPlane.Item2.planeType,
-                        PlaneType = type,
-                    }))
+                        var plane = wgPlane.Item2;
+                        if (plane.planes != null)
+                        {
+                            // Process ships starting with patch 0.11.1
+                            return plane.planes.Select(planeName => new PlaneData { PlaneName = planeName, PlaneType = type })
+                                .Select(data => new KeyValuePair<string, PlaneData>(wgPlane.moduleKey, data));
+                        }
+
+                        // Processing for older versions
+                        return new List<KeyValuePair<string, PlaneData>>
+                        {
+                            new(wgPlane.moduleKey, new() { PlaneName = wgPlane.Item2.planeType, PlaneType = type, }),
+                        };
+                    })
                     .ToList();
 
-                Program.TranslationNames.UnionWith(planesOfType.Select(planeEntry => planeEntry.Item2.PlaneName).Distinct());
+                Program.TranslationNames.UnionWith(planesOfType.Select(planeEntry => planeEntry.Value.PlaneName).Distinct());
                 foreach ((string moduleName, PlaneData planeData) in planesOfType)
                 {
-                    resultDictionary[moduleName] = planeData;
+                    if (resultDictionary.ContainsKey(moduleName))
+                    {
+                        resultDictionary[moduleName].Add(planeData);
+                    }
+                    else
+                    {
+                        resultDictionary[moduleName] = new() { planeData };
+                    }
                 }
             }
 

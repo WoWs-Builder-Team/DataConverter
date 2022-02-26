@@ -26,7 +26,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: 6.0.x
       - name: Prepare data converter
         run: dotnet test -c Release --verbosity normal
         
@@ -55,8 +55,14 @@ jobs:
         run: dotnet run -c Release --project DataConverter "gameparams\$env:OUTPUT_ADDITION\entities" "gameparams\out\$env:OUTPUT_ADDITION" "$env:GAME_VERSION"
       - name: Create localization output directory
         run: New-Item -Path "gameparams\out\$env:OUTPUT_ADDITION\" -Name "Localization" -ItemType "directory"
-      - name: Run localization extraction
+        
+      - name: Run localization extraction (live server)
+        if: "!contains(github.ref, 'pts')"
         run: python gameparams\localization\mo2json.py --filter "gameparams\out\$env:OUTPUT_ADDITION\TranslationNames.csv" --localizations gameparams\localization\texts --serial
+      - name: Run localization extraction (pts server)
+        if: "contains(github.ref, 'pts')"
+        run: python gameparams\localization\mo2json.py --filter "gameparams\out\$env:OUTPUT_ADDITION\TranslationNames.csv" --localizations gameparams\localization\texts-pts --serial
+        
       - name: Copy localization output
         run: Copy-Item -Path "gameparams\localization\output\*.json" -Destination "gameparams\out\$env:OUTPUT_ADDITION\Localization"
       - name: Copy EN localization output (Temporary addition)

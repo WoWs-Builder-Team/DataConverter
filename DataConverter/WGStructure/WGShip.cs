@@ -31,13 +31,14 @@ namespace DataConverter.WGStructure
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgTorpedoArray), "torpedoArray")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(ATBA), "antiAirAndSecondaries")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(AirSupport), "maxPlaneFlightDist")]
-    [JsonSubtypes.KnownSubTypeWithProperty(typeof(AirDefense), "isAA")] 
+    [JsonSubtypes.KnownSubTypeWithProperty(typeof(AirDefense), "isAA")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgDepthChargesArray), "depthCharges")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgEngine), "forwardEngineUpTime")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgHull), "visibilityFactor")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgFlightControl), "squadrons")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPingerGun), "waveReloadTime")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPlane), "planeType")]
+    [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPlane), "planes")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgSpecialAbility), "RageMode")]
     public class ModuleArmaments { }
 
@@ -48,7 +49,7 @@ namespace DataConverter.WGStructure
         public decimal maxDist { get; set; }
         public decimal sigmaCount { get; set; }
         public double taperDist { get; set; }
-        
+
         public bool normalDistribution { get; set; }
 
         [JsonExtensionData]
@@ -174,7 +175,7 @@ namespace DataConverter.WGStructure
         [JsonIgnore]
         public Dictionary<string, AAAura> ConvertedAntiAirData
         {
-            get 
+            get
             {
                 if (AntiAirData == null)
                 {
@@ -185,8 +186,8 @@ namespace DataConverter.WGStructure
                     return AntiAirData.Select(entry => (entry.Key, entry.Value.ToObject<AAAura>()))
                            .Where(entry => entry.Item2 != null)
                            .ToDictionary(entry => entry.Key, entry => entry.Item2);
-                } 
-            } 
+                }
+            }
         }
     }
 
@@ -238,7 +239,7 @@ namespace DataConverter.WGStructure
         public decimal reloadTime { get; set; }
         public decimal timeBetweenShots { get; set; }
         public decimal timeFromHeaven { get; set; }
-        
+
         public static implicit operator AirStrike(AirSupport thisAirSupport)
         {
             return new AirStrike
@@ -382,10 +383,13 @@ namespace DataConverter.WGStructure
         public string[] squadrons { get; set; }
     }
 
+#nullable enable
     public class WgPlane : ModuleArmaments
     {
-        public string planeType { get; set; }
+        public string? planeType { get; set; }
+        public string[]? planes { get; set; }
     }
+#nullable disable
 
     #endregion
 
@@ -484,7 +488,7 @@ namespace DataConverter.WGStructure
             }
         }
     }
-    
+
     public class ShipUpgrade
     {
         public bool canBuy { get; set; }
