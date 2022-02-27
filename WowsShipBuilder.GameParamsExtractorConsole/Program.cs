@@ -17,8 +17,6 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
             "_FireControl", "_AirArmament", "PingerGun",
             "_TorpedoBomber", "_DiveBomber", "_Fighter", "_SkipBomber", "_Engine", "_Hull"
         };
-        private static readonly string artilleryName = "_Artillery";
-        private static readonly string burstFireModuleName = "BurstArtilleryModule";
 
         private static string moduleContainerName = "ModulesArmaments";
 
@@ -84,64 +82,75 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
 
                             var keysToMove = new Dictionary<string, object>();
 
-                            //ATBA special processing
-                            //get all the ATBAs
-                            var ATBAsModules = shipData.Where(dataPair => dataPair.Key.Contains("_ATBA", StringComparison.OrdinalIgnoreCase))
+                            //WARNING: this works on the assumptions that only modules contains "_" as charachter. It does seems to be always the case, but you never know with WG.
+                            // A more solid way could be by checking some of the inner dictionaries and such, but it would means checking all the stats for every key.
+                            var modules = shipData.Where(dataPair => dataPair.Key.Contains("_", StringComparison.OrdinalIgnoreCase))
                                 .ToDictionary(x => x.Key, x => x.Value);
-                            if (ATBAsModules.Count > 0)
+                            if (modules.Count > 0)
                             {
-                                var atbas = GameParamsUtility.AggregateGuns(ATBAsModules, "antiAirAndSecondaries");
-                                keysToMove = keysToMove.Union(atbas).ToDictionary(x => x.Key, x => x.Value);
+                                var aggregatedModules = GameParamsUtility.AggregateGuns(modules);
+                                keysToMove = keysToMove.Union(aggregatedModules).ToDictionary(x => x.Key, x => x.Value);
                             }
 
-                            //Artillery special processing. need to extract the ArtilleryBurstModule
-                            var artilleriesModules = shipData.Where(dataPair => dataPair.Key.Contains("_Artillery", StringComparison.OrdinalIgnoreCase))
-                               .ToDictionary(x => x.Key, x => x.Value);
-                            if (artilleriesModules.Count > 0)
-                            {
-                                var artilleries = GameParamsUtility.AggregateGuns(artilleriesModules, "guns");
-                                keysToMove = keysToMove.Union(artilleries).ToDictionary(x => x.Key, x => x.Value);
-                            }
+                            // this is the old way, keeping it for reference
+                            ////ATBA special processing
+                            ////get all the ATBAs
+                            //var ATBAsModules = shipData.Where(dataPair => dataPair.Key.Contains("_ATBA", StringComparison.OrdinalIgnoreCase))
+                            //    .ToDictionary(x => x.Key, x => x.Value);
+                            //if (ATBAsModules.Count > 0)
+                            //{
+                            //    var atbas = GameParamsUtility.AggregateGuns(ATBAsModules, "antiAirAndSecondaries");
+                            //    keysToMove = keysToMove.Union(atbas).ToDictionary(x => x.Key, x => x.Value);
+                            //}
 
-                            //Torps special processing 
-                            var torpedoModules = shipData.Where(dataPair => dataPair.Key.Contains("_Torpedoes", StringComparison.OrdinalIgnoreCase))
-                               .ToDictionary(x => x.Key, x => x.Value);
-                            if (torpedoModules.Count > 0)
-                            {
-                                var torpedoArrays = GameParamsUtility.AggregateGuns(torpedoModules, "torpedoArray");
-                                keysToMove = keysToMove.Union(torpedoArrays).ToDictionary(x => x.Key, x => x.Value);
-                            }
+                            ////Artillery special processing. need to extract the ArtilleryBurstModule
+                            //var artilleriesModules = shipData.Where(dataPair => dataPair.Key.Contains("_Artillery", StringComparison.OrdinalIgnoreCase))
+                            //   .ToDictionary(x => x.Key, x => x.Value);
+                            //if (artilleriesModules.Count > 0)
+                            //{
+                            //    var artilleries = GameParamsUtility.AggregateGuns(artilleriesModules, "guns");
+                            //    keysToMove = keysToMove.Union(artilleries).ToDictionary(x => x.Key, x => x.Value);
+                            //}
 
-                            //Add isAA to the AirDefense
-                            var airDefenseModules = shipData.Where(dataPair => dataPair.Key.Contains("_AirDefense", StringComparison.OrdinalIgnoreCase))
-                                .ToDictionary(x => x.Key, x => x.Value);
-                            if (airDefenseModules.Count > 0)
-                            {
-                                var aaModuleLists = new SortedDictionary<string, object>();
-                                foreach (var module in airDefenseModules)
-                                {
-                                    var aaStats = GameParamsUtility.ConvertDataValue(module.Value);
-                                    aaStats.Add("isAA", true);
-                                    aaModuleLists.Add(module.Key, aaStats);
-                                }
-                                keysToMove = keysToMove.Union(aaModuleLists).ToDictionary(x => x.Key, x => x.Value);
-                            }
+                            ////Torps special processing 
+                            //var torpedoModules = shipData.Where(dataPair => dataPair.Key.Contains("_Torpedoes", StringComparison.OrdinalIgnoreCase))
+                            //   .ToDictionary(x => x.Key, x => x.Value);
+                            //if (torpedoModules.Count > 0)
+                            //{
+                            //    var torpedoArrays = GameParamsUtility.AggregateGuns(torpedoModules, "torpedoArray");
+                            //    keysToMove = keysToMove.Union(torpedoArrays).ToDictionary(x => x.Key, x => x.Value);
+                            //}
 
-                            //Depth charges special processing 
-                            var depthChargesModules = shipData.Where(dataPair => dataPair.Key.Contains("_DepthCharge", StringComparison.OrdinalIgnoreCase))
-                               .ToDictionary(x => x.Key, x => x.Value);
-                            if (depthChargesModules.Count > 0)
-                            {
-                                var depthChargeArrays = GameParamsUtility.AggregateGuns(depthChargesModules, "depthCharges");
-                                keysToMove = keysToMove.Union(depthChargeArrays).ToDictionary(x => x.Key, x => x.Value);
-                            }
+                            ////Add isAA to the AirDefense
+                            //var airDefenseModules = shipData.Where(dataPair => dataPair.Key.Contains("_AirDefense", StringComparison.OrdinalIgnoreCase))
+                            //    .ToDictionary(x => x.Key, x => x.Value);
+                            //if (airDefenseModules.Count > 0)
+                            //{
+                            //    var aaModuleLists = new SortedDictionary<string, object>();
+                            //    foreach (var module in airDefenseModules)
+                            //    {
+                            //        var aaStats = GameParamsUtility.ConvertDataValue(module.Value);
+                            //        aaStats.Add("isAA", true);
+                            //        aaModuleLists.Add(module.Key, aaStats);
+                            //    }
+                            //    keysToMove = keysToMove.Union(aaModuleLists).ToDictionary(x => x.Key, x => x.Value);
+                            //}
 
-                            //add the rest of the keys
-                            var otherKeysToMove = shipData
-                                .Where(dataPair => ArmamentsNames.Any(s => dataPair.Key.Contains(s, StringComparison.OrdinalIgnoreCase)))
-                                .ToDictionary(x => x.Key, x => x.Value);
+                            ////Depth charges special processing 
+                            //var depthChargesModules = shipData.Where(dataPair => dataPair.Key.Contains("_DepthCharge", StringComparison.OrdinalIgnoreCase))
+                            //   .ToDictionary(x => x.Key, x => x.Value);
+                            //if (depthChargesModules.Count > 0)
+                            //{
+                            //    var depthChargeArrays = GameParamsUtility.AggregateGuns(depthChargesModules, "depthCharges");
+                            //    keysToMove = keysToMove.Union(depthChargeArrays).ToDictionary(x => x.Key, x => x.Value);
+                            //}
 
-                            keysToMove = keysToMove.Union(otherKeysToMove).ToDictionary(x => x.Key, x => x.Value);
+                            ////add the rest of the keys
+                            //var otherKeysToMove = shipData
+                            //    .Where(dataPair => ArmamentsNames.Any(s => dataPair.Key.Contains(s, StringComparison.OrdinalIgnoreCase)))
+                            //    .ToDictionary(x => x.Key, x => x.Value);
+
+                            //keysToMove = keysToMove.Union(otherKeysToMove).ToDictionary(x => x.Key, x => x.Value);
 
                             SortedDictionary<string, object> moduleArmaments = new(keysToMove);
                             shipData.Add(moduleContainerName, moduleArmaments);

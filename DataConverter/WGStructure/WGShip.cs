@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using System.Runtime.Serialization;
 
 namespace DataConverter.WGStructure
 {
@@ -59,6 +60,15 @@ namespace DataConverter.WGStructure
         public Dictionary<string, AAAura> ConvertedAntiAirAuras
         {
             get => AntiAirAuras?.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>()) ?? new Dictionary<string, AAAura>() ;
+        }
+
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            // Remove non auras. possible solution, basing everything on the fact that auras will always contain near,medium or far as dictionary key.
+            var filteredDict = AntiAirAuras.Where(x => x.Key.Contains("near", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("med", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("medium", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("far", StringComparison.OrdinalIgnoreCase)).ToDictionary(x => x.Key, x => x.Value);
+            var tempDict = filteredDict.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>());
+            AntiAirAuras = tempDict.ToDictionary(entry => entry.Key, entry => JToken.FromObject(entry.Value)); ;
         }
     }
 
@@ -189,6 +199,15 @@ namespace DataConverter.WGStructure
                 }
             }
         }
+
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            // Remove non auras. possible solution, basing everything on the fact that auras will always contain near,medium or far as dictionary key.
+            var filteredDict = AntiAirData.Where(x => x.Key.Contains("near", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("med", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("medium", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("far", StringComparison.OrdinalIgnoreCase)).ToDictionary(x => x.Key, x => x.Value);
+            var tempDict = filteredDict.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>());
+            AntiAirData = tempDict.ToDictionary(entry => entry.Key, entry => JToken.FromObject(entry.Value)); ;
+        }
     }
 
     public class AntiAirAndSecondaries
@@ -271,6 +290,15 @@ namespace DataConverter.WGStructure
         public Dictionary<string, AAAura> ConvertedAuras
         {
             get => Auras?.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>()) ?? new Dictionary<string, AAAura>();
+        }
+
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            // Remove non auras. possible solution, basing everything on the fact that auras will always contain near,medium or far as dictionary key.
+            var filteredDict = Auras.Where(x => x.Key.Contains("near", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("med", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("medium", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("far", StringComparison.OrdinalIgnoreCase)).ToDictionary(x => x.Key, x => x.Value);
+            var tempDict = filteredDict.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>());
+            Auras = tempDict.ToDictionary(entry => entry.Key, entry => JToken.FromObject(entry.Value)); ;
         }
     }
     public class AAAura
