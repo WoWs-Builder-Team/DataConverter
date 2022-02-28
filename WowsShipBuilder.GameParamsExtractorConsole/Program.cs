@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
-using DataConverter.WGStructure;
 using Newtonsoft.Json;
+using SecondLanguage;
 using WowsShipBuilder.GameParamsExtractor;
 
 namespace WowsShipBuilder.GameParamsExtractorConsole
@@ -10,6 +11,7 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
     {
         private const string GameParamsPath = "GameParams.data";
         private const string BaseDir = "output/";
+        private const string translationPath = "global.mo";
 
         private static readonly string[] GroupsToProcess = { "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
 
@@ -20,46 +22,73 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
 
         private static string moduleContainerName = "ModulesArmaments";
 
+        private static bool translation = true;
+
         public static void Main(string[] args)
         {
-            Console.WriteLine("Start");
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            byte[] gpBytes = File.ReadAllBytes(GameParamsPath);
-            Array.Reverse(gpBytes);
-            byte[] decompressedGpBytes = GameParamsUtility.Decompress(gpBytes);
-            var unpickledGp = GameParamsUtility.UnpickleGameParams(decompressedGpBytes);
-
-            Dictionary<object, Dictionary<string, object>> dict = new();
-            foreach (DictionaryEntry unpickledJsonEntry in unpickledGp)
+            if (translation)
             {
-                var unpickledJsonEntryKey = unpickledJsonEntry.Key.ToString()!;
-                Dictionary<string, object> unpickledJsonEntryValue = GameParamsUtility.ConvertDataValue(unpickledJsonEntry.Value!);
-                dict.Add(unpickledJsonEntryKey, unpickledJsonEntryValue);
+                Console.WriteLine("Start");
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                FileStream stream = new FileStream(translationPath, FileMode.Open);
+                var test = new GettextMOTranslation();
+                test.Load(stream);
+                var dict = test.GetGettextKeys();
+                var dictionary = dict.ToDictionary(x => x.Key.ID, x => x.Value);
+                dictionary.Remove("");
+
+                var lines = File.ReadAllLines("translationNames.csv").ToList();
+
+                dictionary = dictionary.Where(x => lines.Any(s => x.Key.Contains(s, StringComparison.OrdinalIgnoreCase))).ToDictionary(x => x.Key.Substring(4), x => x.Value);
+
+                var data = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
+                File.WriteAllText(@$"{BaseDir}translation.json", data);
+
+                stopwatch.Stop();
+                Console.WriteLine("Time in ms for translation: " + stopwatch.ElapsedMilliseconds);
+                Console.WriteLine("end");
             }
-
-            stopwatch.Stop();
-            Console.WriteLine("Time in ms for pickling: " + stopwatch.ElapsedMilliseconds);
-
-            stopwatch.Reset();
-            Console.WriteLine("start json");
-            stopwatch.Start();
-            var groups = dict.GroupBy(x => GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["type"]).Where(x => GroupsToProcess.Contains(x.Key));
-            Parallel.ForEach(groups, group =>
+            else
             {
-                Debug.WriteLine(group.Key);
-                var dir = BaseDir + group.Key;
-                if (!Directory.Exists(dir))
+                Console.WriteLine("Start");
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                byte[] gpBytes = File.ReadAllBytes(GameParamsPath);
+                Array.Reverse(gpBytes);
+                byte[] decompressedGpBytes = GameParamsUtility.Decompress(gpBytes);
+                var unpickledGp = GameParamsUtility.UnpickleGameParams(decompressedGpBytes);
+
+                Dictionary<object, Dictionary<string, object>> dict = new();
+                foreach (DictionaryEntry unpickledJsonEntry in unpickledGp)
                 {
-                    Directory.CreateDirectory(dir);
+                    var unpickledJsonEntryKey = unpickledJsonEntry.Key.ToString()!;
+                    Dictionary<string, object> unpickledJsonEntryValue = GameParamsUtility.ConvertDataValue(unpickledJsonEntry.Value!);
+                    dict.Add(unpickledJsonEntryKey, unpickledJsonEntryValue);
                 }
+
+                stopwatch.Stop();
+                Console.WriteLine("Time in ms for pickling: " + stopwatch.ElapsedMilliseconds);
+
+                stopwatch.Reset();
+                Console.WriteLine("start json");
+                stopwatch.Start();
+                var groups = dict.GroupBy(x => GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["type"]).Where(x => GroupsToProcess.Contains(x.Key));
+                Parallel.ForEach(groups, group =>
+                {
+                    Debug.WriteLine(group.Key);
+                    var dir = BaseDir + group.Key;
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
 
                 //get all elements divided by nation and exclude the Event ones
                 var nationGroups = group.GroupBy(x => GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["nation"])
-                    .Where(x => !x.Key.Equals("Event"));
+                        .Where(x => !x.Key.Equals("Event"));
 
-                foreach (var nation in nationGroups)
-                {
+                    foreach (var nation in nationGroups)
+                    {
                     //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
                     IEnumerable<SortedDictionary<string, object>> nationEntries = nation.Select(x => new SortedDictionary<string, object>(x.Value));
 
@@ -67,30 +96,30 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
 
                     var filteredEntries = new List<SortedDictionary<string, object>>();
 
-                    if (group.Key.Equals("Ship"))
-                    {
-                        foreach (SortedDictionary<string, object> shipData in nationEntries)
+                        if (group.Key.Equals("Ship"))
                         {
-                            var shipType = shipData["group"];
-                            var shipClass = GameParamsUtility.ConvertDataValue(shipData["typeinfo"])["species"];
+                            foreach (SortedDictionary<string, object> shipData in nationEntries)
+                            {
+                                var shipType = shipData["group"];
+                                var shipClass = GameParamsUtility.ConvertDataValue(shipData["typeinfo"])["species"];
                             //skip completely the ship that are not relevant
                             if (shipClass.Equals("Auxiliary") || shipType.Equals("clan") || shipType.Equals("disabled") ||
-                                 shipType.Equals("preserved") || shipType.Equals("unavailable"))
-                            {
-                                continue;
-                            }
+                                     shipType.Equals("preserved") || shipType.Equals("unavailable"))
+                                {
+                                    continue;
+                                }
 
-                            var keysToMove = new Dictionary<string, object>();
+                                var keysToMove = new Dictionary<string, object>();
 
                             //WARNING: this works on the assumptions that only modules contains "_" as charachter. It does seems to be always the case, but you never know with WG.
                             // A more solid way could be by checking some of the inner dictionaries and such, but it would means checking all the stats for every key.
                             var modules = shipData.Where(dataPair => dataPair.Key.Contains("_", StringComparison.OrdinalIgnoreCase))
-                                .ToDictionary(x => x.Key, x => x.Value);
-                            if (modules.Count > 0)
-                            {
-                                var aggregatedModules = GameParamsUtility.AggregateGuns(modules);
-                                keysToMove = keysToMove.Union(aggregatedModules).ToDictionary(x => x.Key, x => x.Value);
-                            }
+                                    .ToDictionary(x => x.Key, x => x.Value);
+                                if (modules.Count > 0)
+                                {
+                                    var aggregatedModules = GameParamsUtility.AggregateGuns(modules);
+                                    keysToMove = keysToMove.Union(aggregatedModules).ToDictionary(x => x.Key, x => x.Value);
+                                }
 
                             // this is the old way, keeping it for reference
                             ////ATBA special processing
@@ -153,31 +182,32 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
                             //keysToMove = keysToMove.Union(otherKeysToMove).ToDictionary(x => x.Key, x => x.Value);
 
                             SortedDictionary<string, object> moduleArmaments = new(keysToMove);
-                            shipData.Add(moduleContainerName, moduleArmaments);
+                                shipData.Add(moduleContainerName, moduleArmaments);
 
-                            foreach (string keyToRemove in keysToMove.Keys)
-                            {
-                                shipData.Remove(keyToRemove);
+                                foreach (string keyToRemove in keysToMove.Keys)
+                                {
+                                    shipData.Remove(keyToRemove);
+                                }
+                                filteredEntries.Add(shipData);
                             }
-                            filteredEntries.Add(shipData);
                         }
-                    }
-                    else
-                    {
-                        filteredEntries = nationEntries.ToList();
-                    }
+                        else
+                        {
+                            filteredEntries = nationEntries.ToList();
+                        }
 
-                    string data = JsonConvert.SerializeObject(filteredEntries, Formatting.Indented);
+                        string data = JsonConvert.SerializeObject(filteredEntries, Formatting.Indented);
 
-                    var type = GameParamsUtility.GetWgObjectClassList(group.Key.ToString()!);
-                    var dict = JsonConvert.DeserializeObject(data, type);
-                    data = JsonConvert.SerializeObject(dict, Formatting.Indented);
-                    File.WriteAllText(@$"{BaseDir}{group.Key}\{nation.Key}.json", data);
-                }
-            });
-            stopwatch.Stop();
-            Console.WriteLine("Time in ms for json: " + stopwatch.ElapsedMilliseconds);
-            Console.WriteLine("end");
+                        var type = GameParamsUtility.GetWgObjectClassList(group.Key.ToString()!);
+                        var dict = JsonConvert.DeserializeObject(data, type);
+                        data = JsonConvert.SerializeObject(dict, Formatting.Indented);
+                        File.WriteAllText(@$"{BaseDir}{group.Key}\{nation.Key}.json", data);
+                    }
+                });
+                stopwatch.Stop();
+                Console.WriteLine("Time in ms for json: " + stopwatch.ElapsedMilliseconds);
+                Console.WriteLine("end");
+            }
         }
     }
 }
