@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
-using DataConverter;
-using DataConverter.WGStructure;
-using Newtonsoft.Json;
-using SecondLanguage;
 using WowsShipBuilder.GameParamsExtractor;
 
 namespace WowsShipBuilder.GameParamsExtractorConsole
@@ -13,17 +7,16 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
     {
         private const string GameParamsPath = "GameParams.data";
         private const string BaseDir = "output/";
-        private const string translationPath = "global.mo";
+        private const string TranslationPath = "texts";
 
-        private static bool translation = false;
+        private static bool translation = true;
 
         public static void Main(string[] args)
         {
             if (translation)
             {
-                var lines = File.ReadAllLines("translation.csv");
-                var filter = new HashSet<string>(lines);
-                TranslatorUtility.ProcessTranslationFiles(translationPath, BaseDir, filter);
+                var lines = File.ReadAllLines("TranslationNames.csv").ToList();
+                TranslatorUtility.ProcessTranslationFiles(TranslationPath, Path.Combine(BaseDir, "Localization"), lines);
             }
             else
             {

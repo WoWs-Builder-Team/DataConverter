@@ -1,0 +1,3 @@
+[submodule "GetTextNET"]
+	path = GetTextNET
+	url = https://github.com/WoWs-Builder-Team/GetText.NET
