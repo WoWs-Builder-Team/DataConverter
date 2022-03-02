@@ -53,7 +53,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
             Console.WriteLine("Start data processing");
 
-            var groups = dict.GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]).Where(x => GroupsToProcess.Contains(x.Key));
+            var groups = dict.AsParallel().Where(x => GroupsToProcess.Contains(GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["type"])).GroupBy(x => GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["type"]);
             Parallel.ForEach(groups, group =>
             {
                 Console.WriteLine($"Start processing: {group.Key}");
