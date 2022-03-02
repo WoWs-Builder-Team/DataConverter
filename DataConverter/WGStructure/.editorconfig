@@ -1,0 +1,2 @@
+﻿[*.cs]
+dotnet_diagnostic.SA1300.severity = none # Ignore property naming
