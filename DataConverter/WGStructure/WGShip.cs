@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 
 namespace DataConverter.WGStructure
 {
-    public class WGShip
+    public class WGShip : WGObject
     {
         public Dictionary<string, ModuleArmaments> ModulesArmaments { get; set; }
         public Dictionary<string, ShipAbility> ShipAbilities { get; set; }
@@ -19,7 +19,6 @@ namespace DataConverter.WGStructure
         public int level { get; set; }
         public string name { get; set; }
         public string group { get; set; }
-        public Typeinfo typeinfo { get; set; }
         public List<string> permoflages { get; set; }
     }
 

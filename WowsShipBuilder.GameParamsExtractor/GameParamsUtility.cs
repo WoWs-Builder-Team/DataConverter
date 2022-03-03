@@ -23,7 +23,7 @@ namespace WowsShipBuilder.GameParamsExtractor
             { "DCharge", "depthCharges" },
         };
 
-        public static Dictionary<string, Dictionary<string, List<object>>> ProcessGameParams(string gameParamsPath, bool writeUnfilteredFiles = false, bool writeFilteredFiles = false, string outputPath = default!)
+        public static Dictionary<string, Dictionary<string, List<WGObject>>> ProcessGameParams(string gameParamsPath, bool writeUnfilteredFiles = false, bool writeFilteredFiles = false, string outputPath = default!)
         {
             Console.WriteLine("Starting gameparams processing");
 
@@ -33,7 +33,7 @@ namespace WowsShipBuilder.GameParamsExtractor
             }
 
             // Dictionary<string Type, Dictionary<string Nation, List<WgObject>>. Should we have a base class for our WG stuff, or we just use object?
-            var data = new Dictionary<string, Dictionary<string, List<object>>>();
+            var data = new Dictionary<string, Dictionary<string, List<WGObject>>>();
 
             Console.WriteLine("Start unpickling");
             byte[] gpBytes = File.ReadAllBytes(gameParamsPath);
@@ -68,7 +68,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                 var nationGroups = group.GroupBy(x => GameParamsUtility.ConvertDataValue(x.Value["typeinfo"])["nation"])
                         .Where(x => !x.Key.Equals("Event"));
 
-                var nationsDictionary = new Dictionary<string, List<object>>();
+                var nationsDictionary = new Dictionary<string, List<WGObject>>();
 
                 foreach (var nation in nationGroups)
                 {
@@ -128,16 +128,14 @@ namespace WowsShipBuilder.GameParamsExtractor
                     }
 
                     string data = JsonConvert.SerializeObject(filteredEntries);
-
-                    var type = GetWgObjectClassList(group.Key.ToString()!);
-                    var dict = JsonConvert.DeserializeObject(data, type);
+                    var objectList = JsonConvert.DeserializeObject<List<WGObject>>(data);
                     if (writeFilteredFiles)
                     {
-                        data = JsonConvert.SerializeObject(dict, Formatting.Indented);
+                        data = JsonConvert.SerializeObject(objectList, Formatting.Indented);
                         File.WriteAllText(@$"{outputPath}{group.Key}\{nation.Key}.json", data);
                     }
-                    List<object> list = (List<object>)dict!;
-                    nationsDictionary.Add(nation.Key.ToString()!, list);
+
+                    nationsDictionary.Add(nation.Key.ToString()!, objectList);
                 }
                 lock (data)
                 {

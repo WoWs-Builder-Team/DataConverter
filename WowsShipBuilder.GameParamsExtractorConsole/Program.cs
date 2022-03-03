@@ -9,7 +9,7 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
         private const string BaseDir = "output/";
         private const string TranslationPath = "texts";
 
-        private static bool translation = true;
+        private static bool translation = false;
 
         public static void Main(string[] args)
         {
