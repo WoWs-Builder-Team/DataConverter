@@ -62,9 +62,9 @@ namespace WowsShipBuilder.GameParamsExtractor
                 foreach (var nation in nationGroups)
                 {
                     //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
-                    IEnumerable<SortedDictionary<string, object>> nationEntries = nation.Select(x => new SortedDictionary<string, object>(x.Value));
+                    List<SortedDictionary<string, object>> nationEntries = nation.Select(x => new SortedDictionary<string, object>(x.Value)).ToList();
 
-                    Console.WriteLine($"Number of element for {group.Key} - {nation.Key}: {nationEntries.Count()}");
+                    Console.WriteLine($"Number of element for {group.Key} - {nation.Key}: {nationEntries.Count}");
 
                     if (writeUnfilteredFiles)
                     {
@@ -74,7 +74,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
                     // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
 
-                    var filteredEntries = new List<SortedDictionary<string, object>>();
+                    List<SortedDictionary<string, object>> filteredEntries;
 
                     if (group.Key.Equals("Ship"))
                     {
@@ -164,7 +164,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                 //get the module data
                 var moduleData = ConvertDataValue(module.Value);
                 var gunsDictionary = new SortedDictionary<string, object>();
-                var ATBAsGuns = new SortedDictionary<string, object>();
+                var atbaGuns = new SortedDictionary<string, object>();
                 var gunsName = "";
                 bool isAA = false;
                 //iterate through all the stats of the module
@@ -178,12 +178,12 @@ namespace WowsShipBuilder.GameParamsExtractor
                             if (string.IsNullOrEmpty(gunsName))
                             {
                                 var typeInfo = gunData["typeinfo"];
-                                var specie = ConvertDataValue(typeInfo)["species"];
-                                if (specie != null && speciesMap.ContainsKey(specie.ToString()!))
+                                var species = ConvertDataValue(typeInfo)["species"];
+                                if (species != null && speciesMap.ContainsKey(species.ToString()!))
                                 {
-                                    gunsName = speciesMap[specie.ToString()!];
+                                    gunsName = speciesMap[species.ToString()!];
                                 }
-                                else if(!isAA && specie != null && specie.Equals("AAircraft"))
+                                else if(!isAA && species != null && species.Equals("AAircraft"))
                                 {
                                     isAA = true;
                                 }
@@ -193,7 +193,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                                     continue;
                                 }
                             }
-                            ATBAsGuns.Add(singleStat.Key, singleStat.Value);
+                            atbaGuns.Add(singleStat.Key, singleStat.Value);
                         }
                         else
                         {
@@ -209,7 +209,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                 //insert the guns with their own key
                 if (!string.IsNullOrEmpty(gunsName))
                 {
-                    gunsDictionary.Add(gunsName, ATBAsGuns);
+                    gunsDictionary.Add(gunsName, atbaGuns);
                 }
                 if (isAA)
                 {
