@@ -5,28 +5,37 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
-using System.Runtime.Serialization;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 namespace DataConverter.WGStructure
 {
-    public class WGShip : WGObject
+    public class WgShip : WGObject
     {
-        public Dictionary<string, ModuleArmaments> ModulesArmaments { get; set; }
-        public Dictionary<string, ShipAbility> ShipAbilities { get; set; }
-        public ShipUpgradeInfo ShipUpgradeInfo { get; set; }
-        public long id { get; set; }
-        public string index { get; set; }
-        public int level { get; set; }
-        public string name { get; set; }
-        public string group { get; set; }
-        public List<string> permoflages { get; set; }
+        public Dictionary<string, ModuleArmaments> ModulesArmaments { get; set; } = new();
+
+        public Dictionary<string, ShipAbility> ShipAbilities { get; set; } = new();
+
+        public ShipUpgradeInfo ShipUpgradeInfo { get; set; } = new();
+
+        public long Id { get; set; }
+
+        public string Index { get; set; } = string.Empty;
+
+        public int Level { get; set; }
+
+        public string Name { get; set; } = string.Empty;
+
+        public string Group { get; set; } = string.Empty;
+
+        public List<string> Permoflages { get; set; } = new();
     }
 
     [JsonConverter(typeof(JsonSubtypes))]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(MainBattery), "guns")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgFireControl), "maxDistCoef")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgTorpedoArray), "torpedoArray")]
-    [JsonSubtypes.KnownSubTypeWithProperty(typeof(ATBA), "antiAirAndSecondaries")]
+    [JsonSubtypes.KnownSubTypeWithProperty(typeof(Atba), "antiAirAndSecondaries")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(AirSupport), "maxPlaneFlightDist")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(AirDefense), "isAA")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgDepthChargesArray), "depthCharges")]
@@ -37,202 +46,229 @@ namespace DataConverter.WGStructure
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPlane), "planeType")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPlane), "planes")]
     [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgSpecialAbility), "RageMode")]
-    public class ModuleArmaments { }
+    public class ModuleArmaments
+    {
+    }
 
     #region Main battery
+
     public class MainBattery : ModuleArmaments
     {
-        public Dictionary<string, MainBatteryGun> guns { get; set; }
-        public BurstArtilleryModule BurstArtilleryModule { get; set; }
-        public decimal maxDist { get; set; }
-        public decimal sigmaCount { get; set; }
-        public double taperDist { get; set; }
+        public Dictionary<string, MainBatteryGun> Guns { get; set; } = new();
 
-        public bool normalDistribution { get; set; }
+        public BurstArtilleryModule? BurstArtilleryModule { get; set; }
+
+        public decimal MaxDist { get; set; }
+
+        public decimal SigmaCount { get; set; }
+
+        public double TaperDist { get; set; }
+
+        public bool NormalDistribution { get; set; }
 
         [JsonExtensionData]
-        public Dictionary<string, JToken> AntiAirAuras { get; set; }
+        public Dictionary<string, JToken> Other { get; set; } = new();
 
         [JsonIgnore]
-        public Dictionary<string, AAAura> ConvertedAntiAirAuras
-        {
-            get => AntiAirAuras?.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>()) ?? new Dictionary<string, AAAura>() ;
-        }
-
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            // Remove non auras. possible solution, basing everything on the fact that auras will always contain near,medium or far as dictionary key.
-            var filteredDict = AntiAirAuras.Where(x => x.Key.Contains("near", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("med", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("medium", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("far", StringComparison.OrdinalIgnoreCase)).ToDictionary(x => x.Key, x => x.Value);
-            var tempDict = filteredDict.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>());
-            AntiAirAuras = tempDict.ToDictionary(entry => entry.Key, entry => JToken.FromObject(entry.Value));
-        }
+        public Dictionary<string, AaAura> AntiAirAuras =>
+            Other.Select(entry => new KeyValuePair<string, AaAura?>(entry.Key, entry.Value.ToObjectSafe<AaAura>()))
+                .Where(entry => entry.Value is not null)
+                .ToDictionary(entry => entry.Key, entry => entry.Value!);
     }
 
     public class MainBatteryGun
     {
-        public string[] ammoList { get; set; }
-        public decimal barrelDiameter { get; set; }
-        public double[] horizSector { get; set; }
-        public long id { get; set; }
-        public string index { get; set; }
-        public string name { get; set; }
-        public int numBarrels { get; set; }
-        public double[] position { get; set; }
-        public decimal[] rotationSpeed { get; set; }
-        public double[][] deadZone { get; set; }
-        public decimal shotDelay { get; set; }
-        public decimal smokePenalty { get; set; }
-        public double idealRadius { get; set; }
-        public double minRadius { get; set; }
-        public double idealDistance { get; set; }
-        public double radiusOnZero { get; set; }
-        public double radiusOnDelim { get; set; }
-        public double radiusOnMax { get; set; }
-        public double delim { get; set; }
-        public Typeinfo typeinfo { get; set; }
+        public string[] AmmoList { get; set; } = Array.Empty<string>();
+
+        public decimal BarrelDiameter { get; set; }
+
+        public double[] HorizSector { get; set; } = Array.Empty<double>();
+
+        public long Id { get; set; }
+
+        public string Index { get; set; } = string.Empty;
+
+        public string Name { get; set; } = string.Empty;
+
+        public int NumBarrels { get; set; }
+
+        public double[] Position { get; set; } = Array.Empty<double>();
+
+        public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
+
+        public double[][] DeadZone { get; set; } = { };
+
+        public decimal ShotDelay { get; set; }
+
+        public decimal SmokePenalty { get; set; }
+
+        public double IdealRadius { get; set; }
+
+        public double MinRadius { get; set; }
+
+        public double IdealDistance { get; set; }
+
+        public double RadiusOnZero { get; set; }
+
+        public double RadiusOnDelim { get; set; }
+
+        public double RadiusOnMax { get; set; }
+
+        public double Delim { get; set; }
+
+        public TypeInfo TypeInfo { get; set; } = new();
 
         public static explicit operator Gun(MainBatteryGun gun)
         {
             var newGun = new Gun
             {
-                AmmoList = gun.ammoList.ToList(),
-                BarrelDiameter = gun.barrelDiameter,
-                HorizontalSector = gun.horizSector,
-                HorizontalDeadZones = gun.deadZone,
-                Id = gun.id,
-                Index = gun.index,
-                Name = gun.name,
-                NumBarrels = gun.numBarrels,
-                HorizontalPosition = gun.position[1],
-                VerticalPosition = gun.position[0],
-                HorizontalRotationSpeed = gun.rotationSpeed[0],
-                VerticalRotationSpeed = gun.rotationSpeed[1],
-                Reload = gun.shotDelay,
-                SmokeDetectionWhenFiring = gun.smokePenalty,
+                AmmoList = gun.AmmoList.ToList(),
+                BarrelDiameter = gun.BarrelDiameter,
+                HorizontalSector = gun.HorizSector,
+                HorizontalDeadZones = gun.DeadZone,
+                Id = gun.Id,
+                Index = gun.Index,
+                Name = gun.Name,
+                NumBarrels = gun.NumBarrels,
+                HorizontalPosition = gun.Position[1],
+                VerticalPosition = gun.Position[0],
+                HorizontalRotationSpeed = gun.RotationSpeed[0],
+                VerticalRotationSpeed = gun.RotationSpeed[1],
+                Reload = gun.ShotDelay,
+                SmokeDetectionWhenFiring = gun.SmokePenalty,
             };
             newGun.TurretOrientation = newGun.VerticalPosition < 3 ? TurretOrientation.Forward : TurretOrientation.Backward;
 
             return newGun;
         }
     }
+
     #endregion
 
     #region Fire Control
+
     public class WgFireControl : ModuleArmaments
     {
-        public decimal maxDistCoef { get; set; }
-        public decimal sigmaCountCoef { get; set; }
+        public decimal MaxDistCoef { get; set; }
+
+        public decimal SigmaCountCoef { get; set; }
     }
+
     #endregion
 
     #region Torpedos
+
     public class WgTorpedoArray : ModuleArmaments
     {
-        public decimal timeToChangeAmmo { get; set; }
-        public Dictionary<string, WgTorpedoLauncher> torpedoArray { get; set; }
+        public decimal TimeToChangeAmmo { get; set; }
+
+        public Dictionary<string, WgTorpedoLauncher> TorpedoArray { get; set; } = new();
     }
 
     public class WgTorpedoLauncher
     {
-        public string[] ammoList { get; set; }
-        public decimal barrelDiameter { get; set; }
-        public decimal[][] deadZone { get; set; }
-        public decimal[] horizSector { get; set; }
-        public long id { get; set; }
-        public string index { get; set; }
-        public string name { get; set; }
-        public int numBarrels { get; set; }
-        public decimal[] rotationSpeed { get; set; }
-        public decimal shotDelay { get; set; }
-        public decimal[] torpedoAngles { get; set; } //unknonw meaning, needed?
-        public Typeinfo typeinfo { get; set; }
+        public string[] AmmoList { get; set; } = Array.Empty<string>();
+
+        public decimal BarrelDiameter { get; set; }
+
+        public decimal[][] DeadZone { get; set; } = Array.Empty<decimal[]>();
+
+        public decimal[] HorizSector { get; set; } = Array.Empty<decimal>();
+
+        public long Id { get; set; }
+
+        public string Index { get; set; } = string.Empty;
+
+        public string Name { get; set; } = string.Empty;
+
+        public int NumBarrels { get; set; }
+
+        public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
+
+        public decimal ShotDelay { get; set; }
+
+        public decimal[] TorpedoAngles { get; set; } = Array.Empty<decimal>(); //unknonw meaning, needed?
+
+        public TypeInfo TypeInfo { get; set; } = new();
 
         public static implicit operator TorpedoLauncher(WgTorpedoLauncher thisLauncher)
         {
-            return new TorpedoLauncher
+            return new()
             {
-                AmmoList = thisLauncher.ammoList.ToList(),
-                BarrelDiameter = thisLauncher.barrelDiameter,
-                HorizontalRotationSpeed = thisLauncher.rotationSpeed[0],
-                VerticalRotationSpeed = thisLauncher.rotationSpeed[1],
-                Id = thisLauncher.id,
-                Index = thisLauncher.index,
-                Name = thisLauncher.name,
-                NumBarrels = thisLauncher.numBarrels,
-                Reload = thisLauncher.shotDelay,
-                HorizontalSector = thisLauncher.horizSector,
-                HorizontalDeadZone = thisLauncher.deadZone,
-                TorpedoAngles = thisLauncher.torpedoAngles,
+                AmmoList = thisLauncher.AmmoList.ToList(),
+                BarrelDiameter = thisLauncher.BarrelDiameter,
+                HorizontalRotationSpeed = thisLauncher.RotationSpeed[0],
+                VerticalRotationSpeed = thisLauncher.RotationSpeed[1],
+                Id = thisLauncher.Id,
+                Index = thisLauncher.Index,
+                Name = thisLauncher.Name,
+                NumBarrels = thisLauncher.NumBarrels,
+                Reload = thisLauncher.ShotDelay,
+                HorizontalSector = thisLauncher.HorizSector,
+                HorizontalDeadZone = thisLauncher.DeadZone,
+                TorpedoAngles = thisLauncher.TorpedoAngles,
             };
         }
     }
+
     #endregion
 
     #region AntiAir and secondaries
+
     //this is AA and secondaries too. smallGun i think indicates if it's a secondary
-    public class ATBA : ModuleArmaments
+    public class Atba : ModuleArmaments
     {
-        public Dictionary<string, AntiAirAndSecondaries> antiAirAndSecondaries { get; set; }
-        public decimal maxDist { get; set; }
-        public decimal sigmaCount { get; set; }
+        public Dictionary<string, AntiAirAndSecondaries> AntiAirAndSecondaries { get; set; } = new();
+
+        public decimal MaxDist { get; set; }
+
+        public decimal SigmaCount { get; set; }
+
         [JsonExtensionData]
-        public Dictionary<string, JToken> AntiAirData { get; set; }
+        public Dictionary<string, JToken> Other { get; set; } = new();
 
         [JsonIgnore]
-        public Dictionary<string, AAAura> ConvertedAntiAirData
-        {
-            get
-            {
-                if (AntiAirData == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return AntiAirData.Select(entry => (entry.Key, entry.Value.ToObject<AAAura>()))
-                           .Where(entry => entry.Item2 != null)
-                           .ToDictionary(entry => entry.Key, entry => entry.Item2);
-                }
-            }
-        }
-
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            // Remove non auras. possible solution, basing everything on the fact that auras will always contain near,medium or far as dictionary key.
-            var filteredDict = AntiAirData.Where(x => x.Key.Contains("near", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("med", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("medium", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("far", StringComparison.OrdinalIgnoreCase)).ToDictionary(x => x.Key, x => x.Value);
-            var tempDict = filteredDict.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>());
-            AntiAirData = tempDict.ToDictionary(entry => entry.Key, entry => JToken.FromObject(entry.Value)); ;
-        }
+        public Dictionary<string, AaAura> AntiAirAuras =>
+            Other.Select(entry => new KeyValuePair<string, AaAura?>(entry.Key, entry.Value.ToObjectSafe<AaAura>()))
+                .Where(entry => entry.Value is not null)
+                .ToDictionary(entry => entry.Key, entry => entry.Value!);
     }
 
     public class AntiAirAndSecondaries
     {
-        public string[] ammoList { get; set; }
-        public long id { get; set; }
-        public string index { get; set; }
-        public string name { get; set; }
-        public decimal barrelDiameter { get; set; }
-        public int numBarrels { get; set; }
-        public decimal[] rotationSpeed { get; set; }
-        public decimal shotDelay { get; set; }
-        public bool smallGun { get; set; }
-        public Typeinfo typeinfo { get; set; }
+        public string[] AmmoList { get; set; } = Array.Empty<string>();
+
+        public long Id { get; set; }
+
+        public string Index { get; set; } = string.Empty;
+
+        public string Name { get; set; } = string.Empty;
+
+        public decimal BarrelDiameter { get; set; }
+
+        public int NumBarrels { get; set; }
+
+        public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
+
+        public decimal ShotDelay { get; set; }
+
+        public bool SmallGun { get; set; }
+
+        public TypeInfo TypeInfo { get; set; } = new();
 
         public static explicit operator Gun(AntiAirAndSecondaries wgSecondary)
         {
             return new Gun
             {
-                AmmoList = wgSecondary.ammoList.ToList(),
-                BarrelDiameter = wgSecondary.barrelDiameter,
-                Id = wgSecondary.id,
-                Index = wgSecondary.index,
-                Name = wgSecondary.name,
-                NumBarrels = wgSecondary.numBarrels,
-                HorizontalRotationSpeed = wgSecondary.rotationSpeed[0],
-                VerticalRotationSpeed = wgSecondary.rotationSpeed[1],
-                Reload = wgSecondary.shotDelay,
+                AmmoList = wgSecondary.AmmoList.ToList(),
+                BarrelDiameter = wgSecondary.BarrelDiameter,
+                Id = wgSecondary.Id,
+                Index = wgSecondary.Index,
+                Name = wgSecondary.Name,
+                NumBarrels = wgSecondary.NumBarrels,
+                HorizontalRotationSpeed = wgSecondary.RotationSpeed[0],
+                VerticalRotationSpeed = wgSecondary.RotationSpeed[1],
+                Reload = wgSecondary.ShotDelay,
             };
         }
     }
@@ -246,29 +282,37 @@ namespace DataConverter.WGStructure
     /// </summary>
     public class AirSupport : ModuleArmaments
     {
-        public int chargesNum { get; set; }
-        public decimal flyAwayTime { get; set; }
-        public int maxDist { get; set; }
-        public int maxPlaneFlightDist { get; set; }
-        public int minDist { get; set; }
-        public string planeName { get; set; }
-        public decimal reloadTime { get; set; }
-        public decimal timeBetweenShots { get; set; }
-        public decimal timeFromHeaven { get; set; }
+        public int ChargesNum { get; set; }
+
+        public decimal FlyAwayTime { get; set; }
+
+        public int MaxDist { get; set; }
+
+        public int MaxPlaneFlightDist { get; set; }
+
+        public int MinDist { get; set; }
+
+        public string PlaneName { get; set; } = string.Empty;
+
+        public decimal ReloadTime { get; set; }
+
+        public decimal TimeBetweenShots { get; set; }
+
+        public decimal TimeFromHeaven { get; set; }
 
         public static implicit operator AirStrike(AirSupport thisAirSupport)
         {
             return new AirStrike
             {
-                Charges = thisAirSupport.chargesNum,
-                FlyAwayTime = thisAirSupport.flyAwayTime,
-                MaximumDistance = thisAirSupport.maxDist,
-                MaximumFlightDistance = thisAirSupport.maxPlaneFlightDist,
-                MinimumDistance = thisAirSupport.minDist,
-                PlaneName = thisAirSupport.planeName,
-                DropTime = thisAirSupport.timeFromHeaven,
-                ReloadTime = thisAirSupport.reloadTime,
-                TimeBetweenShots = thisAirSupport.timeBetweenShots,
+                Charges = thisAirSupport.ChargesNum,
+                FlyAwayTime = thisAirSupport.FlyAwayTime,
+                MaximumDistance = thisAirSupport.MaxDist,
+                MaximumFlightDistance = thisAirSupport.MaxPlaneFlightDist,
+                MinimumDistance = thisAirSupport.MinDist,
+                PlaneName = thisAirSupport.PlaneName,
+                DropTime = thisAirSupport.TimeFromHeaven,
+                ReloadTime = thisAirSupport.ReloadTime,
+                TimeBetweenShots = thisAirSupport.TimeBetweenShots,
             };
         }
     }
@@ -276,49 +320,50 @@ namespace DataConverter.WGStructure
     #endregion
 
     #region Air Defense
+
     public class AirDefense : ModuleArmaments
     {
-        public bool isAA { get; set; }
+        public bool IsAa { get; set; }
 
         [JsonExtensionData]
-        public Dictionary<string, JToken> Auras { get; set; }
+        public Dictionary<string, JToken> Other { get; set; } = new();
 
         [JsonIgnore]
-        public Dictionary<string, AAAura> ConvertedAuras
-        {
-            get => Auras?.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>()) ?? new Dictionary<string, AAAura>();
-        }
-
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            // Remove non auras. possible solution, basing everything on the fact that auras will always contain near,medium or far as dictionary key.
-            var filteredDict = Auras.Where(x => x.Key.Contains("near", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("med", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("medium", StringComparison.OrdinalIgnoreCase) || x.Key.Contains("far", StringComparison.OrdinalIgnoreCase)).ToDictionary(x => x.Key, x => x.Value);
-            var tempDict = filteredDict.ToDictionary(entry => entry.Key, entry => entry.Value.ToObject<AAAura>());
-            Auras = tempDict.ToDictionary(entry => entry.Key, entry => JToken.FromObject(entry.Value)); ;
-        }
+        public Dictionary<string, AaAura> AntiAirAuras =>
+            Other.Select(entry => new KeyValuePair<string, AaAura?>(entry.Key, entry.Value.ToObjectSafe<AaAura>()))
+                .Where(entry => entry.Value is not null)
+                .ToDictionary(entry => entry.Key, entry => entry.Value!);
     }
-    public class AAAura
-    {
-        public decimal areaDamage { get; set; }
-        public decimal areaDamagePeriod { get; set; }
-        public decimal bubbleDamage { get; set; }
-        public decimal hitChance { get; set; }
-        public int innerBubbleCount { get; set; }
-        public decimal maxDistance { get; set; }
-        public decimal minDistance { get; set; }
-        public string type { get; set; }
 
-        public static implicit operator AntiAirAura(AAAura aura)
+    public class AaAura
+    {
+        public decimal AreaDamage { get; set; }
+
+        public decimal AreaDamagePeriod { get; set; }
+
+        public decimal BubbleDamage { get; set; }
+
+        [JsonRequired]
+        public decimal HitChance { get; set; }
+
+        public int InnerBubbleCount { get; set; }
+
+        public decimal MaxDistance { get; set; }
+
+        public decimal MinDistance { get; set; }
+
+        public string Type { get; set; } = string.Empty;
+
+        public static implicit operator AntiAirAura(AaAura aura)
         {
             return new AntiAirAura
             {
-                ConstantDps = aura.areaDamage,
-                FlakDamage = aura.bubbleDamage,
-                FlakCloudsNumber = aura.innerBubbleCount,
-                HitChance = aura.hitChance,
-                MaxRange = aura.maxDistance,
-                MinRange = aura.minDistance,
+                ConstantDps = aura.AreaDamage,
+                FlakDamage = aura.BubbleDamage,
+                FlakCloudsNumber = aura.InnerBubbleCount,
+                HitChance = aura.HitChance,
+                MaxRange = aura.MaxDistance,
+                MinRange = aura.MinDistance,
             };
         }
     }
@@ -326,158 +371,206 @@ namespace DataConverter.WGStructure
     #endregion
 
     #region DepthCharges
+
     public class WgDepthChargesArray : ModuleArmaments
     {
-        public Dictionary<string, WgDepthChargeLauncher> depthCharges { get; set; }
-        public int maxPacks { get; set; }
-        public int numShots { get; set; }
-    public decimal reloadTime { get; set; }
+        public Dictionary<string, WgDepthChargeLauncher> DepthCharges { get; set; } = new();
+
+        public int MaxPacks { get; set; }
+
+        public int NumShots { get; set; }
+
+        public decimal ReloadTime { get; set; }
     }
 
     public class WgDepthChargeLauncher
     {
-        public string[] ammoList { get; set; }
-        public decimal[] horizSector { get; set; }
-        public long id { get; set; }
-        public string index { get; set; }
-        public string name { get; set; }
-        public int numBombs { get; set; }
-        public decimal[] rotationSpeed { get; set; }
-        public Typeinfo typeinfo { get; set; }
+        public string[] AmmoList { get; set; } = Array.Empty<string>();
+
+        public decimal[] HorizSector { get; set; } = Array.Empty<decimal>();
+
+        public long Id { get; set; }
+
+        public string Index { get; set; } = string.Empty;
+
+        public string Name { get; set; } = string.Empty;
+
+        public int NumBombs { get; set; }
+
+        public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
+
+        public TypeInfo TypeInfo { get; set; } = new();
 
         public static implicit operator DepthChargeLauncher(WgDepthChargeLauncher wgLauncher)
         {
             return new DepthChargeLauncher
             {
-                AmmoList = wgLauncher.ammoList.ToList(),
-                DepthChargesNumber = wgLauncher.numBombs,
-                HorizontalSector = wgLauncher.horizSector,
-                Id = wgLauncher.id,
-                Index = wgLauncher.index,
-                Name = wgLauncher.name,
-                RotationSpeed = wgLauncher.rotationSpeed,
+                AmmoList = wgLauncher.AmmoList.ToList(),
+                DepthChargesNumber = wgLauncher.NumBombs,
+                HorizontalSector = wgLauncher.HorizSector,
+                Id = wgLauncher.Id,
+                Index = wgLauncher.Index,
+                Name = wgLauncher.Name,
+                RotationSpeed = wgLauncher.RotationSpeed,
             };
         }
     }
+
     #endregion
 
     #region Engine
+
     public class WgEngine : ModuleArmaments
     {
-        public decimal backwardEngineUpTime { get; set; }
-        public decimal forwardEngineUpTime { get; set; }
-        public decimal speedCoef { get; set; }
-        public HitLocationEngine HitLocationEngine { get; set; }
+        public decimal BackwardEngineUpTime { get; set; }
+
+        public decimal ForwardEngineUpTime { get; set; }
+
+        public decimal SpeedCoef { get; set; }
+
+        public HitLocationEngine HitLocationEngine { get; set; } = new();
     }
 
     public class HitLocationEngine
     {
-        public decimal armorCoeff { get; set; }
+        public decimal ArmorCoeff { get; set; }
     }
+
     #endregion
 
     #region Hull
+
     public class WgHull : ModuleArmaments
     {
-        public decimal health { get; set; }
-        public decimal maxSpeed { get; set; }
-        public decimal rudderTime { get; set; }
-        public SteeringGear SG { get; set; }
-        public decimal speedCoef { get; set; }
-        public decimal visibilityCoefGKInSmoke { get; set; }
-        public decimal visibilityFactor { get; set; }
-        public decimal visibilityFactorByPlane { get; set; }
-        public Dictionary<string, decimal> visibilityFactorsBySubmarine { get; set; }
-        public decimal[][] burnNodes { get; set; } // Format: Fire resistance coeff, damage per second in %, burn time in s
-        public decimal[][] floodNodes { get; set; } // Format: Torpedo belt reduction, damage per second in %, flood time in s
-        public int turningRadius { get; set; }
-        public decimal[] size { get; set; }
+        public decimal Health { get; set; }
+
+        public decimal MaxSpeed { get; set; }
+
+        public decimal RudderTime { get; set; }
+
+        public SteeringGear Sg { get; set; } = new();
+
+        public decimal SpeedCoef { get; set; }
+
+        public decimal VisibilityCoefGkInSmoke { get; set; }
+
+        public decimal VisibilityFactor { get; set; }
+
+        public decimal VisibilityFactorByPlane { get; set; }
+
+        public Dictionary<string, decimal> VisibilityFactorsBySubmarine { get; set; } = new();
+
+        public decimal[][] BurnNodes { get; set; } = Array.Empty<decimal[]>(); // Format: Fire resistance coeff, damage per second in %, burn time in s
+
+        public decimal[][] FloodNodes { get; set; } = Array.Empty<decimal[]>(); // Format: Torpedo belt reduction, damage per second in %, flood time in s
+
+        public int TurningRadius { get; set; }
+
+        public decimal[] Size { get; set; } = Array.Empty<decimal>();
     }
+
     #endregion
 
     #region Steering Gear
+
     public class SteeringGear
     {
-        public decimal armorCoeff { get; set; }
+        public decimal ArmorCoeff { get; set; }
     }
+
     #endregion
 
     #region FlightControl
+
     public class WgFlightControl : ModuleArmaments
     {
-        public string[] squadrons { get; set; }
+        public string[] Squadrons { get; set; } = Array.Empty<string>();
     }
 
 #nullable enable
     public class WgPlane : ModuleArmaments
     {
-        public string? planeType { get; set; }
-        public string[]? planes { get; set; }
+        public string? PlaneType { get; set; }
+
+        public string[]? Planes { get; set; }
     }
 #nullable disable
 
     #endregion
 
     #region Sub Pinger Gun
+
     public class WgPingerGun : ModuleArmaments
     {
-        public decimal[] rotationSpeed { get; set; }
-        public WgSectorParam[] sectorParams { get; set; }
-        public decimal waveDistance { get; set; }
-        public int waveHitAlertTime { get; set; }
-        public int waveHitLifeTime { get; set; }
-        public WgWaveParam[] waveParams { get; set; }
-        public decimal waveReloadTime { get; set; }
+        public decimal[] RotationSpeed { get; set; }
+
+        public WgSectorParam[] SectorParams { get; set; }
+
+        public decimal WaveDistance { get; set; }
+
+        public int WaveHitAlertTime { get; set; }
+
+        public int WaveHitLifeTime { get; set; }
+
+        public WgWaveParam[] WaveParams { get; set; }
+
+        public decimal WaveReloadTime { get; set; }
 
         public static implicit operator PingerGun(WgPingerGun thisWgPingerGun)
         {
             return new PingerGun
             {
-                RotationSpeed = thisWgPingerGun.rotationSpeed,
-                SectorParams = thisWgPingerGun.sectorParams.Select(wgSectorParam => (SectorParam)wgSectorParam).ToArray(),
-                WaveDistance = thisWgPingerGun.waveDistance,
-                WaveHitAlertTime = thisWgPingerGun.waveHitAlertTime,
-                WaveHitLifeTime = thisWgPingerGun.waveHitLifeTime,
-                WaveParams = thisWgPingerGun.waveParams.Select(wgWaveParam => (WaveParam)wgWaveParam).ToArray(),
-                WaveReloadTime = thisWgPingerGun.waveReloadTime,
+                RotationSpeed = thisWgPingerGun.RotationSpeed,
+                SectorParams = thisWgPingerGun.SectorParams.Select(wgSectorParam => (SectorParam)wgSectorParam).ToArray(),
+                WaveDistance = thisWgPingerGun.WaveDistance,
+                WaveHitAlertTime = thisWgPingerGun.WaveHitAlertTime,
+                WaveHitLifeTime = thisWgPingerGun.WaveHitLifeTime,
+                WaveParams = thisWgPingerGun.WaveParams.Select(wgWaveParam => (WaveParam)wgWaveParam).ToArray(),
+                WaveReloadTime = thisWgPingerGun.WaveReloadTime,
             };
         }
     }
 
     public class WgSectorParam
     {
-        public decimal alertTime { get; set; }
-        public decimal lifetime { get; set; }
-        public decimal width { get; set; }
-        public decimal[][] widthParams { get; set; }
+        public decimal AlertTime { get; set; }
+
+        public decimal Lifetime { get; set; }
+
+        public decimal Width { get; set; }
+
+        public decimal[][] WidthParams { get; set; }
 
         public static implicit operator SectorParam(WgSectorParam thisSectorParam)
         {
             return new SectorParam
             {
-                AlertTime = thisSectorParam.alertTime,
-                Lifetime = thisSectorParam.lifetime,
-                Width = thisSectorParam.width,
-                WidthParams = thisSectorParam.widthParams,
+                AlertTime = thisSectorParam.AlertTime,
+                Lifetime = thisSectorParam.Lifetime,
+                Width = thisSectorParam.Width,
+                WidthParams = thisSectorParam.WidthParams,
             };
         }
     }
 
     public class WgWaveParam
     {
-        public decimal endWaveWidth { get; set; }
-        public decimal energyCost { get; set; }
-        public decimal startWaveWidth { get; set; }
-        public decimal[] waveSpeed { get; set; }
+        public decimal EndWaveWidth { get; set; }
+
+        public decimal EnergyCost { get; set; }
+
+        public decimal StartWaveWidth { get; set; }
+
+        public decimal[] WaveSpeed { get; set; }
 
         public static implicit operator WaveParam(WgWaveParam thisWaveParam)
         {
             return new WaveParam
             {
-                EndWaveWidth = thisWaveParam.endWaveWidth,
-                EnergyCost = thisWaveParam.energyCost,
-                StartWaveWidth = thisWaveParam.startWaveWidth,
-                WaveSpeed = thisWaveParam.waveSpeed,
+                EndWaveWidth = thisWaveParam.EndWaveWidth,
+                EnergyCost = thisWaveParam.EnergyCost,
+                StartWaveWidth = thisWaveParam.StartWaveWidth,
+                WaveSpeed = thisWaveParam.WaveSpeed,
             };
         }
     }
@@ -485,75 +578,101 @@ namespace DataConverter.WGStructure
     #endregion
 
     #region Ship Consumable
+
     public class ShipAbility
     {
-        public string[][] abils { get; set; }
-        public int slot { get; set; }
+        public string[][] Abils { get; set; }
+
+        public int Slot { get; set; }
     }
+
     #endregion
 
     #region Ship Upgrades and modules
 
     public class ShipUpgradeInfo
     {
-        public int costCR { get; set; }
-        public int costGold { get; set; }
-        public int costSaleGold { get; set; }
-        public int costXP { get; set; }
-        public int value { get; set; }
+        public int CostCr { get; set; }
+
+        public int CostGold { get; set; }
+
+        public int CostSaleGold { get; set; }
+
+        public int CostXp { get; set; }
+
+        public int Value { get; set; }
+
         [JsonExtensionData]
-        public Dictionary<string, JToken> Upgrades { get; set; }
+        public Dictionary<string, JToken> Other { get; set; }
 
         [JsonIgnore]
-        public Dictionary<string, ShipUpgrade> ConvertedUpgrades
-        {
-            get
-            {
-                return Upgrades.Select(entry => (entry.Key, entry.Value.ToObject<ShipUpgrade>())).ToDictionary(entry => entry.Key, entry => entry.Item2);
-            }
-        }
+        public Dictionary<string, ShipUpgrade> ConvertedUpgrades =>
+            Other.Select(entry => (entry.Key, entry.Value.ToObjectSafe<ShipUpgrade>()))
+                .Where(entry => entry.Item2 is not null)
+                .ToDictionary(entry => entry.Key, entry => entry.Item2);
     }
 
     public class ShipUpgrade
     {
-        public bool canBuy { get; set; }
-        public Dictionary<string, string[]> components { get; set; }
-        public string[] nextShips { get; set; }
-        public string prev { get; set; }
-        public string ucType { get; set; }
+        public bool CanBuy { get; set; }
+
+        public Dictionary<string, string[]> Components { get; set; }
+
+        public string[] NextShips { get; set; }
+
+        public string Prev { get; set; }
+
+        public string UcType { get; set; }
     }
+
     #endregion
 
     #region Special abilities of super ship
+
     public class BurstArtilleryModule
     {
-        public decimal burstReloadTime { get; set; }
-        public decimal fullReloadTime { get; set; }
-        public Dictionary<string,float> modifiers { get; set; }
-        public int shotsCount { get; set; }
+        public decimal BurstReloadTime { get; set; }
+
+        public decimal FullReloadTime { get; set; }
+
+        public Dictionary<string, float> Modifiers { get; set; }
+
+        public int ShotsCount { get; set; }
     }
 
     public class WgSpecialAbility : ModuleArmaments
     {
         public RageMode RageMode { get; set; }
-        public int buffsShiftMaxLevel { get; set; }
-        public double buffsShiftSpeed { get; set; }
-        public int buffsStartPool { get; set; }
-        public Dictionary<string, float> modifiers { get; set; }
+
+        public int BuffsShiftMaxLevel { get; set; }
+
+        public double BuffsShiftSpeed { get; set; }
+
+        public int BuffsStartPool { get; set; }
+
+        public Dictionary<string, float> Modifiers { get; set; }
     }
 
     public class RageMode
     {
-        public double boostDuration { get; set; }
-        public int decrementCount { get; set; }
-        public double decrementDelay { get; set; }
-        public double decrementPeriod { get; set; }
-        public int gunsForSalvo { get; set; }
-        public Dictionary<string, float> modifiers { get; set; }
-        public double radius { get; set; }
-        public string rageModeName { get; set; }
-        public int requiredHits { get; set; }
-    }
-    #endregion
+        public double BoostDuration { get; set; }
 
+        public int DecrementCount { get; set; }
+
+        public double DecrementDelay { get; set; }
+
+        public double DecrementPeriod { get; set; }
+
+        public int GunsForSalvo { get; set; }
+
+        public Dictionary<string, float> Modifiers { get; set; }
+
+        public double Radius { get; set; }
+
+        public string RageModeName { get; set; }
+
+        public int RequiredHits { get; set; }
+    }
+
+    #endregion
 }

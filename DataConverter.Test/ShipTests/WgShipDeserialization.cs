@@ -9,7 +9,7 @@ using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter.Test.ShipTests
 {
-    [Ignore("Temporarily disabled due to data structure adjustments")]
+    // [Ignore("Temporarily disabled due to data structure adjustments")]
     public class WgShipDeserialization
     {
         private string GetFilePath(string fileName)
@@ -25,7 +25,7 @@ namespace DataConverter.Test.ShipTests
             var filePath = GetFilePath("filtered_USA_Ship.json");
             var fileContent = File.ReadAllText(filePath);
 
-            var ship = JsonConvert.DeserializeObject<List<WGShip>>(fileContent);
+            var ship = JsonConvert.DeserializeObject<List<WgShip>>(fileContent);
             Assert.NotNull(ship);
         }
 

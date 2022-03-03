@@ -11,14 +11,14 @@ namespace DataConverter.WGStructure
     [JsonSubtypes.KnownSubType(typeof(WGExterior), "Exterior")]
     [JsonSubtypes.KnownSubType(typeof(WGModernization), "Modernization")]
     [JsonSubtypes.KnownSubType(typeof(WGProjectile), "Projectile")]
-    [JsonSubtypes.KnownSubType(typeof(WGShip), "Ship")]
+    [JsonSubtypes.KnownSubType(typeof(WgShip), "Ship")]
     [JsonSubtypes.KnownSubType(typeof(WGModule), "Unit")]
     public class WGObject
     {
-        public Typeinfo typeinfo { get; set; }
+        public TypeInfo typeinfo { get; set; }
     }
 
-    public class Typeinfo
+    public class TypeInfo
     {
         public string nation { get; set; }
         public string species { get; set; }

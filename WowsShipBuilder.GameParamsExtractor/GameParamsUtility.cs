@@ -101,7 +101,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                 }
 
                 data.TryAdd(group.Key.ToString()!, nationsDictionary);
-                
+
             });
             stopwatch.Stop();
             Console.WriteLine($"Gameparams processed. Time passed: {stopwatch.Elapsed}");
