@@ -9,17 +9,18 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
         private const string BaseDir = "output/";
         private const string TranslationPath = "texts";
 
-        private static bool translation = false;
+        private const bool Translation = false;
 
         public static void Main(string[] args)
         {
-            if (translation)
+            if (Translation)
             {
                 var lines = File.ReadAllLines("TranslationNames.csv").ToList();
                 TranslatorUtility.ProcessTranslationFiles(TranslationPath, Path.Combine(BaseDir, "Localization"), lines);
             }
             else
             {
+                Directory.CreateDirectory(BaseDir);
                 var data = GameParamsUtility.ProcessGameParams(GameParamsPath, writeFilteredFiles: true, outputPath: BaseDir);
                 Debug.WriteLine(data.Count);
             }

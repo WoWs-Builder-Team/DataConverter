@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using DataConverter.WGStructure;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using Newtonsoft.Json;
@@ -12,11 +10,11 @@ namespace WowsShipBuilder.GameParamsExtractor
 {
     public static class GameParamsUtility
     {
-        private static string moduleContainerName = "ModulesArmaments";
+        private const string ModuleContainerName = "ModulesArmaments";
 
         private static readonly string[] GroupsToProcess = { "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
 
-        private static Dictionary<string, string> speciesMap = new()
+        private static readonly Dictionary<string, string> SpeciesMap = new()
         {
             { "Main", "guns" },
             { "Torpedo", "torpedoArray" },
@@ -35,7 +33,7 @@ namespace WowsShipBuilder.GameParamsExtractor
             }
 
             // Dictionary<string Type, Dictionary<string Nation, List<WgObject>>. Should we have a base class for our WG stuff, or we just use object?
-            var data = new ConcurrentDictionary<string, Dictionary<string, List<WGObject>>>();
+            var data = new Dictionary<string, Dictionary<string, List<WGObject>>>();
 
             var dict = UnpickleGameParams(gameParamsPath, stopwatch);
 
@@ -43,7 +41,7 @@ namespace WowsShipBuilder.GameParamsExtractor
             Console.WriteLine("Start data processing");
 
             var groups = dict.AsParallel().Where(x => GroupsToProcess.Contains(ConvertDataValue(x.Value["typeinfo"])["type"])).GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]);
-            Parallel.ForEach(groups, group =>
+            foreach (var group in groups)
             {
                 Console.WriteLine($"Start processing: {group.Key}");
 
@@ -57,9 +55,9 @@ namespace WowsShipBuilder.GameParamsExtractor
                 var nationGroups = group.GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["nation"])
                         .Where(x => !x.Key.Equals("Events"));
 
-                var nationsDictionary = new Dictionary<string, List<WGObject>>();
+                var nationsDictionary = new ConcurrentDictionary<string, List<WGObject>>();
 
-                foreach (var nation in nationGroups)
+                Parallel.ForEach(nationGroups, nation =>
                 {
                     //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
                     List<SortedDictionary<string, object>> nationEntries = nation.Select(x => new SortedDictionary<string, object>(x.Value)).ToList();
@@ -89,23 +87,22 @@ namespace WowsShipBuilder.GameParamsExtractor
                         filteredEntries = nationEntries.ToList();
                     }
 
-                    string data = JsonConvert.SerializeObject(filteredEntries);
-                    var objectList = JsonConvert.DeserializeObject<List<WGObject>>(data);
+                    string jsonData = JsonConvert.SerializeObject(filteredEntries);
+                    var objectList = JsonConvert.DeserializeObject<List<WGObject>>(jsonData);
                     if (writeFilteredFiles)
                     {
-                        data = JsonConvert.SerializeObject(objectList, Formatting.Indented);
-                        File.WriteAllText(@$"{outputPath}{group.Key}\{nation.Key}.json", data);
+                        jsonData = JsonConvert.SerializeObject(objectList, Formatting.Indented);
+                        File.WriteAllText(@$"{outputPath}{group.Key}\{nation.Key}.json", jsonData);
                     }
 
-                    nationsDictionary.Add(nation.Key.ToString()!, objectList!);
-                }
+                    nationsDictionary.TryAdd(nation.Key.ToString()!, objectList!);
+                });
 
-                data.TryAdd(group.Key.ToString()!, nationsDictionary);
-
-            });
+                data.Add(group.Key.ToString()!, nationsDictionary.ToDictionary(entry => entry.Key, entry => entry.Value));
+            }
             stopwatch.Stop();
             Console.WriteLine($"Gameparams processed. Time passed: {stopwatch.Elapsed}");
-            return data.ToDictionary(x => x.Key, x => x.Value);
+            return data;
         }
 
         private static byte[] Decompress(byte[] data)
@@ -179,9 +176,9 @@ namespace WowsShipBuilder.GameParamsExtractor
                             {
                                 var typeInfo = gunData["typeinfo"];
                                 var species = ConvertDataValue(typeInfo)["species"];
-                                if (species != null && speciesMap.ContainsKey(species.ToString()!))
+                                if (species != null && SpeciesMap.ContainsKey(species.ToString()!))
                                 {
-                                    gunsName = speciesMap[species.ToString()!];
+                                    gunsName = SpeciesMap[species.ToString()!];
                                 }
                                 else if(!isAA && species != null && species.Equals("AAircraft"))
                                 {
@@ -260,7 +257,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
                 var keysToMove = new Dictionary<string, object>();
 
-                //WARNING: this works on the assumptions that only modules contains "_" as charachter. It does seems to be always the case, but you never know with WG.
+                //WARNING: this works on the assumptions that only modules contains "_" as character. It does seems to be always the case, but you never know with WG.
                 // A more solid way could be by checking some of the inner dictionaries and such, but it would means checking all the stats for every key.
                 var modules = shipData.Where(dataPair => dataPair.Key.Contains("_", StringComparison.OrdinalIgnoreCase))
                         .ToDictionary(x => x.Key, x => x.Value);
@@ -271,7 +268,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                 }
 
                 SortedDictionary<string, object> moduleArmaments = new(keysToMove);
-                shipData.Add(moduleContainerName, moduleArmaments);
+                shipData.Add(ModuleContainerName, moduleArmaments);
 
                 foreach (string keyToRemove in keysToMove.Keys)
                 {
