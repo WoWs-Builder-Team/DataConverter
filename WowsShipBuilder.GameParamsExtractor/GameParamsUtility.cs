@@ -26,6 +26,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
         public static Dictionary<string, Dictionary<string, List<WGObject>>> ProcessGameParams(string gameParamsPath, bool writeUnfilteredFiles = false, bool writeFilteredFiles = false, string outputPath = default!)
         {
+            var stopwatch = new Stopwatch();
             Console.WriteLine("Starting gameparams processing");
 
             if ((writeFilteredFiles || writeUnfilteredFiles) && !Directory.Exists(outputPath))
@@ -36,8 +37,9 @@ namespace WowsShipBuilder.GameParamsExtractor
             // Dictionary<string Type, Dictionary<string Nation, List<WgObject>>. Should we have a base class for our WG stuff, or we just use object?
             var data = new ConcurrentDictionary<string, Dictionary<string, List<WGObject>>>();
 
-            var dict = UnpickleGameParams(gameParamsPath);
+            var dict = UnpickleGameParams(gameParamsPath, stopwatch);
 
+            stopwatch.Start();
             Console.WriteLine("Start data processing");
 
             var groups = dict.AsParallel().Where(x => GroupsToProcess.Contains(ConvertDataValue(x.Value["typeinfo"])["type"])).GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]);
@@ -95,13 +97,14 @@ namespace WowsShipBuilder.GameParamsExtractor
                         File.WriteAllText(@$"{outputPath}{group.Key}\{nation.Key}.json", data);
                     }
 
-                    nationsDictionary.Add(nation.Key.ToString()!, objectList);
+                    nationsDictionary.Add(nation.Key.ToString()!, objectList!);
                 }
 
                 data.TryAdd(group.Key.ToString()!, nationsDictionary);
                 
             });
-            Console.WriteLine("End of gameparams processing");
+            stopwatch.Stop();
+            Console.WriteLine($"Gameparams processed. Time passed: {stopwatch.Elapsed}");
             return data.ToDictionary(x => x.Key, x => x.Value);
         }
 
@@ -115,8 +118,9 @@ namespace WowsShipBuilder.GameParamsExtractor
             return outputStream.ToArray();
         }
 
-        private static Dictionary<object, Dictionary<string, object>> UnpickleGameParams(string gameParamsPath)
+        private static Dictionary<object, Dictionary<string, object>> UnpickleGameParams(string gameParamsPath, Stopwatch stopwatch)
         {
+            stopwatch.Start();
             Console.WriteLine("Start unpickling");
 
             byte[] gpBytes = File.ReadAllBytes(gameParamsPath);
@@ -135,8 +139,9 @@ namespace WowsShipBuilder.GameParamsExtractor
                 dict.Add(unpickledJsonEntryKey, unpickledJsonEntryValue);
             }
 
-            Console.WriteLine("End unpickling");
-
+            stopwatch.Stop();
+            Console.WriteLine($"Unpickling finished. Time passed: {stopwatch.Elapsed}");
+            stopwatch.Reset();
             return dict;
         }
 
