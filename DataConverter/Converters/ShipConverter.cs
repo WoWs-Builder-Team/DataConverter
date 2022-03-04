@@ -21,7 +21,7 @@ namespace DataConverter.Converters
         public static List<ShipSummary> ShipSummaries = new();
 #pragma warning restore SA1401
 
-        public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList)
+        public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList, string nation)
         {
             var results = new Dictionary<string, Ship>();
             var count = 0;
@@ -79,7 +79,7 @@ namespace DataConverter.Converters
                 count++;
                 if (count % 10 == 0)
                 {
-                    Console.WriteLine($"Processed {count} ships for the current nation");
+                    Console.WriteLine($"Processed {count} ships for {nation}");
                 }
             }
 

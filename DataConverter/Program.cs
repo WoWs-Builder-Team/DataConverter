@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using DataConverter.Converters;
 using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
@@ -18,7 +20,7 @@ namespace DataConverter
         private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
         private const string BaseInputPath = "InputData/";
 
-        private static readonly HashSet<string> ReportedTypes = new();
+        private static readonly ConcurrentBag<string> ReportedTypes = new();
         private static readonly HttpClient Client = new();
 
         private static string serverType = default!;
@@ -28,7 +30,7 @@ namespace DataConverter
         private static bool writeFilteredFiles = false;
         private static string debugFilesBasePath = default!;
 
-        public static readonly HashSet<string> TranslationNames = new();
+        public static readonly ConcurrentBag<string> TranslationNames = new();
 
         /*
          * Parameter list
@@ -125,8 +127,11 @@ namespace DataConverter
             {
                 List<FileVersion> fileVersionList = new List<FileVersion>();
 
-                foreach ((string nation, var data) in nationDictionary)
+                Parallel.ForEach(nationDictionary, pair =>
                 {
+                    var nation = pair.Key;
+                    var data = pair.Value;
+
                     Console.WriteLine($"Converting category: {categoryName} - nation: {nation}");
                     counter++;
                     if (counter % 10 == 0)
@@ -179,7 +184,7 @@ namespace DataConverter
                             break;
                         case "Ship":
                             Console.WriteLine($"Ships to process for {nation}: {data.Count}");
-                            dict = ShipConverter.ConvertShips(data.Cast<WgShip>().ToList());
+                            dict = ShipConverter.ConvertShips(data.Cast<WgShip>().ToList(), nation);
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
@@ -197,8 +202,9 @@ namespace DataConverter
 
                             break;
                         default:
-                            if (ReportedTypes.Add(categoryName))
+                            if (!ReportedTypes.Contains(categoryName))
                             {
+                                ReportedTypes.Add(categoryName);
                                 Console.WriteLine("Type not found: " + categoryName);
                             }
 
@@ -211,7 +217,7 @@ namespace DataConverter
                     {
                         fileVersionList.Add(fileVersion);
                     }
-                }
+                });
 
                 if (fileVersionList.Any())
                 {
@@ -240,8 +246,8 @@ namespace DataConverter
             string versionInfoPath = Path.Join(outputFolder, "VersionInfo.json");
             File.WriteAllText(versionInfoPath, versionerString);
 
-            TranslationNames.RemoveWhere(string.IsNullOrWhiteSpace);
-            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, "texts"), Path.Combine(outputFolder, "Localization"), TranslationNames);
+            var filteredTranslations = TranslationNames.Where(x => !string.IsNullOrWhiteSpace(x));
+            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, "texts"), Path.Combine(outputFolder, "Localization"), filteredTranslations);
         }
 
         private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, VersionInfo oldVersioner, string versionType)
