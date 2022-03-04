@@ -31,7 +31,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
             if ((writeFilteredFiles || writeUnfilteredFiles) && !Directory.Exists(outputPath))
             {
-                throw new ArgumentException("outputPath needs to be an existing directory if one of writeUnfilteredFiles or writeFilteredFiles is true");
+                Directory.CreateDirectory(outputPath);
             }
 
             // Dictionary<string Type, Dictionary<string Nation, List<WgObject>>. Should we have a base class for our WG stuff, or we just use object?
@@ -68,7 +68,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
                     if (writeUnfilteredFiles)
                     {
-                        var unfilteredData = JsonConvert.SerializeObject(nationEntries);
+                        var unfilteredData = JsonConvert.SerializeObject(nationEntries, Formatting.Indented);
                         File.WriteAllText(Path.Join(dir, $"{nation.Key}.json"), unfilteredData);
                     }
 
