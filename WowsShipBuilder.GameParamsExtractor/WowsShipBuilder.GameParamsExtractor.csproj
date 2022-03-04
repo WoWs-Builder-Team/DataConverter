@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataConverter\DataConverter.csproj" />
     <ProjectReference Include="..\GetTextNET\src\GetText\GetText.csproj" />
+    <ProjectReference Include="..\WoWsShipBuilder.DataStructures\WoWsShipBuilder.DataStructures.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -10,13 +10,10 @@ namespace DataConverter.Converters
 {
     public class ExteriorConverter
     {
-        public static Dictionary<string, Exterior> ConvertExterior(string jsonInput)
+        public static Dictionary<string, Exterior> ConvertExterior(IEnumerable<WGExterior> wgExterior)
         {
             //create a List of our Objects
             Dictionary<string, Exterior> exteriorList = new Dictionary<string, Exterior>();
-
-            //deserialize into an object
-            var wgExterior = JsonConvert.DeserializeObject<List<WGExterior>>(jsonInput) ?? throw new InvalidOperationException();
 
             //iterate over the entire list to convert everything
             foreach (var currentWgExterior in wgExterior)

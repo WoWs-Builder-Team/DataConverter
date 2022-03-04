@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using DataConverter.Converters;
-using DataConverter.WGStructure;
 using FluentAssertions;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using WoWsShipBuilder.DataStructures;

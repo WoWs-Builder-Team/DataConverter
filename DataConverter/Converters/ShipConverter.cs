@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
 using Hull = WoWsShipBuilder.DataStructures.Hull;
@@ -21,11 +21,10 @@ namespace DataConverter.Converters
         public static List<ShipSummary> ShipSummaries = new();
 #pragma warning restore SA1401
 
-        public static Dictionary<string, Ship> ConvertShips(string jsonInput)
+        public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList)
         {
             var results = new Dictionary<string, Ship>();
-
-            List<WgShip> wgShipList = JsonConvert.DeserializeObject<List<WgShip>>(jsonInput) ?? throw new InvalidOperationException();
+            var count = 0;
 
             Dictionary<string, string> shipToPreviousShipMapper = new Dictionary<string, string>();
             Dictionary<string, List<string>> shipToNextShipMapper = new Dictionary<string, List<string>>();
@@ -75,6 +74,12 @@ namespace DataConverter.Converters
                         .SelectMany(shipUpgrade => shipUpgrade.NextShips)
                         .Select(shipName => shipName.Split('_').First())
                         .ToList();
+                }
+
+                count++;
+                if (count % 10 == 0)
+                {
+                    Console.WriteLine($"Processed {count} ships for the current nation");
                 }
             }
 
@@ -214,7 +219,7 @@ namespace DataConverter.Converters
                 Value = wgShip.ShipUpgradeInfo.Value,
             };
 
-            foreach ((string wgName, WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
+            foreach ((string wgName, GameParamsExtractor.WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
             {
                 var newUpgrade = new ShipUpgrade
                 {

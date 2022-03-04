@@ -1,24 +1,20 @@
-﻿using DataConverter.WGStructure;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using WoWsShipBuilder.DataStructures;
 using System.Linq;
+using GameParamsExtractor.WGStructure;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter.Converters
 {
     public static class ModernizationConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
-        public static Dictionary<string, Modernization> ConvertModernization(string jsonInput)
+        public static Dictionary<string, Modernization> ConvertModernization(IEnumerable<WGModernization> wgModernizations)
         {
             //create a List of our Objects
             Dictionary<string, Modernization> modList = new Dictionary<string, Modernization>();
-
-            //deserialize into an object
-            var wgModernizations = JsonConvert.DeserializeObject<List<WGModernization>>(jsonInput) ?? throw new InvalidOperationException();
 
             //iterate over the entire list to convert everything
             foreach (var currentWgMod in wgModernizations)

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Diagnostics;
-using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using Newtonsoft.Json;
 using Razorvine.Pickle;
@@ -21,6 +21,8 @@ namespace WowsShipBuilder.GameParamsExtractor
             { "Secondary", "antiAirAndSecondaries" },
             { "DCharge", "depthCharges" },
         };
+
+        private static readonly string[] RetardedModulesNames = { "AirDefenseDefault" };
 
         public static Dictionary<string, Dictionary<string, List<WGObject>>> ProcessGameParams(string gameParamsPath, bool writeUnfilteredFiles = false, bool writeFilteredFiles = false, string outputPath = default!)
         {
@@ -45,7 +47,7 @@ namespace WowsShipBuilder.GameParamsExtractor
             {
                 Console.WriteLine($"Start processing: {group.Key}");
 
-                var dir = outputPath + group.Key;
+                var dir = Path.Join(outputPath, group.Key.ToString());
                 if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
@@ -67,7 +69,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                     if (writeUnfilteredFiles)
                     {
                         var unfilteredData = JsonConvert.SerializeObject(nationEntries);
-                        File.WriteAllText(@$"{outputPath}{group.Key}\{nation.Key}.json", unfilteredData);
+                        File.WriteAllText(Path.Join(dir, $"{nation.Key}.json"), unfilteredData);
                     }
 
                     // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
@@ -82,6 +84,10 @@ namespace WowsShipBuilder.GameParamsExtractor
                     {
                         filteredEntries = CustomConsumableProcessing(nationEntries);
                     }
+                    else if (group.Key.Equals("Exterior"))
+                    {
+                        filteredEntries = nationEntries.Where(x => !ConvertDataValue(x["typeinfo"])["species"].Equals("Ensign")).ToList();
+                    }
                     else
                     {
                         filteredEntries = nationEntries.ToList();
@@ -92,7 +98,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                     if (writeFilteredFiles)
                     {
                         jsonData = JsonConvert.SerializeObject(objectList, Formatting.Indented);
-                        File.WriteAllText(@$"{outputPath}{group.Key}\{nation.Key}.json", jsonData);
+                        File.WriteAllText(Path.Join(dir, $"filtered_{nation.Key}.json"), jsonData);
                     }
 
                     nationsDictionary.TryAdd(nation.Key.ToString()!, objectList!);
@@ -169,7 +175,7 @@ namespace WowsShipBuilder.GameParamsExtractor
                 {
                     if (singleStat.Value is CustomClassDict gunData)
                     {
-                        //if it has typeinfo, it's always a gun and not a dictionary fo values.
+                        //if it has typeinfo, it's always a gun and not a dictionary of values.
                         if (gunData.ContainsKey("typeinfo"))
                         {
                             if (string.IsNullOrEmpty(gunsName))
@@ -200,6 +206,11 @@ namespace WowsShipBuilder.GameParamsExtractor
                     else
                     {
                         gunsDictionary.Add(singleStat.Key, singleStat.Value);
+                        // this is needed because there are AA modules with no AA. WG WHY?!
+                        if (!isAA && singleStat.Key.Equals("prioritySectorPhases"))
+                        {
+                            isAA = true;
+                        }
                     }
 
                 }
@@ -259,7 +270,8 @@ namespace WowsShipBuilder.GameParamsExtractor
 
                 //WARNING: this works on the assumptions that only modules contains "_" as character. It does seems to be always the case, but you never know with WG.
                 // A more solid way could be by checking some of the inner dictionaries and such, but it would means checking all the stats for every key.
-                var modules = shipData.Where(dataPair => dataPair.Key.Contains("_", StringComparison.OrdinalIgnoreCase))
+                // UPDATE: Wg is obviously dumb, so for now, there RetardedModulesNames where to put the naming exceptions wg used in the past. Let's hope they decided on a standard naming convention now.
+                var modules = shipData.Where(dataPair => dataPair.Key.Contains("_", StringComparison.OrdinalIgnoreCase) || RetardedModulesNames.Contains(dataPair.Key))
                         .ToDictionary(x => x.Key, x => x.Value);
                 if (modules.Count > 0)
                 {

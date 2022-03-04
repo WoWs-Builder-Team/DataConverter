@@ -1,4 +1,4 @@
-using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,13 +10,10 @@ namespace DataConverter.Converters
     public static class AircraftConverter
     {
         //convert the list of aircrafts from WG to our list of Aircrafts
-        public static Dictionary<string, Aircraft> ConvertAircraft(string jsonInput)
+        public static Dictionary<string, Aircraft> ConvertAircraft(IEnumerable<WGAircraft> wgAircraft)
         {
             //create a List of our Objects
             Dictionary<string, Aircraft> airList = new Dictionary<string, Aircraft>();
-
-            //deserialize into an object
-            var wgAircraft = JsonConvert.DeserializeObject<List<WGAircraft>>(jsonInput) ?? throw new InvalidOperationException();
 
             //iterate over the entire list to convert everything
             foreach (var currentWgAir in wgAircraft)

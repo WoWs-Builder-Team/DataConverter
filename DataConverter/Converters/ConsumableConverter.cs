@@ -1,4 +1,4 @@
-﻿using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,13 +10,10 @@ namespace DataConverter.Converters
     public static class ConsumableConverter
     {
         //convert the list of consumables from WG to our list of Consumables
-        public static Dictionary<string, Consumable> ConvertConsumable(string jsonInput)
+        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WGConsumable> wgConsumable)
         {
             //create a List of our Objects
             Dictionary<string, Consumable> consumableList = new Dictionary<string, Consumable>();
-
-            //deserialize into an object
-            var wgConsumable = JsonConvert.DeserializeObject<List<WGConsumable>>(jsonInput) ?? throw new InvalidOperationException();
 
             //iterate over the entire list to convert everything
             foreach (var currentWgConsumable in wgConsumable)

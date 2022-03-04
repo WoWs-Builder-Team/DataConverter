@@ -1,4 +1,4 @@
-using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -16,19 +16,17 @@ namespace DataConverter.Converters
         /// <summary>
         /// Converter method that transforms a <see cref="WGCaptain"/> object into a <see cref="Captain"/> object.
         /// </summary>
-        /// <param name="captainJsonInput">The file content of captain data extracted from game params.</param>
+        /// <param name="wgCaptain">The file content of captain data extracted from game params.</param>
         /// <param name="skillsJsonInput">The file content of the embedded captain data file.</param>
         /// <param name="isCommon">If the file is the Common one.</param>
         /// <returns>A dictionary mapping an ID to a <see cref="Captain"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-        public static Dictionary<string, Captain> ConvertCaptain(string captainJsonInput, string skillsJsonInput, bool isCommon)
+        public static Dictionary<string, Captain> ConvertCaptain(IEnumerable<WGCaptain> wgCaptain, string skillsJsonInput, bool isCommon)
         {
             //create a List of our Objects
             Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
 
             //deserialize into an object
-            var wgCaptain = JsonConvert.DeserializeObject<List<WGCaptain>>(captainJsonInput) ?? throw new InvalidOperationException();
-
             var skillsTiers = JsonConvert.DeserializeObject<SkillsTiers>(skillsJsonInput) ?? throw new InvalidOperationException();
 
             bool addedDefault = false;
