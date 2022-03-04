@@ -8,8 +8,8 @@ using System.Reflection;
 using DataConverter.Converters;
 using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
-using WowsShipBuilder.GameParamsExtractor;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor;
 
 namespace DataConverter
 {
@@ -30,7 +30,7 @@ namespace DataConverter
 
         public static readonly HashSet<string> TranslationNames = new();
 
-        /* 
+        /*
          * Parameter list
          * 1) Server type, with possible values: live, pts.
          * 2) Output folder.
@@ -38,13 +38,13 @@ namespace DataConverter
          * 4) Should write "raw" gameparams files.
          * 5) Should write filtered gameparams files.
          * 6) Output folder for the files of the previous two points.
-         * 
+         *
          * Possible combinations allowed are:
          * 1) no parameters.
          * 2) 2 parameters: server type and output folder.
          * 3) 3 parameters: server type, output folder and version name.
          * 4) 6 parameters: all the one in the previous list.
-         * 
+         *
          * The GameParams File needs to be called "GameParams_[serverType].data", with [serverType] being "live" or "pts"
         */
         static void Main(string[] args)
@@ -178,8 +178,8 @@ namespace DataConverter
 
                             break;
                         case "Ship":
-                            Console.WriteLine($"Ships to process for {nation}: {data.Count()}");
-                            dict = ShipConverter.ConvertShips(data.Cast<WgShip>());
+                            Console.WriteLine($"Ships to process for {nation}: {data.Count}");
+                            dict = ShipConverter.ConvertShips(data.Cast<WgShip>().ToList());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 

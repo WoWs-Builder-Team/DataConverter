@@ -2,6 +2,7 @@ using JsonSubTypes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -67,10 +68,7 @@ namespace GameParamsExtractor.WGStructure
         public Dictionary<string, JToken> Other { get; set; } = new();
 
         [JsonIgnore]
-        public Dictionary<string, AaAura> AntiAirAuras =>
-            Other.Select(entry => new KeyValuePair<string, AaAura?>(entry.Key, entry.Value.ToObjectSafe<AaAura>()))
-                .Where(entry => entry.Value is not null)
-                .ToDictionary(entry => entry.Key, entry => entry.Value!);
+        public Dictionary<string, AaAura> AntiAirAuras => Other.FindAaAuras();
     }
 
     public class MainBatteryGun
@@ -225,10 +223,7 @@ namespace GameParamsExtractor.WGStructure
         public Dictionary<string, JToken> Other { get; set; } = new();
 
         [JsonIgnore]
-        public Dictionary<string, AaAura> AntiAirAuras =>
-            Other.Select(entry => new KeyValuePair<string, AaAura?>(entry.Key, entry.Value.ToObjectSafe<AaAura>()))
-                .Where(entry => entry.Value is not null)
-                .ToDictionary(entry => entry.Key, entry => entry.Value!);
+        public Dictionary<string, AaAura> AntiAirAuras => Other.FindAaAuras();
     }
 
     public class AntiAirAndSecondaries
@@ -326,10 +321,7 @@ namespace GameParamsExtractor.WGStructure
         public Dictionary<string, JToken> Other { get; set; } = new();
 
         [JsonIgnore]
-        public Dictionary<string, AaAura> AntiAirAuras =>
-            Other.Select(entry => new KeyValuePair<string, AaAura?>(entry.Key, entry.Value.ToObjectSafe<AaAura>()))
-                .Where(entry => entry.Value is not null)
-                .ToDictionary(entry => entry.Key, entry => entry.Value!);
+        public Dictionary<string, AaAura> AntiAirAuras => Other.FindAaAuras();
     }
 
     public class AaAura
@@ -604,7 +596,7 @@ namespace GameParamsExtractor.WGStructure
 
         [JsonIgnore]
         public Dictionary<string, ShipUpgrade> ConvertedUpgrades =>
-            Other.Select(entry => (entry.Key, entry.Value.ToObjectSafe<ShipUpgrade>()))
+            Other.Select(entry => (entry.Key, entry.Value.ToObjectOrNull<ShipUpgrade>()))
                 .Where(entry => entry.Item2 is not null)
                 .ToDictionary(entry => entry.Key, entry => entry.Item2);
     }

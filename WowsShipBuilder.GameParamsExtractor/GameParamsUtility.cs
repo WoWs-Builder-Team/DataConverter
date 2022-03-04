@@ -270,7 +270,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
                 //WARNING: this works on the assumptions that only modules contains "_" as character. It does seems to be always the case, but you never know with WG.
                 // A more solid way could be by checking some of the inner dictionaries and such, but it would means checking all the stats for every key.
-                // UPDATE: Wg is obviously dumb, so for now, there RetardedModulesNames where to put the naming exceptions wg used in the past. Let's hope they decided on a standard naming convention now.
+                // UPDATE: WG is obviously dumb, so for now, there is RetardedModulesNames where to put the naming exceptions wg used in the past. Let's hope they decided on a standard naming convention now.
                 var modules = shipData.Where(dataPair => dataPair.Key.Contains("_", StringComparison.OrdinalIgnoreCase) || RetardedModulesNames.Contains(dataPair.Key))
                         .ToDictionary(x => x.Key, x => x.Value);
                 if (modules.Count > 0)
