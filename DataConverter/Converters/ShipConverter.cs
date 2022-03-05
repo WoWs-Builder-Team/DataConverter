@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace DataConverter.Converters
 {
     public static class ShipConverter
     {
-        private static readonly HashSet<string> ReportedTypes = new();
+        private static readonly ConcurrentBag<string> ReportedTypes = new();
 
         private static readonly Dictionary<string, ShipTurretOverride> TurretPositionOverrides = LoadTurretOverrides();
 
@@ -637,8 +638,9 @@ namespace DataConverter.Converters
 
             if (componentType == ComponentType.None)
             {
-                if (ReportedTypes.Add(normalizedInput))
+                if (!ReportedTypes.Contains(normalizedInput))
                 {
+                    ReportedTypes.Add(normalizedInput);
                     Console.WriteLine($"Cannot find type for provided string: {normalizedInput}");
                 }
             }
