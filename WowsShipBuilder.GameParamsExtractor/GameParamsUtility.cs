@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using GameParamsExtractor.WGStructure;
+using GetText.Loaders;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using Newtonsoft.Json;
 using Razorvine.Pickle;
@@ -40,6 +41,7 @@ namespace WowsShipBuilder.GameParamsExtractor
             var dict = UnpickleGameParams(gameParamsPath, stopwatch);
 
             stopwatch.Start();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Start data processing");
 
             var groups = dict.AsParallel().Where(x => GroupsToProcess.Contains(ConvertDataValue(x.Value["typeinfo"])["type"])).GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]);
@@ -58,7 +60,6 @@ namespace WowsShipBuilder.GameParamsExtractor
                         .Where(x => !x.Key.Equals("Events"));
 
                 var nationsDictionary = new ConcurrentDictionary<string, List<WGObject>>();
-
                 Parallel.ForEach(nationGroups, nation =>
                 {
                     //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
@@ -68,8 +69,14 @@ namespace WowsShipBuilder.GameParamsExtractor
 
                     if (writeUnfilteredFiles)
                     {
-                        var unfilteredData = JsonConvert.SerializeObject(nationEntries, Formatting.Indented);
-                        File.WriteAllText(Path.Join(dir, $"{nation.Key}.json"), unfilteredData);
+                        using (StreamWriter file = File.CreateText(Path.Join(dir, $"{nation.Key}.json")))
+                        {
+                            JsonSerializer serializer = new JsonSerializer()
+                            {
+                                Formatting = Formatting.Indented,
+                            };
+                            serializer.Serialize(file, nationEntries);
+                        }
                     }
 
                     // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
@@ -97,17 +104,26 @@ namespace WowsShipBuilder.GameParamsExtractor
                     var objectList = JsonConvert.DeserializeObject<List<WGObject>>(jsonData);
                     if (writeFilteredFiles)
                     {
-                        jsonData = JsonConvert.SerializeObject(objectList, Formatting.Indented);
-                        File.WriteAllText(Path.Join(dir, $"filtered_{nation.Key}.json"), jsonData);
+                        using (StreamWriter file = File.CreateText(Path.Join(dir, $"filtered_{nation.Key}.json")))
+                        {
+                            JsonSerializer serializer = new JsonSerializer()
+                            {
+                                Formatting = Formatting.Indented,
+                            };
+                            serializer.Serialize(file, objectList);
+                        }
                     }
 
                     nationsDictionary.TryAdd(nation.Key.ToString()!, objectList!);
+                    Console.WriteLine($"End processing for {group.Key} - {nation.Key}");
+                    GC.Collect();
                 });
 
                 data.Add(group.Key.ToString()!, nationsDictionary.ToDictionary(entry => entry.Key, entry => entry.Value));
             }
             stopwatch.Stop();
             Console.WriteLine($"Gameparams processed. Time passed: {stopwatch.Elapsed}");
+            Console.ResetColor();
             return data;
         }
 
@@ -123,6 +139,7 @@ namespace WowsShipBuilder.GameParamsExtractor
 
         private static Dictionary<object, Dictionary<string, object>> UnpickleGameParams(string gameParamsPath, Stopwatch stopwatch)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             stopwatch.Start();
             Console.WriteLine("Start unpickling");
 
@@ -145,6 +162,8 @@ namespace WowsShipBuilder.GameParamsExtractor
             stopwatch.Stop();
             Console.WriteLine($"Unpickling finished. Time passed: {stopwatch.Elapsed}");
             stopwatch.Reset();
+            Console.ResetColor();
+            GC.Collect();
             return dict;
         }
 
@@ -288,7 +307,6 @@ namespace WowsShipBuilder.GameParamsExtractor
                 }
                 filteredEntries.Add(shipData);
             }
-
             return filteredEntries;
         }
     }

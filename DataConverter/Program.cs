@@ -246,8 +246,10 @@ namespace DataConverter
             string versionInfoPath = Path.Join(outputFolder, "VersionInfo.json");
             File.WriteAllText(versionInfoPath, versionerString);
 
+            Console.ForegroundColor = ConsoleColor.Green;
             var filteredTranslations = TranslationNames.Where(x => !string.IsNullOrWhiteSpace(x));
             TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, "texts"), Path.Combine(outputFolder, "Localization"), filteredTranslations);
+            Console.ResetColor();
         }
 
         private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, VersionInfo oldVersioner, string versionType)
