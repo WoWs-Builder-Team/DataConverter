@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
 {

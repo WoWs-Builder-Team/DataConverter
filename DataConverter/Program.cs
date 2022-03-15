@@ -12,6 +12,7 @@ using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter
 {
@@ -150,13 +151,13 @@ namespace DataConverter
                     switch (categoryName)
                     {
                         case "Ability":
-                            dict = ConsumableConverter.ConvertConsumable(data.Cast<WGConsumable>());
+                            dict = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Aircraft":
-                            dict = AircraftConverter.ConvertAircraft(data.Cast<WGAircraft>());
+                            dict = AircraftConverter.ConvertAircraft(data.Cast<WgAircraft>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
 
                             fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
@@ -196,7 +197,7 @@ namespace DataConverter
 
                             break;
                         case "Exterior":
-                            dict = ExteriorConverter.ConvertExterior(data.Cast<WGExterior>());
+                            dict = ExteriorConverter.ConvertExterior(data.Cast<WgExterior>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
                             fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
