@@ -214,6 +214,11 @@ namespace DataConverter.Converters
                                 //else if the field is a number, it's a modifier. save it in the dictionary of modifiers
                                 else if (value.Type == JTokenType.Float || value.Type == JTokenType.Integer)
                                 {
+                                    //if it's a float with a value of 1, then it's probably a modifier that keep the value the same.
+                                    if (value.Type == JTokenType.Float && value.Value<float>() == 1f)
+                                    {
+                                        continue;
+                                    }
                                     effectsModifiers.Add($"{key}", value.Value<float>());
                                     Program.TranslationNames.Add(key);
                                 }
