@@ -74,7 +74,7 @@ namespace DataConverter.Converters
                         // Skip boost for plane consumable because it's invisible in UI anyway
                         break;
                     case "preparationTime":
-                        //Skip this modifier, it's value is always 0
+                        //Skip this modifier, it's value is always 0. no idea why it's there
                         break;
                     default:
                         results[key] = modifier;
