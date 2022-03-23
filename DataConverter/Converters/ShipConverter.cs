@@ -190,6 +190,7 @@ namespace DataConverter.Converters
                 "upgradeableUltimate" => ShipCategory.Special,
                 "unavailable" => ShipCategory.Disabled,
                 "legendaryBattle" => ShipCategory.TechTree,
+                "superShip" => ShipCategory.SuperShip,
                 _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
             };
         }
