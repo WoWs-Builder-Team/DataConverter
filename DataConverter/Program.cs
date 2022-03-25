@@ -249,7 +249,14 @@ namespace DataConverter
 
             Console.ForegroundColor = ConsoleColor.Green;
             var filteredTranslations = TranslationNames.Where(x => !string.IsNullOrWhiteSpace(x));
-            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, "texts"), Path.Combine(outputFolder, "Localization"), filteredTranslations);
+
+            // TODO: allow selecting text directory for dev?
+            string localizationSourcePath = currentVersion.VersionType switch
+            {
+                GameVersionType.Live => "texts",
+                _ => "texts_pts",
+            };
+            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, localizationSourcePath), Path.Combine(outputFolder, "Localization"), filteredTranslations);
             Console.ResetColor();
         }
 
