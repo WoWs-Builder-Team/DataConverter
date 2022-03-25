@@ -1,40 +1,38 @@
-using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
 {
     public class ExteriorConverter
     {
-        public static Dictionary<string, Exterior> ConvertExterior(string jsonInput)
+        public static Dictionary<string, Exterior> ConvertExterior(IEnumerable<WgExterior> wgExterior)
         {
             //create a List of our Objects
             Dictionary<string, Exterior> exteriorList = new Dictionary<string, Exterior>();
 
-            //deserialize into an object
-            var wgExterior = JsonConvert.DeserializeObject<List<WGExterior>>(jsonInput) ?? throw new InvalidOperationException();
-
             //iterate over the entire list to convert everything
             foreach (var currentWgExterior in wgExterior)
             {
-                Program.TranslationNames.Add(currentWgExterior.name);
+                Program.TranslationNames.Add(currentWgExterior.Name);
                 //create our object type
                 Exterior exterior = new Exterior
                 {
                     //start mapping
-                    Id = currentWgExterior.id,
-                    Index = currentWgExterior.index,
-                    Name = currentWgExterior.name,
-                    SortOrder = currentWgExterior.sortOrder,
-                    Group = currentWgExterior.group,
+                    Id = currentWgExterior.Id,
+                    Index = currentWgExterior.Index,
+                    Name = currentWgExterior.Name,
+                    SortOrder = currentWgExterior.SortOrder,
+                    Group = currentWgExterior.Group,
                 };
 
                 Dictionary<string, double> modifiers = new Dictionary<string, double>();
-                foreach (var currentWgExteriorModifier in currentWgExterior.modifiers)
+                foreach (var currentWgExteriorModifier in currentWgExterior.Modifiers)
                 {
                     JToken jtoken = currentWgExteriorModifier.Value;
 
@@ -93,11 +91,11 @@ namespace DataConverter.Converters
 
                 exterior.Restrictions = new Restriction()
                 {
-                    ForbiddenShips = currentWgExterior.restrictions?.forbiddenShips?.ToList<string>(),
-                    Levels = currentWgExterior.restrictions?.levels?.ToList<string>(),
-                    Nations = currentWgExterior.restrictions?.nations?.ToList<string>(),
-                    SpecificShips = currentWgExterior.restrictions?.specificShips?.ToList<string>(),
-                    Subtype = currentWgExterior.restrictions?.subtype?.ToList<string>(),
+                    ForbiddenShips = currentWgExterior.Restrictions?.ForbiddenShips?.ToList<string>(),
+                    Levels = currentWgExterior.Restrictions?.Levels?.ToList<string>(),
+                    Nations = currentWgExterior.Restrictions?.Nations?.ToList<string>(),
+                    SpecificShips = currentWgExterior.Restrictions?.SpecificShips?.ToList<string>(),
+                    Subtype = currentWgExterior.Restrictions?.Subtype?.ToList<string>(),
                 };
 
                 //dictionary with Index as key

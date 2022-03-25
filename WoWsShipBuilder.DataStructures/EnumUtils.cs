@@ -156,6 +156,7 @@ namespace WoWsShipBuilder.DataStructures
         TestShip,
         Disabled,
         Clan,
+        SuperShip,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]

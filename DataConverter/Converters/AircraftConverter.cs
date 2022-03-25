@@ -1,92 +1,90 @@
-using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
 {
     public static class AircraftConverter
     {
         //convert the list of aircrafts from WG to our list of Aircrafts
-        public static Dictionary<string, Aircraft> ConvertAircraft(string jsonInput)
+        public static Dictionary<string, Aircraft> ConvertAircraft(IEnumerable<WgAircraft> wgAircraft)
         {
             //create a List of our Objects
             Dictionary<string, Aircraft> airList = new Dictionary<string, Aircraft>();
 
-            //deserialize into an object
-            var wgAircraft = JsonConvert.DeserializeObject<List<WGAircraft>>(jsonInput) ?? throw new InvalidOperationException();
-
             //iterate over the entire list to convert everything
             foreach (var currentWgAir in wgAircraft)
             {
-                Program.TranslationNames.Add(currentWgAir.name);
+                Program.TranslationNames.Add(currentWgAir.Name);
                 //create our object type
                 Aircraft air = new Aircraft
                 {
                     //start mapping
-                    Id = currentWgAir.id,
-                    Index = currentWgAir.index,
-                    MaxHealth = currentWgAir.maxHealth,
-                    Name = currentWgAir.name,
-                    NumPlanesInSquadron = currentWgAir.numPlanesInSquadron,
-                    ReturnHeight = currentWgAir.returnHeight,
-                    SpeedMaxModifier = currentWgAir.speedMax,
-                    SpeedMinModifier = currentWgAir.speedMin,
-                    Speed = currentWgAir.speedMoveWithBomb,
-                    NaturalAcceleration = currentWgAir.naturalAcceleration,
-                    NaturalDeceleration = currentWgAir.naturalDeceleration,
-                    MaxPlaneInHangar = currentWgAir.hangarSettings.maxValue,
-                    StartingPlanes = currentWgAir.hangarSettings.startValue,
-                    RestorationTime = currentWgAir.hangarSettings.timeToRestore,
-                    BombFallingTime = currentWgAir.bombFallingTime,
-                    BombName = currentWgAir.bombName,
-                    DamageTakenMultiplier = currentWgAir.attackerDamageTakenMultiplier,
-                    FlightHeight = currentWgAir.flightHeight,
-                    FlightRadius = currentWgAir.flightRadius,
-                    InnerBombsPercentage = currentWgAir.innerBombsPercentage,
-                    InnerSalvoSize = currentWgAir.innerSalvoSize,
-                    AimingAccuracyDecreaseRate = currentWgAir.aimingAccuracyDecreaseRate,
-                    AimingAccuracyIncreaseRate = currentWgAir.aimingAccuracyIncreaseRate,
-                    AimingTime = currentWgAir.aimingTime,
-                    PostAttackInvulnerabilityDuration = currentWgAir.postAttackInvulnerabilityDuration,
-                    PreparationAccuracyDecreaseRate = currentWgAir.preparationAccuracyDecreaseRate,
-                    PreparationAccuracyIncreaseRate = currentWgAir.preparationAccuracyIncreaseRate,
-                    PreparationTime = currentWgAir.preparationTime,
+                    Id = currentWgAir.Id,
+                    Index = currentWgAir.Index,
+                    MaxHealth = currentWgAir.MaxHealth,
+                    Name = currentWgAir.Name,
+                    NumPlanesInSquadron = currentWgAir.NumPlanesInSquadron,
+                    ReturnHeight = currentWgAir.ReturnHeight,
+                    SpeedMaxModifier = currentWgAir.SpeedMax,
+                    SpeedMinModifier = currentWgAir.SpeedMin,
+                    Speed = currentWgAir.SpeedMoveWithBomb,
+                    NaturalAcceleration = currentWgAir.NaturalAcceleration,
+                    NaturalDeceleration = currentWgAir.NaturalDeceleration,
+                    MaxPlaneInHangar = currentWgAir.HangarSettings.MaxValue,
+                    StartingPlanes = currentWgAir.HangarSettings.StartValue,
+                    RestorationTime = currentWgAir.HangarSettings.TimeToRestore,
+                    BombFallingTime = currentWgAir.BombFallingTime,
+                    BombName = currentWgAir.BombName,
+                    DamageTakenMultiplier = currentWgAir.AttackerDamageTakenMultiplier,
+                    FlightHeight = currentWgAir.FlightHeight,
+                    FlightRadius = currentWgAir.FlightRadius,
+                    InnerBombsPercentage = currentWgAir.InnerBombsPercentage,
+                    InnerSalvoSize = currentWgAir.InnerSalvoSize,
+                    AimingAccuracyDecreaseRate = currentWgAir.AimingAccuracyDecreaseRate,
+                    AimingAccuracyIncreaseRate = currentWgAir.AimingAccuracyIncreaseRate,
+                    AimingTime = currentWgAir.AimingTime,
+                    PostAttackInvulnerabilityDuration = currentWgAir.PostAttackInvulnerabilityDuration,
+                    PreparationAccuracyDecreaseRate = currentWgAir.PreparationAccuracyDecreaseRate,
+                    PreparationAccuracyIncreaseRate = currentWgAir.PreparationAccuracyIncreaseRate,
+                    PreparationTime = currentWgAir.PreparationTime,
                 };
 
                 PlaneAttackData planeAttackData = new PlaneAttackData
                 {
                     //start mapping
-                    AttackCooldown = currentWgAir.attackCooldown,
-                    AttackCount = currentWgAir.projectilesPerAttack,
-                    AttackInterval = currentWgAir.attackInterval,
-                    AttackSpeedMultiplier = currentWgAir.attackSpeedMultiplier,
-                    AttackSpeedMultiplierApplyTime = currentWgAir.attackSpeedMultiplierApplyTime,
-                    AttackerSize = currentWgAir.attackerSize,
+                    AttackCooldown = currentWgAir.AttackCooldown,
+                    AttackCount = currentWgAir.ProjectilesPerAttack,
+                    AttackInterval = currentWgAir.AttackInterval,
+                    AttackSpeedMultiplier = currentWgAir.AttackSpeedMultiplier,
+                    AttackSpeedMultiplierApplyTime = currentWgAir.AttackSpeedMultiplierApplyTime,
+                    AttackerSize = currentWgAir.AttackerSize,
                 };
                 air.AttackData = planeAttackData;
 
                 JatoData jatodata = new JatoData
                 {
                     //start mapping
-                    JatoDuration = currentWgAir.jatoDuration,
-                    JatoSpeedMultiplier = currentWgAir.jatoSpeedMultiplier,
+                    JatoDuration = currentWgAir.JatoDuration,
+                    JatoSpeedMultiplier = currentWgAir.JatoSpeedMultiplier,
                 };
                 air.JatoData = jatodata;
 
                 //determine the needed enum for plane category
                 bool isAirSupport;
                 bool isConsumable;
-                if (currentWgAir.planeSubtype == null)
+                if (currentWgAir.PlaneSubtype == null)
                 {
-                    isAirSupport = currentWgAir.isAirSupportPlane == true;
-                    isConsumable = currentWgAir.isConsumablePlane == true;
+                    isAirSupport = currentWgAir.IsAirSupportPlane == true;
+                    isConsumable = currentWgAir.IsConsumablePlane == true;
                 }
                 else
                 {
-                    var subtypes = currentWgAir.planeSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
+                    var subtypes = currentWgAir.PlaneSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
                     isAirSupport = subtypes.Contains("airsupport");
                     isConsumable = subtypes.Contains("consumable");
                 }
@@ -111,25 +109,25 @@ namespace DataConverter.Converters
                 air.AircraftConsumable = ProcessConsumables(currentWgAir);
 
                 // dictionary with index as key, for easier search
-                airList.Add(currentWgAir.index, air);
+                airList.Add(currentWgAir.Index, air);
             }
 
             return airList;
         }
 
-        private static List<AircraftConsumable> ProcessConsumables(WGAircraft aircraft)
+        private static List<AircraftConsumable> ProcessConsumables(WgAircraft aircraft)
         {
             var resultList = new List<AircraftConsumable>();
             foreach ((_, AircraftAbility wgAbility) in aircraft.PlaneAbilities)
             {
-                IEnumerable<AircraftConsumable> consumableList = wgAbility.abils
+                IEnumerable<AircraftConsumable> consumableList = wgAbility.Abils
                     .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
                     .Select(ability =>
                         new AircraftConsumable
                         {
                             ConsumableName = ability.AbilityName,
                             ConsumableVariantName = ability.AbilityVariant,
-                            Slot = wgAbility.slot,
+                            Slot = wgAbility.Slot,
                         });
                 resultList.AddRange(consumableList);
             }

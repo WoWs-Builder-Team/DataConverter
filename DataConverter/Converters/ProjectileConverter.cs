@@ -1,4 +1,4 @@
-﻿using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,16 +13,13 @@ namespace DataConverter.Converters
         /// <summary>
         /// Converter method that transforms a <see cref="WGProjectile"/> object into a <see cref="Projectile"/> object.
         /// </summary>
-        /// <param name="jsonInput">The file content of projectile data extracted from game params.</param>
+        /// <param name="wgProjectile">The list of projectile data extracted from game params.</param>
         /// <returns>A dictionary mapping an ID to a <see cref="Projectile"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-        public static Dictionary<string, Projectile> ConvertProjectile(string jsonInput)
+        public static Dictionary<string, Projectile> ConvertProjectile(IEnumerable<WGProjectile> wgProjectile)
         {
             //Dictionary containing all projectiles
             Dictionary<string, Projectile> projectileList = new Dictionary<string, Projectile>();
-
-            //deserialize into an object
-            var wgProjectile = JsonConvert.DeserializeObject<List<WGProjectile>>(jsonInput) ?? throw new InvalidOperationException();
 
             //iterate over the entire list to convert and sort everything
             foreach (var currentWgProjectile in wgProjectile)

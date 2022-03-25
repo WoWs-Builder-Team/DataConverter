@@ -12,12 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Checkout gameparams repository
-        uses: actions/checkout@v2
-        with: 
-          repository: WoWs-Builder-Team/FilteredGameParams2Json
-          path: gameparams
-      - name: Configure AWS credentials from Test account
+        with:
+          submodules: true
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -27,6 +24,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 6.0.x
+          
       - name: Prepare data converter
         run: dotnet test -c Release --verbosity normal
         
@@ -34,43 +32,13 @@ jobs:
         run: echo ("GAME_VERSION=" + $env:GITHUB_REF.Replace('refs/tags/convert-', '')) >> $env:GITHUB_ENV
       - name: Get base output path
         run: if ("$env:GAME_VERSION".Contains("pts")) { echo ("OUTPUT_ADDITION=pts") >> $env:GITHUB_ENV } else { echo ("OUTPUT_ADDITION=live") >> $env:GITHUB_ENV }
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-      - name: Install Python dependencies
-        working-directory: gameparams
-        run: pip install -r requirements.txt
         
-      - name: Run gameparams live extract
-        if: "!contains(github.ref, 'pts')"
-        working-directory: gameparams
-        run: python GameParams2Json.py --path GameParams.data --filter
-      - name: Run gameparams pts extract
-        if: "contains(github.ref, 'pts')"
-        working-directory: gameparams
-        run: python GameParams2Json.py --path GameParams_pt.data --filter --pts
-        
-      - name: Run data converter
-        run: dotnet run -c Release --project DataConverter "gameparams\$env:OUTPUT_ADDITION\entities" "gameparams\out\$env:OUTPUT_ADDITION" "$env:GAME_VERSION"
-      - name: Create localization output directory
-        run: New-Item -Path "gameparams\out\$env:OUTPUT_ADDITION\" -Name "Localization" -ItemType "directory"
-        
-      - name: Run localization extraction (live server)
-        if: "!contains(github.ref, 'pts')"
-        run: python gameparams\localization\mo2json.py --filter "gameparams\out\$env:OUTPUT_ADDITION\TranslationNames.csv" --localizations gameparams\localization\texts --serial
-      - name: Run localization extraction (pts server)
-        if: "contains(github.ref, 'pts')"
-        run: python gameparams\localization\mo2json.py --filter "gameparams\out\$env:OUTPUT_ADDITION\TranslationNames.csv" --localizations gameparams\localization\texts-pts --serial
-        
-      - name: Copy localization output
-        run: Copy-Item -Path "gameparams\localization\output\*.json" -Destination "gameparams\out\$env:OUTPUT_ADDITION\Localization"
-      - name: Copy EN localization output (Temporary addition)
-        run: Copy-Item -Path "gameparams\localization\output\en.json" -Destination "gameparams\out\$env:OUTPUT_ADDITION\Localization\en-GB.json"
+      - name: Run gameparams extraction
+        run: Tools\RunExtraction.ps1 "$env:GAME_VERSION" "$env:OUTPUT_ADDITION"
       
       - name: Backup old files
         run: aws s3 mv s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION s3://wows-shipbuilder-data/old/pre-$env:GAME_VERSION-$env:OUTPUT_ADDITION --recursive
       - name: Upload files
-        run: aws s3 sync "gameparams\out\$env:OUTPUT_ADDITION" "s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION" --exclude "*.csv"
+        run: aws s3 sync "gameparams\out" "s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION" --exclude "*.csv"
       - name: Invalidate cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/api/$env:OUTPUT_ADDITION/*"

@@ -1,46 +1,79 @@
-﻿using DataConverter.Converters;
-using Newtonsoft.Json;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
+using DataConverter.Converters;
+using GameParamsExtractor.WGStructure;
+using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter
 {
     internal static class Program
     {
         private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
+        private const string BaseInputPath = "InputData/";
 
-        private static readonly HashSet<string> ReportedTypes = new();
+        private static readonly ConcurrentBag<string> ReportedTypes = new();
         private static readonly HttpClient Client = new();
-        private static string inputFolder = default!;
+
+        private static string serverType = default!;
         private static string outputFolder = default!;
         private static string versionName = string.Empty;
+        private static bool writeUnfilteredFiles = false;
+        private static bool writeFilteredFiles = false;
+        private static string debugFilesBasePath = default!;
 
-        public static readonly HashSet<string> TranslationNames = new();
+        public static readonly ConcurrentBag<string> TranslationNames = new();
 
+        /*
+         * Parameter list
+         * 1) Server type, with possible values: live, pts.
+         * 2) Output folder.
+         * 3) Version name.
+         * 4) Should write "raw" gameparams files.
+         * 5) Should write filtered gameparams files.
+         * 6) Output folder for the files of the previous two points.
+         *
+         * Possible combinations allowed are:
+         * 1) no parameters.
+         * 2) 2 parameters: server type and output folder.
+         * 3) 3 parameters: server type, output folder and version name.
+         * 4) 6 parameters: all the one in the previous list.
+         *
+         * The GameParams File needs to be called "GameParams_[serverType].data", with [serverType] being "live" or "pts"
+        */
         static void Main(string[] args)
         {
             switch (args.Length)
             {
                 case 0:
-                    Console.WriteLine("Insert Input folder");
-                    inputFolder = Console.ReadLine()!;
+                    Console.WriteLine("Insert server type. Allowed values: live or pts.");
+                    serverType = Console.ReadLine()!;
                     Console.WriteLine("Insert Output folder");
                     outputFolder = Console.ReadLine()!;
                     Console.WriteLine("Specify Game version name");
                     versionName = Console.ReadLine()!;
                     break;
                 case 2:
-                    inputFolder = args[0];
+                    serverType = args[0];
                     outputFolder = args[1];
                     break;
                 case 3:
                     versionName = args[2];
                     goto case 2;
+                case 6:
+                    writeUnfilteredFiles = bool.Parse(args[3]);
+                    writeFilteredFiles = bool.Parse(args[4]);
+                    debugFilesBasePath = args[5];
+                    goto case 3;
                 default:
                     throw new InvalidOperationException();
             }
@@ -50,25 +83,33 @@ namespace DataConverter
                 versionName = Environment.GetEnvironmentVariable("GAME_VERSION") ?? string.Empty;
             }
 
-            ConvertData();
-            Console.WriteLine("Conversion finished.");
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+            var gameparamsData = GameParamsUtility.ProcessGameParams(BaseInputPath + $"GameParams_{serverType}.data", writeUnfilteredFiles, writeFilteredFiles, debugFilesBasePath);
+
+            GC.Collect();
+
+            ConvertData(gameparamsData);
+            stopwatch.Stop();
+            Console.WriteLine($"Conversion finished. Total Time: {stopwatch.Elapsed}");
         }
 
-        private static void ConvertData()
+        private static void ConvertData(Dictionary<string, Dictionary<string, List<WGObject>>> gameparamsData)
         {
-            string[] categories = Directory.GetDirectories(inputFolder);
+            Console.WriteLine("Start gameparams conversion.");
             Dictionary<string, List<FileVersion>> versions = new();
             VersionInfo oldVersionInfo;
 
-            string versionType = outputFolder.Contains("live", StringComparison.InvariantCultureIgnoreCase) ? "live" : "pts";
             try
             {
+                Console.WriteLine("Trying to retrieve existing version info file.");
                 // Use GetAwaiter().GetResult() instead of Result to avoid receiving an aggregate exception.
-                using Stream stream = Client.GetStreamAsync($"{Host}/api/{versionType}/VersionInfo.json").GetAwaiter().GetResult();
+                using Stream stream = Client.GetStreamAsync($"{Host}/api/{serverType}/VersionInfo.json").GetAwaiter().GetResult();
                 using var streamReader = new StreamReader(stream);
                 using var jsonReader = new JsonTextReader(streamReader);
                 var jsonSerializer = new JsonSerializer();
                 oldVersionInfo = jsonSerializer.Deserialize<VersionInfo>(jsonReader) ?? throw new InvalidOperationException("Unable to deserialize version info object.");
+                Console.WriteLine("Version info file retrieved.");
             }
             catch (HttpRequestException)
             {
@@ -81,85 +122,90 @@ namespace DataConverter
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new ShouldSerializeContractResolver(),
             };
+
             var counter = 0;
-            foreach (string category in categories)
+            foreach ((string categoryName, var nationDictionary) in gameparamsData)
             {
-                IEnumerable<string> files = Directory.GetFiles(category).Where(file => file.Contains("filtered") && !file.Contains("Event"));
-                string categoryName = Path.GetFileName(category);
                 List<FileVersion> fileVersionList = new List<FileVersion>();
 
-                foreach (string file in files)
+                Parallel.ForEach(nationDictionary, pair =>
                 {
+                    var nation = pair.Key;
+                    var data = pair.Value;
+
+                    Console.WriteLine($"Converting category: {categoryName} - nation: {nation}");
                     counter++;
                     if (counter % 10 == 0)
                     {
-                        Console.WriteLine($"Processed {counter} files.");
+                        Console.WriteLine($"Processed {counter} dictionaries.");
                     }
 
-                    string wgList = File.ReadAllText(file);
-                    string fileName = Path.GetFileName(file).Replace("filtered_", string.Empty);
+                    string fileName = nation + ".json";
                     string ownStructure;
                     object dict;
 
-                    string outputPath = Path.Join(outputFolder, categoryName, fileName);
-                    new FileInfo(outputPath).Directory?.Create();
+                    string outputPath = Path.Join(outputFolder, categoryName);
+                    Directory.CreateDirectory(outputPath);
 
                     FileVersion? fileVersion;
                     switch (categoryName)
                     {
                         case "Ability":
-                            dict = ConsumableConverter.ConvertConsumable(wgList);
+                            dict = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Aircraft":
-                            dict = AircraftConverter.ConvertAircraft(wgList);
+                            dict = AircraftConverter.ConvertAircraft(data.Cast<WgAircraft>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
 
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Crew":
                             string skillsList = CaptainConverter.LoadEmbeddedSkillData();
-                            dict = CaptainConverter.ConvertCaptain(wgList, skillsList, fileName.Equals("Common.json"));
+                            dict = CaptainConverter.ConvertCaptain(data.Cast<WGCaptain>(), skillsList, nation.Equals("Common"));
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Modernization":
-                            dict = ModernizationConverter.ConvertModernization(wgList);
+                            dict = ModernizationConverter.ConvertModernization(data.Cast<WGModernization>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Projectile":
-                            dict = ProjectileConverter.ConvertProjectile(wgList);
+                            var filteredData = data.Where(x => x is WGProjectile).Cast<WGProjectile>();
+                            dict = ProjectileConverter.ConvertProjectile(filteredData);
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Ship":
-                            dict = ShipConverter.ConvertShips(wgList);
+                            Console.WriteLine($"Ships to process for {nation}: {data.Count}");
+                            dict = ShipConverter.ConvertShips(data.Cast<WgShip>().ToList(), nation);
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Unit":
-                            dict = ModuleConverter.ConvertModule(wgList);
+                            dict = ModuleConverter.ConvertModule(data.Cast<WGModule>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         case "Exterior":
-                            dict = ExteriorConverter.ConvertExterior(wgList);
+                            dict = ExteriorConverter.ConvertExterior(data.Cast<WgExterior>());
                             ownStructure = JsonConvert.SerializeObject(dict, serializerSettings);
-                            fileVersion = CheckVersionAndSave(ownStructure, category, fileName, oldVersionInfo, versionType);
+                            fileVersion = CheckVersionAndSave(ownStructure, categoryName, fileName, oldVersionInfo, serverType);
 
                             break;
                         default:
-                            if (ReportedTypes.Add(categoryName))
+                            if (!ReportedTypes.Contains(categoryName))
                             {
+                                ReportedTypes.Add(categoryName);
                                 Console.WriteLine("Type not found: " + categoryName);
                             }
 
@@ -172,7 +218,7 @@ namespace DataConverter
                     {
                         fileVersionList.Add(fileVersion);
                     }
-                }
+                });
 
                 if (fileVersionList.Any())
                 {
@@ -183,7 +229,7 @@ namespace DataConverter
 
             string summaryString = JsonConvert.SerializeObject(ShipConverter.ShipSummaries);
             new FileInfo(Path.Combine(outputFolder, "Summary", "Common.json")).Directory?.Create();
-            FileVersion summaryVersion = CheckVersionAndSave(summaryString, "Summary", "Common.json", oldVersionInfo, versionType);
+            FileVersion summaryVersion = CheckVersionAndSave(summaryString, "Summary", "Common.json", oldVersionInfo, serverType);
             versions.Add("Summary", new() { summaryVersion });
 
             var structureAssembly = Assembly.GetAssembly(typeof(Ship));
@@ -201,8 +247,17 @@ namespace DataConverter
             string versionInfoPath = Path.Join(outputFolder, "VersionInfo.json");
             File.WriteAllText(versionInfoPath, versionerString);
 
-            string translationNamesPath = Path.Join(outputFolder, "TranslationNames.csv");
-            File.WriteAllLines(translationNamesPath, TranslationNames.Distinct().Where(translation => !string.IsNullOrEmpty(translation)));
+            Console.ForegroundColor = ConsoleColor.Green;
+            var filteredTranslations = TranslationNames.Where(x => !string.IsNullOrWhiteSpace(x));
+
+            // TODO: allow selecting text directory for dev?
+            string localizationSourcePath = currentVersion.VersionType switch
+            {
+                GameVersionType.Live => "texts",
+                _ => "texts_pts",
+            };
+            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, localizationSourcePath), Path.Combine(outputFolder, "Localization"), filteredTranslations);
+            Console.ResetColor();
         }
 
         private static FileVersion CheckVersionAndSave(string newData, string category, string fileName, VersionInfo oldVersioner, string versionType)

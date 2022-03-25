@@ -1,4 +1,4 @@
-﻿using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,13 +9,10 @@ namespace DataConverter.Converters
     public static class ModuleConverter
     {
         //convert the list of modules from WG to our list of Modules
-        public static Dictionary<string, Module> ConvertModule(string jsonInput)
+        public static Dictionary<string, Module> ConvertModule(IEnumerable<WGModule> wgModules)
         {
             //create a List of our Objects
             Dictionary<string, Module> moduleList = new Dictionary<string, Module>();
-
-            //deserialize into an object
-            var wgModules = JsonConvert.DeserializeObject<List<WGModule>>(jsonInput) ?? throw new InvalidOperationException();
 
             //iterate over the entire list to convert everything
             foreach (var currentWgModule in wgModules)

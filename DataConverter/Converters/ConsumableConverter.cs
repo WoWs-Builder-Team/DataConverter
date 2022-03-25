@@ -1,31 +1,29 @@
-﻿using DataConverter.WGStructure;
+using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
 {
     public static class ConsumableConverter
     {
         //convert the list of consumables from WG to our list of Consumables
-        public static Dictionary<string, Consumable> ConvertConsumable(string jsonInput)
+        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable)
         {
             //create a List of our Objects
             Dictionary<string, Consumable> consumableList = new Dictionary<string, Consumable>();
 
-            //deserialize into an object
-            var wgConsumable = JsonConvert.DeserializeObject<List<WGConsumable>>(jsonInput) ?? throw new InvalidOperationException();
-
             //iterate over the entire list to convert everything
             foreach (var currentWgConsumable in wgConsumable)
             {
-                Program.TranslationNames.Add(currentWgConsumable.name);
+                Program.TranslationNames.Add(currentWgConsumable.Name);
                 //collecting consumable variants
-                var variant = currentWgConsumable.variants;
+                var variant = currentWgConsumable.Variants;
                 List<string> variantsKeys = new List<string>(variant.Keys);
-                Program.TranslationNames.UnionWith(variant.Values.Select(variantValue => variantValue.descIDs));
+                Program.TranslationNames.UnionWith(variant.Values.Select(variantValue => variantValue.DescIDs));
 
                 foreach (string currentVariantKey in variantsKeys)
                 {
@@ -36,15 +34,15 @@ namespace DataConverter.Converters
                     var consumable = new Consumable
                     {
                         //start mapping
-                        Id = currentWgConsumable.id,
-                        Index = currentWgConsumable.index,
-                        Name = currentWgConsumable.name,
-                        DescId = stats.descIDs,
-                        Group = stats.group,
-                        IconId = stats.iconIDs,
-                        NumConsumables = stats.numConsumables,
-                        ReloadTime = stats.reloadTime,
-                        WorkTime = stats.workTime,
+                        Id = currentWgConsumable.Id,
+                        Index = currentWgConsumable.Index,
+                        Name = currentWgConsumable.Name,
+                        DescId = stats.DescIDs,
+                        Group = stats.Group,
+                        IconId = stats.IconIDs,
+                        NumConsumables = stats.NumConsumables,
+                        ReloadTime = stats.ReloadTime,
+                        WorkTime = stats.WorkTime,
                         ConsumableVariantName = currentVariantKey,
                         Modifiers = ConvertModifiers(currentWgConsumable, stats),
                     };
@@ -62,18 +60,21 @@ namespace DataConverter.Converters
             return consumableList;
         }
 
-        private static Dictionary<string, float> ConvertModifiers(WGConsumable wgConsumable, Statistics consumableStats)
+        private static Dictionary<string, float> ConvertModifiers(WgConsumable wgConsumable, Statistics consumableStats)
         {
             var results = new Dictionary<string, float>();
             foreach ((string key, float modifier) in consumableStats.Modifiers ?? new Dictionary<string, float>())
             {
                 switch (key)
                 {
-                    case "boostCoeff" when wgConsumable.index.Equals("PCY022"):
+                    case "boostCoeff" when wgConsumable.Index.Equals("PCY022"):
                         results["artilleryReloadCoeff"] = modifier;
                         break;
-                    case "boostCoeff" when wgConsumable.index.Equals("PCY034"):
+                    case "boostCoeff" when wgConsumable.Index.Equals("PCY034"):
                         // Skip boost for plane consumable because it's invisible in UI anyway
+                        break;
+                    case "preparationTime":
+                        //Skip this modifier, it's value is always 0
                         break;
                     default:
                         results[key] = modifier;
