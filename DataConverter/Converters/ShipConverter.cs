@@ -39,6 +39,8 @@ namespace DataConverter.Converters
                 }
 
                 Program.TranslationNames.Add(wgShip.Index);
+                Program.ShipIndexes.Add(wgShip.Index);
+
                 var ship = new Ship
                 {
                     Id = wgShip.Id,

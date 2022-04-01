@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using DataConverter.Converters;
+using DataConverter.WgApi;
 using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
@@ -32,6 +33,8 @@ namespace DataConverter
         private static string debugFilesBasePath = default!;
 
         public static readonly ConcurrentBag<string> TranslationNames = new();
+
+        public static readonly ConcurrentBag<string> ShipIndexes = new();
 
         /*
          * Parameter list
@@ -92,6 +95,12 @@ namespace DataConverter
             ConvertData(gameparamsData);
             stopwatch.Stop();
             Console.WriteLine($"Conversion finished. Total Time: {stopwatch.Elapsed}");
+            Console.WriteLine("Downloading ship images");
+            stopwatch.Reset();
+            stopwatch.Start();
+            WgImageDownloader.DownloadImages(Client, ShipIndexes.ToList(), outputFolder + "/Images/");
+            stopwatch.Stop();
+            Console.WriteLine($"Downloading images finished: {stopwatch.Elapsed}");
         }
 
         private static void ConvertData(Dictionary<string, Dictionary<string, List<WGObject>>> gameparamsData)
