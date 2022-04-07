@@ -1,53 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace DataConverter.WgApi;
 
-public class WgApiResponse
-{
-    public string status { get; set; }
+public record WgApiResponse(string Status, Meta Meta, Dictionary<string, ShipImage> Data, Error Error);
 
-    public Meta meta { get; set; }
+public record Meta(int Count, [property: JsonPropertyName("page_total")] int PageTotal, int Total, int Limit, int Page);
 
-    public Dictionary<string, ShipImage> data { get; set; }
+public record ShipImage([property: JsonPropertyName("ship_id_str")] string ShipIdStr, WgImage Images);
 
-    public Error error { get; set; }
-}
+public record WgImage(string Large, string Small, string Medium);
 
-public class Meta
-{
-    public int count { get; set; }
-
-    public int page_total { get; set; }
-
-    public int total { get; set; }
-
-    public int limit { get; set; }
-
-    public int page { get; set; }
-}
-
-public class ShipImage
-{
-    public string ship_id_str { get; set; }
-
-    public WgImage images { get; set; }
-}
-
-public class WgImage
-{
-    public string large { get; set; }
-
-    public string small { get; set; }
-    public string medium { get; set; }
-}
-
-public class Error
-{
-    public string field { get; set; }
-
-    public string message { get; set; }
-
-    public int code { get; set; }
-
-    public string value { get; set; }
-}
+public record Error(string Field, string Message, int Code, string Value);

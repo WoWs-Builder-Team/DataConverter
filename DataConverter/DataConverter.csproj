@@ -8,99 +8,39 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="JsonSubTypes" Version="1.8.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="JsonSubTypes" Version="1.8.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.376">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\WoWsShipBuilder.DataStructures\WoWsShipBuilder.DataStructures.csproj" />
-        <ProjectReference Include="..\WowsShipBuilder.GameParamsExtractor\WowsShipBuilder.GameParamsExtractor.csproj" />
+        <ProjectReference Include="..\WoWsShipBuilder.DataStructures\WoWsShipBuilder.DataStructures.csproj"/>
+        <ProjectReference Include="..\WowsShipBuilder.GameParamsExtractor\WowsShipBuilder.GameParamsExtractor.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="JsonData\SKILLS_BY_TIER.json" />
-      <EmbeddedResource Include="JsonData\SKILLS_BY_TIER.json" />
-      <None Remove="JsonData\TurretPositionOverrides.json" />
-      <EmbeddedResource Include="JsonData\TurretPositionOverrides.json" />
-      <None Update="InputData\GameParams_pts.data">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Remove="JsonData\SKILLS_BY_TIER.json"/>
+        <EmbeddedResource Include="JsonData\SKILLS_BY_TIER.json"/>
+        <None Remove="JsonData\TurretPositionOverrides.json"/>
+        <EmbeddedResource Include="JsonData\TurretPositionOverrides.json"/>
+        <None Update="InputData\GameParams_pts.data">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="..\stylecop.json">
-        <Link>stylecop.json</Link>
-      </AdditionalFiles>
+        <AdditionalFiles Include="..\stylecop.json">
+            <Link>stylecop.json</Link>
+        </AdditionalFiles>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="InputData\GameParams_live.data">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\cs\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\de\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\en\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\es\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\es_mx\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\fr\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\it\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\ja\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\ko\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\nl\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\pl\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\pt\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\pt_br\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\ru\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\th\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\tr\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\uk\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\zh\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\zh_sg\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\zh_tw\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="InputData\**\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>
