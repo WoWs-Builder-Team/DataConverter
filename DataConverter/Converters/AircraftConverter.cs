@@ -14,14 +14,14 @@ namespace DataConverter.Converters
         public static Dictionary<string, Aircraft> ConvertAircraft(IEnumerable<WgAircraft> wgAircraft)
         {
             //create a List of our Objects
-            Dictionary<string, Aircraft> airList = new Dictionary<string, Aircraft>();
+            Dictionary<string, Aircraft> airList = new();
 
             //iterate over the entire list to convert everything
             foreach (var currentWgAir in wgAircraft)
             {
                 Program.TranslationNames.Add(currentWgAir.Name);
                 //create our object type
-                Aircraft air = new Aircraft
+                Aircraft air = new()
                 {
                     //start mapping
                     Id = currentWgAir.Id,
@@ -52,9 +52,14 @@ namespace DataConverter.Converters
                     PreparationAccuracyDecreaseRate = currentWgAir.PreparationAccuracyDecreaseRate,
                     PreparationAccuracyIncreaseRate = currentWgAir.PreparationAccuracyIncreaseRate,
                     PreparationTime = currentWgAir.PreparationTime,
+                    ConcealmentFromShips = currentWgAir.VisibilityFactor,
+                    ConcealmentFromPlanes = currentWgAir.VisibilityFactorByPlane,
+                    SpottingOnShips = currentWgAir.VisionToShip,
+                    SpottingOnPlanes = currentWgAir.VisionToPlane,
+                    SpottingOnTorps = currentWgAir.VisionToTorpedo,
                 };
 
-                PlaneAttackData planeAttackData = new PlaneAttackData
+                PlaneAttackData planeAttackData = new()
                 {
                     //start mapping
                     AttackCooldown = currentWgAir.AttackCooldown,
@@ -66,7 +71,7 @@ namespace DataConverter.Converters
                 };
                 air.AttackData = planeAttackData;
 
-                JatoData jatodata = new JatoData
+                JatoData jatodata = new()
                 {
                     //start mapping
                     JatoDuration = currentWgAir.JatoDuration,
@@ -84,7 +89,7 @@ namespace DataConverter.Converters
                 }
                 else
                 {
-                    var subtypes = currentWgAir.PlaneSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
+                    List<string> subtypes = currentWgAir.PlaneSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
                     isAirSupport = subtypes.Contains("airsupport");
                     isConsumable = subtypes.Contains("consumable");
                 }

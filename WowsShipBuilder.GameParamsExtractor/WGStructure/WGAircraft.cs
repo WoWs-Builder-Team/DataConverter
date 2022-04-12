@@ -23,6 +23,16 @@ public class WgAircraft : WGObject
 
     public string BombName { get; set; } = string.Empty;
 
+    public double VisibilityFactor { get; set; }
+
+    public double VisibilityFactorByPlane { get; set; }
+
+    public double VisionToPlane { get; set; }
+
+    public double VisionToShip { get; set; }
+
+    public double VisionToTorpedo { get; set; }
+
     public double FlightHeight { get; set; }
 
     public double FlightRadius { get; set; }
