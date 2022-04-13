@@ -38,67 +38,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="InputData\GameParams_live.data">
+      <None Update="InputData\*.data">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="InputData\texts\cs\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\de\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\en\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\es\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\es_mx\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\fr\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\it\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\ja\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\ko\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\nl\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\pl\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\pt\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\pt_br\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\ru\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\th\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\tr\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\uk\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\zh\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\zh_sg\LC_MESSAGES\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\texts\zh_tw\LC_MESSAGES\global.mo">
+      <None Update="InputData\**\global.mo">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
