@@ -14,6 +14,7 @@ namespace WoWsShipBuilder.DataStructures
         public float ReloadTime { get; set; }
         public float WorkTime { get; set; }
         public string ConsumableVariantName { get; set; }
+        public string PlaneName { get; set; }
         public Dictionary<string, float> Modifiers { get; set; }
     }
 }

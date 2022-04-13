@@ -30,6 +30,8 @@ public class Statistics
 
     public float WorkTime { get; set; }
 
+    public string FightersName { get; set; } = string.Empty;
+
     [JsonExtensionData]
     public Dictionary<string, JToken> RawModifiers { get; set; } = new();
 
