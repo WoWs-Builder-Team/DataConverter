@@ -44,6 +44,7 @@ namespace DataConverter.Converters
                         ReloadTime = stats.ReloadTime,
                         WorkTime = stats.WorkTime,
                         ConsumableVariantName = currentVariantKey,
+                        PlaneName = stats.FightersName,
                         Modifiers = ConvertModifiers(currentWgConsumable, stats),
                     };
                     if (consumable.Modifiers?.Keys != null)
