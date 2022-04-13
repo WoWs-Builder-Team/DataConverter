@@ -21,7 +21,7 @@ public static class GameParamsUtility
         { "DCharge", "depthCharges" },
     };
 
-    private static readonly string[] RetardedModulesNames = { "AirDefenseDefault" };
+    private static readonly string[] RetardedModulesNames = { "AirDefenseDefault", "EngineDefault", "ArtilleryDefault", "HullDefault", "FireControlDefault", "TorpedoesDefault", "ATBADefault", "AirArmamentDefault"};
 
     public static Dictionary<string, Dictionary<string, List<WGObject>>> ProcessGameParams(string gameParamsPath, bool writeUnfilteredFiles = false, bool writeFilteredFiles = false, string outputPath = default!)
     {
