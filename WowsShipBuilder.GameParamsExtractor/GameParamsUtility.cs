@@ -21,8 +21,6 @@ public static class GameParamsUtility
         { "DCharge", "depthCharges" },
     };
 
-    private static readonly string[] RetardedModulesNames = { "AirDefenseDefault", "EngineDefault", "ArtilleryDefault", "HullDefault", "FireControlDefault", "TorpedoesDefault", "ATBADefault", "AirArmamentDefault"};
-
     public static Dictionary<string, Dictionary<string, List<WGObject>>> ProcessGameParams(string gameParamsPath, bool writeUnfilteredFiles = false, bool writeFilteredFiles = false, string outputPath = default!)
     {
         var stopwatch = new Stopwatch();
@@ -260,8 +258,6 @@ public static class GameParamsUtility
             var variants = consumableData.Where(dataPair => dataPair.Value is PythonDictionary)
                 .ToDictionary(x => x.Key, x => x.Value);
 
-            var sortedVariants = new SortedDictionary<string, object>(variants);
-
             consumableData.Add("variants", variants);
 
             foreach (var keyToRemove in variants.Keys)
@@ -293,11 +289,20 @@ public static class GameParamsUtility
 
             var keysToMove = new Dictionary<string, object>();
 
+            var upgradeInfo = shipData["ShipUpgradeInfo"] as PythonDictionary ?? throw new InvalidOperationException();
+            var upgradeDetailEntries = upgradeInfo.Values.Where(value => value is PythonDictionary).Cast<PythonDictionary>().ToList();
+            List<string> components = upgradeDetailEntries
+                .Select(detailEntry => ConvertDataValue(detailEntry["components"]))
+                .SelectMany(componentDict => componentDict.Values)
+                .Cast<ArrayList>()
+                .SelectMany(x => x.Cast<string>())
+                .Distinct().ToList();
+
             //WARNING: this works on the assumptions that only modules contains "_" as character. It does seems to be always the case, but you never know with WG.
             // A more solid way could be by checking some of the inner dictionaries and such, but it would means checking all the stats for every key.
             // UPDATE: WG is obviously dumb, so for now, there is RetardedModulesNames where to put the naming exceptions wg used in the past. Let's hope they decided on a standard naming convention now.
-            var modules = shipData.Where(dataPair => dataPair.Key.Contains("_", StringComparison.OrdinalIgnoreCase) || RetardedModulesNames.Contains(dataPair.Key))
-                .ToDictionary(x => x.Key, x => x.Value);
+            // UPDATE2: WG does use even more naming exceptions so now modules are extracted directly from the ship upgrade info property.
+            var modules = shipData.Where(dataPair => components.Contains(dataPair.Key)).ToDictionary(x => x.Key, x => x.Value);
             if (modules.Count > 0)
             {
                 var aggregatedModules = AggregateGuns(modules);
