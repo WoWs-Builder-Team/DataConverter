@@ -31,7 +31,12 @@ namespace DataConverter.Converters
             var skillsTiers = JsonConvert.DeserializeObject<SkillsTiers>(skillsJsonInput) ?? throw new InvalidOperationException();
 
             bool addedDefault = false;
+
+            //order the list for safety during common default captain choice
+            wgCaptain = wgCaptain.ToList().OrderBy(x => x.index);
+
             //iterate over the entire list to convert everything
+
             foreach (var currentWgCaptain in wgCaptain)
             {
                 var tags = currentWgCaptain.CrewPersonality.tags;
