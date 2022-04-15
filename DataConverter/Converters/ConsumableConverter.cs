@@ -75,6 +75,7 @@ namespace DataConverter.Converters
                         // Skip boost for plane consumable because it's invisible in UI anyway
                         break;
                     case "preparationTime":
+                    case "regenerationHPSpeedUnits":
                         //Skip this modifier, it's value is always 0
                         break;
                     default:
