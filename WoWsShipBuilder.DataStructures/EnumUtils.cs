@@ -112,9 +112,9 @@ namespace WoWsShipBuilder.DataStructures
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TorpedoType
     {
-        Normal,
+        Standard,
         DeepWater,
-        Homing,
+        Magnetic,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
