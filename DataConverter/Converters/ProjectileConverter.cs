@@ -1,7 +1,7 @@
 using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter.Converters
@@ -170,16 +170,6 @@ namespace DataConverter.Converters
                         //cast WGProjectile object into a WGTorpedo object
                         WGTorpedo currentWgTorpedo = (WGTorpedo)currentWgProjectile;
 
-                        //change WGTorpedo ammoType to our TorpedoType
-                        if (currentWgTorpedo.ammoType.Equals("torpedo_deepwater"))
-                        {
-                            torpedo.TorpedoType = TorpedoType.DeepWater;
-                        }
-                        else
-                        {
-                            torpedo.TorpedoType = TorpedoType.Normal;
-                        }
-
                         torpedo.Damage = (currentWgTorpedo.alphaDamage / 3) + currentWgTorpedo.damage;
                         torpedo.SpottingRange = currentWgTorpedo.visibilityFactor;
                         torpedo.ArmingTime = currentWgTorpedo.armingTime;
@@ -189,14 +179,18 @@ namespace DataConverter.Converters
                         torpedo.FloodChance = currentWgTorpedo.uwCritical;
                         torpedo.SplashCoeff = currentWgTorpedo.splashArmorCoeff;
                         torpedo.ExplosionRadius = currentWgTorpedo.splashCubeSize * 30 / 2;
+                        torpedo.IgnoreClasses = currentWgTorpedo.ignoreClasses.Select(Enum.Parse<ShipClass>).ToList();
 
-                        List<ShipClass> ignoreClasses = new List<ShipClass>();
-                        foreach (var shipClass in currentWgTorpedo.ignoreClasses)
+                        //change WGTorpedo ammoType to our TorpedoType
+                        torpedo.TorpedoType = TorpedoType.Standard;
+                        if (currentWgTorpedo.ammoType.Equals("torpedo_deepwater", StringComparison.OrdinalIgnoreCase))
                         {
-                            ignoreClasses.Add(Enum.Parse<ShipClass>(shipClass));
+                            torpedo.TorpedoType = TorpedoType.DeepWater;
                         }
-
-                        torpedo.IgnoreClasses = ignoreClasses;
+                        if (torpedo.Name.Contains("_Sub", StringComparison.OrdinalIgnoreCase) && !torpedo.Name.Contains("Magnetic", StringComparison.OrdinalIgnoreCase))
+                        {
+                            torpedo.TorpedoType = TorpedoType.Magnetic;
+                        }
 
                         projectileList.Add(torpedo.Name, torpedo);
                         break;
