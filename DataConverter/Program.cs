@@ -280,15 +280,17 @@ namespace DataConverter
 
             // Write data always. Even if the file was not changed, the existing remote data will be removed before publishing so the file needs to be recreated.
             File.WriteAllText(outputPath, newData);
+            using var fs = File.OpenRead(outputPath);
+            string checksum = FileVersion.ComputeChecksum(fs);
 
             if (!oldData.Equals(newData))
             {
-                fileVersion = new(fileName, oldVersioner.CurrentVersionCode + 1);
+                fileVersion = new(fileName, oldVersioner.CurrentVersionCode + 1, checksum);
             }
             else
             {
                 fileVersion = oldCategoryVersions.Find(v => v.FileName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)) ??
-                              new FileVersion(fileName, 1);
+                              new FileVersion(fileName, 1, checksum);
             }
 
             return fileVersion;

@@ -1,6 +1,8 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace WoWsShipBuilder.DataStructures
 {
@@ -17,7 +19,14 @@ namespace WoWsShipBuilder.DataStructures
         public Dictionary<Version, ReplayVersionDetails> ReplayVersionDetails { get; init; } = new();
     }
 
-    public sealed record FileVersion(string FileName, int Version);
+    public sealed record FileVersion(string FileName, int Version, string Checksum)
+    {
+        public static string ComputeChecksum(Stream stream)
+        {
+            using var sha256 = SHA256.Create();
+            return BitConverter.ToString(sha256.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
+        }
+    }
 
     public sealed record GameVersion(Version MainVersion, GameVersionType VersionType, int DataIteration, string? VersionSuffix = null) : IComparable<GameVersion>
     {
