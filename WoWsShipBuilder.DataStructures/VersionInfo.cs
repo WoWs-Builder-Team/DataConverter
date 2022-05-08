@@ -19,7 +19,7 @@ namespace WoWsShipBuilder.DataStructures
         public Dictionary<Version, ReplayVersionDetails> ReplayVersionDetails { get; init; } = new();
     }
 
-    public sealed record FileVersion(string FileName, int Version, string Checksum)
+    public sealed record FileVersion(string FileName, int Version, string Checksum = "")
     {
         public static string ComputeChecksum(Stream stream)
         {

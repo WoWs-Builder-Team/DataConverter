@@ -103,6 +103,7 @@ namespace DataConverter
             try
             {
                 Console.WriteLine("Trying to retrieve existing version info file.");
+
                 // Use GetAwaiter().GetResult() instead of Result to avoid receiving an aggregate exception.
                 using Stream stream = Client.GetStreamAsync($"{Host}/api/{serverType}/VersionInfo.json").GetAwaiter().GetResult();
                 using var streamReader = new StreamReader(stream);
@@ -289,8 +290,8 @@ namespace DataConverter
             }
             else
             {
-                fileVersion = oldCategoryVersions.Find(v => v.FileName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)) ??
-                              new FileVersion(fileName, 1, checksum);
+                var oldFileVersion = oldCategoryVersions.Find(v => v.FileName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase));
+                fileVersion = oldFileVersion != null ? oldFileVersion with { Checksum = checksum } : new(fileName, 1, checksum);
             }
 
             return fileVersion;
