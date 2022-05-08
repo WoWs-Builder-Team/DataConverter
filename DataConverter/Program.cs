@@ -103,6 +103,7 @@ namespace DataConverter
             try
             {
                 Console.WriteLine("Trying to retrieve existing version info file.");
+
                 // Use GetAwaiter().GetResult() instead of Result to avoid receiving an aggregate exception.
                 using Stream stream = Client.GetStreamAsync($"{Host}/api/{serverType}/VersionInfo.json").GetAwaiter().GetResult();
                 using var streamReader = new StreamReader(stream);
@@ -280,15 +281,17 @@ namespace DataConverter
 
             // Write data always. Even if the file was not changed, the existing remote data will be removed before publishing so the file needs to be recreated.
             File.WriteAllText(outputPath, newData);
+            using var fs = File.OpenRead(outputPath);
+            string checksum = FileVersion.ComputeChecksum(fs);
 
             if (!oldData.Equals(newData))
             {
-                fileVersion = new(fileName, oldVersioner.CurrentVersionCode + 1);
+                fileVersion = new(fileName, oldVersioner.CurrentVersionCode + 1, checksum);
             }
             else
             {
-                fileVersion = oldCategoryVersions.Find(v => v.FileName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)) ??
-                              new FileVersion(fileName, 1);
+                var oldFileVersion = oldCategoryVersions.Find(v => v.FileName.Equals(fileName, StringComparison.InvariantCultureIgnoreCase));
+                fileVersion = oldFileVersion != null ? oldFileVersion with { Checksum = checksum } : new(fileName, 1, checksum);
             }
 
             return fileVersion;
