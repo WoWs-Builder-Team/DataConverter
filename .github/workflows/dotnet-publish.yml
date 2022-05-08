@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Build solution and run tests
 
     steps:
@@ -30,7 +30,7 @@ jobs:
         run: dotnet test --no-build -c Release --verbosity normal
   
   publish-nuget:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Build and publish NuGet package
     needs: build
 
@@ -43,8 +43,9 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_TOKEN}}
       - name: Get and store tag version name
+        shell: pwsh
         run: echo ("CURRENT_TAG=" + $env:GITHUB_REF.Replace('refs/tags/data-', '')) >> $env:GITHUB_ENV
       - name: Rebuild nuget package
         run: dotnet build WoWsShipBuilder.DataStructures -c Release
       - name: Publish nuget package
-        run: dotnet nuget push "WoWsShipBuilder.DataStructures\bin\Release\*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }}
+        run: dotnet nuget push "WoWsShipBuilder.DataStructures/bin/Release/*.nupkg" -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }}
