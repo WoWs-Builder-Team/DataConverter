@@ -40,7 +40,7 @@ namespace GameParamsExtractor.WGStructure
         public float distTile { get; set; }
         public float splashArmorCoeff { get; set; }
         public float splashCubeSize { get; set; }
-        public string[] ignoreClasses { get; set; }      
+        public string[] ignoreClasses { get; set; }
         public bool isBomb { get; set; }
     }
 
@@ -96,7 +96,7 @@ namespace GameParamsExtractor.WGStructure
         public float uwCritical { get; set; }
         public float timer { get; set; }
         public float speed { get; set; }
-        public float splashCubeSize { get; set; }
+        public float depthSplashRadius  { get; set; }
     }
 
     public class WGRocket : WGProjectile

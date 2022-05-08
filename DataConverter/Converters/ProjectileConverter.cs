@@ -219,7 +219,7 @@ namespace DataConverter.Converters
                         depthCharge.FloodChance = currentWgDepthCharge.uwCritical;
                         depthCharge.DetonationTimer = currentWgDepthCharge.timer;
                         depthCharge.SinkingSpeed = currentWgDepthCharge.speed;
-                        depthCharge.ExplosionRadius = currentWgDepthCharge.splashCubeSize * 30 / 2;
+                        depthCharge.ExplosionRadius = currentWgDepthCharge.depthSplashRadius * 30;
 
                         projectileList.Add(depthCharge.Name, depthCharge);
                         break;
