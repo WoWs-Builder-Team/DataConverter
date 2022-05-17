@@ -85,7 +85,8 @@ namespace DataConverter
 
             Stopwatch stopwatch = new();
             stopwatch.Start();
-            var gameparamsData = GameParamsUtility.ProcessGameParams(BaseInputPath + $"GameParams_{serverType}.data", writeUnfilteredFiles, writeFilteredFiles, debugFilesBasePath);
+            string paramsFile = serverType.Contains("dev") ? "GameParams_live.data" : $"GameParams_{serverType}.data";
+            var gameparamsData = GameParamsUtility.ProcessGameParams(BaseInputPath + paramsFile, writeUnfilteredFiles, writeFilteredFiles, debugFilesBasePath);
 
             GC.Collect();
 
