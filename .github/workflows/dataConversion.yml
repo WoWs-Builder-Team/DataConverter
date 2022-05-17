@@ -37,8 +37,10 @@ jobs:
         if: "! contains(github.ref, 'pts')"
         run: echo "OUTPUT_ADDITION=live" >> $GITHUB_ENV
         
+      - name: Define gameparams output
+        run: echo "OUTPUT_PATH=$(pwd)/gameparams/out" >> $GITHUB_ENV
       - name: Run gameparams extraction
-        run: dotnet run -c Release -- $OUTPUT_ADDITION "$(pwd)/gameparams/out" $GAME_VERSION
+        run: dotnet run -c Release -- $OUTPUT_ADDITION $OUTPUT_PATH $GAME_VERSION
         working-directory: DataConverter
       
       - name: Backup old files
