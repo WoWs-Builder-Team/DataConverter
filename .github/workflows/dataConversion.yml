@@ -38,8 +38,8 @@ jobs:
         run: echo "OUTPUT_ADDITION=live" >> $GITHUB_ENV
         
       - name: Run gameparams extraction
-        run: Tools\RunExtraction.ps1 "$env:GAME_VERSION" "$env:OUTPUT_ADDITION"
-        shell: pwsh
+        run: dotnet run -c Release -- $OUTPUT_ADDITION "$(pwd)/gameparams/out" $GAME_VERSION
+        working-directory: DataConverter
       
       - name: Backup old files
         run: aws s3 mv s3://wows-shipbuilder-data/api/$env:OUTPUT_ADDITION s3://wows-shipbuilder-data/old/pre-$GAME_VERSION-$OUTPUT_ADDITION --recursive
