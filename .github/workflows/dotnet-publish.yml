@@ -44,7 +44,7 @@ jobs:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_TOKEN}}
       - name: Get and store tag version name
         shell: pwsh
-        run: echo ("CURRENT_TAG=" + $env:GITHUB_REF.Replace('refs/tags/data-', '')) >> $env:GITHUB_ENV
+        run: echo "CURRENT_TAG=${GITHUB_REF#refs/*/data-}" >> $GITHUB_ENV
       - name: Rebuild nuget package
         run: dotnet build WoWsShipBuilder.DataStructures -c Release
       - name: Publish nuget package
