@@ -34,7 +34,7 @@ jobs:
         if: contains(github.ref, 'pts')
         run: echo "OUTPUT_ADDITION=pts" >> $GITHUB_ENV
       - name: Set live output path
-        if: !contains(github.ref, 'pts')
+        if: ! contains(github.ref, 'pts')
         run: echo "OUTPUT_ADDITION=live" >> $GITHUB_ENV
         
       - name: Run gameparams extraction
