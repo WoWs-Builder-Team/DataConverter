@@ -36,6 +36,8 @@ namespace WoWsShipBuilder.DataStructures
         public float FireChance { get; set; }
         public float SplashCoeff { get; set; }
         public float ExplosionRadius { get; set; }
+        public float DepthSplashRadius { get; set; }
+        public float SplashDamageCoefficient { get; set; }
     }
 
     public class Bomb : Projectile
@@ -55,6 +57,8 @@ namespace WoWsShipBuilder.DataStructures
         public float FireChance { get; set; }
         public float SplashCoeff { get; set; }
         public float ExplosionRadius { get; set; }
+        public float DepthSplashRadius { get; set; }
+        public float SplashDamageCoefficient { get; set; }
     }
 
     public class Rocket : Projectile
@@ -74,6 +78,8 @@ namespace WoWsShipBuilder.DataStructures
         public float FireChance { get; set; }
         public float SplashCoeff { get; set; }
         public float ExplosionRadius { get; set; }
+        public float DepthSplashRadius { get; set; }
+        public float SplashDamageCoefficient { get; set; }
     }
 
     public class DepthCharge : Projectile
@@ -84,6 +90,9 @@ namespace WoWsShipBuilder.DataStructures
         public float DetonationTimer { get; set; }
         public float SinkingSpeed { get; set; }
         public float ExplosionRadius { get; set; }
+        public float SinkingSpeedRng { get; set; }
+        public float DetonationTimerRng { get; set; }
+        public Dictionary<float, List<float>> PointsOfDamage { get; set; }
     }
 
     public class Torpedo : Projectile

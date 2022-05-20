@@ -92,7 +92,7 @@ namespace DataConverter.Converters
                                 shell.RicochetAngle = currentWgShell.bulletRicochetAt;
                                 shell.AlwaysRicochetAngle = currentWgShell.bulletAlwaysRicochetAt;
 
-                                //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
+                                //AP FireChance = 0 => not relevant => shell.FireChance is set to default value
                                 shell.Krupp = currentWgShell.bulletKrupp;
                             }
                         }
@@ -104,6 +104,8 @@ namespace DataConverter.Converters
                         shell.Caliber = currentWgShell.bulletDiametr;
                         shell.Mass = currentWgShell.bulletMass;
                         shell.MuzzleVelocity = currentWgShell.bulletSpeed;
+                        shell.DepthSplashRadius = currentWgShell.depthSplashRadius * 30;
+                        shell.SplashDamageCoefficient = currentWgShell.pointsOfDamage.First().Last();
 
                         projectileList.Add(shell.Name, shell);
                         break;
@@ -142,7 +144,7 @@ namespace DataConverter.Converters
                             bomb.RicochetAngle = currentWgBomb.bulletRicochetAt;
                             bomb.AlwaysRicochetAngle = currentWgBomb.bulletAlwayRiccochetAt;
 
-                            //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
+                            //AP FireChance = 0 => not relevant => shell.FireChance is set to default value
                             bomb.Krupp = currentWgBomb.bulletKrupp;
                         }
 
@@ -153,6 +155,8 @@ namespace DataConverter.Converters
                         bomb.Caliber = currentWgBomb.bulletDiametr;
                         bomb.Mass = currentWgBomb.bulletMass;
                         bomb.MuzzleVelocity = currentWgBomb.bulletSpeed;
+                        bomb.DepthSplashRadius = currentWgBomb.depthSplashRadius * 30;
+                        bomb.SplashDamageCoefficient = currentWgBomb.pointsOfDamage.First().Last();
 
                         projectileList.Add(bomb.Name, bomb);
                         break;
@@ -212,8 +216,29 @@ namespace DataConverter.Converters
                         depthCharge.FireChance = currentWgDepthCharge.burnProb;
                         depthCharge.FloodChance = currentWgDepthCharge.uwCritical;
                         depthCharge.DetonationTimer = currentWgDepthCharge.timer;
+                        depthCharge.DetonationTimerRng = currentWgDepthCharge.timerDeltaAbsolute;
                         depthCharge.SinkingSpeed = currentWgDepthCharge.speed;
+                        depthCharge.SinkingSpeedRng = currentWgDepthCharge.speedDeltaRelative;
                         depthCharge.ExplosionRadius = currentWgDepthCharge.depthSplashRadius * 30;
+
+                        var pointsOfDamage = new Dictionary<float, List<float>>();
+                        foreach (float[] data in currentWgDepthCharge.pointsOfDamage.Reverse())
+                        {
+                            float range = data[0];
+                            float dmgCoeff = data[1];
+                            if (pointsOfDamage.ContainsKey(dmgCoeff))
+                            {
+                                pointsOfDamage[dmgCoeff].Add(range);
+                                pointsOfDamage[dmgCoeff].Sort();
+                                pointsOfDamage[dmgCoeff].Reverse();
+                            }
+                            else
+                            {
+                                pointsOfDamage.Add(dmgCoeff, new List<float> { range });
+                            }
+                        }
+
+                        depthCharge.PointsOfDamage = pointsOfDamage;
 
                         projectileList.Add(depthCharge.Name, depthCharge);
                         break;
@@ -251,7 +276,7 @@ namespace DataConverter.Converters
                             rocket.AlwaysRicochetAngle = currentWgRocket.bulletAlwayRiccochetAt;
                             rocket.RicochetAngle = currentWgRocket.bulletRicochetAt;
 
-                            //AP FirceChance = 0 => not relevant => shell.FireChance is set to default value
+                            //AP FireChance = 0 => not relevant => shell.FireChance is set to default value
                             rocket.Krupp = currentWgRocket.bulletKrupp;
                         }
 
@@ -262,6 +287,8 @@ namespace DataConverter.Converters
                         rocket.Caliber = currentWgRocket.bulletDiametr;
                         rocket.Mass = currentWgRocket.bulletMass;
                         rocket.MuzzleVelocity = currentWgRocket.bulletSpeed;
+                        rocket.DepthSplashRadius = currentWgRocket.depthSplashRadius * 30;
+                        rocket.SplashDamageCoefficient = currentWgRocket.pointsOfDamage.First().Last();
 
                         projectileList.Add(rocket.Name, rocket);
                         break;

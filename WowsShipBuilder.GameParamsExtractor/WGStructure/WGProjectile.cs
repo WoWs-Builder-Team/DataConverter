@@ -42,6 +42,8 @@ namespace GameParamsExtractor.WGStructure
         public float splashCubeSize { get; set; }
         public string[] ignoreClasses { get; set; }
         public bool isBomb { get; set; }
+        public float depthSplashRadius { get; set; }
+        public float[][] pointsOfDamage { get; set; }
     }
 
     public class WGTorpedo : WGProjectile
@@ -85,6 +87,8 @@ namespace GameParamsExtractor.WGStructure
         public bool isBomb { get; set; }
         public float splashArmorCoeff { get; set; }
         public float splashCubeSize { get; set; }
+        public float depthSplashRadius { get; set; }
+        public float[][] pointsOfDamage { get; set; }
     }
 
     public class WGDepthCharge : WGProjectile
@@ -97,6 +101,9 @@ namespace GameParamsExtractor.WGStructure
         public float timer { get; set; }
         public float speed { get; set; }
         public float depthSplashRadius  { get; set; }
+        public float speedDeltaRelative  { get; set; }
+        public float timerDeltaAbsolute  { get; set; }
+        public float[][] pointsOfDamage { get; set; }
     }
 
     public class WGRocket : WGProjectile
@@ -122,6 +129,8 @@ namespace GameParamsExtractor.WGStructure
         public bool isBomb { get; set; }
         public float splashArmorCoeff { get; set; }
         public float splashCubeSize { get; set; }
+        public float depthSplashRadius { get; set; }
+        public float[][] pointsOfDamage { get; set; }
     }
 
 }
