@@ -184,4 +184,16 @@ namespace WoWsShipBuilder.DataStructures
         Pts,
         Dev,
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum ShipHitLocation
+    {
+        Bow,
+        Stern,
+        AuxiliaryRooms,
+        Casemate,
+        Citadel,
+        Superstructure,
+        Hull,
+    }
 }

@@ -456,6 +456,21 @@ namespace GameParamsExtractor.WGStructure
         public int TurningRadius { get; set; }
 
         public decimal[] Size { get; set; } = Array.Empty<decimal>();
+
+        public WgHitLocation Cas { get; set; } = new();
+
+        public WgHitLocation Bow { get; set; } = new();
+
+        public WgHitLocation Ss { get; set; } = new();
+
+        public WgHitLocation St { get; set; } = new();
+
+        public WgHitLocation Ssc { get; set; } = new();
+
+        public WgHitLocation Hull { get; set; } = new();
+
+        public WgHitLocation Cit { get; set; } = new();
+
     }
 
     #endregion
@@ -465,6 +480,17 @@ namespace GameParamsExtractor.WGStructure
     public class SteeringGear
     {
         public decimal ArmorCoeff { get; set; }
+    }
+
+    #endregion
+
+    #region Hit Location
+
+    public class WgHitLocation
+    {
+        public string HlType { get; set; } = string.Empty;
+        public float RegeneratedHpPart { get; set; }
+        public int MaxHp { get; set; }
     }
 
     #endregion

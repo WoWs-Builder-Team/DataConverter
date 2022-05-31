@@ -354,6 +354,94 @@ namespace DataConverter.Converters
                     TurningRadius = wgHull.TurningRadius,
                 };
 
+                //Process hit locations
+                List<HitLocation> hitLocations = new();
+                if (!wgHull.Cas.HlType.Equals(string.Empty))
+                {
+                    HitLocation hl = new()
+                    {
+                        Name = ShipHitLocation.Casemate,
+                        Type = wgHull.Cas.HlType,
+                        RepairableDamage = wgHull.Cas.RegeneratedHpPart,
+                        Hp = wgHull.Cas.MaxHp,
+                    };
+                    hitLocations.Add(hl);
+                }
+
+                if (!wgHull.Bow.HlType.Equals(string.Empty))
+                {
+                    HitLocation hl = new()
+                    {
+                        Name = ShipHitLocation.Bow,
+                        Type = wgHull.Bow.HlType,
+                        RepairableDamage = wgHull.Bow.RegeneratedHpPart,
+                        Hp = wgHull.Bow.MaxHp,
+                    };
+                    hitLocations.Add(hl);
+                }
+
+                if (!wgHull.Ss.HlType.Equals(string.Empty))
+                {
+                    HitLocation hl = new()
+                    {
+                        Name = ShipHitLocation.Superstructure,
+                        Type = wgHull.Ss.HlType,
+                        RepairableDamage = wgHull.Ss.RegeneratedHpPart,
+                        Hp = wgHull.Ss.MaxHp,
+                    };
+                    hitLocations.Add(hl);
+                }
+
+                if (!wgHull.St.HlType.Equals(string.Empty))
+                {
+                    HitLocation hl = new()
+                    {
+                        Name = ShipHitLocation.Stern,
+                        Type = wgHull.St.HlType,
+                        RepairableDamage = wgHull.St.RegeneratedHpPart,
+                        Hp = wgHull.St.MaxHp,
+                    };
+                    hitLocations.Add(hl);
+                }
+
+                if (!wgHull.Ssc.HlType.Equals(string.Empty))
+                {
+                    HitLocation hl = new()
+                    {
+                        Name = ShipHitLocation.AuxiliaryRooms,
+                        Type = wgHull.Ssc.HlType,
+                        RepairableDamage = wgHull.Ssc.RegeneratedHpPart,
+                        Hp = wgHull.Ssc.MaxHp,
+                    };
+                    hitLocations.Add(hl);
+                }
+
+                if (!wgHull.Hull.HlType.Equals(string.Empty))
+                {
+                    HitLocation hl = new()
+                    {
+                        Name = ShipHitLocation.Hull,
+                        Type = wgHull.Hull.HlType,
+                        RepairableDamage = wgHull.Hull.RegeneratedHpPart,
+                        Hp = wgHull.Hull.MaxHp,
+                    };
+                    hitLocations.Add(hl);
+                }
+
+                if (!wgHull.Cit.HlType.Equals(string.Empty))
+                {
+                    HitLocation hl = new()
+                    {
+                        Name = ShipHitLocation.Citadel,
+                        Type = wgHull.Cit.HlType,
+                        RepairableDamage = wgHull.Cit.RegeneratedHpPart,
+                        Hp = wgHull.Cit.MaxHp,
+                    };
+                    hitLocations.Add(hl);
+                }
+
+                hullModule.HitLocations = hitLocations;
+
                 //Process ship size
                 ShipSize dim = new()
                 {

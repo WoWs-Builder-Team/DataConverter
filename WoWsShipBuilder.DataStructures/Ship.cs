@@ -282,6 +282,7 @@ namespace WoWsShipBuilder.DataStructures
         public decimal FloodingDuration { get; set; }
         public int TurningRadius { get; set; }
         public ShipSize Sizes { get; set; }
+        public List<HitLocation> HitLocations { get; set; }
     }
 
     public class ShipSize
@@ -289,6 +290,14 @@ namespace WoWsShipBuilder.DataStructures
         public decimal Length { get; set; }
         public decimal Width { get; set; }
         public decimal Height { get; set; }
+    }
+
+    public class HitLocation
+    {
+        public ShipHitLocation Name { get; set; }
+        public string Type { get; set; } = string.Empty;
+        public float RepairableDamage { get; set; }
+        public int Hp { get; set; }
     }
 
     #endregion
