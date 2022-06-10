@@ -90,12 +90,12 @@ namespace DataConverter
 
             GC.Collect();
 
-            ConvertData(gameparamsData);
+            ConvertData(gameparamsData, writeUnfilteredFiles, debugFilesBasePath);
             stopwatch.Stop();
             Console.WriteLine($"Conversion finished. Total Time: {stopwatch.Elapsed}");
         }
 
-        private static void ConvertData(Dictionary<string, Dictionary<string, List<WGObject>>> gameparamsData)
+        private static void ConvertData(Dictionary<string, Dictionary<string, List<WGObject>>> gameparamsData, bool writeUnfilteredFiles, string debugFilesBasePath)
         {
             Console.WriteLine("Start gameparams conversion.");
             Dictionary<string, List<FileVersion>> versions = new();
@@ -258,7 +258,7 @@ namespace DataConverter
                 GameVersionType.Live => "texts",
                 _ => "texts_pts",
             };
-            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, localizationSourcePath), Path.Combine(outputFolder, "Localization"), filteredTranslations);
+            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, localizationSourcePath), Path.Combine(outputFolder, "Localization"), filteredTranslations, writeUnfilteredFiles, debugFilesBasePath);
             Console.ResetColor();
         }
 

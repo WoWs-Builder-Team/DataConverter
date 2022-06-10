@@ -12,8 +12,10 @@ public static class TranslatorUtility
     /// </summary>
     /// <param name="inputPath">The folder containing the .mo files.</param>
     /// <param name="outputPath">The folder in which to write the file.</param>
-    /// <param name="translationFilter">The filter HashShet.</param>
-    public static void ProcessTranslationFiles(string inputPath, string outputPath, IEnumerable<string> translationFilter)
+    /// <param name="translationFilter">The filter HashSet.</param>
+    /// <param name="writeUnfilteredFiles">Should write an unfiltered translation file</param>
+    /// <param name="debugFilesBasePath">Base Path for the unfiltered translation file</param>
+    public static void ProcessTranslationFiles(string inputPath, string outputPath, IEnumerable<string> translationFilter, bool writeUnfilteredFiles, string debugFilesBasePath)
     {
         Console.WriteLine("Start processing translation files");
         var stopwatch = new Stopwatch();
@@ -50,6 +52,14 @@ public static class TranslatorUtility
 
             string data = JsonConvert.SerializeObject(filteredTranslations, Formatting.Indented);
             string languageName = file.Directory!.Parent!.Name;
+
+            if (writeUnfilteredFiles && languageName.Contains("en"))
+            {
+                var dict = catalog.Translations;
+                string debugData = JsonConvert.SerializeObject(dict, Formatting.Indented);
+                File.WriteAllText(Path.Combine(debugFilesBasePath, "test.json"), debugData);
+            }
+
             string outputFile = Path.Combine(outputPath, languageName + ".json");
             File.WriteAllText(outputFile, data);
         });
