@@ -255,8 +255,8 @@ namespace DataConverter
             // TODO: allow selecting text directory for dev?
             string localizationSourcePath = currentVersion.VersionType switch
             {
-                GameVersionType.Live => "texts",
-                _ => "texts_pts",
+                GameVersionType.Pts => "texts_pts",
+                _ => "texts",
             };
             TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, localizationSourcePath), Path.Combine(outputFolder, "Localization"), filteredTranslations, writeUnfilteredFiles, debugFilesBasePath);
             Console.ResetColor();

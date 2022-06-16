@@ -16,7 +16,7 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
             if (Translation)
             {
                 var lines = File.ReadAllLines("TranslationNames.csv").ToList();
-                TranslatorUtility.ProcessTranslationFiles(TranslationPath, Path.Combine(BaseDir, "Localization"), lines);
+                // TranslatorUtility.ProcessTranslationFiles(TranslationPath, Path.Combine(BaseDir, "Localization"), lines);
             }
             else
             {
