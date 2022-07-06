@@ -84,7 +84,9 @@ namespace DataConverter.Converters
                         }
                         else
                         {
-                            throw new ArgumentException($"Type: {currentWgExteriorType}, ID: {exterior.Id}");
+                            Console.WriteLine($"Found an unknown exterior type. Type: {currentWgExteriorType}, ID: {exterior.Id}");
+                            // throw new ArgumentException($"Type: {currentWgExteriorType}, ID: {exterior.Id}");
+                            continue;
                         }
                     }
                 }
