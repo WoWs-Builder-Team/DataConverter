@@ -3,7 +3,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
+using DataConverter.JsonData;
 using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
@@ -17,6 +19,8 @@ namespace DataConverter.Converters
         private static readonly ConcurrentBag<string> ReportedTypes = new();
 
         private static readonly Dictionary<string, ShipTurretOverride> TurretPositionOverrides = LoadTurretOverrides();
+
+        private static readonly ShiptoolData ShiptoolData = LoadShiptoolData();
 
 #pragma warning disable SA1401
         public static List<ShipSummary> ShipSummaries = new();
@@ -39,6 +43,7 @@ namespace DataConverter.Converters
                 }
 
                 Program.TranslationNames.Add(wgShip.Index);
+                var stShip = ShiptoolData.Ship.FirstOrDefault(s => s.Index.Equals(wgShip.Index));
                 var ship = new Ship
                 {
                     Id = wgShip.Id,
@@ -48,10 +53,10 @@ namespace DataConverter.Converters
                     ShipClass = ProcessShipClass(wgShip.typeinfo.species),
                     ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
                     ShipNation = ConvertNationString(wgShip.typeinfo.nation),
-                    MainBatteryModuleList = ProcessMainBattery(wgShip),
+                    MainBatteryModuleList = ProcessMainBattery(wgShip, stShip),
                     ShipUpgradeInfo = ProcessUpgradeInfo(wgShip),
                     FireControlList = ProcessFireControl(wgShip),
-                    TorpedoModules = ProcessTorpedoes(wgShip),
+                    TorpedoModules = ProcessTorpedoes(wgShip, stShip),
                     Engines = ProcessEngines(wgShip),
                     ShipConsumable = ProcessConsumables(wgShip),
                     AirStrikes = ProcessAirstrikes(wgShip),
@@ -103,6 +108,16 @@ namespace DataConverter.Converters
         }
 
         #region Component converters
+
+        private static ShiptoolData LoadShiptoolData()
+        {
+            var url = "https://shiptool.st/api/data";
+            var client = new HttpClient();
+            Console.WriteLine("Fetching remote json data from shiptool...");
+            var content = client.GetStringAsync(url).GetAwaiter().GetResult();
+            Console.WriteLine("Received remote json data from shiptool.");
+            return JsonConvert.DeserializeObject<ShiptoolData>(content)!;
+        }
 
         private static Dictionary<string, ShipTurretOverride> LoadTurretOverrides()
         {
@@ -243,18 +258,19 @@ namespace DataConverter.Converters
             return upgradeInfo;
         }
 
-        private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip)
+        private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, ShiptoolShip? stShip)
         {
             var resultDictionary = new Dictionary<string, TurretModule>();
             Dictionary<string, MainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<MainBattery>();
 
             foreach ((string key, MainBattery wgMainBattery) in artilleryModules)
             {
+                var stMainBatteryModule = stShip?.GetArmamentModule(key);
                 var turretModule = new TurretModule
                 {
                     Sigma = wgMainBattery.SigmaCount,
                     MaxRange = wgMainBattery.MaxDist,
-                    Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, key, entry.Key, wgShip.Index)).ToList(),
+                    Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, key, entry.Key, wgShip.Index, stMainBatteryModule)).ToList(),
                     BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
                 };
                 MainBatteryGun dispersionGun = wgMainBattery.Guns.Values.First();
@@ -305,17 +321,12 @@ namespace DataConverter.Converters
             return resultDictionary;
         }
 
-        private static Gun ConvertMainBatteryGun(MainBatteryGun wgGun, string artilleryModuleKey, string mainGunKey, string shipIndex)
+        private static Gun ConvertMainBatteryGun(MainBatteryGun wgGun, string artilleryModuleKey, string mainGunKey, string shipIndex, ShiptoolArmamentModule? stGuns)
         {
             var newGun = (Gun)wgGun;
             newGun.WgGunIndex = mainGunKey;
-            if (TurretPositionOverrides.TryGetValue(shipIndex, out var overrides))
-            {
-                if (overrides.ArtilleryTurretOverrides.TryGetValue(artilleryModuleKey, out var moduleOverrides) && moduleOverrides.TryGetValue(mainGunKey, out var turretOverride))
-                {
-                    newGun.TurretOrientation = turretOverride;
-                }
-            }
+            var stGun = stGuns?.GetGunData(mainGunKey);
+            newGun.BaseAngle = stGun?.BaseAngle ?? (newGun.VerticalPosition < 3 ? 0 : 180);
 
             return newGun;
         }
@@ -522,17 +533,18 @@ namespace DataConverter.Converters
             return resultDictionary;
         }
 
-        private static Dictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip)
+        private static Dictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip, ShiptoolShip? stShip)
         {
             var resultDictionary = new Dictionary<string, TorpedoModule>();
             Dictionary<string, WgTorpedoArray> wgTorpedoList = wgShip.ModulesArmaments.ModulesOfType<WgTorpedoArray>();
 
             foreach ((string key, WgTorpedoArray wgTorpedoArray) in wgTorpedoList)
             {
+                var stTorpedoes = stShip?.GetArmamentModule(key);
                 var torpedoModule = new TorpedoModule
                 {
                     TimeToChangeAmmo = wgTorpedoArray.TorpedoArray.Values.Any(launcher => launcher.AmmoList.Length > 1) ? wgTorpedoArray.TimeToChangeAmmo : 0,
-                    TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => (TorpedoLauncher)entry.Value).ToList(),
+                    TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stTorpedoes)).ToList(),
                 };
                 Program.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
 
@@ -540,6 +552,13 @@ namespace DataConverter.Converters
             }
 
             return resultDictionary;
+        }
+
+        private static TorpedoLauncher ConvertWgTorpedoLauncher(string wgKey, WgTorpedoLauncher wgTorpedoLauncher, ShiptoolArmamentModule? stModule)
+        {
+            var launcher = (TorpedoLauncher)wgTorpedoLauncher;
+            launcher.BaseAngle = stModule?.GetGunData(wgKey)?.BaseAngle ?? (launcher.VerticalPosition < 3 ? 0 : 180);
+            return launcher;
         }
 
         private static Dictionary<string, Engine> ProcessEngines(WgShip wgShip)

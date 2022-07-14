@@ -77,7 +77,7 @@ namespace GameParamsExtractor.WGStructure
 
         public decimal BarrelDiameter { get; set; }
 
-        public double[] HorizSector { get; set; } = Array.Empty<double>();
+        public decimal[] HorizSector { get; set; } = Array.Empty<decimal>();
 
         public long Id { get; set; }
 
@@ -87,11 +87,11 @@ namespace GameParamsExtractor.WGStructure
 
         public int NumBarrels { get; set; }
 
-        public double[] Position { get; set; } = Array.Empty<double>();
+        public decimal[] Position { get; set; } = Array.Empty<decimal>();
 
         public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
 
-        public double[][] DeadZone { get; set; } = { };
+        public decimal[][] DeadZone { get; set; } = Array.Empty<decimal[]>();
 
         public decimal ShotDelay { get; set; }
 
@@ -132,7 +132,6 @@ namespace GameParamsExtractor.WGStructure
                 Reload = gun.ShotDelay,
                 SmokeDetectionWhenFiring = gun.SmokePenalty,
             };
-            newGun.TurretOrientation = newGun.VerticalPosition < 3 ? TurretOrientation.Forward : TurretOrientation.Backward;
 
             return newGun;
         }
@@ -178,6 +177,8 @@ namespace GameParamsExtractor.WGStructure
 
         public int NumBarrels { get; set; }
 
+        public decimal[] Position { get; set; } = Array.Empty<decimal>();
+
         public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
 
         public decimal ShotDelay { get; set; }
@@ -192,15 +193,17 @@ namespace GameParamsExtractor.WGStructure
             {
                 AmmoList = thisLauncher.AmmoList.ToList(),
                 BarrelDiameter = thisLauncher.BarrelDiameter,
-                HorizontalRotationSpeed = thisLauncher.RotationSpeed[0],
-                VerticalRotationSpeed = thisLauncher.RotationSpeed[1],
                 Id = thisLauncher.Id,
                 Index = thisLauncher.Index,
                 Name = thisLauncher.Name,
+                HorizontalDeadZones = thisLauncher.DeadZone,
                 NumBarrels = thisLauncher.NumBarrels,
+                HorizontalPosition = thisLauncher.Position[1],
+                VerticalPosition = thisLauncher.Position[0],
+                HorizontalRotationSpeed = thisLauncher.RotationSpeed[0],
+                VerticalRotationSpeed = thisLauncher.RotationSpeed[1],
                 Reload = thisLauncher.ShotDelay,
                 HorizontalSector = thisLauncher.HorizSector,
-                HorizontalDeadZone = thisLauncher.DeadZone,
                 TorpedoAngles = thisLauncher.TorpedoAngles,
             };
         }
