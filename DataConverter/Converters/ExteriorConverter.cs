@@ -36,7 +36,7 @@ namespace DataConverter.Converters
                 {
                     JToken jtoken = currentWgExteriorModifier.Value;
 
-                    if (jtoken.Type == JTokenType.Float || jtoken.Type == JTokenType.Integer)
+                    if (jtoken.Type is JTokenType.Float or JTokenType.Integer)
                     {
                         modifiers.Add(currentWgExteriorModifier.Key, jtoken.Value<double>());
                     }
@@ -91,13 +91,18 @@ namespace DataConverter.Converters
                     }
                 }
 
-                exterior.Restrictions = new Restriction()
+                if (exterior.Type != ExteriorType.Flags)
                 {
-                    ForbiddenShips = currentWgExterior.Restrictions?.ForbiddenShips?.ToList<string>(),
-                    Levels = currentWgExterior.Restrictions?.Levels?.ToList<string>(),
-                    Nations = currentWgExterior.Restrictions?.Nations?.ToList<string>(),
-                    SpecificShips = currentWgExterior.Restrictions?.SpecificShips?.ToList<string>(),
-                    Subtype = currentWgExterior.Restrictions?.Subtype?.ToList<string>(),
+                    continue;
+                }
+
+                exterior.Restrictions = new()
+                {
+                    ForbiddenShips = currentWgExterior.Restrictions?.ForbiddenShips?.ToList(),
+                    Levels = currentWgExterior.Restrictions?.Levels?.ToList(),
+                    Nations = currentWgExterior.Restrictions?.Nations?.ToList(),
+                    SpecificShips = currentWgExterior.Restrictions?.SpecificShips?.ToList(),
+                    Subtype = currentWgExterior.Restrictions?.Subtype?.ToList(),
                 };
 
                 //dictionary with Index as key
