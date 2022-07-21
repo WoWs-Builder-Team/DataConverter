@@ -18,9 +18,10 @@ namespace DataConverter.Converters
     {
         private static readonly ConcurrentBag<string> ReportedTypes = new();
 
+        [Obsolete]
         private static readonly Dictionary<string, ShipTurretOverride> TurretPositionOverrides = LoadTurretOverrides();
 
-        private static readonly ShiptoolData ShiptoolData = LoadShiptoolData();
+        private static readonly Lazy<ShiptoolData> ShiptoolData = new(LoadShiptoolData);
 
 #pragma warning disable SA1401
         public static List<ShipSummary> ShipSummaries = new();
@@ -43,7 +44,7 @@ namespace DataConverter.Converters
                 }
 
                 Program.TranslationNames.Add(wgShip.Index);
-                var stShip = ShiptoolData.Ship.FirstOrDefault(s => s.Index.Equals(wgShip.Index));
+                var stShip = ShiptoolData.Value.Ship.FirstOrDefault(s => s.Index.Equals(wgShip.Index));
                 var ship = new Ship
                 {
                     Id = wgShip.Id,
@@ -114,9 +115,17 @@ namespace DataConverter.Converters
             var url = "https://shiptool.st/api/data";
             var client = new HttpClient();
             Console.WriteLine("Fetching remote json data from shiptool...");
-            var content = client.GetStringAsync(url).GetAwaiter().GetResult();
-            Console.WriteLine("Received remote json data from shiptool.");
-            return JsonConvert.DeserializeObject<ShiptoolData>(content)!;
+            try
+            {
+                var content = client.GetStringAsync(url).GetAwaiter().GetResult();
+                Console.WriteLine("Received remote json data from shiptool.");
+                return JsonConvert.DeserializeObject<ShiptoolData>(content)!;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return new();
+            }
         }
 
         private static Dictionary<string, ShipTurretOverride> LoadTurretOverrides()

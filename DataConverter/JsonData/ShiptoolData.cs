@@ -16,7 +16,10 @@ public class ShiptoolShip
     [JsonExtensionData]
     private Dictionary<string, JToken> AdditionalData { get; set; } = new();
 
-    public ShiptoolArmamentModule? GetArmamentModule(string key) => AdditionalData[key].ToObject<ShiptoolArmamentModule>();
+    public ShiptoolArmamentModule? GetArmamentModule(string key)
+    {
+        return AdditionalData.TryGetValue(key, out var token) ? token.ToObject<ShiptoolArmamentModule>() : null;
+    }
 }
 
 public class ShiptoolArmamentModule
