@@ -18,7 +18,7 @@ namespace DataConverter
 {
     internal static class Program
     {
-        private const string Host = "https://d2nzlaerr9l5k3.cloudfront.net";
+        private const string Host = "https://cdn.wowssb.com";
         private const string BaseInputPath = "InputData/";
 
         private static readonly ConcurrentBag<string> ReportedTypes = new();
