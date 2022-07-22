@@ -191,7 +191,7 @@ namespace DataConverter.Converters
                         {
                             torpedo.TorpedoType = TorpedoType.DeepWater;
                         }
-                        if (torpedo.Name.Contains("_Sub", StringComparison.OrdinalIgnoreCase) && !torpedo.Name.Contains("Magnetic", StringComparison.OrdinalIgnoreCase))
+                        if (currentWgTorpedo.customUIPostfix.Equals("_subDefault"))
                         {
                             torpedo.TorpedoType = TorpedoType.Magnetic;
                         }

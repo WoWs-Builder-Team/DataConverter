@@ -61,6 +61,7 @@ namespace GameParamsExtractor.WGStructure
         public float visibilityFactor { get; set; }
         public float splashArmorCoeff { get; set; }
         public float splashCubeSize { get; set; }
+        public string customUIPostfix { get; set; }
     }
 
 
