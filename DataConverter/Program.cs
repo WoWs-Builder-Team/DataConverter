@@ -235,7 +235,7 @@ namespace DataConverter
             versions.Add("Summary", new() { summaryVersion });
 
             var structureAssembly = Assembly.GetAssembly(typeof(Ship));
-            var lastVersion = oldVersionInfo.CurrentVersion ?? VersionConverter.FromVersionString(oldVersionInfo.VersionName);
+            var lastVersion = oldVersionInfo.CurrentVersion;
 
             var currentVersion = VersionConverter.FromVersionString(versionName);
             var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, currentVersion, lastVersion)
