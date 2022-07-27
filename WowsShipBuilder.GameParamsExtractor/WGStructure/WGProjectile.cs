@@ -69,8 +69,8 @@ namespace GameParamsExtractor.WGStructure
     {
         public bool affectedByPTZ { get; set; }
         public int alphaDamage { get; set; }
-        public int alphaPiercingCS { get; set; }
-        public int alphaPiercingHE { get; set; }
+        public float alphaPiercingCS { get; set; }
+        public float alphaPiercingHE { get; set; }
         public string ammoType { get; set; }
         public bool applyPTZCoeff { get; set; }
         public float bulletAirDrag { get; set; }
@@ -111,7 +111,8 @@ namespace GameParamsExtractor.WGStructure
     {
         public bool affectedByPTZ { get; set; }
         public float alphaDamage { get; set; }
-        public int alphaPiercingCS { get; set; }
+
+        public float alphaPiercingCS { get; set; }
         public float alphaPiercingHE { get; set; }
         public string ammoType { get; set; }
         public bool applyPTZCoeff { get; set; }
