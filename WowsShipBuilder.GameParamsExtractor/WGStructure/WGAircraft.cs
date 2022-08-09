@@ -92,6 +92,8 @@ public class WgAircraft : WGObject
     public decimal PreparationTime { get; set; }
 
     public int ProjectilesPerAttack { get; set; }
+
+    public int AttackCount { get; set; }
 }
 
 public record Hangarsettings
