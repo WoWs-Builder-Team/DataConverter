@@ -63,7 +63,7 @@ namespace DataConverter.Converters
                 {
                     //start mapping
                     AttackCooldown = currentWgAir.AttackCooldown,
-                    AttackCount = currentWgAir.AttackCount,
+                    AttackCount = currentWgAir.AttackCount * currentWgAir.ProjectilesPerAttack,
                     AttackInterval = currentWgAir.AttackInterval,
                     AttackSpeedMultiplier = currentWgAir.AttackSpeedMultiplier,
                     AttackSpeedMultiplierApplyTime = currentWgAir.AttackSpeedMultiplierApplyTime,
