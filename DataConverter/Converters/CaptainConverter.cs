@@ -159,6 +159,7 @@ namespace DataConverter.Converters
                     skill.ConditionalModifiers = conditionalModifiers;
                     skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.triggerType;
                     Program.TranslationNames.Add(skill.ConditionalTriggerType);
+                    Program.TranslationNames.UnionWith(skill.ConditionalModifiers.Keys);
                     Program.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
                     Program.TranslationNames.UnionWith(modifiers.Keys);
                     skills.Add(currentWgSkill.Key, skill);
