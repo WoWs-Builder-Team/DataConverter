@@ -38,7 +38,7 @@ namespace DataConverter.Converters
             foreach (WgShip wgShip in wgShipList)
             {
                 if (wgShip.typeinfo.species.Equals(ShipClass.Auxiliary.ToString()) || wgShip.Group.Equals("clan") || wgShip.Group.Equals("disabled") ||
-                    wgShip.Group.Equals("preserved") || wgShip.Group.Equals("unavailable"))
+                    wgShip.Group.Equals("preserved") || wgShip.Group.Equals("unavailable") || wgShip.Group.Equals("coopOnly"))
                 {
                     continue;
                 }
@@ -215,6 +215,7 @@ namespace DataConverter.Converters
                 "unavailable" => ShipCategory.Disabled,
                 "legendaryBattle" => ShipCategory.TechTree,
                 "superShip" => ShipCategory.SuperShip,
+                "coopOnly" => ShipCategory.Disabled,
                 _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
             };
         }
