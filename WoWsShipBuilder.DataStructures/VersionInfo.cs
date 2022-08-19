@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace WoWsShipBuilder.DataStructures
 {
@@ -26,9 +27,15 @@ namespace WoWsShipBuilder.DataStructures
             using var sha256 = SHA256.Create();
             return BitConverter.ToString(sha256.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
         }
+
+        public static string ComputeChecksum(string data)
+        {
+            using var sha256 = SHA256.Create();
+            return BitConverter.ToString(sha256.ComputeHash(Encoding.UTF8.GetBytes(data))).Replace("-", "").ToLowerInvariant();
+        }
     }
 
-    public sealed record GameVersion(Version MainVersion, GameVersionType VersionType, int DataIteration, string? VersionSuffix = null) : IComparable<GameVersion>
+    public sealed record GameVersion(Version MainVersion, GameVersionType VersionType, int DataIteration) : IComparable<GameVersion>
     {
         public int CompareTo(GameVersion? other)
         {

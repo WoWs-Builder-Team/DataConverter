@@ -9,7 +9,10 @@
 
     <ItemGroup>
         <PackageReference Include="JsonSubTypes" Version="1.9.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NLog" Version="5.0.1" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,24 +29,12 @@
       <EmbeddedResource Include="JsonData\SKILLS_BY_TIER.json" />
       <None Remove="JsonData\TurretPositionOverrides.json" />
       <EmbeddedResource Include="JsonData\TurretPositionOverrides.json" />
-      <None Update="InputData\GameParams_pts.data">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
 
     <ItemGroup>
       <AdditionalFiles Include="..\stylecop.json">
         <Link>stylecop.json</Link>
       </AdditionalFiles>
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="InputData\*.data">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="InputData\**\global.mo">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
 
 </Project>

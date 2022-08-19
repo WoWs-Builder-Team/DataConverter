@@ -16,7 +16,7 @@ using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter
 {
-    internal static class Program
+    public static class Program
     {
         private const string Host = "https://cdn.wowssb.com";
         private const string BaseInputPath = "InputData/";
@@ -86,11 +86,11 @@ namespace DataConverter
             Stopwatch stopwatch = new();
             stopwatch.Start();
             string paramsFile = serverType.Contains("dev") ? "GameParams_live.data" : $"GameParams_{serverType}.data";
-            var gameparamsData = GameParamsUtility.ProcessGameParams(BaseInputPath + paramsFile, writeUnfilteredFiles, writeFilteredFiles, debugFilesBasePath);
+            // var gameparamsData = GameParamsUtility.ProcessGameParams(BaseInputPath + paramsFile, writeUnfilteredFiles, writeFilteredFiles, debugFilesBasePath);
 
             GC.Collect();
 
-            ConvertData(gameparamsData, writeUnfilteredFiles, debugFilesBasePath);
+            // ConvertData(gameparamsData, writeUnfilteredFiles, debugFilesBasePath);
             stopwatch.Stop();
             Console.WriteLine($"Conversion finished. Total Time: {stopwatch.Elapsed}");
         }
@@ -237,7 +237,7 @@ namespace DataConverter
             var structureAssembly = Assembly.GetAssembly(typeof(Ship));
             var lastVersion = oldVersionInfo.CurrentVersion;
 
-            var currentVersion = VersionConverter.FromVersionString(versionName);
+            var currentVersion = GameVersionConverter.FromVersionString(versionName);
             var newVersioner = new VersionInfo(versions, oldVersionInfo.CurrentVersionCode + 1, currentVersion, lastVersion)
             {
                 DataStructuresVersion = structureAssembly!.GetName().Version!,
@@ -258,7 +258,7 @@ namespace DataConverter
                 GameVersionType.Pts => "texts_pts",
                 _ => "texts",
             };
-            TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, localizationSourcePath), Path.Combine(outputFolder, "Localization"), filteredTranslations, writeUnfilteredFiles, debugFilesBasePath);
+            // TranslatorUtility.ProcessTranslationFiles(Path.Combine(BaseInputPath, localizationSourcePath), Path.Combine(outputFolder, "Localization"), filteredTranslations, writeUnfilteredFiles, debugFilesBasePath);
             Console.ResetColor();
         }
 

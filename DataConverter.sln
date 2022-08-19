@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowsShipBuilder.GameParamsE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetText", "GetTextNET\src\GetText\GetText.csproj", "{5A4743C7-65CF-444E-939C-DA2C8D22A458}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Console", "DataConverter.Console\DataConverter.Console.csproj", "{7E40B944-C95E-4B65-A89D-A8A3B7DA3C57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{5A4743C7-65CF-444E-939C-DA2C8D22A458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A4743C7-65CF-444E-939C-DA2C8D22A458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A4743C7-65CF-444E-939C-DA2C8D22A458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E40B944-C95E-4B65-A89D-A8A3B7DA3C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E40B944-C95E-4B65-A89D-A8A3B7DA3C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E40B944-C95E-4B65-A89D-A8A3B7DA3C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E40B944-C95E-4B65-A89D-A8A3B7DA3C57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

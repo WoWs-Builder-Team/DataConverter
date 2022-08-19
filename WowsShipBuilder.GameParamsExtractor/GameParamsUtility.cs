@@ -1,13 +1,13 @@
 using System.Collections;
-using System.Diagnostics;
 using GameParamsExtractor.WGStructure;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Razorvine.Pickle;
 
 namespace WowsShipBuilder.GameParamsExtractor;
 
-public static class GameParamsUtility
+internal static class GameParamsUtility
 {
     private const string ModuleContainerName = "ModulesArmaments";
 
@@ -21,23 +21,10 @@ public static class GameParamsUtility
         { "DCharge", "depthCharges" },
     };
 
-    public static Dictionary<string, Dictionary<string, List<WGObject>>> ProcessGameParams(string gameParamsPath, bool writeUnfilteredFiles = false, bool writeFilteredFiles = false, string outputPath = default!)
+    public static Dictionary<string, Dictionary<string, List<WGObject>>> FilterAndConvertGameParams(Dictionary<object, Dictionary<string, object>> rawGameParams, ILogger? logger = null)
     {
-        var stopwatch = new Stopwatch();
-        Console.WriteLine("Starting gameparams processing");
-
-        if ((writeFilteredFiles || writeUnfilteredFiles) && !Directory.Exists(outputPath))
-        {
-            Directory.CreateDirectory(outputPath);
-        }
-
-        Dictionary<object, Dictionary<string, object>> dict = UnpickleGameParams(gameParamsPath, stopwatch);
-
-        stopwatch.Start();
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("Start data processing");
-
-        ParallelQuery<IGrouping<object, KeyValuePair<object, Dictionary<string, object>>>> groups = dict
+        logger?.LogInformation("Filtering extracted gameparams and converting to WGObject structure");
+        ParallelQuery<IGrouping<object, KeyValuePair<object, Dictionary<string, object>>>> groups = rawGameParams
             .AsParallel()
             .Where(x => GroupsToProcess.Contains(ConvertDataValue(x.Value["typeinfo"])["type"]))
             .GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]);
@@ -45,24 +32,16 @@ public static class GameParamsUtility
         var data = new Dictionary<string, Dictionary<string, List<WGObject>>>();
         foreach (var group in groups)
         {
-            data.Add(group.Key.ToString()!, UnpackType(writeUnfilteredFiles, writeFilteredFiles, outputPath, group));
+            data.Add(group.Key.ToString()!, UnpackType(group, logger));
         }
 
-        stopwatch.Stop();
-        Console.WriteLine($"Gameparams processed. Time passed: {stopwatch.Elapsed}");
-        Console.ResetColor();
+        logger?.LogInformation("Finished filtering extracted gameparams");
         return data;
     }
 
-    private static Dictionary<string, List<WGObject>> UnpackType(bool writeUnfilteredFiles, bool writeFilteredFiles, string outputPath, IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> group)
+    private static Dictionary<string, List<WGObject>> UnpackType(IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> group, ILogger? logger = null)
     {
-        Console.WriteLine($"Start processing: {group.Key}");
-
-        var outputDirectory = Path.Join(outputPath, group.Key.ToString());
-        if (!Directory.Exists(outputDirectory))
-        {
-            Directory.CreateDirectory(outputDirectory);
-        }
+        logger?.LogInformation("Unpacking type: {}", group.Key);
 
         //get all elements divided by nation and exclude the Event ones
         var nationGroups = group
@@ -72,29 +51,19 @@ public static class GameParamsUtility
         var nationsDictionary = new Dictionary<string, List<WGObject>>();
         foreach (var nation in nationGroups)
         {
-            List<WGObject> nationObjects = UnpackNation(writeUnfilteredFiles, writeFilteredFiles, nation, group.Key.ToString() ?? string.Empty, outputDirectory);
+            List<WGObject> nationObjects = UnpackNation(nation, group.Key.ToString() ?? string.Empty);
             nationsDictionary.Add(nation.Key.ToString()!, nationObjects);
         }
 
         return nationsDictionary;
     }
 
-    private static List<WGObject> UnpackNation(bool writeUnfilteredFiles, bool writeFilteredFiles, IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> nationGroup, string groupName, string outputDirectory)
+    private static List<WGObject> UnpackNation(IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> nationGroup, string groupName, ILogger? logger = null)
     {
         //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
         List<SortedDictionary<string, object>> nationEntries = nationGroup.Select(x => new SortedDictionary<string, object>(x.Value)).ToList();
 
-        Console.WriteLine($"Number of element for {groupName} - {nationGroup.Key}: {nationEntries.Count}");
-
-        if (writeUnfilteredFiles)
-        {
-            using StreamWriter file = File.CreateText(Path.Join(outputDirectory, $"{nationGroup.Key}.json"));
-            JsonSerializer serializer = new JsonSerializer
-            {
-                Formatting = Formatting.Indented,
-            };
-            serializer.Serialize(file, nationEntries);
-        }
+        logger?.LogInformation("Number of element for {groupName} - {nation}: {entries}", groupName, nationGroup.Key, nationEntries.Count);
 
         // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
 
@@ -108,18 +77,9 @@ public static class GameParamsUtility
 
         string jsonData = JsonConvert.SerializeObject(filteredEntries);
         var objectList = JsonConvert.DeserializeObject<List<WGObject>>(jsonData);
-        if (writeFilteredFiles)
-        {
-            using StreamWriter file = File.CreateText(Path.Join(outputDirectory, $"filtered_{nationGroup.Key}.json"));
-            JsonSerializer serializer = new JsonSerializer
-            {
-                Formatting = Formatting.Indented,
-            };
-            serializer.Serialize(file, objectList);
-        }
 
-        Console.WriteLine($"End processing for {groupName} - {nationGroup.Key}");
-        return objectList ?? throw new InvalidOperationException("Object list was empty");
+        logger?.LogInformation("End processing for {groupName} - {nation}", groupName, nationGroup.Key);
+        return objectList ?? throw new InvalidOperationException("Object list was null");
     }
 
     private static byte[] Decompress(byte[] data)
@@ -132,12 +92,8 @@ public static class GameParamsUtility
         return outputStream.ToArray();
     }
 
-    private static Dictionary<object, Dictionary<string, object>> UnpickleGameParams(string gameParamsPath, Stopwatch stopwatch)
+    internal static Dictionary<object, Dictionary<string, object>> UnpickleGameParams(string gameParamsPath)
     {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        stopwatch.Start();
-        Console.WriteLine("Start unpickling");
-
         byte[] gpBytes = File.ReadAllBytes(gameParamsPath);
         Array.Reverse(gpBytes);
         byte[] decompressedGpBytes = Decompress(gpBytes);
@@ -154,10 +110,6 @@ public static class GameParamsUtility
             dict.Add(unpickledJsonEntryKey, unpickledJsonEntryValue);
         }
 
-        stopwatch.Stop();
-        Console.WriteLine($"Unpickling finished. Time passed: {stopwatch.Elapsed}");
-        stopwatch.Reset();
-        Console.ResetColor();
         GC.Collect();
         return dict;
     }

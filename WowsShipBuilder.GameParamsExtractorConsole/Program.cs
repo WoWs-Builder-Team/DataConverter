@@ -20,9 +20,9 @@ namespace WowsShipBuilder.GameParamsExtractorConsole
             }
             else
             {
-                Directory.CreateDirectory(BaseDir);
-                var data = GameParamsUtility.ProcessGameParams(GameParamsPath, writeFilteredFiles: true, outputPath: BaseDir);
-                Debug.WriteLine(data.Count);
+                // Directory.CreateDirectory(BaseDir);
+                // var data = GameParamsUtility.ProcessGameParams(GameParamsPath, writeFilteredFiles: true, outputPath: BaseDir);
+                // Debug.WriteLine(data.Count);
             }
         }
     }
