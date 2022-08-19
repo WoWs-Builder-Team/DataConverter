@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>10</LangVersion>
@@ -27,14 +26,6 @@
     <ItemGroup>
       <None Remove="JsonData\SKILLS_BY_TIER.json" />
       <EmbeddedResource Include="JsonData\SKILLS_BY_TIER.json" />
-      <None Remove="JsonData\TurretPositionOverrides.json" />
-      <EmbeddedResource Include="JsonData\TurretPositionOverrides.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="..\stylecop.json">
-        <Link>stylecop.json</Link>
-      </AdditionalFiles>
     </ItemGroup>
 
 </Project>

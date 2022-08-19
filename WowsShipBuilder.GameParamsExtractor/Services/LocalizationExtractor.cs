@@ -24,6 +24,7 @@ public class LocalizationExtractor : ILocalizationExtractor
         var sw = Stopwatch.StartNew();
         FileInfo[] translationFiles = TranslatorUtility.FindTranslationFiles(options.InputDirectory);
         List<TranslatorUtility.RawLocalizationData> rawLocalizations = TranslatorUtility.ExtractRawLocalization(translationFiles, logger).ToList();
+        logger.LogInformation("Filtering localization keys");
         HashSet<string> filteredKeys = TranslatorUtility.FilterTranslationKeys(rawLocalizations.First().Translations.Keys, options.TranslationFilter);
         IEnumerable<TranslatorUtility.LocalizationData> localizations = TranslatorUtility.ProcessTranslations(rawLocalizations, filteredKeys, logger);
 

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using DataConverter.Console.Model;
 using DataConverter.Converters;
+using DataConverter.Data;
 using DataConverter.Services;
 using Microsoft.Extensions.Logging;
 using WowsShipBuilder.GameParamsExtractor.Services;
@@ -39,9 +40,14 @@ public class DataConversionHelper
         }
         logger.LogInformation("Starting data conversion with game version {} and version type {}", gameVersion.MainVersion, gameVersion.VersionType);
 
+        if (Directory.Exists(options.OutputDirectory) && Directory.GetFiles(options.OutputDirectory).Any())
+        {
+            logger.LogWarning("Specified output directory is not empty, old files may get mixed into the conversion results.");
+        }
+
         var extractionResult = unpackService.ExtractAndRefineGameParams(options.ToExtractOptions());
-        var convertedData = await Task.Run(() => dataConverterService.ConvertRefinedData(extractionResult.FilteredData));
-        var versionInfo = await versionCheckService.CheckFileVersions(convertedData, gameVersion, "cdn.wowssb.com");
+        var convertedData = await dataConverterService.ConvertRefinedData(extractionResult.FilteredData);
+        var versionInfo = await versionCheckService.CheckFileVersionsAsync(convertedData, gameVersion, Constants.CdnHost);
 
         Directory.CreateDirectory(options.OutputDirectory);
 
@@ -61,7 +67,7 @@ public class DataConversionHelper
 
         if (options.LocalizationInputDirectory is not null)
         {
-            IEnumerable<string> filteredTranslations = DataConverter.Program.TranslationNames.Where(x => !string.IsNullOrWhiteSpace(x));
+            IEnumerable<string> filteredTranslations = DataCache.TranslationNames.Where(x => !string.IsNullOrWhiteSpace(x));
             IEnumerable<LocalizationExtractionResult> localizations = localizationExtractor.ExtractLocalizations(new(options.LocalizationInputDirectory, filteredTranslations, options.WriteUnfiltered));
             await localizationExtractor.WriteLocalizationFiles(localizations, options.OutputDirectory, options.WriteUnfiltered, options.DebugOutputDirectory);
         }

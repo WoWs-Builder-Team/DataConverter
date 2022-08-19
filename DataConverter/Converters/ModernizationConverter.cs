@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataConverter.Data;
 using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 
@@ -19,7 +19,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgMod in wgModernizations)
             {
-                Program.TranslationNames.Add(currentWgMod.name);
+                DataCache.TranslationNames.Add(currentWgMod.name);
                 //create our object type
                 Modernization mod = new Modernization
                 {
@@ -65,7 +65,7 @@ namespace DataConverter.Converters
                         }
                     }
                 }
-                Program.TranslationNames.UnionWith(effects.Keys);
+                DataCache.TranslationNames.UnionWith(effects.Keys);
                 mod.Effect = effects;
 
                 //for List of Enums

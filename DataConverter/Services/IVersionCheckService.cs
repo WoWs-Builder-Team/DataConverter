@@ -6,7 +6,7 @@ namespace DataConverter.Services;
 
 public interface IVersionCheckService
 {
-    Task<VersionInfo> CheckFileVersions(DataConversionResult conversionResult, GameVersion gameVersion, string cdnHost);
+    Task<VersionInfo> CheckFileVersionsAsync(DataConversionResult conversionResult, GameVersion gameVersion, string cdnHost);
 
     public Task WriteVersionInfo(VersionInfo versionInfo, string outputBasePath);
 }

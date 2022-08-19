@@ -1,8 +1,6 @@
-using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataConverter.Data;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
@@ -19,7 +17,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgAir in wgAircraft)
             {
-                Program.TranslationNames.Add(currentWgAir.Name);
+                DataCache.TranslationNames.Add(currentWgAir.Name);
                 //create our object type
                 Aircraft air = new()
                 {

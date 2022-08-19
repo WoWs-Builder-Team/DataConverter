@@ -25,10 +25,4 @@
       </PackageReference>
     </ItemGroup>
 
-    <ItemGroup>
-        <AdditionalFiles Include="..\stylecop.json">
-            <Link>stylecop.json</Link>
-        </AdditionalFiles>
-    </ItemGroup>
-
 </Project>

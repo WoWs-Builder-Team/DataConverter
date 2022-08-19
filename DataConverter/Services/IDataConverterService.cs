@@ -7,7 +7,7 @@ namespace DataConverter.Services;
 
 public interface IDataConverterService
 {
-    DataConversionResult ConvertRefinedData(Dictionary<string, Dictionary<string, List<WGObject>>> refinedData);
+    Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WGObject>>> refinedData);
 
     public Task WriteConvertedData(DataConversionResult convertedData, string outputBasePath);
 }

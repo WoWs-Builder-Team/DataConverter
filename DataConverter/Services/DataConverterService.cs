@@ -2,9 +2,11 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DataConverter.Converters;
 using DataConverter.Data;
+using DataConverter.JsonData;
 using GameParamsExtractor.WGStructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -16,6 +18,8 @@ internal class DataConverterService : IDataConverterService
 {
     private readonly ILogger<DataConverterService> logger;
 
+    private readonly HttpClient client;
+
     private readonly JsonSerializerSettings serializerSettings = new()
     {
         NullValueHandling = NullValueHandling.Ignore,
@@ -24,18 +28,20 @@ internal class DataConverterService : IDataConverterService
 
     private readonly ConcurrentBag<string> reportedTypes = new();
 
-    public DataConverterService(ILogger<DataConverterService> logger)
+    public DataConverterService(ILogger<DataConverterService> logger, HttpClient client)
     {
         this.logger = logger;
+        this.client = client;
     }
 
-    public DataConversionResult ConvertRefinedData(Dictionary<string, Dictionary<string, List<WGObject>>> refinedData)
+    public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WGObject>>> refinedData)
     {
         var resultFiles = new List<ResultFileContainer>();
         var counter = 0;
-        foreach ((string categoryName, var nationDictionary) in refinedData)
+        Task<ShiptoolData> shipToolDataTask = LoadShiptoolData();
+        foreach ((string categoryName, Dictionary<string, List<WGObject>> nationDictionary) in refinedData)
         {
-            Parallel.ForEach(nationDictionary, nationDataPair =>
+            await Parallel.ForEachAsync(nationDictionary, async (nationDataPair, _) =>
             {
                 (string? nation, List<WGObject>? data) = nationDataPair;
 
@@ -75,13 +81,13 @@ internal class DataConverterService : IDataConverterService
                         break;
                     case "Projectile":
                         var filteredData = data.OfType<WGProjectile>();
-                        convertedData = ProjectileConverter.ConvertProjectile(filteredData);
+                        convertedData = ProjectileConverter.ConvertProjectile(filteredData, logger);
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;
                     case "Ship":
-                        Console.WriteLine($"Ships to process for {nation}: {data.Count}");
-                        convertedData = ShipConverter.ConvertShips(data.Cast<WgShip>(), nation);
+                        logger.LogInformation("Ships to process for {nation}: {count}", nation, data.Count);
+                        convertedData = ShipConverter.ConvertShips(data.Cast<WgShip>(), nation, await shipToolDataTask, logger);
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;
@@ -91,7 +97,7 @@ internal class DataConverterService : IDataConverterService
 
                         break;
                     case "Exterior":
-                        convertedData = ExteriorConverter.ConvertExterior(data.Cast<WgExterior>());
+                        convertedData = ExteriorConverter.ConvertExterior(data.Cast<WgExterior>(), logger);
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;
@@ -125,6 +131,22 @@ internal class DataConverterService : IDataConverterService
         foreach (var resultFile in convertedData.Files)
         {
             await resultFile.WriteFileAsync(outputBasePath);
+        }
+    }
+
+    private async Task<ShiptoolData> LoadShiptoolData()
+    {
+        logger.LogInformation("Fetching remote json data from shiptool...");
+        try
+        {
+            string content = await client.GetStringAsync(Constants.ShiptoolDataUrl);
+            logger.LogInformation("Received remote json data from shiptool.");
+            return JsonConvert.DeserializeObject<ShiptoolData>(content)!;
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Error while downloading shiptool data");
+            return new();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace DataConverter.Console.Model;
 [Verb("convert", HelpText = "Extract data and convert to ShipBuilder data structures.")]
 public class ConvertOptions
 {
-    [Option('s',"serverType", HelpText = "The server type for the data conversion (live, pts). Overrides the type from the provided version string!", Required = false)]
+    [Option('s', "serverType", HelpText = "The server type for the data conversion (live, pts). Overrides the type from the provided version string!", Required = false)]
     public GameVersionType? VersionType { get; set; }
 
     [Option('p', "gameparams", HelpText = "The game params file to read from", Required = true)]
