@@ -32,20 +32,20 @@ jobs:
         run: echo "GAME_VERSION=${GITHUB_REF#refs/*/convert-}" >> $GITHUB_ENV
       - name: Set pts output path
         if: contains(github.ref, 'pts')
-        run: echo "OUTPUT_ADDITION=pts" >> $GITHUB_ENV
+        run: echo "SERVER_TYPE=pts" >> $GITHUB_ENV
       - name: Set live output path
         if: "! contains(github.ref, 'pts')"
-        run: echo "OUTPUT_ADDITION=live" >> $GITHUB_ENV
+        run: echo "SERVER_TYPE=live" >> $GITHUB_ENV
         
       - name: Define gameparams output
         run: echo "OUTPUT_PATH=$(pwd)/gameparams/out" >> $GITHUB_ENV
       - name: Run gameparams extraction
-        run: dotnet run -c Release -- $OUTPUT_ADDITION $OUTPUT_PATH $GAME_VERSION
-        working-directory: DataConverter
+        run: dotnet run -c Release -- convert -s $SERVER_TYPE -p InputData/GameParams_$SERVER_TYPE.data -l InputData/texts -o $OUTPUT_PATH -v $GAME_VERSION
+        working-directory: DataConverter.Console
       
       - name: Backup old files
-        run: aws s3 mv s3://wows-shipbuilder-data/api/$OUTPUT_ADDITION s3://wows-shipbuilder-data/old/pre-$GAME_VERSION-$OUTPUT_ADDITION --recursive
+        run: aws s3 mv s3://wows-shipbuilder-data/api/$SERVER_TYPE s3://wows-shipbuilder-data/old/pre-$GAME_VERSION-$SERVER_TYPE --recursive
       - name: Upload files
-        run: aws s3 sync "gameparams/out" "s3://wows-shipbuilder-data/api/$OUTPUT_ADDITION" --exclude "*.csv"
+        run: aws s3 sync "gameparams/out" "s3://wows-shipbuilder-data/api/$SERVER_TYPE" --exclude "*.csv"
       - name: Invalidate cache
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/api/$OUTPUT_ADDITION/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_ID }} --paths "/api/$SERVER_TYPE/*"
