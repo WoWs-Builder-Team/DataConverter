@@ -1,5 +1,6 @@
 ﻿using DataConverter.Console.Model;
 using Microsoft.Extensions.Logging;
+using WowsShipBuilder.GameParamsExtractor.Data;
 using WowsShipBuilder.GameParamsExtractor.Services;
 
 namespace DataConverter.Console.Services;
@@ -26,9 +27,9 @@ internal class DataUnpackHelper
             logger.LogWarning("Specified output directory is not empty, old files may get mixed into the unpacked data.");
         }
 
-        Dictionary<object, Dictionary<string, object>> rawGameParams = unpackService.ExtractRawGameParamsData(options.GameParamsFile);
+        var unpackResult = unpackService.ExtractAndRefineGameParams(new(options.GameParamsFile, true));
         Directory.CreateDirectory(options.OutputDirectory);
-        unpackService.WriteUnfilteredFiles(rawGameParams, options.OutputDirectory);
+        unpackService.WriteUnfilteredFiles(unpackResult.UnfilteredData!, options.OutputDirectory);
 
         if (options.LocalizationInputDirectory is not null)
         {

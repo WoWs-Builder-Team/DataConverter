@@ -22,7 +22,7 @@ public interface IGameDataUnpackService
     /// <returns>A dictionary containing the raw, unrefined data from the game params file.</returns>
     Dictionary<object, Dictionary<string, object>> ExtractRawGameParamsData(string gameParamsFilePath);
 
-    public void WriteUnfilteredFiles(Dictionary<object, Dictionary<string, object>> rawGameParams, string outputBasePath);
+    void WriteUnfilteredFiles(Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>> rawGameParams, string outputBasePath);
 
-    public void WriteFilteredFiles(Dictionary<string, Dictionary<string, List<WGObject>>> refinedGameParams, string outputBasePath);
+    void WriteFilteredFiles(Dictionary<string, Dictionary<string, List<WGObject>>> refinedGameParams, string outputBasePath);
 }

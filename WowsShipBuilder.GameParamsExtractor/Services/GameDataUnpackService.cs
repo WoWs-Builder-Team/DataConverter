@@ -19,11 +19,11 @@ internal class GameDataUnpackService : IGameDataUnpackService
     {
         var sw = Stopwatch.StartNew();
         var rawGameParams = ExtractRawGameParamsData(options.GameParamsFilePath);
-        Dictionary<string, Dictionary<string, List<WGObject>>> refinedGameParams = GameParamsUtility.FilterAndConvertGameParams(rawGameParams, logger);
+        var result = GameParamsUtility.FilterAndConvertGameParams(rawGameParams, options.ReturnUnfilteredFiles, logger);
 
         sw.Stop();
         logger.LogInformation("Time passed for extracting and refining gameparams: {}", sw.Elapsed);
-        return new(refinedGameParams, options.ReturnUnfilteredFiles ? rawGameParams : null);
+        return new(result.RefinedData, options.ReturnUnfilteredFiles ? result.UnfilteredData : null);
     }
 
     public Dictionary<object, Dictionary<string, object>> ExtractRawGameParamsData(string gameParamsFilePath)
@@ -35,7 +35,7 @@ internal class GameDataUnpackService : IGameDataUnpackService
         return result;
     }
 
-    public void WriteUnfilteredFiles(Dictionary<object, Dictionary<string, object>> rawGameParams, string outputBasePath)
+    public void WriteUnfilteredFiles(Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>> rawGameParams, string outputBasePath)
     {
         const string filePrefix = "unfiltered_";
         logger.LogInformation("Writing files for unfiltered data in directory {} with prefix {}.", outputBasePath, filePrefix);
@@ -44,11 +44,11 @@ internal class GameDataUnpackService : IGameDataUnpackService
             Formatting = Formatting.Indented,
         };
 
-        foreach ((object category, Dictionary<string, object> nations) in rawGameParams)
+        foreach ((string category, Dictionary<string, List<SortedDictionary<string, object>>> nations) in rawGameParams)
         {
-            string directory = Path.Join(outputBasePath, category.ToString());
+            string directory = Path.Join(outputBasePath, category);
             Directory.CreateDirectory(directory);
-            foreach ((string nation, object data) in nations)
+            foreach ((string nation, List<SortedDictionary<string, object>> data) in nations)
             {
                 string nationFilePath = Path.Join(directory, $"{filePrefix}{nation}.json");
                 using var file = File.CreateText(nationFilePath);
@@ -75,7 +75,7 @@ internal class GameDataUnpackService : IGameDataUnpackService
             foreach ((string nation, List<WGObject> data) in nations)
             {
                 string nationFilePath = Path.Join(directory, $"{filePrefix}{nation}.json");
-                using StreamWriter file = File.CreateText(nationFilePath);
+                using var file = File.CreateText(nationFilePath);
                 serializer.Serialize(file, data);
             }
         }

@@ -4,5 +4,5 @@ namespace WowsShipBuilder.GameParamsExtractor.Data;
 
 public sealed record GameParamsExtractionResult(
     Dictionary<string, Dictionary<string, List<WGObject>>> FilteredData,
-    Dictionary<object, Dictionary<string, object>>? UnfilteredData
+    Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>>? UnfilteredData
 );

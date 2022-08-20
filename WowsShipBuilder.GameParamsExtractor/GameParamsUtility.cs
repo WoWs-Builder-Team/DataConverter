@@ -21,7 +21,7 @@ internal static class GameParamsUtility
         { "DCharge", "depthCharges" },
     };
 
-    public static Dictionary<string, Dictionary<string, List<WGObject>>> FilterAndConvertGameParams(Dictionary<object, Dictionary<string, object>> rawGameParams, ILogger? logger = null)
+    public static FilterAndConvertResult FilterAndConvertGameParams(Dictionary<object, Dictionary<string, object>> rawGameParams, bool returnUnfiltered, ILogger? logger = null)
     {
         logger?.LogInformation("Filtering extracted gameparams and converting to WGObject structure");
         ParallelQuery<IGrouping<object, KeyValuePair<object, Dictionary<string, object>>>> groups = rawGameParams
@@ -30,66 +30,19 @@ internal static class GameParamsUtility
             .GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]);
 
         var data = new Dictionary<string, Dictionary<string, List<WGObject>>>();
+        var unfilteredData = new Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>>();
         foreach (var group in groups)
         {
-            data.Add(group.Key.ToString()!, UnpackType(group, logger));
+            var result = UnpackType(group, returnUnfiltered, logger);
+            data.Add(group.Key.ToString()!, result.RefinedData);
+            if (returnUnfiltered)
+            {
+                unfilteredData.Add(group.Key.ToString()!, result.UnfilteredData!);
+            }
         }
 
         logger?.LogInformation("Finished filtering extracted gameparams");
-        return data;
-    }
-
-    private static Dictionary<string, List<WGObject>> UnpackType(IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> group, ILogger? logger = null)
-    {
-        logger?.LogInformation("Unpacking type: {}", group.Key);
-
-        //get all elements divided by nation and exclude the Event ones
-        var nationGroups = group
-            .GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["nation"])
-            .Where(x => !x.Key.Equals("Events"));
-
-        var nationsDictionary = new Dictionary<string, List<WGObject>>();
-        foreach (var nation in nationGroups)
-        {
-            List<WGObject> nationObjects = UnpackNation(nation, group.Key.ToString() ?? string.Empty);
-            nationsDictionary.Add(nation.Key.ToString()!, nationObjects);
-        }
-
-        return nationsDictionary;
-    }
-
-    private static List<WGObject> UnpackNation(IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> nationGroup, string groupName, ILogger? logger = null)
-    {
-        //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
-        List<SortedDictionary<string, object>> nationEntries = nationGroup.Select(x => new SortedDictionary<string, object>(x.Value)).ToList();
-
-        logger?.LogInformation("Number of element for {groupName} - {nation}: {entries}", groupName, nationGroup.Key, nationEntries.Count);
-
-        // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
-
-        List<SortedDictionary<string, object>> filteredEntries = groupName switch
-        {
-            "Ship" => CustomShipProcessing(nationEntries),
-            "Ability" => CustomConsumableProcessing(nationEntries),
-            "Exterior" => nationEntries.Where(x => !ConvertDataValue(x["typeinfo"])["species"].Equals("Ensign")).ToList(),
-            _ => nationEntries,
-        };
-
-        string jsonData = JsonConvert.SerializeObject(filteredEntries);
-        var objectList = JsonConvert.DeserializeObject<List<WGObject>>(jsonData);
-
-        logger?.LogInformation("End processing for {groupName} - {nation}", groupName, nationGroup.Key);
-        return objectList ?? throw new InvalidOperationException("Object list was null");
-    }
-
-    private static byte[] Decompress(byte[] data)
-    {
-        var outputStream = new MemoryStream();
-        using var compressedStream = new MemoryStream(data);
-        using var inputStream = new InflaterInputStream(compressedStream);
-        inputStream.CopyTo(outputStream);
-        outputStream.Position = 0;
-        return outputStream.ToArray();
+        return new(data, returnUnfiltered ? unfilteredData : null);
     }
 
     internal static Dictionary<object, Dictionary<string, object>> UnpickleGameParams(string gameParamsPath)
@@ -112,6 +65,64 @@ internal static class GameParamsUtility
 
         GC.Collect();
         return dict;
+    }
+
+    private static TypeUnpackResult UnpackType(IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> group, bool returnUnfiltered, ILogger? logger = null)
+    {
+        logger?.LogInformation("Unpacking type: {}", group.Key);
+
+        //get all elements divided by nation and exclude the Event ones
+        var nationGroups = group
+            .GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["nation"])
+            .Where(x => !x.Key.Equals("Events"));
+
+        var nationsDictionary = new Dictionary<string, List<WGObject>>();
+        var unfilteredNationsDictionary = new Dictionary<string, List<SortedDictionary<string, object>>>();
+        foreach (var nation in nationGroups)
+        {
+            var nationObjects = UnpackNation(nation, group.Key.ToString() ?? string.Empty, returnUnfiltered);
+            nationsDictionary.Add(nation.Key.ToString()!, nationObjects.RefinedData);
+            if (returnUnfiltered)
+            {
+                unfilteredNationsDictionary.Add(nation.Key.ToString()!, nationObjects.UnfilteredData!);
+            }
+        }
+
+        return new(nationsDictionary, returnUnfiltered ? unfilteredNationsDictionary : null);
+    }
+
+    private static NationUnpackResult UnpackNation(IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> nationGroup, string groupName, bool returnUnfiltered, ILogger? logger = null)
+    {
+        //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
+        List<SortedDictionary<string, object>> nationEntries = nationGroup.Select(x => new SortedDictionary<string, object>(x.Value)).ToList();
+
+        logger?.LogInformation("Number of element for {groupName} - {nation}: {entries}", groupName, nationGroup.Key, nationEntries.Count);
+
+        // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
+
+        List<SortedDictionary<string, object>> filteredEntries = groupName switch
+        {
+            "Ship" => CustomShipProcessing(nationEntries),
+            "Ability" => CustomConsumableProcessing(nationEntries),
+            "Exterior" => nationEntries.Where(x => !ConvertDataValue(x["typeinfo"])["species"].Equals("Ensign")).ToList(),
+            _ => nationEntries,
+        };
+
+        string jsonData = JsonConvert.SerializeObject(filteredEntries);
+        var objectList = JsonConvert.DeserializeObject<List<WGObject>>(jsonData);
+
+        logger?.LogInformation("End processing for {groupName} - {nation}", groupName, nationGroup.Key);
+        return new(objectList ?? throw new InvalidOperationException("Object list was null"), returnUnfiltered ? nationEntries : null);
+    }
+
+    private static byte[] Decompress(byte[] data)
+    {
+        var outputStream = new MemoryStream();
+        using var compressedStream = new MemoryStream(data);
+        using var inputStream = new InflaterInputStream(compressedStream);
+        inputStream.CopyTo(outputStream);
+        outputStream.Position = 0;
+        return outputStream.ToArray();
     }
 
     private static Dictionary<string, object> ConvertDataValue(object objectPass)
@@ -274,4 +285,10 @@ internal static class GameParamsUtility
 
         return filteredEntries;
     }
+
+    private sealed record TypeUnpackResult(Dictionary<string, List<WGObject>> RefinedData, Dictionary<string, List<SortedDictionary<string, object>>>? UnfilteredData);
+
+    private sealed record NationUnpackResult(List<WGObject> RefinedData, List<SortedDictionary<string, object>>? UnfilteredData);
+
+    public sealed record FilterAndConvertResult(Dictionary<string, Dictionary<string, List<WGObject>>> RefinedData, Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>>? UnfilteredData);
 }
