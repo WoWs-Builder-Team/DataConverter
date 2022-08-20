@@ -2,7 +2,7 @@
 using System.Net.Http;
 using DataConverter.Services;
 using Microsoft.Extensions.DependencyInjection;
-using WowsShipBuilder.GameParamsExtractor.Services;
+using WowsShipBuilder.GameParamsExtractor;
 
 namespace DataConverter;
 
@@ -15,10 +15,9 @@ public static class ServiceCollectionExtensions
             AutomaticDecompression = DecompressionMethods.All,
         });
         serviceCollection.AddSingleton(httpClient);
-        serviceCollection.AddSingleton<IGameDataUnpackService, GameDataUnpackService>();
         serviceCollection.AddTransient<IDataConverterService, DataConverterService>();
         serviceCollection.AddTransient<IVersionCheckService, VersionCheckService>();
-        serviceCollection.AddTransient<ILocalizationExtractor, LocalizationExtractor>();
+        serviceCollection.AddGameParamsExtractor();
         return serviceCollection;
     }
 }

@@ -31,5 +31,5 @@ public class ConvertOptions
     [Option('d', "debugOutput", HelpText = "Output directory for filtered and unfiltered files as well as debug files", Required = false)]
     public string? DebugOutputDirectory { get; set; }
 
-    public GameParamsExtractionOptions ToExtractOptions() => new(GameParamsFile, WriteUnfiltered);
+    public GameParamsExtractionOptions ToExtractionOptions() => new(GameParamsFile, WriteUnfiltered);
 }

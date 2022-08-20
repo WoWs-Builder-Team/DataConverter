@@ -11,11 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataConverter.Test", "DataC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WowsShipBuilder.GameParamsExtractor", "WowsShipBuilder.GameParamsExtractor\WowsShipBuilder.GameParamsExtractor.csproj", "{885F6499-5FE8-442C-8A81-FFF52FFDA173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowsShipBuilder.GameParamsExtractorConsole", "WowsShipBuilder.GameParamsExtractorConsole\WowsShipBuilder.GameParamsExtractorConsole.csproj", "{48B96EC8-8FA7-43D1-8910-7C66645DFE45}"
-	ProjectSection(ProjectDependencies) = postProject
-		{885F6499-5FE8-442C-8A81-FFF52FFDA173} = {885F6499-5FE8-442C-8A81-FFF52FFDA173}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetText", "GetTextNET\src\GetText\GetText.csproj", "{5A4743C7-65CF-444E-939C-DA2C8D22A458}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataConverter.Console", "DataConverter.Console\DataConverter.Console.csproj", "{7E40B944-C95E-4B65-A89D-A8A3B7DA3C57}"
@@ -47,10 +42,6 @@ Global
 		{885F6499-5FE8-442C-8A81-FFF52FFDA173}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{885F6499-5FE8-442C-8A81-FFF52FFDA173}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{885F6499-5FE8-442C-8A81-FFF52FFDA173}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48B96EC8-8FA7-43D1-8910-7C66645DFE45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A4743C7-65CF-444E-939C-DA2C8D22A458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A4743C7-65CF-444E-939C-DA2C8D22A458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A4743C7-65CF-444E-939C-DA2C8D22A458}.Release|Any CPU.ActiveCfg = Release|Any CPU

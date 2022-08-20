@@ -4,8 +4,10 @@ using Newtonsoft.Json;
 
 namespace WowsShipBuilder.GameParamsExtractor.Services;
 
-public class LocalizationExtractor : ILocalizationExtractor
+internal class LocalizationExtractor : ILocalizationExtractor
 {
+    private const string LocalizationDirectory = "Localization";
+
     private readonly ILogger<LocalizationExtractor> logger;
 
     private readonly JsonSerializer serializer = new()
@@ -41,18 +43,27 @@ public class LocalizationExtractor : ILocalizationExtractor
         return results;
     }
 
+    public IEnumerable<LocalizationExtractionResult> ExtractRawLocalizations(string inputDirectory)
+    {
+        logger.LogInformation("Starting raw localization file extraction");
+        FileInfo[] translationFiles = TranslatorUtility.FindTranslationFiles(inputDirectory);
+        List<TranslatorUtility.RawLocalizationData> rawLocalizations = TranslatorUtility.ExtractRawLocalization(translationFiles, logger).ToList();
+        logger.LogInformation("Finished raw localization file extraction");
+        return rawLocalizations.Select(l => new LocalizationExtractionResult(l.Language, new(), l.Translations));
+    }
+
     public async Task WriteLocalizationFiles(IEnumerable<LocalizationExtractionResult> localizationFiles, string outputBasePath, bool writeUnfiltered, string? debugOutputPath)
     {
-        const string localizationDirectory = "Localization";
-        string localizationBasePath = Path.Join(outputBasePath, localizationDirectory);
+        string localizationBasePath = Path.Join(outputBasePath, LocalizationDirectory);
         Directory.CreateDirectory(localizationBasePath);
 
         string? debugBasePath = null;
         if (writeUnfiltered && debugOutputPath != null)
         {
-            debugBasePath = Path.Join(debugOutputPath, localizationDirectory);
+            debugBasePath = Path.Join(debugOutputPath, LocalizationDirectory);
             Directory.CreateDirectory(debugBasePath);
         }
+
         foreach (var localizationFile in localizationFiles)
         {
             string localizationFilePath = Path.Join(localizationBasePath, localizationFile.Language + ".json");
@@ -65,6 +76,19 @@ public class LocalizationExtractor : ILocalizationExtractor
                 await using var debugFile = File.CreateText(debugFilePath);
                 serializer.Serialize(debugFile, localizationFile.UnfilteredLocalizations);
             }
+        }
+    }
+
+    public async Task WriteRawLocalizationFiles(IEnumerable<LocalizationExtractionResult> localizationFiles, string outputBasePath)
+    {
+        string localizationBasePath = Path.Join(outputBasePath, LocalizationDirectory);
+        Directory.CreateDirectory(localizationBasePath);
+
+        foreach (var localizationFile in localizationFiles)
+        {
+            string localizationFilePath = Path.Join(localizationBasePath, localizationFile.Language + ".json");
+            await using var file = File.CreateText(localizationFilePath);
+            serializer.Serialize(file, localizationFile.UnfilteredLocalizations);
         }
     }
 }

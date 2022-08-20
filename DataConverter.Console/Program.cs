@@ -4,7 +4,6 @@ using DataConverter.Console.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
-using WowsShipBuilder.GameParamsExtractor.Services;
 
 namespace DataConverter.Console;
 
@@ -21,6 +20,7 @@ public class Program
             })
             .AddDataConverter()
             .AddTransient<DataConversionHelper>()
+            .AddTransient<DataUnpackHelper>()
             .BuildServiceProvider();
 
         ParserResult<object>? result = Parser.Default.ParseArguments<ConvertOptions, ExtractOptions>(args);
@@ -29,12 +29,11 @@ public class Program
             var dataConversionHelper = serviceProvider.GetRequiredService<DataConversionHelper>();
             await dataConversionHelper.ExtractAndConvertData(options);
         });
-        result = result.WithParsed<ExtractOptions>(options =>
+
+        await result.WithParsedAsync<ExtractOptions>(async options =>
         {
-            var unpackService = serviceProvider.GetRequiredService<IGameDataUnpackService>();
-            Dictionary<object, Dictionary<string, object>> unpackResult = unpackService.ExtractRawGameParamsData(options.GameParamsFile);
-            unpackService.WriteUnfilteredFiles(unpackResult, options.OutputDirectory);
+            var unpackHelper = serviceProvider.GetRequiredService<DataUnpackHelper>();
+            await unpackHelper.UnpackData(options);
         });
-        await result.WithNotParsedAsync(async options => { await Task.CompletedTask; });
     }
 }

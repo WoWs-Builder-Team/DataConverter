@@ -6,7 +6,7 @@ using WowsShipBuilder.GameParamsExtractor.Data;
 
 namespace WowsShipBuilder.GameParamsExtractor.Services;
 
-public class GameDataUnpackService : IGameDataUnpackService
+internal class GameDataUnpackService : IGameDataUnpackService
 {
     private readonly ILogger<GameDataUnpackService> logger;
 
