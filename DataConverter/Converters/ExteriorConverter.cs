@@ -1,9 +1,9 @@
-using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataConverter.Data;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
@@ -11,7 +11,7 @@ namespace DataConverter.Converters
 {
     public class ExteriorConverter
     {
-        public static Dictionary<string, Exterior> ConvertExterior(IEnumerable<WgExterior> wgExterior)
+        public static Dictionary<string, Exterior> ConvertExterior(IEnumerable<WgExterior> wgExterior, ILogger? logger)
         {
             //create a List of our Objects
             Dictionary<string, Exterior> exteriorList = new Dictionary<string, Exterior>();
@@ -19,7 +19,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgExterior in wgExterior)
             {
-                Program.TranslationNames.Add(currentWgExterior.Name);
+                DataCache.TranslationNames.Add(currentWgExterior.Name);
                 //create our object type
                 Exterior exterior = new Exterior
                 {
@@ -68,7 +68,7 @@ namespace DataConverter.Converters
                 }
 
                 exterior.Modifiers = modifiers;
-                Program.TranslationNames.UnionWith(modifiers.Keys);
+                DataCache.TranslationNames.UnionWith(modifiers.Keys);
                 try
                 {
                     exterior.Type = Enum.Parse<ExteriorType>(currentWgExterior.typeinfo.species);
@@ -84,7 +84,7 @@ namespace DataConverter.Converters
                         }
                         else
                         {
-                            Console.WriteLine($"Found an unknown exterior type. Type: {currentWgExteriorType}, ID: {exterior.Id}");
+                            logger?.LogWarning("Found an unknown exterior type. Type: {}, ID: {}", currentWgExteriorType, exterior.Id);
                             // throw new ArgumentException($"Type: {currentWgExteriorType}, ID: {exterior.Id}");
                             continue;
                         }

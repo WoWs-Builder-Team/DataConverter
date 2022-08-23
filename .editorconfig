@@ -14,10 +14,12 @@ insert_final_newline = true
 resharper_wrap_lines = false
 
 dotnet_diagnostic.SA0001.severity = none # Ignore disabled xml documentation
+
+# Stylecop spacing rules
 dotnet_diagnostic.SA1000.severity = none # Ignore missing space after "new"
 dotnet_diagnostic.SA1005.severity = none # Begin comment with space
 dotnet_diagnostic.SA1009.severity = none # Ignore missing space after closing parenthesis
-dotnet_diagnostic.SA1028.severity = none # Ignore trailing whitespace 
+dotnet_diagnostic.SA1028.severity = warning # Ignore trailing whitespace 
 dotnet_diagnostic.SA1100.severity = none # Ignore base. prefix if there is no local override
 dotnet_diagnostic.SA1101.severity = none # Ignore missing this prefix for local calls
 dotnet_diagnostic.SA1122.severity = none # Don't force the use of string.Empty
@@ -25,19 +27,29 @@ dotnet_diagnostic.SA1124.severity = none # Allow the use of regions
 dotnet_diagnostic.SA1127.severity = none # Generic constraints may share a line with other declarations
 dotnet_diagnostic.SA1135.severity = none # Allow the use of not qualified using directives
 dotnet_diagnostic.SA1136.severity = none # Enum values may be on the same line
+
+# Stylecop ordering rules
 dotnet_diagnostic.SA1201.severity = none # Ignore element order by type
 dotnet_diagnostic.SA1202.severity = none # Ignore element order by access
 dotnet_diagnostic.SA1208.severity = none # Ignore using directive order
+
+# Stylecop naming rules
 dotnet_diagnostic.SA1314.severity = none # Allow any type parameter names
 dotnet_diagnostic.SA1316.severity = none # Ignore casing of tuple names
+
+# Stylecop maintainability rules
 dotnet_diagnostic.SA1400.severity = none # Access modifier is optional
 dotnet_diagnostic.SA1402.severity = none # Files may contain multiple types
 dotnet_diagnostic.SA1407.severity = none # Ignore braces for arithmetic expressions
 dotnet_diagnostic.SA1414.severity = none # Tuples in return types don't need element names
-dotnet_diagnostic.SA1512.severity = none # Blank line after single line comments
+
+# Stylecop layout rules
+dotnet_diagnostic.SA1512.severity = none # Blank line after single line comments, disabled because it interferes with Resharper rule comments
 dotnet_diagnostic.SA1513.severity = none # No blank line after closing brace
-dotnet_diagnostic.SA1515.severity = none # No blank line before single line comments
+dotnet_diagnostic.SA1515.severity = suggestion # No blank line before single line comments
 dotnet_diagnostic.SA1516.severity = none # Elements don't need to be separated by blank lines
+
+# Stylecop documentation rules
 dotnet_diagnostic.SA1600.severity = none # Elements don't have to be documented
 dotnet_diagnostic.SA1601.severity = none # Elements don't have to be documented
 dotnet_diagnostic.SA1602.severity = none # Enums don't have to be documented
@@ -54,6 +66,14 @@ dotnet_diagnostic.SA1641.severity = none # Company text does not have to match
 dotnet_diagnostic.SA1642.severity = none # Constructor summary can have any text
 dotnet_diagnostic.SA1643.severity = none # Destructor summary can have any text
 dotnet_diagnostic.SA1648.severity = none # Inherit doc can be used wherever you want
+
+csharp_using_directive_placement = outside_namespace:warning
+
+# Resharper formatting rules
+csharp_keep_blank_lines_in_declarations = 1
+csharp_keep_blank_lines_in_code = 1
+csharp_blank_lines_after_file_scoped_namespace_directive = 1
+csharp_remove_blank_lines_near_braces_in_code = true
 
 [*.axaml]
 max_line_length = 160

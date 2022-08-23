@@ -1,12 +1,63 @@
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using GetText;
 using GetText.Loaders;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace WowsShipBuilder.GameParamsExtractor;
 
-public static class TranslatorUtility
+internal static class TranslatorUtility
 {
+    public sealed record LocalizationData(string Language, Dictionary<string, string> Translations);
+
+    public sealed record RawLocalizationData(string Language, Dictionary<string, string[]> Translations);
+
+    public static FileInfo[] FindTranslationFiles(string inputDirectory)
+    {
+        return new DirectoryInfo(inputDirectory).GetFiles("*.mo", SearchOption.AllDirectories);
+    }
+
+    public static IEnumerable<RawLocalizationData> ExtractRawLocalization(IEnumerable<FileInfo> localizationFiles, ILogger? logger = null)
+    {
+        var results = new ConcurrentBag<RawLocalizationData>();
+        Parallel.ForEach(localizationFiles, f =>
+        {
+            logger?.LogInformation("Extracting data from localization file {}", f);
+            using var fileStream = f.OpenRead();
+            var catalog = new Catalog(fileStream);
+            catalog.Translations.Remove(string.Empty);
+            results.Add(new(f.Directory!.Parent!.Name, catalog.Translations));
+        });
+
+        return results;
+    }
+
+    public static IEnumerable<LocalizationData> ProcessTranslations(IEnumerable<RawLocalizationData> rawTranslations, HashSet<string> translationKeys, ILogger? logger = null)
+    {
+        var results = new ConcurrentBag<LocalizationData>();
+        Parallel.ForEach(rawTranslations, translation =>
+        {
+            logger?.LogInformation("Processing localization {}", translation.Language);
+            Dictionary<string, string> filteredTranslations = translation.Translations
+                .Where(entry => translationKeys.Contains(entry.Key))
+                .ToDictionary(x => x.Key[4..], x => x.Value.FirstOrDefault() ?? string.Empty);
+            results.Add(new(translation.Language, filteredTranslations));
+        });
+
+        return results;
+    }
+
+    public static HashSet<string> FilterTranslationKeys(IEnumerable<string> rawKeys, IEnumerable<string> filter)
+    {
+        var results = new ConcurrentDictionary<string, byte>();
+        rawKeys
+            .AsParallel()
+            .Where(key => filter.Any(s => key.Contains(s, StringComparison.OrdinalIgnoreCase)))
+            .ForAll(s => results.TryAdd(s, 0));
+        return results.Keys.ToHashSet();
+    }
+
     /// <summary>
     /// Process all the .mo file in a folder, applies the filter and write a json for each input file in the output folder.
     /// </summary>
@@ -66,13 +117,5 @@ public static class TranslatorUtility
 
         stopwatch.Stop();
         Console.WriteLine($"All translation file processed. Time passed: {stopwatch.Elapsed}");
-    }
-
-    private static HashSet<string> FilterTranslationKeys(IEnumerable<string> rawKeys, IEnumerable<string> filter)
-    {
-        return rawKeys
-            .AsParallel()
-            .Where(key => filter.Any(s => key.Contains(s, StringComparison.OrdinalIgnoreCase)))
-            .ToHashSet();
     }
 }

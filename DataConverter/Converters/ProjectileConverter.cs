@@ -1,7 +1,9 @@
-using GameParamsExtractor.WGStructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataConverter.Data;
+using GameParamsExtractor.WGStructure;
+using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter.Converters
@@ -14,9 +16,10 @@ namespace DataConverter.Converters
         /// Converter method that transforms a <see cref="WGProjectile"/> object into a <see cref="Projectile"/> object.
         /// </summary>
         /// <param name="wgProjectile">The list of projectile data extracted from game params.</param>
+        /// <param name="logger">A logger used to log information about the execution.</param>
         /// <returns>A dictionary mapping an ID to a <see cref="Projectile"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-        public static Dictionary<string, Projectile> ConvertProjectile(IEnumerable<WGProjectile> wgProjectile)
+        public static Dictionary<string, Projectile> ConvertProjectile(IEnumerable<WGProjectile> wgProjectile, ILogger? logger)
         {
             //Dictionary containing all projectiles
             Dictionary<string, Projectile> projectileList = new Dictionary<string, Projectile>();
@@ -24,19 +27,13 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert and sort everything
             foreach (var currentWgProjectile in wgProjectile)
             {
-                Program.TranslationNames.Add(currentWgProjectile.name);
-                ProjectileType currentWgProjectileType;
-                try
-                {
-                    currentWgProjectileType = Enum.Parse<ProjectileType>(currentWgProjectile.typeinfo.species);
-                }
-                catch (Exception)
+                DataCache.TranslationNames.Add(currentWgProjectile.name);
+                if (!Enum.TryParse(currentWgProjectile.typeinfo.species, out ProjectileType currentWgProjectileType))
                 {
                     if (ReportedProjectileTypes.Add(currentWgProjectile.typeinfo.species))
                     {
-                        Console.WriteLine("Projectile type not recognized: " + currentWgProjectile.typeinfo.species);
+                        logger?.LogWarning("Projectile type not recognized: {}", currentWgProjectile.typeinfo.species);
                     }
-
                     continue;
                 }
 

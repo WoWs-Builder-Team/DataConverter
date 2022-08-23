@@ -9,7 +9,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
         <PackageId>WoWsShipBuilder.DataStructures</PackageId>
-        <VersionPrefix>2.3.0</VersionPrefix>
+        <VersionPrefix>2.4.0</VersionPrefix>
         <RepositoryType>git</RepositoryType>
         <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
         <LangVersion>10</LangVersion>
@@ -23,12 +23,6 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-        <AdditionalFiles Include="..\stylecop.json">
-            <Link>stylecop.json</Link>
-        </AdditionalFiles>
     </ItemGroup>
 
 </Project>

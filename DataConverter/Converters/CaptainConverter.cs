@@ -1,12 +1,13 @@
-using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using DataConverter.Data;
+using GameParamsExtractor.WGStructure;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
@@ -67,7 +68,7 @@ namespace DataConverter.Converters
                     name = "Default";
                 }
 
-                Program.TranslationNames.Add(name);
+                DataCache.TranslationNames.Add(name);
                 //start mapping
                 Captain captain = new Captain
                 {
@@ -158,10 +159,10 @@ namespace DataConverter.Converters
 
                     skill.ConditionalModifiers = conditionalModifiers;
                     skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.triggerType;
-                    Program.TranslationNames.Add(skill.ConditionalTriggerType);
-                    Program.TranslationNames.UnionWith(skill.ConditionalModifiers.Keys);
-                    Program.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
-                    Program.TranslationNames.UnionWith(modifiers.Keys);
+                    DataCache.TranslationNames.Add(skill.ConditionalTriggerType);
+                    DataCache.TranslationNames.UnionWith(skill.ConditionalModifiers.Keys);
+                    DataCache.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
+                    DataCache.TranslationNames.UnionWith(modifiers.Keys);
                     skills.Add(currentWgSkill.Key, skill);
                 }
 
@@ -226,7 +227,7 @@ namespace DataConverter.Converters
                                         continue;
                                     }
                                     effectsModifiers.Add($"{key}", value.Value<float>());
-                                    Program.TranslationNames.Add(key);
+                                    DataCache.TranslationNames.Add(key);
                                 }
                                 else if (value.Type == JTokenType.Object)
                                 {
@@ -236,14 +237,14 @@ namespace DataConverter.Converters
                                     if (allEquals)
                                     {
                                         effectsModifiers.Add($"{key}", modifiers.First().Value);
-                                        Program.TranslationNames.Add(key);
+                                        DataCache.TranslationNames.Add(key);
                                     }
                                     else
                                     {
                                         foreach ((var modifierName, var modifierValue) in modifiers)
                                         {
                                             effectsModifiers.Add($"{key}_{modifierName}", modifierValue);
-                                            Program.TranslationNames.Add($"{key}_{modifierName}");
+                                            DataCache.TranslationNames.Add($"{key}_{modifierName}");
                                         }
                                     }
                                 }
@@ -264,7 +265,7 @@ namespace DataConverter.Converters
                     var uniqueIdsString = string.Join("_", uniqueIds);
                     var translationId = $"TALENT_{captain.Index}_{uniqueSkill.TriggerType}_{uniqueIdsString}";
                     uniqueSkill.TranslationId = translationId;
-                    Program.TranslationNames.Add(translationId);
+                    DataCache.TranslationNames.Add(translationId);
 
                     //add the unique skill to the dictionary
                     uniqueSkill.SkillEffects = skillEffectDictionary;

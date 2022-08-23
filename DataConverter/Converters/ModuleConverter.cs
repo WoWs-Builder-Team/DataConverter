@@ -1,7 +1,7 @@
-using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using DataConverter.Data;
+using GameParamsExtractor.WGStructure;
 using WoWsShipBuilder.DataStructures;
 
 namespace DataConverter.Converters
@@ -17,7 +17,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgModule in wgModules)
             {
-                Program.TranslationNames.Add(currentWgModule.name);
+                DataCache.TranslationNames.Add(currentWgModule.name);
                 //create our object type
                 Module module = new Module
                 {

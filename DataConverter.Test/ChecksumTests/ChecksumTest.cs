@@ -15,7 +15,7 @@ public class ChecksumTest
     {
         const string testData = "1234567890";
         const string fileName = "testfile.txt";
-        string expectedHash = CreateInMemoryHash(testData);
+        string expectedHash = CreateInMemoryStreamHash(testData);
         File.WriteAllText(fileName, testData);
 
         using var fs = File.OpenRead(fileName);
@@ -29,7 +29,7 @@ public class ChecksumTest
     {
         string testData = JsonConvert.SerializeObject(GenerateTestDictionary(50));
         const string fileName = "testfile.txt";
-        string expectedHash = CreateInMemoryHash(testData);
+        string expectedHash = CreateInMemoryStreamHash(testData);
         File.WriteAllText(fileName, testData);
 
         using var fs = File.OpenRead(fileName);
@@ -43,7 +43,7 @@ public class ChecksumTest
     {
         string testData = JsonConvert.SerializeObject(GenerateTestDictionary(50));
         const string fileName = "testfile.txt";
-        string expectedHash = CreateInMemoryHash(testData);
+        string expectedHash = CreateInMemoryStreamHash(testData);
         File.WriteAllText(fileName, testData);
         File.AppendAllText(fileName, "testtext");
 
@@ -51,6 +51,17 @@ public class ChecksumTest
         string hash = FileVersion.ComputeChecksum(fs);
 
         hash.Should().NotBe(expectedHash);
+    }
+
+    [Test]
+    public void ComputeChecksum_StringStreamEqual_True()
+    {
+        const string testData = "1234567890";
+        string expectedHash = CreateInMemoryStreamHash(testData);
+
+        string actualHash = FileVersion.ComputeChecksum(testData);
+
+        actualHash.Should().Be(expectedHash);
     }
 
     private static Dictionary<string, Ship> GenerateTestDictionary(int targetSize)
@@ -64,7 +75,7 @@ public class ChecksumTest
         return shipDictionary;
     }
 
-    private static string CreateInMemoryHash(string content)
+    private static string CreateInMemoryStreamHash(string content)
     {
         using var memoryStream = new MemoryStream();
         using var writer = new StreamWriter(memoryStream);

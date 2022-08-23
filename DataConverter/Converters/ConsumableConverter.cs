@@ -1,8 +1,6 @@
-using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataConverter.Data;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
@@ -19,11 +17,11 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgConsumable in wgConsumable)
             {
-                Program.TranslationNames.Add(currentWgConsumable.Name);
+                DataCache.TranslationNames.Add(currentWgConsumable.Name);
                 //collecting consumable variants
                 var variant = currentWgConsumable.Variants;
                 List<string> variantsKeys = new List<string>(variant.Keys);
-                Program.TranslationNames.UnionWith(variant.Values.Select(variantValue => variantValue.DescIDs));
+                DataCache.TranslationNames.UnionWith(variant.Values.Select(variantValue => variantValue.DescIDs));
 
                 foreach (string currentVariantKey in variantsKeys)
                 {
@@ -49,7 +47,7 @@ namespace DataConverter.Converters
                     };
                     if (consumable.Modifiers?.Keys != null)
                     {
-                        Program.TranslationNames.UnionWith(consumable.Modifiers.Keys);
+                        DataCache.TranslationNames.UnionWith(consumable.Modifiers.Keys);
                     }
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
