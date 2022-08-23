@@ -345,6 +345,14 @@ public class Engine
 
     public decimal ForwardEngineUpTime { get; set; }
 
+    public decimal BackwardEngineForsag { get; set; }
+
+    public decimal BackwardEngineForsagMaxSpeed { get; set; }
+
+    public decimal ForwardEngineForsag { get; set; }
+
+    public decimal ForwardEngineForsagMaxSpeed { get; set; }
+
     public decimal SpeedCoef { get; set; }
 
     public decimal ArmorCoeff { get; set; }
@@ -401,6 +409,10 @@ public class Hull
     public int TurningRadius { get; set; }
 
     public ShipSize Sizes { get; set; }
+
+    public int EnginePower { get; set; }
+
+    public int Tonnage { get; set; }
 
     public List<HitLocation> HitLocations { get; set; }
 }

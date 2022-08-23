@@ -418,6 +418,14 @@ namespace GameParamsExtractor.WGStructure
 
         public decimal ForwardEngineUpTime { get; set; }
 
+        public decimal BackwardEngineForsag { get; set; }
+
+        public decimal BackwardEngineForsagMaxSpeed { get; set; }
+
+        public decimal ForwardEngineForsag { get; set; }
+
+        public decimal ForwardEngineForsagMaxSpeed { get; set; }
+
         public decimal SpeedCoef { get; set; }
 
         public HitLocationEngine HitLocationEngine { get; set; } = new();
@@ -459,6 +467,10 @@ namespace GameParamsExtractor.WGStructure
         public int TurningRadius { get; set; }
 
         public decimal[] Size { get; set; } = Array.Empty<decimal>();
+
+        public int EnginePower { get; set; }
+
+        public int Tonnage { get; set; }
 
         public WgHitLocation Cas { get; set; } = new();
 

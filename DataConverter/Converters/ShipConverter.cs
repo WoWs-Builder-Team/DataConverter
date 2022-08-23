@@ -335,6 +335,8 @@ public static class ShipConverter
                 FloodingTickDamage = wgHull.FloodNodes[0][1],
                 FloodingDuration = wgHull.FloodNodes[0][2],
                 TurningRadius = wgHull.TurningRadius,
+                Tonnage = wgHull.Tonnage,
+                EnginePower = wgHull.EnginePower,
             };
 
             //Process hit locations
@@ -544,6 +546,10 @@ public static class ShipConverter
             {
                 BackwardEngineUpTime = wgEngine.BackwardEngineUpTime,
                 ForwardEngineUpTime = wgEngine.ForwardEngineUpTime,
+                BackwardEngineForsag = wgEngine.BackwardEngineForsag,
+                BackwardEngineForsagMaxSpeed = wgEngine.BackwardEngineForsagMaxSpeed,
+                ForwardEngineForsag = wgEngine.ForwardEngineForsag,
+                ForwardEngineForsagMaxSpeed = wgEngine.ForwardEngineForsagMaxSpeed,
                 SpeedCoef = wgEngine.SpeedCoef,
                 ArmorCoeff = wgEngine.HitLocationEngine.ArmorCoeff,
             };
