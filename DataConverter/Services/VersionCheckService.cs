@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 using DataConverter.Data;
 using Microsoft.Extensions.Logging;
@@ -74,6 +75,10 @@ internal class VersionCheckService : IVersionCheckService
 
         var newGameVersion = gameVersion with { DataIteration = gameVersion.DataIteration + 1 };
         logger.LogInformation("Creating version info for current version {}", newGameVersion);
-        return new(newFileVersions, oldVersionInfo.CurrentVersionCode + 1, newGameVersion, oldVersionInfo.CurrentVersion);
+        var dataStructureVersion = Assembly.GetAssembly(typeof(Ship))!.GetName().Version!;
+        return new(newFileVersions, oldVersionInfo.CurrentVersionCode + 1, newGameVersion, oldVersionInfo.CurrentVersion)
+        {
+            DataStructuresVersion = dataStructureVersion,
+        };
     }
 }
