@@ -13,6 +13,7 @@ namespace WoWsShipBuilder.DataStructures
         public float SpeedMaxModifier { get; set; }
         public float SpeedMinModifier { get; set; }
         public float Speed { get; set; }
+        public float MaxEngineBoostDuration { get; set; }
         public double NaturalAcceleration { get; set; }
         public double NaturalDeceleration { get; set; }
         public double ConcealmentFromShips { get; set; }

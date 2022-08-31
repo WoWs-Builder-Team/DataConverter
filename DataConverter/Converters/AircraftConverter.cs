@@ -31,6 +31,7 @@ namespace DataConverter.Converters
                     SpeedMaxModifier = currentWgAir.SpeedMax,
                     SpeedMinModifier = currentWgAir.SpeedMin,
                     Speed = currentWgAir.SpeedMoveWithBomb,
+                    MaxEngineBoostDuration = currentWgAir.MaxForsageAmount,
                     NaturalAcceleration = currentWgAir.NaturalAcceleration,
                     NaturalDeceleration = currentWgAir.NaturalDeceleration,
                     MaxPlaneInHangar = currentWgAir.HangarSettings.MaxValue,

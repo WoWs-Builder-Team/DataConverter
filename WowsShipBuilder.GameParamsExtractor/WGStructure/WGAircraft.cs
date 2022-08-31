@@ -77,6 +77,8 @@ public class WgAircraft : WGObject
 
     public float SpeedMoveWithBomb { get; set; }
 
+    public float MaxForsageAmount { get; set; }
+
     public decimal AimingAccuracyDecreaseRate { get; set; }
 
     public decimal AimingAccuracyIncreaseRate { get; set; }
