@@ -73,7 +73,8 @@ internal class VersionCheckService : IVersionCheckService
             newFileVersions[resultCategory.Key] = fileVersions;
         }
 
-        var newGameVersion = gameVersion with { DataIteration = gameVersion.DataIteration + 1 };
+        int dataIteration = oldVersionInfo.CurrentVersion.MainVersion == gameVersion.MainVersion ? oldVersionInfo.CurrentVersion.DataIteration + 1 : 1;
+        var newGameVersion = gameVersion with { DataIteration = dataIteration };
         logger.LogInformation("Creating version info for current version {}", newGameVersion);
         var dataStructureVersion = Assembly.GetAssembly(typeof(Ship))!.GetName().Version!;
         return new(newFileVersions, oldVersionInfo.CurrentVersionCode + 1, newGameVersion, oldVersionInfo.CurrentVersion)
