@@ -32,6 +32,6 @@ public class ShiptoolArmamentModule
 
 public class ShiptoolGunData
 {
-    [JsonProperty(PropertyName = "BASE_ANGLE")]
+    [JsonProperty(PropertyName = "ANGLE")]
     public decimal BaseAngle { get; set; }
 }
