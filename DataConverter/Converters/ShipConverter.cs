@@ -44,7 +44,7 @@ public static class ShipConverter
                 Tier = wgShip.Level,
                 ShipClass = ProcessShipClass(wgShip.typeinfo.species),
                 ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
-                ShipNation = ConvertNationString(wgShip.typeinfo.nation),
+                ShipNation = Enum.Parse<Nation>(wgShip.typeinfo.nation.Replace("_", string.Empty), true),
                 MainBatteryModuleList = ProcessMainBattery(wgShip, stShip),
                 ShipUpgradeInfo = ProcessUpgradeInfo(wgShip, logger),
                 FireControlList = ProcessFireControl(wgShip),
@@ -144,15 +144,6 @@ public static class ShipConverter
         }
 
         return null;
-    }
-
-    private static Nation ConvertNationString(string wgNation)
-    {
-        return wgNation.Replace("_", "") switch
-        {
-            "USA" => Nation.Usa,
-            { } any => Enum.Parse<Nation>(any),
-        };
     }
 
     private static ShipCategory ProcessShipCategory(string wgCategory, int tier)
