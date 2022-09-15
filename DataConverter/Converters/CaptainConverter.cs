@@ -107,55 +107,13 @@ namespace DataConverter.Converters
                     skill.Tiers = tiers;
                     //list of the classes that can use the skill
                     skill.LearnableOn = classes;
-                    //initialize dictionaries skill's modifiers
-                    Dictionary<string, float> modifiers = new Dictionary<string, float>();
-                    Dictionary<string, float> conditionalModifiers = new Dictionary<string, float>();
                     //collect all modifiers of the skill
-                    foreach (var currentWgModifier in currentWgSkill.Value.modifiers)
-                    {
-                        JToken jtoken = currentWgModifier.Value;
-                        if (jtoken.Type == JTokenType.Float || jtoken.Type == JTokenType.Integer)
-                        {
-                            modifiers.Add(currentWgModifier.Key, jtoken.Value<float>());
-                        }
-                        else if (jtoken.Type == JTokenType.Object)
-                        {
-                            JObject jObject = (JObject)jtoken;
-                            var values = jObject.ToObject<Dictionary<string, float>>()!;
-                            bool isEqual = true;
-                            var first = values.First().Value;
-                            foreach ((string key, float value) in values)
-                            {
-                                if (value != first)
-                                {
-                                    isEqual = false;
-                                }
-                            }
-                            if (isEqual)
-                            {
-                                modifiers.Add(currentWgModifier.Key, first);
-                            }
-                            else
-                            {
-                                foreach ((string key, float value) in values)
-                                {
-                                    modifiers.Add($"{currentWgModifier.Key}_{key}", value);
-                                }
-                            }
-                        }
-                    }
-
+                    Dictionary<string, float> modifiers = ProcessSkillModifiers(currentWgSkill.Value.modifiers);
                     skill.Modifiers = modifiers;
 
                     //collect all skill's modifiers with trigger condition
-                    var wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.modifiers;
-                    if (wgConditionalModifiers.Count > 0)
-                    {
-                        foreach (var currentWgConditionalModifier in wgConditionalModifiers)
-                        {
-                            conditionalModifiers.Add(currentWgConditionalModifier.Key, currentWgConditionalModifier.Value);
-                        }
-                    }
+                    Dictionary<string, JToken>? wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.modifiers;
+                    Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
 
                     skill.ConditionalModifiers = conditionalModifiers;
                     skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.triggerType;
@@ -277,6 +235,47 @@ namespace DataConverter.Converters
             }
 
             return captainList;
+        }
+
+        private static Dictionary<string, float> ProcessSkillModifiers(Dictionary<string, JToken> skillModifiers)
+        {
+            Dictionary<string, float> modifiers = new();
+            foreach (var currentWgModifier in skillModifiers)
+            {
+                JToken jtoken = currentWgModifier.Value;
+                if (jtoken.Type is JTokenType.Float or JTokenType.Integer)
+                {
+                    modifiers.Add(currentWgModifier.Key, jtoken.Value<float>());
+                }
+                else if (jtoken.Type == JTokenType.Object)
+                {
+                    JObject jObject = (JObject)jtoken;
+                    var values = jObject.ToObject<Dictionary<string, float>>()!;
+                    bool isEqual = true;
+                    var first = values.First().Value;
+                    foreach ((string key, float value) in values)
+                    {
+                        if (value != first)
+                        {
+                            isEqual = false;
+                        }
+                    }
+
+                    if (isEqual)
+                    {
+                        modifiers.Add(currentWgModifier.Key, first);
+                    }
+                    else
+                    {
+                        foreach ((string key, float value) in values)
+                        {
+                            modifiers.Add($"{currentWgModifier.Key}_{key}", value);
+                        }
+                    }
+                }
+            }
+
+            return modifiers;
         }
 
         /// <summary>
