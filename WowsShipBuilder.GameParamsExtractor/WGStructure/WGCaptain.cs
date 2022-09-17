@@ -50,7 +50,7 @@ namespace GameParamsExtractor.WGStructure
         public float energyCoeff { get; set; }
         public int floodCount { get; set; }
         public object[] heatInterpolator { get; set; }
-        public Dictionary<string, float> modifiers { get; set; }
+        public Dictionary<string, JToken> modifiers { get; set; }
         public string triggerDescIds { get; set; }
         public string triggerType { get; set; }
     }
