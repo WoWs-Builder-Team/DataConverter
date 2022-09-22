@@ -20,6 +20,6 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPlane), "planeType")]
 [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgPlane), "planes")]
 [JsonSubtypes.KnownSubTypeWithProperty(typeof(WgSpecialAbility), "RageMode")]
-public class WgArmamentModule
+public abstract class WgArmamentModule
 {
 }

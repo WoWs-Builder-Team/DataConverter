@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using WoWsShipBuilder.DataStructures;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -35,17 +34,4 @@ public class WgAaAura
     public decimal MinDistance { get; set; }
 
     public string Type { get; set; } = string.Empty;
-
-    public static implicit operator AntiAirAura(WgAaAura aura)
-    {
-        return new AntiAirAura
-        {
-            ConstantDps = aura.AreaDamage,
-            FlakDamage = aura.BubbleDamage,
-            FlakCloudsNumber = aura.InnerBubbleCount,
-            HitChance = aura.HitChance,
-            MaxRange = aura.MaxDistance,
-            MinRange = aura.MinDistance,
-        };
-    }
 }

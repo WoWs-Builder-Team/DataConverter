@@ -1,7 +1,6 @@
 ﻿using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using WoWsShipBuilder.DataStructures;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -9,7 +8,7 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 public class WgMainBattery : WgArmamentModule
 {
-    public Dictionary<string, MainBatteryGun> Guns { get; set; } = new();
+    public Dictionary<string, WgMainBatteryGun> Guns { get; set; } = new();
 
     public WgBurstArtilleryModule? BurstArtilleryModule { get; set; }
 
@@ -28,7 +27,7 @@ public class WgMainBattery : WgArmamentModule
     public Dictionary<string, WgAaAura> AntiAirAuras => Other.FindAaAuras();
 }
 
-public class MainBatteryGun
+public class WgMainBatteryGun
 {
     public string[] AmmoList { get; set; } = Array.Empty<string>();
 
@@ -69,27 +68,4 @@ public class MainBatteryGun
     public double Delim { get; set; }
 
     public TypeInfo TypeInfo { get; set; } = new();
-
-    public static explicit operator Gun(MainBatteryGun gun)
-    {
-        var newGun = new Gun
-        {
-            AmmoList = gun.AmmoList.ToList(),
-            BarrelDiameter = gun.BarrelDiameter,
-            HorizontalSector = gun.HorizSector,
-            HorizontalDeadZones = gun.DeadZone,
-            Id = gun.Id,
-            Index = gun.Index,
-            Name = gun.Name,
-            NumBarrels = gun.NumBarrels,
-            HorizontalPosition = gun.Position[1],
-            VerticalPosition = gun.Position[0],
-            HorizontalRotationSpeed = gun.RotationSpeed[0],
-            VerticalRotationSpeed = gun.RotationSpeed[1],
-            Reload = gun.ShotDelay,
-            SmokeDetectionWhenFiring = gun.SmokePenalty,
-        };
-
-        return newGun;
-    }
 }

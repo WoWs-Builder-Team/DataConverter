@@ -1,7 +1,6 @@
 ﻿using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using WoWsShipBuilder.DataStructures;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -44,20 +43,4 @@ public class WgAntiAirAndSecondaries
     public bool SmallGun { get; set; }
 
     public TypeInfo TypeInfo { get; set; } = new();
-
-    public static explicit operator Gun(WgAntiAirAndSecondaries wgSecondary)
-    {
-        return new Gun
-        {
-            AmmoList = wgSecondary.AmmoList.ToList(),
-            BarrelDiameter = wgSecondary.BarrelDiameter,
-            Id = wgSecondary.Id,
-            Index = wgSecondary.Index,
-            Name = wgSecondary.Name,
-            NumBarrels = wgSecondary.NumBarrels,
-            HorizontalRotationSpeed = wgSecondary.RotationSpeed[0],
-            VerticalRotationSpeed = wgSecondary.RotationSpeed[1],
-            Reload = wgSecondary.ShotDelay,
-        };
-    }
 }

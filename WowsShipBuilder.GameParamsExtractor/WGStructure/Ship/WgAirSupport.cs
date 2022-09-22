@@ -1,6 +1,4 @@
-﻿using WoWsShipBuilder.DataStructures;
-
-// ReSharper disable UnusedAutoPropertyAccessor.Global
+﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
@@ -26,20 +24,4 @@ public class WgAirSupport : WgArmamentModule
     public decimal TimeBetweenShots { get; set; }
 
     public decimal TimeFromHeaven { get; set; }
-
-    public static implicit operator AirStrike(WgAirSupport thisAirSupport)
-    {
-        return new AirStrike
-        {
-            Charges = thisAirSupport.ChargesNum,
-            FlyAwayTime = thisAirSupport.FlyAwayTime,
-            MaximumDistance = thisAirSupport.MaxDist,
-            MaximumFlightDistance = thisAirSupport.MaxPlaneFlightDist,
-            MinimumDistance = thisAirSupport.MinDist,
-            PlaneName = thisAirSupport.PlaneName,
-            DropTime = thisAirSupport.TimeFromHeaven,
-            ReloadTime = thisAirSupport.ReloadTime,
-            TimeBetweenShots = thisAirSupport.TimeBetweenShots,
-        };
-    }
 }

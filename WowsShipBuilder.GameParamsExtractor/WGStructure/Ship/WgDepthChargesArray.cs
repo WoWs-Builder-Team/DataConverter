@@ -2,7 +2,6 @@
 // ReSharper disable CollectionNeverUpdated.Global
 
 using GameParamsExtractor.WGStructure;
-using WoWsShipBuilder.DataStructures;
 
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
@@ -34,18 +33,4 @@ public class WgDepthChargeLauncher
     public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
 
     public TypeInfo TypeInfo { get; set; } = new();
-
-    public static implicit operator DepthChargeLauncher(WgDepthChargeLauncher wgLauncher)
-    {
-        return new DepthChargeLauncher
-        {
-            AmmoList = wgLauncher.AmmoList.ToList(),
-            DepthChargesNumber = wgLauncher.NumBombs,
-            HorizontalSector = wgLauncher.HorizSector,
-            Id = wgLauncher.Id,
-            Index = wgLauncher.Index,
-            Name = wgLauncher.Name,
-            RotationSpeed = wgLauncher.RotationSpeed,
-        };
-    }
 }

@@ -1,5 +1,4 @@
 ﻿using GameParamsExtractor.WGStructure;
-using WoWsShipBuilder.DataStructures;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -39,25 +38,4 @@ public class WgTorpedoLauncher
     public decimal[] TorpedoAngles { get; set; } = Array.Empty<decimal>(); //unknonw meaning, needed?
 
     public TypeInfo TypeInfo { get; set; } = new();
-
-    public static implicit operator TorpedoLauncher(WgTorpedoLauncher thisLauncher)
-    {
-        return new()
-        {
-            AmmoList = thisLauncher.AmmoList.ToList(),
-            BarrelDiameter = thisLauncher.BarrelDiameter,
-            Id = thisLauncher.Id,
-            Index = thisLauncher.Index,
-            Name = thisLauncher.Name,
-            HorizontalDeadZones = thisLauncher.DeadZone,
-            NumBarrels = thisLauncher.NumBarrels,
-            HorizontalPosition = thisLauncher.Position[1],
-            VerticalPosition = thisLauncher.Position[0],
-            HorizontalRotationSpeed = thisLauncher.RotationSpeed[0],
-            VerticalRotationSpeed = thisLauncher.RotationSpeed[1],
-            Reload = thisLauncher.ShotDelay,
-            HorizontalSector = thisLauncher.HorizSector,
-            TorpedoAngles = thisLauncher.TorpedoAngles,
-        };
-    }
 }

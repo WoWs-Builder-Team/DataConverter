@@ -233,7 +233,7 @@ public static class ShipConverter
                 Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stMainBatteryModule)).ToList(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
             };
-            MainBatteryGun dispersionGun = wgMainBattery.Guns.Values.First();
+            WgMainBatteryGun dispersionGun = wgMainBattery.Guns.Values.First();
             var turretDispersion = new Dispersion
             {
                 IdealRadius = dispersionGun.IdealRadius,
@@ -266,9 +266,9 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Gun ConvertMainBatteryGun(MainBatteryGun wgGun, string mainGunKey, ShiptoolArmamentModule? stGuns)
+    private static Gun ConvertMainBatteryGun(WgMainBatteryGun wgGun, string mainGunKey, ShiptoolArmamentModule? stGuns)
     {
-        var newGun = (Gun)wgGun;
+        var newGun = wgGun.ConvertData();
         newGun.WgGunIndex = mainGunKey;
         var stGun = stGuns?.GetGunData(mainGunKey);
         newGun.BaseAngle = stGun?.BaseAngle ?? (newGun.VerticalPosition < 3 ? 0 : 180);
@@ -423,7 +423,7 @@ public static class ShipConverter
                 {
                     Sigma = wgHullSecondary.SigmaCount,
                     MaxRange = wgHullSecondary.MaxDist,
-                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => (Gun)secondaryGun).ToList(),
+                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData()).ToList(),
                 };
                 DataCache.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());
                 hullModule.SecondaryModule = secondary;
@@ -449,7 +449,7 @@ public static class ShipConverter
                     MaxPacks = wgDepthChargeArray.MaxPacks,
                     NumShots = wgDepthChargeArray.NumShots,
                     Reload = wgDepthChargeArray.ReloadTime,
-                    DepthCharges = wgDepthChargeArray.DepthCharges.Select(entry => (DepthChargeLauncher)entry.Value).ToList(),
+                    DepthCharges = wgDepthChargeArray.DepthCharges.Select(entry => entry.Value.ConvertData()).ToList(),
                 };
                 DataCache.TranslationNames.UnionWith(hullModule.DepthChargeArray.DepthCharges.Select(depthChargeLauncher => depthChargeLauncher.Name)
                     .Distinct());
@@ -503,7 +503,7 @@ public static class ShipConverter
 
     private static TorpedoLauncher ConvertWgTorpedoLauncher(string wgKey, WgTorpedoLauncher wgTorpedoLauncher, ShiptoolArmamentModule? stModule)
     {
-        var launcher = (TorpedoLauncher)wgTorpedoLauncher;
+        var launcher = wgTorpedoLauncher.ConvertData();
         launcher.BaseAngle = stModule?.GetGunData(wgKey)?.BaseAngle ?? (launcher.VerticalPosition < 3 ? 0 : 180);
         return launcher;
     }
@@ -600,7 +600,7 @@ public static class ShipConverter
     {
         Dictionary<string, AirStrike> result = wgShip.ModulesArmaments
             .ModulesOfType<WgAirSupport>()
-            .ToDictionary(entry => entry.Key, entry => (AirStrike)entry.Value);
+            .ToDictionary(entry => entry.Key, entry => entry.Value.ConvertData());
         DataCache.TranslationNames.UnionWith(result.Values.Select(airStrike => airStrike.PlaneName).Distinct());
         return result;
     }
@@ -609,7 +609,7 @@ public static class ShipConverter
     {
         return wgShip.ModulesArmaments
             .ModulesOfType<WgPingerGun>()
-            .ToDictionary(entry => entry.Key, entry => (PingerGun)entry.Value);
+            .ToDictionary(entry => entry.Key, entry => entry.Value.ConvertData());
     }
 
     #endregion
@@ -636,11 +636,11 @@ public static class ShipConverter
                 case "far":
                     if (targetAntiAir.LongRangeAura != null)
                     {
-                        targetAntiAir.LongRangeAura += aura;
+                        targetAntiAir.LongRangeAura += aura.ConvertData();
                     }
                     else
                     {
-                        targetAntiAir.LongRangeAura = aura;
+                        targetAntiAir.LongRangeAura = aura.ConvertData();
                     }
 
                     break;
@@ -648,11 +648,11 @@ public static class ShipConverter
                 case "medium":
                     if (targetAntiAir.MediumRangeAura != null)
                     {
-                        targetAntiAir.MediumRangeAura += aura;
+                        targetAntiAir.MediumRangeAura += aura.ConvertData();
                     }
                     else
                     {
-                        targetAntiAir.MediumRangeAura = aura;
+                        targetAntiAir.MediumRangeAura = aura.ConvertData();
                     }
 
                     break;
@@ -660,11 +660,11 @@ public static class ShipConverter
                 case "near":
                     if (targetAntiAir.ShortRangeAura != null)
                     {
-                        targetAntiAir.ShortRangeAura += aura;
+                        targetAntiAir.ShortRangeAura += aura.ConvertData();
                     }
                     else
                     {
-                        targetAntiAir.ShortRangeAura = aura;
+                        targetAntiAir.ShortRangeAura = aura.ConvertData();
                     }
 
                     break;
