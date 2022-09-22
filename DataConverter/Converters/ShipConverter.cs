@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
 using DataConverter.JsonData;
-using GameParamsExtractor.WGStructure;
 using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 using Hull = WoWsShipBuilder.DataStructures.Hull;
 using ShipUpgrade = WoWsShipBuilder.DataStructures.ShipUpgrade;
 
@@ -199,7 +199,7 @@ public static class ShipConverter
             Value = wgShip.ShipUpgradeInfo.Value,
         };
 
-        foreach ((string wgName, GameParamsExtractor.WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
+        foreach ((string wgName, WowsShipBuilder.GameParamsExtractor.WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
         {
             var newUpgrade = new ShipUpgrade
             {
