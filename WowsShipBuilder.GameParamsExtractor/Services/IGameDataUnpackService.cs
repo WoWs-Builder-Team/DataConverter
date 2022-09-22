@@ -16,7 +16,7 @@ public interface IGameDataUnpackService
     /// <summary>
     /// Extracts data from a game params file and returns the raw result.
     /// <br/>
-    /// <b>Only use this method if you know what you do and using the <see cref="ExtractAndRefineGameParamsAsync"/> method is not possible.</b>
+    /// <b>Only use this method if you know what you do and using the <see cref="ExtractAndRefineGameParams"/> method is not possible.</b>
     /// </summary>
     /// <param name="gameParamsFilePath">The file path of the game params file.</param>
     /// <returns>A dictionary containing the raw, unrefined data from the game params file.</returns>

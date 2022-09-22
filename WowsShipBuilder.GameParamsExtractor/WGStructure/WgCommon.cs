@@ -8,7 +8,7 @@ using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 
-[JsonConverter(typeof(JsonSubtypes), "TypeInfo.Type")]
+[JsonConverter(typeof(JsonSubtypes), "typeinfo.type")]
 [JsonSubtypes.KnownSubType(typeof(WgConsumable), "Ability")]
 [JsonSubtypes.KnownSubType(typeof(WgAircraft), "Aircraft")]
 [JsonSubtypes.KnownSubType(typeof(WgCaptain), "Crew")]
@@ -17,7 +17,7 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 [JsonSubtypes.KnownSubType(typeof(WgProjectile), "Projectile")]
 [JsonSubtypes.KnownSubType(typeof(WgShip), "Ship")]
 [JsonSubtypes.KnownSubType(typeof(WgModule), "Unit")]
-public abstract class WgObject
+public class WgObject
 {
     public TypeInfo TypeInfo { get; set; } = new();
 }

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
 
-[JsonConverter(typeof(JsonSubtypes), "TypeInfo.Species")]
+[JsonConverter(typeof(JsonSubtypes), "typeinfo.species")]
 [JsonSubtypes.KnownSubType(typeof(WgShell), "Artillery")]
 [JsonSubtypes.KnownSubType(typeof(WgBomb), "Bomb")]
 [JsonSubtypes.KnownSubType(typeof(WgBomb), "SkipBomb")]
