@@ -2,6 +2,7 @@
 using JsonSubTypes;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace GameParamsExtractor.WGStructure
@@ -9,7 +10,7 @@ namespace GameParamsExtractor.WGStructure
     [JsonConverter(typeof(JsonSubtypes), "typeinfo.type")]
     [JsonSubtypes.KnownSubType(typeof(WgConsumable), "Ability")]
     [JsonSubtypes.KnownSubType(typeof(WgAircraft), "Aircraft")]
-    [JsonSubtypes.KnownSubType(typeof(WGCaptain), "Crew")]
+    [JsonSubtypes.KnownSubType(typeof(WgCaptain), "Crew")]
     [JsonSubtypes.KnownSubType(typeof(WgExterior), "Exterior")]
     [JsonSubtypes.KnownSubType(typeof(WGModernization), "Modernization")]
     [JsonSubtypes.KnownSubType(typeof(WGProjectile), "Projectile")]

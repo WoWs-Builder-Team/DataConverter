@@ -11,6 +11,7 @@ using GameParamsExtractor.WGStructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace DataConverter.Services;
@@ -71,7 +72,7 @@ internal class DataConverterService : IDataConverterService
                         break;
                     case "Crew":
                         string skillsList = CaptainConverter.LoadEmbeddedSkillData();
-                        convertedData = CaptainConverter.ConvertCaptain(data.Cast<WGCaptain>(), skillsList, nation.Equals("Common"));
+                        convertedData = CaptainConverter.ConvertCaptain(data.Cast<WgCaptain>(), skillsList, nation.Equals("Common"));
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;

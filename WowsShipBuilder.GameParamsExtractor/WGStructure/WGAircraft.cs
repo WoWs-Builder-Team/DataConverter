@@ -1,6 +1,7 @@
 using GameParamsExtractor.WGStructure;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 public class WgAircraft : WGObject
