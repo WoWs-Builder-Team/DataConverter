@@ -6,20 +6,7 @@ namespace DataConverter;
 
 public static class ConverterExtensions
 {
-    public static Gun ConvertData(this WgAntiAirAndSecondaries wgSecondary) => new()
-    {
-        AmmoList = wgSecondary.AmmoList.ToList(),
-        BarrelDiameter = wgSecondary.BarrelDiameter,
-        Id = wgSecondary.Id,
-        Index = wgSecondary.Index,
-        Name = wgSecondary.Name,
-        NumBarrels = wgSecondary.NumBarrels,
-        HorizontalRotationSpeed = wgSecondary.RotationSpeed[0],
-        VerticalRotationSpeed = wgSecondary.RotationSpeed[1],
-        Reload = wgSecondary.ShotDelay,
-    };
-
-    public static Gun ConvertData(this WgMainBatteryGun wgGun) => new()
+    public static Gun ConvertData(this WgGun wgGun) => new()
     {
         AmmoList = wgGun.AmmoList.ToList(),
         BarrelDiameter = wgGun.BarrelDiameter,
@@ -29,8 +16,8 @@ public static class ConverterExtensions
         Index = wgGun.Index,
         Name = wgGun.Name,
         NumBarrels = wgGun.NumBarrels,
-        HorizontalPosition = wgGun.Position[1],
-        VerticalPosition = wgGun.Position[0],
+        HorizontalPosition = wgGun.SmallGun ? 0 : wgGun.Position[1],
+        VerticalPosition = wgGun.SmallGun ? 0 : wgGun.Position[0],
         HorizontalRotationSpeed = wgGun.RotationSpeed[0],
         VerticalRotationSpeed = wgGun.RotationSpeed[1],
         Reload = wgGun.ShotDelay,

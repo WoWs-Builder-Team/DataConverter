@@ -233,7 +233,7 @@ public static class ShipConverter
                 Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stMainBatteryModule)).ToList(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
             };
-            WgMainBatteryGun dispersionGun = wgMainBattery.Guns.Values.First();
+            var dispersionGun = wgMainBattery.Guns.Values.First();
             var turretDispersion = new Dispersion
             {
                 IdealRadius = dispersionGun.IdealRadius,
@@ -266,7 +266,7 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Gun ConvertMainBatteryGun(WgMainBatteryGun wgGun, string mainGunKey, ShiptoolArmamentModule? stGuns)
+    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, ShiptoolArmamentModule? stGuns)
     {
         var newGun = wgGun.ConvertData();
         newGun.WgGunIndex = mainGunKey;
