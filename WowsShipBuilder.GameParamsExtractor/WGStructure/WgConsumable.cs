@@ -7,33 +7,33 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 public class WgConsumable : WgObject
 {
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public Dictionary<string, WgStatistics> Variants { get; set; } = new();
+    public Dictionary<string, WgStatistics> Variants { get; init; } = new();
 }
 
 public class WgStatistics
 {
-    public string DescIDs { get; set; } = string.Empty;
+    public string DescIDs { get; init; } = string.Empty;
 
-    public string Group { get; set; } = string.Empty;
+    public string Group { get; init; } = string.Empty;
 
-    public string IconIDs { get; set; } = string.Empty;
+    public string IconIDs { get; init; } = string.Empty;
 
-    public int NumConsumables { get; set; }
+    public int NumConsumables { get; init; }
 
-    public float ReloadTime { get; set; }
+    public float ReloadTime { get; init; }
 
-    public float WorkTime { get; set; }
+    public float WorkTime { get; init; }
 
-    public string FightersName { get; set; } = string.Empty;
+    public string FightersName { get; init; } = string.Empty;
 
     [JsonExtensionData]
-    public Dictionary<string, JToken> RawModifiers { get; set; } = new();
+    public Dictionary<string, JToken> RawModifiers { get; init; } = new();
 
     [JsonIgnore]
     public Dictionary<string, float> Modifiers => RawModifiers

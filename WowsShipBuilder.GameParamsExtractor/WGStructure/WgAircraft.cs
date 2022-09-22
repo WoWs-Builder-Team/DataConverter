@@ -4,108 +4,99 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgAircraft : WgObject
 {
-    public Dictionary<string, AircraftAbility> PlaneAbilities { get; set; } = new();
+    public Dictionary<string, AircraftAbility> PlaneAbilities { get; init; } = new();
 
-    public double AttackCooldown { get; set; }
+    public double AttackCooldown { get; init; }
 
-    public double AttackInterval { get; set; }
+    public double AttackInterval { get; init; }
 
-    public double AttackSpeedMultiplier { get; set; }
+    public double AttackSpeedMultiplier { get; init; }
 
-    public double AttackSpeedMultiplierApplyTime { get; set; }
+    public double AttackSpeedMultiplierApplyTime { get; init; }
 
-    public double AttackerDamageTakenMultiplier { get; set; }
+    public double AttackerDamageTakenMultiplier { get; init; }
 
-    public int AttackerSize { get; set; }
+    public int AttackerSize { get; init; }
 
-    public double BombFallingTime { get; set; }
+    public double BombFallingTime { get; init; }
 
-    public string BombName { get; set; } = string.Empty;
+    public string BombName { get; init; } = string.Empty;
 
-    public double VisibilityFactor { get; set; }
+    public double VisibilityFactor { get; init; }
 
-    public double VisibilityFactorByPlane { get; set; }
+    public double VisibilityFactorByPlane { get; init; }
 
-    public double VisionToPlane { get; set; }
+    public double VisionToPlane { get; init; }
 
-    public double VisionToShip { get; set; }
+    public double VisionToShip { get; init; }
 
-    public double VisionToTorpedo { get; set; }
+    public double VisionToTorpedo { get; init; }
 
-    public double FlightHeight { get; set; }
+    public double FlightHeight { get; init; }
 
-    public double FlightRadius { get; set; }
+    public double FlightRadius { get; init; }
 
-    public Hangarsettings HangarSettings { get; set; } = new();
+    public HangarSettings HangarSettings { get; init; } = new(0, 0, 0, 0);
 
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public double InnerBombsPercentage { get; set; }
+    public double InnerBombsPercentage { get; init; }
 
-    public List<double> InnerSalvoSize { get; set; } = new();
+    public List<double> InnerSalvoSize { get; init; } = new();
 
-    public bool? IsAirSupportPlane { get; set; } // deprecated by WG with 0.11.1
+    public bool? IsAirSupportPlane { get; init; } // deprecated by WG with 0.11.1
 
-    public bool? IsConsumablePlane { get; set; } // deprecated by WG with 0.11.1
+    public bool? IsConsumablePlane { get; init; } // deprecated by WG with 0.11.1
 
-    public string[] PlaneSubtype { get; set; } = Array.Empty<string>();
+    public string[] PlaneSubtype { get; init; } = Array.Empty<string>();
 
-    public bool IsJatoBoosterDetachable { get; set; }
+    public bool IsJatoBoosterDetachable { get; init; }
 
-    public double JatoDuration { get; set; }
+    public double JatoDuration { get; init; }
 
-    public double JatoSpeedMultiplier { get; set; }
+    public double JatoSpeedMultiplier { get; init; }
 
-    public float MaxHealth { get; set; }
+    public float MaxHealth { get; init; }
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public double NaturalAcceleration { get; set; }
+    public double NaturalAcceleration { get; init; }
 
-    public double NaturalDeceleration { get; set; }
+    public double NaturalDeceleration { get; init; }
 
-    public int NumPlanesInSquadron { get; set; }
+    public int NumPlanesInSquadron { get; init; }
 
-    public float ReturnHeight { get; set; }
+    public float ReturnHeight { get; init; }
 
-    public float SpeedMax { get; set; }
+    public float SpeedMax { get; init; }
 
-    public float SpeedMin { get; set; }
+    public float SpeedMin { get; init; }
 
-    public float SpeedMoveWithBomb { get; set; }
+    public float SpeedMoveWithBomb { get; init; }
 
-    public float MaxForsageAmount { get; set; }
+    public float MaxForsageAmount { get; init; }
 
-    public decimal AimingAccuracyDecreaseRate { get; set; }
+    public decimal AimingAccuracyDecreaseRate { get; init; }
 
-    public decimal AimingAccuracyIncreaseRate { get; set; }
+    public decimal AimingAccuracyIncreaseRate { get; init; }
 
-    public decimal AimingTime { get; set; }
+    public decimal AimingTime { get; init; }
 
-    public decimal PostAttackInvulnerabilityDuration { get; set; }
+    public decimal PostAttackInvulnerabilityDuration { get; init; }
 
-    public decimal PreparationAccuracyDecreaseRate { get; set; }
+    public decimal PreparationAccuracyDecreaseRate { get; init; }
 
-    public decimal PreparationAccuracyIncreaseRate { get; set; }
+    public decimal PreparationAccuracyIncreaseRate { get; init; }
 
-    public decimal PreparationTime { get; set; }
+    public decimal PreparationTime { get; init; }
 
-    public int ProjectilesPerAttack { get; set; }
+    public int ProjectilesPerAttack { get; init; }
 
-    public int AttackCount { get; set; }
+    public int AttackCount { get; init; }
 }
 
-public record Hangarsettings
-{
-    public int MaxValue { get; init; }
+public sealed record HangarSettings(int MaxValue, int RestoreAmount, int StartValue, float TimeToRestore);
 
-    public int RestoreAmount { get; init; }
-
-    public int StartValue { get; init; }
-
-    public float TimeToRestore { get; init; }
-}
-
-public record AircraftAbility(string[][] Abils, int Slot);
+public sealed record AircraftAbility(string[][] Abils, int Slot);

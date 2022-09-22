@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgShipAbility
 {
-    public string[][] Abils { get; set; } = Array.Empty<string[]>();
+    public string[][] Abils { get; init; } = Array.Empty<string[]>();
 
-    public int Slot { get; set; }
+    public int Slot { get; init; }
 }

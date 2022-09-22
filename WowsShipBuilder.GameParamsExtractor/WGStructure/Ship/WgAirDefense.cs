@@ -7,10 +7,10 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 public class WgAirDefense : WgArmamentModule
 {
-    public bool IsAa { get; set; }
+    public bool IsAa { get; init; }
 
     [JsonExtensionData]
-    public Dictionary<string, JToken> Other { get; set; } = new();
+    public Dictionary<string, JToken> Other { get; init; } = new();
 
     [JsonIgnore]
     public Dictionary<string, WgAaAura> AntiAirAuras => Other.FindAaAuras();
@@ -18,20 +18,20 @@ public class WgAirDefense : WgArmamentModule
 
 public class WgAaAura
 {
-    public decimal AreaDamage { get; set; }
+    public decimal AreaDamage { get; init; }
 
-    public decimal AreaDamagePeriod { get; set; }
+    public decimal AreaDamagePeriod { get; init; }
 
-    public decimal BubbleDamage { get; set; }
+    public decimal BubbleDamage { get; init; }
 
     [JsonRequired]
-    public decimal HitChance { get; set; }
+    public decimal HitChance { get; init; }
 
-    public int InnerBubbleCount { get; set; }
+    public int InnerBubbleCount { get; init; }
 
-    public decimal MaxDistance { get; set; }
+    public decimal MaxDistance { get; init; }
 
-    public decimal MinDistance { get; set; }
+    public decimal MinDistance { get; init; }
 
-    public string Type { get; set; } = string.Empty;
+    public string Type { get; init; } = string.Empty;
 }

@@ -14,9 +14,9 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
 [JsonSubtypes.KnownSubType(typeof(WgRocket), "Rocket")]
 public class WgProjectile : WgObject
 {
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 }

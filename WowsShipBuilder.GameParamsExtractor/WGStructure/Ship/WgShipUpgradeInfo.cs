@@ -7,18 +7,18 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 public class WgShipUpgradeInfo
 {
-    public int CostCr { get; set; }
+    public int CostCr { get; init; }
 
-    public int CostGold { get; set; }
+    public int CostGold { get; init; }
 
-    public int CostSaleGold { get; set; }
+    public int CostSaleGold { get; init; }
 
-    public int CostXp { get; set; }
+    public int CostXp { get; init; }
 
-    public int Value { get; set; }
+    public int Value { get; init; }
 
     [JsonExtensionData]
-    public Dictionary<string, JToken> Other { get; set; } = new();
+    public Dictionary<string, JToken> Other { get; init; } = new();
 
     [JsonIgnore]
     public Dictionary<string, WgShipUpgrade> ConvertedUpgrades =>
@@ -29,13 +29,13 @@ public class WgShipUpgradeInfo
 
 public class WgShipUpgrade
 {
-    public bool CanBuy { get; set; }
+    public bool CanBuy { get; init; }
 
-    public Dictionary<string, string[]> Components { get; set; } = new();
+    public Dictionary<string, string[]> Components { get; init; } = new();
 
-    public string[] NextShips { get; set; } = Array.Empty<string>();
+    public string[] NextShips { get; init; } = Array.Empty<string>();
 
-    public string? Prev { get; set; }
+    public string? Prev { get; init; }
 
-    public string UcType { get; set; } = string.Empty;
+    public string UcType { get; init; } = string.Empty;
 }

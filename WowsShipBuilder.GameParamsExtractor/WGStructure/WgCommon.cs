@@ -19,29 +19,29 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 [JsonSubtypes.KnownSubType(typeof(WgModule), "Unit")]
 public class WgObject
 {
-    public TypeInfo TypeInfo { get; set; } = new();
+    public TypeInfo TypeInfo { get; init; } = new();
 }
 
 public class TypeInfo
 {
-    public string Nation { get; set; } = string.Empty;
+    public string Nation { get; init; } = string.Empty;
 
-    public string Species { get; set; } = string.Empty;
+    public string Species { get; init; } = string.Empty;
 
-    public string Type { get; set; } = string.Empty;
+    public string Type { get; init; } = string.Empty;
 }
 
 public class ModifiersPerClass
 {
-    public float AirCarrier { get; set; }
+    public float AirCarrier { get; init; }
 
-    public float Auxiliary { get; set; }
+    public float Auxiliary { get; init; }
 
-    public float Battleship { get; set; }
+    public float Battleship { get; init; }
 
-    public float Cruiser { get; set; }
+    public float Cruiser { get; init; }
 
-    public float Destroyer { get; set; }
+    public float Destroyer { get; init; }
 
-    public float Submarine { get; set; }
+    public float Submarine { get; init; }
 }

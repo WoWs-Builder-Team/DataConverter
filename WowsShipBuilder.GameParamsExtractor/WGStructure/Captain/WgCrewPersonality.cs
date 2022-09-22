@@ -4,9 +4,9 @@
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgCrewPersonality
 {
-    public bool CanResetSkillsForFree { get; set; }
+    public bool CanResetSkillsForFree { get; init; }
 
-    public List<string> Tags { get; set; } = new();
+    public List<string> Tags { get; init; } = new();
 
-    public string PersonName { get; set; } = string.Empty;
+    public string PersonName { get; init; } = string.Empty;
 }

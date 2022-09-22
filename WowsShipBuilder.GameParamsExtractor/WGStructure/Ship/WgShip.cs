@@ -4,21 +4,21 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgShip : WgObject
 {
-    public Dictionary<string, WgArmamentModule> ModulesArmaments { get; set; } = new();
+    public Dictionary<string, WgArmamentModule> ModulesArmaments { get; init; } = new();
 
-    public Dictionary<string, WgShipAbility> ShipAbilities { get; set; } = new();
+    public Dictionary<string, WgShipAbility> ShipAbilities { get; init; } = new();
 
-    public WgShipUpgradeInfo ShipUpgradeInfo { get; set; } = new();
+    public WgShipUpgradeInfo ShipUpgradeInfo { get; init; } = new();
 
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public int Level { get; set; }
+    public int Level { get; init; }
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public string Group { get; set; } = string.Empty;
+    public string Group { get; init; } = string.Empty;
 
-    public List<string> Permoflages { get; set; } = new();
+    public List<string> Permoflages { get; init; } = new();
 }

@@ -5,24 +5,24 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 public class WgEngine : WgArmamentModule
 {
-    public decimal BackwardEngineUpTime { get; set; }
+    public decimal BackwardEngineUpTime { get; init; }
 
-    public decimal ForwardEngineUpTime { get; set; }
+    public decimal ForwardEngineUpTime { get; init; }
 
-    public decimal BackwardEngineForsag { get; set; }
+    public decimal BackwardEngineForsag { get; init; }
 
-    public decimal BackwardEngineForsagMaxSpeed { get; set; }
+    public decimal BackwardEngineForsagMaxSpeed { get; init; }
 
-    public decimal ForwardEngineForsag { get; set; }
+    public decimal ForwardEngineForsag { get; init; }
 
-    public decimal ForwardEngineForsagMaxSpeed { get; set; }
+    public decimal ForwardEngineForsagMaxSpeed { get; init; }
 
-    public decimal SpeedCoef { get; set; }
+    public decimal SpeedCoef { get; init; }
 
-    public HitLocationEngine HitLocationEngine { get; set; } = new();
+    public HitLocationEngine HitLocationEngine { get; init; } = new();
 }
 
 public class HitLocationEngine
 {
-    public decimal ArmorCoeff { get; set; }
+    public decimal ArmorCoeff { get; init; }
 }

@@ -7,21 +7,21 @@
 /// </summary>
 public class WgAirSupport : WgArmamentModule
 {
-    public int ChargesNum { get; set; }
+    public int ChargesNum { get; init; }
 
-    public decimal FlyAwayTime { get; set; }
+    public decimal FlyAwayTime { get; init; }
 
-    public int MaxDist { get; set; }
+    public int MaxDist { get; init; }
 
-    public int MaxPlaneFlightDist { get; set; }
+    public int MaxPlaneFlightDist { get; init; }
 
-    public int MinDist { get; set; }
+    public int MinDist { get; init; }
 
-    public string PlaneName { get; set; } = string.Empty;
+    public string PlaneName { get; init; } = string.Empty;
 
-    public decimal ReloadTime { get; set; }
+    public decimal ReloadTime { get; init; }
 
-    public decimal TimeBetweenShots { get; set; }
+    public decimal TimeBetweenShots { get; init; }
 
-    public decimal TimeFromHeaven { get; set; }
+    public decimal TimeFromHeaven { get; init; }
 }

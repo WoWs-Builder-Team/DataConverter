@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgFireControl : WgArmamentModule
 {
-    public decimal MaxDistCoef { get; set; }
+    public decimal MaxDistCoef { get; init; }
 
-    public decimal SigmaCountCoef { get; set; }
+    public decimal SigmaCountCoef { get; init; }
 }

@@ -4,36 +4,36 @@
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgTorpedoArray : WgArmamentModule
 {
-    public decimal TimeToChangeAmmo { get; set; }
+    public decimal TimeToChangeAmmo { get; init; }
 
-    public Dictionary<string, WgTorpedoLauncher> TorpedoArray { get; set; } = new();
+    public Dictionary<string, WgTorpedoLauncher> TorpedoArray { get; init; } = new();
 }
 
 public class WgTorpedoLauncher
 {
-    public string[] AmmoList { get; set; } = Array.Empty<string>();
+    public string[] AmmoList { get; init; } = Array.Empty<string>();
 
-    public decimal BarrelDiameter { get; set; }
+    public decimal BarrelDiameter { get; init; }
 
-    public decimal[][] DeadZone { get; set; } = Array.Empty<decimal[]>();
+    public decimal[][] DeadZone { get; init; } = Array.Empty<decimal[]>();
 
-    public decimal[] HorizSector { get; set; } = Array.Empty<decimal>();
+    public decimal[] HorizSector { get; init; } = Array.Empty<decimal>();
 
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public int NumBarrels { get; set; }
+    public int NumBarrels { get; init; }
 
-    public decimal[] Position { get; set; } = Array.Empty<decimal>();
+    public decimal[] Position { get; init; } = Array.Empty<decimal>();
 
-    public decimal[] RotationSpeed { get; set; } = Array.Empty<decimal>();
+    public decimal[] RotationSpeed { get; init; } = Array.Empty<decimal>();
 
-    public decimal ShotDelay { get; set; }
+    public decimal ShotDelay { get; init; }
 
-    public decimal[] TorpedoAngles { get; set; } = Array.Empty<decimal>(); //unknonw meaning, needed?
+    public decimal[] TorpedoAngles { get; init; } = Array.Empty<decimal>(); //unknonw meaning, needed?
 
-    public TypeInfo TypeInfo { get; set; } = new();
+    public TypeInfo TypeInfo { get; init; } = new();
 }

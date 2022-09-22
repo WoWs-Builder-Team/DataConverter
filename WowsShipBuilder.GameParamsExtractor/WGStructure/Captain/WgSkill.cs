@@ -7,14 +7,14 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 //big skill structure. modifiers contain always on effects.
 public class WgSkill
 {
-    public WgSkillTrigger LogicTrigger { get; set; } = new();
+    public WgSkillTrigger LogicTrigger { get; init; } = new();
 
-    public bool CanBeLearned { get; set; }
+    public bool CanBeLearned { get; init; }
 
-    public bool IsEpic { get; set; }
+    public bool IsEpic { get; init; }
 
-    public Dictionary<string, JToken> Modifiers { get; set; } = new(); // either a float or a ModifiersPerClass object
+    public Dictionary<string, JToken> Modifiers { get; init; } = new(); // either a float or a ModifiersPerClass object
 
     //this is actually the skill number
-    public int SkillType { get; set; }
+    public int SkillType { get; init; }
 }

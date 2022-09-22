@@ -9,31 +9,31 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 //Condition defined by triggerType and triggerDescIds ?
 public class WgSkillTrigger
 {
-    public int BurnCount { get; set; }
+    public int BurnCount { get; init; }
 
-    public float ChangePriorityTargetPenalty { get; set; }
+    public float ChangePriorityTargetPenalty { get; init; }
 
-    public string ConsumableType { get; set; } = string.Empty;
+    public string ConsumableType { get; init; } = string.Empty;
 
-    public float CoolingDelay { get; set; }
+    public float CoolingDelay { get; init; }
 
-    public object[] CoolingInterpolator { get; set; } = Array.Empty<object>();
+    public object[] CoolingInterpolator { get; init; } = Array.Empty<object>();
 
-    public string DividerType { get; set; } = string.Empty;
+    public string DividerType { get; init; } = string.Empty;
 
-    public float DividerValue { get; set; }
+    public float DividerValue { get; init; }
 
-    public float Duration { get; set; }
+    public float Duration { get; init; }
 
-    public float EnergyCoeff { get; set; }
+    public float EnergyCoeff { get; init; }
 
-    public int FloodCount { get; set; }
+    public int FloodCount { get; init; }
 
-    public object[] HeatInterpolator { get; set; } = Array.Empty<object>();
+    public object[] HeatInterpolator { get; init; } = Array.Empty<object>();
 
-    public Dictionary<string, JToken> Modifiers { get; set; } = new();
+    public Dictionary<string, JToken> Modifiers { get; init; } = new();
 
-    public string TriggerDescIds { get; set; } = string.Empty;
+    public string TriggerDescIds { get; init; } = string.Empty;
 
-    public string TriggerType { get; set; } = string.Empty;
+    public string TriggerType { get; init; } = string.Empty;
 }

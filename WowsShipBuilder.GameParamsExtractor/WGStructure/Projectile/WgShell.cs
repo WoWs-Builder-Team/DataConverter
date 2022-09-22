@@ -4,49 +4,49 @@
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgShell : WgProjectile
 {
-    public bool AffectedByPtz { get; set; }
+    public bool AffectedByPtz { get; init; }
 
-    public float AlphaDamage { get; set; }
+    public float AlphaDamage { get; init; }
 
-    public float AlphaPiercingCs { get; set; }
+    public float AlphaPiercingCs { get; init; }
 
-    public float AlphaPiercingHe { get; set; }
+    public float AlphaPiercingHe { get; init; }
 
-    public string AmmoType { get; set; } = string.Empty;
+    public string AmmoType { get; init; } = string.Empty;
 
-    public bool ApplyPtzCoeff { get; set; }
+    public bool ApplyPtzCoeff { get; init; }
 
-    public float BulletAirDrag { get; set; }
+    public float BulletAirDrag { get; init; }
 
-    public float BulletDetonator { get; set; }
+    public float BulletDetonator { get; init; }
 
-    public float BulletDetonatorThreshold { get; set; }
+    public float BulletDetonatorThreshold { get; init; }
 
-    public float BulletDiametr { get; set; }
+    public float BulletDiametr { get; init; }
 
-    public float BulletKrupp { get; set; }
+    public float BulletKrupp { get; init; }
 
-    public float BulletMass { get; set; }
+    public float BulletMass { get; init; }
 
-    public float BulletRicochetAt { get; set; }
+    public float BulletRicochetAt { get; init; }
 
-    public float BulletAlwaysRicochetAt { get; set; }
+    public float BulletAlwaysRicochetAt { get; init; }
 
-    public float BulletSpeed { get; set; }
+    public float BulletSpeed { get; init; }
 
-    public float BurnProb { get; set; }
+    public float BurnProb { get; init; }
 
-    public float DistTile { get; set; }
+    public float DistTile { get; init; }
 
-    public float SplashArmorCoeff { get; set; }
+    public float SplashArmorCoeff { get; init; }
 
-    public float SplashCubeSize { get; set; }
+    public float SplashCubeSize { get; init; }
 
-    public string[] IgnoreClasses { get; set; } = Array.Empty<string>();
+    public string[] IgnoreClasses { get; init; } = Array.Empty<string>();
 
-    public bool IsBomb { get; set; }
+    public bool IsBomb { get; init; }
 
-    public float DepthSplashRadius { get; set; }
+    public float DepthSplashRadius { get; init; }
 
-    public float[][] PointsOfDamage { get; set; } = Array.Empty<float[]>();
+    public float[][] PointsOfDamage { get; init; } = Array.Empty<float[]>();
 }
