@@ -6,7 +6,7 @@ using DataConverter.Data;
 using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures;
-using WowsShipBuilder.GameParamsExtractor.WGStructure;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 using Hull = WoWsShipBuilder.DataStructures.Hull;
 using ShipUpgrade = WoWsShipBuilder.DataStructures.ShipUpgrade;
 
@@ -57,10 +57,7 @@ public static class ShipConverter
                 Permoflages = wgShip.Permoflages,
             };
 
-            if (wgShip.Permoflages != null)
-            {
-                DataCache.TranslationNames.UnionWith(wgShip.Permoflages);
-            }
+            DataCache.TranslationNames.UnionWith(wgShip.Permoflages);
 
             ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
             ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
@@ -101,7 +98,7 @@ public static class ShipConverter
 
     #region Component converters
 
-    private static BurstModeAbility? ProcessBurstModeAbility(BurstArtilleryModule? module)
+    private static BurstModeAbility? ProcessBurstModeAbility(WgBurstArtilleryModule? module)
     {
         if (module != null)
         {
@@ -199,7 +196,7 @@ public static class ShipConverter
             Value = wgShip.ShipUpgradeInfo.Value,
         };
 
-        foreach ((string wgName, WowsShipBuilder.GameParamsExtractor.WGStructure.ShipUpgrade upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
+        foreach ((string wgName, var upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
         {
             var newUpgrade = new ShipUpgrade
             {
@@ -224,16 +221,16 @@ public static class ShipConverter
     private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, ShiptoolShip? stShip)
     {
         var resultDictionary = new Dictionary<string, TurretModule>();
-        Dictionary<string, MainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<MainBattery>();
+        Dictionary<string, WgMainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<WgMainBattery>();
 
-        foreach ((string key, MainBattery wgMainBattery) in artilleryModules)
+        foreach ((string key, WgMainBattery wgMainBattery) in artilleryModules)
         {
             var stMainBatteryModule = stShip?.GetArmamentModule(key);
             var turretModule = new TurretModule
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
-                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, key, entry.Key, wgShip.Index, stMainBatteryModule)).ToList(),
+                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stMainBatteryModule)).ToList(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
             };
             MainBatteryGun dispersionGun = wgMainBattery.Guns.Values.First();
@@ -248,21 +245,6 @@ public static class ShipConverter
                 RadiusOnMax = dispersionGun.RadiusOnMax,
                 Delim = dispersionGun.Delim,
             };
-
-            // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
-            // double maxRange = decimal.ToDouble(turretModule.MaxRange) / 30;
-            // double horizontalDispersion = maxRange * (turretDispersion.IdealRadius - turretDispersion.MinRadius) /
-            //     turretDispersion.IdealDistance + turretDispersion.MinRadius;
-            //
-            // double delimDist = turretDispersion.Delim * maxRange;
-            // double verticalCoeff = turretDispersion.RadiusOnDelim +
-            //                        (turretDispersion.RadiusOnMax - turretDispersion.RadiusOnDelim) * (maxRange - delimDist) / (maxRange - delimDist);
-            // double verticalDispersion = horizontalDispersion * verticalCoeff;
-            //
-            // var effectiveHorizontalDispersion = Convert.ToDecimal(horizontalDispersion * 30);
-            // turretDispersion.MaximumHorizontalDispersion = Math.Round(effectiveHorizontalDispersion, 1);
-            // var effectiveVerticalDispersion = Convert.ToDecimal(verticalDispersion * 30);
-            // turretDispersion.MaximumVerticalDispersion = Math.Round(effectiveVerticalDispersion, 1);
 
             var maxRange = decimal.ToDouble(turretModule.MaxRange);
             turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateHorizontalDispersion(maxRange)), 1);
@@ -284,7 +266,7 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Gun ConvertMainBatteryGun(MainBatteryGun wgGun, string artilleryModuleKey, string mainGunKey, string shipIndex, ShiptoolArmamentModule? stGuns)
+    private static Gun ConvertMainBatteryGun(MainBatteryGun wgGun, string mainGunKey, ShiptoolArmamentModule? stGuns)
     {
         var newGun = (Gun)wgGun;
         newGun.WgGunIndex = mainGunKey;
@@ -433,7 +415,7 @@ public static class ShipConverter
             string[] components = hullUpgradeInfo.Components[ComponentType.Secondary];
             if (components.Length > 0)
             {
-                var wgHullSecondary = (Atba)wgShip.ModulesArmaments[components.First()];
+                var wgHullSecondary = (WgAtba)wgShip.ModulesArmaments[components.First()];
                 AssignAurasToProperty(wgHullSecondary.AntiAirAuras, antiAir);
 
                 // Process secondaries
@@ -451,7 +433,7 @@ public static class ShipConverter
             {
                 foreach (string airDefenseKey in airDefenseKeys)
                 {
-                    var airDefenseArmament = (AirDefense)wgShip.ModulesArmaments[airDefenseKey];
+                    var airDefenseArmament = (WgAirDefense)wgShip.ModulesArmaments[airDefenseKey];
                     AssignAurasToProperty(airDefenseArmament.AntiAirAuras, antiAir);
                 }
             }
@@ -597,7 +579,7 @@ public static class ShipConverter
     private static List<ShipConsumable> ProcessConsumables(WgShip ship)
     {
         var resultList = new List<ShipConsumable>();
-        foreach ((_, ShipAbility wgAbility) in ship.ShipAbilities)
+        foreach ((_, WgShipAbility wgAbility) in ship.ShipAbilities)
         {
             IEnumerable<ShipConsumable> consumableList = wgAbility.Abils
                 .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
@@ -617,7 +599,7 @@ public static class ShipConverter
     private static Dictionary<string, AirStrike> ProcessAirstrikes(WgShip wgShip)
     {
         Dictionary<string, AirStrike> result = wgShip.ModulesArmaments
-            .ModulesOfType<AirSupport>()
+            .ModulesOfType<WgAirSupport>()
             .ToDictionary(entry => entry.Key, entry => (AirStrike)entry.Value);
         DataCache.TranslationNames.UnionWith(result.Values.Select(airStrike => airStrike.PlaneName).Distinct());
         return result;
@@ -634,56 +616,58 @@ public static class ShipConverter
 
     #region Helper methods
 
-    private static Dictionary<string, T> ModulesOfType<T>(this Dictionary<string, ModuleArmaments> thisDict) where T : ModuleArmaments
+    private static Dictionary<string, T> ModulesOfType<T>(this Dictionary<string, WgArmamentModule> thisDict) where T : WgArmamentModule
     {
         return thisDict.Where(module => module.Value is T)
             .ToDictionary(entry => entry.Key, entry => (T)entry.Value);
     }
 
-    private static void AssignAurasToProperty(Dictionary<string, AaAura>? auras, AntiAir? targetAntiAir)
+    private static void AssignAurasToProperty(Dictionary<string, WgAaAura>? auras, AntiAir? targetAntiAir)
     {
-        if (auras != null && targetAntiAir != null)
+        if (auras == null || targetAntiAir == null)
         {
-            foreach ((_, AaAura aura) in auras)
+            return;
+        }
+
+        foreach ((_, WgAaAura aura) in auras)
+        {
+            switch (aura.Type)
             {
-                switch (aura.Type)
-                {
-                    case "far":
-                        if (targetAntiAir.LongRangeAura != null)
-                        {
-                            targetAntiAir.LongRangeAura += aura;
-                        }
-                        else
-                        {
-                            targetAntiAir.LongRangeAura = aura;
-                        }
+                case "far":
+                    if (targetAntiAir.LongRangeAura != null)
+                    {
+                        targetAntiAir.LongRangeAura += aura;
+                    }
+                    else
+                    {
+                        targetAntiAir.LongRangeAura = aura;
+                    }
 
-                        break;
+                    break;
 
-                    case "medium":
-                        if (targetAntiAir.MediumRangeAura != null)
-                        {
-                            targetAntiAir.MediumRangeAura += aura;
-                        }
-                        else
-                        {
-                            targetAntiAir.MediumRangeAura = aura;
-                        }
+                case "medium":
+                    if (targetAntiAir.MediumRangeAura != null)
+                    {
+                        targetAntiAir.MediumRangeAura += aura;
+                    }
+                    else
+                    {
+                        targetAntiAir.MediumRangeAura = aura;
+                    }
 
-                        break;
+                    break;
 
-                    case "near":
-                        if (targetAntiAir.ShortRangeAura != null)
-                        {
-                            targetAntiAir.ShortRangeAura += aura;
-                        }
-                        else
-                        {
-                            targetAntiAir.ShortRangeAura = aura;
-                        }
+                case "near":
+                    if (targetAntiAir.ShortRangeAura != null)
+                    {
+                        targetAntiAir.ShortRangeAura += aura;
+                    }
+                    else
+                    {
+                        targetAntiAir.ShortRangeAura = aura;
+                    }
 
-                        break;
-                }
+                    break;
             }
         }
     }

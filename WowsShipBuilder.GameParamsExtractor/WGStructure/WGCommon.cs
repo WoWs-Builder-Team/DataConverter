@@ -2,6 +2,7 @@
 using JsonSubTypes;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace GameParamsExtractor.WGStructure
 {
