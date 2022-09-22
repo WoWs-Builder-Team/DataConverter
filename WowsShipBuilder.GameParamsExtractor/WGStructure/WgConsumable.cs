@@ -1,8 +1,8 @@
-using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 public class WgConsumable : WgObject
@@ -13,10 +13,10 @@ public class WgConsumable : WgObject
 
     public string Name { get; set; } = string.Empty;
 
-    public Dictionary<string, Statistics> Variants { get; set; } = new();
+    public Dictionary<string, WgStatistics> Variants { get; set; } = new();
 }
 
-public class Statistics
+public class WgStatistics
 {
     public string DescIDs { get; set; } = string.Empty;
 

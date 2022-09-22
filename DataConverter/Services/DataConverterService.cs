@@ -77,7 +77,7 @@ internal class DataConverterService : IDataConverterService
 
                         break;
                     case "Modernization":
-                        convertedData = ModernizationConverter.ConvertModernization(data.Cast<WGModernization>());
+                        convertedData = ModernizationConverter.ConvertModernization(data.Cast<WgModernization>());
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;
@@ -94,7 +94,7 @@ internal class DataConverterService : IDataConverterService
 
                         break;
                     case "Unit":
-                        convertedData = ModuleConverter.ConvertModule(data.Cast<WGModule>());
+                        convertedData = ModuleConverter.ConvertModule(data.Cast<WgModule>());
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;

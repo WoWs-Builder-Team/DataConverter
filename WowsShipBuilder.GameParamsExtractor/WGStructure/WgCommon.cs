@@ -13,10 +13,10 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 [JsonSubtypes.KnownSubType(typeof(WgAircraft), "Aircraft")]
 [JsonSubtypes.KnownSubType(typeof(WgCaptain), "Crew")]
 [JsonSubtypes.KnownSubType(typeof(WgExterior), "Exterior")]
-[JsonSubtypes.KnownSubType(typeof(WGModernization), "Modernization")]
+[JsonSubtypes.KnownSubType(typeof(WgModernization), "Modernization")]
 [JsonSubtypes.KnownSubType(typeof(WGProjectile), "Projectile")]
 [JsonSubtypes.KnownSubType(typeof(WgShip), "Ship")]
-[JsonSubtypes.KnownSubType(typeof(WGModule), "Unit")]
+[JsonSubtypes.KnownSubType(typeof(WgModule), "Unit")]
 public abstract class WgObject
 {
     public TypeInfo TypeInfo { get; set; } = new();
