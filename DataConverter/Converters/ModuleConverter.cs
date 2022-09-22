@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DataConverter.Data;
-using GameParamsExtractor.WGStructure;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 

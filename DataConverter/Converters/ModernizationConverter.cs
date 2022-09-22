@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
-using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;

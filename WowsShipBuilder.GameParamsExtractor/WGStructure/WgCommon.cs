@@ -1,7 +1,7 @@
-using GameParamsExtractor.WGStructure;
 using JsonSubTypes;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -14,7 +14,7 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 [JsonSubtypes.KnownSubType(typeof(WgCaptain), "Crew")]
 [JsonSubtypes.KnownSubType(typeof(WgExterior), "Exterior")]
 [JsonSubtypes.KnownSubType(typeof(WgModernization), "Modernization")]
-[JsonSubtypes.KnownSubType(typeof(WGProjectile), "Projectile")]
+[JsonSubtypes.KnownSubType(typeof(WgProjectile), "Projectile")]
 [JsonSubtypes.KnownSubType(typeof(WgShip), "Ship")]
 [JsonSubtypes.KnownSubType(typeof(WgModule), "Unit")]
 public abstract class WgObject

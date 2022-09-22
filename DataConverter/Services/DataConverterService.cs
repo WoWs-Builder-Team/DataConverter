@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using DataConverter.Converters;
 using DataConverter.Data;
 using DataConverter.JsonData;
-using GameParamsExtractor.WGStructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace DataConverter.Services;
@@ -82,7 +82,7 @@ internal class DataConverterService : IDataConverterService
 
                         break;
                     case "Projectile":
-                        var filteredData = data.OfType<WGProjectile>();
+                        var filteredData = data.OfType<WgProjectile>();
                         convertedData = ProjectileConverter.ConvertProjectile(filteredData, logger);
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 

@@ -1,5 +1,4 @@
-﻿using GameParamsExtractor.WGStructure;
-using WowsShipBuilder.GameParamsExtractor.WGStructure;
+﻿using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace WowsShipBuilder.GameParamsExtractor.Data;
 

@@ -1,8 +1,5 @@
 ﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-
-using GameParamsExtractor.WGStructure;
-
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 public class WgDepthChargesArray : WgArmamentModule

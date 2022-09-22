@@ -1,4 +1,3 @@
-using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;

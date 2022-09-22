@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using GameParamsExtractor.WGStructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.Data;

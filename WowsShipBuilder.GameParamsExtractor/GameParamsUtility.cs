@@ -1,5 +1,4 @@
 using System.Collections;
-using GameParamsExtractor.WGStructure;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;

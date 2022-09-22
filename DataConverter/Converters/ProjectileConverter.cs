@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
-using GameParamsExtractor.WGStructure;
 using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
 
 namespace DataConverter.Converters
 {
@@ -13,13 +13,13 @@ namespace DataConverter.Converters
         private static readonly HashSet<string> ReportedProjectileTypes = new();
 
         /// <summary>
-        /// Converter method that transforms a <see cref="WGProjectile"/> object into a <see cref="Projectile"/> object.
+        /// Converter method that transforms a <see cref="WgProjectile"/> object into a <see cref="Projectile"/> object.
         /// </summary>
         /// <param name="wgProjectile">The list of projectile data extracted from game params.</param>
         /// <param name="logger">A logger used to log information about the execution.</param>
         /// <returns>A dictionary mapping an ID to a <see cref="Projectile"/> object that contains the transformed data based on WGs data.</returns>
         /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-        public static Dictionary<string, Projectile> ConvertProjectile(IEnumerable<WGProjectile> wgProjectile, ILogger? logger)
+        public static Dictionary<string, Projectile> ConvertProjectile(IEnumerable<WgProjectile> wgProjectile, ILogger? logger)
         {
             //Dictionary containing all projectiles
             Dictionary<string, Projectile> projectileList = new Dictionary<string, Projectile>();
@@ -27,7 +27,7 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert and sort everything
             foreach (var currentWgProjectile in wgProjectile)
             {
-                DataCache.TranslationNames.Add(currentWgProjectile.name);
+                DataCache.TranslationNames.Add(currentWgProjectile.Name);
                 if (!Enum.TryParse(currentWgProjectile.TypeInfo.Species, out ProjectileType currentWgProjectileType))
                 {
                     if (ReportedProjectileTypes.Add(currentWgProjectile.TypeInfo.Species))
@@ -43,66 +43,66 @@ namespace DataConverter.Converters
                         //create our object type
                         ArtilleryShell shell = new ArtilleryShell
                         {
-                            Id = currentWgProjectile.id,
-                            Index = currentWgProjectile.index,
-                            Name = currentWgProjectile.name,
+                            Id = currentWgProjectile.Id,
+                            Index = currentWgProjectile.Index,
+                            Name = currentWgProjectile.Name,
                             ProjectileType = currentWgProjectileType,
                         };
 
                         //cast WGProjectile object into a WGShell object
-                        WGShell currentWgShell = (WGShell)currentWgProjectile;
+                        WgShell currentWgShell = (WgShell)currentWgProjectile;
 
                         ShellType shellType;
 
                         //change SAP shell ammoType form CS to SAP
-                        if (currentWgShell.ammoType.Equals("CS"))
+                        if (currentWgShell.AmmoType.Equals("CS"))
                         {
                             shellType = ShellType.SAP;
                             shell.ShellType = shellType;
 
-                            shell.Penetration = currentWgShell.alphaPiercingCS;
-                            shell.RicochetAngle = currentWgShell.bulletRicochetAt;
-                            shell.AlwaysRicochetAngle = currentWgShell.bulletAlwaysRicochetAt;
+                            shell.Penetration = currentWgShell.AlphaPiercingCs;
+                            shell.RicochetAngle = currentWgShell.BulletRicochetAt;
+                            shell.AlwaysRicochetAngle = currentWgShell.BulletAlwaysRicochetAt;
 
                             //SAP FireChance = 0 => not relevant => shell.FireChance is set to default value
                             //SAP Krupp = 3 => not relevant => shell.Krupp is set to default value
                         }
                         else
                         {
-                            shellType = Enum.Parse<ShellType>(currentWgShell.ammoType);
+                            shellType = Enum.Parse<ShellType>(currentWgShell.AmmoType);
                             shell.ShellType = shellType;
 
                             if (shellType == ShellType.HE)
                             {
-                                shell.Penetration = currentWgShell.alphaPiercingHE;
+                                shell.Penetration = currentWgShell.AlphaPiercingHe;
 
                                 //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
-                                shell.FireChance = currentWgShell.burnProb;
+                                shell.FireChance = currentWgShell.BurnProb;
 
                                 //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
-                                shell.SplashCoeff = currentWgShell.splashArmorCoeff;
-                                shell.ExplosionRadius = currentWgShell.splashCubeSize * 30 / 2;
+                                shell.SplashCoeff = currentWgShell.SplashArmorCoeff;
+                                shell.ExplosionRadius = currentWgShell.SplashCubeSize * 30 / 2;
                             }
                             else
                             {
                                 //AP Penetration is not a fixed value => shell.Penetration is set to default value
-                                shell.RicochetAngle = currentWgShell.bulletRicochetAt;
-                                shell.AlwaysRicochetAngle = currentWgShell.bulletAlwaysRicochetAt;
+                                shell.RicochetAngle = currentWgShell.BulletRicochetAt;
+                                shell.AlwaysRicochetAngle = currentWgShell.BulletAlwaysRicochetAt;
 
                                 //AP FireChance = 0 => not relevant => shell.FireChance is set to default value
-                                shell.Krupp = currentWgShell.bulletKrupp;
+                                shell.Krupp = currentWgShell.BulletKrupp;
                             }
                         }
 
-                        shell.Damage = currentWgShell.alphaDamage;
-                        shell.AirDrag = currentWgShell.bulletAirDrag;
-                        shell.FuseTimer = currentWgShell.bulletDetonator;
-                        shell.ArmingThreshold = currentWgShell.bulletDetonatorThreshold;
-                        shell.Caliber = currentWgShell.bulletDiametr;
-                        shell.Mass = currentWgShell.bulletMass;
-                        shell.MuzzleVelocity = currentWgShell.bulletSpeed;
-                        shell.DepthSplashRadius = currentWgShell.depthSplashRadius * 30;
-                        shell.SplashDamageCoefficient = currentWgShell.pointsOfDamage.First().Last();
+                        shell.Damage = currentWgShell.AlphaDamage;
+                        shell.AirDrag = currentWgShell.BulletAirDrag;
+                        shell.FuseTimer = currentWgShell.BulletDetonator;
+                        shell.ArmingThreshold = currentWgShell.BulletDetonatorThreshold;
+                        shell.Caliber = currentWgShell.BulletDiametr;
+                        shell.Mass = currentWgShell.BulletMass;
+                        shell.MuzzleVelocity = currentWgShell.BulletSpeed;
+                        shell.DepthSplashRadius = currentWgShell.DepthSplashRadius * 30;
+                        shell.SplashDamageCoefficient = currentWgShell.PointsOfDamage.First().Last();
 
                         projectileList.Add(shell.Name, shell);
                         break;
@@ -112,48 +112,48 @@ namespace DataConverter.Converters
                         //create our object type
                         Bomb bomb = new Bomb
                         {
-                            Id = currentWgProjectile.id,
-                            Index = currentWgProjectile.index,
-                            Name = currentWgProjectile.name,
+                            Id = currentWgProjectile.Id,
+                            Index = currentWgProjectile.Index,
+                            Name = currentWgProjectile.Name,
                             ProjectileType = currentWgProjectileType,
                         };
 
                         //cast WGProjectile object into a WGBomb object
-                        WGBomb currentWgBomb = (WGBomb)currentWgProjectile;
+                        WgBomb currentWgBomb = (WgBomb)currentWgProjectile;
 
-                        BombType bombType = Enum.Parse<BombType>(currentWgBomb.ammoType);
+                        BombType bombType = Enum.Parse<BombType>(currentWgBomb.AmmoType);
                         bomb.BombType = bombType;
 
                         if (bombType == BombType.HE)
                         {
-                            bomb.Penetration = currentWgBomb.alphaPiercingHE;
+                            bomb.Penetration = currentWgBomb.AlphaPiercingHe;
 
                             //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
-                            bomb.FireChance = currentWgBomb.burnProb;
+                            bomb.FireChance = currentWgBomb.BurnProb;
 
                             //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
-                            bomb.SplashCoeff = currentWgBomb.splashArmorCoeff;
-                            bomb.ExplosionRadius = currentWgBomb.splashCubeSize * 30 / 2;
+                            bomb.SplashCoeff = currentWgBomb.SplashArmorCoeff;
+                            bomb.ExplosionRadius = currentWgBomb.SplashCubeSize * 30 / 2;
                         }
                         else
                         {
                             //For bombs, AP Penetration is a fixed value. Don't know how to calculate it tho. => shell.Penetration is set to default value
-                            bomb.RicochetAngle = currentWgBomb.bulletRicochetAt;
-                            bomb.AlwaysRicochetAngle = currentWgBomb.bulletAlwayRiccochetAt;
+                            bomb.RicochetAngle = currentWgBomb.BulletRicochetAt;
+                            bomb.AlwaysRicochetAngle = currentWgBomb.BulletAlwayRiccochetAt;
 
                             //AP FireChance = 0 => not relevant => shell.FireChance is set to default value
-                            bomb.Krupp = currentWgBomb.bulletKrupp;
+                            bomb.Krupp = currentWgBomb.BulletKrupp;
                         }
 
-                        bomb.Damage = currentWgBomb.alphaDamage;
-                        bomb.AirDrag = currentWgBomb.bulletAirDrag;
-                        bomb.FuseTimer = currentWgBomb.bulletDetonator;
-                        bomb.ArmingThreshold = currentWgBomb.bulletDetonatorThreshold;
-                        bomb.Caliber = currentWgBomb.bulletDiametr;
-                        bomb.Mass = currentWgBomb.bulletMass;
-                        bomb.MuzzleVelocity = currentWgBomb.bulletSpeed;
-                        bomb.DepthSplashRadius = currentWgBomb.depthSplashRadius * 30;
-                        bomb.SplashDamageCoefficient = currentWgBomb.pointsOfDamage.First().Last();
+                        bomb.Damage = currentWgBomb.AlphaDamage;
+                        bomb.AirDrag = currentWgBomb.BulletAirDrag;
+                        bomb.FuseTimer = currentWgBomb.BulletDetonator;
+                        bomb.ArmingThreshold = currentWgBomb.BulletDetonatorThreshold;
+                        bomb.Caliber = currentWgBomb.BulletDiametr;
+                        bomb.Mass = currentWgBomb.BulletMass;
+                        bomb.MuzzleVelocity = currentWgBomb.BulletSpeed;
+                        bomb.DepthSplashRadius = currentWgBomb.DepthSplashRadius * 30;
+                        bomb.SplashDamageCoefficient = currentWgBomb.PointsOfDamage.First().Last();
 
                         projectileList.Add(bomb.Name, bomb);
                         break;
@@ -162,33 +162,33 @@ namespace DataConverter.Converters
                         //create our object type
                         Torpedo torpedo = new Torpedo
                         {
-                            Id = currentWgProjectile.id,
-                            Index = currentWgProjectile.index,
-                            Name = currentWgProjectile.name,
+                            Id = currentWgProjectile.Id,
+                            Index = currentWgProjectile.Index,
+                            Name = currentWgProjectile.Name,
                             ProjectileType = currentWgProjectileType,
                         };
 
                         //cast WGProjectile object into a WGTorpedo object
-                        WGTorpedo currentWgTorpedo = (WGTorpedo)currentWgProjectile;
+                        WgTorpedo currentWgTorpedo = (WgTorpedo)currentWgProjectile;
 
-                        torpedo.Damage = (currentWgTorpedo.alphaDamage / 3) + currentWgTorpedo.damage;
-                        torpedo.SpottingRange = currentWgTorpedo.visibilityFactor;
-                        torpedo.ArmingTime = currentWgTorpedo.armingTime;
-                        torpedo.Caliber = currentWgTorpedo.bulletDiametr;
-                        torpedo.MaxRange = currentWgTorpedo.maxDist * 30;
-                        torpedo.Speed = currentWgTorpedo.speed;
-                        torpedo.FloodChance = currentWgTorpedo.uwCritical;
-                        torpedo.SplashCoeff = currentWgTorpedo.splashArmorCoeff;
-                        torpedo.ExplosionRadius = currentWgTorpedo.splashCubeSize * 30 / 2;
-                        torpedo.IgnoreClasses = currentWgTorpedo.ignoreClasses.Select(Enum.Parse<ShipClass>).ToList();
+                        torpedo.Damage = (currentWgTorpedo.AlphaDamage / 3) + currentWgTorpedo.Damage;
+                        torpedo.SpottingRange = currentWgTorpedo.VisibilityFactor;
+                        torpedo.ArmingTime = currentWgTorpedo.ArmingTime;
+                        torpedo.Caliber = currentWgTorpedo.BulletDiametr;
+                        torpedo.MaxRange = currentWgTorpedo.MaxDist * 30;
+                        torpedo.Speed = currentWgTorpedo.Speed;
+                        torpedo.FloodChance = currentWgTorpedo.UwCritical;
+                        torpedo.SplashCoeff = currentWgTorpedo.SplashArmorCoeff;
+                        torpedo.ExplosionRadius = currentWgTorpedo.SplashCubeSize * 30 / 2;
+                        torpedo.IgnoreClasses = currentWgTorpedo.IgnoreClasses.Select(Enum.Parse<ShipClass>).ToList();
 
                         //change WGTorpedo ammoType to our TorpedoType
                         torpedo.TorpedoType = TorpedoType.Standard;
-                        if (currentWgTorpedo.ammoType.Equals("torpedo_deepwater", StringComparison.OrdinalIgnoreCase))
+                        if (currentWgTorpedo.AmmoType.Equals("torpedo_deepwater", StringComparison.OrdinalIgnoreCase))
                         {
                             torpedo.TorpedoType = TorpedoType.DeepWater;
                         }
-                        if (currentWgTorpedo.customUIPostfix.Equals("_subDefault"))
+                        if (currentWgTorpedo.CustomUiPostfix.Equals("_subDefault"))
                         {
                             torpedo.TorpedoType = TorpedoType.Magnetic;
                         }
@@ -200,26 +200,26 @@ namespace DataConverter.Converters
                         //create our object type
                         DepthCharge depthCharge = new DepthCharge
                         {
-                            Id = currentWgProjectile.id,
-                            Index = currentWgProjectile.index,
-                            Name = currentWgProjectile.name,
+                            Id = currentWgProjectile.Id,
+                            Index = currentWgProjectile.Index,
+                            Name = currentWgProjectile.Name,
                             ProjectileType = currentWgProjectileType,
                         };
 
                         //cast WGProjectile object into a WGDepthCharge object
-                        WGDepthCharge currentWgDepthCharge = (WGDepthCharge)currentWgProjectile;
+                        WgDepthCharge currentWgDepthCharge = (WgDepthCharge)currentWgProjectile;
 
-                        depthCharge.Damage = currentWgDepthCharge.alphaDamage;
-                        depthCharge.FireChance = currentWgDepthCharge.burnProb;
-                        depthCharge.FloodChance = currentWgDepthCharge.uwCritical;
-                        depthCharge.DetonationTimer = currentWgDepthCharge.timer;
-                        depthCharge.DetonationTimerRng = currentWgDepthCharge.timerDeltaAbsolute;
-                        depthCharge.SinkingSpeed = currentWgDepthCharge.speed;
-                        depthCharge.SinkingSpeedRng = currentWgDepthCharge.speedDeltaRelative;
-                        depthCharge.ExplosionRadius = currentWgDepthCharge.depthSplashRadius * 30;
+                        depthCharge.Damage = currentWgDepthCharge.AlphaDamage;
+                        depthCharge.FireChance = currentWgDepthCharge.BurnProb;
+                        depthCharge.FloodChance = currentWgDepthCharge.UwCritical;
+                        depthCharge.DetonationTimer = currentWgDepthCharge.Timer;
+                        depthCharge.DetonationTimerRng = currentWgDepthCharge.TimerDeltaAbsolute;
+                        depthCharge.SinkingSpeed = currentWgDepthCharge.Speed;
+                        depthCharge.SinkingSpeedRng = currentWgDepthCharge.SpeedDeltaRelative;
+                        depthCharge.ExplosionRadius = currentWgDepthCharge.DepthSplashRadius * 30;
 
                         var pointsOfDamage = new Dictionary<float, List<float>>();
-                        foreach (float[] data in currentWgDepthCharge.pointsOfDamage.Reverse())
+                        foreach (float[] data in currentWgDepthCharge.PointsOfDamage.Reverse())
                         {
                             float range = data[0];
                             float dmgCoeff = data[1];
@@ -244,54 +244,54 @@ namespace DataConverter.Converters
                         //create our object type
                         Rocket rocket = new Rocket
                         {
-                            Id = currentWgProjectile.id,
-                            Index = currentWgProjectile.index,
-                            Name = currentWgProjectile.name,
+                            Id = currentWgProjectile.Id,
+                            Index = currentWgProjectile.Index,
+                            Name = currentWgProjectile.Name,
                             ProjectileType = currentWgProjectileType,
                         };
 
                         //cast WGProjectile object into a WGBomb object
-                        WGRocket currentWgRocket = (WGRocket)currentWgProjectile;
+                        WgRocket currentWgRocket = (WgRocket)currentWgProjectile;
 
-                        RocketType rocketType = Enum.Parse<RocketType>(currentWgRocket.ammoType);
+                        RocketType rocketType = Enum.Parse<RocketType>(currentWgRocket.AmmoType);
                         rocket.RocketType = rocketType;
 
                         if (rocketType == RocketType.HE)
                         {
-                            rocket.Penetration = currentWgRocket.alphaPiercingHE;
+                            rocket.Penetration = currentWgRocket.AlphaPiercingHe;
 
                             //HE RicochetAngle = 91 => not relevant => shell.RicochetAngle is set to default value
-                            rocket.FireChance = currentWgRocket.burnProb;
+                            rocket.FireChance = currentWgRocket.BurnProb;
 
                             //HE Krupp = 3 => not relevant => shell.Krupp is set to default value
-                            rocket.SplashCoeff = currentWgRocket.splashArmorCoeff;
-                            rocket.ExplosionRadius = currentWgRocket.splashCubeSize * 30 / 2;
+                            rocket.SplashCoeff = currentWgRocket.SplashArmorCoeff;
+                            rocket.ExplosionRadius = currentWgRocket.SplashCubeSize * 30 / 2;
                         }
                         else
                         {
                             //AP Penetration is not a fixed value => shell.Penetration is set to default value
-                            rocket.AlwaysRicochetAngle = currentWgRocket.bulletAlwayRiccochetAt;
-                            rocket.RicochetAngle = currentWgRocket.bulletRicochetAt;
+                            rocket.AlwaysRicochetAngle = currentWgRocket.BulletAlwayRiccochetAt;
+                            rocket.RicochetAngle = currentWgRocket.BulletRicochetAt;
 
                             //AP FireChance = 0 => not relevant => shell.FireChance is set to default value
-                            rocket.Krupp = currentWgRocket.bulletKrupp;
+                            rocket.Krupp = currentWgRocket.BulletKrupp;
                         }
 
-                        rocket.Damage = currentWgRocket.alphaDamage;
-                        rocket.AirDrag = currentWgRocket.bulletAirDrag;
-                        rocket.FuseTimer = currentWgRocket.bulletDetonator;
-                        rocket.ArmingThreshold = currentWgRocket.bulletDetonatorThreshold;
-                        rocket.Caliber = currentWgRocket.bulletDiametr;
-                        rocket.Mass = currentWgRocket.bulletMass;
-                        rocket.MuzzleVelocity = currentWgRocket.bulletSpeed;
-                        rocket.DepthSplashRadius = currentWgRocket.depthSplashRadius * 30;
-                        rocket.SplashDamageCoefficient = currentWgRocket.pointsOfDamage.First().Last();
+                        rocket.Damage = currentWgRocket.AlphaDamage;
+                        rocket.AirDrag = currentWgRocket.BulletAirDrag;
+                        rocket.FuseTimer = currentWgRocket.BulletDetonator;
+                        rocket.ArmingThreshold = currentWgRocket.BulletDetonatorThreshold;
+                        rocket.Caliber = currentWgRocket.BulletDiametr;
+                        rocket.Mass = currentWgRocket.BulletMass;
+                        rocket.MuzzleVelocity = currentWgRocket.BulletSpeed;
+                        rocket.DepthSplashRadius = currentWgRocket.DepthSplashRadius * 30;
+                        rocket.SplashDamageCoefficient = currentWgRocket.PointsOfDamage.First().Last();
 
                         projectileList.Add(rocket.Name, rocket);
                         break;
 
                     default:
-                        throw new InvalidOperationException($"Nation: {currentWgProjectile.TypeInfo.Nation}, ID: {currentWgProjectile.id}");
+                        throw new InvalidOperationException($"Nation: {currentWgProjectile.TypeInfo.Nation}, ID: {currentWgProjectile.Id}");
                 }
             }
 

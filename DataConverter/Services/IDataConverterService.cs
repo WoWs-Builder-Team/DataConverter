@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataConverter.Data;
-using GameParamsExtractor.WGStructure;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Services;

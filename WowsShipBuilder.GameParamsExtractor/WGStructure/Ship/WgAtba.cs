@@ -1,5 +1,4 @@
-﻿using GameParamsExtractor.WGStructure;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
