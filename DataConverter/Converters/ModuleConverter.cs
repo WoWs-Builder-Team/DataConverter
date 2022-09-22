@@ -29,7 +29,7 @@ namespace DataConverter.Converters
                     Name = currentWgModule.name,
                 };
                 //for Type enum
-                ModuleType type = Enum.Parse<ModuleType>(currentWgModule.typeinfo.species);
+                ModuleType type = Enum.Parse<ModuleType>(currentWgModule.TypeInfo.Species);
                 module.Type = type;
                 //dictionary with Index as key
                 moduleList.Add(module.Index, module);

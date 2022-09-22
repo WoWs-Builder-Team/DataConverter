@@ -36,16 +36,16 @@ internal class DataConverterService : IDataConverterService
         this.client = client;
     }
 
-    public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WGObject>>> refinedData)
+    public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WgObject>>> refinedData)
     {
         var resultFiles = new List<ResultFileContainer>();
         var counter = 0;
         Task<ShiptoolData> shipToolDataTask = LoadShiptoolData();
-        foreach ((string categoryName, Dictionary<string, List<WGObject>> nationDictionary) in refinedData)
+        foreach ((string categoryName, Dictionary<string, List<WgObject>> nationDictionary) in refinedData)
         {
             await Parallel.ForEachAsync(nationDictionary, async (nationDataPair, _) =>
             {
-                (string? nation, List<WGObject>? data) = nationDataPair;
+                (string? nation, List<WgObject>? data) = nationDataPair;
 
                 logger.LogInformation("Converting category: {category} - nation: {nation}", categoryName, nation);
                 counter++;

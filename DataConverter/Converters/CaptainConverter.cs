@@ -77,7 +77,7 @@ public static class CaptainConverter
                 Index = currentWgCaptain.Index,
                 Name = name,
                 HasSpecialSkills = false,
-                Nation = Enum.Parse<Nation>(currentWgCaptain.typeinfo.nation.Replace("_", string.Empty), true),
+                Nation = Enum.Parse<Nation>(currentWgCaptain.TypeInfo.Nation.Replace("_", string.Empty), true),
             };
 
             //create object SKill

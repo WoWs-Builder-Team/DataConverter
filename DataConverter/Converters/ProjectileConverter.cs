@@ -28,11 +28,11 @@ namespace DataConverter.Converters
             foreach (var currentWgProjectile in wgProjectile)
             {
                 DataCache.TranslationNames.Add(currentWgProjectile.name);
-                if (!Enum.TryParse(currentWgProjectile.typeinfo.species, out ProjectileType currentWgProjectileType))
+                if (!Enum.TryParse(currentWgProjectile.TypeInfo.Species, out ProjectileType currentWgProjectileType))
                 {
-                    if (ReportedProjectileTypes.Add(currentWgProjectile.typeinfo.species))
+                    if (ReportedProjectileTypes.Add(currentWgProjectile.TypeInfo.Species))
                     {
-                        logger?.LogWarning("Projectile type not recognized: {}", currentWgProjectile.typeinfo.species);
+                        logger?.LogWarning("Projectile type not recognized: {}", currentWgProjectile.TypeInfo.Species);
                     }
                     continue;
                 }
@@ -291,7 +291,7 @@ namespace DataConverter.Converters
                         break;
 
                     default:
-                        throw new InvalidOperationException($"Nation: {currentWgProjectile.typeinfo.nation}, ID: {currentWgProjectile.id}");
+                        throw new InvalidOperationException($"Nation: {currentWgProjectile.TypeInfo.Nation}, ID: {currentWgProjectile.id}");
                 }
             }
 

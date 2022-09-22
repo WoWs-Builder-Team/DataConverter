@@ -28,7 +28,7 @@ public static class ShipConverter
 
         foreach (WgShip wgShip in wgShipList)
         {
-            if (wgShip.typeinfo.species.Equals(ShipClass.Auxiliary.ToString()) || wgShip.Group.Equals("clan") || wgShip.Group.Equals("disabled") ||
+            if (wgShip.TypeInfo.Species.Equals(ShipClass.Auxiliary.ToString()) || wgShip.Group.Equals("clan") || wgShip.Group.Equals("disabled") ||
                 wgShip.Group.Equals("preserved") || wgShip.Group.Equals("unavailable") || wgShip.Group.Equals("coopOnly"))
             {
                 continue;
@@ -42,9 +42,9 @@ public static class ShipConverter
                 Index = wgShip.Index,
                 Name = wgShip.Name,
                 Tier = wgShip.Level,
-                ShipClass = ProcessShipClass(wgShip.typeinfo.species),
+                ShipClass = ProcessShipClass(wgShip.TypeInfo.Species),
                 ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
-                ShipNation = Enum.Parse<Nation>(wgShip.typeinfo.nation.Replace("_", string.Empty), true),
+                ShipNation = Enum.Parse<Nation>(wgShip.TypeInfo.Nation.Replace("_", string.Empty), true),
                 MainBatteryModuleList = ProcessMainBattery(wgShip, stShip),
                 ShipUpgradeInfo = ProcessUpgradeInfo(wgShip, logger),
                 FireControlList = ProcessFireControl(wgShip),

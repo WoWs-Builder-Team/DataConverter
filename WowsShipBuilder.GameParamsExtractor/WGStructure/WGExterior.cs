@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 
-public class WgExterior : WGObject
+public class WgExterior : WgObject
 {
     public long Id { get; set; }
 

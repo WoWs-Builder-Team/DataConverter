@@ -4,7 +4,7 @@ using GameParamsExtractor.WGStructure;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
-public class WgShip : WGObject
+public class WgShip : WgObject
 {
     public Dictionary<string, WgArmamentModule> ModulesArmaments { get; set; } = new();
 

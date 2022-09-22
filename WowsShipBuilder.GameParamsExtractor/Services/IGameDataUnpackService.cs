@@ -1,5 +1,6 @@
 ﻿using GameParamsExtractor.WGStructure;
 using WowsShipBuilder.GameParamsExtractor.Data;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace WowsShipBuilder.GameParamsExtractor.Services;
 
@@ -24,5 +25,5 @@ public interface IGameDataUnpackService
 
     void WriteUnfilteredFiles(Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>> rawGameParams, string outputBasePath);
 
-    void WriteFilteredFiles(Dictionary<string, Dictionary<string, List<WGObject>>> refinedGameParams, string outputBasePath);
+    void WriteFilteredFiles(Dictionary<string, Dictionary<string, List<WgObject>>> refinedGameParams, string outputBasePath);
 }

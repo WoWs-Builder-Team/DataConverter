@@ -4,7 +4,7 @@ using GameParamsExtractor.WGStructure;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 
-public class WgCaptain : WGObject
+public class WgCaptain : WgObject
 {
     public WgCrewPersonality CrewPersonality { get; set; } = new();
 
