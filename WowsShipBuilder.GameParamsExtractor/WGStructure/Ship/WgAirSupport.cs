@@ -1,7 +1,7 @@
-﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable CollectionNeverUpdated.Global
-namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
+﻿namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 /// <summary>
 /// Data for air strikes of ships.
 /// </summary>

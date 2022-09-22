@@ -1,7 +1,7 @@
-﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable CollectionNeverUpdated.Global
-namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
+﻿namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 public class WgCrewPersonality
 {
     public bool CanResetSkillsForFree { get; set; }

@@ -1,7 +1,7 @@
-﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable CollectionNeverUpdated.Global
-namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
+﻿namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 public class WgHull : WgArmamentModule
 {
     public decimal Health { get; set; }
@@ -47,7 +47,6 @@ public class WgHull : WgArmamentModule
     public WgHitLocation Hull { get; set; } = new();
 
     public WgHitLocation Cit { get; set; } = new();
-
 }
 
 public class WgSteeringGear
@@ -58,6 +57,8 @@ public class WgSteeringGear
 public class WgHitLocation
 {
     public string HlType { get; set; } = string.Empty;
+
     public float RegeneratedHpPart { get; set; }
+
     public int MaxHp { get; set; }
 }

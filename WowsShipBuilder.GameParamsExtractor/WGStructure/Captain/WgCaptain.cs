@@ -1,9 +1,7 @@
-
+namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
-
 public class WgCaptain : WgObject
 {
     public WgCrewPersonality CrewPersonality { get; set; } = new();

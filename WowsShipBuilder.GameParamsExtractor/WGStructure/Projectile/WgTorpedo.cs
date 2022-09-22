@@ -1,7 +1,7 @@
-﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable CollectionNeverUpdated.Global
-namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
+﻿namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 public class WgTorpedo : WgProjectile
 {
     public int AlertDist { get; set; }
