@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Aircraft;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
