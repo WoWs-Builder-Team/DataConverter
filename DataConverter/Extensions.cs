@@ -2,10 +2,12 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace DataConverter;
 

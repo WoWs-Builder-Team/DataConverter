@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using DataConverter.Converters;
 using DataConverter.Data;
 using DataConverter.JsonData;
-using GameParamsExtractor.WGStructure;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace DataConverter.Services;
 
@@ -34,16 +36,16 @@ internal class DataConverterService : IDataConverterService
         this.client = client;
     }
 
-    public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WGObject>>> refinedData)
+    public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WgObject>>> refinedData)
     {
         var resultFiles = new List<ResultFileContainer>();
         var counter = 0;
         Task<ShiptoolData> shipToolDataTask = LoadShiptoolData();
-        foreach ((string categoryName, Dictionary<string, List<WGObject>> nationDictionary) in refinedData)
+        foreach ((string categoryName, Dictionary<string, List<WgObject>> nationDictionary) in refinedData)
         {
             await Parallel.ForEachAsync(nationDictionary, async (nationDataPair, _) =>
             {
-                (string? nation, List<WGObject>? data) = nationDataPair;
+                (string? nation, List<WgObject>? data) = nationDataPair;
 
                 logger.LogInformation("Converting category: {category} - nation: {nation}", categoryName, nation);
                 counter++;
@@ -70,17 +72,17 @@ internal class DataConverterService : IDataConverterService
                         break;
                     case "Crew":
                         string skillsList = CaptainConverter.LoadEmbeddedSkillData();
-                        convertedData = CaptainConverter.ConvertCaptain(data.Cast<WGCaptain>(), skillsList, nation.Equals("Common"));
+                        convertedData = CaptainConverter.ConvertCaptain(data.Cast<WgCaptain>(), skillsList, nation.Equals("Common"));
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;
                     case "Modernization":
-                        convertedData = ModernizationConverter.ConvertModernization(data.Cast<WGModernization>());
+                        convertedData = ModernizationConverter.ConvertModernization(data.Cast<WgModernization>());
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;
                     case "Projectile":
-                        var filteredData = data.OfType<WGProjectile>();
+                        var filteredData = data.OfType<WgProjectile>();
                         convertedData = ProjectileConverter.ConvertProjectile(filteredData, logger);
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
@@ -92,7 +94,7 @@ internal class DataConverterService : IDataConverterService
 
                         break;
                     case "Unit":
-                        convertedData = ModuleConverter.ConvertModule(data.Cast<WGModule>());
+                        convertedData = ModuleConverter.ConvertModule(data.Cast<WgModule>());
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
                         break;
