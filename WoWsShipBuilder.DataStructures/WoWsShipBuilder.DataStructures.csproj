@@ -14,6 +14,7 @@
         <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
         <LangVersion>10</LangVersion>
         <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
