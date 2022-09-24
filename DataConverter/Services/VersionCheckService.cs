@@ -9,6 +9,7 @@ using DataConverter.Data;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Ship;
 
 namespace DataConverter.Services;
 

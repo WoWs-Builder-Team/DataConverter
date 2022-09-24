@@ -4,15 +4,15 @@ namespace WoWsShipBuilder.DataStructures.Components;
 
 public interface IGun : IModuleBase
 {
-    public List<string> AmmoList { get; set; }
-    public decimal BarrelDiameter { get; set; }
-    public decimal[] HorizontalSector { get; set; }
-    public decimal[][] HorizontalDeadZones { get; set; }
-    public int NumBarrels { get; set; }
-    public decimal HorizontalPosition { get; set; }
-    public decimal VerticalPosition { get; set; }
-    public decimal HorizontalRotationSpeed { get; set; }
-    public decimal Reload { get; set; }
+    public List<string> AmmoList { get; init; }
+    public decimal BarrelDiameter { get; init; }
+    public decimal[] HorizontalSector { get; init; }
+    public decimal[][] HorizontalDeadZones { get; init; }
+    public int NumBarrels { get; init; }
+    public decimal HorizontalPosition { get; init; }
+    public decimal VerticalPosition { get; init; }
+    public decimal HorizontalRotationSpeed { get; init; }
+    public decimal Reload { get; init; }
     public string WgGunIndex { get; set; }
     public decimal BaseAngle { get; set; }
 }

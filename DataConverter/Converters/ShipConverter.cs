@@ -6,9 +6,10 @@ using DataConverter.Data;
 using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
-using Hull = WoWsShipBuilder.DataStructures.Hull;
-using ShipUpgrade = WoWsShipBuilder.DataStructures.ShipUpgrade;
+using Hull = WoWsShipBuilder.DataStructures.Ship.Hull;
+using ShipUpgrade = WoWsShipBuilder.DataStructures.Ship.ShipUpgrade;
 
 namespace DataConverter.Converters;
 
@@ -629,44 +630,18 @@ public static class ShipConverter
             return;
         }
 
-        foreach ((_, WgAaAura aura) in auras)
+        foreach (var (_, aura) in auras)
         {
             switch (aura.Type)
             {
                 case "far":
-                    if (targetAntiAir.LongRangeAura != null)
-                    {
-                        targetAntiAir.LongRangeAura += aura.ConvertData();
-                    }
-                    else
-                    {
-                        targetAntiAir.LongRangeAura = aura.ConvertData();
-                    }
-
+                    targetAntiAir.LongRangeAura = targetAntiAir.LongRangeAura != null ? targetAntiAir.LongRangeAura.AddAura(aura.ConvertData()) : aura.ConvertData();
                     break;
-
                 case "medium":
-                    if (targetAntiAir.MediumRangeAura != null)
-                    {
-                        targetAntiAir.MediumRangeAura += aura.ConvertData();
-                    }
-                    else
-                    {
-                        targetAntiAir.MediumRangeAura = aura.ConvertData();
-                    }
-
+                    targetAntiAir.MediumRangeAura = targetAntiAir.MediumRangeAura != null ? targetAntiAir.MediumRangeAura.AddAura(aura.ConvertData()) : aura.ConvertData();
                     break;
-
                 case "near":
-                    if (targetAntiAir.ShortRangeAura != null)
-                    {
-                        targetAntiAir.ShortRangeAura += aura.ConvertData();
-                    }
-                    else
-                    {
-                        targetAntiAir.ShortRangeAura = aura.ConvertData();
-                    }
-
+                    targetAntiAir.ShortRangeAura = targetAntiAir.ShortRangeAura != null ? targetAntiAir.ShortRangeAura.AddAura(aura.ConvertData()) : aura.ConvertData();
                     break;
             }
         }

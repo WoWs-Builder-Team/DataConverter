@@ -4,6 +4,7 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Ship;
 
 namespace DataConverter.Test.ChecksumTests;
 
