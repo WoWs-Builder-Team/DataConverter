@@ -76,18 +76,14 @@ namespace DataConverter.Converters
                 catch (ArgumentException)
                 {
                     var currentWgExteriorType = currentWgExterior.TypeInfo.Species;
-                    if (currentWgExteriorType != null)
+                    if (currentWgExteriorType.Equals("Skin") || currentWgExteriorType.Equals("MSkin"))
                     {
-                        if (currentWgExteriorType.Equals("Skin") || currentWgExteriorType.Equals("MSkin"))
-                        {
-                            exterior.Type = ExteriorType.Permoflage;
-                        }
-                        else
-                        {
-                            logger?.LogWarning("Found an unknown exterior type. Type: {}, ID: {}", currentWgExteriorType, exterior.Id);
-                            // throw new ArgumentException($"Type: {currentWgExteriorType}, ID: {exterior.Id}");
-                            continue;
-                        }
+                        exterior.Type = ExteriorType.Permoflage;
+                    }
+                    else
+                    {
+                        logger?.LogWarning("Found an unknown exterior type. Type: {}, ID: {}", currentWgExteriorType, exterior.Id);
+                        continue;
                     }
                 }
 
@@ -98,11 +94,11 @@ namespace DataConverter.Converters
 
                 exterior.Restrictions = new()
                 {
-                    ForbiddenShips = currentWgExterior.Restrictions?.ForbiddenShips?.ToList(),
-                    Levels = currentWgExterior.Restrictions?.Levels?.ToList(),
-                    Nations = currentWgExterior.Restrictions?.Nations?.ToList(),
-                    SpecificShips = currentWgExterior.Restrictions?.SpecificShips?.ToList(),
-                    Subtype = currentWgExterior.Restrictions?.Subtype?.ToList(),
+                    ForbiddenShips = currentWgExterior.Restrictions.ForbiddenShips.ToList(),
+                    Levels = currentWgExterior.Restrictions.Levels.ToList(),
+                    Nations = currentWgExterior.Restrictions.Nations.ToList(),
+                    SpecificShips = currentWgExterior.Restrictions.SpecificShips.ToList(),
+                    Subtype = currentWgExterior.Restrictions.Subtype.ToList(),
                 };
 
                 //dictionary with Index as key

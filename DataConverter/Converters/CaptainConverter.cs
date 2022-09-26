@@ -113,7 +113,7 @@ public static class CaptainConverter
             UniqueSkill uniqueSkill = new()
             {
                 MaxTriggerNum = currentUniqueSkillValue.MaxTriggerNum,
-                AllowedShips = currentUniqueSkillValue.TriggerAllowedShips?.ToList(),
+                AllowedShips = currentUniqueSkillValue.TriggerAllowedShips.ToList(),
                 TriggerType = currentUniqueSkillValue.TriggerType,
             };
 

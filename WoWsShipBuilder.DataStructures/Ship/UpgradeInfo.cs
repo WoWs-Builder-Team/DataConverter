@@ -50,7 +50,7 @@ public class ShipUpgrade
 
     public string[] NextShips { get; set; } = Array.Empty<string>();
 
-    public string Prev { get; set; } = string.Empty;
+    public string? Prev { get; set; }
 
     public ComponentType UcType { get; set; }
 

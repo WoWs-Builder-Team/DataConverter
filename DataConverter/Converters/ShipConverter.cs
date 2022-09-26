@@ -555,7 +555,7 @@ public static class ShipConverter
                     // Processing for older versions
                     return new List<KeyValuePair<string, PlaneData>>
                     {
-                        new(wgPlane.moduleKey, new() { PlaneName = wgPlane.Item2.PlaneType, PlaneType = type, }),
+                        new(wgPlane.moduleKey, new() { PlaneName = wgPlane.Item2.PlaneType ?? string.Empty, PlaneType = type }),
                     };
                 })
                 .ToList();
