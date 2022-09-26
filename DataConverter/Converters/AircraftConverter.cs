@@ -71,12 +71,7 @@ namespace DataConverter.Converters
                 };
                 air.AttackData = planeAttackData;
 
-                JatoData jatodata = new()
-                {
-                    //start mapping
-                    JatoDuration = currentWgAir.JatoDuration,
-                    JatoSpeedMultiplier = currentWgAir.JatoSpeedMultiplier,
-                };
+                JatoData jatodata = new(currentWgAir.JatoDuration, currentWgAir.JatoSpeedMultiplier);
                 air.JatoData = jatodata;
 
                 //determine the needed enum for plane category
@@ -127,13 +122,7 @@ namespace DataConverter.Converters
             {
                 IEnumerable<AircraftConsumable> consumableList = wgAbility.Abils
                     .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
-                    .Select(ability =>
-                        new AircraftConsumable
-                        {
-                            ConsumableName = ability.AbilityName,
-                            ConsumableVariantName = ability.AbilityVariant,
-                            Slot = wgAbility.Slot,
-                        });
+                    .Select(ability => new AircraftConsumable(wgAbility.Slot, ability.AbilityName, ability.AbilityVariant));
                 resultList.AddRange(consumableList);
             }
 

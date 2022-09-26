@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Aircraft;
 
 public class Aircraft
 {
     public long Id { get; set; }
 
-    public string Index { get; set; }
+    public string Index { get; set; } = string.Empty;
 
     public float MaxHealth { get; set; }
 
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     public int NumPlanesInSquadron { get; set; }
 
@@ -46,7 +48,7 @@ public class Aircraft
 
     public double BombFallingTime { get; set; }
 
-    public string BombName { get; set; }
+    public string BombName { get; set; } = string.Empty;
 
     public double DamageTakenMultiplier { get; set; }
 
@@ -56,15 +58,15 @@ public class Aircraft
 
     public double InnerBombsPercentage { get; set; }
 
-    public List<double> InnerSalvoSize { get; set; }
+    public List<double> InnerSalvoSize { get; set; } = new();
 
     public PlaneCategory PlaneCategory { get; set; }
 
-    public PlaneAttackData AttackData { get; set; }
+    public PlaneAttackData AttackData { get; set; } = new();
 
-    public JatoData JatoData { get; set; }
+    public JatoData JatoData { get; set; } = new(default, default);
 
-    public List<AircraftConsumable> AircraftConsumable { get; set; }
+    public List<AircraftConsumable> AircraftConsumable { get; set; } = new();
 
     public decimal AimingAccuracyDecreaseRate { get; set; }
 
@@ -81,35 +83,6 @@ public class Aircraft
     public decimal PreparationTime { get; set; }
 }
 
-public class PlaneAttackData
-{
-    public double AttackCooldown { get; set; }
+public record JatoData(double JatoDuration, double JatoSpeedMultiplier);
 
-    public int AttackCount { get; set; }
-
-    public double AttackInterval { get; set; }
-
-    public double AttackSpeedMultiplier { get; set; }
-
-    public double AttackSpeedMultiplierApplyTime { get; set; }
-
-    public double AttackerDamageTakenMultiplier { get; set; }
-
-    public int AttackerSize { get; set; }
-}
-
-public class JatoData
-{
-    public double JatoDuration { get; set; }
-
-    public double JatoSpeedMultiplier { get; set; }
-}
-
-public class AircraftConsumable
-{
-    public int Slot { get; set; }
-
-    public string ConsumableName { get; set; }
-
-    public string ConsumableVariantName { get; set; }
-}
+public record AircraftConsumable(int Slot, string ConsumableName, string ConsumableVariantName);
