@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Ship;
+using WoWsShipBuilder.DataStructures.Versioning;
 
 namespace DataConverter.Test.ChecksumTests;
 

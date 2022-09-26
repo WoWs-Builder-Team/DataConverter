@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace WoWsShipBuilder.DataStructures
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable CollectionNeverUpdated.Global
+namespace WoWsShipBuilder.DataStructures;
+
+public class Exterior
 {
-    public class Exterior
-    {
-        public long Id { get; set; }
-        public string Index { get; set; }
-        public Dictionary<string, double> Modifiers { get; set; }
-        public string Name { get; set; }
-        public ExteriorType Type { get; set; }
-        public int SortOrder { get; set; }
-        public Restriction Restrictions { get; set; }
-        public int Group { get; set; }
-    }
+    public long Id { get; set; }
+    public string Index { get; set; } = string.Empty;
 
-    public class Restriction
-    {
-        public List<string> ForbiddenShips { get; set; }
-        public List<string> Levels { get; set; }
-        public List<string> Nations { get; set; }
-        public List<string> SpecificShips { get; set; }
-        public List<string> Subtype { get; set; }
-    }
+    public Dictionary<string, double> Modifiers { get; set; } = new();
+    public string Name { get; set; } = string.Empty;
+    public ExteriorType Type { get; set; }
+    public int SortOrder { get; set; }
+    public Restriction Restrictions { get; set; } = new();
+    public int Group { get; set; }
+}
+
+public class Restriction
+{
+    public List<string> ForbiddenShips { get; set; } = new();
+    public List<string> Levels { get; set; } = new();
+    public List<string> Nations { get; set; } = new();
+    public List<string> SpecificShips { get; set; } = new();
+    public List<string> Subtype { get; set; } = new();
 }
