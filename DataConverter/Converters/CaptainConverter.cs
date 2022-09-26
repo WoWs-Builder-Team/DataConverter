@@ -8,6 +8,7 @@ using DataConverter.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Captain;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 
