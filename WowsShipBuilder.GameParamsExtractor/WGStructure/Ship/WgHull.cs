@@ -34,19 +34,21 @@ public class WgHull : WgArmamentModule
 
     public int Tonnage { get; init; }
 
-    public WgHitLocation Cas { get; init; } = new();
+    public WgHitLocation Cas { get; } = new();
 
-    public WgHitLocation Bow { get; init; } = new();
+    public WgHitLocation Bow { get; } = new();
 
-    public WgHitLocation Ss { get; init; } = new();
+    public WgHitLocation Ss { get; } = new();
 
-    public WgHitLocation St { get; init; } = new();
+    public WgHitLocation St { get; } = new();
 
-    public WgHitLocation Ssc { get; init; } = new();
+    public WgHitLocation Ssc { get; } = new();
 
-    public WgHitLocation Hull { get; init; } = new();
+    public WgHitLocation Hull { get; } = new();
 
-    public WgHitLocation Cit { get; init; } = new();
+    public WgHitLocation Cit { get; } = new();
+
+    public Dictionary<string, object[]> BuoyancyStates { get; } = new();
 }
 
 public class WgSteeringGear

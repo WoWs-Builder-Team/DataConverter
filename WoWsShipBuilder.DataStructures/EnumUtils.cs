@@ -201,4 +201,12 @@ namespace WoWsShipBuilder.DataStructures
         Superstructure,
         Hull,
     }
+
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum SubsBuoyancyStates
+    {
+        DeepWater,
+        Periscope,
+        Surface,
+    }
 }

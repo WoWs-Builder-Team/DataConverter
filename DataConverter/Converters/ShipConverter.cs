@@ -400,6 +400,25 @@ public static class ShipConverter
 
             hullModule.HitLocations = hitLocations;
 
+            //process MaxSpeedAtBuoyancyState
+            Dictionary<SubsBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
+            if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
+            {
+                foreach ((string state, object[] coeff) in wgHull.BuoyancyStates)
+                {
+                    var depth = state switch
+                    {
+                        "DEEP_WATER_INVUL" => SubsBuoyancyStates.DeepWater,
+                        "PERISCOPE" => SubsBuoyancyStates.Periscope,
+                        "SURFACE" => SubsBuoyancyStates.Surface,
+                        _ => throw new InvalidOperationException("Buoyancy state not recognized: " + wgHull),
+                    };
+                    maxSpeedAtBuoyancyStateCoeff.Add(depth, (decimal)(double)coeff[1]);
+                }
+            }
+
+            hullModule.MaxSpeedAtBuoyancyStateCoeff = maxSpeedAtBuoyancyStateCoeff;
+
             //Process ship size
             ShipSize dim = new()
             {

@@ -415,6 +415,8 @@ public class Hull
     public int Tonnage { get; set; }
 
     public List<HitLocation> HitLocations { get; set; }
+
+    public Dictionary<SubsBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; set; }
 }
 
 public class ShipSize
