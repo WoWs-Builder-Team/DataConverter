@@ -298,7 +298,7 @@ public static class ShipConverter
                 SurfaceDetection = wgHull.VisibilityFactor,
                 AirDetection = wgHull.VisibilityFactorByPlane,
                 DetectionBySubPeriscope = wgHull.VisibilityFactorsBySubmarine["PERISCOPE"],
-                DetectionBySubOperating = wgHull.VisibilityFactorsBySubmarine["DEEP_WATER"],
+                DetectionBySubOperating = wgHull.VisibilityFactorsBySubmarine["DEEP_WATER_INVUL"],
                 FireSpots = wgHull.BurnNodes.Length,
                 FireResistance = wgHull.BurnNodes[0][0],
                 FireTickDamage = wgHull.BurnNodes[0][1],
