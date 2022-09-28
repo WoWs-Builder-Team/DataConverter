@@ -63,6 +63,10 @@ namespace WoWsShipBuilder.DataStructures
         TorpedoBomber,
         DiveBomber,
         SkipBomber,
+        TacticalFighter,
+        TacticalDiveBomber,
+        TacticalTorpedoBomber,
+        TacticalSkipBomber,
         Suo,
         Engine,
         FlightControl,
@@ -80,6 +84,10 @@ namespace WoWsShipBuilder.DataStructures
         DiveBomber,
         TorpedoBomber,
         SkipBomber,
+        TacticalFighter,
+        TacticalDiveBomber,
+        TacticalTorpedoBomber,
+        TacticalSkipBomber,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]

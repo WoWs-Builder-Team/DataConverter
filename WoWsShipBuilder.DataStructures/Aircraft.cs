@@ -8,6 +8,7 @@ namespace WoWsShipBuilder.DataStructures
         public string Index { get; set; }
         public float MaxHealth { get; set; }
         public string Name { get; set; }
+        public bool IsTactical { get; set; }
         public int NumPlanesInSquadron { get; set; }
         public float ReturnHeight { get; set; }
         public float SpeedMaxModifier { get; set; }

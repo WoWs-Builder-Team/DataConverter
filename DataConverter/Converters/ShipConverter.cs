@@ -733,6 +733,10 @@ public static class ShipConverter
             PlaneType.DiveBomber => ComponentType.DiveBomber,
             PlaneType.TorpedoBomber => ComponentType.TorpedoBomber,
             PlaneType.SkipBomber => ComponentType.SkipBomber,
+            PlaneType.TacticalFighter => ComponentType.TacticalFighter,
+            PlaneType.TacticalDiveBomber => ComponentType.TacticalDiveBomber,
+            PlaneType.TacticalTorpedoBomber => ComponentType.TacticalTorpedoBomber,
+            PlaneType.TacticalSkipBomber => ComponentType.TacticalSkipBomber,
             _ => throw new ArgumentOutOfRangeException(nameof(thisType), thisType, "Cannot process supplied plane type."),
         };
     }
