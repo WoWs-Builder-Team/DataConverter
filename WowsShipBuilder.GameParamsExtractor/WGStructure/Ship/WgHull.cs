@@ -47,6 +47,8 @@ public class WgHull : WgArmamentModule
     public WgHitLocation Hull { get; init; } = new();
 
     public WgHitLocation Cit { get; init; } = new();
+
+    public Dictionary<string, object[]> BuoyancyStates { get; init; } = new();
 }
 
 public class WgSteeringGear

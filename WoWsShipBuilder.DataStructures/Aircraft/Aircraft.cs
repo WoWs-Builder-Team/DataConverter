@@ -14,6 +14,8 @@ public class Aircraft
 
     public string Name { get; set; } = string.Empty;
 
+    public bool IsTactical { get; set; }
+
     public int NumPlanesInSquadron { get; set; }
 
     public float ReturnHeight { get; set; }

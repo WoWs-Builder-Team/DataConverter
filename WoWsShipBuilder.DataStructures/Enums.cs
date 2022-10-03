@@ -71,6 +71,10 @@ public enum ComponentType
     AirArmament,
     DepthCharges,
     None,
+    TacticalFighter,
+    TacticalDiveBomber,
+    TacticalTorpedoBomber,
+    TacticalSkipBomber,
 }
 
 [JsonConverter(typeof(StringEnumConverter))]
@@ -80,6 +84,10 @@ public enum PlaneType
     DiveBomber,
     TorpedoBomber,
     SkipBomber,
+    TacticalFighter,
+    TacticalDiveBomber,
+    TacticalTorpedoBomber,
+    TacticalSkipBomber,
 }
 
 [JsonConverter(typeof(StringEnumConverter))]
@@ -200,4 +208,12 @@ public enum ShipHitLocation
     Citadel,
     Superstructure,
     Hull,
+}
+
+[JsonConverter(typeof(StringEnumConverter))]
+public enum SubsBuoyancyStates
+{
+    DeepWater,
+    Periscope,
+    Surface,
 }

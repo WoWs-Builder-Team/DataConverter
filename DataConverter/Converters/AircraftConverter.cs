@@ -77,7 +77,8 @@ namespace DataConverter.Converters
                 //determine the needed enum for plane category
                 bool isAirSupport;
                 bool isConsumable;
-                if (currentWgAir.PlaneSubtype == null)
+                var isTactical = false;
+                if (!currentWgAir.PlaneSubtype.Any())
                 {
                     isAirSupport = currentWgAir.IsAirSupportPlane == true;
                     isConsumable = currentWgAir.IsConsumablePlane == true;
@@ -87,7 +88,10 @@ namespace DataConverter.Converters
                     List<string> subtypes = currentWgAir.PlaneSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
                     isAirSupport = subtypes.Contains("airsupport");
                     isConsumable = subtypes.Contains("consumable");
+                    isTactical = subtypes.Contains("jet");
                 }
+
+                air.IsTactical = isTactical;
 
                 if (isConsumable && isAirSupport)
                 {

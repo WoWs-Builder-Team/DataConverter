@@ -299,7 +299,7 @@ public static class ShipConverter
                 SurfaceDetection = wgHull.VisibilityFactor,
                 AirDetection = wgHull.VisibilityFactorByPlane,
                 DetectionBySubPeriscope = wgHull.VisibilityFactorsBySubmarine["PERISCOPE"],
-                DetectionBySubOperating = wgHull.VisibilityFactorsBySubmarine["DEEP_WATER"],
+                DetectionBySubOperating = wgHull.VisibilityFactorsBySubmarine["DEEP_WATER_INVUL"],
                 FireSpots = wgHull.BurnNodes.Length,
                 FireResistance = wgHull.BurnNodes[0][0],
                 FireTickDamage = wgHull.BurnNodes[0][1],
@@ -400,6 +400,25 @@ public static class ShipConverter
             }
 
             hullModule.HitLocations = hitLocations;
+
+            //process MaxSpeedAtBuoyancyState
+            Dictionary<SubsBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
+            if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
+            {
+                foreach ((string state, object[] coeff) in wgHull.BuoyancyStates)
+                {
+                    var depth = state switch
+                    {
+                        "DEEP_WATER_INVUL" => SubsBuoyancyStates.DeepWater,
+                        "PERISCOPE" => SubsBuoyancyStates.Periscope,
+                        "SURFACE" => SubsBuoyancyStates.Surface,
+                        _ => throw new InvalidOperationException("Buoyancy state not recognized: " + wgHull),
+                    };
+                    maxSpeedAtBuoyancyStateCoeff.Add(depth, (decimal)(double)coeff[1]);
+                }
+            }
+
+            hullModule.MaxSpeedAtBuoyancyStateCoeff = maxSpeedAtBuoyancyStateCoeff;
 
             //Process ship size
             ShipSize dim = new()
@@ -689,6 +708,10 @@ public static class ShipConverter
             PlaneType.DiveBomber => ComponentType.DiveBomber,
             PlaneType.TorpedoBomber => ComponentType.TorpedoBomber,
             PlaneType.SkipBomber => ComponentType.SkipBomber,
+            PlaneType.TacticalFighter => ComponentType.TacticalFighter,
+            PlaneType.TacticalDiveBomber => ComponentType.TacticalDiveBomber,
+            PlaneType.TacticalTorpedoBomber => ComponentType.TacticalTorpedoBomber,
+            PlaneType.TacticalSkipBomber => ComponentType.TacticalSkipBomber,
             _ => throw new ArgumentOutOfRangeException(nameof(thisType), thisType, "Cannot process supplied plane type."),
         };
     }

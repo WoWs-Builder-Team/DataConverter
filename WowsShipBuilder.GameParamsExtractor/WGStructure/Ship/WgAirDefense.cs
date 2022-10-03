@@ -29,6 +29,8 @@ public class WgAaAura
 
     public int InnerBubbleCount { get; init; }
 
+    public int OuterBubbleCount { get; init; }
+
     public decimal MaxDistance { get; init; }
 
     public decimal MinDistance { get; init; }

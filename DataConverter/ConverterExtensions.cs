@@ -29,7 +29,7 @@ public static class ConverterExtensions
     {
         ConstantDps = wgAura.AreaDamage,
         FlakDamage = wgAura.BubbleDamage,
-        FlakCloudsNumber = wgAura.InnerBubbleCount,
+        FlakCloudsNumber = wgAura.InnerBubbleCount + wgAura.OuterBubbleCount,
         HitChance = wgAura.HitChance,
         MaxRange = wgAura.MaxDistance,
         MinRange = wgAura.MinDistance,
