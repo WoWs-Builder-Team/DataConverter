@@ -82,7 +82,7 @@ namespace DataConverter.Converters
                 bool isAirSupport;
                 bool isConsumable;
                 var isTactical = false;
-                if (currentWgAir.PlaneSubtype == null)
+                if (!currentWgAir.PlaneSubtype.Any())
                 {
                     isAirSupport = currentWgAir.IsAirSupportPlane == true;
                     isConsumable = currentWgAir.IsConsumablePlane == true;
