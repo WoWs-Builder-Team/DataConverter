@@ -9,7 +9,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
         <PackageId>WoWsShipBuilder.DataStructures</PackageId>
-        <VersionPrefix>2.4.3</VersionPrefix>
+        <VersionPrefix>2.5.0</VersionPrefix>
         <RepositoryType>git</RepositoryType>
         <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
         <LangVersion>10</LangVersion>
