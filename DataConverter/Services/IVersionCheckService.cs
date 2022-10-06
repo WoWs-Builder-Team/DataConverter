@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using DataConverter.Data;
-using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Versioning;
 
 namespace DataConverter.Services;

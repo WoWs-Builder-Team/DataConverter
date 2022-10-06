@@ -43,17 +43,17 @@ public static class CaptainConverter
         {
             var tags = currentWgCaptain.CrewPersonality.Tags;
             // if no tags and we are not processing Common, skip the captain. A captain with no tags is the default captain of the nation, a copy of the one in Common.
-            if ((tags == null || tags.Count == 0) && !isCommon)
+            if (tags.Count == 0 && !isCommon)
             {
                 continue;
             }
             // if no tags and we already added the default captain in Common, skip all the next. They are copy of each other.
-            if (isCommon && (tags == null || tags.Count == 0) && addedDefault)
+            if (isCommon && tags.Count == 0 && addedDefault)
             {
                 continue;
             }
             // if no tags and we haven't added the default captain in Common, set the flag to true to skip future ones.
-            if (isCommon && (tags == null || tags.Count == 0) && !addedDefault)
+            if (isCommon && tags.Count == 0 && !addedDefault)
             {
                 addedDefault = true;
             }
@@ -158,7 +158,7 @@ public static class CaptainConverter
                         else if (value.Type is JTokenType.Float or JTokenType.Integer)
                         {
                             //if it's a float with a value of 1, then it's probably a modifier that keep the value the same.
-                            if (value.Type == JTokenType.Float && Math.Abs(value.Value<float>() - 1f) < 0.001)
+                            if (value.Type == JTokenType.Float && Math.Abs(value.Value<float>() - 1f) < Constants.Tolerance)
                             {
                                 continue;
                             }
@@ -250,7 +250,7 @@ public static class CaptainConverter
         skill.Modifiers = modifiers;
 
         //collect all skill's modifiers with trigger condition
-        Dictionary<string, JToken>? wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.Modifiers;
+        Dictionary<string, JToken> wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.Modifiers;
         Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
 
         skill.ConditionalModifiers = conditionalModifiers;
@@ -279,7 +279,7 @@ public static class CaptainConverter
                 var first = values.First().Value;
                 foreach ((string _, float value) in values)
                 {
-                    if (Math.Abs(value - first) > 0.001)
+                    if (Math.Abs(value - first) > Constants.Tolerance)
                     {
                         isEqual = false;
                     }

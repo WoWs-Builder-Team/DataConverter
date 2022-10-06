@@ -21,7 +21,7 @@ namespace DataConverter.Converters
             {
                 DataCache.TranslationNames.Add(currentWgExterior.Name);
                 //create our object type
-                Exterior exterior = new Exterior
+                var exterior = new Exterior
                 {
                     //start mapping
                     Id = currentWgExterior.Id,
@@ -31,24 +31,24 @@ namespace DataConverter.Converters
                     Group = currentWgExterior.Group,
                 };
 
-                Dictionary<string, double> modifiers = new Dictionary<string, double>();
+                var modifiers = new Dictionary<string, double>();
                 foreach (var currentWgExteriorModifier in currentWgExterior.Modifiers)
                 {
-                    JToken jtoken = currentWgExteriorModifier.Value;
+                    var token = currentWgExteriorModifier.Value;
 
-                    if (jtoken.Type is JTokenType.Float or JTokenType.Integer)
+                    if (token.Type is JTokenType.Float or JTokenType.Integer)
                     {
-                        modifiers.Add(currentWgExteriorModifier.Key, jtoken.Value<double>());
+                        modifiers.Add(currentWgExteriorModifier.Key, token.Value<double>());
                     }
                     else
                     {
-                        JObject jObject = (JObject)jtoken;
+                        JObject jObject = (JObject)token;
                         var values = jObject.ToObject<Dictionary<string, double>>()!;
                         bool isEqual = true;
                         var first = values.First().Value;
-                        foreach ((string key, double value) in values)
+                        foreach ((string _, double value) in values)
                         {
-                            if (value != first)
+                            if (Math.Abs(value - first) > Constants.Tolerance)
                             {
                                 isEqual = false;
                             }
