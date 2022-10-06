@@ -189,7 +189,7 @@ public static class ShipConverter
     {
         var upgradeInfo = new UpgradeInfo
         {
-            ShipUpgrades = new List<ShipUpgrade>(),
+            ShipUpgrades = new(),
             CostCredits = wgShip.ShipUpgradeInfo.CostCr,
             CostGold = wgShip.ShipUpgradeInfo.CostGold,
             CostXp = wgShip.ShipUpgradeInfo.CostXp,
@@ -688,6 +688,7 @@ public static class ShipConverter
             "AirArmament" => ComponentType.AirArmament,
             "DepthCharges" => ComponentType.DepthCharges,
             "Sonar" => ComponentType.Sonar,
+            "Pinger" => ComponentType.Sonar, // for UcType, Sonar is used while pinger is used in components list
             _ => ComponentType.None,
         };
 
