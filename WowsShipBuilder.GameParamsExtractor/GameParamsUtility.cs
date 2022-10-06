@@ -1,9 +1,9 @@
 using System.Collections;
-using GameParamsExtractor.WGStructure;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Razorvine.Pickle;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace WowsShipBuilder.GameParamsExtractor;
 
@@ -29,7 +29,7 @@ internal static class GameParamsUtility
             .Where(x => GroupsToProcess.Contains(ConvertDataValue(x.Value["typeinfo"])["type"]))
             .GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]);
 
-        var data = new Dictionary<string, Dictionary<string, List<WGObject>>>();
+        var data = new Dictionary<string, Dictionary<string, List<WgObject>>>();
         var unfilteredData = new Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>>();
         foreach (var group in groups)
         {
@@ -76,7 +76,7 @@ internal static class GameParamsUtility
             .GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["nation"])
             .Where(x => !x.Key.Equals("Events"));
 
-        var nationsDictionary = new Dictionary<string, List<WGObject>>();
+        var nationsDictionary = new Dictionary<string, List<WgObject>>();
         var unfilteredNationsDictionary = new Dictionary<string, List<SortedDictionary<string, object>>>();
         foreach (var nation in nationGroups)
         {
@@ -109,7 +109,7 @@ internal static class GameParamsUtility
         };
 
         string jsonData = JsonConvert.SerializeObject(filteredEntries);
-        var objectList = JsonConvert.DeserializeObject<List<WGObject>>(jsonData);
+        var objectList = JsonConvert.DeserializeObject<List<WgObject>>(jsonData);
 
         logger?.LogInformation("End processing for {groupName} - {nation}", groupName, nationGroup.Key);
         return new(objectList ?? throw new InvalidOperationException("Object list was null"), returnUnfiltered ? nationEntries : null);
@@ -286,9 +286,9 @@ internal static class GameParamsUtility
         return filteredEntries;
     }
 
-    private sealed record TypeUnpackResult(Dictionary<string, List<WGObject>> RefinedData, Dictionary<string, List<SortedDictionary<string, object>>>? UnfilteredData);
+    private sealed record TypeUnpackResult(Dictionary<string, List<WgObject>> RefinedData, Dictionary<string, List<SortedDictionary<string, object>>>? UnfilteredData);
 
-    private sealed record NationUnpackResult(List<WGObject> RefinedData, List<SortedDictionary<string, object>>? UnfilteredData);
+    private sealed record NationUnpackResult(List<WgObject> RefinedData, List<SortedDictionary<string, object>>? UnfilteredData);
 
-    public sealed record FilterAndConvertResult(Dictionary<string, Dictionary<string, List<WGObject>>> RefinedData, Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>>? UnfilteredData);
+    public sealed record FilterAndConvertResult(Dictionary<string, Dictionary<string, List<WgObject>>> RefinedData, Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>>? UnfilteredData);
 }

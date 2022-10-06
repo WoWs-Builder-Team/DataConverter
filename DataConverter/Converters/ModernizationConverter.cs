@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
-using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
 {
     public static class ModernizationConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
-        public static Dictionary<string, Modernization> ConvertModernization(IEnumerable<WGModernization> wgModernizations)
+        public static Dictionary<string, Modernization> ConvertModernization(IEnumerable<WgModernization> wgModernizations)
         {
             //create a List of our Objects
             Dictionary<string, Modernization> modList = new Dictionary<string, Modernization>();
@@ -19,19 +19,19 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgMod in wgModernizations)
             {
-                DataCache.TranslationNames.Add(currentWgMod.name);
+                DataCache.TranslationNames.Add(currentWgMod.Name);
                 //create our object type
                 Modernization mod = new Modernization
                 {
                     //start mapping
-                    Id = currentWgMod.id,
-                    Index = currentWgMod.index,
-                    Name = currentWgMod.name,
-                    Type = ConvertModernizationType(currentWgMod.type),
+                    Id = currentWgMod.Id,
+                    Index = currentWgMod.Index,
+                    Name = currentWgMod.Name,
+                    Type = ConvertModernizationType(currentWgMod.Type),
                 };
 
                 Dictionary<string, double> effects = new Dictionary<string, double>();
-                foreach (var currentWgModModifier in currentWgMod.modifiers)
+                foreach (var currentWgModModifier in currentWgMod.Modifiers)
                 {
                     JToken jtoken = currentWgModModifier.Value;
 
@@ -70,7 +70,7 @@ namespace DataConverter.Converters
 
                 //for List of Enums
                 List<Nation> allowedNations = new List<Nation>();
-                var nationList = currentWgMod.nation;
+                var nationList = currentWgMod.Nation;
                 foreach (var nation in nationList)
                 {
                     //this will get the respective Enum value
@@ -81,11 +81,11 @@ namespace DataConverter.Converters
                 mod.AllowedNations = allowedNations;
 
                 //array into List
-                mod.ShipLevel = new List<int>(currentWgMod.shiplevel);
-                mod.AdditionalShips = new List<string>(currentWgMod.ships);
+                mod.ShipLevel = new List<int>(currentWgMod.Shiplevel);
+                mod.AdditionalShips = new List<string>(currentWgMod.Ships);
 
                 List<ShipClass> allowedClasses = new List<ShipClass>();
-                var classList = currentWgMod.shiptype;
+                var classList = currentWgMod.Shiptype;
                 foreach (var shipClass in classList)
                 {
                     ShipClass value = Enum.Parse<ShipClass>(shipClass);
@@ -94,10 +94,10 @@ namespace DataConverter.Converters
 
                 mod.ShipClasses = allowedClasses;
 
-                mod.Slot = currentWgMod.slot;
-                mod.BlacklistedShips = new List<string>(currentWgMod.excludes);
+                mod.Slot = currentWgMod.Slot;
+                mod.BlacklistedShips = new List<string>(currentWgMod.Excludes);
                 // dictionary with index as key, for easier search
-                modList.Add(currentWgMod.index, mod);
+                modList.Add(currentWgMod.Index, mod);
             }
 
             return modList;

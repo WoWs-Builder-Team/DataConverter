@@ -52,6 +52,7 @@ namespace WoWsShipBuilder.DataStructures
         PrimaryWeaponsUnit,
     }
 
+    // When new types are added, make sure they are also added in ShipConverter.FindModuleType
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ComponentType
     {
@@ -63,6 +64,10 @@ namespace WoWsShipBuilder.DataStructures
         TorpedoBomber,
         DiveBomber,
         SkipBomber,
+        TacticalFighter,
+        TacticalDiveBomber,
+        TacticalTorpedoBomber,
+        TacticalSkipBomber,
         Suo,
         Engine,
         FlightControl,
@@ -80,6 +85,10 @@ namespace WoWsShipBuilder.DataStructures
         DiveBomber,
         TorpedoBomber,
         SkipBomber,
+        TacticalFighter,
+        TacticalDiveBomber,
+        TacticalTorpedoBomber,
+        TacticalSkipBomber,
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
@@ -200,5 +209,13 @@ namespace WoWsShipBuilder.DataStructures
         Citadel,
         Superstructure,
         Hull,
+    }
+
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum SubsBuoyancyStates
+    {
+        DeepWater,
+        Periscope,
+        Surface,
     }
 }

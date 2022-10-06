@@ -26,7 +26,7 @@ namespace DataConverter.Converters
                 foreach (string currentVariantKey in variantsKeys)
                 {
                     //mapping all the variants
-                    Statistics stats = variant[currentVariantKey];
+                    WgStatistics stats = variant[currentVariantKey];
 
                     //create our object type
                     var consumable = new Consumable
@@ -59,7 +59,7 @@ namespace DataConverter.Converters
             return consumableList;
         }
 
-        private static Dictionary<string, float> ConvertModifiers(WgConsumable wgConsumable, Statistics consumableStats)
+        private static Dictionary<string, float> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats)
         {
             var results = new Dictionary<string, float>();
             foreach ((string key, float modifier) in consumableStats.Modifiers ?? new Dictionary<string, float>())

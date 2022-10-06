@@ -71,11 +71,11 @@ namespace DataConverter.Converters
                 DataCache.TranslationNames.UnionWith(modifiers.Keys);
                 try
                 {
-                    exterior.Type = Enum.Parse<ExteriorType>(currentWgExterior.typeinfo.species);
+                    exterior.Type = Enum.Parse<ExteriorType>(currentWgExterior.TypeInfo.Species);
                 }
                 catch (ArgumentException)
                 {
-                    var currentWgExteriorType = currentWgExterior.typeinfo.species;
+                    var currentWgExteriorType = currentWgExterior.TypeInfo.Species;
                     if (currentWgExteriorType != null)
                     {
                         if (currentWgExteriorType.Equals("Skin") || currentWgExteriorType.Equals("MSkin"))

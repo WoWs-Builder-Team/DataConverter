@@ -1,4 +1,4 @@
-// soource for the custom unpickler: https://github.com/CruleD/WoWs-GameParams-Dumper/blob/master/WoWs%20GameParams%20Dumper/CustomUnpicklerClass.cs
+// source for the custom unpickler: https://github.com/CruleD/WoWs-GameParams-Dumper/blob/master/WoWs%20GameParams%20Dumper/CustomUnpicklerClass.cs
 
 using System.Collections;
 using Razorvine.Pickle;
@@ -18,8 +18,10 @@ public class PythonDictionary : Dictionary<string, object>
             {
                 hashtableTempNew.Add(dictionaryEntryTemp.Value!, dictionaryEntryTemp.Key);
             }
+
             values["damageDistribution"] = hashtableTempNew;
         }
+
         foreach (string x in values.Keys)
         {
             Add(x, values[x]!);

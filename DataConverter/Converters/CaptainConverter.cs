@@ -5,25 +5,25 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using DataConverter.Data;
-using GameParamsExtractor.WGStructure;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 
 namespace DataConverter.Converters;
 
 public static class CaptainConverter
 {
     /// <summary>
-    /// Converter method that transforms a <see cref="WGCaptain"/> object into a <see cref="Captain"/> object.
+    /// Converter method that transforms a <see cref="WgCaptain"/> object into a <see cref="Captain"/> object.
     /// </summary>
     /// <param name="wgCaptain">The file content of captain data extracted from game params.</param>
     /// <param name="skillsJsonInput">The file content of the embedded captain data file.</param>
     /// <param name="isCommon">If the file is the Common one.</param>
     /// <returns>A dictionary mapping an ID to a <see cref="Captain"/> object that contains the transformed data based on WGs data.</returns>
     /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-    public static Dictionary<string, Captain> ConvertCaptain(IEnumerable<WGCaptain> wgCaptain, string skillsJsonInput, bool isCommon)
+    public static Dictionary<string, Captain> ConvertCaptain(IEnumerable<WgCaptain> wgCaptain, string skillsJsonInput, bool isCommon)
     {
         //create a List of our Objects
         Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
@@ -34,13 +34,13 @@ public static class CaptainConverter
         bool addedDefault = false;
 
         //order the list for safety during common default captain choice
-        wgCaptain = wgCaptain.OrderBy(x => x.index);
+        wgCaptain = wgCaptain.OrderBy(x => x.Index);
 
         //iterate over the entire list to convert everything
 
         foreach (var currentWgCaptain in wgCaptain)
         {
-            var tags = currentWgCaptain.CrewPersonality.tags;
+            var tags = currentWgCaptain.CrewPersonality.Tags;
             // if no tags and we are not processing Common, skip the captain. A captain with no tags is the default captain of the nation, a copy of the one in Common.
             if ((tags == null || tags.Count == 0) && !isCommon)
             {
@@ -62,7 +62,7 @@ public static class CaptainConverter
             {
                 continue;
             }
-            string name = currentWgCaptain.CrewPersonality.personName;
+            string name = currentWgCaptain.CrewPersonality.PersonName;
             if (string.IsNullOrEmpty(name))
             {
                 name = "Default";
@@ -72,11 +72,11 @@ public static class CaptainConverter
             //start mapping
             Captain captain = new Captain
             {
-                Id = currentWgCaptain.id,
-                Index = currentWgCaptain.index,
+                Id = currentWgCaptain.Id,
+                Index = currentWgCaptain.Index,
                 Name = name,
                 HasSpecialSkills = false,
-                Nation = Enum.Parse<Nation>(currentWgCaptain.typeinfo.nation.Replace("_", string.Empty), true),
+                Nation = Enum.Parse<Nation>(currentWgCaptain.TypeInfo.Nation.Replace("_", string.Empty), true),
             };
 
             //create object SKill
@@ -103,17 +103,17 @@ public static class CaptainConverter
         return captainList;
     }
 
-    private static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WGCaptain currentWgCaptain, Captain captain)
+    private static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WgCaptain currentWgCaptain, Captain captain)
     {
         var skills = new Dictionary<string, UniqueSkill>();
-        foreach (var (currentUniqueSkillKey, currentUniqueSkillValue) in currentWgCaptain.uniqueSkills)
+        foreach (var (currentUniqueSkillKey, currentUniqueSkillValue) in currentWgCaptain.UniqueSkills)
         {
             //create our talent data
             UniqueSkill uniqueSkill = new()
             {
-                MaxTriggerNum = currentUniqueSkillValue.maxTriggerNum,
-                AllowedShips = currentUniqueSkillValue.triggerAllowedShips?.ToList(),
-                TriggerType = currentUniqueSkillValue.triggerType,
+                MaxTriggerNum = currentUniqueSkillValue.MaxTriggerNum,
+                AllowedShips = currentUniqueSkillValue.TriggerAllowedShips?.ToList(),
+                TriggerType = currentUniqueSkillValue.TriggerType,
             };
 
             //initialize an empty dictionary for effect name and effect modifiers/stats.
@@ -123,7 +123,7 @@ public static class CaptainConverter
             var uniqueIds = new List<int>();
 
             //iterate through the various fields
-            foreach (var (currentWgUniqueSkillEffectKey, currentWgUniqueSkillEffectValue) in currentUniqueSkillValue.skillEffects)
+            foreach (var (currentWgUniqueSkillEffectKey, currentWgUniqueSkillEffectValue) in currentUniqueSkillValue.SkillEffects)
             {
                 //create the skill effect object
                 var skillEffect = new UniqueSkillEffect();
@@ -215,14 +215,14 @@ public static class CaptainConverter
         return skills;
     }
 
-    private static Skill ProcessSkill(KeyValuePair<string, WGSkill> currentWgSkill, Captain captain, SkillsTiers skillsTiers)
+    private static Skill ProcessSkill(KeyValuePair<string, WgSkill> currentWgSkill, Captain captain, SkillsTiers skillsTiers)
     {
         var skill = new Skill
         {
             //start mapping
-            CanBeLearned = currentWgSkill.Value.canBeLearned,
-            IsEpic = currentWgSkill.Value.isEpic,
-            SkillNumber = currentWgSkill.Value.skillType,
+            CanBeLearned = currentWgSkill.Value.CanBeLearned,
+            IsEpic = currentWgSkill.Value.IsEpic,
+            SkillNumber = currentWgSkill.Value.SkillType,
         };
 
         //check if there are skills with special values
@@ -245,15 +245,15 @@ public static class CaptainConverter
         skill.LearnableOn = classes;
 
         //collect all modifiers of the skill
-        Dictionary<string, float> modifiers = ProcessSkillModifiers(currentWgSkill.Value.modifiers);
+        Dictionary<string, float> modifiers = ProcessSkillModifiers(currentWgSkill.Value.Modifiers);
         skill.Modifiers = modifiers;
 
         //collect all skill's modifiers with trigger condition
-        Dictionary<string, JToken>? wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.modifiers;
+        Dictionary<string, JToken>? wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.Modifiers;
         Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
 
         skill.ConditionalModifiers = conditionalModifiers;
-        skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.triggerType;
+        skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.TriggerType;
         DataCache.TranslationNames.Add(skill.ConditionalTriggerType);
         DataCache.TranslationNames.UnionWith(skill.ConditionalModifiers.Keys);
         DataCache.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
