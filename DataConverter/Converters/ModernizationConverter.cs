@@ -4,6 +4,7 @@ using System.Linq;
 using DataConverter.Data;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Upgrade;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters

@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-namespace WoWsShipBuilder.DataStructures;
+namespace WoWsShipBuilder.DataStructures.Upgrade;
 
 public sealed record Modernization
 {

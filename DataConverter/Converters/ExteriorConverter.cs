@@ -5,6 +5,7 @@ using DataConverter.Data;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Exterior;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
-using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Consumable;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters

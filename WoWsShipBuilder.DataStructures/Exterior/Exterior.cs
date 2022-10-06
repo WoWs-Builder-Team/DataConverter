@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-namespace WoWsShipBuilder.DataStructures;
+namespace WoWsShipBuilder.DataStructures.Exterior;
 
 public class Exterior
 {
@@ -15,13 +15,4 @@ public class Exterior
     public int SortOrder { get; set; }
     public Restriction Restrictions { get; set; } = new();
     public int Group { get; set; }
-}
-
-public class Restriction
-{
-    public List<string> ForbiddenShips { get; set; } = new();
-    public List<string> Levels { get; set; } = new();
-    public List<string> Nations { get; set; } = new();
-    public List<string> SpecificShips { get; set; } = new();
-    public List<string> Subtype { get; set; } = new();
 }

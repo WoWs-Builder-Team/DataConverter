@@ -1,4 +1,4 @@
-﻿namespace WoWsShipBuilder.DataStructures;
+﻿namespace WoWsShipBuilder.DataStructures.Module;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
