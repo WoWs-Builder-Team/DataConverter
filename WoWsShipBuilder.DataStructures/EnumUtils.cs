@@ -52,6 +52,7 @@ namespace WoWsShipBuilder.DataStructures
         PrimaryWeaponsUnit,
     }
 
+    // When new types are added, make sure they are also added in ShipConverter.FindModuleType
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ComponentType
     {
