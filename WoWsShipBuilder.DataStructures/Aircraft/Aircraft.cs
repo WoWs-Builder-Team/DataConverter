@@ -84,7 +84,3 @@ public class Aircraft
 
     public decimal PreparationTime { get; set; }
 }
-
-public record JatoData(double JatoDuration, double JatoSpeedMultiplier);
-
-public record AircraftConsumable(int Slot, string ConsumableName, string ConsumableVariantName);

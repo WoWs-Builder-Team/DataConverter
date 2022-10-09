@@ -195,6 +195,7 @@ public enum GameVersionType
     Dev1,
     Dev2,
     Dev3,
+
     [Obsolete("Remains only for backwards compatibility with older version info files.", true)]
     Dev,
 }

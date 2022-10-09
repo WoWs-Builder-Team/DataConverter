@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using WoWsShipBuilder.DataStructures.Components;
+using WoWsShipBuilder.DataStructures.Ship.Components;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global

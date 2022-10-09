@@ -15,7 +15,10 @@ namespace WoWsShipBuilder.DataStructures.Projectile;
 public class Projectile
 {
     public long Id { get; set; }
+
     public string Index { get; set; } = string.Empty;
+
     public string Name { get; set; } = string.Empty;
+
     public ProjectileType ProjectileType { get; set; }
 }
