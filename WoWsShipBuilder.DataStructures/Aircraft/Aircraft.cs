@@ -83,4 +83,6 @@ public class Aircraft
     public decimal PreparationAccuracyIncreaseRate { get; set; }
 
     public decimal PreparationTime { get; set; }
+
+    public PlaneType PlaneType { get; set; }
 }

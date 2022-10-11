@@ -56,6 +56,7 @@ public enum ModuleType
 [JsonConverter(typeof(StringEnumConverter))]
 public enum ComponentType
 {
+    None,
     Artillery,
     Hull,
     Sonar,
@@ -71,16 +72,12 @@ public enum ComponentType
     AirDefense,
     AirArmament,
     DepthCharges,
-    None,
-    TacticalFighter,
-    TacticalDiveBomber,
-    TacticalTorpedoBomber,
-    TacticalSkipBomber,
 }
 
 [JsonConverter(typeof(StringEnumConverter))]
 public enum PlaneType
 {
+    None,
     Fighter,
     DiveBomber,
     TorpedoBomber,

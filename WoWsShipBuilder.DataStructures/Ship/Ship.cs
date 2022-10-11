@@ -32,7 +32,7 @@ public class Ship
 
     public Dictionary<string, Hull> Hulls { get; set; } = new();
 
-    public Dictionary<string, List<PlaneData>> CvPlanes { get; set; } = new();
+    public Dictionary<string, List<string>> CvPlanes { get; set; } = new();
 
     public Dictionary<string, AirStrike> AirStrikes { get; set; } = new();
 

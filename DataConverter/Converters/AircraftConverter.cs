@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
@@ -9,7 +10,7 @@ namespace DataConverter.Converters
 {
     public static class AircraftConverter
     {
-        //convert the list of aircrafts from WG to our list of Aircrafts
+        //convert the list of aircraft from WG to our list of aircraft
         public static Dictionary<string, Aircraft> ConvertAircraft(IEnumerable<WgAircraft> wgAircraft)
         {
             //create a List of our Objects
@@ -88,7 +89,7 @@ namespace DataConverter.Converters
                     List<string> subtypes = currentWgAir.PlaneSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
                     isAirSupport = subtypes.Contains("airsupport");
                     isConsumable = subtypes.Contains("consumable");
-                    isTactical = subtypes.Contains("jet");
+                    isTactical = subtypes.Contains("jet") || subtypes.Contains("turboprop");
                 }
 
                 air.IsTactical = isTactical;
@@ -111,6 +112,19 @@ namespace DataConverter.Converters
                 }
 
                 air.AircraftConsumable = ProcessConsumables(currentWgAir);
+
+                if (air.PlaneCategory == PlaneCategory.Cv)
+                {
+                    var planeType = currentWgAir.TypeInfo.Species.ToLowerInvariant() switch
+                    {
+                        "fighter" => isTactical ? PlaneType.TacticalFighter : PlaneType.Fighter,
+                        "bomber" => isTactical ? PlaneType.TacticalTorpedoBomber : PlaneType.TorpedoBomber,
+                        "dive" => isTactical ? PlaneType.TacticalDiveBomber : PlaneType.DiveBomber,
+                        "skip" => isTactical ? PlaneType.TacticalSkipBomber : PlaneType.SkipBomber,
+                        _ => throw new InvalidOperationException("Detected invalid plane type in species field of type info"),
+                    };
+                    air.PlaneType = planeType;
+                }
 
                 // dictionary with index as key, for easier search
                 airList.Add(currentWgAir.Index, air);

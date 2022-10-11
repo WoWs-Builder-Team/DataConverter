@@ -552,48 +552,31 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Dictionary<string, List<PlaneData>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
+    private static Dictionary<string, List<string>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
     {
-        var resultDictionary = new Dictionary<string, List<PlaneData>>();
-        foreach (PlaneType type in Enum.GetValues(typeof(PlaneType)))
+        var validPlaneTypes = new List<ComponentType> { ComponentType.Fighter, ComponentType.TorpedoBomber, ComponentType.DiveBomber, ComponentType.SkipBomber };
+        IEnumerable<ShipUpgrade> planeUpgrades = upgradeInfo.ShipUpgrades.Where(upgrade => validPlaneTypes.Contains(upgrade.UcType));
+        IEnumerable<string> planeModuleNames = planeUpgrades.Select(u => u.Components[u.UcType].First());
+        Dictionary<string, List<string>> planeModules = planeModuleNames
+            .Select(module => (module, (WgPlane)wgShip.ModulesArmaments[module]))
+            .ToDictionary(x => x.module, x => ExtractPlaneList(x.Item2));
+
+        IEnumerable<string> planeNames = planeModules.SelectMany(x => x.Value).Distinct();
+        DataCache.TranslationNames.UnionWith(planeNames);
+
+        return planeModules;
+    }
+
+    private static List<string> ExtractPlaneList(WgPlane wgPlane)
+    {
+        // Process ships starting with patch 0.11.1
+        if (wgPlane.Planes != null)
         {
-            IEnumerable<KeyValuePair<string, PlaneData>> planesOfType = upgradeInfo.ShipUpgrades
-                .Where(upgrade => upgrade.UcType == type.ToComponentType())
-                .Select(planeUpgrade => planeUpgrade.Components[type.ToComponentType()].First())
-                .Select(moduleKey => (moduleKey, (WgPlane)wgShip.ModulesArmaments[moduleKey]))
-                .SelectMany(wgPlane =>
-                {
-                    var plane = wgPlane.Item2;
-                    if (plane.Planes != null)
-                    {
-                        // Process ships starting with patch 0.11.1
-                        return plane.Planes.Select(planeName => new PlaneData { PlaneName = planeName, PlaneType = type })
-                            .Select(data => new KeyValuePair<string, PlaneData>(wgPlane.moduleKey, data));
-                    }
-
-                    // Processing for older versions
-                    return new List<KeyValuePair<string, PlaneData>>
-                    {
-                        new(wgPlane.moduleKey, new() { PlaneName = wgPlane.Item2.PlaneType ?? string.Empty, PlaneType = type }),
-                    };
-                })
-                .ToList();
-
-            DataCache.TranslationNames.UnionWith(planesOfType.Select(planeEntry => planeEntry.Value.PlaneName).Distinct());
-            foreach ((string moduleName, PlaneData planeData) in planesOfType)
-            {
-                if (resultDictionary.ContainsKey(moduleName))
-                {
-                    resultDictionary[moduleName].Add(planeData);
-                }
-                else
-                {
-                    resultDictionary[moduleName] = new() { planeData };
-                }
-            }
+            return wgPlane.Planes.ToList();
         }
 
-        return resultDictionary;
+        // Processing for older versions
+        return new() { wgPlane.PlaneType ?? string.Empty };
     }
 
     private static List<ShipConsumable> ProcessConsumables(WgShip ship)
@@ -633,8 +616,6 @@ public static class ShipConverter
     }
 
     #endregion
-
-    #region Helper methods
 
     private static Dictionary<string, T> ModulesOfType<T>(this Dictionary<string, WgArmamentModule> thisDict) where T : WgArmamentModule
     {
@@ -700,22 +681,4 @@ public static class ShipConverter
 
         return componentType;
     }
-
-    private static ComponentType ToComponentType(this PlaneType thisType)
-    {
-        return thisType switch
-        {
-            PlaneType.Fighter => ComponentType.Fighter,
-            PlaneType.DiveBomber => ComponentType.DiveBomber,
-            PlaneType.TorpedoBomber => ComponentType.TorpedoBomber,
-            PlaneType.SkipBomber => ComponentType.SkipBomber,
-            PlaneType.TacticalFighter => ComponentType.TacticalFighter,
-            PlaneType.TacticalDiveBomber => ComponentType.TacticalDiveBomber,
-            PlaneType.TacticalTorpedoBomber => ComponentType.TacticalTorpedoBomber,
-            PlaneType.TacticalSkipBomber => ComponentType.TacticalSkipBomber,
-            _ => throw new ArgumentOutOfRangeException(nameof(thisType), thisType, "Cannot process supplied plane type."),
-        };
-    }
-
-    #endregion
 }
