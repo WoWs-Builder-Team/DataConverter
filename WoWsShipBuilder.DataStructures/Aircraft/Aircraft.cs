@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -14,6 +15,7 @@ public class Aircraft
 
     public string Name { get; set; } = string.Empty;
 
+    [Obsolete("Superseded by the corresponding plane types for tactical planes.", true)]
     public bool IsTactical { get; set; }
 
     public int NumPlanesInSquadron { get; set; }

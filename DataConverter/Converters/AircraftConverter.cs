@@ -92,8 +92,6 @@ namespace DataConverter.Converters
                     isTactical = subtypes.Contains("jet") || subtypes.Contains("turboprop");
                 }
 
-                air.IsTactical = isTactical;
-
                 if (isConsumable && isAirSupport)
                 {
                     air.PlaneCategory = PlaneCategory.Asw;
