@@ -20,6 +20,11 @@ public class ShiptoolShip
     {
         return AdditionalData.TryGetValue(key, out var token) ? token.ToObject<ShiptoolArmamentModule>() : null;
     }
+
+    public ShiptoolHullModule? GetHullModule(string key)
+    {
+        return AdditionalData.TryGetValue(key, out var token) ? token.ToObject<ShiptoolHullModule>() : null;
+    }
 }
 
 public class ShiptoolArmamentModule
@@ -28,6 +33,11 @@ public class ShiptoolArmamentModule
     private Dictionary<string, JToken> Data { get; set; } = new();
 
     public ShiptoolGunData? GetGunData(string key) => Data[key].ToObject<ShiptoolGunData>();
+}
+
+public class ShiptoolHullModule
+{
+    public Dictionary<string, decimal> Angles { get; set; } = new();
 }
 
 public class ShiptoolGunData

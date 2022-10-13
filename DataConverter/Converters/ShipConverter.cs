@@ -36,6 +36,7 @@ public static class ShipConverter
 
             DataCache.TranslationNames.Add(wgShip.Index);
             var stShip = shiptoolData.Ship.FirstOrDefault(s => s.Index.Equals(wgShip.Index));
+            var upgradeInfo = ProcessUpgradeInfo(wgShip, logger);
             var ship = new Ship
             {
                 Id = wgShip.Id,
@@ -45,10 +46,10 @@ public static class ShipConverter
                 ShipClass = ProcessShipClass(wgShip.TypeInfo.Species),
                 ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
                 ShipNation = Enum.Parse<Nation>(wgShip.TypeInfo.Nation.Replace("_", string.Empty), true),
-                MainBatteryModuleList = ProcessMainBattery(wgShip, stShip),
-                ShipUpgradeInfo = ProcessUpgradeInfo(wgShip, logger),
+                MainBatteryModuleList = ProcessMainBattery(wgShip, upgradeInfo, stShip),
+                ShipUpgradeInfo = upgradeInfo,
                 FireControlList = ProcessFireControl(wgShip),
-                TorpedoModules = ProcessTorpedoes(wgShip, stShip),
+                TorpedoModules = ProcessTorpedoes(wgShip, upgradeInfo, stShip),
                 Engines = ProcessEngines(wgShip),
                 ShipConsumable = ProcessConsumables(wgShip),
                 AirStrikes = ProcessAirstrikes(wgShip),
@@ -218,19 +219,21 @@ public static class ShipConverter
         return upgradeInfo;
     }
 
-    private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, ShiptoolShip? stShip)
+    private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip)
     {
         var resultDictionary = new Dictionary<string, TurretModule>();
         Dictionary<string, WgMainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<WgMainBattery>();
 
         foreach ((string key, WgMainBattery wgMainBattery) in artilleryModules)
         {
-            var stMainBatteryModule = stShip?.GetArmamentModule(key);
+            string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Artillery, key);
+
+            var stHullModule = stShip?.GetHullModule(correspondingHull);
             var turretModule = new TurretModule
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
-                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stMainBatteryModule)).ToList(),
+                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stHullModule)).ToList(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
             };
             var dispersionGun = wgMainBattery.Guns.Values.First();
@@ -266,12 +269,22 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, ShiptoolArmamentModule? stGuns)
+    private static string FindHullForComponent(UpgradeInfo upgradeInfo, ComponentType componentType, string componentKey)
+    {
+        return upgradeInfo.ShipUpgrades
+            .Where(u => u.UcType == ComponentType.Hull)
+            .First(u => u.Components[componentType].Contains(componentKey)).Components[ComponentType.Hull].First();
+    }
+
+    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, ShiptoolHullModule? stHull)
     {
         var newGun = wgGun.ConvertData();
         newGun.WgGunIndex = mainGunKey;
-        var stGun = stGuns?.GetGunData(mainGunKey);
-        newGun.BaseAngle = stGun?.BaseAngle ?? (newGun.VerticalPosition < 3 ? 0 : 180);
+        if (stHull is null || !stHull.Angles.TryGetValue(mainGunKey, out decimal angle))
+        {
+            angle = newGun.VerticalPosition < 3 ? 0 : 180;
+        }
+        newGun.BaseAngle = angle;
 
         return newGun;
     }
@@ -499,18 +512,19 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Dictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip, ShiptoolShip? stShip)
+    private static Dictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip)
     {
         var resultDictionary = new Dictionary<string, TorpedoModule>();
         Dictionary<string, WgTorpedoArray> wgTorpedoList = wgShip.ModulesArmaments.ModulesOfType<WgTorpedoArray>();
 
         foreach ((string key, WgTorpedoArray wgTorpedoArray) in wgTorpedoList)
         {
-            var stTorpedoes = stShip?.GetArmamentModule(key);
+            string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Torpedoes, key);
+            var stHull = stShip?.GetHullModule(correspondingHull);
             var torpedoModule = new TorpedoModule
             {
                 TimeToChangeAmmo = wgTorpedoArray.TorpedoArray.Values.Any(launcher => launcher.AmmoList.Length > 1) ? wgTorpedoArray.TimeToChangeAmmo : 0,
-                TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stTorpedoes)).ToList(),
+                TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToList(),
             };
             DataCache.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
 
@@ -520,10 +534,16 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static TorpedoLauncher ConvertWgTorpedoLauncher(string wgKey, WgTorpedoLauncher wgTorpedoLauncher, ShiptoolArmamentModule? stModule)
+    private static TorpedoLauncher ConvertWgTorpedoLauncher(string wgKey, WgTorpedoLauncher wgTorpedoLauncher, ShiptoolHullModule? stHull)
     {
         var launcher = wgTorpedoLauncher.ConvertData();
-        launcher.BaseAngle = stModule?.GetGunData(wgKey)?.BaseAngle ?? (launcher.VerticalPosition < 3 ? 0 : 180);
+
+        if (stHull is null || !stHull.Angles.TryGetValue(wgKey, out decimal angle))
+        {
+            angle = launcher.VerticalPosition < 3 ? 0 : 180;
+        }
+
+        launcher.BaseAngle = angle;
         return launcher;
     }
 
