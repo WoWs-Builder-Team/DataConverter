@@ -1,6 +1,5 @@
 ﻿using DataConverter.Console.Model;
 using Microsoft.Extensions.Logging;
-using WowsShipBuilder.GameParamsExtractor.Data;
 using WowsShipBuilder.GameParamsExtractor.Services;
 
 namespace DataConverter.Console.Services;

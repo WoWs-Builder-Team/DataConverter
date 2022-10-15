@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Ship;
 
 namespace DataConverter.Test
 {

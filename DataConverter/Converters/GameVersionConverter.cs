@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Versioning;
 
 namespace DataConverter.Converters;
 

@@ -5,6 +5,7 @@ using DataConverter.Data;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Exterior;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
@@ -21,7 +22,7 @@ namespace DataConverter.Converters
             {
                 DataCache.TranslationNames.Add(currentWgExterior.Name);
                 //create our object type
-                Exterior exterior = new Exterior
+                var exterior = new Exterior
                 {
                     //start mapping
                     Id = currentWgExterior.Id,
@@ -31,24 +32,24 @@ namespace DataConverter.Converters
                     Group = currentWgExterior.Group,
                 };
 
-                Dictionary<string, double> modifiers = new Dictionary<string, double>();
+                var modifiers = new Dictionary<string, double>();
                 foreach (var currentWgExteriorModifier in currentWgExterior.Modifiers)
                 {
-                    JToken jtoken = currentWgExteriorModifier.Value;
+                    var token = currentWgExteriorModifier.Value;
 
-                    if (jtoken.Type is JTokenType.Float or JTokenType.Integer)
+                    if (token.Type is JTokenType.Float or JTokenType.Integer)
                     {
-                        modifiers.Add(currentWgExteriorModifier.Key, jtoken.Value<double>());
+                        modifiers.Add(currentWgExteriorModifier.Key, token.Value<double>());
                     }
                     else
                     {
-                        JObject jObject = (JObject)jtoken;
+                        JObject jObject = (JObject)token;
                         var values = jObject.ToObject<Dictionary<string, double>>()!;
                         bool isEqual = true;
                         var first = values.First().Value;
-                        foreach ((string key, double value) in values)
+                        foreach ((string _, double value) in values)
                         {
-                            if (value != first)
+                            if (Math.Abs(value - first) > Constants.Tolerance)
                             {
                                 isEqual = false;
                             }
@@ -76,18 +77,14 @@ namespace DataConverter.Converters
                 catch (ArgumentException)
                 {
                     var currentWgExteriorType = currentWgExterior.TypeInfo.Species;
-                    if (currentWgExteriorType != null)
+                    if (currentWgExteriorType.Equals("Skin") || currentWgExteriorType.Equals("MSkin"))
                     {
-                        if (currentWgExteriorType.Equals("Skin") || currentWgExteriorType.Equals("MSkin"))
-                        {
-                            exterior.Type = ExteriorType.Permoflage;
-                        }
-                        else
-                        {
-                            logger?.LogWarning("Found an unknown exterior type. Type: {}, ID: {}", currentWgExteriorType, exterior.Id);
-                            // throw new ArgumentException($"Type: {currentWgExteriorType}, ID: {exterior.Id}");
-                            continue;
-                        }
+                        exterior.Type = ExteriorType.Permoflage;
+                    }
+                    else
+                    {
+                        logger?.LogWarning("Found an unknown exterior type. Type: {}, ID: {}", currentWgExteriorType, exterior.Id);
+                        continue;
                     }
                 }
 
@@ -98,11 +95,11 @@ namespace DataConverter.Converters
 
                 exterior.Restrictions = new()
                 {
-                    ForbiddenShips = currentWgExterior.Restrictions?.ForbiddenShips?.ToList(),
-                    Levels = currentWgExterior.Restrictions?.Levels?.ToList(),
-                    Nations = currentWgExterior.Restrictions?.Nations?.ToList(),
-                    SpecificShips = currentWgExterior.Restrictions?.SpecificShips?.ToList(),
-                    Subtype = currentWgExterior.Restrictions?.Subtype?.ToList(),
+                    ForbiddenShips = currentWgExterior.Restrictions.ForbiddenShips.ToList(),
+                    Levels = currentWgExterior.Restrictions.Levels.ToList(),
+                    Nations = currentWgExterior.Restrictions.Nations.ToList(),
+                    SpecificShips = currentWgExterior.Restrictions.SpecificShips.ToList(),
+                    Subtype = currentWgExterior.Restrictions.Subtype.ToList(),
                 };
 
                 //dictionary with Index as key

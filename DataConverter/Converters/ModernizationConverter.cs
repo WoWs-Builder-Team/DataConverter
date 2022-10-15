@@ -4,6 +4,7 @@ using System.Linq;
 using DataConverter.Data;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Upgrade;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
@@ -35,7 +36,7 @@ namespace DataConverter.Converters
                 {
                     JToken jtoken = currentWgModModifier.Value;
 
-                    if (jtoken.Type == JTokenType.Float || jtoken.Type == JTokenType.Integer)
+                    if (jtoken.Type is JTokenType.Float or JTokenType.Integer)
                     {
                         effects.Add(currentWgModModifier.Key, jtoken.Value<double>());
                     }
@@ -45,9 +46,9 @@ namespace DataConverter.Converters
                         var values = jObject.ToObject<Dictionary<string, double>>()!;
                         bool isEqual = true;
                         var first = values.First().Value;
-                        foreach ((string key, double value) in values)
+                        foreach ((string _, double value) in values)
                         {
-                            if (value != first)
+                            if (Math.Abs(value - first) > Constants.Tolerance)
                             {
                                 isEqual = false;
                             }
