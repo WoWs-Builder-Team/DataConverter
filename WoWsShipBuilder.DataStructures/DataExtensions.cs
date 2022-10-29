@@ -14,10 +14,10 @@ public static class DataExtensions
 
         decimal minRange = second.FlakDamage > 0 ? first.MinRange : second.MinRange; // Use minimum range of new aura only if it is no flak cloud aura
 
-        return new()
+        return new AntiAirAura
         {
             ConstantDps = first.ConstantDps + second.ConstantDps,
-            FlakDamage = first.FlakDamage + second.FlakDamage,
+            FlakDamage = second.FlakDamage,
             FlakCloudsNumber = first.FlakCloudsNumber + second.FlakCloudsNumber,
             HitChance = second.HitChance,
             MaxRange = second.MaxRange,
