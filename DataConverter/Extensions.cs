@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Versioning;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace DataConverter;

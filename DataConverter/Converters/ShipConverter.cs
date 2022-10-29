@@ -6,9 +6,10 @@ using DataConverter.Data;
 using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
-using Hull = WoWsShipBuilder.DataStructures.Hull;
-using ShipUpgrade = WoWsShipBuilder.DataStructures.ShipUpgrade;
+using Hull = WoWsShipBuilder.DataStructures.Ship.Hull;
+using ShipUpgrade = WoWsShipBuilder.DataStructures.Ship.ShipUpgrade;
 
 namespace DataConverter.Converters;
 
@@ -36,6 +37,7 @@ public static class ShipConverter
 
             DataCache.TranslationNames.Add(wgShip.Index);
             var stShip = shiptoolData.Ship.FirstOrDefault(s => s.Index.Equals(wgShip.Index));
+            var upgradeInfo = ProcessUpgradeInfo(wgShip, logger);
             var ship = new Ship
             {
                 Id = wgShip.Id,
@@ -45,10 +47,10 @@ public static class ShipConverter
                 ShipClass = ProcessShipClass(wgShip.TypeInfo.Species),
                 ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
                 ShipNation = Enum.Parse<Nation>(wgShip.TypeInfo.Nation.Replace("_", string.Empty), true),
-                MainBatteryModuleList = ProcessMainBattery(wgShip, stShip),
-                ShipUpgradeInfo = ProcessUpgradeInfo(wgShip, logger),
+                MainBatteryModuleList = ProcessMainBattery(wgShip, upgradeInfo, stShip),
+                ShipUpgradeInfo = upgradeInfo,
                 FireControlList = ProcessFireControl(wgShip),
-                TorpedoModules = ProcessTorpedoes(wgShip, stShip),
+                TorpedoModules = ProcessTorpedoes(wgShip, upgradeInfo, stShip),
                 Engines = ProcessEngines(wgShip),
                 ShipConsumable = ProcessConsumables(wgShip),
                 AirStrikes = ProcessAirstrikes(wgShip),
@@ -218,19 +220,21 @@ public static class ShipConverter
         return upgradeInfo;
     }
 
-    private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, ShiptoolShip? stShip)
+    private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip)
     {
         var resultDictionary = new Dictionary<string, TurretModule>();
         Dictionary<string, WgMainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<WgMainBattery>();
 
         foreach ((string key, WgMainBattery wgMainBattery) in artilleryModules)
         {
-            var stMainBatteryModule = stShip?.GetArmamentModule(key);
+            string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Artillery, key);
+
+            var stHullModule = stShip?.GetHullModule(correspondingHull);
             var turretModule = new TurretModule
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
-                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stMainBatteryModule)).ToList(),
+                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stHullModule)).ToList(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
             };
             var dispersionGun = wgMainBattery.Guns.Values.First();
@@ -266,12 +270,22 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, ShiptoolArmamentModule? stGuns)
+    private static string FindHullForComponent(UpgradeInfo upgradeInfo, ComponentType componentType, string componentKey)
+    {
+        return upgradeInfo.ShipUpgrades
+            .Where(u => u.UcType == ComponentType.Hull)
+            .First(u => u.Components[componentType].Contains(componentKey)).Components[ComponentType.Hull].First();
+    }
+
+    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, ShiptoolHullModule? stHull)
     {
         var newGun = wgGun.ConvertData();
         newGun.WgGunIndex = mainGunKey;
-        var stGun = stGuns?.GetGunData(mainGunKey);
-        newGun.BaseAngle = stGun?.BaseAngle ?? (newGun.VerticalPosition < 3 ? 0 : 180);
+        if (stHull is null || !stHull.Angles.TryGetValue(mainGunKey, out decimal angle))
+        {
+            angle = newGun.VerticalPosition < 3 ? 0 : 180;
+        }
+        newGun.BaseAngle = angle;
 
         return newGun;
     }
@@ -499,18 +513,19 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Dictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip, ShiptoolShip? stShip)
+    private static Dictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip)
     {
         var resultDictionary = new Dictionary<string, TorpedoModule>();
         Dictionary<string, WgTorpedoArray> wgTorpedoList = wgShip.ModulesArmaments.ModulesOfType<WgTorpedoArray>();
 
         foreach ((string key, WgTorpedoArray wgTorpedoArray) in wgTorpedoList)
         {
-            var stTorpedoes = stShip?.GetArmamentModule(key);
+            string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Torpedoes, key);
+            var stHull = stShip?.GetHullModule(correspondingHull);
             var torpedoModule = new TorpedoModule
             {
                 TimeToChangeAmmo = wgTorpedoArray.TorpedoArray.Values.Any(launcher => launcher.AmmoList.Length > 1) ? wgTorpedoArray.TimeToChangeAmmo : 0,
-                TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stTorpedoes)).ToList(),
+                TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToList(),
             };
             DataCache.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
 
@@ -520,10 +535,16 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static TorpedoLauncher ConvertWgTorpedoLauncher(string wgKey, WgTorpedoLauncher wgTorpedoLauncher, ShiptoolArmamentModule? stModule)
+    private static TorpedoLauncher ConvertWgTorpedoLauncher(string wgKey, WgTorpedoLauncher wgTorpedoLauncher, ShiptoolHullModule? stHull)
     {
         var launcher = wgTorpedoLauncher.ConvertData();
-        launcher.BaseAngle = stModule?.GetGunData(wgKey)?.BaseAngle ?? (launcher.VerticalPosition < 3 ? 0 : 180);
+
+        if (stHull is null || !stHull.Angles.TryGetValue(wgKey, out decimal angle))
+        {
+            angle = launcher.VerticalPosition < 3 ? 0 : 180;
+        }
+
+        launcher.BaseAngle = angle;
         return launcher;
     }
 
@@ -551,48 +572,31 @@ public static class ShipConverter
         return resultDictionary;
     }
 
-    private static Dictionary<string, List<PlaneData>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
+    private static Dictionary<string, List<string>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
     {
-        var resultDictionary = new Dictionary<string, List<PlaneData>>();
-        foreach (PlaneType type in Enum.GetValues(typeof(PlaneType)))
+        var validPlaneTypes = new List<ComponentType> { ComponentType.Fighter, ComponentType.TorpedoBomber, ComponentType.DiveBomber, ComponentType.SkipBomber };
+        IEnumerable<ShipUpgrade> planeUpgrades = upgradeInfo.ShipUpgrades.Where(upgrade => validPlaneTypes.Contains(upgrade.UcType));
+        IEnumerable<string> planeModuleNames = planeUpgrades.Select(u => u.Components[u.UcType].First());
+        Dictionary<string, List<string>> planeModules = planeModuleNames
+            .Select(module => (module, (WgPlane)wgShip.ModulesArmaments[module]))
+            .ToDictionary(x => x.module, x => ExtractPlaneList(x.Item2));
+
+        IEnumerable<string> planeNames = planeModules.SelectMany(x => x.Value).Distinct();
+        DataCache.TranslationNames.UnionWith(planeNames);
+
+        return planeModules;
+    }
+
+    private static List<string> ExtractPlaneList(WgPlane wgPlane)
+    {
+        // Process ships starting with patch 0.11.1
+        if (wgPlane.Planes != null)
         {
-            IEnumerable<KeyValuePair<string, PlaneData>> planesOfType = upgradeInfo.ShipUpgrades
-                .Where(upgrade => upgrade.UcType == type.ToComponentType())
-                .Select(planeUpgrade => planeUpgrade.Components[type.ToComponentType()].First())
-                .Select(moduleKey => (moduleKey, (WgPlane)wgShip.ModulesArmaments[moduleKey]))
-                .SelectMany(wgPlane =>
-                {
-                    var plane = wgPlane.Item2;
-                    if (plane.Planes != null)
-                    {
-                        // Process ships starting with patch 0.11.1
-                        return plane.Planes.Select(planeName => new PlaneData { PlaneName = planeName, PlaneType = type })
-                            .Select(data => new KeyValuePair<string, PlaneData>(wgPlane.moduleKey, data));
-                    }
-
-                    // Processing for older versions
-                    return new List<KeyValuePair<string, PlaneData>>
-                    {
-                        new(wgPlane.moduleKey, new() { PlaneName = wgPlane.Item2.PlaneType, PlaneType = type, }),
-                    };
-                })
-                .ToList();
-
-            DataCache.TranslationNames.UnionWith(planesOfType.Select(planeEntry => planeEntry.Value.PlaneName).Distinct());
-            foreach ((string moduleName, PlaneData planeData) in planesOfType)
-            {
-                if (resultDictionary.ContainsKey(moduleName))
-                {
-                    resultDictionary[moduleName].Add(planeData);
-                }
-                else
-                {
-                    resultDictionary[moduleName] = new() { planeData };
-                }
-            }
+            return wgPlane.Planes.ToList();
         }
 
-        return resultDictionary;
+        // Processing for older versions
+        return new() { wgPlane.PlaneType ?? string.Empty };
     }
 
     private static List<ShipConsumable> ProcessConsumables(WgShip ship)
@@ -633,8 +637,6 @@ public static class ShipConverter
 
     #endregion
 
-    #region Helper methods
-
     private static Dictionary<string, T> ModulesOfType<T>(this Dictionary<string, WgArmamentModule> thisDict) where T : WgArmamentModule
     {
         return thisDict.Where(module => module.Value is T)
@@ -648,44 +650,18 @@ public static class ShipConverter
             return;
         }
 
-        foreach ((_, WgAaAura aura) in auras)
+        foreach (var (_, aura) in auras)
         {
             switch (aura.Type)
             {
                 case "far":
-                    if (targetAntiAir.LongRangeAura != null)
-                    {
-                        targetAntiAir.LongRangeAura += aura.ConvertData();
-                    }
-                    else
-                    {
-                        targetAntiAir.LongRangeAura = aura.ConvertData();
-                    }
-
+                    targetAntiAir.LongRangeAura = targetAntiAir.LongRangeAura != null ? targetAntiAir.LongRangeAura.AddAura(aura.ConvertData()) : aura.ConvertData();
                     break;
-
                 case "medium":
-                    if (targetAntiAir.MediumRangeAura != null)
-                    {
-                        targetAntiAir.MediumRangeAura += aura.ConvertData();
-                    }
-                    else
-                    {
-                        targetAntiAir.MediumRangeAura = aura.ConvertData();
-                    }
-
+                    targetAntiAir.MediumRangeAura = targetAntiAir.MediumRangeAura != null ? targetAntiAir.MediumRangeAura.AddAura(aura.ConvertData()) : aura.ConvertData();
                     break;
-
                 case "near":
-                    if (targetAntiAir.ShortRangeAura != null)
-                    {
-                        targetAntiAir.ShortRangeAura += aura.ConvertData();
-                    }
-                    else
-                    {
-                        targetAntiAir.ShortRangeAura = aura.ConvertData();
-                    }
-
+                    targetAntiAir.ShortRangeAura = targetAntiAir.ShortRangeAura != null ? targetAntiAir.ShortRangeAura.AddAura(aura.ConvertData()) : aura.ConvertData();
                     break;
             }
         }
@@ -725,22 +701,4 @@ public static class ShipConverter
 
         return componentType;
     }
-
-    private static ComponentType ToComponentType(this PlaneType thisType)
-    {
-        return thisType switch
-        {
-            PlaneType.Fighter => ComponentType.Fighter,
-            PlaneType.DiveBomber => ComponentType.DiveBomber,
-            PlaneType.TorpedoBomber => ComponentType.TorpedoBomber,
-            PlaneType.SkipBomber => ComponentType.SkipBomber,
-            PlaneType.TacticalFighter => ComponentType.TacticalFighter,
-            PlaneType.TacticalDiveBomber => ComponentType.TacticalDiveBomber,
-            PlaneType.TacticalTorpedoBomber => ComponentType.TacticalTorpedoBomber,
-            PlaneType.TacticalSkipBomber => ComponentType.TacticalSkipBomber,
-            _ => throw new ArgumentOutOfRangeException(nameof(thisType), thisType, "Cannot process supplied plane type."),
-        };
-    }
-
-    #endregion
 }

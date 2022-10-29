@@ -4,6 +4,7 @@ using System.Linq;
 using DataConverter.Data;
 using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Projectile;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
 
 namespace DataConverter.Converters

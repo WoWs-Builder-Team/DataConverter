@@ -1,5 +1,6 @@
-﻿using System.Linq;
-using WoWsShipBuilder.DataStructures;
+﻿using System;
+using System.Linq;
+using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 namespace DataConverter;

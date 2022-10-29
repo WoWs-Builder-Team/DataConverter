@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
-using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Consumable;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
@@ -45,10 +45,7 @@ namespace DataConverter.Converters
                         PlaneName = stats.FightersName,
                         Modifiers = ConvertModifiers(currentWgConsumable, stats),
                     };
-                    if (consumable.Modifiers?.Keys != null)
-                    {
-                        DataCache.TranslationNames.UnionWith(consumable.Modifiers.Keys);
-                    }
+                    DataCache.TranslationNames.UnionWith(consumable.Modifiers.Keys);
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
                     var consumableKey = $"{consumable.Name} {currentVariantKey}";
@@ -62,7 +59,7 @@ namespace DataConverter.Converters
         private static Dictionary<string, float> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats)
         {
             var results = new Dictionary<string, float>();
-            foreach ((string key, float modifier) in consumableStats.Modifiers ?? new Dictionary<string, float>())
+            foreach ((string key, float modifier) in consumableStats.Modifiers)
             {
                 switch (key)
                 {

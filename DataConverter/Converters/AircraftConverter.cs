@@ -1,14 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Aircraft;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
 {
     public static class AircraftConverter
     {
-        //convert the list of aircrafts from WG to our list of Aircrafts
+        //convert the list of aircraft from WG to our list of aircraft
         public static Dictionary<string, Aircraft> ConvertAircraft(IEnumerable<WgAircraft> wgAircraft)
         {
             //create a List of our Objects
@@ -70,12 +72,7 @@ namespace DataConverter.Converters
                 };
                 air.AttackData = planeAttackData;
 
-                JatoData jatodata = new()
-                {
-                    //start mapping
-                    JatoDuration = currentWgAir.JatoDuration,
-                    JatoSpeedMultiplier = currentWgAir.JatoSpeedMultiplier,
-                };
+                JatoData jatodata = new(currentWgAir.JatoDuration, currentWgAir.JatoSpeedMultiplier);
                 air.JatoData = jatodata;
 
                 //determine the needed enum for plane category
@@ -92,10 +89,8 @@ namespace DataConverter.Converters
                     List<string> subtypes = currentWgAir.PlaneSubtype.Select(subtype => subtype.ToLowerInvariant()).ToList();
                     isAirSupport = subtypes.Contains("airsupport");
                     isConsumable = subtypes.Contains("consumable");
-                    isTactical = subtypes.Contains("jet");
+                    isTactical = subtypes.Contains("jet") || subtypes.Contains("turboprop");
                 }
-
-                air.IsTactical = isTactical;
 
                 if (isConsumable && isAirSupport)
                 {
@@ -116,6 +111,19 @@ namespace DataConverter.Converters
 
                 air.AircraftConsumable = ProcessConsumables(currentWgAir);
 
+                if (air.PlaneCategory == PlaneCategory.Cv)
+                {
+                    var planeType = currentWgAir.TypeInfo.Species.ToLowerInvariant() switch
+                    {
+                        "fighter" => isTactical ? PlaneType.TacticalFighter : PlaneType.Fighter,
+                        "bomber" => isTactical ? PlaneType.TacticalTorpedoBomber : PlaneType.TorpedoBomber,
+                        "dive" => isTactical ? PlaneType.TacticalDiveBomber : PlaneType.DiveBomber,
+                        "skip" => isTactical ? PlaneType.TacticalSkipBomber : PlaneType.SkipBomber,
+                        _ => throw new InvalidOperationException("Detected invalid plane type in species field of type info"),
+                    };
+                    air.PlaneType = planeType;
+                }
+
                 // dictionary with index as key, for easier search
                 airList.Add(currentWgAir.Index, air);
             }
@@ -130,13 +138,7 @@ namespace DataConverter.Converters
             {
                 IEnumerable<AircraftConsumable> consumableList = wgAbility.Abils
                     .Select(ability => (AbilityName: ability[0], AbilityVariant: ability[1]))
-                    .Select(ability =>
-                        new AircraftConsumable
-                        {
-                            ConsumableName = ability.AbilityName,
-                            ConsumableVariantName = ability.AbilityVariant,
-                            Slot = wgAbility.Slot,
-                        });
+                    .Select(ability => new AircraftConsumable(wgAbility.Slot, ability.AbilityName, ability.AbilityVariant));
                 resultList.AddRange(consumableList);
             }
 
