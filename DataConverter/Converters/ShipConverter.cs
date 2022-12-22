@@ -55,7 +55,7 @@ public static class ShipConverter
                 ShipConsumable = ProcessConsumables(wgShip),
                 AirStrikes = ProcessAirstrikes(wgShip),
                 PingerGunList = ProcessPingerGuns(wgShip),
-                SpecialAbility = ProcessSpecialAbility(wgShip),
+                SpecialAbility = ProcessSpecialAbility(wgShip, logger),
                 Permoflages = wgShip.Permoflages,
             };
 
@@ -118,12 +118,26 @@ public static class ShipConverter
         return null;
     }
 
-    private static SpecialAbility? ProcessSpecialAbility(WgShip wgShip)
+    private static SpecialAbility? ProcessSpecialAbility(WgShip wgShip, ILogger? logger)
     {
         Dictionary<string, WgSpecialAbility> wgSpecialAbilityList = wgShip.ModulesArmaments.ModulesOfType<WgSpecialAbility>();
         if (wgSpecialAbilityList.Count > 1)
         {
-            throw new InvalidOperationException($"Too many special abilities for ship {wgShip.Index}");
+            //throw new InvalidOperationException($"Too many special abilities for ship {wgShip.Index}");
+            logger?.LogWarning("Multiple special abilities for ship {Index}", wgShip.Index);
+            var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
+            var specialAbility = new SpecialAbility()
+            {
+                Duration = wgAbility.BoostDuration,
+                Modifiers = wgAbility.Modifiers,
+                Name = wgAbility.RageModeName,
+                RadiusForSuccessfulHits = wgAbility.Radius,
+                RequiredHits = wgAbility.RequiredHits,
+            };
+            DataCache.TranslationNames.Add(specialAbility.Name);
+            DataCache.TranslationNames.Add("RageMode");
+            DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
+            return specialAbility;
         }
         else if (wgSpecialAbilityList.Count == 1)
         {
@@ -156,6 +170,7 @@ public static class ShipConverter
             "specialUnsellable" when tier < 10 => ShipCategory.Premium,
             "specialUnsellable" when tier == 10 => ShipCategory.Special,
             "demoWithoutStats" => ShipCategory.TestShip,
+            "demoWithoutStatsPrem" => ShipCategory.TestShip,
             "demoWithStats" => ShipCategory.TestShip,
             "special" when tier < 10 => ShipCategory.Premium,
             "special" when tier == 10 => ShipCategory.Special,
