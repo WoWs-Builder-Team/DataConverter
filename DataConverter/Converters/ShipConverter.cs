@@ -63,6 +63,7 @@ public static class ShipConverter
 
             ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
             ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
+            ship.ShellCompatibilities = CheckShellCompatibilities(ship);
             results[ship.Index] = ship;
 
             if (ship.ShipCategory == ShipCategory.TechTree)
@@ -714,5 +715,29 @@ public static class ShipConverter
         }
 
         return componentType;
+    }
+
+    private static Dictionary<string, ShellCompatibility> CheckShellCompatibilities(Ship ship)
+    {
+        var shells = ship.MainBatteryModuleList.SelectMany(pair => pair.Value.Guns.FirstOrDefault()?.AmmoList ?? new List<string>()).ToList();
+        if (shells.Count == 0)
+        {
+            return new();
+        }
+
+        return shells.Distinct().ToDictionary(shell => shell, shell => CheckShellCompatibility(shell, ship));
+    }
+
+    private static ShellCompatibility CheckShellCompatibility(string shellName, Ship ship)
+    {
+        var compatibleArtilleryModules = ship.MainBatteryModuleList
+            .Where(pair => pair.Value.Guns.First().AmmoList.Contains(shellName))
+            .Select(pair => pair.Key);
+        var compatibleHulls = ship.ShipUpgradeInfo.ShipUpgrades
+            .Where(upgrade => upgrade.UcType == ComponentType.Hull)
+            .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
+            .SelectMany(upgrade => upgrade.Components[ComponentType.Hull]);
+
+        return new(shellName, compatibleArtilleryModules, compatibleHulls);
     }
 }

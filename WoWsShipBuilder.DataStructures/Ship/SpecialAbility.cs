@@ -16,7 +16,6 @@ public class SpecialAbility
     public double ProgressPerAction { get; set; }
     public string ActivatorName { get; set; } = string.Empty;
     public double ActivatorRadius { get; set; }
-
 }
 
 public class BurstModeAbility
