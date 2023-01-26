@@ -16,33 +16,35 @@ public class WgBurstArtilleryModule
 public class WgSpecialAbility : WgArmamentModule
 {
     public WgRageMode RageMode { get; init; } = new();
-
-    public int BuffsShiftMaxLevel { get; init; }
-
-    public double BuffsShiftSpeed { get; init; }
-
-    public int BuffsStartPool { get; init; }
-
-    public Dictionary<string, float> Modifiers { get; init; } = new();
 }
 
 public class WgRageMode
 {
+    public Dictionary<string, float> Modifiers { get; init; } = new();
+    public string RageModeName { get; init; } = string.Empty;
+    public double DecrementPeriod { get; init; }
     public double BoostDuration { get; init; }
-
-    public int DecrementCount { get; init; }
-
+    public double DecrementCount { get; init; }
+    public WgGameLogicTrigger GameLogicTrigger { get; set; } = new();
     public double DecrementDelay { get; init; }
 
-    public double DecrementPeriod { get; init; }
-
-    public int GunsForSalvo { get; init; }
-
-    public Dictionary<string, float> Modifiers { get; init; } = new();
-
-    public double Radius { get; init; }
-
-    public string RageModeName { get; init; } = string.Empty;
-
-    public int RequiredHits { get; init; }
 }
+
+public class WgGameLogicTrigger
+{
+    public WgAction Action { get; set; } = new();
+    public WgActivator Activator { get; set; } = new();
+}
+
+public class WgAction
+{
+    public double Progress { get; set; }
+}
+
+public class WgActivator
+{
+    public string Type { get; set; } = string.Empty;
+    public double Radius { get; set; }
+
+}
+

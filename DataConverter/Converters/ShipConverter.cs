@@ -126,37 +126,36 @@ public static class ShipConverter
             //throw new InvalidOperationException($"Too many special abilities for ship {wgShip.Index}");
             logger?.LogWarning("Multiple special abilities for ship {Index}", wgShip.Index);
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
-            var specialAbility = new SpecialAbility()
-            {
-                Duration = wgAbility.BoostDuration,
-                Modifiers = wgAbility.Modifiers,
-                Name = wgAbility.RageModeName,
-                RadiusForSuccessfulHits = wgAbility.Radius,
-                RequiredHits = wgAbility.RequiredHits,
-            };
-            DataCache.TranslationNames.Add(specialAbility.Name);
-            DataCache.TranslationNames.Add("RageMode");
-            DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
-            return specialAbility;
+            return ProcessRageMode(wgAbility);
         }
         else if (wgSpecialAbilityList.Count == 1)
         {
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
-            var specialAbility = new SpecialAbility()
-            {
-                Duration = wgAbility.BoostDuration,
-                Modifiers = wgAbility.Modifiers,
-                Name = wgAbility.RageModeName,
-                RadiusForSuccessfulHits = wgAbility.Radius,
-                RequiredHits = wgAbility.RequiredHits,
-            };
-            DataCache.TranslationNames.Add(specialAbility.Name);
-            DataCache.TranslationNames.Add("RageMode");
-            DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
-            return specialAbility;
+            return ProcessRageMode(wgAbility);
         }
 
         return null;
+    }
+
+    private static SpecialAbility? ProcessRageMode(WgRageMode rageMode)
+    {
+        var specialAbility = new SpecialAbility()
+        {
+            Modifiers = rageMode.Modifiers,
+            Name = rageMode.RageModeName,
+            DecrementPeriod = rageMode.DecrementPeriod,
+            Duration = rageMode.BoostDuration,
+            DecrementCount = rageMode.DecrementCount,
+            DecrementDelay = rageMode.DecrementDelay,
+            ProgressPerAction = rageMode.GameLogicTrigger.Action.Progress,
+            ActivatorName = rageMode.GameLogicTrigger.Activator.Type,
+            ActivatorRadius = rageMode.GameLogicTrigger.Activator.Radius,
+        };
+        DataCache.TranslationNames.Add(specialAbility.Name);
+        DataCache.TranslationNames.Add("RageMode");
+        DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
+        DataCache.TranslationNames.Add(specialAbility.ActivatorName);
+        return specialAbility;
     }
 
     private static ShipCategory ProcessShipCategory(string wgCategory, int tier)
