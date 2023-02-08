@@ -736,8 +736,49 @@ public static class ShipConverter
         var compatibleHulls = ship.ShipUpgradeInfo.ShipUpgrades
             .Where(upgrade => upgrade.UcType == ComponentType.Hull)
             .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
+            .OrderBy(item => item, UpgradeComparer.Instance)
             .SelectMany(upgrade => upgrade.Components[ComponentType.Hull]);
 
         return new(shellName, compatibleArtilleryModules, compatibleHulls);
+    }
+
+    private sealed class UpgradeComparer : IComparer<ShipUpgrade>
+    {
+        public static UpgradeComparer Instance { get; } = new();
+
+        public int Compare(ShipUpgrade? firstUpgrade, ShipUpgrade? secondUpgrade)
+        {
+            if (firstUpgrade == null || secondUpgrade == null)
+            {
+                return 0;
+            }
+
+            if (firstUpgrade.Prev == secondUpgrade.Prev)
+            {
+                return 0;
+            }
+
+            if (string.IsNullOrEmpty(firstUpgrade.Prev))
+            {
+                return -1;
+            }
+
+            if (string.IsNullOrEmpty(secondUpgrade.Prev))
+            {
+                return 1;
+            }
+
+            if (firstUpgrade.Prev == secondUpgrade.Name)
+            {
+                return 1;
+            }
+
+            if (secondUpgrade.Prev == firstUpgrade.Name)
+            {
+                return -1;
+            }
+
+            return 0;
+        }
     }
 }
