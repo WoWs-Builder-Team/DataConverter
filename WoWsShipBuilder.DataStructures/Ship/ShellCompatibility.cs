@@ -2,4 +2,4 @@
 
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public record ShellCompatibility(string ShellName, IEnumerable<string> CompatibleArtilleryModules, IEnumerable<string> CompatibleHullModules);
+public record ShellCompatibility(string ShellName, Dictionary<string,  IEnumerable<string>> CompatibleHullArtilleryModulesCombo);

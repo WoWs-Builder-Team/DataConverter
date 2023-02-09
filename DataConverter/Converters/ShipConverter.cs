@@ -733,13 +733,13 @@ public static class ShipConverter
         var compatibleArtilleryModules = ship.MainBatteryModuleList
             .Where(pair => pair.Value.Guns.First().AmmoList.Contains(shellName))
             .Select(pair => pair.Key);
-        var compatibleHulls = ship.ShipUpgradeInfo.ShipUpgrades
+        var compatibleModulesCombo = ship.ShipUpgradeInfo.ShipUpgrades
             .Where(upgrade => upgrade.UcType == ComponentType.Hull)
             .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
             .OrderBy(item => item, UpgradeComparer.Instance)
-            .SelectMany(upgrade => upgrade.Components[ComponentType.Hull]);
+            .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules));
 
-        return new(shellName, compatibleArtilleryModules, compatibleHulls);
+        return new ShellCompatibility(shellName, compatibleModulesCombo);
     }
 
     private sealed class UpgradeComparer : IComparer<ShipUpgrade>
