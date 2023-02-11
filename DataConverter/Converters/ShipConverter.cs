@@ -737,7 +737,7 @@ public static class ShipConverter
             .Where(upgrade => upgrade.UcType == ComponentType.Hull)
             .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
             .OrderBy(item => item, UpgradeComparer.Instance)
-            .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules));
+            .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules).OrderBy(item => item));
 
         return new ShellCompatibility(shellName, compatibleModulesCombo);
     }
