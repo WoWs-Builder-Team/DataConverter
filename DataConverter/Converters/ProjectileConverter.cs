@@ -192,6 +192,13 @@ namespace DataConverter.Converters
                         if (currentWgTorpedo.CustomUiPostfix.Equals("_subDefault"))
                         {
                             torpedo.TorpedoType = TorpedoType.Magnetic;
+                            torpedo.MagneticTorpedoParams.TurningAcceleration = currentWgTorpedo.SubmarineTorpedoParams.YawChangeSpeed.Take(2).ToArray();
+                            torpedo.MagneticTorpedoParams.MaxTurningSpeed = currentWgTorpedo.SubmarineTorpedoParams.MaxYaw.Take(2).ToArray();
+                            torpedo.MagneticTorpedoParams.VerticalAcceleration = currentWgTorpedo.SubmarineTorpedoParams.VerticalAcceleration.Take(2).ToArray();
+                            torpedo.MagneticTorpedoParams.MaxVerticalSpeed = currentWgTorpedo.SubmarineTorpedoParams.MaxVerticalSpeed.Take(2).ToArray();
+                            torpedo.MagneticTorpedoParams.SearchAngle = currentWgTorpedo.SubmarineTorpedoParams.SearchAngle.Take(2).ToArray();
+                            torpedo.MagneticTorpedoParams.SearchRadius = currentWgTorpedo.SubmarineTorpedoParams.SearchRadius.Take(2).Select(x => x / 1000).ToArray();
+                            torpedo.MagneticTorpedoParams.DropTargetAtDistance = currentWgTorpedo.SubmarineTorpedoParams.DropTargetAtDistance.Where(item => !item.Key.Equals("default")).ToDictionary(item => Enum.Parse<ShipClass>(item.Key), item => item.Value.Take(2).ToArray());
                         }
 
                         projectileList.Add(torpedo.Name, torpedo);
