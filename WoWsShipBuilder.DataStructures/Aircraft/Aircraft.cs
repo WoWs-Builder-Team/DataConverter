@@ -64,6 +64,12 @@ public class Aircraft
 
     public List<double> InnerSalvoSize { get; set; } = new();
 
+    public List<double> OuterSalvoSize { get; init; } = new();
+
+    public float[] MinSpreadCoeff { get; init; } = Array.Empty<float>();
+
+    public float[] MaxSpreadCoeff { get; init; } = Array.Empty<float>();
+
     public PlaneCategory PlaneCategory { get; set; }
 
     public PlaneAttackData AttackData { get; set; } = new();

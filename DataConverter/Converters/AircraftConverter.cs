@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataConverter.Data;
+using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Aircraft;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
@@ -45,7 +46,10 @@ namespace DataConverter.Converters
                     FlightHeight = currentWgAir.FlightHeight,
                     FlightRadius = currentWgAir.FlightRadius,
                     InnerBombsPercentage = currentWgAir.InnerBombsPercentage,
-                    InnerSalvoSize = currentWgAir.InnerSalvoSize,
+                    InnerSalvoSize = currentWgAir.InnerSalvoSize.Select(x => x * Constants.BigWorld).ToList(),
+                    OuterSalvoSize = currentWgAir.OuterSalvoSize.Select(x => x * Constants.BigWorld).ToList(),
+                    MinSpreadCoeff = (currentWgAir.MinSpread.Type.Equals(JTokenType.Array) ? currentWgAir.MinSpread.ToObject<float[]>() : new[] { currentWgAir.MinSpread.ToObject<float>() }) ?? Array.Empty<float>(),
+                    MaxSpreadCoeff = (currentWgAir.MaxSpread.Type.Equals(JTokenType.Array) ? currentWgAir.MaxSpread.ToObject<float[]>() : new[] { currentWgAir.MaxSpread.ToObject<float>() }) ?? Array.Empty<float>(),
                     AimingAccuracyDecreaseRate = currentWgAir.AimingAccuracyDecreaseRate,
                     AimingAccuracyIncreaseRate = currentWgAir.AimingAccuracyIncreaseRate,
                     AimingTime = currentWgAir.AimingTime,
@@ -119,7 +123,7 @@ namespace DataConverter.Converters
                         "bomber" => isTactical ? PlaneType.TacticalTorpedoBomber : PlaneType.TorpedoBomber,
                         "dive" => isTactical ? PlaneType.TacticalDiveBomber : PlaneType.DiveBomber,
                         "skip" => isTactical ? PlaneType.TacticalSkipBomber : PlaneType.SkipBomber,
-                        _ => throw new InvalidOperationException("Detected invalid plane type in species field of type info"),
+                        _ => throw new InvalidOperationException("Invalid plane type detected"),
                     };
                     air.PlaneType = planeType;
                 }
