@@ -63,6 +63,7 @@ public static class ShipConverter
 
             ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
             ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
+            ship.ShellCompatibilities = CheckShellCompatibilities(ship);
             results[ship.Index] = ship;
 
             if (ship.ShipCategory == ShipCategory.TechTree)
@@ -716,5 +717,70 @@ public static class ShipConverter
         }
 
         return componentType;
+    }
+
+    private static Dictionary<string, ShellCompatibility> CheckShellCompatibilities(Ship ship)
+    {
+        var shells = ship.MainBatteryModuleList.SelectMany(pair => pair.Value.Guns.FirstOrDefault()?.AmmoList ?? new List<string>()).ToList();
+        if (shells.Count == 0)
+        {
+            return new();
+        }
+
+        return shells.Distinct().ToDictionary(shell => shell, shell => CheckShellCompatibility(shell, ship));
+    }
+
+    private static ShellCompatibility CheckShellCompatibility(string shellName, Ship ship)
+    {
+        var compatibleArtilleryModules = ship.MainBatteryModuleList
+            .Where(pair => pair.Value.Guns.First().AmmoList.Contains(shellName))
+            .Select(pair => pair.Key);
+        var compatibleModulesCombo = ship.ShipUpgradeInfo.ShipUpgrades
+            .Where(upgrade => upgrade.UcType == ComponentType.Hull)
+            .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
+            .OrderBy(item => item, UpgradeComparer.Instance)
+            .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules).OrderBy(item => item));
+
+        return new ShellCompatibility(shellName, compatibleModulesCombo);
+    }
+
+    private sealed class UpgradeComparer : IComparer<ShipUpgrade>
+    {
+        public static UpgradeComparer Instance { get; } = new();
+
+        public int Compare(ShipUpgrade? firstUpgrade, ShipUpgrade? secondUpgrade)
+        {
+            if (firstUpgrade == null || secondUpgrade == null)
+            {
+                return 0;
+            }
+
+            if (firstUpgrade.Prev == secondUpgrade.Prev)
+            {
+                return 0;
+            }
+
+            if (string.IsNullOrEmpty(firstUpgrade.Prev))
+            {
+                return -1;
+            }
+
+            if (string.IsNullOrEmpty(secondUpgrade.Prev))
+            {
+                return 1;
+            }
+
+            if (firstUpgrade.Prev == secondUpgrade.Name)
+            {
+                return 1;
+            }
+
+            if (secondUpgrade.Prev == firstUpgrade.Name)
+            {
+                return -1;
+            }
+
+            return 0;
+        }
     }
 }

@@ -44,4 +44,6 @@ public class Ship
     public UpgradeInfo ShipUpgradeInfo { get; set; } = new();
 
     public SpecialAbility? SpecialAbility { get; set; }
+
+    public Dictionary<string, ShellCompatibility> ShellCompatibilities { get; set; } = new();
 }
