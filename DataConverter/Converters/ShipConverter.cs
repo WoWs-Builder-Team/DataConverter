@@ -428,10 +428,12 @@ public static class ShipConverter
 
             hullModule.HitLocations = hitLocations;
 
-            //process MaxSpeedAtBuoyancyState
+            //process MaxSpeedAtBuoyancyState and SubmarineBattery
             Dictionary<SubsBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
             if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
             {
+                hullModule.SubBatteryCapacity = (decimal)wgHull.SubmarineBattery.Capacity;
+                hullModule.SubBatteryRegenRate = (decimal)wgHull.SubmarineBattery.RegenRate;
                 foreach ((string state, object[] coeff) in wgHull.BuoyancyStates)
                 {
                     var depth = state switch
