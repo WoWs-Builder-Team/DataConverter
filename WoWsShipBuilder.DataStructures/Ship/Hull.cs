@@ -59,6 +59,10 @@ public class Hull
     public List<HitLocation> HitLocations { get; set; } = new();
 
     public Dictionary<SubsBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; set; } = new();
+
+    public decimal SubBatteryCapacity { get; set; }
+
+    public decimal SubBatteryRegenRate { get; set; }
 }
 
 public class ShipSize

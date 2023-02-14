@@ -7,4 +7,6 @@ public static class Constants
     public const string ShiptoolDataUrl = "https://shiptool.st/api/data";
 
     public const float Tolerance = 0.001f;
+
+    public const int BigWorld = 30; // 1 BW = 30 meters
 }

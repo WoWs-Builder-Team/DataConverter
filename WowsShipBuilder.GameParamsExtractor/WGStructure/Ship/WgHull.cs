@@ -49,6 +49,8 @@ public class WgHull : WgArmamentModule
     public WgHitLocation Cit { get; init; } = new();
 
     public Dictionary<string, object[]> BuoyancyStates { get; init; } = new();
+
+    public WgSubmarineBattery SubmarineBattery { get; set; } = new();
 }
 
 public class WgSteeringGear
@@ -63,4 +65,11 @@ public class WgHitLocation
     public float RegeneratedHpPart { get; init; }
 
     public int MaxHp { get; init; }
+}
+
+public class WgSubmarineBattery
+{
+    public float Capacity { get; init; }
+
+    public float RegenRate { get; init; }
 }

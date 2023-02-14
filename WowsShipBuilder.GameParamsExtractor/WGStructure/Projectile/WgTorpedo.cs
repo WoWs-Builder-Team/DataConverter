@@ -31,4 +31,23 @@ public class WgTorpedo : WgProjectile
     public float SplashCubeSize { get; init; }
 
     public string CustomUiPostfix { get; init; } = string.Empty;
+
+    public WgSubmarineTorpedoParams SubmarineTorpedoParams { get; init; } = new();
+}
+
+public class WgSubmarineTorpedoParams
+{
+    public Dictionary<string, float[]> DropTargetAtDistance { get; init; } = new();
+
+    public float[] MaxYaw { get; init; } = Array.Empty<float>();
+
+    public float[] YawChangeSpeed { get; init; } = Array.Empty<float>();
+
+    public float[] MaxVerticalSpeed { get; init; } = Array.Empty<float>();
+
+    public float[] VerticalAcceleration { get; init; } = Array.Empty<float>();
+
+    public float[] SearchRadius { get; init; } = Array.Empty<float>();
+
+    public float[] SearchAngle { get; init; } = Array.Empty<float>();
 }

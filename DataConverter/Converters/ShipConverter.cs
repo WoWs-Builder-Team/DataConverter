@@ -63,6 +63,7 @@ public static class ShipConverter
 
             ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
             ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
+            ship.ShellCompatibilities = CheckShellCompatibilities(ship);
             results[ship.Index] = ship;
 
             if (ship.ShipCategory == ShipCategory.TechTree)
@@ -126,37 +127,36 @@ public static class ShipConverter
             //throw new InvalidOperationException($"Too many special abilities for ship {wgShip.Index}");
             logger?.LogWarning("Multiple special abilities for ship {Index}", wgShip.Index);
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
-            var specialAbility = new SpecialAbility()
-            {
-                Duration = wgAbility.BoostDuration,
-                Modifiers = wgAbility.Modifiers,
-                Name = wgAbility.RageModeName,
-                RadiusForSuccessfulHits = wgAbility.Radius,
-                RequiredHits = wgAbility.RequiredHits,
-            };
-            DataCache.TranslationNames.Add(specialAbility.Name);
-            DataCache.TranslationNames.Add("RageMode");
-            DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
-            return specialAbility;
+            return ProcessRageMode(wgAbility);
         }
         else if (wgSpecialAbilityList.Count == 1)
         {
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
-            var specialAbility = new SpecialAbility()
-            {
-                Duration = wgAbility.BoostDuration,
-                Modifiers = wgAbility.Modifiers,
-                Name = wgAbility.RageModeName,
-                RadiusForSuccessfulHits = wgAbility.Radius,
-                RequiredHits = wgAbility.RequiredHits,
-            };
-            DataCache.TranslationNames.Add(specialAbility.Name);
-            DataCache.TranslationNames.Add("RageMode");
-            DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
-            return specialAbility;
+            return ProcessRageMode(wgAbility);
         }
 
         return null;
+    }
+
+    private static SpecialAbility? ProcessRageMode(WgRageMode rageMode)
+    {
+        var specialAbility = new SpecialAbility()
+        {
+            Modifiers = rageMode.Modifiers,
+            Name = rageMode.RageModeName,
+            DecrementPeriod = rageMode.DecrementPeriod,
+            Duration = rageMode.BoostDuration,
+            DecrementCount = rageMode.DecrementCount,
+            DecrementDelay = rageMode.DecrementDelay,
+            ProgressPerAction = rageMode.GameLogicTrigger.Action.Progress,
+            ActivatorName = rageMode.GameLogicTrigger.Activator.Type,
+            ActivatorRadius = rageMode.GameLogicTrigger.Activator.Radius,
+        };
+        DataCache.TranslationNames.Add(specialAbility.Name);
+        DataCache.TranslationNames.Add("RageMode");
+        DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
+        DataCache.TranslationNames.Add(specialAbility.ActivatorName);
+        return specialAbility;
     }
 
     private static ShipCategory ProcessShipCategory(string wgCategory, int tier)
@@ -429,10 +429,12 @@ public static class ShipConverter
 
             hullModule.HitLocations = hitLocations;
 
-            //process MaxSpeedAtBuoyancyState
+            //process MaxSpeedAtBuoyancyState and SubmarineBattery
             Dictionary<SubsBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
             if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
             {
+                hullModule.SubBatteryCapacity = (decimal)wgHull.SubmarineBattery.Capacity;
+                hullModule.SubBatteryRegenRate = (decimal)wgHull.SubmarineBattery.RegenRate;
                 foreach ((string state, object[] coeff) in wgHull.BuoyancyStates)
                 {
                     var depth = state switch
@@ -715,5 +717,70 @@ public static class ShipConverter
         }
 
         return componentType;
+    }
+
+    private static Dictionary<string, ShellCompatibility> CheckShellCompatibilities(Ship ship)
+    {
+        var shells = ship.MainBatteryModuleList.SelectMany(pair => pair.Value.Guns.FirstOrDefault()?.AmmoList ?? new List<string>()).ToList();
+        if (shells.Count == 0)
+        {
+            return new();
+        }
+
+        return shells.Distinct().ToDictionary(shell => shell, shell => CheckShellCompatibility(shell, ship));
+    }
+
+    private static ShellCompatibility CheckShellCompatibility(string shellName, Ship ship)
+    {
+        var compatibleArtilleryModules = ship.MainBatteryModuleList
+            .Where(pair => pair.Value.Guns.First().AmmoList.Contains(shellName))
+            .Select(pair => pair.Key);
+        var compatibleModulesCombo = ship.ShipUpgradeInfo.ShipUpgrades
+            .Where(upgrade => upgrade.UcType == ComponentType.Hull)
+            .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
+            .OrderBy(item => item, UpgradeComparer.Instance)
+            .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules).OrderBy(item => item));
+
+        return new ShellCompatibility(shellName, compatibleModulesCombo);
+    }
+
+    private sealed class UpgradeComparer : IComparer<ShipUpgrade>
+    {
+        public static UpgradeComparer Instance { get; } = new();
+
+        public int Compare(ShipUpgrade? firstUpgrade, ShipUpgrade? secondUpgrade)
+        {
+            if (firstUpgrade == null || secondUpgrade == null)
+            {
+                return 0;
+            }
+
+            if (firstUpgrade.Prev == secondUpgrade.Prev)
+            {
+                return 0;
+            }
+
+            if (string.IsNullOrEmpty(firstUpgrade.Prev))
+            {
+                return -1;
+            }
+
+            if (string.IsNullOrEmpty(secondUpgrade.Prev))
+            {
+                return 1;
+            }
+
+            if (firstUpgrade.Prev == secondUpgrade.Name)
+            {
+                return 1;
+            }
+
+            if (secondUpgrade.Prev == firstUpgrade.Name)
+            {
+                return -1;
+            }
+
+            return 0;
+        }
     }
 }

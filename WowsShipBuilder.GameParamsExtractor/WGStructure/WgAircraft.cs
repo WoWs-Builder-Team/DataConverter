@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Linq;
+
 namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -45,6 +47,12 @@ public class WgAircraft : WgObject
     public double InnerBombsPercentage { get; init; }
 
     public List<double> InnerSalvoSize { get; init; } = new();
+
+    public List<double> OuterSalvoSize { get; init; } = new();
+
+    public JToken MinSpread { get; init; } = default!;
+
+    public JToken MaxSpread { get; init; } = default!;
 
     public bool? IsAirSupportPlane { get; init; } // deprecated by WG with 0.11.1
 

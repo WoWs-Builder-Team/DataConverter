@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -27,4 +28,23 @@ public class Torpedo : Projectile
     public float SplashCoeff { get; set; }
 
     public float ExplosionRadius { get; set; }
+
+    public MagneticTorpedoParams MagneticTorpedoParams { get; set; } = new();
+}
+
+public class MagneticTorpedoParams
+{
+    public Dictionary<ShipClass, float[]> DropTargetAtDistance { get; set; } = new();
+
+    public float[] MaxTurningSpeed { get; set; } = Array.Empty<float>();
+
+    public float[] TurningAcceleration { get; set; } = Array.Empty<float>();
+
+    public float[] MaxVerticalSpeed { get; set; } = Array.Empty<float>();
+
+    public float[] VerticalAcceleration { get; set; } = Array.Empty<float>();
+
+    public float[] SearchRadius { get; set; } = Array.Empty<float>();
+
+    public float[] SearchAngle { get; set; } = Array.Empty<float>();
 }
