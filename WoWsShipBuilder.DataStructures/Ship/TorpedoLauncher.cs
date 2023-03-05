@@ -39,4 +39,6 @@ public class TorpedoLauncher : IGun
     public decimal[] TorpedoAngles { get; set; } = Array.Empty<decimal>();
 
     public decimal BaseAngle { get; set; }
+
+    public string GroupName { get; set; } = string.Empty;
 }

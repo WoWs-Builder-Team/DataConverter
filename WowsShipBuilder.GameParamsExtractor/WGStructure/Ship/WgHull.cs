@@ -34,6 +34,8 @@ public class WgHull : WgArmamentModule
 
     public int Tonnage { get; init; }
 
+    public decimal MaxBuoyancySpeed { get; init; }
+
     public WgHitLocation Cas { get; init; } = new();
 
     public WgHitLocation Bow { get; init; } = new();
@@ -51,6 +53,8 @@ public class WgHull : WgArmamentModule
     public Dictionary<string, object[]> BuoyancyStates { get; init; } = new();
 
     public WgSubmarineBattery SubmarineBattery { get; set; } = new();
+
+    public decimal BuoyancyRudderTime { get; set; }
 }
 
 public class WgSteeringGear

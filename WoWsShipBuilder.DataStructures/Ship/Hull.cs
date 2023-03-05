@@ -63,6 +63,10 @@ public class Hull
     public decimal SubBatteryCapacity { get; set; }
 
     public decimal SubBatteryRegenRate { get; set; }
+
+    public decimal DiveSpeed { get; set; }
+
+    public decimal DivingPlaneShiftTime { get; set; }
 }
 
 public class ShipSize

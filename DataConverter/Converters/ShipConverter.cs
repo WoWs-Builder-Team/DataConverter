@@ -129,7 +129,7 @@ public static class ShipConverter
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
             return ProcessRageMode(wgAbility);
         }
-        else if (wgSpecialAbilityList.Count == 1)
+        if (wgSpecialAbilityList.Count == 1)
         {
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
             return ProcessRageMode(wgAbility);
@@ -138,7 +138,7 @@ public static class ShipConverter
         return null;
     }
 
-    private static SpecialAbility? ProcessRageMode(WgRageMode rageMode)
+    private static SpecialAbility ProcessRageMode(WgRageMode rageMode)
     {
         var specialAbility = new SpecialAbility()
         {
@@ -429,10 +429,12 @@ public static class ShipConverter
 
             hullModule.HitLocations = hitLocations;
 
-            //process MaxSpeedAtBuoyancyState and SubmarineBattery
+            //process subs only parameters
             Dictionary<SubsBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
             if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
             {
+                hullModule.DiveSpeed = wgHull.MaxBuoyancySpeed;
+                hullModule.DivingPlaneShiftTime = wgHull.BuoyancyRudderTime / 1.305M;
                 hullModule.SubBatteryCapacity = (decimal)wgHull.SubmarineBattery.Capacity;
                 hullModule.SubBatteryRegenRate = (decimal)wgHull.SubmarineBattery.RegenRate;
                 foreach ((string state, object[] coeff) in wgHull.BuoyancyStates)
@@ -446,9 +448,8 @@ public static class ShipConverter
                     };
                     maxSpeedAtBuoyancyStateCoeff.Add(depth, (decimal)(double)coeff[1]);
                 }
+                hullModule.MaxSpeedAtBuoyancyStateCoeff = maxSpeedAtBuoyancyStateCoeff;
             }
-
-            hullModule.MaxSpeedAtBuoyancyStateCoeff = maxSpeedAtBuoyancyStateCoeff;
 
             //Process ship size
             ShipSize dim = new()
@@ -544,7 +545,105 @@ public static class ShipConverter
                 TimeToChangeAmmo = wgTorpedoArray.TorpedoArray.Values.Any(launcher => launcher.AmmoList.Length > 1) ? wgTorpedoArray.TimeToChangeAmmo : 0,
                 TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToList(),
             };
+
             DataCache.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
+
+            // process launcher loaders
+            if (wgTorpedoArray.Groups.Count > 0 && wgTorpedoArray.Loaders.Count > 0)
+            {
+                Dictionary<int, int> bowLoaders = new();
+                Dictionary<int, int> sternLoaders = new();
+                foreach (var jToken in wgTorpedoArray.Groups)
+                {
+                    var groupName = jToken.First!.ToObject<int>();
+                    var group = jToken.Last!.ToObject<string[]>()!;
+
+                    // since it is a group we can assume they are all close together so we can by checking only 1 element of the group we can address all of it
+                    var launcher = torpedoModule.TorpedoLaunchers.First(x => x.GroupName.Equals(group.First()));
+                    if (launcher.BaseAngle is <= 90 or >= 270)
+                    {
+                        // if the launcher base angle is between 90° and -90° we cam assume it is looking forward and so positioned in the front
+                        bowLoaders.Add(groupName, group.Length);
+                    }
+                    else
+                    {
+                        sternLoaders.Add(groupName, group.Length);
+                    }
+                }
+
+                Dictionary<int, int> loaders = wgTorpedoArray.Loaders.ToDictionary(jToken => jToken.Last!.ToObject<int[]>()!.Single(), jToken => jToken.First!.ToObject<int>());
+                Dictionary<string, int> bowLoadersAmounts = new();
+                Dictionary<string, int> sternLoadersAmounts = new();
+                foreach (var bowLoader in bowLoaders)
+                {
+                    var tubesPerLoader = loaders.Where(x => x.Key.Equals(bowLoader.Key)).Select(x => x.Value).Single();
+                    var setup = $"{bowLoader.Value / tubesPerLoader}x{tubesPerLoader}";
+                    if (bowLoadersAmounts.ContainsKey(setup))
+                    {
+                        bowLoadersAmounts[setup]++;
+                    }
+                    else
+                    {
+                        bowLoadersAmounts.Add(setup, 1);
+                    }
+                }
+
+                foreach (var sternLoader in sternLoaders)
+                {
+                    var tubesPerLoader = loaders.Where(x => x.Key.Equals(sternLoader.Key)).Select(x => x.Value).Single();
+                    var setup = $"{sternLoader.Value / tubesPerLoader}x{tubesPerLoader}";
+                    if (sternLoadersAmounts.ContainsKey(setup))
+                    {
+                        sternLoadersAmounts[setup]++;
+                    }
+                    else
+                    {
+                        sternLoadersAmounts.Add(setup, 1);
+                    }
+                }
+
+                List<string> bowLoadersSetup = new();
+                List<string> sternLoadersSetup = new();
+                foreach (var bowLoadersAmount in bowLoadersAmounts)
+                {
+                    string setup;
+                    if (bowLoadersAmount.Value > 1)
+                    {
+                        var t = bowLoadersAmount.Key.Split('x');
+                        setup = $"{int.Parse(t[0]) * bowLoadersAmount.Value}x{t[1]}";
+                    }
+                    else
+                    {
+                        setup = bowLoadersAmount.Key;
+                    }
+
+                    bowLoadersSetup.Add(setup);
+                }
+
+                foreach (var sternLoadersAmount in sternLoadersAmounts)
+                {
+                    string setup;
+                    if (sternLoadersAmount.Value > 1)
+                    {
+                        var t = sternLoadersAmount.Key.Split('x');
+                        setup = $"{int.Parse(t[0]) * sternLoadersAmount.Value}x{t[1]}";
+                    }
+                    else
+                    {
+                        setup = sternLoadersAmount.Key;
+                    }
+
+                    sternLoadersSetup.Add(setup);
+                }
+
+                Dictionary<SubTorpLauncherLoaderPosition, List<string>> torpedoLoaders = new()
+                {
+                    { SubTorpLauncherLoaderPosition.BowLoaders, bowLoadersSetup },
+                    { SubTorpLauncherLoaderPosition.SternLoaders, sternLoadersSetup },
+                };
+
+                torpedoModule.TorpedoLoaders = torpedoLoaders;
+            }
 
             resultDictionary[key] = torpedoModule;
         }
@@ -562,6 +661,7 @@ public static class ShipConverter
         }
 
         launcher.BaseAngle = angle;
+        launcher.GroupName = wgKey;
         return launcher;
     }
 
@@ -613,7 +713,7 @@ public static class ShipConverter
         }
 
         // Processing for older versions
-        return new() { wgPlane.PlaneType ?? string.Empty };
+        return new List<string> { wgPlane.PlaneType ?? string.Empty };
     }
 
     private static List<ShipConsumable> ProcessConsumables(WgShip ship)

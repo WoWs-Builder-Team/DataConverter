@@ -216,3 +216,10 @@ public enum SubsBuoyancyStates
     Periscope,
     Surface,
 }
+
+[JsonConverter(typeof(StringEnumConverter))]
+public enum SubTorpLauncherLoaderPosition
+{
+    BowLoaders,
+    SternLoaders,
+}

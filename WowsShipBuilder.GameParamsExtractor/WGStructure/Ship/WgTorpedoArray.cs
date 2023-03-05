@@ -1,9 +1,15 @@
-﻿namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
+﻿using Newtonsoft.Json.Linq;
+
+namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 public class WgTorpedoArray : WgArmamentModule
 {
+    public List<JToken> Groups { get; set; } = new(); //JToken = Dictionary<int, string[]>
+
+    public List<JToken> Loaders { get; set; } = new(); //JToken = Dictionary<int, int[]>
+
     public decimal TimeToChangeAmmo { get; init; }
 
     public Dictionary<string, WgTorpedoLauncher> TorpedoArray { get; init; } = new();
