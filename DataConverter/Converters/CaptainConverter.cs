@@ -255,6 +255,7 @@ public static class CaptainConverter
 
         skill.ConditionalModifiers = conditionalModifiers;
         skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.TriggerType;
+        skill.ConditionalTriggerDescription = currentWgSkill.Value.LogicTrigger.TriggerDescIds;
         DataCache.TranslationNames.Add(skill.ConditionalTriggerType);
         DataCache.TranslationNames.UnionWith(skill.ConditionalModifiers.Keys);
         DataCache.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
