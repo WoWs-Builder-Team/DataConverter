@@ -43,6 +43,7 @@ namespace DataConverter.Converters
                         WorkTime = stats.WorkTime,
                         ConsumableVariantName = currentVariantKey,
                         PlaneName = stats.FightersName,
+                        PreparationTime = stats.PreparationTime,
                         Modifiers = ConvertModifiers(currentWgConsumable, stats),
                     };
                     DataCache.TranslationNames.UnionWith(consumable.Modifiers.Keys);

@@ -28,5 +28,7 @@ public class Consumable
 
     public string PlaneName { get; set; } = string.Empty;
 
+    public float PreparationTime { get; set; }
+
     public Dictionary<string, float> Modifiers { get; set; } = new();
 }

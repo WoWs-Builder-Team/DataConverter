@@ -32,6 +32,8 @@ public class WgStatistics
 
     public string FightersName { get; init; } = string.Empty;
 
+    public float PreparationTime { get; init; }
+
     [JsonExtensionData]
     public Dictionary<string, JToken> RawModifiers { get; init; } = new();
 
