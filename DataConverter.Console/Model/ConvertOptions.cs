@@ -31,5 +31,11 @@ public class ConvertOptions
     [Option('d', "debugOutput", HelpText = "Output directory for filtered and unfiltered files as well as debug files", Required = false)]
     public string? DebugOutputDirectory { get; set; }
 
+    [Option("data-url", HelpText = "The url to retrieve data from", Required = false)]
+    public string? DataUrl { get; set; }
+
+    [Option("data-target", HelpText = "The target directory to extract data into", Required = false)]
+    public string? DataDownloadTarget { get; set; }
+
     public GameParamsExtractionOptions ToExtractionOptions() => new(GameParamsFile, WriteUnfiltered);
 }

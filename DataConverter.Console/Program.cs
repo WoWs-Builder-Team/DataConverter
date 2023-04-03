@@ -21,11 +21,20 @@ public class Program
             .AddDataConverter()
             .AddTransient<DataConversionHelper>()
             .AddTransient<DataUnpackHelper>()
+            .AddTransient<DataDownloader>()
             .BuildServiceProvider();
 
         ParserResult<object>? result = Parser.Default.ParseArguments<ConvertOptions, ExtractOptions>(args);
         result = await result.WithParsedAsync<ConvertOptions>(async options =>
         {
+            if (options.DataUrl is not null)
+            {
+                _ = options.DataDownloadTarget ?? throw new ArgumentNullException(nameof(options), "The data download target must be specified");
+                await serviceProvider.GetRequiredService<DataDownloader>().DownloadGameData(options.DataUrl, options.DataDownloadTarget);
+                options.GameParamsFile = Path.Join(options.DataDownloadTarget, "GameParams.data");
+                options.LocalizationInputDirectory = Path.Join(options.DataDownloadTarget, "texts");
+            }
+
             var dataConversionHelper = serviceProvider.GetRequiredService<DataConversionHelper>();
             await dataConversionHelper.ExtractAndConvertData(options);
         });
