@@ -1,10 +1,24 @@
 ﻿namespace WoWsShipBuilder.DataStructures.Ship;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable once NotAccessedPositionalProperty.Global
-public sealed record Dispersion(double IdealRadius, double MinRadius, double IdealDistance, double TaperDist, double RadiusOnZero, double RadiusOnDelim, double RadiusOnMax, double Delim)
+// ReSharper disable CollectionNeverUpdated.Global
+public class Dispersion
 {
-    public static Dispersion Default { get; } = new(0, 0, 0, 0, 0, 0, 0, 0);
+    public double IdealRadius { get; init; }
+
+    public double MinRadius { get; init; }
+
+    public double IdealDistance { get; init; }
+
+    public double TaperDist { get; init; }
+
+    public double RadiusOnZero { get; init; }
+
+    public double RadiusOnDelim { get; init; }
+
+    public double RadiusOnMax { get; init; }
+
+    public double Delim { get; init; }
 
     public decimal MaximumHorizontalDispersion { get; set; }
 

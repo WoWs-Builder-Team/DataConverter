@@ -9,7 +9,17 @@ namespace DataConverter.Test
     public class DispersionTest
     {
         // Dispersion data for Zao
-        private readonly Dispersion dispersion = new(8.0, 0.5, 1000, 4000, 0.2, 0.5, 0.6, 0.5);
+        private Dispersion dispersion = new()
+        {
+            IdealRadius = 8.0,
+            MinRadius = 0.5,
+            IdealDistance = 1000,
+            TaperDist = 4000,
+            RadiusOnZero = 0.2,
+            RadiusOnDelim = 0.5,
+            RadiusOnMax = 0.6,
+            Delim = 0.5,
+        };
 
         [Test]
         public void HorizontalDispersionCalculation()
