@@ -24,20 +24,20 @@ public class Dispersion
 
     public decimal MaximumVerticalDispersion { get; set; }
 
-    public double CalculateHorizontalDispersion(double range)
+    public double CalculateHorizontalDispersion(double range, double modifier = 1)
     {
         // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
         double x = range / 30;
         double effectiveTaperDist = TaperDist / 30;
         if (x <= effectiveTaperDist)
         {
-            return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / effectiveTaperDist)) * 30;
+            return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius * (x / effectiveTaperDist)) * 30 * modifier;
         }
 
-        return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius) * 30;
+        return (x * (IdealRadius - MinRadius) / IdealDistance + MinRadius) * 30 * modifier;
     }
 
-    public double CalculateVerticalDispersion(double maxRange, double range = -1)
+    public double CalculateVerticalDispersion(double maxRange, double horizontalDispersion, double range = -1)
     {
         // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
         maxRange /= 30;
@@ -54,6 +54,16 @@ public class Dispersion
             verticalCoeff = RadiusOnDelim + (RadiusOnMax - RadiusOnDelim) * (x - delimDist) / (maxRange - delimDist);
         }
 
-        return CalculateHorizontalDispersion(x * 30) * verticalCoeff;
+        return horizontalDispersion * verticalCoeff;
     }
+
+    public DispersionContainer CalculateDispersion(double maxRange, double modifier = 1, double range = -1)
+    {
+        var horizontalDisp = CalculateHorizontalDispersion(range >= 0 ? range : maxRange, modifier);
+        var verticalDisp = CalculateVerticalDispersion(maxRange, horizontalDisp, range);
+
+        return new DispersionContainer(horizontalDisp, verticalDisp);
+    }
+
+    public sealed record DispersionContainer(double Horizontal, double Vertical);
 }
