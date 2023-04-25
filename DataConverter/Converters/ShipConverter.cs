@@ -253,20 +253,10 @@ public static class ShipConverter
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
             };
             var dispersionGun = wgMainBattery.Guns.Values.First();
-            var turretDispersion = new Dispersion
-            {
-                IdealRadius = dispersionGun.IdealRadius,
-                MinRadius = dispersionGun.MinRadius,
-                IdealDistance = dispersionGun.IdealDistance,
-                TaperDist = wgMainBattery.TaperDist,
-                RadiusOnZero = dispersionGun.RadiusOnZero,
-                RadiusOnDelim = dispersionGun.RadiusOnDelim,
-                RadiusOnMax = dispersionGun.RadiusOnMax,
-                Delim = dispersionGun.Delim,
-            };
+            var turretDispersion = new Dispersion(dispersionGun.IdealRadius, dispersionGun.MinRadius, dispersionGun.IdealDistance, wgMainBattery.TaperDist, dispersionGun.RadiusOnZero, dispersionGun.RadiusOnDelim, dispersionGun.RadiusOnMax, dispersionGun.Delim);
 
             var maxRange = decimal.ToDouble(turretModule.MaxRange);
-            var dispersion = turretDispersion.CalculateDispersion(maxRange);
+            var dispersion = turretDispersion.CalculateDispersion(maxRange, 1);
             turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(dispersion.Horizontal), 1);
             turretDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(dispersion.Vertical), 1);
 
