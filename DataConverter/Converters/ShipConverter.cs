@@ -250,7 +250,7 @@ public static class ShipConverter
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
                 Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stHullModule)).ToList(),
-                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
+                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule),
             };
             var dispersionGun = wgMainBattery.Guns.Values.First();
             var turretDispersion = new Dispersion
