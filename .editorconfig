@@ -19,7 +19,7 @@ dotnet_diagnostic.SA0001.severity = none # Ignore disabled xml documentation
 dotnet_diagnostic.SA1000.severity = none # Ignore missing space after "new"
 dotnet_diagnostic.SA1005.severity = none # Begin comment with space
 dotnet_diagnostic.SA1009.severity = none # Ignore missing space after closing parenthesis
-dotnet_diagnostic.SA1028.severity = warning # Ignore trailing whitespace 
+dotnet_diagnostic.SA1028.severity = warning # Ignore trailing whitespace
 dotnet_diagnostic.SA1100.severity = none # Ignore base. prefix if there is no local override
 dotnet_diagnostic.SA1101.severity = none # Ignore missing this prefix for local calls
 dotnet_diagnostic.SA1122.severity = none # Don't force the use of string.Empty
@@ -67,6 +67,9 @@ dotnet_diagnostic.SA1642.severity = none # Constructor summary can have any text
 dotnet_diagnostic.SA1643.severity = none # Destructor summary can have any text
 dotnet_diagnostic.SA1648.severity = none # Inherit doc can be used wherever you want
 
+dotnet_diagnostic.CA1848.severity = none # Ignore high performance logging
+dotnet_diagnostic.CA1309.severity = none # Ordinal string comparison; TODO: enable
+
 csharp_using_directive_placement = outside_namespace:warning
 
 # Resharper formatting rules
@@ -77,3 +80,7 @@ csharp_remove_blank_lines_near_braces_in_code = true
 
 [*.axaml]
 max_line_length = 160
+
+[*.{csproj,props,targets}]
+indent_size = 2
+tab_width = 2

@@ -4,7 +4,7 @@ using WowsShipBuilder.GameParamsExtractor.Services;
 
 namespace DataConverter.Console.Services;
 
-internal class DataUnpackHelper
+internal sealed class DataUnpackHelper
 {
     private readonly IGameDataUnpackService unpackService;
 

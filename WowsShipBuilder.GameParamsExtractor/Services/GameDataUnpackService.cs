@@ -6,7 +6,7 @@ using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace WowsShipBuilder.GameParamsExtractor.Services;
 
-internal class GameDataUnpackService : IGameDataUnpackService
+internal sealed class GameDataUnpackService : IGameDataUnpackService
 {
     private readonly ILogger<GameDataUnpackService> logger;
 
@@ -28,17 +28,17 @@ internal class GameDataUnpackService : IGameDataUnpackService
 
     public Dictionary<object, Dictionary<string, object>> ExtractRawGameParamsData(string gameParamsFilePath)
     {
-        logger.LogInformation("Starting unpickling.");
+        logger.LogInformation("Starting unpickling");
         var sw = Stopwatch.StartNew();
         Dictionary<object, Dictionary<string, object>> result = GameParamsUtility.UnpickleGameParams(gameParamsFilePath);
-        logger.LogInformation("Finished unpickling. Time passed: {time}", sw.Elapsed);
+        logger.LogInformation("Finished unpickling. Time passed: {Time}", sw.Elapsed);
         return result;
     }
 
     public void WriteUnfilteredFiles(Dictionary<string, Dictionary<string, List<SortedDictionary<string, object>>>> rawGameParams, string outputBasePath)
     {
         const string filePrefix = "unfiltered_";
-        logger.LogInformation("Writing files for unfiltered data in directory {} with prefix {}.", outputBasePath, filePrefix);
+        logger.LogInformation("Writing files for unfiltered data in directory {} with prefix {}", outputBasePath, filePrefix);
         var serializer = new JsonSerializer
         {
             Formatting = Formatting.Indented,
@@ -56,13 +56,13 @@ internal class GameDataUnpackService : IGameDataUnpackService
             }
         }
 
-        logger.LogInformation("Finished writing unfiltered data.");
+        logger.LogInformation("Finished writing unfiltered data");
     }
 
     public void WriteFilteredFiles(Dictionary<string, Dictionary<string, List<WgObject>>> refinedGameParams, string outputBasePath)
     {
         const string filePrefix = "filtered_";
-        logger.LogInformation("Writing files for filtered data in directory {} with prefix {}.", outputBasePath, filePrefix);
+        logger.LogInformation("Writing files for filtered data in directory {} with prefix {}", outputBasePath, filePrefix);
         var serializer = new JsonSerializer
         {
             Formatting = Formatting.Indented,
@@ -80,6 +80,6 @@ internal class GameDataUnpackService : IGameDataUnpackService
             }
         }
 
-        logger.LogInformation("Finished writing filtered data.");
+        logger.LogInformation("Finished writing filtered data");
     }
 }

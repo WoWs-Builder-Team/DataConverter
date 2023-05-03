@@ -47,11 +47,11 @@ internal class DataConverterService : IDataConverterService
             {
                 (string? nation, List<WgObject>? data) = nationDataPair;
 
-                logger.LogInformation("Converting category: {category} - nation: {nation}", categoryName, nation);
+                logger.LogInformation("Converting category: {Category} - nation: {Nation}", categoryName, nation);
                 counter++;
                 if (counter % 10 == 0)
                 {
-                    logger.LogInformation("Processed {counter} dictionaries.", counter);
+                    logger.LogInformation("Processed {Counter} dictionaries", counter);
                 }
 
                 string fileName = nation + ".json";
@@ -88,7 +88,7 @@ internal class DataConverterService : IDataConverterService
 
                         break;
                     case "Ship":
-                        logger.LogInformation("Ships to process for {nation}: {count}", nation, data.Count);
+                        logger.LogInformation("Ships to process for {Nation}: {Count}", nation, data.Count);
                         convertedData = ShipConverter.ConvertShips(data.Cast<WgShip>(), nation, await shipToolDataTask, logger);
                         convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
 
@@ -108,7 +108,7 @@ internal class DataConverterService : IDataConverterService
                         if (!reportedTypes.Contains(categoryName))
                         {
                             reportedTypes.Add(categoryName);
-                            logger.LogWarning("Type not found: {category}", categoryName);
+                            logger.LogWarning("Type not found: {Category}", categoryName);
                         }
 
                         break;
@@ -142,7 +142,7 @@ internal class DataConverterService : IDataConverterService
         try
         {
             string content = await client.GetStringAsync(Constants.ShiptoolDataUrl);
-            logger.LogInformation("Received remote json data from shiptool.");
+            logger.LogInformation("Received remote json data from shiptool");
             return JsonConvert.DeserializeObject<ShiptoolData>(content)!;
         }
         catch (Exception e)

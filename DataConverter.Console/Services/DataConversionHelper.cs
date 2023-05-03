@@ -8,7 +8,7 @@ using WowsShipBuilder.GameParamsExtractor.Services;
 
 namespace DataConverter.Console.Services;
 
-internal class DataConversionHelper
+internal sealed class DataConversionHelper
 {
     private readonly IGameDataUnpackService unpackService;
 
@@ -42,7 +42,7 @@ internal class DataConversionHelper
 
         if (Directory.Exists(options.OutputDirectory) && Directory.GetFiles(options.OutputDirectory).Any())
         {
-            logger.LogWarning("Specified output directory is not empty, old files may get mixed into the conversion results.");
+            logger.LogWarning("Specified output directory is not empty, old files may get mixed into the conversion results");
         }
 
         var extractionResult = unpackService.ExtractAndRefineGameParams(options.ToExtractionOptions());

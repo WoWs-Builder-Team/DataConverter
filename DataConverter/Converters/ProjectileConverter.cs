@@ -231,15 +231,15 @@ namespace DataConverter.Converters
                         {
                             float range = data[0];
                             float dmgCoeff = data[1];
-                            if (pointsOfDamage.ContainsKey(dmgCoeff))
+                            if (pointsOfDamage.TryGetValue(dmgCoeff, out List<float>? value))
                             {
-                                pointsOfDamage[dmgCoeff].Add(range);
-                                pointsOfDamage[dmgCoeff].Sort();
-                                pointsOfDamage[dmgCoeff].Reverse();
+                                value.Add(range);
+                                value.Sort();
+                                value.Reverse();
                             }
                             else
                             {
-                                pointsOfDamage.Add(dmgCoeff, new List<float> { range });
+                                pointsOfDamage.Add(dmgCoeff, new() { range });
                             }
                         }
 

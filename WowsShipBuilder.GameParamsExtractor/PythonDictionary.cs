@@ -1,10 +1,12 @@
 // source for the custom unpickler: https://github.com/CruleD/WoWs-GameParams-Dumper/blob/master/WoWs%20GameParams%20Dumper/CustomUnpicklerClass.cs
 
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using Razorvine.Pickle;
 
 namespace WowsShipBuilder.GameParamsExtractor;
 
+[SuppressMessage("Naming", "CA1707", Justification = "underscores required due to library compatibility")]
 public class PythonDictionary : Dictionary<string, object>
 {
     public void __setstate__(Hashtable values)
