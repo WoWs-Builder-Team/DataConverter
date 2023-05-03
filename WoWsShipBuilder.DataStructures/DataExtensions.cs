@@ -24,4 +24,47 @@ public static class DataExtensions
             MinRange = minRange,
         };
     }
+
+    public static double CalculateHorizontalDispersion(this Dispersion dispersion, double range, double dispersionModifier)
+    {
+        // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
+        double x = range / 30;
+        double effectiveTaperDist = dispersion.TaperDist / 30;
+        if (x <= effectiveTaperDist)
+        {
+            return (x * (dispersion.IdealRadius - dispersion.MinRadius) / dispersion.IdealDistance + dispersion.MinRadius * (x / effectiveTaperDist)) * 30 * dispersionModifier;
+        }
+
+        return (x * (dispersion.IdealRadius - dispersion.MinRadius) / dispersion.IdealDistance + dispersion.MinRadius) * 30 * dispersionModifier;
+    }
+
+    public static double CalculateVerticalDispersion(this Dispersion dispersion, double maxRange, double horizontalDispersion, double range = -1)
+    {
+        // Calculation according to https://www.reddit.com/r/WorldOfWarships/comments/l1dpzt/reverse_engineered_dispersion_ellipse_including/
+        maxRange /= 30;
+        double x = range >= 0 ? range / 30 : maxRange;
+        double delimDist = maxRange * dispersion.Delim;
+
+        double verticalCoeff;
+        if (x < delimDist)
+        {
+            verticalCoeff = dispersion.RadiusOnZero + (dispersion.RadiusOnDelim - dispersion.RadiusOnZero) * (x / delimDist);
+        }
+        else
+        {
+            verticalCoeff = dispersion.RadiusOnDelim + (dispersion.RadiusOnMax - dispersion.RadiusOnDelim) * (x - delimDist) / (maxRange - delimDist);
+        }
+
+        return horizontalDispersion * verticalCoeff;
+    }
+
+    public static DispersionContainer CalculateDispersion(this Dispersion dispersion, double maxRange, double dispersionModifier, double range = -1)
+    {
+        var horizontalDisp = CalculateHorizontalDispersion(dispersion, range >= 0 ? range : maxRange, dispersionModifier);
+        var verticalDisp = CalculateVerticalDispersion(dispersion, maxRange, horizontalDisp, range);
+
+        return new(horizontalDisp, verticalDisp);
+    }
 }
+
+public sealed record DispersionContainer(double Horizontal, double Vertical);

@@ -250,7 +250,7 @@ public static class ShipConverter
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
                 Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stHullModule)).ToList(),
-                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.BurstArtilleryModule),
+                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule),
             };
             var dispersionGun = wgMainBattery.Guns.Values.First();
             var turretDispersion = new Dispersion
@@ -266,8 +266,9 @@ public static class ShipConverter
             };
 
             var maxRange = decimal.ToDouble(turretModule.MaxRange);
-            turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateHorizontalDispersion(maxRange)), 1);
-            turretDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(turretDispersion.CalculateVerticalDispersion(maxRange)), 1);
+            var dispersion = turretDispersion.CalculateDispersion(maxRange, 1);
+            turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(dispersion.Horizontal), 1);
+            turretDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(dispersion.Vertical), 1);
 
             turretModule.DispersionValues = turretDispersion;
             DataCache.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());

@@ -9,7 +9,7 @@ public class WgMainBattery : WgArmamentModule
 {
     public Dictionary<string, WgGun> Guns { get; init; } = new();
 
-    public WgBurstArtilleryModule? BurstArtilleryModule { get; init; }
+    public WgBurstArtilleryModule? SwitchableModeArtilleryModule { get; init; }
 
     public decimal MaxDist { get; init; }
 
