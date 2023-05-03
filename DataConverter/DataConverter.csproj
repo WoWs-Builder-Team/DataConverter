@@ -1,11 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <LangVersion>10</LangVersion>
-    </PropertyGroup>
-
     <ItemGroup>
         <PackageReference Include="JsonSubTypes" Version="1.9.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />

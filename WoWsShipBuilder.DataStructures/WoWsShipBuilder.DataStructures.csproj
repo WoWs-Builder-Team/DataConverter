@@ -1,11 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>10</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-    <PropertyGroup>
         <VersionPrefix>3.1.5</VersionPrefix>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>ShipBuilder Data structures</Title>
