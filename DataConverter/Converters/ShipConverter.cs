@@ -6,6 +6,7 @@ using System.Linq;
 using DataConverter.Data;
 using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
@@ -140,9 +141,31 @@ public static class ShipConverter
 
     private static SpecialAbility ProcessRageMode(WgRageMode rageMode)
     {
+        var modifierList = rageMode.Modifiers.Where(x => x.Value.Type is JTokenType.Float or JTokenType.Integer)
+            .ToDictionary(x => x.Key, x => x.Value.Value<float>());
+        foreach (var modifierObject in rageMode.Modifiers.Where(x => x.Value.Type is JTokenType.Object))
+        {
+            var key = modifierObject.Key;
+            var modifiers = modifierObject.Value.ToObject<Dictionary<string, float>>();
+            bool allEquals = modifiers!.Values.Distinct().Count() == 1;
+            if (allEquals)
+            {
+                modifierList.Add($"{key}", modifiers.First().Value);
+                DataCache.TranslationNames.Add(key);
+            }
+            else
+            {
+                foreach (var (modifierName, modifierValue) in modifiers)
+                {
+                    modifierList.Add($"{key}_{modifierName}", modifierValue);
+                    DataCache.TranslationNames.Add($"{key}_{modifierName}");
+                }
+            }
+        }
+
         var specialAbility = new SpecialAbility()
         {
-            Modifiers = rageMode.Modifiers,
+            Modifiers = modifierList,
             Name = rageMode.RageModeName,
             DecrementPeriod = rageMode.DecrementPeriod,
             Duration = rageMode.BoostDuration,
@@ -183,7 +206,9 @@ public static class ShipConverter
             "unavailable" => ShipCategory.Disabled,
             "legendaryBattle" => ShipCategory.TechTree,
             "superShip" => ShipCategory.SuperShip,
-            "coopOnly" => ShipCategory.Disabled, _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
+            "coopOnly" => ShipCategory.Disabled,
+            "event" => ShipCategory.Disabled,
+            _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
         };
     }
 
