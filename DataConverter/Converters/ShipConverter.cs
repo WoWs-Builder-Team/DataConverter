@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using DataConverter.Data;
 using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
@@ -77,7 +79,7 @@ public static class ShipConverter
             count++;
             if (count % 10 == 0)
             {
-                logger?.LogInformation("Processed {count} ships for {nation}", count, nation);
+                logger?.LogInformation("Processed {Count} ships for {Nation}", count, nation);
             }
         }
 
@@ -124,7 +126,6 @@ public static class ShipConverter
         Dictionary<string, WgSpecialAbility> wgSpecialAbilityList = wgShip.ModulesArmaments.ModulesOfType<WgSpecialAbility>();
         if (wgSpecialAbilityList.Count > 1)
         {
-            //throw new InvalidOperationException($"Too many special abilities for ship {wgShip.Index}");
             logger?.LogWarning("Multiple special abilities for ship {Index}", wgShip.Index);
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
             return ProcessRageMode(wgAbility);
@@ -140,9 +141,31 @@ public static class ShipConverter
 
     private static SpecialAbility ProcessRageMode(WgRageMode rageMode)
     {
+        var modifierList = rageMode.Modifiers.Where(x => x.Value.Type is JTokenType.Float or JTokenType.Integer)
+            .ToDictionary(x => x.Key, x => x.Value.Value<float>());
+        foreach (var modifierObject in rageMode.Modifiers.Where(x => x.Value.Type is JTokenType.Object))
+        {
+            var key = modifierObject.Key;
+            var modifiers = modifierObject.Value.ToObject<Dictionary<string, float>>();
+            bool allEquals = modifiers!.Values.Distinct().Count() == 1;
+            if (allEquals)
+            {
+                modifierList.Add($"{key}", modifiers.First().Value);
+                DataCache.TranslationNames.Add(key);
+            }
+            else
+            {
+                foreach (var (modifierName, modifierValue) in modifiers)
+                {
+                    modifierList.Add($"{key}_{modifierName}", modifierValue);
+                    DataCache.TranslationNames.Add($"{key}_{modifierName}");
+                }
+            }
+        }
+
         var specialAbility = new SpecialAbility()
         {
-            Modifiers = rageMode.Modifiers,
+            Modifiers = modifierList,
             Name = rageMode.RageModeName,
             DecrementPeriod = rageMode.DecrementPeriod,
             Duration = rageMode.BoostDuration,
@@ -183,7 +206,9 @@ public static class ShipConverter
             "unavailable" => ShipCategory.Disabled,
             "legendaryBattle" => ShipCategory.TechTree,
             "superShip" => ShipCategory.SuperShip,
-            "coopOnly" => ShipCategory.Disabled, _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
+            "coopOnly" => ShipCategory.Disabled,
+            "event" => ShipCategory.Disabled,
+            _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
         };
     }
 
@@ -579,6 +604,9 @@ public static class ShipConverter
                 {
                     var tubesPerLoader = loaders.Where(x => x.Key.Equals(bowLoader.Key)).Select(x => x.Value).Single();
                     var setup = $"{bowLoader.Value / tubesPerLoader}x{tubesPerLoader}";
+
+                    // Disable CA1854 since TryGetValue would not modify the value in the dictionary
+#pragma warning disable CA1854
                     if (bowLoadersAmounts.ContainsKey(setup))
                     {
                         bowLoadersAmounts[setup]++;
@@ -602,6 +630,7 @@ public static class ShipConverter
                         sternLoadersAmounts.Add(setup, 1);
                     }
                 }
+#pragma warning restore CA1854
 
                 List<string> bowLoadersSetup = new();
                 List<string> sternLoadersSetup = new();
@@ -611,7 +640,7 @@ public static class ShipConverter
                     if (bowLoadersAmount.Value > 1)
                     {
                         var t = bowLoadersAmount.Key.Split('x');
-                        setup = $"{int.Parse(t[0]) * bowLoadersAmount.Value}x{t[1]}";
+                        setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * bowLoadersAmount.Value}x{t[1]}";
                     }
                     else
                     {
@@ -627,7 +656,7 @@ public static class ShipConverter
                     if (sternLoadersAmount.Value > 1)
                     {
                         var t = sternLoadersAmount.Key.Split('x');
-                        setup = $"{int.Parse(t[0]) * sternLoadersAmount.Value}x{t[1]}";
+                        setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * sternLoadersAmount.Value}x{t[1]}";
                     }
                     else
                     {
@@ -788,7 +817,7 @@ public static class ShipConverter
     private static ComponentType FindModuleType(string rawModuleType, ILogger? logger)
     {
         rawModuleType = rawModuleType.TrimStart('_');
-        string normalizedInput = rawModuleType.First().ToString().ToUpper() + rawModuleType[1..];
+        string normalizedInput = rawModuleType.First().ToString().ToUpper(CultureInfo.InvariantCulture) + rawModuleType[1..];
         ComponentType componentType = normalizedInput switch
         {
             "Artillery" => ComponentType.Artillery,
@@ -814,7 +843,7 @@ public static class ShipConverter
         if (componentType == ComponentType.None && !ReportedTypes.Contains(normalizedInput))
         {
             ReportedTypes.Add(normalizedInput);
-            logger?.LogWarning("Cannot find type for provided string: {normalizedInput}", normalizedInput);
+            logger?.LogWarning("Cannot find type for provided string: {NormalizedInput}", normalizedInput);
         }
 
         return componentType;

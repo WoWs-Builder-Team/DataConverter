@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace WowsShipBuilder.GameParamsExtractor.Services;
 
-internal class LocalizationExtractor : ILocalizationExtractor
+internal sealed class LocalizationExtractor : ILocalizationExtractor
 {
     private const string LocalizationDirectory = "Localization";
 

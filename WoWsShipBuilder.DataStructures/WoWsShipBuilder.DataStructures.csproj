@@ -1,31 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>10</LangVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-    <PropertyGroup>
-        <VersionPrefix>3.1.5</VersionPrefix>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>ShipBuilder Data structures</Title>
-        <Authors>WoWs-Builder-Team</Authors>
-        <Description>The data structures used to store gamedata required for the ShipBuilder application.</Description>
-        <PackageProjectUrl>https://github.com/WoWs-Builder-Team/DataConverter/</PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
-        <PackageId>WoWsShipBuilder.DataStructures</PackageId>
-        <RepositoryType>git</RepositoryType>
-        <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <TargetFramework />
+  </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="JsonSubTypes" Version="1.9.0" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-      <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-    </ItemGroup>
+  <PropertyGroup>
+    <VersionPrefix>3.1.6</VersionPrefix>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Title>ShipBuilder Data structures</Title>
+    <Authors>WoWs-Builder-Team</Authors>
+    <Description>The data structures used to store gamedata required for the ShipBuilder application.</Description>
+    <PackageProjectUrl>https://github.com/WoWs-Builder-Team/DataConverter/</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/WoWs-Builder-Team/DataConverter/</RepositoryUrl>
+    <PackageId>WoWsShipBuilder.DataStructures</PackageId>
+    <RepositoryType>git</RepositoryType>
+    <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonSubTypes" Version="2.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>

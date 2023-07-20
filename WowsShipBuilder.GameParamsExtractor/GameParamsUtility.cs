@@ -96,7 +96,7 @@ internal static class GameParamsUtility
         //we can make this a normal dictionary to reduce overhead. or we can keep it as sorted for easier human reading.
         List<SortedDictionary<string, object>> nationEntries = nationGroup.Select(x => new SortedDictionary<string, object>(x.Value)).ToList();
 
-        logger?.LogInformation("Number of element for {groupName} - {nation}: {entries}", groupName, nationGroup.Key, nationEntries.Count);
+        logger?.LogInformation("Number of element for {GroupName} - {Nation}: {Entries}", groupName, nationGroup.Key, nationEntries.Count);
 
         // process in here the single stuff we improved. Example is joining all the ships armament in one single dictionary
 
@@ -111,7 +111,7 @@ internal static class GameParamsUtility
         string jsonData = JsonConvert.SerializeObject(filteredEntries);
         var objectList = JsonConvert.DeserializeObject<List<WgObject>>(jsonData);
 
-        logger?.LogInformation("End processing for {groupName} - {nation}", groupName, nationGroup.Key);
+        logger?.LogInformation("End processing for {GroupName} - {Nation}", groupName, nationGroup.Key);
         return new(objectList ?? throw new InvalidOperationException("Object list was null"), returnUnfiltered ? nationEntries : null);
     }
 
@@ -155,11 +155,10 @@ internal static class GameParamsUtility
                 if (singleStat.Value is PythonDictionary gunData)
                 {
                     //if it has typeinfo, it's always a gun and not a dictionary of values.
-                    if (gunData.ContainsKey("typeinfo"))
+                    if (gunData.TryGetValue("typeinfo", out object? typeInfo))
                     {
                         if (string.IsNullOrEmpty(gunsName))
                         {
-                            var typeInfo = gunData["typeinfo"];
                             var species = ConvertDataValue(typeInfo)["species"];
                             if (species != null && SpeciesMap.ContainsKey(species.ToString()!))
                             {

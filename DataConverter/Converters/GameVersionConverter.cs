@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Versioning;
@@ -21,7 +22,7 @@ public static class GameVersionConverter
         var typeGroup = match.Groups["type"];
 
         var version = mainVersionGroup.Success ? Version.Parse(mainVersionGroup.Value) : throw new InvalidOperationException("Main version not found in version string");
-        int iteration = iterationGroup.Success ? int.Parse(iterationGroup.Value) : 1;
+        int iteration = iterationGroup.Success ? int.Parse(iterationGroup.Value, CultureInfo.InvariantCulture) : 1;
         var type = typeGroup.Success ? Enum.Parse<GameVersionType>(typeGroup.Value, true) : GameVersionType.Live;
         return new(version, type, iteration);
     }

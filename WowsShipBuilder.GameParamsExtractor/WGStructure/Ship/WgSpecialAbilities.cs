@@ -1,4 +1,6 @@
-﻿namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
+﻿using Newtonsoft.Json.Linq;
+
+namespace WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -20,7 +22,7 @@ public class WgSpecialAbility : WgArmamentModule
 
 public class WgRageMode
 {
-    public Dictionary<string, float> Modifiers { get; init; } = new();
+    public Dictionary<string, JToken> Modifiers { get; init; } = new();
     public string RageModeName { get; init; } = string.Empty;
     public double DecrementPeriod { get; init; }
     public double BoostDuration { get; init; }
