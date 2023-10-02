@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using DataConverter.Data;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Captain;
@@ -30,7 +30,7 @@ public static class CaptainConverter
         Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
 
         //deserialize into an object
-        var skillsTiers = JsonConvert.DeserializeObject<SkillsTiers>(skillsJsonInput) ?? throw new InvalidOperationException();
+        var skillsTiers = JsonSerializer.Deserialize<SkillsTiers>(skillsJsonInput, Constants.SerializerOptions) ?? throw new InvalidOperationException();
 
         bool addedDefault = false;
 
@@ -319,11 +319,11 @@ public static class CaptainConverter
     private static List<SkillPosition> FindSkillPosition(SkillsTiers skillsTiers, int skillNumber)
     {
         var positions = new List<SkillPosition>();
-        foreach ((ShipClass shipClass, List<SkillRow> skillRow) in skillsTiers.PositionsByClass)
+        foreach ((ShipClass shipClass, List<SkillRow> skillRow) in skillsTiers.GetPositionsByClass())
         {
             for (var skillTier = 0; skillTier < skillRow.Count; skillTier++)
             {
-                List<int> skillsInRow = skillRow[skillTier].SkillGroups.SelectMany(group => group).ToList();
+                List<int> skillsInRow = skillRow[skillTier].GetSkillGroups().SelectMany(group => group).ToList();
                 int skillIndex = skillsInRow.IndexOf(skillNumber);
                 if (skillIndex >= 0)
                 {

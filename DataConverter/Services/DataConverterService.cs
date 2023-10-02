@@ -3,12 +3,13 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 using DataConverter.Converters;
 using DataConverter.Data;
 using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Projectile;
@@ -21,12 +22,6 @@ internal class DataConverterService : IDataConverterService
     private readonly ILogger<DataConverterService> logger;
 
     private readonly HttpClient client;
-
-    private readonly JsonSerializerSettings serializerSettings = new()
-    {
-        NullValueHandling = NullValueHandling.Ignore,
-        ContractResolver = new ShouldSerializeContractResolver(),
-    };
 
     private readonly ConcurrentBag<string> reportedTypes = new();
 
@@ -56,51 +51,49 @@ internal class DataConverterService : IDataConverterService
 
                 string fileName = nation + ".json";
                 string? convertedFileContent;
-                object convertedData;
-
                 switch (categoryName)
                 {
                     case "Ability":
-                        convertedData = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>());
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var consumableData = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>());
+                        convertedFileContent = JsonSerializer.Serialize(consumableData, Constants.SerializerOptions);
 
                         break;
                     case "Aircraft":
-                        convertedData = AircraftConverter.ConvertAircraft(data.Cast<WgAircraft>());
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var aircraftData = AircraftConverter.ConvertAircraft(data.Cast<WgAircraft>());
+                        convertedFileContent = JsonSerializer.Serialize(aircraftData, Constants.SerializerOptions);
 
                         break;
                     case "Crew":
                         string skillsList = CaptainConverter.LoadEmbeddedSkillData();
-                        convertedData = CaptainConverter.ConvertCaptain(data.Cast<WgCaptain>(), skillsList, nation.Equals("Common"));
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var captainData = CaptainConverter.ConvertCaptain(data.Cast<WgCaptain>(), skillsList, nation.Equals("Common"));
+                        convertedFileContent = JsonSerializer.Serialize(captainData, Constants.SerializerOptions);
 
                         break;
                     case "Modernization":
-                        convertedData = ModernizationConverter.ConvertModernization(data.Cast<WgModernization>());
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var modernizationData = ModernizationConverter.ConvertModernization(data.Cast<WgModernization>());
+                        convertedFileContent = JsonSerializer.Serialize(modernizationData, Constants.SerializerOptions);
 
                         break;
                     case "Projectile":
                         var filteredData = data.OfType<WgProjectile>();
-                        convertedData = ProjectileConverter.ConvertProjectile(filteredData, logger);
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var projectileData = ProjectileConverter.ConvertProjectile(filteredData, logger);
+                        convertedFileContent = JsonSerializer.Serialize(projectileData, Constants.SerializerOptions);
 
                         break;
                     case "Ship":
                         logger.LogInformation("Ships to process for {Nation}: {Count}", nation, data.Count);
-                        convertedData = ShipConverter.ConvertShips(data.Cast<WgShip>(), nation, await shipToolDataTask, logger);
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var shipData = ShipConverter.ConvertShips(data.Cast<WgShip>(), nation, await shipToolDataTask, logger);
+                        convertedFileContent = JsonSerializer.Serialize(shipData, Constants.SerializerOptions);
 
                         break;
                     case "Unit":
-                        convertedData = ModuleConverter.ConvertModule(data.Cast<WgModule>());
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var moduleData = ModuleConverter.ConvertModule(data.Cast<WgModule>());
+                        convertedFileContent = JsonSerializer.Serialize(moduleData, Constants.SerializerOptions);
 
                         break;
                     case "Exterior":
-                        convertedData = ExteriorConverter.ConvertExterior(data.Cast<WgExterior>(), logger);
-                        convertedFileContent = JsonConvert.SerializeObject(convertedData, serializerSettings);
+                        var exteriorData = ExteriorConverter.ConvertExterior(data.Cast<WgExterior>(), logger);
+                        convertedFileContent = JsonSerializer.Serialize(exteriorData, Constants.SerializerOptions);
 
                         break;
                     default:
@@ -122,7 +115,7 @@ internal class DataConverterService : IDataConverterService
             });
         }
 
-        string shipSummaryString = JsonConvert.SerializeObject(ShipConverter.ShipSummaries);
+        string shipSummaryString = JsonSerializer.Serialize(ShipConverter.ShipSummaries, Constants.SerializerOptions);
         resultFiles.Add(new(shipSummaryString, "Summary", "Common.json"));
 
         return new(resultFiles);
@@ -141,9 +134,9 @@ internal class DataConverterService : IDataConverterService
         logger.LogInformation("Fetching remote json data from shiptool...");
         try
         {
-            string content = await client.GetStringAsync(Constants.ShiptoolDataUrl);
+            var result = await client.GetFromJsonAsync<ShiptoolData>(Constants.ShiptoolDataUrl, Constants.SerializerOptions);
             logger.LogInformation("Received remote json data from shiptool");
-            return JsonConvert.DeserializeObject<ShiptoolData>(content)!;
+            return result!;
         }
         catch (Exception e)
         {

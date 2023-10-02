@@ -11,12 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="ShipTests\TestData\SKILLS_BY_TIER.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.11.0" />
     <PackageReference Include="Moq" Version="4.18.4" />
     <PackageReference Include="NUnit" Version="3.13.3" />
@@ -34,6 +28,10 @@
     <None Update="ShipTests\TestData\*.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ShipTests\" />
   </ItemGroup>
 
 </Project>
