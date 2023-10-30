@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading.Tasks;
 using DataConverter.Data;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using WoWsShipBuilder.DataStructures.Ship;
 using WoWsShipBuilder.DataStructures.Versioning;
 
@@ -29,7 +30,7 @@ internal class VersionCheckService : IVersionCheckService
 
     public async Task<VersionInfo> CheckFileVersionsAsync(DataConversionResult conversionResult, GameVersion gameVersion, string cdnHost)
     {
-        var oldVersionInfo = await client.GetJsonAsync<VersionInfo>($"https://{cdnHost}/api/{gameVersion.VersionType.ToString().ToLowerInvariant()}/VersionInfo.json");
+        var oldVersionInfo = await client.GetFromJsonAsync<VersionInfo>($"https://{cdnHost}/api/{gameVersion.VersionType.ToString().ToLowerInvariant()}/VersionInfo.json");
         if (oldVersionInfo is null)
         {
             logger.LogWarning("Unable to retrieve version info from cdn host {} for server type {}", cdnHost, gameVersion.VersionType);
@@ -42,7 +43,7 @@ internal class VersionCheckService : IVersionCheckService
     public async Task WriteVersionInfo(VersionInfo versionInfo, string outputBasePath)
     {
         Directory.CreateDirectory(outputBasePath);
-        string fileContent = JsonConvert.SerializeObject(versionInfo);
+        string fileContent = JsonSerializer.Serialize(versionInfo, Constants.SerializerOptions);
         await File.WriteAllTextAsync(Path.Join(outputBasePath, VersionInfoFileName), fileContent);
     }
 
