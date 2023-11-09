@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -252,6 +253,10 @@ public static class CaptainConverter
         //collect all skill's modifiers with trigger condition
         Dictionary<string, JToken> wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.Modifiers;
         Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
+        if (currentWgSkill.Key.Equals("DefenceUw"))
+        {
+            conditionalModifiers.Add("regenCrewAdditionalConsumables", 1);
+        }
 
         skill.ConditionalModifiers = conditionalModifiers;
         skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.TriggerType;
@@ -266,8 +271,15 @@ public static class CaptainConverter
     private static Dictionary<string, float> ProcessSkillModifiers(Dictionary<string, JToken> skillModifiers)
     {
         Dictionary<string, float> modifiers = new();
+        var hasConsumableReloadModifiers = false;
         foreach ((string? s, var token) in skillModifiers)
         {
+            if (s.Equals("reloadFactor") || s.Equals("excludedConsumables"))
+            {
+                hasConsumableReloadModifiers = true;
+                continue;
+            }
+
             if (token.Type is JTokenType.Float or JTokenType.Integer)
             {
                 modifiers.Add(s, token.Value<float>());
@@ -300,7 +312,26 @@ public static class CaptainConverter
             }
         }
 
+        if (!hasConsumableReloadModifiers)
+        {
+            return modifiers;
+        }
+
+        var reloadModifiers = ComputeConsumableReloadModifiers(skillModifiers);
+        foreach (var modifierEntry in reloadModifiers)
+        {
+            modifiers.Add(modifierEntry.Key, modifierEntry.Value);
+        }
+
         return modifiers;
+    }
+
+    private static Dictionary<string, float> ComputeConsumableReloadModifiers(Dictionary<string, JToken> skillModifiers)
+    {
+        var reloadCoeff = skillModifiers["reloadFactor"].Value<float>();
+        var excludedConsumables = skillModifiers["excludedConsumables"].Values<string>();
+        var availableConsumables = ImmutableArray.Create("airDefenseDisp", "scout", "regenCrew", "sonar", "rls", "crashCrew", "smokeGenerator", "speedBoosters", "artilleryBoosters", "fighter", "torpedoReloader");
+        return availableConsumables.Except(excludedConsumables).Select(c => $"invisible_{c}ReloadCoeff").Select(c => (c, reloadCoeff)).Append(("allConsumableReloadTime", reloadCoeff)).ToDictionary(x => x.Item1, x => x.reloadCoeff);
     }
 
     /// <summary>
