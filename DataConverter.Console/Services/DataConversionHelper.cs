@@ -38,6 +38,8 @@ internal sealed class DataConversionHelper
             gameVersion = gameVersion with { VersionType = options.VersionType.Value };
             logger.LogInformation("Overriding version type with type {}", gameVersion.VersionType);
         }
+
+        DataCache.CurrentVersion = gameVersion;
         logger.LogInformation("Starting data conversion with game version {} and version type {}", gameVersion.MainVersion, gameVersion.VersionType);
 
         if (Directory.Exists(options.OutputDirectory) && Directory.GetFiles(options.OutputDirectory).Any())

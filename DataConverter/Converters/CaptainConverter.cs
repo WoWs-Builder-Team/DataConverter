@@ -253,7 +253,7 @@ public static class CaptainConverter
         //collect all skill's modifiers with trigger condition, 44 = IRPR, 81 = Furious
         var conditionalModifierGroups = new List<ConditionalModifierGroup>();
         Dictionary<string, JToken> wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.Modifiers;
-        if (currentWgSkill.Value.SkillType == 44)
+        if (currentWgSkill.Value.SkillType == 44 && DataCache.CurrentVersion.MainVersion >= Version.Parse("0.12.10"))
         {
             var trigger = currentWgSkill.Value.LogicTrigger;
             ImmutableDictionary<string, float> repeatableModifiers = ProcessSkillModifiers(wgConditionalModifiers).ToImmutableDictionary();
@@ -267,7 +267,7 @@ public static class CaptainConverter
             var onetimeModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, onetimeModifiers, ActivationLimit: 1);
             conditionalModifierGroups.Add(onetimeModifierGroup);
         }
-        else if (currentWgSkill.Value.SkillType == 81)
+        else if (currentWgSkill.Value.SkillType == 81 && DataCache.CurrentVersion.MainVersion >= Version.Parse("0.12.10"))
         {
             var trigger = currentWgSkill.Value.LogicTrigger;
             var firstModifier = trigger.OtherData["BurnFlood_1"].ToObject<Dictionary<string, float>>()!.Single();
