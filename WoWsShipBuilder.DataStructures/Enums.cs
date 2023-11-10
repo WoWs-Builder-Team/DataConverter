@@ -162,7 +162,6 @@ public enum ShipCategory
     TestShip,
     Disabled,
     Clan,
-    SuperShip,
 }
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
