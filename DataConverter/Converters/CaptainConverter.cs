@@ -250,19 +250,45 @@ public static class CaptainConverter
         Dictionary<string, float> modifiers = ProcessSkillModifiers(currentWgSkill.Value.Modifiers);
         skill.Modifiers = modifiers;
 
-        //collect all skill's modifiers with trigger condition
+        //collect all skill's modifiers with trigger condition, 44 = IRPR, 81 = Furious
+        var conditionalModifierGroups = new List<ConditionalModifierGroup>();
         Dictionary<string, JToken> wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.Modifiers;
-        Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
-        if (currentWgSkill.Key.Equals("DefenceUw"))
+        if (currentWgSkill.Value.SkillType == 44)
         {
-            conditionalModifiers.Add("regenCrewAdditionalConsumables", 1);
+            var trigger = currentWgSkill.Value.LogicTrigger;
+            ImmutableDictionary<string, float> repeatableModifiers = ProcessSkillModifiers(wgConditionalModifiers).ToImmutableDictionary();
+            var repeatableModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, repeatableModifiers, LocalizationOverride: string.Empty);
+            conditionalModifierGroups.Add(repeatableModifierGroup);
+
+            var onetimeModifiers = new Dictionary<string, float>
+            {
+                { "regenCrewAdditionalConsumables", 1 },
+            }.ToImmutableDictionary();
+            var onetimeModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, onetimeModifiers, ActivationLimit: 1);
+            conditionalModifierGroups.Add(onetimeModifierGroup);
+        }
+        else if (currentWgSkill.Value.SkillType == 81)
+        {
+            var trigger = currentWgSkill.Value.LogicTrigger;
+            var firstModifier = trigger.OtherData["BurnFlood_1"].ToObject<Dictionary<string, float>>()!.Single();
+            var otherModifiers = trigger.OtherData["BurnFlood_2"].ToObject<Dictionary<string, float>>()!.Single();
+            var conditionalModifiers = new Dictionary<string, float>
+            {
+                { $"repeatable_first_{firstModifier.Key}", firstModifier.Value },
+                { $"repeatable_other_{otherModifiers.Key}", otherModifiers.Value },
+            }.ToImmutableDictionary();
+            var modifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers, ActivationLimit: 6);
+            conditionalModifierGroups.Add(modifierGroup);
+        }
+        else if (wgConditionalModifiers.Count > 0)
+        {
+            Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
+            conditionalModifierGroups.Add(new(currentWgSkill.Value.LogicTrigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers.ToImmutableDictionary()));
         }
 
-        skill.ConditionalModifiers = conditionalModifiers;
-        skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.TriggerType;
-        skill.ConditionalTriggerDescription = !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty;
-        DataCache.TranslationNames.Add(skill.ConditionalTriggerType);
-        DataCache.TranslationNames.UnionWith(skill.ConditionalModifiers.Keys);
+        skill.ConditionalModifierGroups = conditionalModifierGroups;
+        DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.Select(g => g.TriggerType));
+        DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.SelectMany(g => g.Modifiers.Keys));
         DataCache.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
         DataCache.TranslationNames.UnionWith(modifiers.Keys);
         return skill;

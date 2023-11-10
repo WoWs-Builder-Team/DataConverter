@@ -18,9 +18,5 @@ public class Skill
 
     public Dictionary<string, float> Modifiers { get; set; } = new(); // modifiers for always on effects
 
-    public Dictionary<string, float> ConditionalModifiers { get; set; } = new(); // modifiers for the skill in SkillTrigger
-
-    public string ConditionalTriggerType { get; set; } = string.Empty; // add stuff from WGCaptain.SkillTrigger if you deem necessary
-
-    public string ConditionalTriggerDescription { get; set; } = string.Empty;
+    public List<ConditionalModifierGroup> ConditionalModifierGroups { get; set; } = new();
 }

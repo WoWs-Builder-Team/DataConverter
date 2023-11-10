@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -36,4 +37,7 @@ public class WgSkillTrigger
     public string TriggerDescIds { get; init; } = string.Empty;
 
     public string TriggerType { get; init; } = string.Empty;
+
+    [JsonExtensionData]
+    public Dictionary<string, JToken> OtherData { get; init; } = new();
 }
