@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
-    <TargetFramework />
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>3.1.6</VersionPrefix>
+    <VersionPrefix>4.0.0</VersionPrefix>
+<!--    <VersionSuffix>beta</VersionSuffix>-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>ShipBuilder Data structures</Title>
     <Authors>WoWs-Builder-Team</Authors>
@@ -20,9 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JsonSubTypes" Version="2.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

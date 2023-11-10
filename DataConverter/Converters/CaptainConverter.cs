@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using DataConverter.Data;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Captain;
@@ -30,7 +31,7 @@ public static class CaptainConverter
         Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
 
         //deserialize into an object
-        var skillsTiers = JsonConvert.DeserializeObject<SkillsTiers>(skillsJsonInput) ?? throw new InvalidOperationException();
+        var skillsTiers = JsonSerializer.Deserialize<SkillsTiers>(skillsJsonInput, Constants.SerializerOptions) ?? throw new InvalidOperationException();
 
         bool addedDefault = false;
 
@@ -249,15 +250,45 @@ public static class CaptainConverter
         Dictionary<string, float> modifiers = ProcessSkillModifiers(currentWgSkill.Value.Modifiers);
         skill.Modifiers = modifiers;
 
-        //collect all skill's modifiers with trigger condition
+        //collect all skill's modifiers with trigger condition, 44 = IRPR, 81 = Furious
+        var conditionalModifierGroups = new List<ConditionalModifierGroup>();
         Dictionary<string, JToken> wgConditionalModifiers = currentWgSkill.Value.LogicTrigger.Modifiers;
-        Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
+        if (currentWgSkill.Value.SkillType == 44)
+        {
+            var trigger = currentWgSkill.Value.LogicTrigger;
+            ImmutableDictionary<string, float> repeatableModifiers = ProcessSkillModifiers(wgConditionalModifiers).ToImmutableDictionary();
+            var repeatableModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, repeatableModifiers, LocalizationOverride: string.Empty);
+            conditionalModifierGroups.Add(repeatableModifierGroup);
 
-        skill.ConditionalModifiers = conditionalModifiers;
-        skill.ConditionalTriggerType = currentWgSkill.Value.LogicTrigger.TriggerType;
-        skill.ConditionalTriggerDescription = !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty;
-        DataCache.TranslationNames.Add(skill.ConditionalTriggerType);
-        DataCache.TranslationNames.UnionWith(skill.ConditionalModifiers.Keys);
+            var onetimeModifiers = new Dictionary<string, float>
+            {
+                { "regenCrewAdditionalConsumables", 1 },
+            }.ToImmutableDictionary();
+            var onetimeModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, onetimeModifiers, ActivationLimit: 1);
+            conditionalModifierGroups.Add(onetimeModifierGroup);
+        }
+        else if (currentWgSkill.Value.SkillType == 81)
+        {
+            var trigger = currentWgSkill.Value.LogicTrigger;
+            var firstModifier = trigger.OtherData["BurnFlood_1"].ToObject<Dictionary<string, float>>()!.Single();
+            var otherModifiers = trigger.OtherData["BurnFlood_2"].ToObject<Dictionary<string, float>>()!.Single();
+            var conditionalModifiers = new Dictionary<string, float>
+            {
+                { $"repeatable_first_{firstModifier.Key}", firstModifier.Value },
+                { $"repeatable_other_{otherModifiers.Key}", otherModifiers.Value },
+            }.ToImmutableDictionary();
+            var modifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers, ActivationLimit: 6);
+            conditionalModifierGroups.Add(modifierGroup);
+        }
+        else if (wgConditionalModifiers.Count > 0)
+        {
+            Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
+            conditionalModifierGroups.Add(new(currentWgSkill.Value.LogicTrigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers.ToImmutableDictionary()));
+        }
+
+        skill.ConditionalModifierGroups = conditionalModifierGroups;
+        DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.Select(g => g.TriggerType));
+        DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.SelectMany(g => g.Modifiers.Keys));
         DataCache.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
         DataCache.TranslationNames.UnionWith(modifiers.Keys);
         return skill;
@@ -266,8 +297,15 @@ public static class CaptainConverter
     private static Dictionary<string, float> ProcessSkillModifiers(Dictionary<string, JToken> skillModifiers)
     {
         Dictionary<string, float> modifiers = new();
+        var hasConsumableReloadModifiers = false;
         foreach ((string? s, var token) in skillModifiers)
         {
+            if (s.Equals("reloadFactor") || s.Equals("excludedConsumables"))
+            {
+                hasConsumableReloadModifiers = true;
+                continue;
+            }
+
             if (token.Type is JTokenType.Float or JTokenType.Integer)
             {
                 modifiers.Add(s, token.Value<float>());
@@ -300,7 +338,26 @@ public static class CaptainConverter
             }
         }
 
+        if (!hasConsumableReloadModifiers)
+        {
+            return modifiers;
+        }
+
+        var reloadModifiers = ComputeConsumableReloadModifiers(skillModifiers);
+        foreach (var modifierEntry in reloadModifiers)
+        {
+            modifiers.Add(modifierEntry.Key, modifierEntry.Value);
+        }
+
         return modifiers;
+    }
+
+    private static Dictionary<string, float> ComputeConsumableReloadModifiers(Dictionary<string, JToken> skillModifiers)
+    {
+        var reloadCoeff = skillModifiers["reloadFactor"].Value<float>();
+        var excludedConsumables = skillModifiers["excludedConsumables"].Values<string>();
+        var availableConsumables = ImmutableArray.Create("airDefenseDisp", "scout", "regenCrew", "sonar", "rls", "crashCrew", "smokeGenerator", "speedBoosters", "artilleryBoosters", "fighter", "torpedoReloader");
+        return availableConsumables.Except(excludedConsumables).Select(c => $"invisible_{c}ReloadCoeff").Select(c => (c, reloadCoeff)).Append(("allConsumableReloadTime", reloadCoeff)).ToDictionary(x => x.Item1, x => x.reloadCoeff);
     }
 
     /// <summary>
@@ -319,11 +376,11 @@ public static class CaptainConverter
     private static List<SkillPosition> FindSkillPosition(SkillsTiers skillsTiers, int skillNumber)
     {
         var positions = new List<SkillPosition>();
-        foreach ((ShipClass shipClass, List<SkillRow> skillRow) in skillsTiers.PositionsByClass)
+        foreach ((ShipClass shipClass, List<SkillRow> skillRow) in skillsTiers.GetPositionsByClass())
         {
             for (var skillTier = 0; skillTier < skillRow.Count; skillTier++)
             {
-                List<int> skillsInRow = skillRow[skillTier].SkillGroups.SelectMany(group => group).ToList();
+                List<int> skillsInRow = skillRow[skillTier].GetSkillGroups().SelectMany(group => group).ToList();
                 int skillIndex = skillsInRow.IndexOf(skillNumber);
                 if (skillIndex >= 0)
                 {

@@ -1,10 +1,9 @@
-﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using System.Text.Json.Serialization;
 
+// ReSharper disable UnusedMember.Global
 namespace WoWsShipBuilder.DataStructures;
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Nation
 {
     France,
@@ -23,7 +22,7 @@ public enum Nation
     Common,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ShipClass
 {
     Submarine,
@@ -34,7 +33,7 @@ public enum ShipClass
     Auxiliary,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ModuleType
 {
     DiveBomberTypeUnit,
@@ -53,7 +52,7 @@ public enum ModuleType
 }
 
 // When new types are added, make sure they are also added in ShipConverter.FindModuleType
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ComponentType
 {
     None,
@@ -74,7 +73,7 @@ public enum ComponentType
     DepthCharges,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PlaneType
 {
     None,
@@ -88,7 +87,7 @@ public enum PlaneType
     TacticalSkipBomber,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PlaneCategory
 {
     Cv,
@@ -97,7 +96,7 @@ public enum PlaneCategory
     Asw,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ProjectileType
 {
     Artillery,
@@ -108,7 +107,7 @@ public enum ProjectileType
     Rocket,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ShellType
 {
     SAP,
@@ -116,7 +115,7 @@ public enum ShellType
     AP,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum TorpedoType
 {
     Standard,
@@ -124,21 +123,21 @@ public enum TorpedoType
     Magnetic,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum BombType
 {
     HE,
     AP,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum RocketType
 {
     HE,
     AP,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ExteriorType
 {
     Flags,
@@ -146,7 +145,7 @@ public enum ExteriorType
     Permoflage,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum AntiAirAuraType
 {
     Near,
@@ -154,7 +153,7 @@ public enum AntiAirAuraType
     Far,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ShipCategory
 {
     TechTree,
@@ -163,10 +162,9 @@ public enum ShipCategory
     TestShip,
     Disabled,
     Clan,
-    SuperShip,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ModernizationType
 {
     Normal,
@@ -175,7 +173,7 @@ public enum ModernizationType
     Other,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum TurretOrientation
 {
     Forward,
@@ -184,7 +182,7 @@ public enum TurretOrientation
     Left,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum GameVersionType
 {
     Live,
@@ -192,12 +190,9 @@ public enum GameVersionType
     Dev1,
     Dev2,
     Dev3,
-
-    [Obsolete("Remains only for backwards compatibility with older version info files.", true)]
-    Dev,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ShipHitLocation
 {
     Bow,
@@ -209,7 +204,7 @@ public enum ShipHitLocation
     Hull,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum SubsBuoyancyStates
 {
     DeepWater,
@@ -217,7 +212,7 @@ public enum SubsBuoyancyStates
     Surface,
 }
 
-[JsonConverter(typeof(StringEnumConverter))]
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum SubTorpLauncherLoaderPosition
 {
     BowLoaders,

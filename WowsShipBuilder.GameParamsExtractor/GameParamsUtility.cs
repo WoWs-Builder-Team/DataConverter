@@ -244,7 +244,7 @@ internal static class GameParamsUtility
 
             //skip completely the ship that are not relevant
             if (shipClass.Equals("Auxiliary") || shipType.Equals("clan") || shipType.Equals("disabled") ||
-                shipType.Equals("preserved") || shipType.Equals("unavailable"))
+                shipType.Equals("preserved") || shipType.Equals("unavailable") || shipType.Equals("event"))
             {
                 continue;
             }

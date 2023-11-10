@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DataConverter.JsonData;
 
@@ -14,34 +14,16 @@ public class ShiptoolShip
     public string Index { get; set; } = string.Empty;
 
     [JsonExtensionData]
-    private Dictionary<string, JToken> AdditionalData { get; set; } = new();
-
-    public ShiptoolArmamentModule? GetArmamentModule(string key)
-    {
-        return AdditionalData.TryGetValue(key, out var token) ? token.ToObject<ShiptoolArmamentModule>() : null;
-    }
+    public Dictionary<string, JsonElement> AdditionalData { get; set; } = new();
 
     public ShiptoolHullModule? GetHullModule(string key)
     {
-        return AdditionalData.TryGetValue(key, out var token) ? token.ToObject<ShiptoolHullModule>() : null;
+        return AdditionalData.TryGetValue(key, out var element) ? element.Deserialize<ShiptoolHullModule>() : null;
     }
-}
-
-public class ShiptoolArmamentModule
-{
-    [JsonExtensionData]
-    private Dictionary<string, JToken> Data { get; set; } = new();
-
-    public ShiptoolGunData? GetGunData(string key) => Data[key].ToObject<ShiptoolGunData>();
 }
 
 public class ShiptoolHullModule
 {
+    [JsonPropertyName("ANGLES")]
     public Dictionary<string, decimal> Angles { get; set; } = new();
-}
-
-public class ShiptoolGunData
-{
-    [JsonProperty(PropertyName = "ANGLE")]
-    public decimal BaseAngle { get; set; }
 }

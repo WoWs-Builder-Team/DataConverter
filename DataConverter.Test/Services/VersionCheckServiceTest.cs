@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using DataConverter.Data;
 using DataConverter.Services;
 using FluentAssertions;
-using Microsoft.Extensions.Logging;
-using Moq;
+using Microsoft.Extensions.Logging.Abstractions;
 using NUnit.Framework;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Versioning;
@@ -78,9 +76,8 @@ public class VersionCheckServiceTest
     [Test]
     public void CheckFileVersions_NoFilesSameMainVersion_IterationIncreased()
     {
-        var logger = Mock.Of<ILogger<VersionCheckService>>();
         var client = new HttpClient();
-        var versionCheckService = new VersionCheckService(logger, client);
+        var versionCheckService = new VersionCheckService(NullLogger<VersionCheckService>.Instance, client);
         var conversionResult = new DataConversionResult(new());
         var oldGameVersion = new GameVersion(new(0, 11, 7), GameVersionType.Live,1);
         var oldVersionInfo = new VersionInfo(new(), 1, oldGameVersion);

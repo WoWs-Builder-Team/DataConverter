@@ -205,7 +205,7 @@ public static class ShipConverter
             "upgradeableUltimate" => ShipCategory.Special,
             "unavailable" => ShipCategory.Disabled,
             "legendaryBattle" => ShipCategory.TechTree,
-            "superShip" => ShipCategory.SuperShip,
+            "superShip" => ShipCategory.TechTree,
             "coopOnly" => ShipCategory.Disabled,
             "event" => ShipCategory.Disabled,
             _ => throw new InvalidOperationException("Ship category not recognized: " + wgCategory),
@@ -496,12 +496,33 @@ public static class ShipConverter
                 AssignAurasToProperty(wgHullSecondary.AntiAirAuras, antiAir);
 
                 // Process secondaries
+                var secondaryGun = wgHullSecondary.AntiAirAndSecondaries.Values.First();
+                var secondaryDispersion = new Dispersion
+                {
+                    IdealRadius = secondaryGun.IdealRadius,
+                    MinRadius = secondaryGun.MinRadius,
+                    IdealDistance = secondaryGun.IdealDistance,
+                    TaperDist = wgHullSecondary.TaperDist,
+                    RadiusOnZero = secondaryGun.RadiusOnZero,
+                    RadiusOnDelim = secondaryGun.RadiusOnDelim,
+                    RadiusOnMax = secondaryGun.RadiusOnMax,
+                    Delim = secondaryGun.Delim,
+                };
+
                 var secondary = new TurretModule
                 {
                     Sigma = wgHullSecondary.SigmaCount,
                     MaxRange = wgHullSecondary.MaxDist,
                     Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData()).ToList(),
                 };
+
+                var maxRange = decimal.ToDouble(secondary.MaxRange);
+                var dispersion = secondaryDispersion.CalculateDispersion(maxRange, 1);
+                secondaryDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(dispersion.Horizontal), 1);
+                secondaryDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(dispersion.Vertical), 1);
+
+                secondary.DispersionValues = secondaryDispersion;
+
                 DataCache.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());
                 hullModule.SecondaryModule = secondary;
             }

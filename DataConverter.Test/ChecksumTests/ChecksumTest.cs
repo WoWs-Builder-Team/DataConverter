@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
+using DataConverter.Data;
 using FluentAssertions;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Ship;
@@ -29,7 +30,7 @@ public class ChecksumTest
     [Test]
     public void ComputeChecksum_RealisticData_FileAndMemoryGenerationMatches_Success()
     {
-        string testData = JsonConvert.SerializeObject(GenerateTestDictionary(50));
+        string testData = JsonSerializer.Serialize(GenerateTestDictionary(50), Constants.SerializerOptions);
         const string fileName = "testfile.txt";
         string expectedHash = CreateInMemoryStreamHash(testData);
         File.WriteAllText(fileName, testData);
@@ -43,7 +44,7 @@ public class ChecksumTest
     [Test]
     public void ComputeChecksum_RealisticData_FileAndMemoryGenerationMatches_NoChecksumMatch()
     {
-        string testData = JsonConvert.SerializeObject(GenerateTestDictionary(50));
+        string testData = JsonSerializer.Serialize(GenerateTestDictionary(50), Constants.SerializerOptions);
         const string fileName = "testfile.txt";
         string expectedHash = CreateInMemoryStreamHash(testData);
         File.WriteAllText(fileName, testData);
