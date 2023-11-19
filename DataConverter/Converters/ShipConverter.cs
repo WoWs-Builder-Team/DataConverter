@@ -274,28 +274,10 @@ public static class ShipConverter
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
-                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, stHullModule)).ToList(),
+                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule)).ToList(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule),
             };
-            var dispersionGun = wgMainBattery.Guns.Values.First();
-            var turretDispersion = new Dispersion
-            {
-                IdealRadius = dispersionGun.IdealRadius,
-                MinRadius = dispersionGun.MinRadius,
-                IdealDistance = dispersionGun.IdealDistance,
-                TaperDist = wgMainBattery.TaperDist,
-                RadiusOnZero = dispersionGun.RadiusOnZero,
-                RadiusOnDelim = dispersionGun.RadiusOnDelim,
-                RadiusOnMax = dispersionGun.RadiusOnMax,
-                Delim = dispersionGun.Delim,
-            };
 
-            var maxRange = decimal.ToDouble(turretModule.MaxRange);
-            var dispersion = turretDispersion.CalculateDispersion(maxRange, 1);
-            turretDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(dispersion.Horizontal), 1);
-            turretDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(dispersion.Vertical), 1);
-
-            turretModule.DispersionValues = turretDispersion;
             DataCache.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
 
             var targetAntiAir = new AntiAir();
@@ -318,9 +300,9 @@ public static class ShipConverter
             .First(u => u.Components[componentType].Contains(componentKey)).Components[ComponentType.Hull].First();
     }
 
-    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, ShiptoolHullModule? stHull)
+    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, double taperDist, ShiptoolHullModule? stHull)
     {
-        var newGun = wgGun.ConvertData();
+        var newGun = wgGun.ConvertData(taperDist);
         newGun.WgGunIndex = mainGunKey;
         if (stHull is null || !stHull.Angles.TryGetValue(mainGunKey, out decimal angle))
         {
@@ -492,36 +474,16 @@ public static class ShipConverter
             string[] components = hullUpgradeInfo.Components[ComponentType.Secondary];
             if (components.Length > 0)
             {
-                var wgHullSecondary = (WgAtba)wgShip.ModulesArmaments[components.First()];
+                var wgHullSecondary = (WgAtba)wgShip.ModulesArmaments[components[0]];
                 AssignAurasToProperty(wgHullSecondary.AntiAirAuras, antiAir);
 
                 // Process secondaries
-                var secondaryGun = wgHullSecondary.AntiAirAndSecondaries.Values.First();
-                var secondaryDispersion = new Dispersion
-                {
-                    IdealRadius = secondaryGun.IdealRadius,
-                    MinRadius = secondaryGun.MinRadius,
-                    IdealDistance = secondaryGun.IdealDistance,
-                    TaperDist = wgHullSecondary.TaperDist,
-                    RadiusOnZero = secondaryGun.RadiusOnZero,
-                    RadiusOnDelim = secondaryGun.RadiusOnDelim,
-                    RadiusOnMax = secondaryGun.RadiusOnMax,
-                    Delim = secondaryGun.Delim,
-                };
-
                 var secondary = new TurretModule
                 {
                     Sigma = wgHullSecondary.SigmaCount,
                     MaxRange = wgHullSecondary.MaxDist,
-                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData()).ToList(),
+                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData(wgHullSecondary.TaperDist)).ToList(),
                 };
-
-                var maxRange = decimal.ToDouble(secondary.MaxRange);
-                var dispersion = secondaryDispersion.CalculateDispersion(maxRange, 1);
-                secondaryDispersion.MaximumHorizontalDispersion = Math.Round(Convert.ToDecimal(dispersion.Horizontal), 1);
-                secondaryDispersion.MaximumVerticalDispersion = Math.Round(Convert.ToDecimal(dispersion.Vertical), 1);
-
-                secondary.DispersionValues = secondaryDispersion;
 
                 DataCache.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());
                 hullModule.SecondaryModule = secondary;
@@ -541,7 +503,7 @@ public static class ShipConverter
             // Process depth charge data
             if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out string[]? depthChargeKey) && depthChargeKey.Length > 0)
             {
-                var wgDepthChargeArray = (WgDepthChargesArray)wgShip.ModulesArmaments[depthChargeKey.First()];
+                var wgDepthChargeArray = (WgDepthChargesArray)wgShip.ModulesArmaments[depthChargeKey[0]];
                 hullModule.DepthChargeArray = new DepthChargeArray
                 {
                     MaxPacks = wgDepthChargeArray.MaxPacks,
@@ -589,7 +551,6 @@ public static class ShipConverter
             var stHull = stShip?.GetHullModule(correspondingHull);
             var torpedoModule = new TorpedoModule
             {
-                TimeToChangeAmmo = wgTorpedoArray.TorpedoArray.Values.Any(launcher => launcher.AmmoList.Length > 1) ? wgTorpedoArray.TimeToChangeAmmo : 0,
                 TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToList(),
             };
 

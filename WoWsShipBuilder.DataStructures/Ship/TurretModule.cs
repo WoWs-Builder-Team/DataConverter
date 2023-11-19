@@ -14,7 +14,5 @@ public class TurretModule
 
     public AntiAirAura? AntiAir { get; set; }
 
-    public Dispersion DispersionValues { get; set; } = new();
-
     public BurstModeAbility? BurstModeAbility { get; set; }
 }

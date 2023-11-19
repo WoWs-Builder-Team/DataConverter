@@ -32,6 +32,8 @@ public class TorpedoLauncher : IGun
 
     public decimal Reload { get; init; }
 
+    public decimal AmmoSwitchCoeff { get; init; }
+
     public string WgGunIndex { get; set; } = string.Empty;
 
     public decimal[] HorizontalSector { get; init; } = Array.Empty<decimal>();

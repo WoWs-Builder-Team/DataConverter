@@ -1,4 +1,6 @@
-﻿namespace WoWsShipBuilder.DataStructures.Ship;
+﻿using System;
+
+namespace WoWsShipBuilder.DataStructures.Ship;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -19,8 +21,4 @@ public class Dispersion
     public double RadiusOnMax { get; init; }
 
     public double Delim { get; init; }
-
-    public decimal MaximumHorizontalDispersion { get; set; }
-
-    public decimal MaximumVerticalDispersion { get; set; }
 }

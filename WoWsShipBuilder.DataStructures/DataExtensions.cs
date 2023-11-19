@@ -1,8 +1,10 @@
 ﻿using System;
+using JetBrains.Annotations;
 using WoWsShipBuilder.DataStructures.Ship;
 
 namespace WoWsShipBuilder.DataStructures;
 
+[PublicAPI]
 public static class DataExtensions
 {
     public static AntiAirAura AddAura(this AntiAirAura first, AntiAirAura second)

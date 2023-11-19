@@ -39,4 +39,6 @@ public class Gun : IGun
     public string WgGunIndex { get; set; } = string.Empty;
 
     public decimal BaseAngle { get; set; }
+
+    public Dispersion Dispersion { get; set; } = default!;
 }

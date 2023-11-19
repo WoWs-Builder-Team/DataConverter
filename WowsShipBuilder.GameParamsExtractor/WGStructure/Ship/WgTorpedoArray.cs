@@ -41,5 +41,7 @@ public class WgTorpedoLauncher
 
     public decimal[] TorpedoAngles { get; init; } = Array.Empty<decimal>(); //unknonw meaning, needed?
 
+    public decimal AmmoSwitchCoeff { get; init; }
+
     public TypeInfo TypeInfo { get; init; } = new();
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
@@ -7,7 +6,7 @@ namespace DataConverter;
 
 public static class ConverterExtensions
 {
-    public static Gun ConvertData(this WgGun wgGun) => new()
+    public static Gun ConvertData(this WgGun wgGun, double taperDist) => new()
     {
         AmmoList = wgGun.AmmoList.ToList(),
         BarrelDiameter = wgGun.BarrelDiameter,
@@ -23,6 +22,17 @@ public static class ConverterExtensions
         VerticalRotationSpeed = wgGun.RotationSpeed[1],
         Reload = wgGun.ShotDelay,
         SmokeDetectionWhenFiring = wgGun.SmokePenalty,
+        Dispersion = new()
+        {
+            IdealRadius = wgGun.IdealRadius,
+            MinRadius = wgGun.MinRadius,
+            IdealDistance = wgGun.IdealDistance,
+            TaperDist = taperDist,
+            RadiusOnZero = wgGun.RadiusOnZero,
+            RadiusOnDelim = wgGun.RadiusOnDelim,
+            RadiusOnMax = wgGun.RadiusOnMax,
+            Delim = wgGun.Delim,
+        },
     };
 
     public static AntiAirAura ConvertData(this WgAaAura wgAura) => new()
@@ -102,5 +112,6 @@ public static class ConverterExtensions
         Reload = wgTorpedoLauncher.ShotDelay,
         HorizontalSector = wgTorpedoLauncher.HorizSector,
         TorpedoAngles = wgTorpedoLauncher.TorpedoAngles,
+        AmmoSwitchCoeff = wgTorpedoLauncher.AmmoSwitchCoeff,
     };
 }
