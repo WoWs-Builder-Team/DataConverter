@@ -78,7 +78,7 @@ public class VersionCheckServiceTest
     {
         var client = new HttpClient();
         var versionCheckService = new VersionCheckService(NullLogger<VersionCheckService>.Instance, client);
-        var conversionResult = new DataConversionResult(new());
+        var conversionResult = new DataConversionResult(new(), new());
         var oldGameVersion = new GameVersion(new(0, 11, 7), GameVersionType.Live,1);
         var oldVersionInfo = new VersionInfo(new(), 1, oldGameVersion);
         var expectedVersion = oldGameVersion with { DataIteration = 2 };

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using WoWsShipBuilder.DataStructures.Modifiers;
 
 namespace DataConverter.Data;
 
-public sealed record DataConversionResult(List<ResultFileContainer> Files);
+public sealed record DataConversionResult(List<ResultFileContainer> Files, List<Modifier> ModifiersList);
 
 public sealed record ResultFileContainer(string Content, string Category, string Filename)
 {

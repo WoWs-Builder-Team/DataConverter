@@ -4,6 +4,7 @@ using System.Linq;
 using DataConverter.Data;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Modifiers;
 using WoWsShipBuilder.DataStructures.Upgrade;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
@@ -12,7 +13,7 @@ namespace DataConverter.Converters
     public static class ModernizationConverter
     {
         //convert the list of modernizations from WG to our list of Modernizations
-        public static Dictionary<string, Modernization> ConvertModernization(IEnumerable<WgModernization> wgModernizations)
+        public static Dictionary<string, Modernization> ConvertModernization(IEnumerable<WgModernization> wgModernizations, Dictionary<string, Modifier> modifiersDictionary)
         {
             //create a List of our Objects
             Dictionary<string, Modernization> modList = new Dictionary<string, Modernization>();
@@ -20,6 +21,12 @@ namespace DataConverter.Converters
             //iterate over the entire list to convert everything
             foreach (var currentWgMod in wgModernizations)
             {
+                //skip removed/unused mods
+                if (currentWgMod.Slot == -1)
+                {
+                    continue;
+                }
+
                 DataCache.TranslationNames.Add(currentWgMod.Name);
                 //create our object type
                 Modernization mod = new Modernization
@@ -31,22 +38,23 @@ namespace DataConverter.Converters
                     Type = ConvertModernizationType(currentWgMod.Type),
                 };
 
-                Dictionary<string, double> effects = new Dictionary<string, double>();
+                var modifiers = new List<Modifier>();
                 foreach (var currentWgModModifier in currentWgMod.Modifiers)
                 {
                     JToken jtoken = currentWgModModifier.Value;
 
                     if (jtoken.Type is JTokenType.Float or JTokenType.Integer)
                     {
-                        effects.Add(currentWgModModifier.Key, jtoken.Value<double>());
+                        modifiersDictionary.TryGetValue(currentWgModModifier.Key, out Modifier? modifierData);
+                        modifiers.Add(new Modifier(currentWgModModifier.Key, jtoken.Value<float>(), "Modernization", modifierData));
                     }
                     else
                     {
                         JObject jObject = (JObject)jtoken;
-                        var values = jObject.ToObject<Dictionary<string, double>>()!;
+                        var values = jObject.ToObject<Dictionary<string, float>>()!;
                         bool isEqual = true;
                         var first = values.First().Value;
-                        foreach ((string _, double value) in values)
+                        foreach ((string _, float value) in values)
                         {
                             if (Math.Abs(value - first) > Constants.Tolerance)
                             {
@@ -55,19 +63,25 @@ namespace DataConverter.Converters
                         }
                         if (isEqual)
                         {
-                            effects.Add(currentWgModModifier.Key, first);
+                            modifiersDictionary.TryGetValue(currentWgModModifier.Key, out Modifier? modifierData);
+                            modifiers.Add(new Modifier(currentWgModModifier.Key, first, "Modernization", modifierData));
                         }
                         else
                         {
-                            foreach ((string key, double value) in values)
+                            foreach ((string key, float value) in values)
                             {
-                                effects.Add($"{currentWgModModifier.Key}_{key}", value);
+                                // exclude auxiliary ship type modifiers, since they are unused
+                                if (!key.Equals("auxiliary", StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    modifiersDictionary.TryGetValue($"{currentWgModModifier.Key}_{key}", out Modifier? modifierData);
+                                    modifiers.Add(new Modifier($"{currentWgModModifier.Key}_{key}", value, "Modernization", modifierData));
+                                }
                             }
                         }
                     }
                 }
-                DataCache.TranslationNames.UnionWith(effects.Keys);
-                mod.Effect = effects;
+                DataCache.TranslationNames.UnionWith(modifiers.Select(m => m.Name));
+                mod.Modifiers = modifiers;
 
                 //for List of Enums
                 List<Nation> allowedNations = new List<Nation>();

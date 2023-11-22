@@ -6,13 +6,14 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Exterior;
+using WoWsShipBuilder.DataStructures.Modifiers;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
 {
     public class ExteriorConverter
     {
-        public static Dictionary<string, Exterior> ConvertExterior(IEnumerable<WgExterior> wgExterior, ILogger? logger)
+        public static Dictionary<string, Exterior> ConvertExterior(IEnumerable<WgExterior> wgExterior, ILogger? logger, Dictionary<string, Modifier> modifiersDictionary)
         {
             //create a List of our Objects
             Dictionary<string, Exterior> exteriorList = new Dictionary<string, Exterior>();
@@ -32,22 +33,23 @@ namespace DataConverter.Converters
                     Group = currentWgExterior.Group,
                 };
 
-                var modifiers = new Dictionary<string, double>();
+                var modifiers = new List<Modifier>();
                 foreach (var currentWgExteriorModifier in currentWgExterior.Modifiers)
                 {
                     var token = currentWgExteriorModifier.Value;
 
                     if (token.Type is JTokenType.Float or JTokenType.Integer)
                     {
-                        modifiers.Add(currentWgExteriorModifier.Key, token.Value<double>());
+                        modifiersDictionary.TryGetValue(currentWgExteriorModifier.Key, out Modifier? modifierData);
+                        modifiers.Add(new Modifier(currentWgExteriorModifier.Key, token.Value<float>(), "Exterior", modifierData));
                     }
                     else
                     {
                         JObject jObject = (JObject)token;
-                        var values = jObject.ToObject<Dictionary<string, double>>()!;
+                        var values = jObject.ToObject<Dictionary<string, float>>()!;
                         bool isEqual = true;
                         var first = values.First().Value;
-                        foreach ((string _, double value) in values)
+                        foreach ((string _, float value) in values)
                         {
                             if (Math.Abs(value - first) > Constants.Tolerance)
                             {
@@ -56,20 +58,26 @@ namespace DataConverter.Converters
                         }
                         if (isEqual)
                         {
-                            modifiers.Add(currentWgExteriorModifier.Key, first);
+                            modifiersDictionary.TryGetValue(currentWgExteriorModifier.Key, out Modifier? modifierData);
+                            modifiers.Add(new Modifier(currentWgExteriorModifier.Key, first, "Exterior", modifierData));
                         }
                         else
                         {
-                            foreach ((string key, double value) in values)
+                            foreach ((string key, float value) in values)
                             {
-                                modifiers.Add($"{currentWgExteriorModifier.Key}_{key}", value);
+                                // exclude auxiliary ship type modifiers, since they are unused
+                                if (!key.Equals("auxiliary", StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    modifiersDictionary.TryGetValue($"{currentWgExteriorModifier.Key}_{key}", out Modifier? modifierData);
+                                    modifiers.Add(new Modifier($"{currentWgExteriorModifier.Key}_{key}", value, "Exterior", modifierData));
+                                }
                             }
                         }
                     }
                 }
 
                 exterior.Modifiers = modifiers;
-                DataCache.TranslationNames.UnionWith(modifiers.Keys);
+                DataCache.TranslationNames.UnionWith(modifiers.Select(m => m.Name));
                 try
                 {
                     exterior.Type = Enum.Parse<ExteriorType>(currentWgExterior.TypeInfo.Species);

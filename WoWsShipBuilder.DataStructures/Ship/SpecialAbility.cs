@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WoWsShipBuilder.DataStructures.Modifiers;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -6,7 +7,7 @@ namespace WoWsShipBuilder.DataStructures.Ship;
 
 public class SpecialAbility
 {
-    public Dictionary<string, float> Modifiers { get; set; } = new();
+    public List<Modifier> Modifiers { get; set; } = new();
     public string Name { get; set; } = string.Empty;
     public double DecrementPeriod { get; set; }
     public double Duration { get; set; }
@@ -23,7 +24,7 @@ public class BurstModeAbility
 
     public decimal ReloadAfterBurst { get; set; }
 
-    public Dictionary<string, float> Modifiers { get; set; } = new();
+    public List<Modifier> Modifiers { get; set; } = new();
 
     public int ShotInBurst { get; set; }
 }

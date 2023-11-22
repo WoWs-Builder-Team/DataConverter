@@ -10,6 +10,7 @@ using DataConverter.Data;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Captain;
+using WoWsShipBuilder.DataStructures.Modifiers;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Captain;
 
@@ -23,9 +24,10 @@ public static class CaptainConverter
     /// <param name="wgCaptain">The file content of captain data extracted from game params.</param>
     /// <param name="skillsJsonInput">The file content of the embedded captain data file.</param>
     /// <param name="isCommon">If the file is the Common one.</param>
+    /// <param name="modifiersDictionary">The dictionary created from the file content of the embedded modifiers file.</param>
     /// <returns>A dictionary mapping an ID to a <see cref="Captain"/> object that contains the transformed data based on WGs data.</returns>
     /// <exception cref="InvalidOperationException">Occurs if the provided data cannot be processed.</exception>
-    public static Dictionary<string, Captain> ConvertCaptain(IEnumerable<WgCaptain> wgCaptain, string skillsJsonInput, bool isCommon)
+    public static Dictionary<string, Captain> ConvertCaptain(IEnumerable<WgCaptain> wgCaptain, string skillsJsonInput, bool isCommon, Dictionary<string, Modifier> modifiersDictionary)
     {
         //create a List of our Objects
         Dictionary<string, Captain> captainList = new Dictionary<string, Captain>();
@@ -87,7 +89,7 @@ public static class CaptainConverter
             //iterate all captain's skills
             foreach (var currentWgSkill in currentWgCaptain.Skills)
             {
-                var skill = ProcessSkill(currentWgSkill, captain, skillsTiers);
+                var skill = ProcessSkill(currentWgSkill, captain, skillsTiers, modifiersDictionary);
                 skills.Add(currentWgSkill.Key, skill);
             }
 
@@ -96,7 +98,7 @@ public static class CaptainConverter
 
             //map captain's talents
             //iterate over the various skills from wg data
-            var uniqueSkillDictionary = ProcessUniqueSkills(currentWgCaptain, captain);
+            var uniqueSkillDictionary = ProcessUniqueSkills(currentWgCaptain, captain, modifiersDictionary);
             captain.UniqueSkills = uniqueSkillDictionary;
             //dictionary with captain's name as key
             captainList.Add(captain.Name, captain);
@@ -105,7 +107,7 @@ public static class CaptainConverter
         return captainList;
     }
 
-    private static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WgCaptain currentWgCaptain, Captain captain)
+    private static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WgCaptain currentWgCaptain, Captain captain, Dictionary<string, Modifier> modifierDictionary)
     {
         var skills = new Dictionary<string, UniqueSkill>();
         foreach (var (currentUniqueSkillKey, currentUniqueSkillValue) in currentWgCaptain.UniqueSkills)
@@ -134,7 +136,7 @@ public static class CaptainConverter
                 if (currentWgUniqueSkillEffectKey.Contains("Unique"))
                 {
                     //create a modifiers dictionary for the current effect
-                    var effectsModifiers = new Dictionary<string, float>();
+                    var effectsModifiers = new List<Modifier>();
 
                     var jObject = (JObject)currentWgUniqueSkillEffectValue;
                     var values = jObject.ToObject<Dictionary<string, JToken>>()!;
@@ -164,7 +166,8 @@ public static class CaptainConverter
                                 continue;
                             }
 
-                            effectsModifiers.Add($"{key}", value.Value<float>());
+                            modifierDictionary.TryGetValue(key, out Modifier? modifierData);
+                            effectsModifiers.Add(new Modifier(key, value.Value<float>(), $"Skill_{currentUniqueSkillKey}", modifierData));
                             DataCache.TranslationNames.Add(key);
                         }
                         else if (value.Type == JTokenType.Object)
@@ -174,14 +177,16 @@ public static class CaptainConverter
                             bool allEquals = modifiers!.Values.Distinct().Count() == 1;
                             if (allEquals)
                             {
-                                effectsModifiers.Add($"{key}", modifiers.First().Value);
+                                modifierDictionary.TryGetValue(key, out Modifier? modifierData);
+                                effectsModifiers.Add(new Modifier(key, modifiers.First().Value, $"Skill_{currentUniqueSkillKey}", modifierData));
                                 DataCache.TranslationNames.Add(key);
                             }
                             else
                             {
                                 foreach (var (modifierName, modifierValue) in modifiers)
                                 {
-                                    effectsModifiers.Add($"{key}_{modifierName}", modifierValue);
+                                    modifierDictionary.TryGetValue($"{key}_{modifierName}", out Modifier? modifierData);
+                                    effectsModifiers.Add(new Modifier($"{key}_{modifierName}", modifierValue, $"Skill_{currentUniqueSkillKey}", modifierData));
                                     DataCache.TranslationNames.Add($"{key}_{modifierName}");
                                 }
                             }
@@ -217,7 +222,7 @@ public static class CaptainConverter
         return skills;
     }
 
-    private static Skill ProcessSkill(KeyValuePair<string, WgSkill> currentWgSkill, Captain captain, SkillsTiers skillsTiers)
+    private static Skill ProcessSkill(KeyValuePair<string, WgSkill> currentWgSkill, Captain captain, SkillsTiers skillsTiers, Dictionary<string, Modifier> modifiersDictionary)
     {
         var skill = new Skill
         {
@@ -247,7 +252,7 @@ public static class CaptainConverter
         skill.LearnableOn = classes;
 
         //collect all modifiers of the skill
-        Dictionary<string, float> modifiers = ProcessSkillModifiers(currentWgSkill.Value.Modifiers);
+        List<Modifier> modifiers = ProcessSkillModifiers(currentWgSkill.Value.Modifiers, modifiersDictionary);
         skill.Modifiers = modifiers;
 
         //collect all skill's modifiers with trigger condition, 44 = IRPR, 81 = Furious
@@ -256,14 +261,19 @@ public static class CaptainConverter
         if (currentWgSkill.Value.SkillType == 44 && DataCache.CurrentVersion.MainVersion >= Version.Parse("0.12.10"))
         {
             var trigger = currentWgSkill.Value.LogicTrigger;
-            ImmutableDictionary<string, float> repeatableModifiers = ProcessSkillModifiers(wgConditionalModifiers).ToImmutableDictionary();
+            ImmutableList<Modifier> repeatableModifiers = ProcessSkillModifiers(wgConditionalModifiers, modifiersDictionary).ToImmutableList();
             var repeatableModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, repeatableModifiers, LocalizationOverride: string.Empty);
             conditionalModifierGroups.Add(repeatableModifierGroup);
 
-            var onetimeModifiers = new Dictionary<string, float>
+            var onetimeModifiers = new List<Modifier>
             {
-                { "regenCrewAdditionalConsumables", 1 },
-            }.ToImmutableDictionary();
+                new ()
+                {
+                    Name = "regenCrewAdditionalConsumables",
+                    Value = 1,
+                    AppLocalizationKey = "regenCrewAdditionalConsumables",
+                },
+            }.ToImmutableList();
             var onetimeModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, onetimeModifiers, ActivationLimit: 1);
             conditionalModifierGroups.Add(onetimeModifierGroup);
         }
@@ -272,31 +282,41 @@ public static class CaptainConverter
             var trigger = currentWgSkill.Value.LogicTrigger;
             var firstModifier = trigger.OtherData["BurnFlood_1"].ToObject<Dictionary<string, float>>()!.Single();
             var otherModifiers = trigger.OtherData["BurnFlood_2"].ToObject<Dictionary<string, float>>()!.Single();
-            var conditionalModifiers = new Dictionary<string, float>
+            var conditionalModifiers = new List<Modifier>
             {
-                { $"repeatable_first_{firstModifier.Key}", firstModifier.Value },
-                { $"repeatable_other_{otherModifiers.Key}", otherModifiers.Value },
-            }.ToImmutableDictionary();
+                new ()
+                {
+                    Name = $"repeatable_first_{firstModifier.Key}",
+                    Value = firstModifier.Value,
+                    AppLocalizationKey = $"repeatable_first_{firstModifier.Key}",
+                },
+                new ()
+                {
+                    Name = $"repeatable_other_{otherModifiers.Key}",
+                    Value = otherModifiers.Value,
+                    AppLocalizationKey = $"repeatable_other_{otherModifiers.Key}",
+                },
+            }.ToImmutableList();
             var modifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers, ActivationLimit: 6);
             conditionalModifierGroups.Add(modifierGroup);
         }
         else if (wgConditionalModifiers.Count > 0)
         {
-            Dictionary<string, float> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers);
-            conditionalModifierGroups.Add(new(currentWgSkill.Value.LogicTrigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers.ToImmutableDictionary()));
+            List<Modifier> conditionalModifiers = ProcessSkillModifiers(wgConditionalModifiers, modifiersDictionary);
+            conditionalModifierGroups.Add(new(currentWgSkill.Value.LogicTrigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers.ToImmutableList()));
         }
 
         skill.ConditionalModifierGroups = conditionalModifierGroups;
         DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.Select(g => g.TriggerType));
-        DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.SelectMany(g => g.Modifiers.Keys));
+        DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.SelectMany(g => g.Modifiers.Select(m => m.Name)));
         DataCache.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
-        DataCache.TranslationNames.UnionWith(modifiers.Keys);
+        DataCache.TranslationNames.UnionWith(modifiers.Select(m => m.Name));
         return skill;
     }
 
-    private static Dictionary<string, float> ProcessSkillModifiers(Dictionary<string, JToken> skillModifiers)
+    private static List<Modifier> ProcessSkillModifiers(Dictionary<string, JToken> skillModifiers, Dictionary<string, Modifier> modifierDictionary)
     {
-        Dictionary<string, float> modifiers = new();
+        List<Modifier> modifiers = new();
         var hasConsumableReloadModifiers = false;
         foreach ((string? s, var token) in skillModifiers)
         {
@@ -308,7 +328,9 @@ public static class CaptainConverter
 
             if (token.Type is JTokenType.Float or JTokenType.Integer)
             {
-                modifiers.Add(s, token.Value<float>());
+                modifierDictionary.TryGetValue(s, out Modifier? modifierData);
+                var modifier = new Modifier(s, token.Value<float>(), "CaptainSkill", modifierData);
+                modifiers.Add(modifier);
             }
             else if (token.Type == JTokenType.Object)
             {
@@ -326,13 +348,21 @@ public static class CaptainConverter
 
                 if (isEqual)
                 {
-                    modifiers.Add(s, first);
+                    modifierDictionary.TryGetValue(s, out Modifier? modifierData);
+                    var modifier = new Modifier(s, first, "CaptainSkill", modifierData);
+                    modifiers.Add(modifier);
                 }
                 else
                 {
                     foreach ((string key, float value) in values)
                     {
-                        modifiers.Add($"{s}_{key}", value);
+                        // exclude auxiliary ship type modifiers, since they are unused
+                        if (!key.Equals("auxiliary", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            modifierDictionary.TryGetValue($"{s}_{key}", out Modifier? modifierData);
+                            var modifier = new Modifier($"{s}_{key}", value, "CaptainSkill", modifierData);
+                            modifiers.Add(modifier);
+                        }
                     }
                 }
             }
@@ -346,7 +376,9 @@ public static class CaptainConverter
         var reloadModifiers = ComputeConsumableReloadModifiers(skillModifiers);
         foreach (var modifierEntry in reloadModifiers)
         {
-            modifiers.Add(modifierEntry.Key, modifierEntry.Value);
+            modifierDictionary.TryGetValue(modifierEntry.Key, out Modifier? modifierData);
+            var modifier = new Modifier(modifierEntry.Key, modifierEntry.Value, "CaptainSkill", modifierData);
+            modifiers.Add(modifier);
         }
 
         return modifiers;

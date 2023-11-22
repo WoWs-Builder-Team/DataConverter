@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WoWsShipBuilder.DataStructures.Modifiers;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -30,5 +31,5 @@ public class Consumable
 
     public float PreparationTime { get; set; }
 
-    public Dictionary<string, float> Modifiers { get; set; } = new();
+    public List<Modifier> Modifiers { get; set; } = new();
 }

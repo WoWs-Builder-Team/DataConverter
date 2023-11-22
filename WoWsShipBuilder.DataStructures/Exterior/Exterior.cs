@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WoWsShipBuilder.DataStructures.Modifiers;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -10,7 +11,7 @@ public class Exterior
 
     public string Index { get; set; } = string.Empty;
 
-    public Dictionary<string, double> Modifiers { get; set; } = new();
+    public List<Modifier> Modifiers { get; set; } = new();
 
     public string Name { get; set; } = string.Empty;
 

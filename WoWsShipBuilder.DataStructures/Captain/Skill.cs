@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WoWsShipBuilder.DataStructures.Modifiers;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -16,7 +17,7 @@ public class Skill
 
     public List<SkillPosition> Tiers { get; set; } = new(); // contains the tier of the skill for all the classes that can use it
 
-    public Dictionary<string, float> Modifiers { get; set; } = new(); // modifiers for always on effects
+    public List<Modifier> Modifiers { get; set; } = new();
 
     public List<ConditionalModifierGroup> ConditionalModifierGroups { get; set; } = new();
 }

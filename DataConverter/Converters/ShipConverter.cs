@@ -8,6 +8,7 @@ using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures;
+using WoWsShipBuilder.DataStructures.Modifiers;
 using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 using Hull = WoWsShipBuilder.DataStructures.Ship.Hull;
@@ -21,7 +22,7 @@ public static class ShipConverter
 
     public static List<ShipSummary> ShipSummaries { get; } = new();
 
-    public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList, string nation, ShiptoolData shiptoolData, ILogger? logger)
+    public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList, string nation, ShiptoolData shiptoolData, ILogger? logger, Dictionary<string, Modifier> modifiersDictionary)
     {
         var results = new Dictionary<string, Ship>();
         var count = 0;
@@ -49,7 +50,7 @@ public static class ShipConverter
                 ShipClass = ProcessShipClass(wgShip.TypeInfo.Species),
                 ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
                 ShipNation = Enum.Parse<Nation>(wgShip.TypeInfo.Nation.Replace("_", string.Empty), true),
-                MainBatteryModuleList = ProcessMainBattery(wgShip, upgradeInfo, stShip),
+                MainBatteryModuleList = ProcessMainBattery(wgShip, upgradeInfo, stShip, modifiersDictionary),
                 ShipUpgradeInfo = upgradeInfo,
                 FireControlList = ProcessFireControl(wgShip),
                 TorpedoModules = ProcessTorpedoes(wgShip, upgradeInfo, stShip),
@@ -57,7 +58,7 @@ public static class ShipConverter
                 ShipConsumable = ProcessConsumables(wgShip),
                 AirStrikes = ProcessAirstrikes(wgShip),
                 PingerGunList = ProcessPingerGuns(wgShip),
-                SpecialAbility = ProcessSpecialAbility(wgShip, logger),
+                SpecialAbility = ProcessSpecialAbility(wgShip, logger, modifiersDictionary),
                 Permoflages = wgShip.Permoflages,
             };
 
@@ -103,46 +104,56 @@ public static class ShipConverter
 
     #region Component converters
 
-    private static BurstModeAbility? ProcessBurstModeAbility(WgBurstArtilleryModule? module)
+    private static BurstModeAbility? ProcessBurstModeAbility(WgBurstArtilleryModule? module, Dictionary<string, Modifier> modifiersDictionary, string shipName)
     {
         if (module != null)
         {
+            var modifiers = new List<Modifier>();
+            foreach (var (modifierName, modifierValue) in module.Modifiers)
+            {
+                modifiersDictionary.TryGetValue(modifierName, out Modifier? modifierData);
+                modifiers.Add(new Modifier(modifierName, modifierValue, shipName,  modifierData));
+            }
             var burstAbility = new BurstModeAbility()
             {
                 ShotInBurst = module.ShotsCount,
                 ReloadAfterBurst = module.FullReloadTime,
                 ReloadDuringBurst = module.BurstReloadTime,
-                Modifiers = module.Modifiers,
+                Modifiers = modifiers,
             };
-            DataCache.TranslationNames.UnionWith(burstAbility.Modifiers.Keys);
+            DataCache.TranslationNames.UnionWith(burstAbility.Modifiers.Select(m => m.Name));
             return burstAbility;
         }
 
         return null;
     }
 
-    private static SpecialAbility? ProcessSpecialAbility(WgShip wgShip, ILogger? logger)
+    private static SpecialAbility? ProcessSpecialAbility(WgShip wgShip, ILogger? logger, Dictionary<string, Modifier> modifiersDictionary)
     {
         Dictionary<string, WgSpecialAbility> wgSpecialAbilityList = wgShip.ModulesArmaments.ModulesOfType<WgSpecialAbility>();
         if (wgSpecialAbilityList.Count > 1)
         {
             logger?.LogWarning("Multiple special abilities for ship {Index}", wgShip.Index);
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
-            return ProcessRageMode(wgAbility);
+            return ProcessRageMode(wgAbility, modifiersDictionary, wgShip.Name);
         }
         if (wgSpecialAbilityList.Count == 1)
         {
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
-            return ProcessRageMode(wgAbility);
+            return ProcessRageMode(wgAbility, modifiersDictionary, wgShip.Name);
         }
 
         return null;
     }
 
-    private static SpecialAbility ProcessRageMode(WgRageMode rageMode)
+    private static SpecialAbility ProcessRageMode(WgRageMode rageMode, Dictionary<string, Modifier> modifiersDictionary, string shipName)
     {
         var modifierList = rageMode.Modifiers.Where(x => x.Value.Type is JTokenType.Float or JTokenType.Integer)
-            .ToDictionary(x => x.Key, x => x.Value.Value<float>());
+            .Select(x =>
+            {
+                modifiersDictionary.TryGetValue(x.Key, out Modifier? modifierData);
+                return new Modifier(x.Key, x.Value.Value<float>(), shipName, modifierData);
+            }).ToList();
         foreach (var modifierObject in rageMode.Modifiers.Where(x => x.Value.Type is JTokenType.Object))
         {
             var key = modifierObject.Key;
@@ -150,15 +161,15 @@ public static class ShipConverter
             bool allEquals = modifiers!.Values.Distinct().Count() == 1;
             if (allEquals)
             {
-                modifierList.Add($"{key}", modifiers.First().Value);
-                DataCache.TranslationNames.Add(key);
+                modifiersDictionary.TryGetValue(key, out Modifier? modifierData);
+                modifierList.Add(new Modifier(key, modifiers.First().Value, shipName, modifierData));
             }
             else
             {
                 foreach (var (modifierName, modifierValue) in modifiers)
                 {
-                    modifierList.Add($"{key}_{modifierName}", modifierValue);
-                    DataCache.TranslationNames.Add($"{key}_{modifierName}");
+                    modifiersDictionary.TryGetValue($"{key}_{modifierName}", out Modifier? modifierData);
+                    modifierList.Add(new Modifier($"{key}_{modifierName}", modifierValue, shipName, modifierData));
                 }
             }
         }
@@ -177,7 +188,7 @@ public static class ShipConverter
         };
         DataCache.TranslationNames.Add(specialAbility.Name);
         DataCache.TranslationNames.Add("RageMode");
-        DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Keys);
+        DataCache.TranslationNames.UnionWith(specialAbility.Modifiers.Select(m => m.Name));
         DataCache.TranslationNames.Add(specialAbility.ActivatorName);
         return specialAbility;
     }
@@ -260,7 +271,7 @@ public static class ShipConverter
         return upgradeInfo;
     }
 
-    private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip)
+    private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip, Dictionary<string, Modifier> modifiersDictionary)
     {
         var resultDictionary = new Dictionary<string, TurretModule>();
         Dictionary<string, WgMainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<WgMainBattery>();
@@ -275,7 +286,7 @@ public static class ShipConverter
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
                 Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule)).ToList(),
-                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule),
+                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule, modifiersDictionary, wgShip.Name),
             };
 
             DataCache.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
