@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>4.1.0</VersionPrefix>
-<!--    <VersionSuffix>beta</VersionSuffix>-->
+    <VersionPrefix>4.2.0</VersionPrefix>
+    <VersionSuffix>beta</VersionSuffix>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>ShipBuilder Data structures</Title>
     <Authors>WoWs-Builder-Team</Authors>
