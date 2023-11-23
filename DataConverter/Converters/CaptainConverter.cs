@@ -265,14 +265,10 @@ public static class CaptainConverter
             var repeatableModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, repeatableModifiers, LocalizationOverride: string.Empty);
             conditionalModifierGroups.Add(repeatableModifierGroup);
 
+            modifiersDictionary.TryGetValue("regenCrewAdditionalConsumables", out Modifier? modifierData);
             var onetimeModifiers = new List<Modifier>
             {
-                new ()
-                {
-                    Name = "regenCrewAdditionalConsumables",
-                    Value = 1,
-                    AppLocalizationKey = "regenCrewAdditionalConsumables",
-                },
+                new ("regenCrewAdditionalConsumables", 1f, "captainSkill", modifierData),
             }.ToImmutableList();
             var onetimeModifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, onetimeModifiers, ActivationLimit: 1);
             conditionalModifierGroups.Add(onetimeModifierGroup);
@@ -282,20 +278,14 @@ public static class CaptainConverter
             var trigger = currentWgSkill.Value.LogicTrigger;
             var firstModifier = trigger.OtherData["BurnFlood_1"].ToObject<Dictionary<string, float>>()!.Single();
             var otherModifiers = trigger.OtherData["BurnFlood_2"].ToObject<Dictionary<string, float>>()!.Single();
+
+            modifiersDictionary.TryGetValue($"repeatable_first_{firstModifier.Key}", out Modifier? firstModifierData);
+            modifiersDictionary.TryGetValue($"repeatable_other_{otherModifiers.Key}", out Modifier? secondModifierData);
+
             var conditionalModifiers = new List<Modifier>
             {
-                new ()
-                {
-                    Name = $"repeatable_first_{firstModifier.Key}",
-                    Value = firstModifier.Value,
-                    AppLocalizationKey = $"repeatable_first_{firstModifier.Key}",
-                },
-                new ()
-                {
-                    Name = $"repeatable_other_{otherModifiers.Key}",
-                    Value = otherModifiers.Value,
-                    AppLocalizationKey = $"repeatable_other_{otherModifiers.Key}",
-                },
+                new ($"repeatable_first_{firstModifier.Key}", firstModifier.Value, "captainSkill", firstModifierData),
+                new ($"repeatable_other_{otherModifiers.Key}", otherModifiers.Value, "captainSkill", secondModifierData),
             }.ToImmutableList();
             var modifierGroup = new ConditionalModifierGroup(trigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers, ActivationLimit: 6);
             conditionalModifierGroups.Add(modifierGroup);

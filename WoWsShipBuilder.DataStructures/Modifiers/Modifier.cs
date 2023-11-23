@@ -5,8 +5,17 @@ namespace WoWsShipBuilder.DataStructures.Modifiers;
 
 public class Modifier
 {
-    public Modifier()
+    public Modifier(string location, string name, float value, string? gameLocalizationKey, string? appLocalizationKey, Unit unit, string affectedProperty, DisplayValueProcessingKind displayedValueProcessingKind, ValueProcessingKind valueProcessingKind)
     {
+        Location = location;
+        Name = name;
+        Value = value;
+        GameLocalizationKey = gameLocalizationKey;
+        AppLocalizationKey = appLocalizationKey;
+        Unit = unit;
+        AffectedProperty = affectedProperty;
+        DisplayedValueProcessingKind = displayedValueProcessingKind;
+        ValueProcessingKind = valueProcessingKind;
     }
 
     public Modifier(string name, float value, string location, Modifier? modifierData)
@@ -26,21 +35,21 @@ public class Modifier
     }
 
     [JsonIgnore]
-    public string Location { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
-    public float Value { get; set; }
+    public string Location { get; }
+    public string Name { get; }
+    public float Value { get; }
 
     // ONLY one of the following two need to have a value, based on where the localization key needs to be searched in.
-    public string? GameLocalizationKey { get; set; }
-    public string? AppLocalizationKey { get; set; }
-    public Unit Unit { get; set; }
+    public string? GameLocalizationKey { get; internal set; }
+    public string? AppLocalizationKey { get; internal set; }
+    public Unit Unit { get; internal set; }
 
     // Format: DataContainerName.Property.AdditionalSelector
     // For example: ShellDataContainer.Damage.HE would identify a modifier that applies to the Damage parameter only for HE shells.
     // ShellDataContainer.Damage would identify a modifier that applies to the Damage parameter of all shells.
-    public string AffectedProperty { get; set; } = string.Empty;
-    public DisplayValueProcessingKind DisplayedValueProcessingKind { get; set; }
-    public ValueProcessingKind ValueProcessingKind { get; set; }
+    public string AffectedProperty { get; } = string.Empty;
+    public DisplayValueProcessingKind DisplayedValueProcessingKind { get; internal set; }
+    public ValueProcessingKind ValueProcessingKind { get; internal set; }
 
     public string ToDisplayValue()
     {
