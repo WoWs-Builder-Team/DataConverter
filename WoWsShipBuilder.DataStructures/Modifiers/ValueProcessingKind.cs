@@ -26,9 +26,14 @@ public enum ValueProcessingKind
      */
     PositiveMultiplier,
     /**
+     * Multiplies the base value by (1 - (mModifier / 100))
+     */
+    NegativeMultiplier,
+    /**
      * Adds to the base value the modifier directly.
      */
     DirectAdd,
+
     /**
      * Do nothing, value is not tecnically a modifier.
      */
