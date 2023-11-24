@@ -33,7 +33,6 @@ public enum ValueProcessingKind
      * Adds to the base value the modifier directly.
      */
     DirectAdd,
-
     /**
      * Do nothing, value is not tecnically a modifier.
      */

@@ -38,6 +38,8 @@ public class ModifierProcessingService : IModifierProcessingService
         logger.LogInformation("Starting creation of base modifier file");
         logger.LogInformation("There are {Count} modifiers", modifierList.Count);
 
+        modifierList = modifierList.OrderBy(x => x.Name).ToList();
+
         modifierList = HandleCommonLocalization(modifierList, localizationKeys);
 
         // this is used for the initial version of the file. Left for convenience
@@ -53,29 +55,31 @@ public class ModifierProcessingService : IModifierProcessingService
             .ToDictionary(x => x.Name, x => x.Location);
         var missingUnitOrDisplayProcessingModifiers = modifierList.Where(x => x.DisplayedValueProcessingKind == DisplayValueProcessingKind.NotAssigned || x.Unit == Unit.NotAssigned)
             .ToDictionary(x => x.Name, x => x.Location);
-        if (missingTranslationsModifiers.Count > 0 || missingUnitOrDisplayProcessingModifiers.Count > 0)
+        var missingPropertyOrValueProcessingModifiers = modifierList.Where(x => x.ValueProcessingKind == ValueProcessingKind.NotAssigned || (x.ValueProcessingKind != ValueProcessingKind.None && x.AffectedProperties.Count == 0))
+            .ToDictionary(x => x.Name, x => x.Location);
+        var newModifiers = modifierList.Where(m => !startingModifierDictionary.ContainsKey(m.Name)).ToDictionary(x => x.Name, x => x.Location);
+        var removedModifiers = startingModifierDictionary.Where(m => !modifierList.Any(x => x.Name.Equals(m.Key))).ToDictionary(x => x.Value.Name, x => x.Value.Location);
+        if (missingTranslationsModifiers.Any() || missingUnitOrDisplayProcessingModifiers.Any() || missingPropertyOrValueProcessingModifiers.Any() || newModifiers.Any() || removedModifiers.Any())
         {
             logger.LogWarning("There are {Count} modifiers without translation", missingTranslationsModifiers.Count);
             logger.LogWarning("There are {Count} modifiers without unit or display value processing kind", missingUnitOrDisplayProcessingModifiers.Count);
+            logger.LogWarning("There are {Count} modifiers without property or value processing kind", missingPropertyOrValueProcessingModifiers.Count);
+            logger.LogWarning("There are {Count} new modifiers ", newModifiers.Count);
+            logger.LogWarning("There are {Count} removed modifiers", removedModifiers.Count);
             Dictionary<string, Dictionary<string, string>> missingDataDictionary = new Dictionary<string, Dictionary<string, string>>()
             {
                 { "Translations", missingTranslationsModifiers },
                 { "UnitOrDisplay", missingUnitOrDisplayProcessingModifiers },
+                { "PropertyHandling", missingPropertyOrValueProcessingModifiers },
+                { "NewModifiers", newModifiers },
+                { "RemovedModifers", removedModifiers },
             };
             var missingDataJson = JsonSerializer.Serialize(missingDataDictionary, Constants.ModifierSerializerOptions);
             await WriteFileAsync(outputPath, "MissingDataModifiers.json", missingDataJson);
         }
         else
         {
-            logger.LogInformation("No modifier have missing data");
-        }
-
-        var newModifiers = modifierList.Where(m => !startingModifierDictionary.ContainsKey(m.Name)).ToList();
-        if (newModifiers.Count > 0)
-        {
-            logger.LogWarning("There are {Count} new modifiers", newModifiers.Count);
-            var newModifiersJson = JsonSerializer.Serialize(newModifiers, Constants.ModifierSerializerOptions);
-            await WriteFileAsync(outputPath, "NewModifiers.json", newModifiersJson);
+            logger.LogInformation("No changes to modifiers");
         }
     }
 
