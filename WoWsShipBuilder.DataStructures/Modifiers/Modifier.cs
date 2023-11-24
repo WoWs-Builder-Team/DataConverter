@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace WoWsShipBuilder.DataStructures.Modifiers;
 
 public class Modifier
 {
-    public Modifier(string location, string name, float value, string? gameLocalizationKey, string? appLocalizationKey, Unit unit, string affectedProperty, DisplayValueProcessingKind displayedValueProcessingKind, ValueProcessingKind valueProcessingKind)
+    [JsonConstructor]
+    public Modifier(string location, string name, float value, string? gameLocalizationKey, string? appLocalizationKey, Unit unit, HashSet<string> affectedProperties, DisplayValueProcessingKind displayedValueProcessingKind, ValueProcessingKind valueProcessingKind)
     {
         Location = location;
         Name = name;
@@ -13,7 +15,7 @@ public class Modifier
         GameLocalizationKey = gameLocalizationKey;
         AppLocalizationKey = appLocalizationKey;
         Unit = unit;
-        AffectedProperty = affectedProperty;
+        AffectedProperties = affectedProperties;
         DisplayedValueProcessingKind = displayedValueProcessingKind;
         ValueProcessingKind = valueProcessingKind;
     }
@@ -28,7 +30,7 @@ public class Modifier
             GameLocalizationKey = modifierData.GameLocalizationKey;
             AppLocalizationKey = modifierData.AppLocalizationKey;
             Unit = modifierData.Unit;
-            AffectedProperty = modifierData.AffectedProperty;
+            AffectedProperties = modifierData.AffectedProperties;
             DisplayedValueProcessingKind = modifierData.DisplayedValueProcessingKind;
             ValueProcessingKind = modifierData.ValueProcessingKind;
         }
@@ -47,7 +49,7 @@ public class Modifier
     // Format: DataContainerName.Property.AdditionalSelector
     // For example: ShellDataContainer.Damage.HE would identify a modifier that applies to the Damage parameter only for HE shells.
     // ShellDataContainer.Damage would identify a modifier that applies to the Damage parameter of all shells.
-    public string AffectedProperty { get; } = string.Empty;
+    public HashSet<string> AffectedProperties { get; } = new();
     public DisplayValueProcessingKind DisplayedValueProcessingKind { get; internal set; }
     public ValueProcessingKind ValueProcessingKind { get; internal set; }
 
@@ -112,6 +114,8 @@ public class Modifier
                 return baseValue * (decimal)Value;
             case ValueProcessingKind.PositiveMultiplier:
                 return baseValue * (1 + ((decimal)Value / 100));
+            case ValueProcessingKind.NegativeMultiplier:
+                return baseValue * (1 - ((decimal)Value / 100));
             case ValueProcessingKind.DirectAdd:
                 return baseValue + (decimal)Value;
             case ValueProcessingKind.None:
