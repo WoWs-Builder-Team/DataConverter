@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using DataConverter.Data;
 using WoWsShipBuilder.DataStructures.Consumable;
@@ -58,7 +59,7 @@ namespace DataConverter.Converters
             return consumableList;
         }
 
-        private static List<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary)
+        private static ImmutableList<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary)
         {
             var results = new List<Modifier>();
             foreach ((string key, float modifierValue) in consumableStats.Modifiers)
@@ -93,7 +94,7 @@ namespace DataConverter.Converters
                 }
             }
 
-            return results;
+            return results.ToImmutableList();
         }
     }
 }
