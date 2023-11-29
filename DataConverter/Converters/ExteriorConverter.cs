@@ -40,8 +40,18 @@ namespace DataConverter.Converters
 
                     if (token.Type is JTokenType.Float or JTokenType.Integer)
                     {
-                        modifiersDictionary.TryGetValue(currentWgExteriorModifier.Key, out Modifier? modifierData);
-                        modifiers.Add(new Modifier(currentWgExteriorModifier.Key, token.Value<float>(), "Exterior", modifierData));
+                        // fix for regenerationHPSpeed being used as name for 3 different things: this exterior buff, the flat regen from lutjens and the actual hp regen.
+                        if (currentWgExterior.Index.Equals("PCEF007"))
+                        {
+                            modifiersDictionary.TryGetValue("exterior_" + currentWgExteriorModifier.Key, out Modifier? modifierData);
+                            modifiers.Add(new Modifier("exterior_" + currentWgExteriorModifier.Key, token.Value<float>(), "Exterior", modifierData));
+                        }
+                        else
+                        {
+                            modifiersDictionary.TryGetValue(currentWgExteriorModifier.Key, out Modifier? modifierData);
+
+                            modifiers.Add(new Modifier(currentWgExteriorModifier.Key, token.Value<float>(), "Exterior", modifierData));
+                        }
                     }
                     else
                     {

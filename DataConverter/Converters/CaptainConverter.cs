@@ -166,8 +166,9 @@ public static class CaptainConverter
                                 continue;
                             }
 
-                            modifierDictionary.TryGetValue(key, out Modifier? modifierData);
-                            effectsModifiers.Add(new Modifier(key, value.Value<float>(), $"Skill_{currentUniqueSkillKey}", modifierData));
+                            var fixedKey = key.Equals("regenerationHPSpeed") ? "captain_" + currentWgCaptain.Name + "_" + key : key;
+                            modifierDictionary.TryGetValue(fixedKey, out Modifier? modifierData);
+                            effectsModifiers.Add(new Modifier(fixedKey, value.Value<float>(), $"Skill_{currentUniqueSkillKey}", modifierData));
                             DataCache.TranslationNames.Add(key);
                         }
                         else if (value.Type == JTokenType.Object)

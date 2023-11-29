@@ -5,7 +5,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.ConstantDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.ConstantDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -15,7 +17,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.ConstantDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.ConstantDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -25,7 +29,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.ConstantDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.ConstantDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -35,7 +41,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.ConstantDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.ConstantDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -45,7 +53,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["AntiAirDataContainer.ConstantDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.ConstantDamage"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -55,7 +65,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["AntiAirDataContainer.ConstantDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.ConstantDamage"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -75,7 +87,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.FlakDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -85,7 +99,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.FlakDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -95,7 +111,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.FlakDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -105,7 +123,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.FlakDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -115,7 +135,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["AntiAirDataContainer.FlakDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakDamage"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -125,7 +147,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["AntiAirDataContainer.FlakDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakDamage"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -135,7 +159,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAEXTRABUBBLES_SKILL",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["AntiAirDataContainer.FlakAmount"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakAmount"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -145,7 +171,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AAINNEREXTRABUBBLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["AntiAirDataContainer.FlakAmount"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakAmount"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -215,7 +243,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.Ship"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.Ship"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -225,7 +255,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AIRDEFENSEDISPRELOADCOEFF_MODERNIZATION",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY011"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY011"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -235,7 +267,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AIRDEFENSEDISPWORKTIMECOEFF_MODERNIZATION",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY011"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY011"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -255,7 +289,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_AREADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.ConstantDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.ConstantDamage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -283,7 +319,7 @@
   },
   {
     "name": "artilleryBurnChanceBonus_Battleship",
-    "value": 0.015,
+    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -295,7 +331,7 @@
   },
   {
     "name": "artilleryBurnChanceBonus_Cruiser",
-    "value": 0.015,
+    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -307,7 +343,7 @@
   },
   {
     "name": "artilleryBurnChanceBonus_Destroyer",
-    "value": 0.015,
+    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -369,7 +405,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ASMAXHEALTHCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AirstrikeDataContainer.PlaneHp"],
+    "affectedProperties": [
+      "AirstrikeDataContainer.PlaneHp"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -379,27 +417,33 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ASRELOADTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AirstrikeDataContainer.Reload"],
+    "affectedProperties": [
+      "AirstrikeDataContainer.Reload"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "backwardEngineForsag",
-    "value": 4.5,
+    "value": 4,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.BackwardEngineForsag.SpeedBoost"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.BackwardEngineForsag.SpeedBoost"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "DirectAdd"
   },
   {
     "name": "backwardEngineForsagMaxSpeed",
-    "value": 10,
+    "value": 12,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ManeuverabilityDataContainer.BackwardEngineForsagMaxSpeed.SpeedBoost"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.BackwardEngineForsagMaxSpeed.SpeedBoost"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -409,7 +453,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BATTERYCAPACITYCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.DiveCapacity"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.DiveCapacity"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -419,7 +465,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BATTERYREGENCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.DiveCapacityRecharge"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.DiveCapacityRecharge"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -429,7 +477,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BOMBALPHADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["BombDataContainer.Damage.He"],
+    "affectedProperties": [
+      "BombDataContainer.Damage.He"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -439,7 +489,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BOMBAPALPHADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["BombDataContainer.Damage.Ap"],
+    "affectedProperties": [
+      "BombDataContainer.Damage.Ap"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -449,17 +501,21 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BOMBBURNCHANCEBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["BombDataContainer.FireChance"],
+    "affectedProperties": [
+      "BombDataContainer.FireChance"
+    ],
     "displayedValueProcessingKind": "NoneOrPercentage",
     "valueProcessingKind": "SumPercentage"
   },
   {
     "name": "boostCoeff",
-    "value": 0.15,
+    "value": 0.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_BOOSTCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.BoostCoeff"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.BoostCoeff"
+    ],
     "displayedValueProcessingKind": "RoundedPercentage",
     "valueProcessingKind": "DirectAdd"
   },
@@ -469,7 +525,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BOOSTCOEFFFORSAGE",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.SpeedBoostForsage"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.SpeedBoostForsage"
+    ],
     "displayedValueProcessingKind": "RoundedPercentage",
     "valueProcessingKind": "DirectAdd"
   },
@@ -479,7 +537,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BUBBLEDAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["AntiAirDataContainer.FlakDamage"],
+    "affectedProperties": [
+      "AntiAirDataContainer.FlakDamage"
+    ],
     "displayedValueProcessingKind": "PositivePercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -499,7 +559,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BUOYANCYRUDDERTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.DivingPlaneShiftTime"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.DivingPlaneShiftTime"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -571,7 +633,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FireChanceResistance"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FireChanceResistance"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -581,7 +645,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FireDuration"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FireDuration"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -591,7 +657,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSADDITIONALCONSUMABLES_SKILL",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.PCY035"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY035"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -601,7 +669,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSAPPEARDELAY",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.TimeDelayAppear.PCY035"],
+    "affectedProperties": [
+      "ConsumableDataContainer.TimeDelayAppear.PCY035"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -611,7 +681,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSRADIUSCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Radius.PCY035"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Radius.PCY035"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -621,7 +693,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSTIMEDELAYATTACK",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.TimeDelayAttack.PCY035"],
+    "affectedProperties": [
+      "ConsumableDataContainer.TimeDelayAttack.PCY035"
+    ],
     "displayedValueProcessingKind": "InverseNegativePercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -631,9 +705,41 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY035"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY035"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "captain_PGW103_Lutjens_regenerationHPSpeed",
+    "value": 300,
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayedValueProcessingKind": "None",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "captain_PJW018_Yamamoto_regenerationHPSpeed",
+    "value": 0.004,
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED_WITH_WORKTIME_CUSTOM",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "captain_PRW406_Kuznetsov_regenerationHPSpeed",
+    "value": 0.0035,
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
   },
   {
     "name": "climbAngle",
@@ -666,13 +772,25 @@
     "valueProcessingKind": "NotAssigned"
   },
   {
+    "name": "consumable_regenerationHPSpeed",
+    "value": 0.005,
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "ConsumableReloadTime",
     "value": 0.85,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.Ship",
-      "ConsumableDataContainer.PrepTime.PCY048"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Ship",
+      "ConsumableDataContainer.PrepTime.PCY048"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -682,7 +800,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.AirCarrier"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.AirCarrier"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -692,7 +812,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.Battleship"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Battleship"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -702,7 +824,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.Cruiser"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Cruiser"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -712,7 +836,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.Destroyer"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Destroyer"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -722,17 +848,21 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.Submarine"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Submarine"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "ConsumablesWorkTime",
-    "value": 1.05,
+    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLESWORKTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.Ship"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.Ship"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -742,17 +872,21 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.PCY009.PCY037"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY009.PCY037"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
   {
     "name": "crashCrewReloadCoeff",
-    "value": 0.8,
+    "value": 0.97,
     "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY009.PCY037"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY009.PCY037"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -762,7 +896,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY009.PCY037"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY009.PCY037"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -792,37 +928,45 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["DepthChargeDataContainer.Damage"],
+    "affectedProperties": [
+      "DepthChargeDataContainer.Damage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "dcAlphaDamageMultiplier_AirCarrier",
-    "value": 1.1,
+    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["DepthChargeDataContainer.Damage"],
+    "affectedProperties": [
+      "DepthChargeDataContainer.Damage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "dcAlphaDamageMultiplier_Battleship",
-    "value": 1,
+    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["DepthChargeDataContainer.Damage"],
+    "affectedProperties": [
+      "DepthChargeDataContainer.Damage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "dcAlphaDamageMultiplier_Cruiser",
-    "value": 1,
+    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["DepthChargeDataContainer.Damage"],
+    "affectedProperties": [
+      "DepthChargeDataContainer.Damage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -832,7 +976,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["DepthChargeDataContainer.Damage"],
+    "affectedProperties": [
+      "DepthChargeDataContainer.Damage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -842,7 +988,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["DepthChargeDataContainer.Damage"],
+    "affectedProperties": [
+      "DepthChargeDataContainer.Damage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -852,7 +1000,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DCNUMPACKSBONUS",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["DepthChargesLauncherDataContainer.NumberOfUses"],
+    "affectedProperties": [
+      "DepthChargesLauncherDataContainer.NumberOfUses"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -904,7 +1054,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.AimRate.DiveBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.AimRate.DiveBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -914,7 +1066,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.Hp.DiveBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.Hp.DiveBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -924,7 +1078,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERMAXSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.MaxSpeed.DiveBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.MaxSpeed.DiveBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -934,7 +1090,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERMINSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.MinSpeed.DiveBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.MinSpeed.DiveBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -944,7 +1102,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.CruisingSpeed.DiveBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.CruisingSpeed.DiveBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -960,21 +1120,25 @@
   },
   {
     "name": "engineBackwardForsageMaxSpeed",
-    "value": 2.4,
+    "value": 2,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.EngineBackwardForsageMaxSpeed"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.EngineBackwardForsageMaxSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "engineBackwardForsagePower",
-    "value": 1,
+    "value": 1.15,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ManeuverabilityDataContainer.EngineBackwardForsagePower"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.EngineBackwardForsagePower"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -984,7 +1148,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.EngineBackwardUpTime"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.EngineBackwardUpTime"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1000,21 +1166,25 @@
   },
   {
     "name": "engineForwardForsageMaxSpeed",
-    "value": 2.4,
+    "value": 3.75,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.EngineForwardForsageMaxSpeed"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.EngineForwardForsageMaxSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "engineForwardForsagePower",
-    "value": 1,
+    "value": 1.1,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ManeuverabilityDataContainer.EngineForwardForsagePower"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.EngineForwardForsagePower"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -1024,7 +1194,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ENGINEFORWARDUPTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.EngineForwardUpTime"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.EngineForwardUpTime"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1039,12 +1211,34 @@
     "valueProcessingKind": "NotAssigned"
   },
   {
+    "name": "exterior_planeRegenerationRate",
+    "value": 1.05,
+    "gameLocalizationKey": "PARAMS_MODIFIER_PLANEREGENERATIONRATE",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayedValueProcessingKind": "PositivePercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "exterior_regenerationHPSpeed",
+    "value": 1.2,
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED_PERCENT",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": ["ConsumableDataContainer.RegenerationHpSpeed.PCY010"],
+    "displayedValueProcessingKind": "PositivePercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
     "name": "extraFighterCount",
     "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_EXTRAFIGHTERCOUNT",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.ExtraFighters.PCY012.PCY03"],
+    "affectedProperties": [
+      "ConsumableDataContainer.ExtraFighters.PCY012.PCY03"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -1054,7 +1248,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.AimRate.Rocket"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.AimRate.Rocket"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1064,7 +1260,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERAIMINGTIME",
     "appLocalizationKey": null,
     "unit": "S",
-    "affectedProperties": ["CvAircraftDataContainer.AimingTime.Rocket"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.AimingTime.Rocket"
+    ],
     "displayedValueProcessingKind": "None",
     "valueProcessingKind": "DirectAdd"
   },
@@ -1074,7 +1272,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.Hp.Rocket"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.Hp.Rocket"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1094,7 +1294,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_FIRSTSECTORTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["PingerGunDataContainer.PingDuration.First"],
+    "affectedProperties": [
+      "PingerGunDataContainer.PingDuration.First"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1104,17 +1306,21 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODCHANCEFACTOR",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["TorpedoDataContainer.FloodChance.Ship"],
+    "affectedProperties": [
+      "TorpedoDataContainer.FloodChance.Ship"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "floodChanceFactorPlane",
-    "value": 1.04,
+    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODCHANCEFACTORPLANE",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["TorpedoDataContainer.FloodChance.Plane"],
+    "affectedProperties": [
+      "TorpedoDataContainer.FloodChance.Plane"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1134,7 +1340,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FloodDuration"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FloodDuration"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1150,11 +1358,13 @@
   },
   {
     "name": "forwardEngineForsag",
-    "value": 4.5,
+    "value": 2.5,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.ForwardEngineForsag.SpeedBoost"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.ForwardEngineForsag.SpeedBoost"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "DirectAdd"
   },
@@ -1164,7 +1374,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ManeuverabilityDataContainer.ForwardEngineForsagMaxSpeed"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.ForwardEngineForsagMaxSpeed"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -1186,7 +1398,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GMBIGGUNVISIBILITYCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConcealmentDataContainer.Visibility.Big"],
+    "affectedProperties": [
+      "ConcealmentDataContainer.Visibility.Big"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1236,7 +1450,7 @@
   },
   {
     "name": "GMIdealRadius",
-    "value": 0.9,
+    "value": 0.65,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMIDEALRADIUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1248,7 +1462,7 @@
   },
   {
     "name": "GMMaxDist",
-    "value": 1.2,
+    "value": 1.08,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMMAXDIST",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1282,7 +1496,7 @@
   },
   {
     "name": "GMRepairTime",
-    "value": 0.5,
+    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMREPAIRTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1292,7 +1506,7 @@
   },
   {
     "name": "GMRotationSpeed",
-    "value": 1.2,
+    "value": 0.93,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1354,7 +1568,7 @@
   },
   {
     "name": "GMShotDelay",
-    "value": 0.9,
+    "value": 0.85,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMSHOTDELAY",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1366,11 +1580,13 @@
   },
   {
     "name": "GSIdealRadius",
-    "value": 0.7,
+    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSIDEALRADIUS",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SecondaryBatteryDataContainer.Dispersion.IdealRadius"],
+    "affectedProperties": [
+      "SecondaryBatteryDataContainer.Dispersion.IdealRadius"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1380,7 +1596,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXDIST",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SecondaryBatteryDataContainer.Range"],
+    "affectedProperties": [
+      "SecondaryBatteryDataContainer.Range"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1472,7 +1690,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GSSHOTDELAY",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SecondaryBatteryDataContainer.Reload"],
+    "affectedProperties": [
+      "SecondaryBatteryDataContainer.Reload"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1536,7 +1756,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALFORSAGERELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.PCY035.Reload"],
+    "affectedProperties": [
+      "ConsumableDataContainer.PCY035.Reload"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1546,7 +1768,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "HP",
-    "affectedProperties": ["SurvivabilityDataContainer.Hp"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.Hp"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -1556,7 +1780,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "HP",
-    "affectedProperties": ["SurvivabilityDataContainer.Hp"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.Hp"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -1566,7 +1792,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHPERLEVEL_CRUISER",
     "appLocalizationKey": null,
     "unit": "HP",
-    "affectedProperties": ["SurvivabilityDataContainer.Hp"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.Hp"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -1576,7 +1804,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHPERLEVEL_DESTROYER",
     "appLocalizationKey": null,
     "unit": "HP",
-    "affectedProperties": ["SurvivabilityDataContainer.Hp"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.Hp"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -1586,7 +1816,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "HP",
-    "affectedProperties": ["SurvivabilityDataContainer.Hp"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.Hp"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -1606,8 +1838,10 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_HLCRITTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FireDuration",
-      "SurvivabilityDataContainer.FloodDuration"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FireDuration",
+      "SurvivabilityDataContainer.FloodDuration"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1627,7 +1861,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEUPDATEFREQUENCYCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.HydrophoneUpdateFrequency.PCY045"],
+    "affectedProperties": [
+      "ConsumableDataContainer.HydrophoneUpdateFrequency.PCY045"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1667,7 +1903,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY011"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY011"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1677,7 +1915,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY022"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY022"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1687,7 +1927,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY012.PCY038"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY012.PCY038"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1697,7 +1939,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY020"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY020"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1707,7 +1951,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY013"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY013"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1717,7 +1963,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY014"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY014"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1727,7 +1975,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY016"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY016"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1737,7 +1987,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY015"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY015"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1747,7 +1999,9 @@
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY018"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY018"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1770,7 +2024,7 @@
   },
   {
     "name": "lifeTime",
-    "value": 127,
+    "value": 10,
     "gameLocalizationKey": "PARAMS_MODIFIER_LIFETIME",
     "appLocalizationKey": null,
     "unit": "S",
@@ -1784,7 +2038,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_MAXBUOYANCYSPEEDCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.MaxDiveSpeed"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.MaxDiveSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1804,7 +2060,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PINGERRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["PingerGunDataContainer.Reload"],
+    "affectedProperties": [
+      "PingerGunDataContainer.Reload"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1824,13 +2082,15 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PINGERWAVESPEEDCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["PingerGunDataContainer.WaveSpeed"],
+    "affectedProperties": [
+      "PingerGunDataContainer.WaveSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "planeAdditionalConsumables",
-    "value": 0,
+    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1854,7 +2114,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANECONSUMABLESWORKTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.Plane"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.Plane"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1884,7 +2146,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEEXTRAHANGARSIZE",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["CvAircraftDataContainer.MaxOnDeck"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.MaxOnDeck"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -1894,17 +2158,21 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEFORSAGETIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.BoostTime"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.BoostTime"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "planeHealthCoeff",
-    "value": 1.15,
+    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEHEALTHCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.Hp"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.Hp"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1914,7 +2182,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEHEALTHPERLEVEL",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["CvAircraftDataContainer.HpPerTier"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.HpPerTier"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
@@ -1924,18 +2194,10 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEMAXSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.MaxSpeed"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.MaxSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "Multiplier"
-  },
-  {
-    "name": "planeRegenerationRate",
-    "value": 1.05,
-    "gameLocalizationKey": "PARAMS_MODIFIER_PLANEREGENERATIONRATE",
-    "appLocalizationKey": null,
-    "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.PlaneRegenerationRate.PCY036"],
-    "displayedValueProcessingKind": "PositivePercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1944,7 +2206,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANESPAWNTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.RestorationTime"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.RestorationTime"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1954,7 +2218,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANESPEED",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.Speed"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.Speed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1964,7 +2230,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANETORPEDOARMINGTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["TorpedoDataContainer.ArmingTime"],
+    "affectedProperties": [
+      "TorpedoDataContainer.ArmingTime"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1974,7 +2242,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANETORPEDOSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["TorpedoDataContainer.Damage.Plane"],
+    "affectedProperties": [
+      "TorpedoDataContainer.Damage.Plane"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -1984,9 +2254,11 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEVISIBILITYFACTOR",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.Concealment",
+    "affectedProperties": [
+      "CvAircraftDataContainer.Concealment",
       "ConsumableDataContainer.PCY035.Concealment",
-      "ConsumableDataContainer.Concealment.PCY012.PCY03"],
+      "ConsumableDataContainer.Concealment.PCY012.PCY03"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2022,7 +2294,7 @@
   },
   {
     "name": "prioritySectorStrengthBonus",
-    "value": 35,
+    "value": 25,
     "gameLocalizationKey": "PARAMS_MODIFIER_PRIORITYSECTORSTRENGTHBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2046,7 +2318,9 @@
     "gameLocalizationKey": null,
     "appLocalizationKey": "regenCrewAdditionalConsumables",
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.PCY010"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY010"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -2056,7 +2330,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY010"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY010"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2066,7 +2342,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY010"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY010"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2076,7 +2354,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEDHPPARTCOEF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.RepairableDamage"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.RepairableDamage"
+    ],
     "displayedValueProcessingKind": "RoundedPercentage",
     "valueProcessingKind": "DirectAdd"
   },
@@ -2086,7 +2366,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEHEALTHADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.PCY036"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY036"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -2096,18 +2378,10 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEHEALTHWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY036"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY036"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "Multiplier"
-  },
-  {
-    "name": "regenerationHPSpeed",
-    "value": 0.005,
-    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
-    "appLocalizationKey": null,
-    "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.RegenerationHpSpeed.PCY010"],
-    "displayedValueProcessingKind": "PositivePercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2126,7 +2400,9 @@
     "gameLocalizationKey": null,
     "appLocalizationKey": "repeatable_first_GMShotDelay",
     "unit": "Percent",
-    "affectedProperties": ["MainBatteryDataContainer.Reload"],
+    "affectedProperties": [
+      "MainBatteryDataContainer.Reload"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2136,7 +2412,9 @@
     "gameLocalizationKey": null,
     "appLocalizationKey": "repeatable_other_GMShotDelay",
     "unit": "Percent",
-    "affectedProperties": ["MainBatteryDataContainer.Reload"],
+    "affectedProperties": [
+      "MainBatteryDataContainer.Reload"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2146,7 +2424,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_RLSWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY020"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY020"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2156,7 +2436,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ROCKETAPALPHADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["RocketDataContainer.Damage.Ap"],
+    "affectedProperties": [
+      "RocketDataContainer.Damage.Ap"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2166,7 +2448,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ROCKETBURNCHANCEBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["RocketDataContainer.FireChance"],
+    "affectedProperties": [
+      "RocketDataContainer.FireChance"
+    ],
     "displayedValueProcessingKind": "NoneOrPercentage",
     "valueProcessingKind": "SumPercentage"
   },
@@ -2176,7 +2460,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.PCY013"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY013"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
@@ -2186,7 +2472,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY013"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY013"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2196,7 +2484,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTWORKTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY013"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY013"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2206,7 +2496,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SECONDSECTORTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["PingerGunDataContainer.PingDuration.Second"],
+    "affectedProperties": [
+      "PingerGunDataContainer.PingDuration.Second"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2232,7 +2524,7 @@
   },
   {
     "name": "SGRepairTime",
-    "value": 0.2,
+    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_SGREPAIRTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2246,7 +2538,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SGRUDDERTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.RudderShiftTime"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.RudderShiftTime"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2266,7 +2560,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.AimRate.SkipBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.AimRate.SkipBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2276,7 +2572,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERAIMINGTIME",
     "appLocalizationKey": null,
     "unit": "S",
-    "affectedProperties": ["CvAircraftDataContainer.AimingTime.SkipBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.AimingTime.SkipBomber"
+    ],
     "displayedValueProcessingKind": "None",
     "valueProcessingKind": "Multiplier"
   },
@@ -2286,7 +2584,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.Hp.SkipBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.Hp.SkipBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2296,7 +2596,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.CruisingSpeed.SkipBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.CruisingSpeed.SkipBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2306,7 +2608,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.PCY014"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY014"
+    ],
     "displayedValueProcessingKind": "ToPositive",
     "valueProcessingKind": "DirectAdd"
   },
@@ -2316,7 +2620,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORLIFETIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.LifeTime.PCY014"],
+    "affectedProperties": [
+      "ConsumableDataContainer.LifeTime.PCY014"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2326,7 +2632,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORRELOADCOEFF_MODERNIZATION",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY014"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY014"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2336,7 +2644,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY014"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY014"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2346,7 +2656,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SONARWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY016"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY016"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2376,7 +2688,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDBOOSTERSWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.WorkTime.PCY015"],
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY015"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2386,7 +2700,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDCOEF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.Speed"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.Speed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2396,7 +2712,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDCOEFBATTERY",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ManeuverabilityDataContainer.PropellerShaftSpeed"],
+    "affectedProperties": [
+      "ManeuverabilityDataContainer.PropellerShaftSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2422,7 +2740,7 @@
   },
   {
     "name": "switchAmmoReloadCoef",
-    "value": 0.6,
+    "value": 0.4,
     "gameLocalizationKey": "PARAMS_MODIFIER_SWITCHAMMORELOADCOEF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2476,7 +2794,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOBOMBERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.AimRate.TorpedoBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.AimRate.TorpedoBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2486,17 +2806,21 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOBOMBERAIMINGTIME",
     "appLocalizationKey": null,
     "unit": "S",
-    "affectedProperties": ["CvAircraftDataContainer.AimingTime.TorpedoBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.AimingTime.TorpedoBomber"
+    ],
     "displayedValueProcessingKind": "None",
     "valueProcessingKind": "DirectAdd"
   },
   {
     "name": "torpedoBomberHealth",
-    "value": 1.075,
+    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOBOMBERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["CvAircraftDataContainer.Hp.TorpedoBomber"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.Hp.TorpedoBomber"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2506,7 +2830,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDODAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["TorpedoDataContainer.Damage"],
+    "affectedProperties": [
+      "TorpedoDataContainer.Damage"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2516,7 +2842,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDODETECTIONCOEFFICIENT",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.TorpDetection.PCY016"],
+    "affectedProperties": [
+      "ConsumableDataContainer.TorpDetection.PCY016"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2556,13 +2884,15 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.PCY018"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY018"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "torpedoReloadTime",
-    "value": 8,
+    "value": 5,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADTIME",
     "appLocalizationKey": null,
     "unit": "S",
@@ -2572,11 +2902,13 @@
   },
   {
     "name": "torpedoSpeedMultiplier",
-    "value": 1.05,
+    "value": 1.07,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["TorpedoDataContainer.Damage.Ship"],
+    "affectedProperties": [
+      "TorpedoDataContainer.Damage.Ship"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2586,7 +2918,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOVISIBILITYFACTOR",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["TorpedoDataContainer.Visibility"],
+    "affectedProperties": [
+      "TorpedoDataContainer.Visibility"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2616,23 +2950,27 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_UWCOEFFBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FloodChance"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FloodChance"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "SubtractPercentage"
   },
   {
     "name": "visibilityDistCoeff",
-    "value": 0.85,
+    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_VISIBILITYDISTCOEFF_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConcealmentDataContainer.Visibility"],
+    "affectedProperties": [
+      "ConcealmentDataContainer.Visibility"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "visibilityForSubmarineCoeff",
-    "value": 0.85,
+    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_VISIBILITYFORSUBMARINECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2656,7 +2994,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYBURN",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FireDamageWeakness"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FireDamageWeakness"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
@@ -2666,7 +3006,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYFLOOD",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FloodDamageWeakness"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FloodDamageWeakness"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },

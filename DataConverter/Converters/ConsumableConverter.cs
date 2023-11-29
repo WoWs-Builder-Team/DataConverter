@@ -69,7 +69,7 @@ namespace DataConverter.Converters
                 {
                     case "boostCoeff" when wgConsumable.Index.Equals("PCY022"):
                         modifierData = modifierDictionary.TryGetValue("artilleryReloadCoeff", out modifierData) ? modifierData : null;
-                        modifier = new Modifier("artilleryReloadCoeff", modifierValue, wgConsumable.Index + wgConsumable.Name, modifierData);
+                        modifier = new Modifier("artilleryReloadCoeff", modifierValue, wgConsumable.Name, modifierData);
                         results.Add(modifier);
                         break;
                     case "boostCoeff" when wgConsumable.Index.Equals("PCY034"):
@@ -79,9 +79,15 @@ namespace DataConverter.Converters
                     case "regenerationHPSpeedUnits":
                         //Skip this modifier, it's value is always 0
                         break;
+                    case "regenerationHPSpeed":
+                        var fixedKey = "consumable_" + key;
+                        modifierData = modifierDictionary.TryGetValue(fixedKey, out modifierData) ? modifierData : null;
+                        modifier = new Modifier(fixedKey, modifierValue, wgConsumable.Name, modifierData);
+                        results.Add(modifier);
+                        break;
                     default:
                         modifierData = modifierDictionary.TryGetValue(key, out modifierData) ? modifierData : null;
-                        modifier = new Modifier(key, modifierValue, wgConsumable.Index + wgConsumable.Name, modifierData);
+                        modifier = new Modifier(key, modifierValue, wgConsumable.Name, modifierData);
                         results.Add(modifier);
                         break;
                 }
