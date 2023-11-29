@@ -45,27 +45,32 @@ public static class CaptainConverter
         foreach (var currentWgCaptain in wgCaptain)
         {
             var tags = currentWgCaptain.CrewPersonality.Tags;
+
             // if no tags and we are not processing Common, skip the captain. A captain with no tags is the default captain of the nation, a copy of the one in Common.
             if (tags.Count == 0 && !isCommon)
             {
                 continue;
             }
+
             // if no tags and we already added the default captain in Common, skip all the next. They are copy of each other.
             if (isCommon && tags.Count == 0 && addedDefault)
             {
                 continue;
             }
+
             // if no tags and we haven't added the default captain in Common, set the flag to true to skip future ones.
             if (isCommon && tags.Count == 0 && !addedDefault)
             {
                 addedDefault = true;
             }
+
             // finally, if the tags are not null or empty and are different from upperks (boosted skill) or talants (wg doesn't know how to spell talent, it's the legendary captain)
             // then skip them. No need to have all the cosmetic captain that are the same of the default one displayed.
             if (tags is { Count: > 0 } && !tags.Contains("upperks") && !tags.Contains("talants"))
             {
                 continue;
             }
+
             string name = currentWgCaptain.CrewPersonality.PersonName;
             if (string.IsNullOrEmpty(name))
             {
@@ -73,33 +78,34 @@ public static class CaptainConverter
             }
 
             DataCache.TranslationNames.Add(name);
+
+            //create object SKill
+            //initialize dictionaries for skills and skill's tiers
+            Dictionary<string, Skill> skills = new Dictionary<string, Skill>();
+
+            //iterate all captain's skills
+            foreach (var currentWgSkill in currentWgCaptain.Skills)
+            {
+                var skill = ProcessSkill(currentWgSkill, skillsTiers, modifiersDictionary);
+                skills.Add(currentWgSkill.Key, skill);
+            }
+
+            //map captain's talents
+            //iterate over the various skills from wg data
+            var uniqueSkillDictionary = ProcessUniqueSkills(currentWgCaptain, currentWgCaptain.Index, modifiersDictionary);
+
             //start mapping
             Captain captain = new Captain
             {
                 Id = currentWgCaptain.Id,
                 Index = currentWgCaptain.Index,
                 Name = name,
-                HasSpecialSkills = false,
+                HasSpecialSkills = skills.Any(skillEntry => skillEntry.Value.IsEpic),
                 Nation = Enum.Parse<Nation>(currentWgCaptain.TypeInfo.Nation.Replace("_", string.Empty), true),
+                Skills = skills.ToImmutableDictionary(),
+                UniqueSkills = uniqueSkillDictionary.ToImmutableDictionary(),
             };
 
-            //create object SKill
-            //initialize dictionaries for skills and skill's tiers
-            Dictionary<string, Skill> skills = new Dictionary<string, Skill>();
-            //iterate all captain's skills
-            foreach (var currentWgSkill in currentWgCaptain.Skills)
-            {
-                var skill = ProcessSkill(currentWgSkill, captain, skillsTiers, modifiersDictionary);
-                skills.Add(currentWgSkill.Key, skill);
-            }
-
-            //map skills into object captain
-            captain.Skills = skills;
-
-            //map captain's talents
-            //iterate over the various skills from wg data
-            var uniqueSkillDictionary = ProcessUniqueSkills(currentWgCaptain, captain, modifiersDictionary);
-            captain.UniqueSkills = uniqueSkillDictionary;
             //dictionary with captain's name as key
             captainList.Add(captain.Name, captain);
         }
@@ -107,21 +113,13 @@ public static class CaptainConverter
         return captainList;
     }
 
-    private static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WgCaptain currentWgCaptain, Captain captain, Dictionary<string, Modifier> modifierDictionary)
+    private static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WgCaptain currentWgCaptain, string captainIndex, Dictionary<string, Modifier> modifierDictionary)
     {
         var skills = new Dictionary<string, UniqueSkill>();
         foreach (var (currentUniqueSkillKey, currentUniqueSkillValue) in currentWgCaptain.UniqueSkills)
         {
-            //create our talent data
-            UniqueSkill uniqueSkill = new()
-            {
-                MaxTriggerNum = currentUniqueSkillValue.MaxTriggerNum,
-                AllowedShips = currentUniqueSkillValue.TriggerAllowedShips.ToList(),
-                TriggerType = currentUniqueSkillValue.TriggerType,
-            };
-
             //initialize an empty dictionary for effect name and effect modifiers/stats.
-            var skillEffectDictionary = new Dictionary<string, UniqueSkillEffect>();
+            var skillEffectDictionary = new Dictionary<string, UniqueSkillEffectBuilder>();
 
             //uniqueIds for translation key
             var uniqueIds = new List<int>();
@@ -130,7 +128,7 @@ public static class CaptainConverter
             foreach (var (currentWgUniqueSkillEffectKey, currentWgUniqueSkillEffectValue) in currentUniqueSkillValue.SkillEffects)
             {
                 //create the skill effect object
-                var skillEffect = new UniqueSkillEffect();
+                var skillEffect = new UniqueSkillEffectBuilder();
 
                 // take into account only the properties containing "unique", that are the talent effects.
                 if (currentWgUniqueSkillEffectKey.Contains("Unique"))
@@ -211,33 +209,34 @@ public static class CaptainConverter
             //calculate the localization string
             uniqueIds.Sort();
             var uniqueIdsString = string.Join("_", uniqueIds);
-            var translationId = $"TALENT_{captain.Index}_{uniqueSkill.TriggerType}_{uniqueIdsString}";
-            uniqueSkill.TranslationId = translationId;
+            var translationId = $"TALENT_{captainIndex}_{currentUniqueSkillValue.TriggerType}_{uniqueIdsString}";
             DataCache.TranslationNames.Add(translationId);
 
-            //add the unique skill to the dictionary
-            uniqueSkill.SkillEffects = skillEffectDictionary;
+            //create our talent data
+            UniqueSkill uniqueSkill = new()
+            {
+                MaxTriggerNum = currentUniqueSkillValue.MaxTriggerNum,
+                AllowedShips = currentUniqueSkillValue.TriggerAllowedShips.ToImmutableArray(),
+                TriggerType = currentUniqueSkillValue.TriggerType,
+                TranslationId = translationId,
+                SkillEffects = skillEffectDictionary.ToImmutableDictionary(x => x.Key, x => x.Value.ToUniqueSkillEffect()),
+            };
+
             skills.Add(currentUniqueSkillKey, uniqueSkill);
         }
 
         return skills;
     }
 
-    private static Skill ProcessSkill(KeyValuePair<string, WgSkill> currentWgSkill, Captain captain, SkillsTiers skillsTiers, Dictionary<string, Modifier> modifiersDictionary)
+    private static Skill ProcessSkill(KeyValuePair<string, WgSkill> currentWgSkill, SkillsTiers skillsTiers, Dictionary<string, Modifier> modifiersDictionary)
     {
-        var skill = new Skill
+        var skill = new SkillBuilder()
         {
             //start mapping
             CanBeLearned = currentWgSkill.Value.CanBeLearned,
             IsEpic = currentWgSkill.Value.IsEpic,
             SkillNumber = currentWgSkill.Value.SkillType,
         };
-
-        //check if there are skills with special values
-        if (skill.IsEpic)
-        {
-            captain.HasSpecialSkills = true;
-        }
 
         //initialize lists for skill's tiers and classes
         List<SkillPosition> tiers = new();
@@ -247,14 +246,14 @@ public static class CaptainConverter
         tiers.AddRange(skillPositions);
         classes.AddRange(skillPositions.Select(pos => pos.ShipClass).Distinct());
 
-        skill.Tiers = tiers;
+        skill.Tiers = tiers.ToImmutableArray();
 
         //list of the classes that can use the skill
-        skill.LearnableOn = classes;
+        skill.LearnableOn = classes.ToImmutableArray();
 
         //collect all modifiers of the skill
         List<Modifier> modifiers = ProcessSkillModifiers(currentWgSkill.Value.Modifiers, modifiersDictionary);
-        skill.Modifiers = modifiers;
+        skill.Modifiers = modifiers.ToImmutableDictionary();
 
         //collect all skill's modifiers with trigger condition, 44 = IRPR, 81 = Furious
         var conditionalModifierGroups = new List<ConditionalModifierGroup>();
@@ -297,12 +296,12 @@ public static class CaptainConverter
             conditionalModifierGroups.Add(new(currentWgSkill.Value.LogicTrigger.TriggerType, !string.IsNullOrWhiteSpace(currentWgSkill.Value.LogicTrigger.TriggerDescIds) ? currentWgSkill.Value.LogicTrigger.TriggerDescIds[4..] : string.Empty, conditionalModifiers.ToImmutableList()));
         }
 
-        skill.ConditionalModifierGroups = conditionalModifierGroups;
+        skill.ConditionalModifierGroups = conditionalModifierGroups.ToImmutableArray();
         DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.Select(g => g.TriggerType));
         DataCache.TranslationNames.UnionWith(skill.ConditionalModifierGroups.SelectMany(g => g.Modifiers.Select(m => m.Name)));
         DataCache.TranslationNames.Add(GetSkillTranslationId(currentWgSkill.Key));
         DataCache.TranslationNames.UnionWith(modifiers.Select(m => m.Name));
-        return skill;
+        return skill.ToSkill();
     }
 
     private static List<Modifier> ProcessSkillModifiers(Dictionary<string, JToken> skillModifiers, Dictionary<string, Modifier> modifierDictionary)
@@ -407,12 +406,7 @@ public static class CaptainConverter
                 int skillIndex = skillsInRow.IndexOf(skillNumber);
                 if (skillIndex >= 0)
                 {
-                    var position = new SkillPosition
-                    {
-                        ShipClass = shipClass,
-                        XPosition = skillIndex,
-                        Tier = skillTier,
-                    };
+                    var position = new SkillPosition(skillTier, skillIndex, shipClass);
                     positions.Add(position);
                 }
             }
@@ -427,10 +421,12 @@ public static class CaptainConverter
         {
             throw new ArgumentNullException(nameof(skillName));
         }
+
         if (skillName.Length < 2)
         {
             return skillName;
         }
+
         var sb = new StringBuilder();
         sb.Append(char.ToLowerInvariant(skillName[0]));
         for (int i = 1; i < skillName.Length; ++i)
@@ -446,6 +442,49 @@ public static class CaptainConverter
                 sb.Append(c);
             }
         }
+
         return sb.ToString();
+    }
+
+    private sealed class UniqueSkillEffectBuilder
+    {
+        public bool IsPercent { get; set; }
+
+        public int UniqueType { get; set; }
+
+        public Dictionary<string, float> Modifiers { get; set; } = new();
+
+        public UniqueSkillEffect ToUniqueSkillEffect()
+        {
+            return new(IsPercent, UniqueType, Modifiers.ToImmutableDictionary());
+        }
+    }
+
+    private sealed class SkillBuilder
+    {
+        public bool CanBeLearned { get; set; }
+
+        public bool IsEpic { get; set; } // true if the skill has buffed modifier
+
+        public int SkillNumber { get; set; }
+
+        public ImmutableArray<ShipClass> LearnableOn { get; set; } = ImmutableArray<ShipClass>.Empty;
+
+        public ImmutableArray<SkillPosition> Tiers { get; set; } = ImmutableArray<SkillPosition>.Empty; // contains the tier of the skill for all the classes that can use it
+
+        public ImmutableDictionary<string, float> Modifiers { get; set; } = ImmutableDictionary<string, float>.Empty; // modifiers for always on effects
+
+        public ImmutableArray<ConditionalModifierGroup> ConditionalModifierGroups { get; set; } = ImmutableArray<ConditionalModifierGroup>.Empty;
+
+        public Skill ToSkill() => new()
+        {
+            CanBeLearned = CanBeLearned,
+            IsEpic = IsEpic,
+            SkillNumber = SkillNumber,
+            LearnableOn = LearnableOn,
+            Tiers = Tiers,
+            Modifiers = Modifiers,
+            ConditionalModifierGroups = ConditionalModifierGroups,
+        };
     }
 }
