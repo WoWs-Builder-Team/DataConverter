@@ -728,7 +728,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayedValueProcessingKind": "NoneOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -738,7 +738,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayedValueProcessingKind": "NoneOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -778,7 +778,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayedValueProcessingKind": "NoneOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1217,7 +1217,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "PositivePercentage",
+    "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1227,7 +1227,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": ["ConsumableDataContainer.RegenerationHpSpeed.PCY010"],
-    "displayedValueProcessingKind": "PositivePercentage",
+    "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
