@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -7,90 +7,87 @@ namespace WoWsShipBuilder.DataStructures.Aircraft;
 
 public class Aircraft
 {
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public float MaxHealth { get; set; }
+    public float MaxHealth { get; init; }
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    [Obsolete("Superseded by the corresponding plane types for tactical planes.", true)]
-    public bool IsTactical { get; set; }
+    public int NumPlanesInSquadron { get; init; }
 
-    public int NumPlanesInSquadron { get; set; }
+    public float ReturnHeight { get; init; }
 
-    public float ReturnHeight { get; set; }
+    public float SpeedMaxModifier { get; init; }
 
-    public float SpeedMaxModifier { get; set; }
+    public float SpeedMinModifier { get; init; }
 
-    public float SpeedMinModifier { get; set; }
+    public float Speed { get; init; }
 
-    public float Speed { get; set; }
+    public float MaxEngineBoostDuration { get; init; }
 
-    public float MaxEngineBoostDuration { get; set; }
+    public double NaturalAcceleration { get; init; }
 
-    public double NaturalAcceleration { get; set; }
+    public double NaturalDeceleration { get; init; }
 
-    public double NaturalDeceleration { get; set; }
+    public double ConcealmentFromShips { get; init; }
 
-    public double ConcealmentFromShips { get; set; }
+    public double ConcealmentFromPlanes { get; init; }
 
-    public double ConcealmentFromPlanes { get; set; }
+    public double SpottingOnShips { get; init; }
 
-    public double SpottingOnShips { get; set; }
+    public double SpottingOnPlanes { get; init; }
 
-    public double SpottingOnPlanes { get; set; }
+    public double SpottingOnTorps { get; init; }
 
-    public double SpottingOnTorps { get; set; }
+    public int MaxPlaneInHangar { get; init; }
 
-    public int MaxPlaneInHangar { get; set; }
+    public int StartingPlanes { get; init; }
 
-    public int StartingPlanes { get; set; }
+    public float RestorationTime { get; init; }
 
-    public float RestorationTime { get; set; }
+    public double BombFallingTime { get; init; }
 
-    public double BombFallingTime { get; set; }
+    public string BombName { get; init; } = string.Empty;
 
-    public string BombName { get; set; } = string.Empty;
+    public double DamageTakenMultiplier { get; init; }
 
-    public double DamageTakenMultiplier { get; set; }
+    public double FlightHeight { get; init; }
 
-    public double FlightHeight { get; set; }
+    public double FlightRadius { get; init; }
 
-    public double FlightRadius { get; set; }
+    public double InnerBombsPercentage { get; init; }
 
-    public double InnerBombsPercentage { get; set; }
+    public ImmutableArray<double> InnerSalvoSize { get; init; } = ImmutableArray<double>.Empty;
 
-    public List<double> InnerSalvoSize { get; set; } = new();
-
-    public List<double> OuterSalvoSize { get; init; } = new();
+    public ImmutableArray<double> OuterSalvoSize { get; init; } = ImmutableArray<double>.Empty;
 
     public float[] MinSpreadCoeff { get; init; } = Array.Empty<float>();
 
     public float[] MaxSpreadCoeff { get; init; } = Array.Empty<float>();
 
-    public PlaneCategory PlaneCategory { get; set; }
+    public PlaneCategory PlaneCategory { get; init; }
 
-    public PlaneAttackData AttackData { get; set; } = new();
+    public PlaneAttackData AttackData { get; init; } = new();
 
-    public JatoData JatoData { get; set; } = new(default, default);
+    public JatoData JatoData { get; init; } = new(default, default);
 
-    public List<AircraftConsumable> AircraftConsumable { get; set; } = new();
+    public ImmutableArray<AircraftConsumable> AircraftConsumable { get; init; } = ImmutableArray<AircraftConsumable>.Empty;
 
-    public decimal AimingAccuracyDecreaseRate { get; set; }
+    public decimal AimingAccuracyDecreaseRate { get; init; }
 
-    public decimal AimingAccuracyIncreaseRate { get; set; }
+    public decimal AimingAccuracyIncreaseRate { get; init; }
 
-    public decimal AimingTime { get; set; }
+    public decimal AimingTime { get; init; }
 
-    public decimal PostAttackInvulnerabilityDuration { get; set; }
+    public decimal PostAttackInvulnerabilityDuration { get; init; }
 
-    public decimal PreparationAccuracyDecreaseRate { get; set; }
+    public decimal PreparationAccuracyDecreaseRate { get; init; }
 
-    public decimal PreparationAccuracyIncreaseRate { get; set; }
+    public decimal PreparationAccuracyIncreaseRate { get; init; }
 
-    public decimal PreparationTime { get; set; }
+    public decimal PreparationTime { get; init; }
 
-    public PlaneType PlaneType { get; set; }
+    public PlaneType PlaneType { get; init; }
 }

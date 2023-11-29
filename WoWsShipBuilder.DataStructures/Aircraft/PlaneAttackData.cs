@@ -4,17 +4,17 @@
 // ReSharper disable CollectionNeverUpdated.Global
 public class PlaneAttackData
 {
-    public double AttackCooldown { get; set; }
+    public double AttackCooldown { get; init; }
 
-    public int AttackCount { get; set; }
+    public int AttackCount { get; init; }
 
-    public double AttackInterval { get; set; }
+    public double AttackInterval { get; init; }
 
-    public double AttackSpeedMultiplier { get; set; }
+    public double AttackSpeedMultiplier { get; init; }
 
-    public double AttackSpeedMultiplierApplyTime { get; set; }
+    public double AttackSpeedMultiplierApplyTime { get; init; }
 
-    public double AttackerDamageTakenMultiplier { get; set; }
+    public double AttackerDamageTakenMultiplier { get; init; }
 
-    public int AttackerSize { get; set; }
+    public int AttackerSize { get; init; }
 }
