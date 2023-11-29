@@ -69,7 +69,7 @@ public class Modifier
             case DisplayValueProcessingKind.ToInt:
                 return (int)Value > 0 ? $"+{(int)Value}" : $"{(int)Value}";
             case DisplayValueProcessingKind.NoneOrPercentage:
-                return Value > 1 ? $"+{Value}" : $"+{Math.Round(Value * 100, 2)} %";
+                return Value > 1 ? $"+{Value}" : $"+{Math.Round(Value * 100, 2)}";
             case DisplayValueProcessingKind.PositivePercentage:
                 return $"+{(Value - 1) * 100}";
             case DisplayValueProcessingKind.NegativePercentage:
@@ -93,7 +93,7 @@ public class Modifier
             case DisplayValueProcessingKind.BigWorldToKm:
                 return $"{(Value * 30) / 1000}";
             case DisplayValueProcessingKind.BigWorldToKmDecimal:
-                return $"{(Value * 30) / 1000:.##}";
+                return $"{(Value * 30) / 1000:#0.##}";
             case DisplayValueProcessingKind.MeterToKm:
                 return $"{Value / 1000}";
             case DisplayValueProcessingKind.NotAssigned:
