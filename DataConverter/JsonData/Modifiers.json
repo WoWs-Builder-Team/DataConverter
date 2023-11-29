@@ -79,7 +79,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "AABubbleDamage",
@@ -185,7 +185,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "AAMaxHP_AirCarrier",
@@ -195,7 +195,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "AAMaxHP_Battleship",
@@ -205,7 +205,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "AAMaxHP_Cruiser",
@@ -215,7 +215,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "AAMaxHP_Destroyer",
@@ -225,7 +225,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "AAMaxHP_Submarine",
@@ -235,7 +235,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "additionalConsumables",
@@ -281,7 +281,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "areaDamageMultiplier",
@@ -303,7 +303,7 @@
     "unit": "KM",
     "affectedProperties": [],
     "displayedValueProcessingKind": "BigWorldToKm",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "artilleryBurnChanceBonus_AirCarrier",
@@ -383,9 +383,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYKRUPPMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "affectedProperties": ["ShellDataContainer.Krupp"],
+    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "artilleryReloadCoeff",
@@ -551,7 +551,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "buoyancyRudderTimeCoeff",
@@ -749,7 +749,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "collisionDamageApply",
@@ -759,7 +759,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "collisionDamageNerf",
@@ -769,7 +769,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "consumable_regenerationHPSpeed",
@@ -910,7 +910,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "damagedEngineCoeff",
@@ -920,7 +920,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "dcAlphaDamageMultiplier",
@@ -1026,7 +1026,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "distShip",
@@ -1036,7 +1036,7 @@
     "unit": "KM",
     "affectedProperties": [],
     "displayedValueProcessingKind": "BigWorldToKmDecimal",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "distTorpedo",
@@ -1116,7 +1116,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "engineBackwardForsageMaxSpeed",
@@ -1162,7 +1162,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "engineForwardForsageMaxSpeed",
@@ -1208,7 +1208,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "exterior_planeRegenerationRate",
@@ -1218,7 +1218,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "PositivePercentage",
-    "valueProcessingKind": "Multiplier"
+    "valueProcessingKind": "None"
   },
   {
     "name": "exterior_regenerationHPSpeed",
@@ -1286,7 +1286,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "None",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "firstSectorTimeCoeff",
@@ -1330,9 +1330,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": ["SurvivabilityDataContainer.FloodChanceResistance"],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "floodTime",
@@ -1354,7 +1354,7 @@
     "unit": "S",
     "affectedProperties": [],
     "displayedValueProcessingKind": "None",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "forwardEngineForsag",
@@ -1412,7 +1412,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GMDamageCoeff",
@@ -1420,9 +1420,10 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GMDAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": ["ShellDataContainer.Damage.Ap",
+      "ShellDataContainer.Damage.HESAP"],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GMHeavyCruiserCaliberDamageCoeff",
@@ -1480,7 +1481,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GMPenetrationCoeffHE",
@@ -1502,7 +1503,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GMRotationSpeed",
@@ -1521,10 +1522,12 @@
     "value": 1,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "None",
-    "affectedProperties": [],
+    "unit": "Percent",
+    "affectedProperties": [
+      "MainBatteryDataContainer.TraverseSpeed"
+    ],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GMRotationSpeed_Battleship",
@@ -1532,9 +1535,11 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": [
+      "MainBatteryDataContainer.TraverseSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GMRotationSpeed_Cruiser",
@@ -1542,9 +1547,11 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": [
+      "MainBatteryDataContainer.TraverseSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GMRotationSpeed_Destroyer",
@@ -1552,19 +1559,23 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": [
+      "MainBatteryDataContainer.TraverseSpeed"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GMRotationSpeed_Submarine",
     "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_SUBMARINE",
     "appLocalizationKey": null,
-    "unit": "None",
-    "affectedProperties": [],
+    "unit": "Percent",
+    "affectedProperties": [
+      "MainBatteryDataContainer.TraverseSpeed"
+    ],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GMShotDelay",
@@ -1610,7 +1621,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GSMaxHP_AirCarrier",
@@ -1620,7 +1631,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GSMaxHP_Battleship",
@@ -1630,7 +1641,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GSMaxHP_Cruiser",
@@ -1640,7 +1651,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GSMaxHP_Destroyer",
@@ -1650,7 +1661,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GSMaxHP_Submarine",
@@ -1660,7 +1671,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GSPenetrationCoeffHE",
@@ -1682,7 +1693,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GSShotDelay",
@@ -1704,7 +1715,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GTMaxHP",
@@ -1714,7 +1725,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GTRepairTime",
@@ -1724,7 +1735,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "GTRotationSpeed",
@@ -1830,7 +1841,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "hlCritTimeCoeff",
@@ -1875,7 +1886,7 @@
     "unit": "KM",
     "affectedProperties": [],
     "displayedValueProcessingKind": "MeterToKm",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "hydrophoneWaveSpeedCoeff",
@@ -1885,7 +1896,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "ignorePTZBonus",
@@ -1895,7 +1906,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "invisible_airDefenseDispReloadCoeff",
@@ -2052,7 +2063,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "pingerReloadCoeff",
@@ -2074,7 +2085,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "pingerWaveSpeedCoeff",
@@ -2094,9 +2105,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": [],
+    "affectedProperties": ["ConsumableDataContainer.Uses.Planes"],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "DirectAdd"
   },
   {
     "name": "planeBubbleArmorCoeff",
@@ -2106,7 +2117,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "planeConsumablesWorkTime",
@@ -2128,7 +2139,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "planeEscapeHeightCoeff",
@@ -2138,7 +2149,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "planeExtraHangarSize",
@@ -2270,7 +2281,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "IntVariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "prioritySectorCooldownMultiplier",
@@ -2280,7 +2291,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "prioritySectorStartPhaseStrengthBonus",
@@ -2290,7 +2301,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "prioritySectorStrengthBonus",
@@ -2300,7 +2311,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "radius",
@@ -2510,7 +2521,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "SGCritRudderTime",
@@ -2520,7 +2531,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "VariablePercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "SGRepairTime",
@@ -2530,7 +2541,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "SGRudderTime",
@@ -2552,7 +2563,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "skipBomberAccuracyIncRateCoeff",
@@ -2670,7 +2681,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "spawnShiftRadius",
@@ -2680,7 +2691,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "speedBoostersWorkTimeCoeff",
@@ -2722,11 +2733,11 @@
     "name": "speedLimit",
     "value": 12.5,
     "gameLocalizationKey": "",
-    "appLocalizationKey": null,
+    "appLocalizationKey": "ShipStats_SmokeSpeedLimit",
     "unit": "Knots",
     "affectedProperties": [],
     "displayedValueProcessingKind": "None",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "startDelayTime",
@@ -2736,7 +2747,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "switchAmmoReloadCoef",
@@ -2746,7 +2757,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "timeDelayAttack",
@@ -2776,7 +2787,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "timeWaitDelayAttack",
@@ -2786,7 +2797,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "torpedoBomberAccuracyIncRateCoeff",
@@ -2856,7 +2867,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "Empty",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "torpedoFullPingDamageCoeff",
@@ -2866,7 +2877,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "torpedoReloaderAdditionalConsumables",
@@ -2874,9 +2885,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": [],
+    "affectedProperties": ["ConsumableDataContainer.Uses.PCY018"],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "DirectAdd"
   },
   {
     "name": "torpedoReloaderReloadCoeff",
@@ -2898,7 +2909,7 @@
     "unit": "S",
     "affectedProperties": [],
     "displayedValueProcessingKind": "None",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "torpedoSpeedMultiplier",
@@ -2932,7 +2943,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "updatePeriod",
@@ -2942,7 +2953,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "uwCoeffBonus",
@@ -2976,7 +2987,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "visionXRayTorpedoDist",
@@ -2986,7 +2997,7 @@
     "unit": "KM",
     "affectedProperties": [],
     "displayedValueProcessingKind": "MeterToKm",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "vulnerabilityBurn",
@@ -3020,7 +3031,7 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   },
   {
     "name": "zoneLifetime",
@@ -3030,6 +3041,6 @@
     "unit": "None",
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "NotAssigned"
+    "valueProcessingKind": "None"
   }
 ]
