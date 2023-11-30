@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -63,9 +62,9 @@ public class Aircraft
 
     public ImmutableArray<double> OuterSalvoSize { get; init; } = ImmutableArray<double>.Empty;
 
-    public float[] MinSpreadCoeff { get; init; } = Array.Empty<float>();
+    public ImmutableArray<float> MinSpreadCoeff { get; init; } = ImmutableArray<float>.Empty;
 
-    public float[] MaxSpreadCoeff { get; init; } = Array.Empty<float>();
+    public ImmutableArray<float> MaxSpreadCoeff { get; init; } = ImmutableArray<float>.Empty;
 
     public PlaneCategory PlaneCategory { get; init; }
 

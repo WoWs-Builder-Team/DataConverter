@@ -12,11 +12,11 @@ namespace WoWsShipBuilder.DataStructures.Projectile;
 [JsonDerivedType(typeof(Torpedo), "torpedo")]
 public class Projectile
 {
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public ProjectileType ProjectileType { get; set; }
+    public ProjectileType ProjectileType { get; init; }
 }
