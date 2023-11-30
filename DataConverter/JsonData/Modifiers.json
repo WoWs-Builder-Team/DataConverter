@@ -1,7 +1,6 @@
 [
   {
     "name": "AAAuraDamage",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -13,7 +12,6 @@
   },
   {
     "name": "AAAuraDamage_AirCarrier",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -25,7 +23,6 @@
   },
   {
     "name": "AAAuraDamage_Battleship",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -37,7 +34,6 @@
   },
   {
     "name": "AAAuraDamage_Cruiser",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -49,7 +45,6 @@
   },
   {
     "name": "AAAuraDamage_Destroyer",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "None",
@@ -61,7 +56,6 @@
   },
   {
     "name": "AAAuraDamage_Submarine",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGE_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "None",
@@ -73,7 +67,6 @@
   },
   {
     "name": "AAAuraReceiveDamageCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAAURARECEIVEDAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -83,7 +76,6 @@
   },
   {
     "name": "AABubbleDamage",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -95,7 +87,6 @@
   },
   {
     "name": "AABubbleDamage_AirCarrier",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -107,7 +98,6 @@
   },
   {
     "name": "AABubbleDamage_Battleship",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -119,7 +109,6 @@
   },
   {
     "name": "AABubbleDamage_Cruiser",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -131,7 +120,6 @@
   },
   {
     "name": "AABubbleDamage_Destroyer",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_DESTROYER",
     "appLocalizationKey": null,
     "unit": "None",
@@ -143,7 +131,6 @@
   },
   {
     "name": "AABubbleDamage_Submarine",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AABUBBLEDAMAGE_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "None",
@@ -155,7 +142,6 @@
   },
   {
     "name": "AAExtraBubbles",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAEXTRABUBBLES_SKILL",
     "appLocalizationKey": null,
     "unit": "None",
@@ -167,7 +153,6 @@
   },
   {
     "name": "AAInnerExtraBubbles",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAINNEREXTRABUBBLES",
     "appLocalizationKey": null,
     "unit": "None",
@@ -179,7 +164,6 @@
   },
   {
     "name": "AAMaxHP",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAMAXHP_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -189,7 +173,6 @@
   },
   {
     "name": "AAMaxHP_AirCarrier",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAMAXHP_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -199,7 +182,6 @@
   },
   {
     "name": "AAMaxHP_Battleship",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAMAXHP_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -209,7 +191,6 @@
   },
   {
     "name": "AAMaxHP_Cruiser",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAMAXHP_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -219,7 +200,6 @@
   },
   {
     "name": "AAMaxHP_Destroyer",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAMAXHP_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -229,7 +209,6 @@
   },
   {
     "name": "AAMaxHP_Submarine",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_AAMAXHP_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -239,7 +218,6 @@
   },
   {
     "name": "additionalConsumables",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_ADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
@@ -251,7 +229,6 @@
   },
   {
     "name": "airDefenseDispReloadCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_AIRDEFENSEDISPRELOADCOEFF_MODERNIZATION",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -263,7 +240,6 @@
   },
   {
     "name": "airDefenseDispWorkTimeCoeff",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_AIRDEFENSEDISPWORKTIMECOEFF_MODERNIZATION",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -275,7 +251,6 @@
   },
   {
     "name": "allConsumableReloadTime",
-    "value": 0.925,
     "gameLocalizationKey": "PARAMS_MODIFIER_ALLCONSUMABLERELOADTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -285,7 +260,6 @@
   },
   {
     "name": "areaDamageMultiplier",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_AREADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -297,7 +271,6 @@
   },
   {
     "name": "artilleryAlertMinDistance",
-    "value": 150,
     "gameLocalizationKey": null,
     "appLocalizationKey": "IncomingFireAlertDesc",
     "unit": "KM",
@@ -307,7 +280,6 @@
   },
   {
     "name": "artilleryBurnChanceBonus_AirCarrier",
-    "value": 0,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -319,7 +291,6 @@
   },
   {
     "name": "artilleryBurnChanceBonus_Battleship",
-    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -331,7 +302,6 @@
   },
   {
     "name": "artilleryBurnChanceBonus_Cruiser",
-    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -343,7 +313,6 @@
   },
   {
     "name": "artilleryBurnChanceBonus_Destroyer",
-    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -355,7 +324,6 @@
   },
   {
     "name": "artilleryBurnChanceBonus_Submarine",
-    "value": 0,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYBURNCHANCEBONUS_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -367,7 +335,6 @@
   },
   {
     "name": "artilleryDistCoeff",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYDISTCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -379,17 +346,17 @@
   },
   {
     "name": "artilleryKruppMultiplier",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYKRUPPMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ShellDataContainer.Krupp"],
+    "affectedProperties": [
+      "ShellDataContainer.Krupp"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "artilleryReloadCoeff",
-    "value": 0.667,
     "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -401,7 +368,6 @@
   },
   {
     "name": "asMaxHealthCoeff",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_ASMAXHEALTHCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -413,7 +379,6 @@
   },
   {
     "name": "asReloadTimeCoeff",
-    "value": 0.85,
     "gameLocalizationKey": "PARAMS_MODIFIER_ASRELOADTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -425,7 +390,6 @@
   },
   {
     "name": "backwardEngineForsag",
-    "value": 4,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -437,7 +401,6 @@
   },
   {
     "name": "backwardEngineForsagMaxSpeed",
-    "value": 12,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -449,7 +412,6 @@
   },
   {
     "name": "batteryCapacityCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_BATTERYCAPACITYCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -461,7 +423,6 @@
   },
   {
     "name": "batteryRegenCoeff",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_BATTERYREGENCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -473,7 +434,6 @@
   },
   {
     "name": "bombAlphaDamageMultiplier",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_BOMBALPHADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -485,7 +445,6 @@
   },
   {
     "name": "bombApAlphaDamageMultiplier",
-    "value": 1.03,
     "gameLocalizationKey": "PARAMS_MODIFIER_BOMBAPALPHADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -497,7 +456,6 @@
   },
   {
     "name": "bombBurnChanceBonus",
-    "value": 0.05,
     "gameLocalizationKey": "PARAMS_MODIFIER_BOMBBURNCHANCEBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -509,7 +467,6 @@
   },
   {
     "name": "boostCoeff",
-    "value": 0.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_BOOSTCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -521,7 +478,6 @@
   },
   {
     "name": "boostCoeffForsage",
-    "value": 0.08,
     "gameLocalizationKey": "PARAMS_MODIFIER_BOOSTCOEFFFORSAGE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -533,7 +489,6 @@
   },
   {
     "name": "bubbleDamageMultiplier",
-    "value": 4,
     "gameLocalizationKey": "PARAMS_MODIFIER_BUBBLEDAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -545,7 +500,6 @@
   },
   {
     "name": "buoyancyRudderResetTimeCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_BUOYANCYRUDDERRESETTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -555,7 +509,6 @@
   },
   {
     "name": "buoyancyRudderTimeCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_BUOYANCYRUDDERTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -567,7 +520,6 @@
   },
   {
     "name": "burnChanceBonus",
-    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNCHANCEBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -579,7 +531,6 @@
   },
   {
     "name": "burnChanceFactorBig",
-    "value": 0,
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNCHANCEFACTORBIG",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -592,7 +543,6 @@
   },
   {
     "name": "burnChanceFactorHighLevel",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNCHANCEFACTORHIGHLEVEL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -604,7 +554,6 @@
   },
   {
     "name": "burnChanceFactorLowLevel",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNCHANCEFACTORLOWLEVEL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -616,7 +565,6 @@
   },
   {
     "name": "burnChanceFactorSmall",
-    "value": 0.005,
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNCHANCEFACTORSMALL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -629,7 +577,6 @@
   },
   {
     "name": "burnProb",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -641,7 +588,6 @@
   },
   {
     "name": "burnTime",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -653,7 +599,6 @@
   },
   {
     "name": "callFightersAdditionalConsumables",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSADDITIONALCONSUMABLES_SKILL",
     "appLocalizationKey": null,
     "unit": "None",
@@ -665,7 +610,6 @@
   },
   {
     "name": "callFightersAppearDelay",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSAPPEARDELAY",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -677,7 +621,6 @@
   },
   {
     "name": "callFightersRadiusCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSRADIUSCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -689,7 +632,6 @@
   },
   {
     "name": "callFightersTimeDelayAttack",
-    "value": 0.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSTIMEDELAYATTACK",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -701,7 +643,6 @@
   },
   {
     "name": "callFightersWorkTimeCoeff",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -713,7 +654,6 @@
   },
   {
     "name": "captain_PGW103_Lutjens_regenerationHPSpeed",
-    "value": 300,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
     "appLocalizationKey": null,
     "unit": "None",
@@ -723,7 +663,6 @@
   },
   {
     "name": "captain_PJW018_Yamamoto_regenerationHPSpeed",
-    "value": 0.004,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED_WITH_WORKTIME_CUSTOM",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -733,7 +672,6 @@
   },
   {
     "name": "captain_PRW406_Kuznetsov_regenerationHPSpeed",
-    "value": 0.0035,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -743,7 +681,6 @@
   },
   {
     "name": "climbAngle",
-    "value": 55,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -753,7 +690,6 @@
   },
   {
     "name": "collisionDamageApply",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_COLLISIONDAMAGEAPPLY",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -763,7 +699,6 @@
   },
   {
     "name": "collisionDamageNerf",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_COLLISIONDAMAGENERF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -773,7 +708,6 @@
   },
   {
     "name": "consumable_regenerationHPSpeed",
-    "value": 0.005,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -783,7 +717,6 @@
   },
   {
     "name": "ConsumableReloadTime",
-    "value": 0.85,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -796,7 +729,6 @@
   },
   {
     "name": "ConsumableReloadTime_AirCarrier",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -808,7 +740,6 @@
   },
   {
     "name": "ConsumableReloadTime_Battleship",
-    "value": 0.6,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -820,7 +751,6 @@
   },
   {
     "name": "ConsumableReloadTime_Cruiser",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -832,7 +762,6 @@
   },
   {
     "name": "ConsumableReloadTime_Destroyer",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -844,7 +773,6 @@
   },
   {
     "name": "ConsumableReloadTime_Submarine",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -856,7 +784,6 @@
   },
   {
     "name": "ConsumablesWorkTime",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLESWORKTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -868,7 +795,6 @@
   },
   {
     "name": "crashCrewAdditionalConsumables",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
@@ -880,7 +806,6 @@
   },
   {
     "name": "crashCrewReloadCoeff",
-    "value": 0.97,
     "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -892,7 +817,6 @@
   },
   {
     "name": "crashCrewWorkTimeCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -904,7 +828,6 @@
   },
   {
     "name": "critProbCoefficient",
-    "value": 0.7,
     "gameLocalizationKey": "PARAMS_MODIFIER_CRITPROBCOEFFICIENT",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -914,7 +837,6 @@
   },
   {
     "name": "damagedEngineCoeff",
-    "value": 0.2167,
     "gameLocalizationKey": "PARAMS_MODIFIER_DAMAGEDENGINECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -924,7 +846,6 @@
   },
   {
     "name": "dcAlphaDamageMultiplier",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -936,7 +857,6 @@
   },
   {
     "name": "dcAlphaDamageMultiplier_AirCarrier",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -948,7 +868,6 @@
   },
   {
     "name": "dcAlphaDamageMultiplier_Battleship",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -960,7 +879,6 @@
   },
   {
     "name": "dcAlphaDamageMultiplier_Cruiser",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -972,7 +890,6 @@
   },
   {
     "name": "dcAlphaDamageMultiplier_Destroyer",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -984,7 +901,6 @@
   },
   {
     "name": "dcAlphaDamageMultiplier_Submarine",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCALPHADAMAGEMULTIPLIER_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -996,7 +912,6 @@
   },
   {
     "name": "dcNumPacksBonus",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCNUMPACKSBONUS",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1008,7 +923,6 @@
   },
   {
     "name": "dcSplashRadiusMultiplier",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_DCSPLASHRADIUSMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1020,7 +934,6 @@
   },
   {
     "name": "distanceToKill",
-    "value": 35,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1030,7 +943,6 @@
   },
   {
     "name": "distShip",
-    "value": 164,
     "gameLocalizationKey": "PARAMS_MODIFIER_DISTSHIP",
     "appLocalizationKey": null,
     "unit": "KM",
@@ -1040,7 +952,6 @@
   },
   {
     "name": "distTorpedo",
-    "value": 114,
     "gameLocalizationKey": "PARAMS_MODIFIER_DISTTORPEDO",
     "appLocalizationKey": null,
     "unit": "KM",
@@ -1050,7 +961,6 @@
   },
   {
     "name": "diveBomberAccuracyIncRateCoeff",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1062,7 +972,6 @@
   },
   {
     "name": "diveBomberHealth",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1074,7 +983,6 @@
   },
   {
     "name": "diveBomberMaxSpeedMultiplier",
-    "value": 0.9899,
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERMAXSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1086,7 +994,6 @@
   },
   {
     "name": "diveBomberMinSpeedMultiplier",
-    "value": 1.0142,
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERMINSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1098,7 +1005,6 @@
   },
   {
     "name": "diveBomberSpeedMultiplier",
-    "value": 1.05,
     "gameLocalizationKey": "PARAMS_MODIFIER_DIVEBOMBERSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1110,7 +1016,6 @@
   },
   {
     "name": "dogFightTime",
-    "value": 5,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1120,7 +1025,6 @@
   },
   {
     "name": "engineBackwardForsageMaxSpeed",
-    "value": 2,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1132,7 +1036,6 @@
   },
   {
     "name": "engineBackwardForsagePower",
-    "value": 1.15,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1144,7 +1047,6 @@
   },
   {
     "name": "engineBackwardUpTime",
-    "value": 0.5,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1156,7 +1058,6 @@
   },
   {
     "name": "engineCritProb",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_ENGINECRITPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1166,7 +1067,6 @@
   },
   {
     "name": "engineForwardForsageMaxSpeed",
-    "value": 3.75,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1178,7 +1078,6 @@
   },
   {
     "name": "engineForwardForsagePower",
-    "value": 1.1,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1190,7 +1089,6 @@
   },
   {
     "name": "engineForwardUpTime",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_ENGINEFORWARDUPTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1202,7 +1100,6 @@
   },
   {
     "name": "engineRepairTime",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_ENGINEREPAIRTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1212,7 +1109,6 @@
   },
   {
     "name": "exterior_planeRegenerationRate",
-    "value": 1.05,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEREGENERATIONRATE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1222,17 +1118,17 @@
   },
   {
     "name": "exterior_regenerationHPSpeed",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED_PERCENT",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.RegenerationHpSpeed.PCY010"],
+    "affectedProperties": [
+      "ConsumableDataContainer.RegenerationHpSpeed.PCY010"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "extraFighterCount",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_EXTRAFIGHTERCOUNT",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1244,7 +1140,6 @@
   },
   {
     "name": "fighterAccuracyIncRateCoeff",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1256,7 +1151,6 @@
   },
   {
     "name": "fighterAimingTime",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERAIMINGTIME",
     "appLocalizationKey": null,
     "unit": "S",
@@ -1268,7 +1162,6 @@
   },
   {
     "name": "fighterHealth",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1280,7 +1173,6 @@
   },
   {
     "name": "fightersNum",
-    "value": 4,
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERSNUM",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1290,7 +1182,6 @@
   },
   {
     "name": "firstSectorTimeCoeff",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_FIRSTSECTORTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1302,7 +1193,6 @@
   },
   {
     "name": "floodChanceFactor",
-    "value": 1.3,
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODCHANCEFACTOR",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1314,7 +1204,6 @@
   },
   {
     "name": "floodChanceFactorPlane",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODCHANCEFACTORPLANE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1326,17 +1215,17 @@
   },
   {
     "name": "floodProb",
-    "value": 0.97,
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["SurvivabilityDataContainer.FloodChanceResistance"],
+    "affectedProperties": [
+      "SurvivabilityDataContainer.FloodChanceResistance"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "floodTime",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_FLOODTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1348,7 +1237,6 @@
   },
   {
     "name": "flyAwayTime",
-    "value": 6,
     "gameLocalizationKey": null,
     "appLocalizationKey": "ShipStats_FlyAwayTime",
     "unit": "S",
@@ -1358,7 +1246,6 @@
   },
   {
     "name": "forwardEngineForsag",
-    "value": 2.5,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1370,7 +1257,6 @@
   },
   {
     "name": "forwardEngineForsagMaxSpeed",
-    "value": 10,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1382,7 +1268,6 @@
   },
   {
     "name": "GMAPDamageCoeff",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMAPDAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1394,7 +1279,6 @@
   },
   {
     "name": "GMBigGunVisibilityCoeff",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMBIGGUNVISIBILITYCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1406,7 +1290,6 @@
   },
   {
     "name": "GMCritProb",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMCRITPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1416,18 +1299,18 @@
   },
   {
     "name": "GMDamageCoeff",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMDAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ShellDataContainer.Damage.Ap",
-      "ShellDataContainer.Damage.HESAP"],
+    "affectedProperties": [
+      "ShellDataContainer.Damage.Ap",
+      "ShellDataContainer.Damage.HESAP"
+    ],
     "displayedValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GMHeavyCruiserCaliberDamageCoeff",
-    "value": 1.05,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMHEAVYCRUISERCALIBERDAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1439,7 +1322,6 @@
   },
   {
     "name": "GMHECSDamageCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMHECSDAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1451,7 +1333,6 @@
   },
   {
     "name": "GMIdealRadius",
-    "value": 0.65,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMIDEALRADIUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1463,7 +1344,6 @@
   },
   {
     "name": "GMMaxDist",
-    "value": 1.08,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMMAXDIST",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1475,7 +1355,6 @@
   },
   {
     "name": "GMMaxHP",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMMAXHP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1485,7 +1364,6 @@
   },
   {
     "name": "GMPenetrationCoeffHE",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMPENETRATIONCOEFFHE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1497,7 +1375,6 @@
   },
   {
     "name": "GMRepairTime",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMREPAIRTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1507,7 +1384,6 @@
   },
   {
     "name": "GMRotationSpeed",
-    "value": 0.93,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1519,7 +1395,6 @@
   },
   {
     "name": "GMRotationSpeed_AirCarrier",
-    "value": 1,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1531,7 +1406,6 @@
   },
   {
     "name": "GMRotationSpeed_Battleship",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1543,7 +1417,6 @@
   },
   {
     "name": "GMRotationSpeed_Cruiser",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1555,7 +1428,6 @@
   },
   {
     "name": "GMRotationSpeed_Destroyer",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1567,7 +1439,6 @@
   },
   {
     "name": "GMRotationSpeed_Submarine",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMROTATIONSPEED_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1579,7 +1450,6 @@
   },
   {
     "name": "GMShotDelay",
-    "value": 0.85,
     "gameLocalizationKey": "PARAMS_MODIFIER_GMSHOTDELAY",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1591,7 +1461,6 @@
   },
   {
     "name": "GSIdealRadius",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSIDEALRADIUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1603,7 +1472,6 @@
   },
   {
     "name": "GSMaxDist",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXDIST",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1615,7 +1483,6 @@
   },
   {
     "name": "GSMaxHP",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXHP_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1625,7 +1492,6 @@
   },
   {
     "name": "GSMaxHP_AirCarrier",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXHP_AIRCARRIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1635,7 +1501,6 @@
   },
   {
     "name": "GSMaxHP_Battleship",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXHP_BATTLESHIP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1645,7 +1510,6 @@
   },
   {
     "name": "GSMaxHP_Cruiser",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXHP_CRUISER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1655,7 +1519,6 @@
   },
   {
     "name": "GSMaxHP_Destroyer",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXHP_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1665,7 +1528,6 @@
   },
   {
     "name": "GSMaxHP_Submarine",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSMAXHP_SUBMARINE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1675,7 +1537,6 @@
   },
   {
     "name": "GSPenetrationCoeffHE",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSPENETRATIONCOEFFHE",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1687,7 +1548,6 @@
   },
   {
     "name": "GSPriorityTargetIdealRadius",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSPRIORITYTARGETIDEALRADIUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1697,7 +1557,6 @@
   },
   {
     "name": "GSShotDelay",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_GSSHOTDELAY",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1709,7 +1568,6 @@
   },
   {
     "name": "GTCritProb",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_GTCRITPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1719,7 +1577,6 @@
   },
   {
     "name": "GTMaxHP",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_GTMAXHP",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1729,7 +1586,6 @@
   },
   {
     "name": "GTRepairTime",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_GTREPAIRTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1739,7 +1595,6 @@
   },
   {
     "name": "GTRotationSpeed",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_GTROTATIONSPEED",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1751,7 +1606,6 @@
   },
   {
     "name": "GTShotDelay",
-    "value": 0.85,
     "gameLocalizationKey": "PARAMS_MODIFIER_GTSHOTDELAY",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1763,7 +1617,6 @@
   },
   {
     "name": "healForsageReloadCoeff",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALFORSAGERELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1775,7 +1628,6 @@
   },
   {
     "name": "healthPerLevel_AirCarrier",
-    "value": 0,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "HP",
@@ -1787,7 +1639,6 @@
   },
   {
     "name": "healthPerLevel_Battleship",
-    "value": 0,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "HP",
@@ -1799,7 +1650,6 @@
   },
   {
     "name": "healthPerLevel_Cruiser",
-    "value": 450,
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHPERLEVEL_CRUISER",
     "appLocalizationKey": null,
     "unit": "HP",
@@ -1811,7 +1661,6 @@
   },
   {
     "name": "healthPerLevel_Destroyer",
-    "value": 350,
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHPERLEVEL_DESTROYER",
     "appLocalizationKey": null,
     "unit": "HP",
@@ -1823,7 +1672,6 @@
   },
   {
     "name": "healthPerLevel_Submarine",
-    "value": 0,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "HP",
@@ -1835,7 +1683,6 @@
   },
   {
     "name": "height",
-    "value": 5,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1845,7 +1692,6 @@
   },
   {
     "name": "hlCritTimeCoeff",
-    "value": 0.85,
     "gameLocalizationKey": "PARAMS_MODIFIER_HLCRITTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1858,7 +1704,6 @@
   },
   {
     "name": "hydrophoneUpdateFrequency",
-    "value": 6,
     "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEUPDATEFREQUENCY",
     "appLocalizationKey": null,
     "unit": "S",
@@ -1868,7 +1713,6 @@
   },
   {
     "name": "hydrophoneUpdateFrequencyCoeff",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEUPDATEFREQUENCYCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1880,7 +1724,6 @@
   },
   {
     "name": "hydrophoneWaveRadius",
-    "value": 8000,
     "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEWAVERADIUS",
     "appLocalizationKey": null,
     "unit": "KM",
@@ -1890,7 +1733,6 @@
   },
   {
     "name": "hydrophoneWaveSpeedCoeff",
-    "value": 1,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -1900,7 +1742,6 @@
   },
   {
     "name": "ignorePTZBonus",
-    "value": 10,
     "gameLocalizationKey": "PARAMS_MODIFIER_IGNOREPTZBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1910,7 +1751,6 @@
   },
   {
     "name": "invisible_airDefenseDispReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1922,7 +1762,6 @@
   },
   {
     "name": "invisible_artilleryBoostersReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1934,7 +1773,6 @@
   },
   {
     "name": "invisible_fighterReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1946,7 +1784,6 @@
   },
   {
     "name": "invisible_rlsReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1958,7 +1795,6 @@
   },
   {
     "name": "invisible_scoutReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1970,7 +1806,6 @@
   },
   {
     "name": "invisible_smokeGeneratorReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1982,7 +1817,6 @@
   },
   {
     "name": "invisible_sonarReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -1994,7 +1828,6 @@
   },
   {
     "name": "invisible_speedBoostersReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2006,7 +1839,6 @@
   },
   {
     "name": "invisible_torpedoReloaderReloadCoeff",
-    "value": 0.925,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2018,7 +1850,6 @@
   },
   {
     "name": "lastChanceReloadCoefficient",
-    "value": 0.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_LASTCHANCERELOADCOEFFICIENT",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2035,7 +1866,6 @@
   },
   {
     "name": "lifeTime",
-    "value": 10,
     "gameLocalizationKey": "PARAMS_MODIFIER_LIFETIME",
     "appLocalizationKey": null,
     "unit": "S",
@@ -2045,7 +1875,6 @@
   },
   {
     "name": "maxBuoyancySpeedCoeff",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_MAXBUOYANCYSPEEDCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2057,7 +1886,6 @@
   },
   {
     "name": "pingerCritProb",
-    "value": 0.75,
     "gameLocalizationKey": "PARAMS_MODIFIER_PINGERCRITPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2067,7 +1895,6 @@
   },
   {
     "name": "pingerReloadCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_PINGERRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2079,7 +1906,6 @@
   },
   {
     "name": "pingerRepairTime",
-    "value": 0.75,
     "gameLocalizationKey": "PARAMS_MODIFIER_PINGERREPAIRTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2089,7 +1915,6 @@
   },
   {
     "name": "pingerWaveSpeedCoeff",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_PINGERWAVESPEEDCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2101,17 +1926,17 @@
   },
   {
     "name": "planeAdditionalConsumables",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.Planes"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.Planes"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
   {
     "name": "planeBubbleArmorCoeff",
-    "value": 0.75,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEBUBBLEARMORCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2121,7 +1946,6 @@
   },
   {
     "name": "planeConsumablesWorkTime",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANECONSUMABLESWORKTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2133,7 +1957,6 @@
   },
   {
     "name": "planeEmptyReturnSpeed",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEEMPTYRETURNSPEED",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2143,7 +1966,6 @@
   },
   {
     "name": "planeEscapeHeightCoeff",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEESCAPEHEIGHTCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2153,7 +1975,6 @@
   },
   {
     "name": "planeExtraHangarSize",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEEXTRAHANGARSIZE",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2165,7 +1986,6 @@
   },
   {
     "name": "planeForsageTimeCoeff",
-    "value": 1.05,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEFORSAGETIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2177,7 +1997,6 @@
   },
   {
     "name": "planeHealthCoeff",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEHEALTHCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2189,7 +2008,6 @@
   },
   {
     "name": "planeHealthPerLevel",
-    "value": 25,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEHEALTHPERLEVEL",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2201,7 +2019,6 @@
   },
   {
     "name": "planeMaxSpeedMultiplier",
-    "value": 1.125,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEMAXSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2213,7 +2030,6 @@
   },
   {
     "name": "planeSpawnTime",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANESPAWNTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2225,7 +2041,6 @@
   },
   {
     "name": "planeSpeed",
-    "value": 1.025,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANESPEED",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2237,7 +2052,6 @@
   },
   {
     "name": "planeTorpedoArmingTimeCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANETORPEDOARMINGTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2249,7 +2063,6 @@
   },
   {
     "name": "planeTorpedoSpeedMultiplier",
-    "value": 1.05,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANETORPEDOSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2261,7 +2074,6 @@
   },
   {
     "name": "planeVisibilityFactor",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEVISIBILITYFACTOR",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2275,7 +2087,6 @@
   },
   {
     "name": "PMDetonationProb",
-    "value": 0.3,
     "gameLocalizationKey": "PARAMS_MODIFIER_PMDETONATIONPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2285,7 +2096,6 @@
   },
   {
     "name": "prioritySectorCooldownMultiplier",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_PRIORITYSECTORCOOLDOWNMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2295,7 +2105,6 @@
   },
   {
     "name": "prioritySectorStartPhaseStrengthBonus",
-    "value": 1.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_PRIORITYSECTORSTARTPHASESTRENGTHBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2305,7 +2114,6 @@
   },
   {
     "name": "prioritySectorStrengthBonus",
-    "value": 25,
     "gameLocalizationKey": "PARAMS_MODIFIER_PRIORITYSECTORSTRENGTHBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2315,7 +2123,6 @@
   },
   {
     "name": "radius",
-    "value": 15,
     "gameLocalizationKey": "PARAMS_MODIFIER_RADIUS",
     "appLocalizationKey": null,
     "unit": "KM",
@@ -2325,7 +2132,6 @@
   },
   {
     "name": "regenCrewAdditionalConsumables",
-    "value": 1,
     "gameLocalizationKey": null,
     "appLocalizationKey": "regenCrewAdditionalConsumables",
     "unit": "None",
@@ -2337,7 +2143,6 @@
   },
   {
     "name": "regenCrewReloadCoeff",
-    "value": 0.992,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2349,7 +2154,6 @@
   },
   {
     "name": "regenCrewWorkTimeCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2361,7 +2165,6 @@
   },
   {
     "name": "regeneratedHPPartCoef",
-    "value": 0.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEDHPPARTCOEF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2373,7 +2176,6 @@
   },
   {
     "name": "regenerateHealthAdditionalConsumables",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEHEALTHADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2385,7 +2187,6 @@
   },
   {
     "name": "regenerateHealthWorkTimeCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEHEALTHWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2397,7 +2198,6 @@
   },
   {
     "name": "regenerationRate",
-    "value": 0.023,
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONRATE",
     "appLocalizationKey": null,
     "unit": "PercentPerS",
@@ -2407,7 +2207,6 @@
   },
   {
     "name": "repeatable_first_GMShotDelay",
-    "value": 0.9,
     "gameLocalizationKey": null,
     "appLocalizationKey": "repeatable_first_GMShotDelay",
     "unit": "Percent",
@@ -2419,7 +2218,6 @@
   },
   {
     "name": "repeatable_other_GMShotDelay",
-    "value": 0.95,
     "gameLocalizationKey": null,
     "appLocalizationKey": "repeatable_other_GMShotDelay",
     "unit": "Percent",
@@ -2431,7 +2229,6 @@
   },
   {
     "name": "rlsWorkTimeCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_RLSWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2443,7 +2240,6 @@
   },
   {
     "name": "rocketApAlphaDamageMultiplier",
-    "value": 1.03,
     "gameLocalizationKey": "PARAMS_MODIFIER_ROCKETAPALPHADAMAGEMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2455,7 +2251,6 @@
   },
   {
     "name": "rocketBurnChanceBonus",
-    "value": 0.01,
     "gameLocalizationKey": "PARAMS_MODIFIER_ROCKETBURNCHANCEBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2467,7 +2262,6 @@
   },
   {
     "name": "scoutAdditionalConsumables",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2479,7 +2273,6 @@
   },
   {
     "name": "scoutReloadCoeff",
-    "value": 0.5,
     "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2491,7 +2284,6 @@
   },
   {
     "name": "scoutWorkTimeCoeff",
-    "value": 1.3,
     "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTWORKTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2503,7 +2295,6 @@
   },
   {
     "name": "secondSectorTimeCoeff",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_SECONDSECTORTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2515,7 +2306,6 @@
   },
   {
     "name": "SGCritProb",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_SGCRITPROB",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2525,7 +2315,6 @@
   },
   {
     "name": "SGCritRudderTime",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_SGCRITRUDDERTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2535,7 +2324,6 @@
   },
   {
     "name": "SGRepairTime",
-    "value": 0.8,
     "gameLocalizationKey": "PARAMS_MODIFIER_SGREPAIRTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2545,7 +2333,6 @@
   },
   {
     "name": "SGRudderTime",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_SGRUDDERTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2557,7 +2344,6 @@
   },
   {
     "name": "shootShift",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_SHOOTSHIFT",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2567,7 +2353,6 @@
   },
   {
     "name": "skipBomberAccuracyIncRateCoeff",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2579,7 +2364,6 @@
   },
   {
     "name": "skipBomberAimingTime",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERAIMINGTIME",
     "appLocalizationKey": null,
     "unit": "S",
@@ -2591,7 +2375,6 @@
   },
   {
     "name": "skipBomberHealth",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2603,7 +2386,6 @@
   },
   {
     "name": "skipBomberSpeedMultiplier",
-    "value": 1.05,
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2615,7 +2397,6 @@
   },
   {
     "name": "smokeGeneratorAdditionalConsumables",
-    "value": 2,
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2627,7 +2408,6 @@
   },
   {
     "name": "smokeGeneratorLifeTime",
-    "value": 1.2,
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORLIFETIME",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2639,7 +2419,6 @@
   },
   {
     "name": "smokeGeneratorReloadCoeff",
-    "value": 0.45,
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORRELOADCOEFF_MODERNIZATION",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2651,7 +2430,6 @@
   },
   {
     "name": "smokeGeneratorWorkTimeCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2663,7 +2441,6 @@
   },
   {
     "name": "sonarWorkTimeCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_SONARWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2675,7 +2452,6 @@
   },
   {
     "name": "spawnBackwardShift",
-    "value": 0.4,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2685,7 +2461,6 @@
   },
   {
     "name": "spawnShiftRadius",
-    "value": 0,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2695,7 +2470,6 @@
   },
   {
     "name": "speedBoostersWorkTimeCoeff",
-    "value": 1.1,
     "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDBOOSTERSWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2707,7 +2481,6 @@
   },
   {
     "name": "speedCoef",
-    "value": 1.08,
     "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDCOEF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2719,7 +2492,6 @@
   },
   {
     "name": "speedCoefBattery",
-    "value": 1.18,
     "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDCOEFBATTERY",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2731,7 +2503,6 @@
   },
   {
     "name": "speedLimit",
-    "value": 12.5,
     "gameLocalizationKey": "",
     "appLocalizationKey": "ShipStats_SmokeSpeedLimit",
     "unit": "Knots",
@@ -2741,7 +2512,6 @@
   },
   {
     "name": "startDelayTime",
-    "value": 2,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2751,7 +2521,6 @@
   },
   {
     "name": "switchAmmoReloadCoef",
-    "value": 0.4,
     "gameLocalizationKey": "PARAMS_MODIFIER_SWITCHAMMORELOADCOEF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2761,7 +2530,6 @@
   },
   {
     "name": "timeDelayAttack",
-    "value": 5,
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSTIMEDELAYATTACK",
     "appLocalizationKey": null,
     "unit": "S",
@@ -2771,7 +2539,6 @@
   },
   {
     "name": "timeFromHeaven",
-    "value": 0,
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSAPPEARDELAY",
     "appLocalizationKey": null,
     "unit": "S",
@@ -2781,7 +2548,6 @@
   },
   {
     "name": "timeToTryingCatch",
-    "value": 40,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2791,7 +2557,6 @@
   },
   {
     "name": "timeWaitDelayAttack",
-    "value": 10,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2801,7 +2566,6 @@
   },
   {
     "name": "torpedoBomberAccuracyIncRateCoeff",
-    "value": 1.075,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOBOMBERACCURACYINCRATECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2813,7 +2577,6 @@
   },
   {
     "name": "torpedoBomberAimingTime",
-    "value": 5,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOBOMBERAIMINGTIME",
     "appLocalizationKey": null,
     "unit": "S",
@@ -2825,7 +2588,6 @@
   },
   {
     "name": "torpedoBomberHealth",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOBOMBERHEALTH",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2837,7 +2599,6 @@
   },
   {
     "name": "torpedoDamageCoeff",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDODAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2849,7 +2610,6 @@
   },
   {
     "name": "torpedoDetectionCoefficient",
-    "value": 1.25,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDODETECTIONCOEFFICIENT",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2861,7 +2621,6 @@
   },
   {
     "name": "torpedoDetectionCoefficientByPlane",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDODETECTIONCOEFFICIENTBYPLANE",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2871,7 +2630,6 @@
   },
   {
     "name": "torpedoFullPingDamageCoeff",
-    "value": 1.15,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOFULLPINGDAMAGECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2881,17 +2639,17 @@
   },
   {
     "name": "torpedoReloaderAdditionalConsumables",
-    "value": 1,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERADDITIONALCONSUMABLES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["ConsumableDataContainer.Uses.PCY018"],
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY018"
+    ],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
   {
     "name": "torpedoReloaderReloadCoeff",
-    "value": 0.75,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2903,7 +2661,6 @@
   },
   {
     "name": "torpedoReloadTime",
-    "value": 5,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADTIME",
     "appLocalizationKey": null,
     "unit": "S",
@@ -2913,7 +2670,6 @@
   },
   {
     "name": "torpedoSpeedMultiplier",
-    "value": 1.07,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOSPEEDMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2925,7 +2681,6 @@
   },
   {
     "name": "torpedoVisibilityFactor",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOVISIBILITYFACTOR",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2937,7 +2692,6 @@
   },
   {
     "name": "underwaterMaxRudderAngleCoeff",
-    "value": 1,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2947,7 +2701,6 @@
   },
   {
     "name": "updatePeriod",
-    "value": 1,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
@@ -2957,7 +2710,6 @@
   },
   {
     "name": "uwCoeffBonus",
-    "value": 7,
     "gameLocalizationKey": "PARAMS_MODIFIER_UWCOEFFBONUS",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2969,7 +2721,6 @@
   },
   {
     "name": "visibilityDistCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_VISIBILITYDISTCOEFF_DESTROYER",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2981,7 +2732,6 @@
   },
   {
     "name": "visibilityForSubmarineCoeff",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_VISIBILITYFORSUBMARINECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -2991,7 +2741,6 @@
   },
   {
     "name": "visionXRayTorpedoDist",
-    "value": 1800,
     "gameLocalizationKey": "PARAMS_MODIFIER_VISIONXRAYTORPEDODIST",
     "appLocalizationKey": null,
     "unit": "KM",
@@ -3001,7 +2750,6 @@
   },
   {
     "name": "vulnerabilityBurn",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYBURN",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -3013,7 +2761,6 @@
   },
   {
     "name": "vulnerabilityFlood",
-    "value": 0.9,
     "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYFLOOD",
     "appLocalizationKey": null,
     "unit": "Percent",
@@ -3025,7 +2772,6 @@
   },
   {
     "name": "workTime",
-    "value": 15,
     "gameLocalizationKey": "PARAMS_MODIFIER_WORKTIME",
     "appLocalizationKey": null,
     "unit": "None",
@@ -3035,7 +2781,6 @@
   },
   {
     "name": "zoneLifetime",
-    "value": 4,
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",

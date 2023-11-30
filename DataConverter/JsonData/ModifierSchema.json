@@ -9,9 +9,6 @@
         "name": {
           "type": "string"
         },
-        "value": {
-          "type": "number"
-        },
         "gameLocalizationKey": {
           "type": ["string", "null"]
         },
@@ -38,7 +35,6 @@
       },
       "required": [
         "name",
-        "value",
         "gameLocalizationKey",
         "appLocalizationKey",
         "unit",
