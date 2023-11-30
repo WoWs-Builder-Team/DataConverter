@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 
 // ReSharper disable ClassNeverInstantiated.Global
@@ -35,7 +34,7 @@ public class Ship
 
     public ImmutableDictionary<string, Hull> Hulls { get; init; } = ImmutableDictionary<string, Hull>.Empty;
 
-    public ImmutableDictionary<string, List<string>> CvPlanes { get; init; } = ImmutableDictionary<string, List<string>>.Empty;
+    public ImmutableDictionary<string, ImmutableArray<string>> CvPlanes { get; init; } = ImmutableDictionary<string, ImmutableArray<string>>.Empty;
 
     public ImmutableDictionary<string, AirStrike> AirStrikes { get; init; } = ImmutableDictionary<string, AirStrike>.Empty;
 

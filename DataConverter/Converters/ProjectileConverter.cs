@@ -162,7 +162,7 @@ public static class ProjectileConverter
             SinkingSpeed = currentWgDepthCharge.Speed,
             SinkingSpeedRng = currentWgDepthCharge.SpeedDeltaRelative,
             ExplosionRadius = currentWgDepthCharge.DepthSplashRadius * 30,
-            PointsOfDamage = pointsOfDamage.ToImmutableDictionary(),
+            PointsOfDamage = pointsOfDamage.Select(entry => (entry.Key, entry.Value.ToImmutableList())).ToImmutableDictionary(x => x.Key, x => x.Item2),
         };
         return depthCharge;
     }

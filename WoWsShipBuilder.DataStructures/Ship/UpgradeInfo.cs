@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using System.Linq;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -35,10 +34,10 @@ public class UpgradeInfo
     /// </summary>
     /// <returns>A dictionary mapping the <see cref="ComponentType"/> of a <see cref="ShipUpgrade"/> to all upgrades available with that type.
     /// Stock upgrades appear first.</returns>
-    public ImmutableDictionary<ComponentType, List<ShipUpgrade>> GroupUpgradesByType()
+    public ImmutableDictionary<ComponentType, ImmutableList<ShipUpgrade>> GroupUpgradesByType()
     {
         return ShipUpgrades.GroupBy(upgrade => upgrade.UcType)
-            .ToImmutableDictionary(group => group.Key, group => group.OrderByDescending(upgrade => string.IsNullOrEmpty(upgrade.Prev)).ToList());
+            .ToImmutableDictionary(group => group.Key, group => group.OrderByDescending(upgrade => string.IsNullOrEmpty(upgrade.Prev)).ToImmutableList());
     }
 }
 

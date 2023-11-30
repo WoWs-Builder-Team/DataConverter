@@ -670,12 +670,12 @@ public static class ShipConverter
         return resultDictionary.ToImmutableDictionary();
     }
 
-    private static ImmutableDictionary<string, List<string>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
+    private static ImmutableDictionary<string, ImmutableArray<string>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
     {
         var validPlaneTypes = new List<ComponentType> { ComponentType.Fighter, ComponentType.TorpedoBomber, ComponentType.DiveBomber, ComponentType.SkipBomber };
         IEnumerable<ShipUpgrade> planeUpgrades = upgradeInfo.ShipUpgrades.Where(upgrade => validPlaneTypes.Contains(upgrade.UcType));
         IEnumerable<string> planeModuleNames = planeUpgrades.Select(u => u.Components[u.UcType][0]);
-        Dictionary<string, List<string>> planeModules = planeModuleNames
+        Dictionary<string, ImmutableArray<string>> planeModules = planeModuleNames
             .Select(module => (module, (WgPlane)wgShip.ModulesArmaments[module]))
             .ToDictionary(x => x.module, x => ExtractPlaneList(x.Item2));
 
@@ -685,16 +685,16 @@ public static class ShipConverter
         return planeModules.ToImmutableDictionary();
     }
 
-    private static List<string> ExtractPlaneList(WgPlane wgPlane)
+    private static ImmutableArray<string> ExtractPlaneList(WgPlane wgPlane)
     {
         // Process ships starting with patch 0.11.1
         if (wgPlane.Planes != null)
         {
-            return wgPlane.Planes.ToList();
+            return wgPlane.Planes.ToImmutableArray();
         }
 
         // Processing for older versions
-        return new List<string> { wgPlane.PlaneType ?? string.Empty };
+        return ImmutableArray.Create(wgPlane.PlaneType ?? string.Empty);
     }
 
     private static ImmutableList<ShipConsumable> ProcessConsumables(WgShip ship)

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -23,5 +22,5 @@ public class DepthCharge : Projectile
 
     public float DetonationTimerRng { get; init; }
 
-    public ImmutableDictionary<float, List<float>> PointsOfDamage { get; init; } = ImmutableDictionary<float, List<float>>.Empty;
+    public ImmutableDictionary<float, ImmutableList<float>> PointsOfDamage { get; init; } = ImmutableDictionary<float, ImmutableList<float>>.Empty;
 }
