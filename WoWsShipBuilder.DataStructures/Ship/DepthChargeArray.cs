@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -13,14 +12,14 @@ public class DepthChargeArray
 
     public decimal Reload { get; init; }
 
-    public List<DepthChargeLauncher> DepthCharges { get; init; } = new();
+    public ImmutableArray<DepthChargeLauncher> DepthCharges { get; init; } = ImmutableArray<DepthChargeLauncher>.Empty;
 }
 
 public class DepthChargeLauncher
 {
-    public List<string> AmmoList { get; init; } = new();
+    public ImmutableArray<string> AmmoList { get; init; } = ImmutableArray<string>.Empty;
 
-    public decimal[] HorizontalSector { get; init; } = Array.Empty<decimal>();
+    public ImmutableArray<decimal> HorizontalSector { get; init; } = ImmutableArray<decimal>.Empty;
 
     public long Id { get; init; }
 
@@ -30,5 +29,5 @@ public class DepthChargeLauncher
 
     public int DepthChargesNumber { get; init; }
 
-    public decimal[] RotationSpeed { get; init; } = Array.Empty<decimal>();
+    public ImmutableArray<decimal> RotationSpeed { get; init; } = ImmutableArray<decimal>.Empty;
 }

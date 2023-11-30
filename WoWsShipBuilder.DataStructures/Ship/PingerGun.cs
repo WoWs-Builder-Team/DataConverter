@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Immutable;
 
 namespace WoWsShipBuilder.DataStructures.Ship;
 
@@ -6,9 +6,9 @@ namespace WoWsShipBuilder.DataStructures.Ship;
 // ReSharper disable CollectionNeverUpdated.Global
 public class PingerGun
 {
-    public decimal[] RotationSpeed { get; init; } = Array.Empty<decimal>();
+    public ImmutableArray<decimal> RotationSpeed { get; init; } = ImmutableArray<decimal>.Empty;
 
-    public SectorParam[] SectorParams { get; init; } = Array.Empty<SectorParam>();
+    public ImmutableArray<SectorParam> SectorParams { get; init; } = ImmutableArray<SectorParam>.Empty;
 
     public decimal WaveDistance { get; init; }
 
@@ -16,7 +16,7 @@ public class PingerGun
 
     public int WaveHitLifeTime { get; init; }
 
-    public WaveParam[] WaveParams { get; init; } = Array.Empty<WaveParam>();
+    public ImmutableArray<WaveParam> WaveParams { get; init; } = ImmutableArray<WaveParam>.Empty;
 
     public decimal WaveReloadTime { get; init; }
 }
@@ -29,7 +29,7 @@ public class SectorParam
 
     public decimal Width { get; init; }
 
-    public decimal[][] WidthParams { get; init; } = Array.Empty<decimal[]>();
+    public ImmutableArray<ImmutableArray<decimal>> WidthParams { get; init; } = ImmutableArray<ImmutableArray<decimal>>.Empty;
 }
 
 public class WaveParam
@@ -40,5 +40,5 @@ public class WaveParam
 
     public decimal StartWaveWidth { get; init; }
 
-    public decimal[] WaveSpeed { get; init; } = Array.Empty<decimal>();
+    public ImmutableArray<decimal> WaveSpeed { get; init; } = ImmutableArray<decimal>.Empty;
 }

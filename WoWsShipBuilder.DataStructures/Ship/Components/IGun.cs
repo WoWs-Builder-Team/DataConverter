@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 namespace WoWsShipBuilder.DataStructures.Ship.Components;
 
 public interface IGun : IModuleBase
 {
-    public List<string> AmmoList { get; init; }
+    public ImmutableArray<string> AmmoList { get; init; }
 
     public decimal BarrelDiameter { get; init; }
 
-    public decimal[] HorizontalSector { get; init; }
+    public ImmutableArray<decimal> HorizontalSector { get; init; }
 
-    public decimal[][] HorizontalDeadZones { get; init; }
+    public ImmutableArray<ImmutableArray<decimal>> HorizontalDeadZones { get; init; }
 
     public int NumBarrels { get; init; }
 
@@ -22,7 +22,7 @@ public interface IGun : IModuleBase
 
     public decimal Reload { get; init; }
 
-    public string WgGunIndex { get; set; }
+    public string WgGunIndex { get; init; }
 
-    public decimal BaseAngle { get; set; }
+    public decimal BaseAngle { get; init; }
 }

@@ -42,6 +42,7 @@ public static class ShipConverter
             DataCache.TranslationNames.Add(wgShip.Index);
             var stShip = shiptoolData.Ship.Find(s => s.Index.Equals(wgShip.Index));
             var upgradeInfo = ProcessUpgradeInfo(wgShip, logger);
+            var mainBatteries = ProcessMainBattery(wgShip, upgradeInfo, stShip, modifiersDictionary);
             var ship = new Ship
             {
                 Id = wgShip.Id,
@@ -51,7 +52,7 @@ public static class ShipConverter
                 ShipClass = ProcessShipClass(wgShip.TypeInfo.Species),
                 ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
                 ShipNation = Enum.Parse<Nation>(wgShip.TypeInfo.Nation.Replace("_", string.Empty), true),
-                MainBatteryModuleList = ProcessMainBattery(wgShip, upgradeInfo, stShip, modifiersDictionary),
+                MainBatteryModuleList = mainBatteries,
                 ShipUpgradeInfo = upgradeInfo,
                 FireControlList = ProcessFireControl(wgShip),
                 TorpedoModules = ProcessTorpedoes(wgShip, upgradeInfo, stShip),
@@ -60,14 +61,13 @@ public static class ShipConverter
                 AirStrikes = ProcessAirstrikes(wgShip),
                 PingerGunList = ProcessPingerGuns(wgShip),
                 SpecialAbility = ProcessSpecialAbility(wgShip, logger, modifiersDictionary),
-                Permoflages = wgShip.Permoflages,
+                Hulls = ProcessShipHull(wgShip, upgradeInfo),
+                CvPlanes = ProcessPlanes(wgShip, upgradeInfo),
+                ShellCompatibilities = CheckShellCompatibilities(mainBatteries, upgradeInfo),
             };
 
             DataCache.TranslationNames.UnionWith(wgShip.Permoflages);
 
-            ship.Hulls = ProcessShipHull(wgShip, ship.ShipUpgradeInfo);
-            ship.CvPlanes = ProcessPlanes(wgShip, ship.ShipUpgradeInfo);
-            ship.ShellCompatibilities = CheckShellCompatibilities(ship);
             results[ship.Index] = ship;
 
             if (ship.ShipCategory == ShipCategory.TechTree)
@@ -120,7 +120,7 @@ public static class ShipConverter
                 ShotInBurst = module.ShotsCount,
                 ReloadAfterBurst = module.FullReloadTime,
                 ReloadDuringBurst = module.BurstReloadTime,
-                Modifiers = modifiers,
+                Modifiers = module.Modifiers.ToImmutableList(),
             };
             DataCache.TranslationNames.UnionWith(burstAbility.Modifiers.Select(m => m.Name));
             return burstAbility;
@@ -138,6 +138,7 @@ public static class ShipConverter
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
             return ProcessRageMode(wgAbility, modifiersDictionary, wgShip.Name);
         }
+
         if (wgSpecialAbilityList.Count == 1)
         {
             var wgAbility = wgSpecialAbilityList.Values.First().RageMode;
@@ -175,9 +176,9 @@ public static class ShipConverter
             }
         }
 
-        var specialAbility = new SpecialAbility()
+        var specialAbility = new SpecialAbility
         {
-            Modifiers = modifierList,
+            Modifiers = modifierList.ToImmutableDictionary(),
             Name = rageMode.RageModeName,
             DecrementPeriod = rageMode.DecrementPeriod,
             Duration = rageMode.BoostDuration,
@@ -240,16 +241,7 @@ public static class ShipConverter
 
     private static UpgradeInfo ProcessUpgradeInfo(WgShip wgShip, ILogger? logger)
     {
-        var upgradeInfo = new UpgradeInfo
-        {
-            ShipUpgrades = new(),
-            CostCredits = wgShip.ShipUpgradeInfo.CostCr,
-            CostGold = wgShip.ShipUpgradeInfo.CostGold,
-            CostXp = wgShip.ShipUpgradeInfo.CostXp,
-            CostSaleGold = wgShip.ShipUpgradeInfo.CostSaleGold,
-            Value = wgShip.ShipUpgradeInfo.Value,
-        };
-
+        var upgrades = new List<ShipUpgrade>();
         foreach ((string wgName, var upgrade) in wgShip.ShipUpgradeInfo.ConvertedUpgrades)
         {
             var newUpgrade = new ShipUpgrade
@@ -257,22 +249,32 @@ public static class ShipConverter
                 Name = wgName,
                 Components = upgrade.Components.Select(entry => (FindModuleType(entry.Key, logger), entry.Value))
                     .Where(entry => entry.Item1 != ComponentType.None)
-                    .ToDictionary(entry => entry.Item1, entry => entry.Value),
+                    .ToImmutableDictionary(entry => entry.Item1, entry => entry.Value.ToImmutableArray()),
                 UcType = FindModuleType(upgrade.UcType, logger),
                 CanBuy = upgrade.CanBuy,
-                NextShips = upgrade.NextShips,
+                NextShips = upgrade.NextShips.ToImmutableArray(),
                 Prev = upgrade.Prev,
             };
             if (newUpgrade.UcType != ComponentType.FlightControl)
             {
-                upgradeInfo.ShipUpgrades.Add(newUpgrade);
+                upgrades.Add(newUpgrade);
             }
         }
+
+        var upgradeInfo = new UpgradeInfo
+        {
+            ShipUpgrades = upgrades.ToImmutableList(),
+            CostCredits = wgShip.ShipUpgradeInfo.CostCr,
+            CostGold = wgShip.ShipUpgradeInfo.CostGold,
+            CostXp = wgShip.ShipUpgradeInfo.CostXp,
+            CostSaleGold = wgShip.ShipUpgradeInfo.CostSaleGold,
+            Value = wgShip.ShipUpgradeInfo.Value,
+        };
 
         return upgradeInfo;
     }
 
-    private static Dictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip, Dictionary<string, Modifier> modifiersDictionary)
+    private static ImmutableDictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip, Dictionary<string, Modifier> modifiersDictionary)
     {
         var resultDictionary = new Dictionary<string, TurretModule>();
         Dictionary<string, WgMainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<WgMainBattery>();
@@ -286,13 +288,13 @@ public static class ShipConverter
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
-                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule)).ToList(),
+                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule)).ToImmutableArray(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule, modifiersDictionary, wgShip.Name),
             };
 
             DataCache.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
 
-            var targetAntiAir = new AntiAir();
+            var targetAntiAir = new AntiAirBuilder();
             AssignAurasToProperty(wgMainBattery.AntiAirAuras, targetAntiAir);
             if (targetAntiAir.LongRangeAura?.ConstantDps > 0)
             {
@@ -302,7 +304,7 @@ public static class ShipConverter
             resultDictionary[key] = turretModule;
         }
 
-        return resultDictionary;
+        return resultDictionary.ToImmutableDictionary();
     }
 
     private static string FindHullForComponent(UpgradeInfo upgradeInfo, ComponentType componentType, string componentKey)
@@ -314,18 +316,15 @@ public static class ShipConverter
 
     private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, double taperDist, ShiptoolHullModule? stHull)
     {
-        var newGun = wgGun.ConvertData(taperDist);
-        newGun.WgGunIndex = mainGunKey;
         if (stHull is null || !stHull.Angles.TryGetValue(mainGunKey, out decimal angle))
         {
-            angle = newGun.VerticalPosition < 3 ? 0 : 180;
+            angle = wgGun.Position[0] < 3 ? 0 : 180;
         }
-        newGun.BaseAngle = angle;
 
-        return newGun;
+        return wgGun.ConvertData(taperDist, mainGunKey, angle);
     }
 
-    private static Dictionary<string, Hull> ProcessShipHull(WgShip wgShip, UpgradeInfo upgradeInfo)
+    private static ImmutableDictionary<string, Hull> ProcessShipHull(WgShip wgShip, UpgradeInfo upgradeInfo)
     {
         var resultDictionary = new Dictionary<string, Hull>();
         Dictionary<string, WgHull> hullModules = wgShip.ModulesArmaments.ModulesOfType<WgHull>();
@@ -336,7 +335,7 @@ public static class ShipConverter
                 upgradeEntry.Components.ContainsKey(ComponentType.Hull) && upgradeEntry.Components[ComponentType.Hull].Contains(key));
 
             // Initialize basic hull data.
-            var hullModule = new Hull
+            var hullModule = new HullBuilder
             {
                 Health = wgHull.Health,
                 MaxSpeed = wgHull.MaxSpeed,
@@ -365,89 +364,47 @@ public static class ShipConverter
             List<HitLocation> hitLocations = new();
             if (!wgHull.Cas.HlType.Equals(string.Empty))
             {
-                HitLocation hl = new()
-                {
-                    Name = ShipHitLocation.Casemate,
-                    Type = wgHull.Cas.HlType,
-                    RepairableDamage = wgHull.Cas.RegeneratedHpPart,
-                    Hp = wgHull.Cas.MaxHp,
-                };
+                HitLocation hl = new(ShipHitLocation.Casemate, wgHull.Cas.HlType, wgHull.Cas.RegeneratedHpPart, wgHull.Cas.MaxHp);
                 hitLocations.Add(hl);
             }
 
             if (!wgHull.Bow.HlType.Equals(string.Empty))
             {
-                HitLocation hl = new()
-                {
-                    Name = ShipHitLocation.Bow,
-                    Type = wgHull.Bow.HlType,
-                    RepairableDamage = wgHull.Bow.RegeneratedHpPart,
-                    Hp = wgHull.Bow.MaxHp,
-                };
+                HitLocation hl = new(ShipHitLocation.Bow, wgHull.Bow.HlType, wgHull.Bow.RegeneratedHpPart, wgHull.Bow.MaxHp);
                 hitLocations.Add(hl);
             }
 
             if (!wgHull.Ss.HlType.Equals(string.Empty))
             {
-                HitLocation hl = new()
-                {
-                    Name = ShipHitLocation.Superstructure,
-                    Type = wgHull.Ss.HlType,
-                    RepairableDamage = wgHull.Ss.RegeneratedHpPart,
-                    Hp = wgHull.Ss.MaxHp,
-                };
+                HitLocation hl = new(ShipHitLocation.Superstructure, wgHull.Ss.HlType, wgHull.Ss.RegeneratedHpPart, wgHull.Ss.MaxHp);
                 hitLocations.Add(hl);
             }
 
             if (!wgHull.St.HlType.Equals(string.Empty))
             {
-                HitLocation hl = new()
-                {
-                    Name = ShipHitLocation.Stern,
-                    Type = wgHull.St.HlType,
-                    RepairableDamage = wgHull.St.RegeneratedHpPart,
-                    Hp = wgHull.St.MaxHp,
-                };
+                HitLocation hl = new(ShipHitLocation.Stern, wgHull.St.HlType, wgHull.St.RegeneratedHpPart, wgHull.St.MaxHp);
                 hitLocations.Add(hl);
             }
 
             if (!wgHull.Ssc.HlType.Equals(string.Empty))
             {
-                HitLocation hl = new()
-                {
-                    Name = ShipHitLocation.AuxiliaryRooms,
-                    Type = wgHull.Ssc.HlType,
-                    RepairableDamage = wgHull.Ssc.RegeneratedHpPart,
-                    Hp = wgHull.Ssc.MaxHp,
-                };
+                HitLocation hl = new(ShipHitLocation.AuxiliaryRooms, wgHull.Ssc.HlType, wgHull.Ssc.RegeneratedHpPart, wgHull.Ssc.MaxHp);
                 hitLocations.Add(hl);
             }
 
             if (!wgHull.Hull.HlType.Equals(string.Empty))
             {
-                HitLocation hl = new()
-                {
-                    Name = ShipHitLocation.Hull,
-                    Type = wgHull.Hull.HlType,
-                    RepairableDamage = wgHull.Hull.RegeneratedHpPart,
-                    Hp = wgHull.Hull.MaxHp,
-                };
+                HitLocation hl = new(ShipHitLocation.Hull, wgHull.Hull.HlType, wgHull.Hull.RegeneratedHpPart, wgHull.Hull.MaxHp);
                 hitLocations.Add(hl);
             }
 
             if (!wgHull.Cit.HlType.Equals(string.Empty))
             {
-                HitLocation hl = new()
-                {
-                    Name = ShipHitLocation.Citadel,
-                    Type = wgHull.Cit.HlType,
-                    RepairableDamage = wgHull.Cit.RegeneratedHpPart,
-                    Hp = wgHull.Cit.MaxHp,
-                };
+                HitLocation hl = new(ShipHitLocation.Citadel, wgHull.Cit.HlType, wgHull.Cit.RegeneratedHpPart, wgHull.Cit.MaxHp);
                 hitLocations.Add(hl);
             }
 
-            hullModule.HitLocations = hitLocations;
+            hullModule.HitLocations = hitLocations.ToImmutableList();
 
             //process subs only parameters
             Dictionary<SubsBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
@@ -468,22 +425,18 @@ public static class ShipConverter
                     };
                     maxSpeedAtBuoyancyStateCoeff.Add(depth, (decimal)(double)coeff[1]);
                 }
-                hullModule.MaxSpeedAtBuoyancyStateCoeff = maxSpeedAtBuoyancyStateCoeff;
+
+                hullModule.MaxSpeedAtBuoyancyStateCoeff = maxSpeedAtBuoyancyStateCoeff.ToImmutableDictionary();
             }
 
             //Process ship size
-            ShipSize dim = new()
-            {
-                Length = wgHull.Size[0],
-                Width = wgHull.Size[1],
-                Height = wgHull.Size[2],
-            };
-            hullModule.Sizes = dim;
+            ShipSize shipSize = new(wgHull.Size[0], wgHull.Size[1], wgHull.Size[2]);
+            hullModule.Sizes = shipSize;
 
             // Process anti-air data
-            var antiAir = new AntiAir();
+            var antiAir = new AntiAirBuilder();
 
-            string[] components = hullUpgradeInfo.Components[ComponentType.Secondary];
+            var components = hullUpgradeInfo.Components[ComponentType.Secondary];
             if (components.Length > 0)
             {
                 var wgHullSecondary = (WgAtba)wgShip.ModulesArmaments[components[0]];
@@ -494,14 +447,14 @@ public static class ShipConverter
                 {
                     Sigma = wgHullSecondary.SigmaCount,
                     MaxRange = wgHullSecondary.MaxDist,
-                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData(wgHullSecondary.TaperDist)).ToList(),
+                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData(wgHullSecondary.TaperDist, string.Empty, default)).ToImmutableArray(),
                 };
 
                 DataCache.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());
                 hullModule.SecondaryModule = secondary;
             }
 
-            if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out string[]? airDefenseKeys))
+            if (hullUpgradeInfo.Components.TryGetValue(ComponentType.AirDefense, out ImmutableArray<string> airDefenseKeys))
             {
                 foreach (string airDefenseKey in airDefenseKeys)
                 {
@@ -510,10 +463,10 @@ public static class ShipConverter
                 }
             }
 
-            hullModule.AntiAir = antiAir;
+            hullModule.AntiAir = antiAir.Build();
 
             // Process depth charge data
-            if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out string[]? depthChargeKey) && depthChargeKey.Length > 0)
+            if (hullUpgradeInfo.Components.TryGetValue(ComponentType.DepthCharges, out ImmutableArray<string> depthChargeKey) && depthChargeKey.Length > 0)
             {
                 var wgDepthChargeArray = (WgDepthChargesArray)wgShip.ModulesArmaments[depthChargeKey[0]];
                 hullModule.DepthChargeArray = new DepthChargeArray
@@ -521,19 +474,19 @@ public static class ShipConverter
                     MaxPacks = wgDepthChargeArray.MaxPacks,
                     NumShots = wgDepthChargeArray.NumShots,
                     Reload = wgDepthChargeArray.ReloadTime,
-                    DepthCharges = wgDepthChargeArray.DepthCharges.Select(entry => entry.Value.ConvertData()).ToList(),
+                    DepthCharges = wgDepthChargeArray.DepthCharges.Select(entry => entry.Value.ConvertData()).ToImmutableArray(),
                 };
                 DataCache.TranslationNames.UnionWith(hullModule.DepthChargeArray.DepthCharges.Select(depthChargeLauncher => depthChargeLauncher.Name)
                     .Distinct());
             }
 
-            resultDictionary[key] = hullModule;
+            resultDictionary[key] = hullModule.Build();
         }
 
-        return resultDictionary;
+        return resultDictionary.ToImmutableDictionary();
     }
 
-    private static Dictionary<string, FireControl> ProcessFireControl(WgShip wgShip)
+    private static ImmutableDictionary<string, FireControl> ProcessFireControl(WgShip wgShip)
     {
         var resultDictionary = new Dictionary<string, FireControl>();
 
@@ -549,10 +502,10 @@ public static class ShipConverter
             resultDictionary[key] = fireControl;
         }
 
-        return resultDictionary;
+        return resultDictionary.ToImmutableDictionary();
     }
 
-    private static Dictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip)
+    private static ImmutableDictionary<string, TorpedoModule> ProcessTorpedoes(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip)
     {
         var resultDictionary = new Dictionary<string, TorpedoModule>();
         Dictionary<string, WgTorpedoArray> wgTorpedoList = wgShip.ModulesArmaments.ModulesOfType<WgTorpedoArray>();
@@ -561,135 +514,139 @@ public static class ShipConverter
         {
             string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Torpedoes, key);
             var stHull = stShip?.GetHullModule(correspondingHull);
-            var torpedoModule = new TorpedoModule
-            {
-                TorpedoLaunchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToList(),
-            };
-
-            DataCache.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
+            var launchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToImmutableArray();
 
             // process launcher loaders
+            ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>>.Empty;
             if (wgTorpedoArray.Groups.Count > 0 && wgTorpedoArray.Loaders.Count > 0)
             {
-                Dictionary<int, int> bowLoaders = new();
-                Dictionary<int, int> sternLoaders = new();
-                foreach (var jToken in wgTorpedoArray.Groups)
-                {
-                    var groupName = jToken.First!.ToObject<int>();
-                    var group = jToken.Last!.ToObject<string[]>()!;
-
-                    // since it is a group we can assume they are all close together so we can by checking only 1 element of the group we can address all of it
-                    var launcher = torpedoModule.TorpedoLaunchers.First(x => x.GroupName.Equals(group.First()));
-                    if (launcher.BaseAngle is <= 90 or >= 270)
-                    {
-                        // if the launcher base angle is between 90° and -90° we cam assume it is looking forward and so positioned in the front
-                        bowLoaders.Add(groupName, group.Length);
-                    }
-                    else
-                    {
-                        sternLoaders.Add(groupName, group.Length);
-                    }
-                }
-
-                Dictionary<int, int> loaders = wgTorpedoArray.Loaders.ToDictionary(jToken => jToken.Last!.ToObject<int[]>()!.Single(), jToken => jToken.First!.ToObject<int>());
-                Dictionary<string, int> bowLoadersAmounts = new();
-                Dictionary<string, int> sternLoadersAmounts = new();
-                foreach (var bowLoader in bowLoaders)
-                {
-                    var tubesPerLoader = loaders.Where(x => x.Key.Equals(bowLoader.Key)).Select(x => x.Value).Single();
-                    var setup = $"{bowLoader.Value / tubesPerLoader}x{tubesPerLoader}";
-
-                    // Disable CA1854 since TryGetValue would not modify the value in the dictionary
-#pragma warning disable CA1854
-                    if (bowLoadersAmounts.ContainsKey(setup))
-                    {
-                        bowLoadersAmounts[setup]++;
-                    }
-                    else
-                    {
-                        bowLoadersAmounts.Add(setup, 1);
-                    }
-                }
-
-                foreach (var sternLoader in sternLoaders)
-                {
-                    var tubesPerLoader = loaders.Where(x => x.Key.Equals(sternLoader.Key)).Select(x => x.Value).Single();
-                    var setup = $"{sternLoader.Value / tubesPerLoader}x{tubesPerLoader}";
-                    if (sternLoadersAmounts.ContainsKey(setup))
-                    {
-                        sternLoadersAmounts[setup]++;
-                    }
-                    else
-                    {
-                        sternLoadersAmounts.Add(setup, 1);
-                    }
-                }
-#pragma warning restore CA1854
-
-                List<string> bowLoadersSetup = new();
-                List<string> sternLoadersSetup = new();
-                foreach (var bowLoadersAmount in bowLoadersAmounts)
-                {
-                    string setup;
-                    if (bowLoadersAmount.Value > 1)
-                    {
-                        var t = bowLoadersAmount.Key.Split('x');
-                        setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * bowLoadersAmount.Value}x{t[1]}";
-                    }
-                    else
-                    {
-                        setup = bowLoadersAmount.Key;
-                    }
-
-                    bowLoadersSetup.Add(setup);
-                }
-
-                foreach (var sternLoadersAmount in sternLoadersAmounts)
-                {
-                    string setup;
-                    if (sternLoadersAmount.Value > 1)
-                    {
-                        var t = sternLoadersAmount.Key.Split('x');
-                        setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * sternLoadersAmount.Value}x{t[1]}";
-                    }
-                    else
-                    {
-                        setup = sternLoadersAmount.Key;
-                    }
-
-                    sternLoadersSetup.Add(setup);
-                }
-
-                Dictionary<SubTorpLauncherLoaderPosition, List<string>> torpedoLoaders = new()
-                {
-                    { SubTorpLauncherLoaderPosition.BowLoaders, bowLoadersSetup },
-                    { SubTorpLauncherLoaderPosition.SternLoaders, sternLoadersSetup },
-                };
-
-                torpedoModule.TorpedoLoaders = torpedoLoaders;
+                torpedoLoaders = ConvertLoaders(wgTorpedoArray, launchers);
             }
+
+            var torpedoModule = new TorpedoModule
+            {
+                TorpedoLaunchers = launchers,
+                TorpedoLoaders = torpedoLoaders,
+            };
+            DataCache.TranslationNames.UnionWith(torpedoModule.TorpedoLaunchers.Select(launcher => launcher.Name).Distinct());
 
             resultDictionary[key] = torpedoModule;
         }
 
-        return resultDictionary;
+        return resultDictionary.ToImmutableDictionary();
+    }
+
+    private static ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> ConvertLoaders(WgTorpedoArray wgTorpedoArray, ImmutableArray<TorpedoLauncher> launchers)
+    {
+        Dictionary<int, int> bowLoaders = new();
+        Dictionary<int, int> sternLoaders = new();
+        foreach (var jToken in wgTorpedoArray.Groups)
+        {
+            var groupName = jToken.First!.ToObject<int>();
+            var group = jToken.Last!.ToObject<string[]>()!;
+
+            // since it is a group we can assume they are all close together so we can by checking only 1 element of the group we can address all of it
+            var launcher = launchers.First(x => x.GroupName.Equals(group[0]));
+            if (launcher.BaseAngle is <= 90 or >= 270)
+            {
+                // if the launcher base angle is between 90° and -90° we cam assume it is looking forward and so positioned in the front
+                bowLoaders.Add(groupName, group.Length);
+            }
+            else
+            {
+                sternLoaders.Add(groupName, group.Length);
+            }
+        }
+
+        Dictionary<int, int> loaders = wgTorpedoArray.Loaders.ToDictionary(jToken => jToken.Last!.ToObject<int[]>()!.Single(), jToken => jToken.First!.ToObject<int>());
+        Dictionary<string, int> bowLoadersAmounts = new();
+        Dictionary<string, int> sternLoadersAmounts = new();
+        foreach (var bowLoader in bowLoaders)
+        {
+            var tubesPerLoader = loaders.Where(x => x.Key.Equals(bowLoader.Key)).Select(x => x.Value).Single();
+            var setup = $"{bowLoader.Value / tubesPerLoader}x{tubesPerLoader}";
+
+            // Disable CA1854 since TryGetValue would not modify the value in the dictionary
+#pragma warning disable CA1854
+            if (bowLoadersAmounts.ContainsKey(setup))
+            {
+                bowLoadersAmounts[setup]++;
+            }
+            else
+            {
+                bowLoadersAmounts.Add(setup, 1);
+            }
+        }
+
+        foreach (var sternLoader in sternLoaders)
+        {
+            var tubesPerLoader = loaders.Where(x => x.Key.Equals(sternLoader.Key)).Select(x => x.Value).Single();
+            var setup = $"{sternLoader.Value / tubesPerLoader}x{tubesPerLoader}";
+            if (sternLoadersAmounts.ContainsKey(setup))
+            {
+                sternLoadersAmounts[setup]++;
+            }
+            else
+            {
+                sternLoadersAmounts.Add(setup, 1);
+            }
+        }
+#pragma warning restore CA1854
+
+        List<string> bowLoadersSetup = new();
+        List<string> sternLoadersSetup = new();
+        foreach (var bowLoadersAmount in bowLoadersAmounts)
+        {
+            string setup;
+            if (bowLoadersAmount.Value > 1)
+            {
+                var t = bowLoadersAmount.Key.Split('x');
+                setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * bowLoadersAmount.Value}x{t[1]}";
+            }
+            else
+            {
+                setup = bowLoadersAmount.Key;
+            }
+
+            bowLoadersSetup.Add(setup);
+        }
+
+        foreach (var sternLoadersAmount in sternLoadersAmounts)
+        {
+            string setup;
+            if (sternLoadersAmount.Value > 1)
+            {
+                var t = sternLoadersAmount.Key.Split('x');
+                setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * sternLoadersAmount.Value}x{t[1]}";
+            }
+            else
+            {
+                setup = sternLoadersAmount.Key;
+            }
+
+            sternLoadersSetup.Add(setup);
+        }
+
+        Dictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = new()
+        {
+            { SubTorpLauncherLoaderPosition.BowLoaders, bowLoadersSetup.ToImmutableArray() },
+            { SubTorpLauncherLoaderPosition.SternLoaders, sternLoadersSetup.ToImmutableArray() },
+        };
+
+        return torpedoLoaders.ToImmutableDictionary();
     }
 
     private static TorpedoLauncher ConvertWgTorpedoLauncher(string wgKey, WgTorpedoLauncher wgTorpedoLauncher, ShiptoolHullModule? stHull)
     {
-        var launcher = wgTorpedoLauncher.ConvertData();
-
         if (stHull is null || !stHull.Angles.TryGetValue(wgKey, out decimal angle))
         {
-            angle = launcher.VerticalPosition < 3 ? 0 : 180;
+            angle = wgTorpedoLauncher.Position[0] < 3 ? 0 : 180;
         }
 
-        launcher.BaseAngle = angle;
-        launcher.GroupName = wgKey;
-        return launcher;
+        return wgTorpedoLauncher.ConvertData(wgKey, angle);
     }
 
-    private static Dictionary<string, Engine> ProcessEngines(WgShip wgShip)
+    private static ImmutableDictionary<string, Engine> ProcessEngines(WgShip wgShip)
     {
         var resultDictionary = new Dictionary<string, Engine>();
         Dictionary<string, WgEngine> wgEngineList = wgShip.ModulesArmaments.ModulesOfType<WgEngine>();
@@ -710,10 +667,10 @@ public static class ShipConverter
             resultDictionary[key] = engine;
         }
 
-        return resultDictionary;
+        return resultDictionary.ToImmutableDictionary();
     }
 
-    private static Dictionary<string, List<string>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
+    private static ImmutableDictionary<string, List<string>> ProcessPlanes(WgShip wgShip, UpgradeInfo upgradeInfo)
     {
         var validPlaneTypes = new List<ComponentType> { ComponentType.Fighter, ComponentType.TorpedoBomber, ComponentType.DiveBomber, ComponentType.SkipBomber };
         IEnumerable<ShipUpgrade> planeUpgrades = upgradeInfo.ShipUpgrades.Where(upgrade => validPlaneTypes.Contains(upgrade.UcType));
@@ -725,7 +682,7 @@ public static class ShipConverter
         IEnumerable<string> planeNames = planeModules.SelectMany(x => x.Value).Distinct();
         DataCache.TranslationNames.UnionWith(planeNames);
 
-        return planeModules;
+        return planeModules.ToImmutableDictionary();
     }
 
     private static List<string> ExtractPlaneList(WgPlane wgPlane)
@@ -740,7 +697,7 @@ public static class ShipConverter
         return new List<string> { wgPlane.PlaneType ?? string.Empty };
     }
 
-    private static List<ShipConsumable> ProcessConsumables(WgShip ship)
+    private static ImmutableList<ShipConsumable> ProcessConsumables(WgShip ship)
     {
         var resultList = new List<ShipConsumable>();
         foreach ((_, WgShipAbility wgAbility) in ship.ShipAbilities)
@@ -757,23 +714,23 @@ public static class ShipConverter
             resultList.AddRange(consumableList);
         }
 
-        return resultList;
+        return resultList.ToImmutableList();
     }
 
-    private static Dictionary<string, AirStrike> ProcessAirstrikes(WgShip wgShip)
+    private static ImmutableDictionary<string, AirStrike> ProcessAirstrikes(WgShip wgShip)
     {
         Dictionary<string, AirStrike> result = wgShip.ModulesArmaments
             .ModulesOfType<WgAirSupport>()
             .ToDictionary(entry => entry.Key, entry => entry.Value.ConvertData());
         DataCache.TranslationNames.UnionWith(result.Values.Select(airStrike => airStrike.PlaneName).Distinct());
-        return result;
+        return result.ToImmutableDictionary();
     }
 
-    private static Dictionary<string, PingerGun> ProcessPingerGuns(WgShip wgShip)
+    private static ImmutableDictionary<string, PingerGun> ProcessPingerGuns(WgShip wgShip)
     {
         return wgShip.ModulesArmaments
             .ModulesOfType<WgPingerGun>()
-            .ToDictionary(entry => entry.Key, entry => entry.Value.ConvertData());
+            .ToImmutableDictionary(entry => entry.Key, entry => entry.Value.ConvertData());
     }
 
     #endregion
@@ -784,7 +741,7 @@ public static class ShipConverter
             .ToDictionary(entry => entry.Key, entry => (T)entry.Value);
     }
 
-    private static void AssignAurasToProperty(Dictionary<string, WgAaAura>? auras, AntiAir? targetAntiAir)
+    private static void AssignAurasToProperty(Dictionary<string, WgAaAura>? auras, AntiAirBuilder? targetAntiAir)
     {
         if (auras == null || targetAntiAir == null)
         {
@@ -843,29 +800,29 @@ public static class ShipConverter
         return componentType;
     }
 
-    private static Dictionary<string, ShellCompatibility> CheckShellCompatibilities(Ship ship)
+    private static ImmutableDictionary<string, ShellCompatibility> CheckShellCompatibilities(ImmutableDictionary<string, TurretModule> mainBatteries, UpgradeInfo upgradeInfo)
     {
-        var shells = ship.MainBatteryModuleList.SelectMany(pair => pair.Value.Guns.FirstOrDefault()?.AmmoList ?? new List<string>()).ToList();
+        var shells = mainBatteries.SelectMany(pair => pair.Value.Guns.FirstOrDefault()?.AmmoList ?? ImmutableArray<string>.Empty).ToList();
         if (shells.Count == 0)
         {
-            return new();
+            return ImmutableDictionary<string, ShellCompatibility>.Empty;
         }
 
-        return shells.Distinct().ToDictionary(shell => shell, shell => CheckShellCompatibility(shell, ship));
+        return shells.Distinct().ToImmutableDictionary(shell => shell, shell => CheckShellCompatibility(shell, mainBatteries, upgradeInfo));
     }
 
-    private static ShellCompatibility CheckShellCompatibility(string shellName, Ship ship)
+    private static ShellCompatibility CheckShellCompatibility(string shellName, ImmutableDictionary<string, TurretModule> mainBatteries, UpgradeInfo upgradeInfo)
     {
-        var compatibleArtilleryModules = ship.MainBatteryModuleList
+        var compatibleArtilleryModules = mainBatteries
             .Where(pair => pair.Value.Guns[0].AmmoList.Contains(shellName))
             .Select(pair => pair.Key);
-        var compatibleModulesCombo = ship.ShipUpgradeInfo.ShipUpgrades
+        var compatibleModulesCombo = upgradeInfo.ShipUpgrades
             .Where(upgrade => upgrade.UcType == ComponentType.Hull)
-            .Where(upgrade => Array.Exists(upgrade.Components[ComponentType.Artillery], c => compatibleArtilleryModules.Contains(c)))
+            .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
             .OrderBy(item => item, UpgradeComparer.Instance)
-            .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules).ToList());
+            .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules).ToImmutableList());
 
-        return new(shellName, compatibleModulesCombo);
+        return new(shellName, compatibleModulesCombo.ToImmutableDictionary());
     }
 
     private sealed class UpgradeComparer : IComparer<ShipUpgrade>
@@ -905,6 +862,128 @@ public static class ShipConverter
             }
 
             return 0;
+        }
+    }
+
+    private sealed class AntiAirBuilder
+    {
+        public AntiAirAura? LongRangeAura { get; set; }
+
+        public AntiAirAura? MediumRangeAura { get; set; }
+
+        public AntiAirAura? ShortRangeAura { get; set; }
+
+        public AntiAir Build()
+        {
+            return new()
+            {
+                LongRangeAura = LongRangeAura,
+                MediumRangeAura = MediumRangeAura,
+                ShortRangeAura = ShortRangeAura,
+            };
+        }
+    }
+
+    private sealed class HullBuilder
+    {
+        public decimal Health { get; set; }
+
+        public decimal MaxSpeed { get; set; }
+
+        public decimal RudderTime { get; set; }
+
+        public decimal SpeedCoef { get; set; }
+
+        public decimal SteeringGearArmorCoeff { get; set; }
+
+        public decimal SmokeFiringDetection { get; set; }
+
+        public decimal SurfaceDetection { get; set; }
+
+        public decimal AirDetection { get; set; }
+
+        public decimal DetectionBySubPeriscope { get; set; }
+
+        public decimal DetectionBySubOperating { get; set; }
+
+        public AntiAir? AntiAir { get; set; }
+
+        public TurretModule? SecondaryModule { get; set; }
+
+        public DepthChargeArray? DepthChargeArray { get; set; }
+
+        public int FireSpots { get; set; }
+
+        public decimal FireResistance { get; set; }
+
+        public decimal FireTickDamage { get; set; }
+
+        public decimal FireDuration { get; set; }
+
+        public int FloodingSpots { get; set; }
+
+        public decimal FloodingResistance { get; set; }
+
+        public decimal FloodingTickDamage { get; set; }
+
+        public decimal FloodingDuration { get; set; }
+
+        public int TurningRadius { get; set; }
+
+        public ShipSize Sizes { get; set; } = new(default, default, default);
+
+        public int EnginePower { get; set; }
+
+        public int Tonnage { get; set; }
+
+        public ImmutableList<HitLocation> HitLocations { get; set; } = ImmutableList<HitLocation>.Empty;
+
+        public ImmutableDictionary<SubsBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; set; } = ImmutableDictionary<SubsBuoyancyStates, decimal>.Empty;
+
+        public decimal SubBatteryCapacity { get; set; }
+
+        public decimal SubBatteryRegenRate { get; set; }
+
+        public decimal DiveSpeed { get; set; }
+
+        public decimal DivingPlaneShiftTime { get; set; }
+
+        public Hull Build()
+        {
+            return new Hull
+            {
+                Health = Health,
+                MaxSpeed = MaxSpeed,
+                RudderTime = RudderTime,
+                SpeedCoef = SpeedCoef,
+                SteeringGearArmorCoeff = SteeringGearArmorCoeff,
+                SmokeFiringDetection = SmokeFiringDetection,
+                SurfaceDetection = SurfaceDetection,
+                AirDetection = AirDetection,
+                DetectionBySubPeriscope = DetectionBySubPeriscope,
+                DetectionBySubOperating = DetectionBySubOperating,
+                AntiAir = AntiAir,
+                SecondaryModule = SecondaryModule,
+                DepthChargeArray = DepthChargeArray,
+                FireSpots = FireSpots,
+                FireResistance = FireResistance,
+                FireTickDamage = FireTickDamage,
+                FireDuration = FireDuration,
+                FloodingSpots = FloodingSpots,
+                FloodingResistance = FloodingResistance,
+                FloodingTickDamage = FloodingTickDamage,
+                FloodingDuration = FloodingDuration,
+                TurningRadius = TurningRadius,
+                Sizes = Sizes,
+                EnginePower = EnginePower,
+                Tonnage = Tonnage,
+                HitLocations = HitLocations,
+                MaxSpeedAtBuoyancyStateCoeff = MaxSpeedAtBuoyancyStateCoeff,
+                SubBatteryCapacity = SubBatteryCapacity,
+                SubBatteryRegenRate = SubBatteryRegenRate,
+                DiveSpeed = DiveSpeed,
+                DivingPlaneShiftTime = DivingPlaneShiftTime,
+            };
         }
     }
 }

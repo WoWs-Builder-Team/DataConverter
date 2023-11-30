@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -6,7 +6,7 @@ namespace WoWsShipBuilder.DataStructures.Ship;
 
 public class TorpedoModule
 {
-    public Dictionary<SubTorpLauncherLoaderPosition, List<string>> TorpedoLoaders { get; set; } = new();
+    public ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> TorpedoLoaders { get; init; } = ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>>.Empty;
 
-    public List<TorpedoLauncher> TorpedoLaunchers { get; set; } = new();
+    public ImmutableArray<TorpedoLauncher> TorpedoLaunchers { get; init; } = ImmutableArray<TorpedoLauncher>.Empty;
 }

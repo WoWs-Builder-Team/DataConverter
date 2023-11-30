@@ -4,11 +4,11 @@
 // ReSharper disable CollectionNeverUpdated.Global
 public class AntiAir
 {
-    public AntiAirAura? LongRangeAura { get; set; }
+    public AntiAirAura? LongRangeAura { get; init; }
 
-    public AntiAirAura? MediumRangeAura { get; set; }
+    public AntiAirAura? MediumRangeAura { get; init; }
 
-    public AntiAirAura? ShortRangeAura { get; set; }
+    public AntiAirAura? ShortRangeAura { get; init; }
 }
 
 public class AntiAirAura

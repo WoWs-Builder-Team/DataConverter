@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
@@ -10,7 +10,7 @@ public class TurretModule
 
     public decimal MaxRange { get; set; }
 
-    public List<Gun> Guns { get; set; } = new();
+    public ImmutableArray<Gun> Guns { get; set; } = ImmutableArray<Gun>.Empty;
 
     public AntiAirAura? AntiAir { get; set; }
 
