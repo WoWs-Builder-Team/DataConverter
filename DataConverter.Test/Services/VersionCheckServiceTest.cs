@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Net.Http;
 using DataConverter.Data;
 using DataConverter.Services;
@@ -25,7 +26,7 @@ public class VersionCheckServiceTest
         var oldVersions = new List<FileVersion>
         {
             oldFileVersion,
-        };
+        }.ToImmutableList();
         var fileContainer = new ResultFileContainer(testContent, testCategory, testFile);
 
         var result = VersionCheckService.CompareVersions(fileContainer, oldVersions, currentVersion);
@@ -40,7 +41,7 @@ public class VersionCheckServiceTest
         const string testCategory = "Ship";
         const string testFile = "USA.json";
         const int currentVersion = 2;
-        var oldVersions = new List<FileVersion>();
+        var oldVersions = ImmutableList<FileVersion>.Empty;
         var fileContainer = new ResultFileContainer(testContent, testCategory, testFile);
 
         var result = VersionCheckService.CompareVersions(fileContainer, oldVersions, currentVersion);
@@ -63,7 +64,7 @@ public class VersionCheckServiceTest
         var oldVersions = new List<FileVersion>
         {
             oldFileVersion,
-        };
+        }.ToImmutableList();
         var fileContainer = new ResultFileContainer(testContent, testCategory, testFile);
 
         var result = VersionCheckService.CompareVersions(fileContainer, oldVersions, currentVersion);
@@ -80,7 +81,7 @@ public class VersionCheckServiceTest
         var versionCheckService = new VersionCheckService(NullLogger<VersionCheckService>.Instance, client);
         var conversionResult = new DataConversionResult(new(), new());
         var oldGameVersion = new GameVersion(new(0, 11, 7), GameVersionType.Live,1);
-        var oldVersionInfo = new VersionInfo(new(), 1, oldGameVersion);
+        var oldVersionInfo = new VersionInfo(ImmutableDictionary<string, ImmutableList<FileVersion>>.Empty, 1, oldGameVersion);
         var expectedVersion = oldGameVersion with { DataIteration = 2 };
 
         var result = versionCheckService.CheckFileVersions(conversionResult, oldGameVersion, oldVersionInfo);

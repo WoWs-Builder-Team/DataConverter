@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -47,7 +48,7 @@ internal class VersionCheckService : IVersionCheckService
         await File.WriteAllTextAsync(Path.Join(outputBasePath, VersionInfoFileName), fileContent);
     }
 
-    internal static FileVersion CompareVersions(ResultFileContainer fileContainer, List<FileVersion> oldVersions, int currentVersionCode)
+    internal static FileVersion CompareVersions(ResultFileContainer fileContainer, ImmutableList<FileVersion> oldVersions, int currentVersionCode)
     {
         string checksum = FileVersion.ComputeChecksum(fileContainer.Content);
         var oldFileVersion = oldVersions.Find(v => v.FileName.Equals(fileContainer.Filename, StringComparison.InvariantCultureIgnoreCase));
@@ -65,21 +66,21 @@ internal class VersionCheckService : IVersionCheckService
             .GroupBy(file => file.Category)
             .Select(f => new KeyValuePair<string, List<ResultFileContainer>>(f.Key, f.ToList()));
 
-        Dictionary<string, List<FileVersion>> newFileVersions = new();
+        Dictionary<string, ImmutableList<FileVersion>> newFileVersions = new();
         foreach (var resultCategory in resultCategories)
         {
-            List<FileVersion> oldVersions = oldVersionInfo.GetCategoryVersions(resultCategory.Key) ?? new();
+            ImmutableList<FileVersion> oldVersions = oldVersionInfo.GetCategoryVersions(resultCategory.Key) ?? ImmutableList<FileVersion>.Empty;
             List<FileVersion> fileVersions = resultCategory.Value
                 .Select(f => CompareVersions(f, oldVersions, oldVersionInfo.CurrentVersionCode + 1))
                 .ToList();
-            newFileVersions[resultCategory.Key] = fileVersions;
+            newFileVersions[resultCategory.Key] = fileVersions.ToImmutableList();
         }
 
         int dataIteration = oldVersionInfo.CurrentVersion.MainVersion == gameVersion.MainVersion ? oldVersionInfo.CurrentVersion.DataIteration + 1 : 1;
         var newGameVersion = gameVersion with { DataIteration = dataIteration };
         logger.LogInformation("Creating version info for current version {}", newGameVersion);
         var dataStructureVersion = Assembly.GetAssembly(typeof(Ship))!.GetName().Version!;
-        return new(newFileVersions, oldVersionInfo.CurrentVersionCode + 1, newGameVersion, oldVersionInfo.CurrentVersion)
+        return new(newFileVersions.ToImmutableDictionary(), oldVersionInfo.CurrentVersionCode + 1, newGameVersion, oldVersionInfo.CurrentVersion)
         {
             DataStructuresVersion = dataStructureVersion,
         };

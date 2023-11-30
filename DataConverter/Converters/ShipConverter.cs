@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Globalization;
 using System.Linq;
 using DataConverter.Data;
@@ -39,7 +40,7 @@ public static class ShipConverter
             }
 
             DataCache.TranslationNames.Add(wgShip.Index);
-            var stShip = shiptoolData.Ship.FirstOrDefault(s => s.Index.Equals(wgShip.Index));
+            var stShip = shiptoolData.Ship.Find(s => s.Index.Equals(wgShip.Index));
             var upgradeInfo = ProcessUpgradeInfo(wgShip, logger);
             var ship = new Ship
             {
@@ -73,7 +74,7 @@ public static class ShipConverter
             {
                 shipToNextShipMapper[ship.Index] = ship.ShipUpgradeInfo.ShipUpgrades
                     .SelectMany(shipUpgrade => shipUpgrade.NextShips)
-                    .Select(shipName => shipName.Split('_').First())
+                    .Select(shipName => shipName.Split('_')[0])
                     .ToList();
             }
 
@@ -96,7 +97,7 @@ public static class ShipConverter
         {
             shipToPreviousShipMapper.TryGetValue(ship.Index, out string? previousShip);
             shipToNextShipMapper.TryGetValue(ship.Index, out List<string>? nextShips);
-            ShipSummaries.Add(new(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips));
+            ShipSummaries.Add(new(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips?.ToImmutableArray()));
         }
 
         return results;
@@ -716,7 +717,7 @@ public static class ShipConverter
     {
         var validPlaneTypes = new List<ComponentType> { ComponentType.Fighter, ComponentType.TorpedoBomber, ComponentType.DiveBomber, ComponentType.SkipBomber };
         IEnumerable<ShipUpgrade> planeUpgrades = upgradeInfo.ShipUpgrades.Where(upgrade => validPlaneTypes.Contains(upgrade.UcType));
-        IEnumerable<string> planeModuleNames = planeUpgrades.Select(u => u.Components[u.UcType].First());
+        IEnumerable<string> planeModuleNames = planeUpgrades.Select(u => u.Components[u.UcType][0]);
         Dictionary<string, List<string>> planeModules = planeModuleNames
             .Select(module => (module, (WgPlane)wgShip.ModulesArmaments[module]))
             .ToDictionary(x => x.module, x => ExtractPlaneList(x.Item2));
@@ -856,15 +857,15 @@ public static class ShipConverter
     private static ShellCompatibility CheckShellCompatibility(string shellName, Ship ship)
     {
         var compatibleArtilleryModules = ship.MainBatteryModuleList
-            .Where(pair => pair.Value.Guns.First().AmmoList.Contains(shellName))
+            .Where(pair => pair.Value.Guns[0].AmmoList.Contains(shellName))
             .Select(pair => pair.Key);
         var compatibleModulesCombo = ship.ShipUpgradeInfo.ShipUpgrades
             .Where(upgrade => upgrade.UcType == ComponentType.Hull)
-            .Where(upgrade => upgrade.Components[ComponentType.Artillery].Any(c => compatibleArtilleryModules.Contains(c)))
+            .Where(upgrade => Array.Exists(upgrade.Components[ComponentType.Artillery], c => compatibleArtilleryModules.Contains(c)))
             .OrderBy(item => item, UpgradeComparer.Instance)
             .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules).ToList());
 
-        return new ShellCompatibility(shellName, compatibleModulesCombo);
+        return new(shellName, compatibleModulesCombo);
     }
 
     private sealed class UpgradeComparer : IComparer<ShipUpgrade>
