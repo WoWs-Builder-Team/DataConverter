@@ -643,7 +643,7 @@
   },
   {
     "name": "callFightersWorkTimeCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSWORKTIMECOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSWORKTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -806,7 +806,7 @@
   },
   {
     "name": "crashCrewReloadCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWRELOADCOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_CRASHCREWRELOADCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -1157,7 +1157,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.AimingTime.Rocket"
     ],
-    "displayedValueProcessingKind": "None",
+    "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
   {
@@ -1617,7 +1617,7 @@
   },
   {
     "name": "healForsageReloadCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_HEALFORSAGERELOADCOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_HEALFORSAGERELOADCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -2132,8 +2132,8 @@
   },
   {
     "name": "regenCrewAdditionalConsumables",
-    "gameLocalizationKey": null,
-    "appLocalizationKey": "regenCrewAdditionalConsumables",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWADDITIONALCONSUMABLES",
+    "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY010"
@@ -2143,7 +2143,7 @@
   },
   {
     "name": "regenCrewReloadCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWRELOADCOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWRELOADCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -2154,7 +2154,7 @@
   },
   {
     "name": "regenCrewWorkTimeCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWWORKTIMECOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWWORKTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -2187,7 +2187,7 @@
   },
   {
     "name": "regenerateHealthWorkTimeCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEHEALTHWORKTIMECOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATEHEALTHWORKTIMECOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -2208,7 +2208,7 @@
   {
     "name": "repeatable_first_GMShotDelay",
     "gameLocalizationKey": null,
-    "appLocalizationKey": "repeatable_first_GMShotDelay",
+    "appLocalizationKey": "ShipStats_FirstGMShotDelay",
     "unit": "Percent",
     "affectedProperties": [
       "MainBatteryDataContainer.Reload"
@@ -2219,7 +2219,7 @@
   {
     "name": "repeatable_other_GMShotDelay",
     "gameLocalizationKey": null,
-    "appLocalizationKey": "repeatable_other_GMShotDelay",
+    "appLocalizationKey": "ShipStats_OtherGMShotDelay",
     "unit": "Percent",
     "affectedProperties": [
       "MainBatteryDataContainer.Reload"
@@ -2583,7 +2583,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.AimingTime.TorpedoBomber"
     ],
-    "displayedValueProcessingKind": "None",
+    "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "DirectAdd"
   },
   {
