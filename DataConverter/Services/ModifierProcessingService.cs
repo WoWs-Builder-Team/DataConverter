@@ -23,12 +23,9 @@ public class ModifierProcessingService : IModifierProcessingService
         this.logger = logger;
     }
 
-    public Dictionary<string, Modifier> ReadModifiersFile()
+    public Dictionary<string, Modifier> ReadModifiersFile(string modifiersFilePath)
     {
-        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DataConverter.JsonData.Modifiers.json") ??
-                           throw new FileNotFoundException("Unable to locate embedded modifier json.");
-        using var reader = new StreamReader(stream);
-        var data = reader.ReadToEnd();
+        var data = File.ReadAllText(modifiersFilePath);
         var modifierDictionary = JsonSerializer.Deserialize<List<Modifier>>(data, Constants.ModifierSerializerOptions)!.ToDictionary(x => x.Name, x => x);
         return modifierDictionary;
     }

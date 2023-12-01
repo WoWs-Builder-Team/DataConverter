@@ -53,7 +53,8 @@ internal sealed class DataConversionHelper
             logger.LogWarning("Specified output directory is not empty, old files may get mixed into the conversion results");
         }
 
-        var modifierDictionary = modifierProcessingService.ReadModifiersFile();
+        var gameParamsFile = new FileInfo(options.GameParamsFile);
+        var modifierDictionary = modifierProcessingService.ReadModifiersFile(gameParamsFile.Directory!.FullName + "Modifiers.json");
 
         var extractionResult = unpackService.ExtractAndRefineGameParams(options.ToExtractionOptions());
         var convertedData = await dataConverterService.ConvertRefinedData(extractionResult.FilteredData, options.WriteModifierDebugOutput, modifierDictionary);

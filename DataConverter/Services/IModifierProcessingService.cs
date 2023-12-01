@@ -10,8 +10,9 @@ public interface IModifierProcessingService
     /// Read the modifier json and returns a dictionary mapping the name and the modifier object itself.
     /// Used to assign all the parameters, except the actual value, during the modifier processing in the various converters.
     /// </summary>
+    /// <param name="modifiersFilePath">The modifiers file path.</param>
     /// <returns>A dictionary mapping the modifier name to the modifier object itself.</returns>
-    public Dictionary<string, Modifier> ReadModifiersFile();
+    public Dictionary<string, Modifier> ReadModifiersFile(string modifiersFilePath);
 
     /// <summary>
     /// Write the following files useful for debugging and generating the modifier json file.<br/>
