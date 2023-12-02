@@ -68,7 +68,8 @@ public class ExteriorConverter
                         }
                     }
                     if (isEqual)
-                    {modifiersDictionary.TryGetValue(currentWgExteriorModifier.Key, out Modifier? modifierData);
+                    {
+                        modifiersDictionary.TryGetValue(currentWgExteriorModifier.Key, out Modifier? modifierData);
                         modifiers.Add(new Modifier(currentWgExteriorModifier.Key, first, "Exterior", modifierData));
                     }
                     else
@@ -86,7 +87,7 @@ public class ExteriorConverter
                 }
             }
 
-            exterior.Modifiers = modifiers.ToImmutableDictionary();
+            exterior.Modifiers = modifiers.ToImmutableList();
             DataCache.TranslationNames.UnionWith(modifiers.Select(m => m.Name));
             try
             {
@@ -133,7 +134,7 @@ public class ExteriorConverter
 
         public string Index { get; set; } = string.Empty;
 
-        public ImmutableDictionary<string, double> Modifiers { get; set; } = ImmutableDictionary<string, double>.Empty;
+        public ImmutableList<Modifier> Modifiers { get; set; } = ImmutableList<Modifier>.Empty;
 
         public string Name { get; set; } = string.Empty;
 

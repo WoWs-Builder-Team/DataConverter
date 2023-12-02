@@ -88,153 +88,6 @@ public class ModifierProcessingService : IModifierProcessingService
         await File.WriteAllTextAsync(path, content);
     }
 
-    private List<Modifier> HandleCommonLocalization(List<Modifier> modifierList, List<string> localizationKeys)
-    {
-        logger.LogInformation("Iterating over all modifiers to find a translation");
-        foreach (var modifier in modifierList)
-        {
-            // if the modifier already has a localization set, then ignore it.
-            if (modifier.GameLocalizationKey is not null || modifier.AppLocalizationKey is not null)
-            {
-                continue;
-            }
-
-            var name = modifier.Name.ToUpperInvariant();
-            string? description = null;
-            if (localizationKeys.Contains(DefaultPrefix + name))
-            {
-                description = DefaultPrefix + name;
-            }
-            if (localizationKeys.Contains(DefaultPrefix + name + ModernizationSuffix))
-            {
-                description = DefaultPrefix + name + ModernizationSuffix;
-            }
-
-            modifier.GameLocalizationKey = description;
-        }
-
-        logger.LogInformation("Finished assigning translations");
-        return modifierList;
-    }
-
-    // ReSharper disable once UnusedMember.Local
-    // This is old localization handling that was in the app. left here for convenience.
-    [Obsolete("Do not use this. Modify the json directly for new modifiers, or use the HandleCommonLocalization method.")]
-    private List<Modifier> HandleLocalizationOld(List<Modifier> modifierList, List<string> localizationKeys)
-    {
-        logger.LogInformation("Iterating over all modifiers to find a translation. Using old method");
-        foreach (var modifier in modifierList)
-        {
-            // if the modifier already has a localization set, then ignore it.
-            if (modifier.GameLocalizationKey is not null || modifier.AppLocalizationKey is not null)
-            {
-                continue;
-            }
-
-            var modifierTranslationName = modifier.Name;
-
-            if (modifierTranslationName.Contains("regenerationHPSpeedUnits", StringComparison.InvariantCultureIgnoreCase))
-            {
-                modifier.GameLocalizationKey = string.Empty;
-            }
-
-            // There is one translation per class, but all values are equal, so we can just choose a random one. I like DDs.
-            if (modifierTranslationName.ToUpperInvariant().Equals("VISIBILITYDISTCOEFF", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.ToUpperInvariant().Equals("AABubbleDamage", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.ToUpperInvariant().Equals("AAAuraDamage", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.ToUpperInvariant().Equals("GMROTATIONSPEED", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.ToUpperInvariant().Equals("dcAlphaDamageMultiplier", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.ToUpperInvariant().Equals("ConsumableReloadTime", StringComparison.InvariantCultureIgnoreCase))
-            {
-                modifierTranslationName = $"{modifierTranslationName}_DESTROYER";
-            }
-
-            if (modifierTranslationName.Equals("talentMaxDistGM", StringComparison.InvariantCultureIgnoreCase))
-            {
-                modifierTranslationName = "GMMAXDIST";
-            }
-
-            if (modifierTranslationName.Equals("talentConsumablesWorkTime", StringComparison.InvariantCultureIgnoreCase))
-            {
-                modifierTranslationName = "ConsumablesWorkTime";
-            }
-
-            if (modifierTranslationName.Equals("timeDelayAttack", StringComparison.InvariantCultureIgnoreCase))
-            {
-                modifierTranslationName = $"CALLFIGHTERS{modifierTranslationName}";
-            }
-
-            modifierTranslationName = $"{DefaultPrefix}{modifierTranslationName}";
-            string? finalTranslationKey = null;
-
-            bool found = localizationKeys.Contains(modifierTranslationName.ToUpperInvariant());
-            if (found)
-            {
-                finalTranslationKey = modifierTranslationName.ToUpperInvariant();
-            }
-
-            // We need this to deal with the consumable mod of slot 5
-            string? moduleFallback = null;
-
-            if (modifierTranslationName.Contains("ReloadCoeff", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.Contains("WorkTimeCoeff", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.Contains("AAEXTRABUBBLES", StringComparison.InvariantCultureIgnoreCase) ||
-                modifierTranslationName.Contains("callFightersAdditionalConsumables", StringComparison.InvariantCultureIgnoreCase))
-            {
-                moduleFallback = $"{modifierTranslationName.ToUpperInvariant()}_SKILL";
-                found = localizationKeys.Contains($"{modifierTranslationName.ToUpperInvariant()}_SKILL");
-                if (found)
-                {
-                    finalTranslationKey = $"{modifierTranslationName.ToUpperInvariant()}_SKILL";
-                }
-            }
-
-            if (!found)
-            {
-                found = localizationKeys.Contains($"{modifierTranslationName.ToUpperInvariant()}_MODERNIZATION");
-                if (found)
-                {
-                    finalTranslationKey = $"{modifierTranslationName.ToUpperInvariant()}_MODERNIZATION";
-                }
-            }
-
-            if (!found)
-            {
-                finalTranslationKey = !string.IsNullOrEmpty(moduleFallback) ? moduleFallback.ToUpperInvariant() : null;
-            }
-
-            if (modifierTranslationName.Contains("artilleryAlertMinDistance", StringComparison.InvariantCultureIgnoreCase))
-            {
-                modifier.AppLocalizationKey = "IncomingFireAlertDesc";
-            }
-
-            if (modifierTranslationName.Contains("timeFromHeaven", StringComparison.InvariantCultureIgnoreCase))
-            {
-                finalTranslationKey = "PARAMS_MODIFIER_CALLFIGHTERSAPPEARDELAY";
-            }
-
-            if (modifierTranslationName.Contains("SHIPSPEEDCOEFF", StringComparison.InvariantCultureIgnoreCase))
-            {
-                finalTranslationKey = "PARAMS_MODIFIER_SHIPSPEEDCOEFFFORRIBBONS";
-            }
-
-            if (modifierTranslationName.Contains("burnProbabilityBonus", StringComparison.InvariantCultureIgnoreCase))
-            {
-                finalTranslationKey = "PARAMS_MODIFIER_MAINGAUGEBURNPROBABILITYFORCAPTURE";
-            }
-
-            if (modifierTranslationName.Contains("hpPerHeal", StringComparison.InvariantCultureIgnoreCase))
-            {
-                modifier.AppLocalizationKey = "Consumable_HpPerHeal";
-            }
-
-            modifier.GameLocalizationKey = finalTranslationKey;
-        }
-
-        logger.LogInformation("Finished assigning translations");
-        return modifierList;
-    }
-
     // ReSharper disable once UnusedMember.Local
     // This is old display value handling that was in the app. left here for convenience.
     [Obsolete("Do not use this. Modify the json directly for new modifiers.")]
@@ -453,6 +306,155 @@ public class ModifierProcessingService : IModifierProcessingService
                     break;
             }
         }
+        return modifierList;
+    }
+
+    private List<Modifier> HandleCommonLocalization(List<Modifier> modifierList, List<string> localizationKeys)
+    {
+        logger.LogInformation("Iterating over all modifiers to find a translation");
+        foreach (var modifier in modifierList)
+        {
+            // if the modifier already has a localization set, then ignore it.
+            if (modifier.GameLocalizationKey is not null || modifier.AppLocalizationKey is not null)
+            {
+                continue;
+            }
+
+            var name = modifier.Name.ToUpperInvariant();
+            string? description = null;
+            if (localizationKeys.Contains(DefaultPrefix + name))
+            {
+                description = DefaultPrefix + name;
+            }
+            if (localizationKeys.Contains(DefaultPrefix + name + ModernizationSuffix))
+            {
+                description = DefaultPrefix + name + ModernizationSuffix;
+            }
+
+            modifier.GameLocalizationKey = description;
+        }
+
+        logger.LogInformation("Finished assigning translations");
+        return modifierList;
+    }
+
+    // ReSharper disable once UnusedMember.Local
+
+    // This is old localization handling that was in the app. left here for convenience.
+
+    [Obsolete("Do not use this. Modify the json directly for new modifiers, or use the HandleCommonLocalization method.")]
+    private List<Modifier> HandleLocalizationOld(List<Modifier> modifierList, List<string> localizationKeys)
+    {
+        logger.LogInformation("Iterating over all modifiers to find a translation. Using old method");
+        foreach (var modifier in modifierList)
+        {
+            // if the modifier already has a localization set, then ignore it.
+            if (modifier.GameLocalizationKey is not null || modifier.AppLocalizationKey is not null)
+            {
+                continue;
+            }
+
+            var modifierTranslationName = modifier.Name;
+
+            if (modifierTranslationName.Contains("regenerationHPSpeedUnits", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modifier.GameLocalizationKey = string.Empty;
+            }
+
+            // There is one translation per class, but all values are equal, so we can just choose a random one. I like DDs.
+            if (modifierTranslationName.ToUpperInvariant().Equals("VISIBILITYDISTCOEFF", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.ToUpperInvariant().Equals("AABubbleDamage", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.ToUpperInvariant().Equals("AAAuraDamage", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.ToUpperInvariant().Equals("GMROTATIONSPEED", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.ToUpperInvariant().Equals("dcAlphaDamageMultiplier", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.ToUpperInvariant().Equals("ConsumableReloadTime", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modifierTranslationName = $"{modifierTranslationName}_DESTROYER";
+            }
+
+            if (modifierTranslationName.Equals("talentMaxDistGM", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modifierTranslationName = "GMMAXDIST";
+            }
+
+            if (modifierTranslationName.Equals("talentConsumablesWorkTime", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modifierTranslationName = "ConsumablesWorkTime";
+            }
+
+            if (modifierTranslationName.Equals("timeDelayAttack", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modifierTranslationName = $"CALLFIGHTERS{modifierTranslationName}";
+            }
+
+            modifierTranslationName = $"{DefaultPrefix}{modifierTranslationName}";
+            string? finalTranslationKey = null;
+
+            bool found = localizationKeys.Contains(modifierTranslationName.ToUpperInvariant());
+            if (found)
+            {
+                finalTranslationKey = modifierTranslationName.ToUpperInvariant();
+            }
+
+            // We need this to deal with the consumable mod of slot 5
+            string? moduleFallback = null;
+
+            if (modifierTranslationName.Contains("ReloadCoeff", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.Contains("WorkTimeCoeff", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.Contains("AAEXTRABUBBLES", StringComparison.InvariantCultureIgnoreCase) ||
+                modifierTranslationName.Contains("callFightersAdditionalConsumables", StringComparison.InvariantCultureIgnoreCase))
+            {
+                moduleFallback = $"{modifierTranslationName.ToUpperInvariant()}_SKILL";
+                found = localizationKeys.Contains($"{modifierTranslationName.ToUpperInvariant()}_SKILL");
+                if (found)
+                {
+                    finalTranslationKey = $"{modifierTranslationName.ToUpperInvariant()}_SKILL";
+                }
+            }
+
+            if (!found)
+            {
+                found = localizationKeys.Contains($"{modifierTranslationName.ToUpperInvariant()}_MODERNIZATION");
+                if (found)
+                {
+                    finalTranslationKey = $"{modifierTranslationName.ToUpperInvariant()}_MODERNIZATION";
+                }
+            }
+
+            if (!found)
+            {
+                finalTranslationKey = !string.IsNullOrEmpty(moduleFallback) ? moduleFallback.ToUpperInvariant() : null;
+            }
+
+            if (modifierTranslationName.Contains("artilleryAlertMinDistance", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modifier.AppLocalizationKey = "IncomingFireAlertDesc";
+            }
+
+            if (modifierTranslationName.Contains("timeFromHeaven", StringComparison.InvariantCultureIgnoreCase))
+            {
+                finalTranslationKey = "PARAMS_MODIFIER_CALLFIGHTERSAPPEARDELAY";
+            }
+
+            if (modifierTranslationName.Contains("SHIPSPEEDCOEFF", StringComparison.InvariantCultureIgnoreCase))
+            {
+                finalTranslationKey = "PARAMS_MODIFIER_SHIPSPEEDCOEFFFORRIBBONS";
+            }
+
+            if (modifierTranslationName.Contains("burnProbabilityBonus", StringComparison.InvariantCultureIgnoreCase))
+            {
+                finalTranslationKey = "PARAMS_MODIFIER_MAINGAUGEBURNPROBABILITYFORCAPTURE";
+            }
+
+            if (modifierTranslationName.Contains("hpPerHeal", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modifier.AppLocalizationKey = "Consumable_HpPerHeal";
+            }
+
+            modifier.GameLocalizationKey = finalTranslationKey;
+        }
+
+        logger.LogInformation("Finished assigning translations");
         return modifierList;
     }
 }

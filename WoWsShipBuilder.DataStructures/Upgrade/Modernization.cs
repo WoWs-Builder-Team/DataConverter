@@ -11,7 +11,7 @@ public sealed class Modernization
 
     public string Index { get; init; } = string.Empty;
 
-    public ImmutableList<Modifier> Effect { get; init; } = ImmutableList<Modifier>.Empty;
+    public ImmutableList<Modifier> Modifiers { get; init; } = ImmutableList<Modifier>.Empty;
 
     public string Name { get; init; } = string.Empty;
 

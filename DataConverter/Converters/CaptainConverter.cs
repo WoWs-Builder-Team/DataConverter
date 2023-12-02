@@ -119,7 +119,7 @@ public static class CaptainConverter
         foreach (var (currentUniqueSkillKey, currentUniqueSkillValue) in currentWgCaptain.UniqueSkills)
         {
             //initialize an empty dictionary for effect name and effect modifiers/stats.
-            var skillEffectDictionary = new Dictionary<string, UniqueSkillEffectBuilder>();
+            var skillEffectDictionary = new Dictionary<string, UniqueSkillEffect>();
 
             //uniqueIds for translation key
             var uniqueIds = new List<int>();
@@ -203,7 +203,7 @@ public static class CaptainConverter
                 }
 
                 //add the current skill effect name and data t the dictionary
-                skillEffectDictionary.Add(currentWgUniqueSkillEffectKey, skillEffect);
+                skillEffectDictionary.Add(currentWgUniqueSkillEffectKey, skillEffect.ToUniqueSkillEffect());
             }
 
             //calculate the localization string
@@ -219,7 +219,7 @@ public static class CaptainConverter
                 AllowedShips = currentUniqueSkillValue.TriggerAllowedShips.ToImmutableArray(),
                 TriggerType = currentUniqueSkillValue.TriggerType,
                 TranslationId = translationId,
-                SkillEffects = skillEffectDictionary.ToImmutableDictionary(x => x.Key, x => x.Value.ToUniqueSkillEffect()),
+                SkillEffects = skillEffectDictionary.ToImmutableDictionary(),
             };
 
             skills.Add(currentUniqueSkillKey, uniqueSkill);
@@ -253,7 +253,7 @@ public static class CaptainConverter
 
         //collect all modifiers of the skill
         List<Modifier> modifiers = ProcessSkillModifiers(currentWgSkill.Value.Modifiers, modifiersDictionary);
-        skill.Modifiers = modifiers.ToImmutableDictionary();
+        skill.Modifiers = modifiers.ToImmutableList();
 
         //collect all skill's modifiers with trigger condition, 44 = IRPR, 81 = Furious
         var conditionalModifierGroups = new List<ConditionalModifierGroup>();
@@ -452,11 +452,11 @@ public static class CaptainConverter
 
         public int UniqueType { get; set; }
 
-        public Dictionary<string, float> Modifiers { get; set; } = new();
+        public List<Modifier> Modifiers { get; set; } = new();
 
         public UniqueSkillEffect ToUniqueSkillEffect()
         {
-            return new(IsPercent, UniqueType, Modifiers.ToImmutableDictionary());
+            return new(IsPercent, UniqueType, Modifiers.ToImmutableList());
         }
     }
 
@@ -472,7 +472,7 @@ public static class CaptainConverter
 
         public ImmutableArray<SkillPosition> Tiers { get; set; } = ImmutableArray<SkillPosition>.Empty; // contains the tier of the skill for all the classes that can use it
 
-        public ImmutableDictionary<string, float> Modifiers { get; set; } = ImmutableDictionary<string, float>.Empty; // modifiers for always on effects
+        public ImmutableList<Modifier> Modifiers { get; set; } = ImmutableList<Modifier>.Empty; // modifiers for always on effects
 
         public ImmutableArray<ConditionalModifierGroup> ConditionalModifierGroups { get; set; } = ImmutableArray<ConditionalModifierGroup>.Empty;
 

@@ -17,7 +17,8 @@ public static class ModifierSerializationExtension
         var membersToExcludeSet = membersToExclude.ToHashSet();
         resolver.Modifiers.Add(typeInfo =>
         {
-            if (typeInfo.Kind == JsonTypeInfoKind.Object && type.IsAssignableFrom(typeInfo.Type)) // Or type == typeInfo.Type if you don't want to exclude from subtypes
+            // Or type == typeInfo.Type if you don't want to exclude from subtypes
+            if (typeInfo.Kind == JsonTypeInfoKind.Object && type.IsAssignableFrom(typeInfo.Type))
             {
                 foreach (var property in typeInfo.Properties)
                 {

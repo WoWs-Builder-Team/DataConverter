@@ -4,10 +4,7 @@ using DataConverter.Converters;
 using DataConverter.Data;
 using DataConverter.Services;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using WoWsShipBuilder.DataStructures.Modifiers;
 using WowsShipBuilder.GameParamsExtractor.Services;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace DataConverter.Console.Services;
 
@@ -25,7 +22,7 @@ internal sealed class DataConversionHelper
 
     private readonly ILogger<DataConversionHelper> logger;
 
-    public DataConversionHelper(IGameDataUnpackService unpackService, IDataConverterService dataConverterService, IVersionCheckService versionCheckService, ILocalizationExtractor localizationExtractor, IModifierProcessingService modifierProcessingService,ILogger<DataConversionHelper> logger)
+    public DataConversionHelper(IGameDataUnpackService unpackService, IDataConverterService dataConverterService, IVersionCheckService versionCheckService, ILocalizationExtractor localizationExtractor, IModifierProcessingService modifierProcessingService, ILogger<DataConversionHelper> logger)
     {
         this.unpackService = unpackService;
         this.dataConverterService = dataConverterService;
@@ -76,7 +73,7 @@ internal sealed class DataConversionHelper
         await dataConverterService.WriteConvertedData(convertedData, options.OutputDirectory);
         await versionCheckService.WriteVersionInfo(versionInfo, options.OutputDirectory);
 
-        IEnumerable<LocalizationExtractionResult> localizations = null;
+        IEnumerable<LocalizationExtractionResult>? localizations = null;
         if (options.LocalizationInputDirectory is not null)
         {
             IEnumerable<string> filteredTranslations = DataCache.TranslationNames.Where(x => !string.IsNullOrWhiteSpace(x));

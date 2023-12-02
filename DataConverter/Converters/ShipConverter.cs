@@ -113,15 +113,17 @@ public static class ShipConverter
             foreach (var (modifierName, modifierValue) in module.Modifiers)
             {
                 modifiersDictionary.TryGetValue(modifierName, out Modifier? modifierData);
-                modifiers.Add(new Modifier(modifierName, modifierValue, shipName,  modifierData));
+                modifiers.Add(new(modifierName, modifierValue, shipName,  modifierData));
             }
-            var burstAbility = new BurstModeAbility()
+
+            var burstAbility = new BurstModeAbility
             {
                 ShotInBurst = module.ShotsCount,
                 ReloadAfterBurst = module.FullReloadTime,
                 ReloadDuringBurst = module.BurstReloadTime,
-                Modifiers = module.Modifiers.ToImmutableList(),
+                Modifiers = modifiers.ToImmutableList(),
             };
+
             DataCache.TranslationNames.UnionWith(burstAbility.Modifiers.Select(m => m.Name));
             return burstAbility;
         }
@@ -178,7 +180,7 @@ public static class ShipConverter
 
         var specialAbility = new SpecialAbility
         {
-            Modifiers = modifierList.ToImmutableDictionary(),
+            Modifiers = modifierList.ToImmutableList(),
             Name = rageMode.RageModeName,
             DecrementPeriod = rageMode.DecrementPeriod,
             Duration = rageMode.BoostDuration,
