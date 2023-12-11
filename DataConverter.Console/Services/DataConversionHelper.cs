@@ -51,7 +51,7 @@ internal sealed class DataConversionHelper
         }
 
         var gameParamsFile = new FileInfo(options.GameParamsFile);
-        var modifierDictionary = modifierProcessingService.ReadModifiersFile(gameParamsFile.Directory!.FullName + "Modifiers.json");
+        var modifierDictionary = modifierProcessingService.ReadModifiersFile(Path.Combine(gameParamsFile.Directory!.FullName, "Modifiers.json"));
 
         var extractionResult = unpackService.ExtractAndRefineGameParams(options.ToExtractionOptions());
         var convertedData = await dataConverterService.ConvertRefinedData(extractionResult.FilteredData, options.WriteModifierDebugOutput, modifierDictionary);

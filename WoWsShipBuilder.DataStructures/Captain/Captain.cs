@@ -4,7 +4,7 @@ using System.Collections.Immutable;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Captain;
 
-public class Captain
+public sealed class Captain
 {
     public long Id { get; init; }
 

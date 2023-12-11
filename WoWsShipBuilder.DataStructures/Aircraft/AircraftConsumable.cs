@@ -2,4 +2,4 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public record AircraftConsumable(int Slot, string ConsumableName, string ConsumableVariantName);
+public sealed record AircraftConsumable(int Slot, string ConsumableName, string ConsumableVariantName);

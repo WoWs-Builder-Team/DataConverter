@@ -11,9 +11,9 @@ public sealed record ResultFileContainer(string Content, string Category, string
 {
     public async Task WriteFileAsync(string baseDirectory)
     {
-        string directory = Path.Join(baseDirectory, Category);
+        string directory = Path.Combine(baseDirectory, Category);
         Directory.CreateDirectory(directory);
-        string path = Path.Join(directory, Filename);
+        string path = Path.Combine(directory, Filename);
         await File.WriteAllTextAsync(path, Content);
     }
 }

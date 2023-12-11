@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class TurretModule
+public sealed class TurretModule
 {
     public decimal Sigma { get; set; }
 

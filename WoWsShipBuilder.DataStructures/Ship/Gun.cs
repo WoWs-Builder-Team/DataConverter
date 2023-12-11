@@ -5,7 +5,7 @@ using WoWsShipBuilder.DataStructures.Ship.Components;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class Gun : IGun
+public sealed class Gun : IGun
 {
     public ImmutableArray<string> AmmoList { get; init; } = ImmutableArray<string>.Empty;
 

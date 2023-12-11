@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace WoWsShipBuilder.DataStructures.Modifiers;
 
-public class Modifier
+public sealed class Modifier
 {
     [JsonConstructor]
-    public Modifier(string location, string name, float value, string? gameLocalizationKey, string? appLocalizationKey, Unit unit, HashSet<string> affectedProperties, DisplayValueProcessingKind displayedValueProcessingKind, ValueProcessingKind valueProcessingKind)
+    public Modifier(string name, float value, string? gameLocalizationKey, string? appLocalizationKey, Unit unit, ImmutableHashSet<string> affectedProperties, DisplayValueProcessingKind displayedValueProcessingKind, ValueProcessingKind valueProcessingKind)
     {
-        Location = location;
+        Location = string.Empty;
         Name = name;
         Value = value;
         GameLocalizationKey = gameLocalizationKey;
@@ -25,34 +26,48 @@ public class Modifier
         Name = name;
         Value = value;
         Location = location;
-        if (modifierData is not null)
+        if (modifierData is null)
         {
-            GameLocalizationKey = modifierData.GameLocalizationKey;
-            AppLocalizationKey = modifierData.AppLocalizationKey;
-            Unit = modifierData.Unit;
-            AffectedProperties = modifierData.AffectedProperties;
-            DisplayedValueProcessingKind = modifierData.DisplayedValueProcessingKind;
-            ValueProcessingKind = modifierData.ValueProcessingKind;
+            return;
         }
+
+        GameLocalizationKey = modifierData.GameLocalizationKey;
+        AppLocalizationKey = modifierData.AppLocalizationKey;
+        Unit = modifierData.Unit;
+        AffectedProperties = modifierData.AffectedProperties;
+        DisplayedValueProcessingKind = modifierData.DisplayedValueProcessingKind;
+        ValueProcessingKind = modifierData.ValueProcessingKind;
     }
 
-    [JsonIgnore]
-    public string Location { get; }
     public string Name { get; }
+
     public float Value { get; }
 
     // ONLY one of the following two need to have a value, based on where the localization key needs to be searched in.
     public string? GameLocalizationKey { get; internal set; }
+
     public string? AppLocalizationKey { get; internal set; }
+
     public Unit Unit { get; internal set; }
 
-    // Format: DataContainerName.Property.AdditionalSelector
-    // For example: ShellDataContainer.Damage.HE would identify a modifier that applies to the Damage parameter only for HE shells.
-    // ShellDataContainer.Damage would identify a modifier that applies to the Damage parameter of all shells.
-    public HashSet<string> AffectedProperties { get; } = new();
+    /// <summary>
+    /// The properties that this modifier affects.
+    /// </summary>
+    /// <remarks>
+    /// Format: DataContainerName.Property.AdditionalSelector
+    /// For example: ShellDataContainer.Damage.HE would identify a modifier that applies to the Damage parameter only for HE shells.
+    /// ShellDataContainer.Damage would identify a modifier that applies to the Damage parameter of all shells.
+    /// </remarks>
+    public ImmutableHashSet<string> AffectedProperties { get; } = ImmutableHashSet<string>.Empty;
+
     public DisplayValueProcessingKind DisplayedValueProcessingKind { get; internal set; }
+
     public ValueProcessingKind ValueProcessingKind { get; internal set; }
 
+    [JsonIgnore]
+    internal string Location { get; }
+
+    [PublicAPI]
     public string ToDisplayValue()
     {
         double modifierValue;
@@ -102,6 +117,7 @@ public class Modifier
         }
     }
 
+    [PublicAPI]
     public decimal ApplyModifier(decimal baseValue)
     {
         switch (ValueProcessingKind)
@@ -126,6 +142,7 @@ public class Modifier
         }
     }
 
+    [PublicAPI]
     public int ApplyModifier(int baseValue)
     {
         switch (ValueProcessingKind)

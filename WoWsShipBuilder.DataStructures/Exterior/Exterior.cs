@@ -5,7 +5,7 @@ using WoWsShipBuilder.DataStructures.Modifiers;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Exterior;
 
-public class Exterior
+public sealed class Exterior
 {
     public long Id { get; init; }
 

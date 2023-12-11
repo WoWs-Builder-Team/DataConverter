@@ -5,7 +5,7 @@ using WoWsShipBuilder.DataStructures.Modifiers;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class SpecialAbility
+public sealed class SpecialAbility
 {
     public ImmutableList<Modifier> Modifiers { get; init; } = ImmutableList<Modifier>.Empty;
     public string Name { get; init; } = string.Empty;
@@ -18,7 +18,7 @@ public class SpecialAbility
     public double ActivatorRadius { get; init; }
 }
 
-public class BurstModeAbility
+public sealed class BurstModeAbility
 {
     public decimal ReloadDuringBurst { get; init; }
 

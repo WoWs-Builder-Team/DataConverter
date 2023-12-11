@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Projectile;
 
-public class DepthCharge : Projectile
+public sealed class DepthCharge : Projectile
 {
     public float Damage { get; init; }
 

@@ -4,7 +4,7 @@ namespace WoWsShipBuilder.DataStructures.Ship;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class PingerGun
+public sealed class PingerGun
 {
     public ImmutableArray<decimal> RotationSpeed { get; init; } = ImmutableArray<decimal>.Empty;
 
@@ -21,7 +21,7 @@ public class PingerGun
     public decimal WaveReloadTime { get; init; }
 }
 
-public class SectorParam
+public sealed class SectorParam
 {
     public decimal AlertTime { get; init; }
 
@@ -32,7 +32,7 @@ public class SectorParam
     public ImmutableArray<ImmutableArray<decimal>> WidthParams { get; init; } = ImmutableArray<ImmutableArray<decimal>>.Empty;
 }
 
-public class WaveParam
+public sealed class WaveParam
 {
     public decimal EndWaveWidth { get; init; }
 

@@ -27,13 +27,13 @@ internal sealed class LocalizationExtractor : ILocalizationExtractor
         FileInfo[] translationFiles = TranslatorUtility.FindTranslationFiles(options.InputDirectory);
         List<TranslatorUtility.RawLocalizationData> rawLocalizations = TranslatorUtility.ExtractRawLocalization(translationFiles, logger).ToList();
         logger.LogInformation("Filtering localization keys");
-        HashSet<string> filteredKeys = TranslatorUtility.FilterTranslationKeys(rawLocalizations.First().Translations.Keys, options.TranslationFilter);
+        HashSet<string> filteredKeys = TranslatorUtility.FilterTranslationKeys(rawLocalizations[0].Translations.Keys, options.TranslationFilter);
         IEnumerable<TranslatorUtility.LocalizationData> localizations = TranslatorUtility.ProcessTranslations(rawLocalizations, filteredKeys, logger);
 
         var results = new List<LocalizationExtractionResult>();
         foreach (var localization in localizations)
         {
-            var unfilteredLocalizations = options.OutputUnfilteredFiles ? rawLocalizations.FirstOrDefault(r => r.Language.Equals(localization.Language)) : null;
+            var unfilteredLocalizations = options.OutputUnfilteredFiles ? rawLocalizations.Find(r => r.Language.Equals(localization.Language)) : null;
             var result = new LocalizationExtractionResult(localization.Language, localization.Translations, unfilteredLocalizations?.Translations);
             results.Add(result);
         }
@@ -54,25 +54,25 @@ internal sealed class LocalizationExtractor : ILocalizationExtractor
 
     public async Task WriteLocalizationFiles(IEnumerable<LocalizationExtractionResult> localizationFiles, string outputBasePath, bool writeUnfiltered, string? debugOutputPath)
     {
-        string localizationBasePath = Path.Join(outputBasePath, LocalizationDirectory);
+        string localizationBasePath = Path.Combine(outputBasePath, LocalizationDirectory);
         Directory.CreateDirectory(localizationBasePath);
 
         string? debugBasePath = null;
         if (writeUnfiltered && debugOutputPath != null)
         {
-            debugBasePath = Path.Join(debugOutputPath, LocalizationDirectory);
+            debugBasePath = Path.Combine(debugOutputPath, LocalizationDirectory);
             Directory.CreateDirectory(debugBasePath);
         }
 
         foreach (var localizationFile in localizationFiles)
         {
-            string localizationFilePath = Path.Join(localizationBasePath, localizationFile.Language + ".json");
+            string localizationFilePath = Path.Combine(localizationBasePath, localizationFile.Language + ".json");
             await using var file = File.CreateText(localizationFilePath);
             serializer.Serialize(file, localizationFile.FilteredLocalizations);
 
             if (writeUnfiltered && debugOutputPath != null)
             {
-                string debugFilePath = Path.Join(debugBasePath, localizationFile.Language + ".json");
+                string debugFilePath = Path.Combine(debugBasePath ?? string.Empty, localizationFile.Language + ".json");
                 await using var debugFile = File.CreateText(debugFilePath);
                 serializer.Serialize(debugFile, localizationFile.UnfilteredLocalizations);
             }
@@ -81,12 +81,12 @@ internal sealed class LocalizationExtractor : ILocalizationExtractor
 
     public async Task WriteRawLocalizationFiles(IEnumerable<LocalizationExtractionResult> localizationFiles, string outputBasePath)
     {
-        string localizationBasePath = Path.Join(outputBasePath, LocalizationDirectory);
+        string localizationBasePath = Path.Combine(outputBasePath, LocalizationDirectory);
         Directory.CreateDirectory(localizationBasePath);
 
         foreach (var localizationFile in localizationFiles)
         {
-            string localizationFilePath = Path.Join(localizationBasePath, localizationFile.Language + ".json");
+            string localizationFilePath = Path.Combine(localizationBasePath, localizationFile.Language + ".json");
             await using var file = File.CreateText(localizationFilePath);
             serializer.Serialize(file, localizationFile.UnfilteredLocalizations);
         }

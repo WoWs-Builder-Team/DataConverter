@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Projectile;
 
-public class Torpedo : Projectile
+public sealed class Torpedo : Projectile
 {
     public float SpottingRange { get; init; } // It's visibilityFactor
 
@@ -31,7 +31,7 @@ public class Torpedo : Projectile
     public MagneticTorpedoParams? MagneticTorpedoParams { get; init; }
 }
 
-public class MagneticTorpedoParams
+public sealed class MagneticTorpedoParams
 {
     public ImmutableDictionary<ShipClass, ImmutableArray<float>> DropTargetAtDistance { get; init; } = ImmutableDictionary<ShipClass, ImmutableArray<float>>.Empty;
 

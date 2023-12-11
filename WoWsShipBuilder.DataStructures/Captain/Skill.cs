@@ -5,7 +5,7 @@ using WoWsShipBuilder.DataStructures.Modifiers;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Captain;
 
-public class Skill
+public sealed class Skill
 {
     public bool CanBeLearned { get; init; }
 

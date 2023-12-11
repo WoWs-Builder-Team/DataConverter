@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class DepthChargeArray
+public sealed class DepthChargeArray
 {
     public int MaxPacks { get; init; }
 
@@ -15,7 +15,7 @@ public class DepthChargeArray
     public ImmutableArray<DepthChargeLauncher> DepthCharges { get; init; } = ImmutableArray<DepthChargeLauncher>.Empty;
 }
 
-public class DepthChargeLauncher
+public sealed class DepthChargeLauncher
 {
     public ImmutableArray<string> AmmoList { get; init; } = ImmutableArray<string>.Empty;
 

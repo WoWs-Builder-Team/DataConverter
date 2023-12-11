@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class PlaneAttackData
+public sealed class PlaneAttackData
 {
     public double AttackCooldown { get; init; }
 

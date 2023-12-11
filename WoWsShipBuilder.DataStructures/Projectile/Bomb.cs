@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class Bomb : Projectile
+public sealed class Bomb : Projectile
 {
     public float Damage { get; init; }
 

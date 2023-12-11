@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class Hull
+public sealed class Hull
 {
     public decimal Health { get; init; }
 
@@ -58,7 +58,7 @@ public class Hull
 
     public ImmutableList<HitLocation> HitLocations { get; init; } = ImmutableList<HitLocation>.Empty;
 
-    public ImmutableDictionary<SubsBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; init; } = ImmutableDictionary<SubsBuoyancyStates, decimal>.Empty;
+    public ImmutableDictionary<SubmarineBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; init; } = ImmutableDictionary<SubmarineBuoyancyStates, decimal>.Empty;
 
     public decimal SubBatteryCapacity { get; init; }
 
@@ -69,6 +69,6 @@ public class Hull
     public decimal DivingPlaneShiftTime { get; init; }
 }
 
-public record ShipSize(decimal Length, decimal Width, decimal Height);
+public sealed record ShipSize(decimal Length, decimal Width, decimal Height);
 
-public record HitLocation(ShipHitLocation Name, string Type, float RepairableDamage, int Hp);
+public sealed record HitLocation(ShipHitLocation Name, string Type, float RepairableDamage, int Hp);

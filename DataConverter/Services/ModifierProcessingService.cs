@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using DataConverter.Data;
@@ -82,9 +81,9 @@ public class ModifierProcessingService : IModifierProcessingService
 
     private static async Task WriteFileAsync(string baseDirectory, string filename, string content)
     {
-        string directory = Path.Join(baseDirectory, "Modifiers");
+        string directory = Path.Combine(baseDirectory, "Modifiers");
         Directory.CreateDirectory(directory);
-        string path = Path.Join(directory, filename);
+        string path = Path.Combine(directory, filename);
         await File.WriteAllTextAsync(path, content);
     }
 

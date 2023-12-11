@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Captain;
 
-public class UniqueSkill
+public sealed class UniqueSkill
 {
     public ImmutableDictionary<string, UniqueSkillEffect> SkillEffects { get; init; } = ImmutableDictionary<string, UniqueSkillEffect>.Empty; // dictionary of the effects and their names
 

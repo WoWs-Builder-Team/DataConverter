@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Exterior;
 
-public class Restriction
+public sealed class Restriction
 {
     public ImmutableArray<string> ForbiddenShips { get; set; } = ImmutableArray<string>.Empty;
 

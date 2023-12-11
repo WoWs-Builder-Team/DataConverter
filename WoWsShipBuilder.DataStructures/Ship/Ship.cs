@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class Ship
+public sealed class Ship
 {
     public long Id { get; init; }
 

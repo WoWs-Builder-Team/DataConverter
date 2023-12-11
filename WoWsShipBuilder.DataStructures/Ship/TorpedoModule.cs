@@ -4,9 +4,9 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class TorpedoModule
+public sealed class TorpedoModule
 {
-    public ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> TorpedoLoaders { get; init; } = ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>>.Empty;
+    public ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>> TorpedoLoaders { get; init; } = ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>>.Empty;
 
     public ImmutableArray<TorpedoLauncher> TorpedoLaunchers { get; init; } = ImmutableArray<TorpedoLauncher>.Empty;
 }

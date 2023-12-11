@@ -4,7 +4,7 @@
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Aircraft;
 
-public class Aircraft
+public sealed class Aircraft
 {
     public long Id { get; init; }
 

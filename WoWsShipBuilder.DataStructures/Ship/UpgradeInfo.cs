@@ -5,7 +5,7 @@ using System.Linq;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class UpgradeInfo
+public sealed class UpgradeInfo
 {
     public ImmutableList<ShipUpgrade> ShipUpgrades { get; init; } = ImmutableList<ShipUpgrade>.Empty;
 
@@ -41,7 +41,7 @@ public class UpgradeInfo
     }
 }
 
-public class ShipUpgrade
+public sealed class ShipUpgrade
 {
     public ImmutableDictionary<ComponentType, ImmutableArray<string>> Components { get; init; } = ImmutableDictionary<ComponentType, ImmutableArray<string>>.Empty;
 

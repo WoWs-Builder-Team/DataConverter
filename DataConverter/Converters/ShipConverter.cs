@@ -409,7 +409,7 @@ public static class ShipConverter
             hullModule.HitLocations = hitLocations.ToImmutableList();
 
             //process subs only parameters
-            Dictionary<SubsBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
+            Dictionary<SubmarineBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
             if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
             {
                 hullModule.DiveSpeed = wgHull.MaxBuoyancySpeed;
@@ -420,9 +420,9 @@ public static class ShipConverter
                 {
                     var depth = state switch
                     {
-                        "DEEP_WATER_INVUL" => SubsBuoyancyStates.DeepWater,
-                        "PERISCOPE" => SubsBuoyancyStates.Periscope,
-                        "SURFACE" => SubsBuoyancyStates.Surface,
+                        "DEEP_WATER_INVUL" => SubmarineBuoyancyStates.DeepWater,
+                        "PERISCOPE" => SubmarineBuoyancyStates.Periscope,
+                        "SURFACE" => SubmarineBuoyancyStates.Surface,
                         _ => throw new InvalidOperationException("Buoyancy state not recognized: " + wgHull),
                     };
                     maxSpeedAtBuoyancyStateCoeff.Add(depth, (decimal)(double)coeff[1]);
@@ -519,7 +519,7 @@ public static class ShipConverter
             var launchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToImmutableArray();
 
             // process launcher loaders
-            ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>>.Empty;
+            ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>>.Empty;
             if (wgTorpedoArray.Groups.Count > 0 && wgTorpedoArray.Loaders.Count > 0)
             {
                 torpedoLoaders = ConvertLoaders(wgTorpedoArray, launchers);
@@ -538,7 +538,7 @@ public static class ShipConverter
         return resultDictionary.ToImmutableDictionary();
     }
 
-    private static ImmutableDictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> ConvertLoaders(WgTorpedoArray wgTorpedoArray, ImmutableArray<TorpedoLauncher> launchers)
+    private static ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>> ConvertLoaders(WgTorpedoArray wgTorpedoArray, ImmutableArray<TorpedoLauncher> launchers)
     {
         Dictionary<int, int> bowLoaders = new();
         Dictionary<int, int> sternLoaders = new();
@@ -629,10 +629,10 @@ public static class ShipConverter
             sternLoadersSetup.Add(setup);
         }
 
-        Dictionary<SubTorpLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = new()
+        Dictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = new()
         {
-            { SubTorpLauncherLoaderPosition.BowLoaders, bowLoadersSetup.ToImmutableArray() },
-            { SubTorpLauncherLoaderPosition.SternLoaders, sternLoadersSetup.ToImmutableArray() },
+            { SubmarineTorpedoLauncherLoaderPosition.BowLoaders, bowLoadersSetup.ToImmutableArray() },
+            { SubmarineTorpedoLauncherLoaderPosition.SternLoaders, sternLoadersSetup.ToImmutableArray() },
         };
 
         return torpedoLoaders.ToImmutableDictionary();
@@ -940,7 +940,7 @@ public static class ShipConverter
 
         public ImmutableList<HitLocation> HitLocations { get; set; } = ImmutableList<HitLocation>.Empty;
 
-        public ImmutableDictionary<SubsBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; set; } = ImmutableDictionary<SubsBuoyancyStates, decimal>.Empty;
+        public ImmutableDictionary<SubmarineBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; set; } = ImmutableDictionary<SubmarineBuoyancyStates, decimal>.Empty;
 
         public decimal SubBatteryCapacity { get; set; }
 

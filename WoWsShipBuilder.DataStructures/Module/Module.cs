@@ -3,7 +3,7 @@ namespace WoWsShipBuilder.DataStructures.Module;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class Module
+public sealed class Module
 #pragma warning restore CA1716
 {
     public int CostCr { get; init; }

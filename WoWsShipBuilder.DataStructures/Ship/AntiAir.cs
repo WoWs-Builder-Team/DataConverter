@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class AntiAir
+public sealed class AntiAir
 {
     public AntiAirAura? LongRangeAura { get; init; }
 
@@ -11,7 +11,7 @@ public class AntiAir
     public AntiAirAura? ShortRangeAura { get; init; }
 }
 
-public class AntiAirAura
+public sealed class AntiAirAura
 {
     public decimal ConstantDps { get; init; }
 

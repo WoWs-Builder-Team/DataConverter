@@ -45,7 +45,7 @@ internal class VersionCheckService : IVersionCheckService
     {
         Directory.CreateDirectory(outputBasePath);
         string fileContent = JsonSerializer.Serialize(versionInfo, Constants.SerializerOptions);
-        await File.WriteAllTextAsync(Path.Join(outputBasePath, VersionInfoFileName), fileContent);
+        await File.WriteAllTextAsync(Path.Combine(outputBasePath, VersionInfoFileName), fileContent);
     }
 
     internal static FileVersion CompareVersions(ResultFileContainer fileContainer, ImmutableList<FileVersion> oldVersions, int currentVersionCode)

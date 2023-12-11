@@ -5,7 +5,7 @@ using WoWsShipBuilder.DataStructures.Modifiers;
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Consumable;
 
-public class Consumable
+public sealed class Consumable
 {
     public long Id { get; init; }
 

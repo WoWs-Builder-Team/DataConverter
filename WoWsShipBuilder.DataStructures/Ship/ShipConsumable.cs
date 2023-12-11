@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class ShipConsumable
+public sealed class ShipConsumable
 {
     public int Slot { get; init; }
 
