@@ -1945,17 +1945,6 @@
     "valueProcessingKind": "None"
   },
   {
-    "name": "planeConsumablesWorkTime",
-    "gameLocalizationKey": "PARAMS_MODIFIER_PLANECONSUMABLESWORKTIME",
-    "appLocalizationKey": null,
-    "unit": "Percent",
-    "affectedProperties": [
-      "ConsumableDataContainer.WorkTime.Plane"
-    ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "Multiplier"
-  },
-  {
     "name": "planeEmptyReturnSpeed",
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEEMPTYRETURNSPEED",
     "appLocalizationKey": null,
@@ -2787,5 +2776,27 @@
     "affectedProperties": [],
     "displayedValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "planeConsumableReloadTime",
+    "gameLocalizationKey": "PARAMS_MODIFIER_PLANECONSUMABLERELOADTIME",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Plane"
+    ],
+    "displayedValueProcessingKind": "InverseNegativePercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "planeSmokeGeneratorWorkTimeCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_PLANESMOKEGENERATORWORKTIMECOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY049"
+    ],
+    "displayedValueProcessingKind": "VariablePercentage",
+    "valueProcessingKind": "Multiplier"
   }
 ]
