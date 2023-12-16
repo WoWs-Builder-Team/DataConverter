@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <VersionPrefix>5.0.0</VersionPrefix>
-    <VersionSuffix>alpha2</VersionSuffix>
+    <VersionSuffix>alpha3</VersionSuffix>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>ShipBuilder Data structures</Title>
     <Authors>WoWs-Builder-Team</Authors>

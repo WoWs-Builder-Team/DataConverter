@@ -106,6 +106,12 @@ internal class DataConverterService : IDataConverterService
 
                         break;
                     case "Exterior":
+                        if (!nation.Equals("Common", StringComparison.OrdinalIgnoreCase))
+                        {
+                            convertedFileContent = null;
+                            break;
+                        }
+
                         var exteriorData = ExteriorConverter.ConvertExterior(data.Cast<WgExterior>(), logger, modifiersDictionary);
                         var exteriorModifiers = exteriorData.SelectMany(e => e.Value.Modifiers);
                         modifiers.UnionWith(exteriorModifiers);

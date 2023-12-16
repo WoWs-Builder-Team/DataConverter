@@ -1,40 +1,49 @@
 ﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace WoWsShipBuilder.DataStructures.Modifiers;
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ValueProcessingKind
 {
-    /**
-     * Processing kind has not been assigned
-     */
+    /// <summary>
+    /// Processing kind has not been assigned.
+    /// </summary>
     NotAssigned,
-    /**
-     * Multiplies the base value by the modifier.
-     */
+
+    /// <summary>
+    /// Multiplies the base value by the modifier.
+    /// </summary>
     Multiplier,
-    /**
-     * Adds to the base value ((decimal)modifier * 100)
-     */
-    SumPercentage,
-    /**
-    * Subtract to the base value ((decimal)modifier / 100)
-    */
+
+    /// <summary>
+    /// Adds to the base value ((decimal)modifier * 100)
+    /// </summary>
+    AddPercentage,
+
+    /// <summary>
+    /// Subtract to the base value ((decimal)modifier / 100)
+    /// </summary>
     SubtractPercentage,
-    /**
-     * Multiplies the base value by (1 + ((decimal)modifier / 100)).
-     */
+
+    /// <summary>
+    /// Multiplies the base value by (1 + ((decimal)modifier / 100)).
+    /// </summary>
     PositiveMultiplier,
-    /**
-     * Multiplies the base value by (1 - (mModifier / 100))
-     */
+
+    /// <summary>
+    /// Multiplies the base value by (1 - (mModifier / 100))
+    /// </summary>
     NegativeMultiplier,
-    /**
-     * Adds to the base value the modifier directly.
-     */
-    DirectAdd,
-    /**
-     * Do nothing, value is not tecnically a modifier.
-     */
+
+    /// <summary>
+    /// Adds to the base value the modifier directly.
+    /// </summary>
+    RawAdd,
+
+    /// <summary>
+    /// Do nothing, value is not technically a modifier.
+    /// </summary>
     None,
 }

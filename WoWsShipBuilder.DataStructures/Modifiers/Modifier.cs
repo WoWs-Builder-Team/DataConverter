@@ -5,10 +5,11 @@ using JetBrains.Annotations;
 
 namespace WoWsShipBuilder.DataStructures.Modifiers;
 
+[PublicAPI]
 public sealed class Modifier
 {
     [JsonConstructor]
-    public Modifier(string name, float value, string? gameLocalizationKey, string? appLocalizationKey, Unit unit, ImmutableHashSet<string> affectedProperties, DisplayValueProcessingKind displayedValueProcessingKind, ValueProcessingKind valueProcessingKind)
+    public Modifier(string name, float value, string? gameLocalizationKey, string? appLocalizationKey, Unit unit, ImmutableHashSet<string> affectedProperties, DisplayValueProcessingKind displayValueProcessingKind, ValueProcessingKind valueProcessingKind)
     {
         Location = string.Empty;
         Name = name;
@@ -17,7 +18,7 @@ public sealed class Modifier
         AppLocalizationKey = appLocalizationKey;
         Unit = unit;
         AffectedProperties = affectedProperties;
-        DisplayedValueProcessingKind = displayedValueProcessingKind;
+        DisplayValueProcessingKind = displayValueProcessingKind;
         ValueProcessingKind = valueProcessingKind;
     }
 
@@ -35,7 +36,7 @@ public sealed class Modifier
         AppLocalizationKey = modifierData.AppLocalizationKey;
         Unit = modifierData.Unit;
         AffectedProperties = modifierData.AffectedProperties;
-        DisplayedValueProcessingKind = modifierData.DisplayedValueProcessingKind;
+        DisplayValueProcessingKind = modifierData.DisplayValueProcessingKind;
         ValueProcessingKind = modifierData.ValueProcessingKind;
     }
 
@@ -60,7 +61,7 @@ public sealed class Modifier
     /// </remarks>
     public ImmutableHashSet<string> AffectedProperties { get; } = ImmutableHashSet<string>.Empty;
 
-    public DisplayValueProcessingKind DisplayedValueProcessingKind { get; internal set; }
+    public DisplayValueProcessingKind DisplayValueProcessingKind { get; internal set; }
 
     public ValueProcessingKind ValueProcessingKind { get; internal set; }
 
@@ -71,19 +72,19 @@ public sealed class Modifier
     public string ToDisplayValue()
     {
         double modifierValue;
-        switch (DisplayedValueProcessingKind)
+        switch (DisplayValueProcessingKind)
         {
-            case DisplayValueProcessingKind.None:
+            case DisplayValueProcessingKind.Raw:
                 return $"{Value}";
             case DisplayValueProcessingKind.ToNegative:
                 return $"-{Value}";
             case DisplayValueProcessingKind.ToPositive:
                 return $"+{Value}";
-            case DisplayValueProcessingKind.Empty:
+            case DisplayValueProcessingKind.Discard:
                 return string.Empty;
             case DisplayValueProcessingKind.ToInt:
                 return (int)Value > 0 ? $"+{(int)Value}" : $"{(int)Value}";
-            case DisplayValueProcessingKind.NoneOrPercentage:
+            case DisplayValueProcessingKind.RawOrPercentage:
                 return Value > 1 ? $"+{Value}" : $"+{Math.Round(Value * 100, 2)}";
             case DisplayValueProcessingKind.PositivePercentage:
                 return $"+{(Value - 1) * 100}";
@@ -96,9 +97,6 @@ public sealed class Modifier
                 return modifierValue > 0 ? $"+{modifierValue}" : $"{modifierValue}";
             case DisplayValueProcessingKind.IntVariablePercentage:
                 modifierValue = (int)(Math.Round(Value * 100, 2) - 100);
-                return modifierValue > 0 ? $"+{modifierValue}" : $"{modifierValue}";
-            case DisplayValueProcessingKind.DrainPercentage:
-                modifierValue = Math.Round(((1 / Value) - 1) * 100, 2);
                 return modifierValue > 0 ? $"+{modifierValue}" : $"{modifierValue}";
             case DisplayValueProcessingKind.DecimalRoundedPercentage:
                 return Value > 1 ? $"+{Math.Round((Value - 1) * 100, 2)}" : $"-{Math.Round((1 - Value) * 100, 2)}";
@@ -113,7 +111,7 @@ public sealed class Modifier
                 return $"{Value / 1000}";
             case DisplayValueProcessingKind.NotAssigned:
             default:
-                throw new ArgumentOutOfRangeException(null, $"DisplayedValueProcessing for the modifier {Name} is not valid or not assigned.");
+                throw new ArgumentOutOfRangeException(null, $"DisplayValueProcessing for the modifier {Name} is not valid or not assigned.");
         }
     }
 
@@ -122,7 +120,7 @@ public sealed class Modifier
     {
         switch (ValueProcessingKind)
         {
-            case ValueProcessingKind.SumPercentage:
+            case ValueProcessingKind.AddPercentage:
                 return baseValue + (decimal)Value * 100;
             case ValueProcessingKind.SubtractPercentage:
                 return baseValue - (decimal)Value / 100;
@@ -132,7 +130,7 @@ public sealed class Modifier
                 return baseValue * (1 + ((decimal)Value / 100));
             case ValueProcessingKind.NegativeMultiplier:
                 return baseValue * (1 - ((decimal)Value / 100));
-            case ValueProcessingKind.DirectAdd:
+            case ValueProcessingKind.RawAdd:
                 return baseValue + (decimal)Value;
             case ValueProcessingKind.None:
                 return baseValue;
@@ -147,7 +145,7 @@ public sealed class Modifier
     {
         switch (ValueProcessingKind)
         {
-            case ValueProcessingKind.SumPercentage:
+            case ValueProcessingKind.AddPercentage:
                 return baseValue + (int)Value * 100;
             case ValueProcessingKind.SubtractPercentage:
                 return baseValue - (int)Value / 100;
@@ -155,7 +153,7 @@ public sealed class Modifier
                 return baseValue * (int)Value;
             case ValueProcessingKind.PositiveMultiplier:
                 return baseValue * (1 + ((int)Value / 100));
-            case ValueProcessingKind.DirectAdd:
+            case ValueProcessingKind.RawAdd:
                 return baseValue + (int)Value;
             case ValueProcessingKind.None:
                 return baseValue;

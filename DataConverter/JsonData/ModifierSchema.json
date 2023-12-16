@@ -16,7 +16,7 @@
           "type": ["string", "null"]
         },
         "unit": {
-          "enum": ["NotAssigned", "None", "MPS", "KG", "MM", "Percent", "Degree", "S", "PercentPerS", "KM", "DegreePerSecond", "DPS", "HP", "Knots", "M", "ShotsPerMinute", "FPM"]
+          "enum": ["NotAssigned", "None", "Kilograms", "Millimeters", "Meters", "Kilometers", "Seconds", "Degrees", "Percent", "Hitpoints", "Knots", "MetersPerSecond", "DegreesPerSecond", "PercentPerSecond", "DamagePerSecond", "ShotsPerMinute", "FiresPerMinute"]
         },
         "affectedProperties": {
           "type": "array",
@@ -26,11 +26,11 @@
             "pattern": "\\w+\\.(\\w)?."
           }
         },
-        "displayedValueProcessingKind": {
-          "enum": ["NotAssigned", "None", "ToNegative", "ToPositive", "Empty", "ToInt", "NoneOrPercentage", "PositivePercentage", "NegativePercentage", "InverseNegativePercentage", "VariablePercentage", "IntVariablePercentage", "DrainPercentage", "DecimalRoundedPercentage", "RoundedPercentage", "BigWorldToKm", "BigWorldToKmDecimal", "MeterToKm"]
+        "displayValueProcessingKind": {
+          "enum": ["NotAssigned", "Raw", "ToNegative", "ToPositive", "Discard", "ToInt", "RawOrPercentage", "PositivePercentage", "NegativePercentage", "InverseNegativePercentage", "VariablePercentage", "IntVariablePercentage", "DecimalRoundedPercentage", "RoundedPercentage", "BigWorldToKm", "BigWorldToKmDecimal", "MeterToKm"]
         },
         "valueProcessingKind": {
-          "enum": ["NotAssigned", "Multiplier", "SumPercentage", "SubtractPercentage", "PositiveMultiplier", "NegativeMultiplier", "DirectAdd", "None"]
+          "enum": ["NotAssigned", "Multiplier", "AddPercentage", "SubtractPercentage", "PositiveMultiplier", "NegativeMultiplier", "RawAdd", "None"]
         }
       },
       "required": [
@@ -39,7 +39,7 @@
         "appLocalizationKey",
         "unit",
         "affectedProperties",
-        "displayedValueProcessingKind",
+        "displayValueProcessingKind",
         "valueProcessingKind"
       ]
     }

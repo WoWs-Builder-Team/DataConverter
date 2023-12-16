@@ -1,25 +1,27 @@
 ﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace WoWsShipBuilder.DataStructures.Modifiers;
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Unit
 {
     NotAssigned,
     None,
-    MPS,
-    KG,
-    MM,
+    Kilograms,
+    Millimeters,
+    Meters,
+    Kilometers,
+    Seconds,
+    Degrees,
     Percent,
-    Degree,
-    S,
-    PercentPerS,
-    KM,
-    DegreePerSecond,
-    DPS,
-    HP,
+    Hitpoints,
     Knots,
-    M,
+    MetersPerSecond,
+    DegreesPerSecond,
+    PercentPerSecond,
+    DamagePerSecond,
     ShotsPerMinute,
-    FPM,
+    FiresPerMinute,
 }

@@ -7,7 +7,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.ConstantDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -18,7 +18,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.ConstantDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -29,7 +29,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.ConstantDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -40,7 +40,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.ConstantDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -51,7 +51,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.ConstantDamage"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -62,7 +62,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.ConstantDamage"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -71,7 +71,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -82,7 +82,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -93,7 +93,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -104,7 +104,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -115,7 +115,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -126,7 +126,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakDamage"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -137,7 +137,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakDamage"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -148,8 +148,8 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakAmount"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "AAInnerExtraBubbles",
@@ -159,8 +159,8 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakAmount"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "AAMaxHP",
@@ -168,7 +168,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -177,7 +177,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -186,7 +186,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -195,7 +195,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -204,7 +204,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -213,7 +213,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -224,8 +224,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.Ship"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "airDefenseDispReloadCoeff",
@@ -235,7 +235,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY011"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -246,7 +246,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY011"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -255,7 +255,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -266,16 +266,16 @@
     "affectedProperties": [
       "AntiAirDataContainer.ConstantDamage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "artilleryAlertMinDistance",
     "gameLocalizationKey": null,
     "appLocalizationKey": "IncomingFireAlertDesc",
-    "unit": "KM",
+    "unit": "Kilometers",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "BigWorldToKm",
+    "displayValueProcessingKind": "BigWorldToKm",
     "valueProcessingKind": "None"
   },
   {
@@ -286,8 +286,8 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "artilleryBurnChanceBonus_Battleship",
@@ -297,8 +297,8 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "artilleryBurnChanceBonus_Cruiser",
@@ -308,8 +308,8 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "artilleryBurnChanceBonus_Destroyer",
@@ -319,8 +319,8 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "artilleryBurnChanceBonus_Submarine",
@@ -330,8 +330,8 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "artilleryDistCoeff",
@@ -341,7 +341,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.Range"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -352,7 +352,7 @@
     "affectedProperties": [
       "ShellDataContainer.Krupp"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -363,7 +363,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -374,7 +374,7 @@
     "affectedProperties": [
       "AirstrikeDataContainer.PlaneHp"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -385,7 +385,7 @@
     "affectedProperties": [
       "AirstrikeDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -396,8 +396,8 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.BackwardEngineForsag.SpeedBoost"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "backwardEngineForsagMaxSpeed",
@@ -407,8 +407,8 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.BackwardEngineForsagMaxSpeed.SpeedBoost"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "batteryCapacityCoeff",
@@ -418,7 +418,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.DiveCapacity"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -429,7 +429,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.DiveCapacityRecharge"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -440,7 +440,7 @@
     "affectedProperties": [
       "BombDataContainer.Damage.He"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -451,7 +451,7 @@
     "affectedProperties": [
       "BombDataContainer.Damage.Ap"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -462,8 +462,8 @@
     "affectedProperties": [
       "BombDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "boostCoeff",
@@ -473,8 +473,8 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.BoostCoeff"
     ],
-    "displayedValueProcessingKind": "RoundedPercentage",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "RoundedPercentage",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "boostCoeffForsage",
@@ -484,8 +484,8 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.SpeedBoostForsage"
     ],
-    "displayedValueProcessingKind": "RoundedPercentage",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "RoundedPercentage",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "bubbleDamageMultiplier",
@@ -495,7 +495,7 @@
     "affectedProperties": [
       "AntiAirDataContainer.FlakDamage"
     ],
-    "displayedValueProcessingKind": "PositivePercentage",
+    "displayValueProcessingKind": "PositivePercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -504,7 +504,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -515,7 +515,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.DivingPlaneShiftTime"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -526,8 +526,8 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "burnChanceFactorBig",
@@ -538,8 +538,8 @@
       "ShellDataContainer.FireChance.Big.Additive",
       "BombDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "burnChanceFactorHighLevel",
@@ -549,7 +549,7 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance.Big.Multiplier"
     ],
-    "displayedValueProcessingKind": "NegativePercentage",
+    "displayValueProcessingKind": "NegativePercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -560,7 +560,7 @@
     "affectedProperties": [
       "ShellDataContainer.FireChance.Small.Multiplier"
     ],
-    "displayedValueProcessingKind": "NegativePercentage",
+    "displayValueProcessingKind": "NegativePercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -572,8 +572,8 @@
       "ShellDataContainer.FireChance.Small.Additive",
       "RocketDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "burnProb",
@@ -583,7 +583,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.FireChanceResistance"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -594,7 +594,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.FireDuration"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -605,8 +605,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY035"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "callFightersAppearDelay",
@@ -616,7 +616,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.TimeDelayAppear.PCY035"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -627,7 +627,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Radius.PCY035"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -638,7 +638,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.TimeDelayAttack.PCY035"
     ],
-    "displayedValueProcessingKind": "InverseNegativePercentage",
+    "displayValueProcessingKind": "InverseNegativePercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -649,7 +649,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY035"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -658,7 +658,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -667,7 +667,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "NoneOrPercentage",
+    "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -676,7 +676,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "NoneOrPercentage",
+    "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -685,7 +685,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -694,7 +694,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -703,7 +703,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -712,7 +712,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "NoneOrPercentage",
+    "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -724,7 +724,7 @@
       "ConsumableDataContainer.Reload.Ship",
       "ConsumableDataContainer.PrepTime.PCY048"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -735,7 +735,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.AirCarrier"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -746,7 +746,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.Battleship"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -757,7 +757,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.Cruiser"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -768,7 +768,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.Destroyer"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -779,7 +779,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.Submarine"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -790,7 +790,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.Ship"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -801,8 +801,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY009.PCY037"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "crashCrewReloadCoeff",
@@ -812,7 +812,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY009.PCY037"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -823,7 +823,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY009.PCY037"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -832,7 +832,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -841,7 +841,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -852,7 +852,7 @@
     "affectedProperties": [
       "DepthChargeDataContainer.Damage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -863,7 +863,7 @@
     "affectedProperties": [
       "DepthChargeDataContainer.Damage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -874,7 +874,7 @@
     "affectedProperties": [
       "DepthChargeDataContainer.Damage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -885,7 +885,7 @@
     "affectedProperties": [
       "DepthChargeDataContainer.Damage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -896,7 +896,7 @@
     "affectedProperties": [
       "DepthChargeDataContainer.Damage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -907,7 +907,7 @@
     "affectedProperties": [
       "DepthChargeDataContainer.Damage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -918,8 +918,8 @@
     "affectedProperties": [
       "DepthChargesLauncherDataContainer.NumberOfUses"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "dcSplashRadiusMultiplier",
@@ -929,7 +929,7 @@
     "affectedProperties": [
       "ShellDataContainer.UnderwaterSplash"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -938,25 +938,25 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
     "name": "distShip",
     "gameLocalizationKey": "PARAMS_MODIFIER_DISTSHIP",
     "appLocalizationKey": null,
-    "unit": "KM",
+    "unit": "Kilometers",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "BigWorldToKmDecimal",
+    "displayValueProcessingKind": "BigWorldToKmDecimal",
     "valueProcessingKind": "None"
   },
   {
     "name": "distTorpedo",
     "gameLocalizationKey": "PARAMS_MODIFIER_DISTTORPEDO",
     "appLocalizationKey": null,
-    "unit": "KM",
+    "unit": "Kilometers",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "BigWorldToKmDecimal",
+    "displayValueProcessingKind": "BigWorldToKmDecimal",
     "valueProcessingKind": "None"
   },
   {
@@ -967,7 +967,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.AimRate.DiveBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -978,7 +978,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.Hp.DiveBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -989,7 +989,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.MaxSpeed.DiveBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1000,7 +1000,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.MinSpeed.DiveBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1011,7 +1011,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.CruisingSpeed.DiveBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1020,7 +1020,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -1031,7 +1031,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.EngineBackwardForsageMaxSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1042,7 +1042,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.EngineBackwardForsagePower"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1053,7 +1053,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.EngineBackwardUpTime"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1062,7 +1062,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1073,7 +1073,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.EngineForwardForsageMaxSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1084,7 +1084,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.EngineForwardForsagePower"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1095,7 +1095,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.EngineForwardUpTime"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1104,7 +1104,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1113,7 +1113,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1124,7 +1124,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.RegenerationHpSpeed.PCY010"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1135,8 +1135,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.ExtraFighters.PCY012.PCY03"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "fighterAccuracyIncRateCoeff",
@@ -1146,19 +1146,19 @@
     "affectedProperties": [
       "CvAircraftDataContainer.AimRate.Rocket"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "fighterAimingTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_FIGHTERAIMINGTIME",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [
       "CvAircraftDataContainer.AimingTime.Rocket"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "fighterHealth",
@@ -1168,7 +1168,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.Hp.Rocket"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1177,7 +1177,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -1188,7 +1188,7 @@
     "affectedProperties": [
       "PingerGunDataContainer.PingDuration.First"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1199,7 +1199,7 @@
     "affectedProperties": [
       "TorpedoDataContainer.FloodChance.Ship"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1210,7 +1210,7 @@
     "affectedProperties": [
       "TorpedoDataContainer.FloodChance.Plane"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1221,7 +1221,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.FloodChanceResistance"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1232,16 +1232,16 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.FloodDuration"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "flyAwayTime",
     "gameLocalizationKey": null,
     "appLocalizationKey": "ShipStats_FlyAwayTime",
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -1252,8 +1252,8 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.ForwardEngineForsag.SpeedBoost"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "forwardEngineForsagMaxSpeed",
@@ -1263,8 +1263,8 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.ForwardEngineForsagMaxSpeed"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "GMAPDamageCoeff",
@@ -1274,7 +1274,7 @@
     "affectedProperties": [
       "ShellDataContainer.Damage.Ap"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1285,7 +1285,7 @@
     "affectedProperties": [
       "ConcealmentDataContainer.Visibility.Big"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1294,7 +1294,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1306,7 +1306,7 @@
       "ShellDataContainer.Damage.Ap",
       "ShellDataContainer.Damage.HESAP"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1317,7 +1317,7 @@
     "affectedProperties": [
       "ShellDataContainer.Damage.BigAp"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1328,7 +1328,7 @@
     "affectedProperties": [
       "ShellDataContainer.Damage.HESAP"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1339,7 +1339,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.Dispersion.IdealRadius"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1350,7 +1350,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.Range"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1359,7 +1359,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1370,7 +1370,7 @@
     "affectedProperties": [
       "ShellDataContainer.Penetration.Primary"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1379,7 +1379,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1390,7 +1390,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.TraverseSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1401,7 +1401,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.TraverseSpeed"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1412,7 +1412,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.TraverseSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1423,7 +1423,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.TraverseSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1434,7 +1434,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.TraverseSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1445,7 +1445,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.TraverseSpeed"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1456,7 +1456,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1467,7 +1467,7 @@
     "affectedProperties": [
       "SecondaryBatteryDataContainer.Dispersion.IdealRadius"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1478,7 +1478,7 @@
     "affectedProperties": [
       "SecondaryBatteryDataContainer.Range"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1487,7 +1487,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1496,7 +1496,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1505,7 +1505,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1514,7 +1514,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1523,7 +1523,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1532,7 +1532,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1543,7 +1543,7 @@
     "affectedProperties": [
       "ShellDataContainer.Penetration.Secondary"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1552,7 +1552,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1563,7 +1563,7 @@
     "affectedProperties": [
       "SecondaryBatteryDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1572,7 +1572,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1581,7 +1581,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1590,7 +1590,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1601,7 +1601,7 @@
     "affectedProperties": [
       "TorpedoArmamentDataContainer.TraverseSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1612,7 +1612,7 @@
     "affectedProperties": [
       "TorpedoArmamentDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1621,64 +1621,64 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.PCY035.Reload"
+      "ConsumableDataContainer.Reload.PCY035"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "healthPerLevel_AirCarrier",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "HP",
+    "unit": "Hitpoints",
     "affectedProperties": [
       "SurvivabilityDataContainer.Hp"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "healthPerLevel_Battleship",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "HP",
+    "unit": "Hitpoints",
     "affectedProperties": [
       "SurvivabilityDataContainer.Hp"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "healthPerLevel_Cruiser",
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHPERLEVEL_CRUISER",
     "appLocalizationKey": null,
-    "unit": "HP",
+    "unit": "Hitpoints",
     "affectedProperties": [
       "SurvivabilityDataContainer.Hp"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "healthPerLevel_Destroyer",
     "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHPERLEVEL_DESTROYER",
     "appLocalizationKey": null,
-    "unit": "HP",
+    "unit": "Hitpoints",
     "affectedProperties": [
       "SurvivabilityDataContainer.Hp"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "healthPerLevel_Submarine",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "HP",
+    "unit": "Hitpoints",
     "affectedProperties": [
       "SurvivabilityDataContainer.Hp"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1687,7 +1687,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -1699,16 +1699,16 @@
       "SurvivabilityDataContainer.FireDuration",
       "SurvivabilityDataContainer.FloodDuration"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "hydrophoneUpdateFrequency",
     "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEUPDATEFREQUENCY",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -1719,16 +1719,16 @@
     "affectedProperties": [
       "ConsumableDataContainer.HydrophoneUpdateFrequency.PCY045"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "hydrophoneWaveRadius",
     "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEWAVERADIUS",
     "appLocalizationKey": null,
-    "unit": "KM",
+    "unit": "Kilometers",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "MeterToKm",
+    "displayValueProcessingKind": "MeterToKm",
     "valueProcessingKind": "None"
   },
   {
@@ -1737,7 +1737,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -1746,7 +1746,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -1757,7 +1757,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY011"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1768,7 +1768,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY022"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1779,7 +1779,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY012.PCY038"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1790,7 +1790,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY020"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1801,7 +1801,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY013"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1812,7 +1812,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY014"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1823,7 +1823,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY016"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1834,7 +1834,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY015"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1845,7 +1845,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY018"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1861,16 +1861,16 @@
       "AntiAirDataContainer.ConstantDamage",
       "AirstrikeDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "ToNegative",
+    "displayValueProcessingKind": "ToNegative",
     "valueProcessingKind": "NegativeMultiplier"
   },
   {
     "name": "lifeTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_LIFETIME",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -1881,7 +1881,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.MaxDiveSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1890,7 +1890,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1901,7 +1901,7 @@
     "affectedProperties": [
       "PingerGunDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1910,7 +1910,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1921,7 +1921,7 @@
     "affectedProperties": [
       "PingerGunDataContainer.WaveSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1930,10 +1930,10 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.Planes"
+      "ConsumableDataContainer.Uses.Plane"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "planeBubbleArmorCoeff",
@@ -1941,7 +1941,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1950,7 +1950,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1959,7 +1959,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -1970,8 +1970,8 @@
     "affectedProperties": [
       "CvAircraftDataContainer.MaxOnDeck"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "planeForsageTimeCoeff",
@@ -1981,7 +1981,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.BoostTime"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1992,7 +1992,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.Hp"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2003,7 +2003,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.HpPerTier"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2014,7 +2014,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.MaxSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2025,7 +2025,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.RestorationTime"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2036,7 +2036,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.Speed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2047,7 +2047,7 @@
     "affectedProperties": [
       "TorpedoDataContainer.ArmingTime"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2058,7 +2058,7 @@
     "affectedProperties": [
       "TorpedoDataContainer.Damage.Plane"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2068,10 +2068,10 @@
     "unit": "Percent",
     "affectedProperties": [
       "CvAircraftDataContainer.Concealment",
-      "ConsumableDataContainer.PCY035.Concealment",
+      "ConsumableDataContainer.Concealment.PCY035",
       "ConsumableDataContainer.Concealment.PCY012.PCY03"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2080,7 +2080,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "IntVariablePercentage",
+    "displayValueProcessingKind": "IntVariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2089,7 +2089,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2098,7 +2098,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "NoneOrPercentage",
+    "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2107,16 +2107,16 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
     "name": "radius",
     "gameLocalizationKey": "PARAMS_MODIFIER_RADIUS",
     "appLocalizationKey": null,
-    "unit": "KM",
+    "unit": "Kilometers",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "BigWorldToKmDecimal",
+    "displayValueProcessingKind": "BigWorldToKmDecimal",
     "valueProcessingKind": "None"
   },
   {
@@ -2127,8 +2127,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY010"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "regenCrewReloadCoeff",
@@ -2138,7 +2138,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY010"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2149,7 +2149,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY010"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2160,8 +2160,8 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.RepairableDamage"
     ],
-    "displayedValueProcessingKind": "RoundedPercentage",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "RoundedPercentage",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "regenerateHealthAdditionalConsumables",
@@ -2171,8 +2171,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY036"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "regenerateHealthWorkTimeCoeff",
@@ -2182,16 +2182,16 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY036"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "regenerationRate",
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONRATE",
     "appLocalizationKey": null,
-    "unit": "PercentPerS",
+    "unit": "PercentPerSecond",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "NoneOrPercentage",
+    "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2202,7 +2202,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2213,7 +2213,7 @@
     "affectedProperties": [
       "MainBatteryDataContainer.Reload"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2224,7 +2224,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY020"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2235,7 +2235,7 @@
     "affectedProperties": [
       "RocketDataContainer.Damage.Ap"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2246,8 +2246,8 @@
     "affectedProperties": [
       "RocketDataContainer.FireChance"
     ],
-    "displayedValueProcessingKind": "NoneOrPercentage",
-    "valueProcessingKind": "SumPercentage"
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "AddPercentage"
   },
   {
     "name": "scoutAdditionalConsumables",
@@ -2257,8 +2257,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY013"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "scoutReloadCoeff",
@@ -2268,7 +2268,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY013"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2279,7 +2279,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY013"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2290,7 +2290,7 @@
     "affectedProperties": [
       "PingerGunDataContainer.PingDuration.Second"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2299,7 +2299,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2308,7 +2308,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2317,7 +2317,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2328,7 +2328,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.RudderShiftTime"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2337,7 +2337,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2348,18 +2348,18 @@
     "affectedProperties": [
       "CvAircraftDataContainer.AimRate.SkipBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "skipBomberAimingTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_SKIPBOMBERAIMINGTIME",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [
       "CvAircraftDataContainer.AimingTime.SkipBomber"
     ],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2370,7 +2370,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.Hp.SkipBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2381,7 +2381,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.CruisingSpeed.SkipBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2392,8 +2392,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY014"
     ],
-    "displayedValueProcessingKind": "ToPositive",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToPositive",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "smokeGeneratorLifeTime",
@@ -2403,7 +2403,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.LifeTime.PCY014"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2414,7 +2414,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY014"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2425,7 +2425,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY014"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2436,7 +2436,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY016"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2445,7 +2445,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2454,7 +2454,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2465,7 +2465,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY015"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2476,7 +2476,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.Speed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2487,7 +2487,7 @@
     "affectedProperties": [
       "ManeuverabilityDataContainer.PropellerShaftSpeed"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2496,7 +2496,7 @@
     "appLocalizationKey": "ShipStats_SmokeSpeedLimit",
     "unit": "Knots",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -2505,7 +2505,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2514,25 +2514,25 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
     "name": "timeDelayAttack",
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSTIMEDELAYATTACK",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
     "name": "timeFromHeaven",
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSAPPEARDELAY",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -2541,7 +2541,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2550,7 +2550,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2561,19 +2561,19 @@
     "affectedProperties": [
       "CvAircraftDataContainer.AimRate.TorpedoBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "torpedoBomberAimingTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDOBOMBERAIMINGTIME",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [
       "CvAircraftDataContainer.AimingTime.TorpedoBomber"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "torpedoBomberHealth",
@@ -2583,7 +2583,7 @@
     "affectedProperties": [
       "CvAircraftDataContainer.Hp.TorpedoBomber"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2594,7 +2594,7 @@
     "affectedProperties": [
       "TorpedoDataContainer.Damage"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2605,7 +2605,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.TorpDetection.PCY016"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2614,7 +2614,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "Empty",
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
@@ -2623,7 +2623,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
@@ -2634,8 +2634,8 @@
     "affectedProperties": [
       "ConsumableDataContainer.Uses.PCY018"
     ],
-    "displayedValueProcessingKind": "ToInt",
-    "valueProcessingKind": "DirectAdd"
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   },
   {
     "name": "torpedoReloaderReloadCoeff",
@@ -2645,16 +2645,16 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.PCY018"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "torpedoReloadTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADTIME",
     "appLocalizationKey": null,
-    "unit": "S",
+    "unit": "Seconds",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "None",
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
@@ -2665,7 +2665,7 @@
     "affectedProperties": [
       "TorpedoDataContainer.Damage.Ship"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2676,7 +2676,7 @@
     "affectedProperties": [
       "TorpedoDataContainer.Visibility"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2685,7 +2685,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2694,7 +2694,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2705,7 +2705,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.FloodChance"
     ],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "SubtractPercentage"
   },
   {
@@ -2716,7 +2716,7 @@
     "affectedProperties": [
       "ConcealmentDataContainer.Visibility"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2725,16 +2725,16 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
   },
   {
     "name": "visionXRayTorpedoDist",
     "gameLocalizationKey": "PARAMS_MODIFIER_VISIONXRAYTORPEDODIST",
     "appLocalizationKey": null,
-    "unit": "KM",
+    "unit": "Kilometers",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "MeterToKm",
+    "displayValueProcessingKind": "MeterToKm",
     "valueProcessingKind": "None"
   },
   {
@@ -2745,7 +2745,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.FireDamageWeakness"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2756,7 +2756,7 @@
     "affectedProperties": [
       "SurvivabilityDataContainer.FloodDamageWeakness"
     ],
-    "displayedValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2765,7 +2765,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2774,7 +2774,7 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
-    "displayedValueProcessingKind": "ToInt",
+    "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
   },
   {
@@ -2785,7 +2785,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.Reload.Plane"
     ],
-    "displayedValueProcessingKind": "InverseNegativePercentage",
+    "displayValueProcessingKind": "InverseNegativePercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -2796,7 +2796,7 @@
     "affectedProperties": [
       "ConsumableDataContainer.WorkTime.PCY049"
     ],
-    "displayedValueProcessingKind": "VariablePercentage",
+    "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "Multiplier"
   }
 ]

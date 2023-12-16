@@ -1,82 +1,108 @@
 ﻿using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace WoWsShipBuilder.DataStructures.Modifiers;
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum DisplayValueProcessingKind
 {
-    /**
-     * Processing kind has not been assigned
-     */
+    /// <summary>
+    /// Processing kind has not been assigned.
+    /// </summary>
     NotAssigned,
-    /**
-     * Value as is.
-     */
-    None,
-    /**
-     * Adds a - in front of the value.
-     */
+
+    /// <summary>
+    /// Value as is.
+    /// </summary>
+    Raw,
+
+    /// <summary>
+    /// Adds a - in front of the value.
+    /// </summary>
     ToNegative,
-    /**
-     * Adds a + in front of the value.
-     */
+
+    /// <summary>
+    /// Adds a + in front of the value.
+    /// </summary>
     ToPositive,
-    /**
-     * Value is discarded and an empty string is returned.
-     */
-    Empty,
-    /**
-     * Value should be converted to an int. adding a + if value is positive.
-     */
+
+    /// <summary>
+    /// Value is discarded and an empty string is returned.
+    /// </summary>
+    Discard,
+
+    /// <summary>
+    /// Value should be converted to an int. adding a + if value is positive.
+    /// </summary>
     ToInt,
-    /**
-     * Value is always > 0 to be left as is or converted to a percentage. If value is > 1 then it's to be left as is, otherwise it follows the formula {Math.Round(modifier * 100, 2)}, adding a + in front
-     */
-    NoneOrPercentage,
-    /**
-     * Value is always a positive percentage, that follows the formula: +{(modifier - 1) * 100}.
-     */
+
+    /// <summary>
+    /// If value is > 1 then it's to be left as is, otherwise it follows the formula {Math.Round(modifier * 100, 2)}, adding a + in front.
+    /// </summary>
+    /// <remarks>Value has to be positive.</remarks>
+    /// <example>0.5 -> +50<br/>1.5 -> +1.5</example>
+    RawOrPercentage,
+
+    /// <summary>
+    /// Value is always a positive percentage, that follows the formula: +{(modifier - 1) * 100}.
+    /// </summary>
+    /// <example>1.05 -> +5</example>
     PositivePercentage,
-    /**
-     * Value is always a negative percentage, that follows the formula: -{(int)Math.Round(modifier * 100)}.
-     */
+
+    /// <summary>
+    /// Value is always a negative percentage, that follows the formula: -{(int)Math.Round(modifier * 100)}.
+    /// </summary>
+    /// <example>0.95 -> -95</example>
     NegativePercentage,
-    /**
-     * Value is a percentage that should be shown as negative buff. Follows the formula: -(Math.Round((1 - modifier) * 100)).
-     */
+
+    /// <summary>
+    /// Value is a percentage that should be shown as negative buff. Follows the formula: -(Math.Round((1 - modifier) * 100)).
+    /// </summary>
+    /// <example>0.95 -> -5</example>
     InverseNegativePercentage,
-    /**
-     * Value is a percentage, sign depends on the value itself. Follows the formula: (Math.Round(modifier * 100, 2) - 100), adding a + in front if value is positive.
-     */
+
+    /// <summary>
+    /// Value is a percentage, sign depends on the value itself. Follows the formula: (Math.Round(modifier * 100, 2) - 100), adding a + in front if value is positive.
+    /// </summary>
+    /// <example>1.05 -> +5<br/>0.95 -> -5</example>
     VariablePercentage,
-    /**
-     * Value is a percentage, converted to int. Follows the formula: (int)(Math.Round(modifier * 100, 2) - 100), adding a + in front if value is positive.
-     */
+
+    /// <summary>
+    /// Value is a percentage, converted to int. Follows the formula: (int)(Math.Round(modifier * 100, 2) - 100), adding a + in front if value is positive.
+    /// </summary>
+    /// <example>1.055 -> +5<br/>0.955 -> -5</example>
     IntVariablePercentage,
-    /**
-     * Probably better name to be found. Used only by planeForsageDrainRate because WG can't math.
-     * Follows the formula Math.Round(((1 / modifier) - 1) * 100, 2), adding a + in front if positive.
-     */
-    DrainPercentage,
-    /**
-     * Value is a percentage, sign depends on the value itself. Follows the formula {Math.Round((modifier - 1) * 100, 2)} if positive, {Math.Round((1 - modifier) * 100, 2)} if negative.
-     * Adds a + in front if value is positive.
-     */
-    DecimalRoundedPercentage,
-    /**
-     * Value is a percentage, sign depends on the value itself. Follows the formula: {Math.Round(modifier * 100)}, adding a + if necessary.
-     */
+
+    /// <summary>
+    /// Value is a percentage, sign depends on the value itself. Follows the formula: {Math.Round(modifier * 100)}, adding a + if necessary.
+    /// </summary>
+    /// <example>0.055 -> +6<br/>-0.055 -> -6</example>
     RoundedPercentage,
-    /**
-     * Value is in Big World unit and should be transformed in km. Formula is: {(modifier * 30) / 1000}.
-     */
+
+    /// <summary>
+    /// Value is a percentage, sign depends on the value itself. Follows the formula {Math.Round((modifier - 1) * 100, 2)} if value > 1, {Math.Round((1 - modifier) * 100, 2)} otherwise.
+    /// Adds a + in front if value is > 1, adds a - in front otherwise.
+    /// </summary>
+    /// <example>1.055 -> +5.5<br/>0.945 -> -5.5</example>
+    DecimalRoundedPercentage,
+
+    /// <summary>
+    /// Value is in Big World unit and should be transformed in km. Formula is: {(modifier * 30) / 1000}.
+    /// </summary>
+    /// <remarks>1 BW = 30 m</remarks>
+    /// <example>10 -> 0.3</example>
     BigWorldToKm,
-    /**
-     * Value is in Big World unit and should be transformed in km, with added decimal. Formula is: {(modifier * 30) / 1000:.##}
-     */
+
+    /// <summary>
+    /// Value is in Big World unit and should be transformed in km, with added decimal. Formula is: {(modifier * 30) / 1000:.##}
+    /// </summary>
+    /// <remarks>1 BW = 30 m</remarks>
+    /// <example>10 -> 0.3</example>
     BigWorldToKmDecimal,
-    /**
-     * Value is in meter and should be converted to km. Formula is: {modifier / 1000}
-     */
+
+    /// <summary>
+    /// Value is in meter and should be converted to km. Formula is: {modifier / 1000}
+    /// </summary>
     MeterToKm,
 }
