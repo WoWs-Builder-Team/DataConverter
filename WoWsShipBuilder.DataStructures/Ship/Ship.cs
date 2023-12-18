@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Immutable;
 
 // ReSharper disable ClassNeverInstantiated.Global
@@ -20,9 +19,6 @@ public sealed class Ship
     public ShipCategory ShipCategory { get; init; }
 
     public Nation ShipNation { get; init; }
-
-    [Obsolete("Ship camos are irrelevant for shipbuilder")]
-    public ImmutableList<string> Permoflages { get; init; } = ImmutableList<string>.Empty;
 
     public ImmutableDictionary<string, TurretModule> MainBatteryModuleList { get; init; } = ImmutableDictionary<string, TurretModule>.Empty;
 

@@ -51,7 +51,7 @@ public class ModifierProcessingService : IModifierProcessingService
         var missingPropertyOrValueProcessingModifiers = modifierList.Where(x => x.ValueProcessingKind == ValueProcessingKind.NotAssigned || (x.ValueProcessingKind != ValueProcessingKind.None && x.AffectedProperties.Count == 0))
             .ToDictionary(x => x.Name, x => x.Location);
         var newModifiers = modifierList.Where(m => !startingModifierDictionary.ContainsKey(m.Name)).ToDictionary(x => x.Name, x => x.Location);
-        var removedModifiers = startingModifierDictionary.Where(m => !modifierList.Any(x => x.Name.Equals(m.Key))).ToDictionary(x => x.Value.Name, x => x.Value.Location);
+        var removedModifiers = startingModifierDictionary.Where(m => !modifierList.Exists(x => x.Name.Equals(m.Key))).ToDictionary(x => x.Value.Name, x => x.Value.Location);
         if (missingTranslationsModifiers.Any() || missingUnitOrDisplayProcessingModifiers.Any() || missingPropertyOrValueProcessingModifiers.Any() || newModifiers.Any() || removedModifiers.Any())
         {
             logger.LogWarning("There are {Count} modifiers without translation", missingTranslationsModifiers.Count);
@@ -114,9 +114,7 @@ public class ModifierProcessingService : IModifierProcessingService
     }
 
     // ReSharper disable once UnusedMember.Local
-
     // This is old localization handling that was in the app. left here for convenience.
-
     [Obsolete("Do not use this. Modify the json directly for new modifiers, or use the HandleCommonLocalization method.")]
     private List<Modifier> HandleLocalizationOld(List<Modifier> modifierList, List<string> localizationKeys)
     {

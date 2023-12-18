@@ -1,5 +1,4 @@
 ﻿using DataConverter.Console.Model;
-using DataConverter.Services;
 using Microsoft.Extensions.Logging;
 using WowsShipBuilder.GameParamsExtractor.Services;
 
@@ -13,13 +12,10 @@ internal sealed class DataUnpackHelper
 
     private readonly ILogger<DataUnpackHelper> logger;
 
-    private readonly IModifierProcessingService modifierProcessingService;
-
-    public DataUnpackHelper(IGameDataUnpackService unpackService, ILocalizationExtractor localizationExtractor, IModifierProcessingService modifierProcessingService, ILogger<DataUnpackHelper> logger)
+    public DataUnpackHelper(IGameDataUnpackService unpackService, ILocalizationExtractor localizationExtractor, ILogger<DataUnpackHelper> logger)
     {
         this.unpackService = unpackService;
         this.localizationExtractor = localizationExtractor;
-        this.modifierProcessingService = modifierProcessingService;
         this.logger = logger;
     }
 
