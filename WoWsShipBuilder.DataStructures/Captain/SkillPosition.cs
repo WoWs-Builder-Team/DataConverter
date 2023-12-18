@@ -1,12 +1,4 @@
 ﻿namespace WoWsShipBuilder.DataStructures.Captain;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable CollectionNeverUpdated.Global
-public class SkillPosition
-{
-    public int Tier { get; set; }
-
-    public int XPosition { get; set; }
-
-    public ShipClass ShipClass { get; set; }
-}
+// ReSharper disable NotAccessedPositionalProperty.Global
+public sealed record SkillPosition(int Tier, int XPosition, ShipClass ShipClass);

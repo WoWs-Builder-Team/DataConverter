@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using DataConverter.Data;
 using WoWsShipBuilder.DataStructures.Consumable;
+using WoWsShipBuilder.DataStructures.Modifiers;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace DataConverter.Converters
@@ -9,7 +11,7 @@ namespace DataConverter.Converters
     public static class ConsumableConverter
     {
         //convert the list of consumables from WG to our list of Consumables
-        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable)
+        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable, Dictionary<string, Modifier> modifierDictionary)
         {
             //create a List of our Objects
             Dictionary<string, Consumable> consumableList = new Dictionary<string, Consumable>();
@@ -44,9 +46,9 @@ namespace DataConverter.Converters
                         ConsumableVariantName = currentVariantKey,
                         PlaneName = stats.FightersName,
                         PreparationTime = stats.PreparationTime,
-                        Modifiers = ConvertModifiers(currentWgConsumable, stats),
+                        Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary),
                     };
-                    DataCache.TranslationNames.UnionWith(consumable.Modifiers.Keys);
+                    DataCache.TranslationNames.UnionWith(consumable.Modifiers.Select(m => m.Name));
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
                     var consumableKey = $"{consumable.Name} {currentVariantKey}";
@@ -57,15 +59,19 @@ namespace DataConverter.Converters
             return consumableList;
         }
 
-        private static Dictionary<string, float> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats)
+        private static ImmutableList<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary)
         {
-            var results = new Dictionary<string, float>();
-            foreach ((string key, float modifier) in consumableStats.Modifiers)
+            var results = new List<Modifier>();
+            foreach ((string key, float modifierValue) in consumableStats.Modifiers)
             {
+                Modifier modifier;
+                Modifier? modifierData;
                 switch (key)
                 {
                     case "boostCoeff" when wgConsumable.Index.Equals("PCY022"):
-                        results["artilleryReloadCoeff"] = modifier;
+                        modifierData = modifierDictionary.TryGetValue("artilleryReloadCoeff", out modifierData) ? modifierData : null;
+                        modifier = new Modifier("artilleryReloadCoeff", modifierValue, wgConsumable.Name, modifierData);
+                        results.Add(modifier);
                         break;
                     case "boostCoeff" when wgConsumable.Index.Equals("PCY034"):
                         // Skip boost for plane consumable because it's invisible in UI anyway
@@ -74,13 +80,21 @@ namespace DataConverter.Converters
                     case "regenerationHPSpeedUnits":
                         //Skip this modifier, it's value is always 0
                         break;
+                    case "regenerationHPSpeed":
+                        var fixedKey = "consumable_" + key;
+                        modifierData = modifierDictionary.TryGetValue(fixedKey, out modifierData) ? modifierData : null;
+                        modifier = new Modifier(fixedKey, modifierValue, wgConsumable.Name, modifierData);
+                        results.Add(modifier);
+                        break;
                     default:
-                        results[key] = modifier;
+                        modifierData = modifierDictionary.TryGetValue(key, out modifierData) ? modifierData : null;
+                        modifier = new Modifier(key, modifierValue, wgConsumable.Name, modifierData);
+                        results.Add(modifier);
                         break;
                 }
             }
 
-            return results;
+            return results.ToImmutableList();
         }
     }
 }

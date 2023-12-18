@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -38,8 +39,19 @@ public class WgStatistics
     public Dictionary<string, JToken> RawModifiers { get; init; } = new();
 
     [JsonIgnore]
-    public Dictionary<string, float> Modifiers => RawModifiers
-        .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
-        .Select(entry => (entry.Key, Value: entry.Value.ToObject<float>()))
-        .ToDictionary(entry => entry.Key, entry => entry.Value);
+    public ImmutableDictionary<string, float> Modifiers => RetrieveModifiers();
+
+    private ImmutableDictionary<string, float> RetrieveModifiers()
+    {
+        var defaultModifiers = RawModifiers
+            .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
+            .Select(entry => (entry.Key, Value: entry.Value.ToObject<float>()));
+        var additionalModifiers = RawModifiers
+            .Where(x => x.Key.Equals("modifiers", StringComparison.OrdinalIgnoreCase) && x.Value.Type.Equals(JTokenType.Object))
+            .SelectMany(x => x.Value.Children<JProperty>())
+            .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
+            .Select(prop => (Key: prop.Name, Value: prop.Value.ToObject<float>()));
+
+        return defaultModifiers.Concat(additionalModifiers).ToImmutableDictionary(x => x.Key, x => x.Value);
+    }
 }

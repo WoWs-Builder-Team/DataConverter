@@ -1,10 +1,10 @@
-using System.Collections.Generic;
+using System.Collections.Immutable;
 
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class Ship
+public sealed class Ship
 {
     public long Id { get; init; }
 
@@ -20,30 +20,28 @@ public class Ship
 
     public Nation ShipNation { get; init; }
 
-    public List<string> Permoflages { get; set; } = new();
+    public ImmutableDictionary<string, TurretModule> MainBatteryModuleList { get; init; } = ImmutableDictionary<string, TurretModule>.Empty;
 
-    public Dictionary<string, TurretModule> MainBatteryModuleList { get; set; } = new();
+    public ImmutableDictionary<string, FireControl> FireControlList { get; init; } = ImmutableDictionary<string, FireControl>.Empty;
 
-    public Dictionary<string, FireControl> FireControlList { get; set; } = new();
+    public ImmutableDictionary<string, TorpedoModule> TorpedoModules { get; init; } = ImmutableDictionary<string, TorpedoModule>.Empty;
 
-    public Dictionary<string, TorpedoModule> TorpedoModules { get; set; } = new();
+    public ImmutableDictionary<string, Engine> Engines { get; init; } = ImmutableDictionary<string, Engine>.Empty;
 
-    public Dictionary<string, Engine> Engines { get; set; } = new();
+    public ImmutableDictionary<string, Hull> Hulls { get; init; } = ImmutableDictionary<string, Hull>.Empty;
 
-    public Dictionary<string, Hull> Hulls { get; set; } = new();
+    public ImmutableDictionary<string, ImmutableArray<string>> CvPlanes { get; init; } = ImmutableDictionary<string, ImmutableArray<string>>.Empty;
 
-    public Dictionary<string, List<string>> CvPlanes { get; set; } = new();
-
-    public Dictionary<string, AirStrike> AirStrikes { get; set; } = new();
+    public ImmutableDictionary<string, AirStrike> AirStrikes { get; init; } = ImmutableDictionary<string, AirStrike>.Empty;
 
     //may not need to be a List, but possibly an upgradeable module
-    public Dictionary<string, PingerGun> PingerGunList { get; set; } = new();
+    public ImmutableDictionary<string, PingerGun> PingerGunList { get; init; } = ImmutableDictionary<string, PingerGun>.Empty;
 
-    public List<ShipConsumable> ShipConsumable { get; set; } = new();
+    public ImmutableList<ShipConsumable> ShipConsumable { get; init; } = ImmutableList<ShipConsumable>.Empty;
 
-    public UpgradeInfo ShipUpgradeInfo { get; set; } = new();
+    public UpgradeInfo ShipUpgradeInfo { get; init; } = new();
 
-    public SpecialAbility? SpecialAbility { get; set; }
+    public SpecialAbility? SpecialAbility { get; init; }
 
-    public Dictionary<string, ShellCompatibility> ShellCompatibilities { get; set; } = new();
+    public ImmutableDictionary<string, ShellCompatibility> ShellCompatibilities { get; init; } = ImmutableDictionary<string, ShellCompatibility>.Empty;
 }

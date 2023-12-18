@@ -1,30 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
+using WoWsShipBuilder.DataStructures.Modifiers;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Upgrade;
 
-public sealed record Modernization
+public sealed class Modernization
 {
-    public long Id { get; set; }
+    public long Id { get; init; }
 
-    public string Index { get; set; } = string.Empty;
+    public string Index { get; init; } = string.Empty;
 
-    public Dictionary<string, double> Effect { get; set; } = new();
+    public ImmutableList<Modifier> Modifiers { get; init; } = ImmutableList<Modifier>.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public List<Nation> AllowedNations { get; set; } = new();
+    public ImmutableArray<Nation> AllowedNations { get; init; } = ImmutableArray<Nation>.Empty;
 
-    public List<int> ShipLevel { get; set; } = new();
+    public ImmutableArray<int> ShipLevel { get; init; } = ImmutableArray<int>.Empty;
 
-    public List<string> AdditionalShips { get; set; } = new();
+    public ImmutableList<string> AdditionalShips { get; init; } = ImmutableList<string>.Empty;
 
-    public List<ShipClass> ShipClasses { get; set; } = new();
+    public ImmutableArray<ShipClass> ShipClasses { get; init; } = ImmutableArray<ShipClass>.Empty;
 
-    public int Slot { get; set; }
+    public int Slot { get; init; }
 
-    public List<string> BlacklistedShips { get; set; } = new();
+    public ImmutableList<string> BlacklistedShips { get; init; } = ImmutableList<string>.Empty;
 
-    public ModernizationType Type { get; set; }
+    public ModernizationType Type { get; init; }
 }

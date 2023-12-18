@@ -2,39 +2,39 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class Rocket : Projectile
+public sealed class Rocket : Projectile
 {
-    public float Damage { get; set; }
+    public float Damage { get; init; }
 
-    public float Penetration { get; set; }
+    public float Penetration { get; init; }
 
-    public RocketType RocketType { get; set; }
+    public RocketType RocketType { get; init; }
 
-    public float AirDrag { get; set; }
+    public float AirDrag { get; init; }
 
-    public float FuseTimer { get; set; }
+    public float FuseTimer { get; init; }
 
-    public float ArmingThreshold { get; set; }
+    public float ArmingThreshold { get; init; }
 
-    public float Caliber { get; set; }
+    public float Caliber { get; init; }
 
-    public float Krupp { get; set; }
+    public float Krupp { get; init; }
 
-    public float Mass { get; set; }
+    public float Mass { get; init; }
 
-    public float RicochetAngle { get; set; }
+    public float RicochetAngle { get; init; }
 
-    public float AlwaysRicochetAngle { get; set; }
+    public float AlwaysRicochetAngle { get; init; }
 
-    public float MuzzleVelocity { get; set; }
+    public float MuzzleVelocity { get; init; }
 
-    public float FireChance { get; set; }
+    public float FireChance { get; init; }
 
-    public float SplashCoeff { get; set; }
+    public float SplashCoeff { get; init; }
 
-    public float ExplosionRadius { get; set; }
+    public float ExplosionRadius { get; init; }
 
-    public float DepthSplashRadius { get; set; }
+    public float DepthSplashRadius { get; init; }
 
-    public float SplashDamageCoefficient { get; set; }
+    public float SplashDamageCoefficient { get; init; }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace WoWsShipBuilder.DataStructures.Ship;
+﻿namespace WoWsShipBuilder.DataStructures.Ship;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class Dispersion
+public sealed class Dispersion
 {
     public double IdealRadius { get; init; }
 

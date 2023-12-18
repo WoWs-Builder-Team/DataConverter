@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>4.1.0</VersionPrefix>
-<!--    <VersionSuffix>beta</VersionSuffix>-->
+    <VersionPrefix>5.0.0</VersionPrefix>
+<!--    <VersionSuffix>alpha3</VersionSuffix>-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>ShipBuilder Data structures</Title>
     <Authors>WoWs-Builder-Team</Authors>
@@ -18,6 +18,10 @@
     <RepositoryType>git</RepositoryType>
     <RootNamespace>WoWsShipBuilder.DataStructures</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DataConverter" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />

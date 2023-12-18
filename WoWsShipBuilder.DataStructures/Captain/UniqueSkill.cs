@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Captain;
 
-public class UniqueSkill
+public sealed class UniqueSkill
 {
-    public Dictionary<string, UniqueSkillEffect> SkillEffects { get; set; } = new(); // dictionary of the effects and their names
+    public ImmutableDictionary<string, UniqueSkillEffect> SkillEffects { get; init; } = ImmutableDictionary<string, UniqueSkillEffect>.Empty; // dictionary of the effects and their names
 
-    public int MaxTriggerNum { get; set; }
+    public int MaxTriggerNum { get; init; }
 
-    public List<ShipClass> AllowedShips { get; set; } = new();
+    public ImmutableArray<ShipClass> AllowedShips { get; init; } = ImmutableArray<ShipClass>.Empty;
 
-    public string TriggerType { get; set; } = string.Empty;
+    public string TriggerType { get; init; } = string.Empty;
 
-    public string TranslationId { get; set; } = string.Empty;
+    public string TranslationId { get; init; } = string.Empty;
 }

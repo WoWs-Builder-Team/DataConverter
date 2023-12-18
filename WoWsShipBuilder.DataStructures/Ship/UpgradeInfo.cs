@@ -1,33 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 using System.Linq;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class UpgradeInfo
+public sealed class UpgradeInfo
 {
-    public List<ShipUpgrade> ShipUpgrades { get; set; } = new();
+    public ImmutableList<ShipUpgrade> ShipUpgrades { get; init; } = ImmutableList<ShipUpgrade>.Empty;
 
-    public int CostCredits { get; set; }
+    public int CostCredits { get; init; }
 
-    public int CostGold { get; set; }
+    public int CostGold { get; init; }
 
-    public int CostSaleGold { get; set; }
+    public int CostSaleGold { get; init; }
 
-    public int CostXp { get; set; }
+    public int CostXp { get; init; }
 
-    public int Value { get; set; }
+    public int Value { get; init; }
 
     /// <summary>
     /// Helper method to easily filter all upgrade configurations of a specific type.
     /// </summary>
     /// <param name="componentType">The type of the component to look for.</param>
     /// <returns>A list of all ship upgrades with the specified type.</returns>
-    public List<ShipUpgrade> FindUpgradesOfType(ComponentType componentType)
+    public ImmutableList<ShipUpgrade> FindUpgradesOfType(ComponentType componentType)
     {
-        return ShipUpgrades.Where(upgrade => upgrade.UcType == componentType).ToList();
+        return ShipUpgrades.Where(upgrade => upgrade.UcType == componentType).ToImmutableList();
     }
 
     /// <summary>
@@ -35,24 +34,24 @@ public class UpgradeInfo
     /// </summary>
     /// <returns>A dictionary mapping the <see cref="ComponentType"/> of a <see cref="ShipUpgrade"/> to all upgrades available with that type.
     /// Stock upgrades appear first.</returns>
-    public Dictionary<ComponentType, List<ShipUpgrade>> GroupUpgradesByType()
+    public ImmutableDictionary<ComponentType, ImmutableList<ShipUpgrade>> GroupUpgradesByType()
     {
         return ShipUpgrades.GroupBy(upgrade => upgrade.UcType)
-            .ToDictionary(group => group.Key, group => group.OrderByDescending(upgrade => string.IsNullOrEmpty(upgrade.Prev)).ToList());
+            .ToImmutableDictionary(group => group.Key, group => group.OrderByDescending(upgrade => string.IsNullOrEmpty(upgrade.Prev)).ToImmutableList());
     }
 }
 
-public class ShipUpgrade
+public sealed class ShipUpgrade
 {
-    public Dictionary<ComponentType, string[]> Components { get; set; } = new();
+    public ImmutableDictionary<ComponentType, ImmutableArray<string>> Components { get; init; } = ImmutableDictionary<ComponentType, ImmutableArray<string>>.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public string[] NextShips { get; set; } = Array.Empty<string>();
+    public ImmutableArray<string> NextShips { get; init; } = ImmutableArray<string>.Empty;
 
-    public string? Prev { get; set; }
+    public string? Prev { get; init; }
 
-    public ComponentType UcType { get; set; }
+    public ComponentType UcType { get; init; }
 
-    public bool CanBuy { get; set; }
+    public bool CanBuy { get; init; }
 }

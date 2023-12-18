@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Exterior;
 
-public class Restriction
+public sealed class Restriction
 {
-    public List<string> ForbiddenShips { get; set; } = new();
+    public ImmutableArray<string> ForbiddenShips { get; set; } = ImmutableArray<string>.Empty;
 
-    public List<string> Levels { get; set; } = new();
+    public ImmutableArray<string> Levels { get; set; } = ImmutableArray<string>.Empty;
 
-    public List<string> Nations { get; set; } = new();
+    public ImmutableArray<string> Nations { get; set; } = ImmutableArray<string>.Empty;
 
-    public List<string> SpecificShips { get; set; } = new();
+    public ImmutableArray<string> SpecificShips { get; set; } = ImmutableArray<string>.Empty;
 
-    public List<string> Subtype { get; set; } = new();
+    public ImmutableArray<string> Subtype { get; set; } = ImmutableArray<string>.Empty;
 }

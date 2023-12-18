@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System.ComponentModel.DataAnnotations;
+using CommandLine;
 using WoWsShipBuilder.DataStructures;
 using WowsShipBuilder.GameParamsExtractor.Data;
 
@@ -30,6 +31,9 @@ public class ConvertOptions
 
     [Option('d', "debugOutput", HelpText = "Output directory for filtered and unfiltered files as well as debug files", Required = false)]
     public string? DebugOutputDirectory { get; set; }
+
+    [Option('m', "modifierDebug", HelpText = "Write a default modifier json and a list of new modifiers", Required = false)]
+    public bool WriteModifierDebugOutput { get; set; }
 
     public GameParamsExtractionOptions ToExtractionOptions() => new(GameParamsFile, WriteUnfiltered);
 }

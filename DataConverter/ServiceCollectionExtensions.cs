@@ -26,6 +26,7 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddSingleton(httpClient);
         serviceCollection.AddTransient<IDataConverterService, DataConverterService>();
         serviceCollection.AddTransient<IVersionCheckService, VersionCheckService>();
+        serviceCollection.AddTransient<IModifierProcessingService, ModifierProcessingService>();
         serviceCollection.AddGameParamsExtractor();
         return serviceCollection;
     }

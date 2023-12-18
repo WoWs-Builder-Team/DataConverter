@@ -2,4 +2,4 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public record JatoData(double JatoDuration, double JatoSpeedMultiplier);
+public sealed record JatoData(double JatoDuration, double JatoSpeedMultiplier);

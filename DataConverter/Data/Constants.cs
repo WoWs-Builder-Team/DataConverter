@@ -1,5 +1,8 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+using DataConverter.Data;
+using WoWsShipBuilder.DataStructures.Modifiers;
 
 namespace DataConverter.Data;
 
@@ -18,5 +21,14 @@ public static class Constants
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         PropertyNameCaseInsensitive = true,
+    };
+
+    public static readonly JsonSerializerOptions ModifierSerializerOptions = new()
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.Never,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        PropertyNameCaseInsensitive = true,
+        WriteIndented = true,
+        TypeInfoResolver = new DefaultJsonTypeInfoResolver().Exclude(typeof(Modifier), nameof(Modifier.Value)),
     };
 }

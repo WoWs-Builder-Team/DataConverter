@@ -46,11 +46,11 @@ internal sealed class GameDataUnpackService : IGameDataUnpackService
 
         foreach ((string category, Dictionary<string, List<SortedDictionary<string, object>>> nations) in rawGameParams)
         {
-            string directory = Path.Join(outputBasePath, category);
+            string directory = Path.Combine(outputBasePath, category);
             Directory.CreateDirectory(directory);
             foreach ((string nation, List<SortedDictionary<string, object>> data) in nations)
             {
-                string nationFilePath = Path.Join(directory, $"{filePrefix}{nation}.json");
+                string nationFilePath = Path.Combine(directory, $"{filePrefix}{nation}.json");
                 using var file = File.CreateText(nationFilePath);
                 serializer.Serialize(file, data);
             }
@@ -70,11 +70,11 @@ internal sealed class GameDataUnpackService : IGameDataUnpackService
 
         foreach ((string category, Dictionary<string, List<WgObject>> nations) in refinedGameParams)
         {
-            string directory = Path.Join(outputBasePath, category);
+            string directory = Path.Combine(outputBasePath, category);
             Directory.CreateDirectory(directory);
             foreach ((string nation, List<WgObject> data) in nations)
             {
-                string nationFilePath = Path.Join(directory, $"{filePrefix}{nation}.json");
+                string nationFilePath = Path.Combine(directory, $"{filePrefix}{nation}.json");
                 using var file = File.CreateText(nationFilePath);
                 serializer.Serialize(file, data);
             }

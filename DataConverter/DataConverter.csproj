@@ -18,6 +18,8 @@
     <ItemGroup>
       <None Remove="JsonData\SKILLS_BY_TIER.json" />
       <EmbeddedResource Include="JsonData\SKILLS_BY_TIER.json" />
+      <None Remove="JsonData\Modifiers.json" />
+      <EmbeddedResource Include="JsonData\Modifiers.json" />
     </ItemGroup>
 
 </Project>
