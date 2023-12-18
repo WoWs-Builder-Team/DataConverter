@@ -34,7 +34,7 @@ internal class DataConverterService : IDataConverterService
         this.client = client;
     }
 
-    public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WgObject>>> refinedData, bool writeModifierDebugOutput, Dictionary<string, Modifier> modifiersDictionary)
+    public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WgObject>>> refinedData, bool writeModifierDebugOutput, Dictionary<string, Modifier> modifiersDictionary, Dictionary<long, int> techTreeShipsPositionsDictionary)
     {
         var resultFiles = new List<ResultFileContainer>();
         var counter = 0;
@@ -92,7 +92,7 @@ internal class DataConverterService : IDataConverterService
                         break;
                     case "Ship":
                         logger.LogInformation("Ships to process for {Nation}: {Count}", nation, data.Count);
-                        var shipData = ShipConverter.ConvertShips(data.Cast<WgShip>(), nation, await shipToolDataTask, logger, modifiersDictionary);
+                        var shipData = ShipConverter.ConvertShips(data.Cast<WgShip>(), nation, await shipToolDataTask, logger, modifiersDictionary, techTreeShipsPositionsDictionary);
                         var specialAbilityModifiers = shipData.Where(s => s.Value.SpecialAbility is not null).SelectMany(s => s.Value.SpecialAbility!.Modifiers);
                         var burstArtilleryModifiers = shipData.SelectMany(s => s.Value.MainBatteryModuleList.Where(mb => mb.Value.BurstModeAbility is not null).SelectMany(mb => mb.Value.BurstModeAbility!.Modifiers));
                         modifiers.UnionWith(specialAbilityModifiers);

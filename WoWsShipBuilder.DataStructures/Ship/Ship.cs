@@ -20,6 +20,8 @@ public sealed class Ship
 
     public Nation ShipNation { get; init; }
 
+    public int TechTreePosition { get; init; }
+
     public ImmutableDictionary<string, TurretModule> MainBatteryModuleList { get; init; } = ImmutableDictionary<string, TurretModule>.Empty;
 
     public ImmutableDictionary<string, FireControl> FireControlList { get; init; } = ImmutableDictionary<string, FireControl>.Empty;

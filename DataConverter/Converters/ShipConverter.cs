@@ -23,7 +23,7 @@ public static class ShipConverter
 
     public static List<ShipSummary> ShipSummaries { get; } = new();
 
-    public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList, string nation, ShiptoolData shiptoolData, ILogger? logger, Dictionary<string, Modifier> modifiersDictionary)
+    public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList, string nation, ShiptoolData shiptoolData, ILogger? logger, Dictionary<string, Modifier> modifiersDictionary, Dictionary<long, int> techTreeShipsPositionsDictionary)
     {
         var results = new Dictionary<string, Ship>();
         var count = 0;
@@ -64,6 +64,7 @@ public static class ShipConverter
                 Hulls = ProcessShipHull(wgShip, upgradeInfo),
                 CvPlanes = ProcessPlanes(wgShip, upgradeInfo),
                 ShellCompatibilities = CheckShellCompatibilities(mainBatteries, upgradeInfo),
+                TechTreePosition = techTreeShipsPositionsDictionary.GetValueOrDefault(wgShip.Id),
             };
 
             DataCache.TranslationNames.UnionWith(wgShip.Permoflages);

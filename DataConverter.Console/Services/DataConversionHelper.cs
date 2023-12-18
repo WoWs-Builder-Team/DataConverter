@@ -20,15 +20,18 @@ internal sealed class DataConversionHelper
 
     private readonly IModifierProcessingService modifierProcessingService;
 
+    private readonly ITechTreeDeserializationService techTreeDeserializationService;
+
     private readonly ILogger<DataConversionHelper> logger;
 
-    public DataConversionHelper(IGameDataUnpackService unpackService, IDataConverterService dataConverterService, IVersionCheckService versionCheckService, ILocalizationExtractor localizationExtractor, IModifierProcessingService modifierProcessingService, ILogger<DataConversionHelper> logger)
+    public DataConversionHelper(IGameDataUnpackService unpackService, IDataConverterService dataConverterService, IVersionCheckService versionCheckService, ILocalizationExtractor localizationExtractor, IModifierProcessingService modifierProcessingService, ITechTreeDeserializationService techTreeDeserializationService, ILogger<DataConversionHelper> logger)
     {
         this.unpackService = unpackService;
         this.dataConverterService = dataConverterService;
         this.versionCheckService = versionCheckService;
         this.localizationExtractor = localizationExtractor;
         this.modifierProcessingService = modifierProcessingService;
+        this.techTreeDeserializationService = techTreeDeserializationService;
         this.logger = logger;
     }
 
@@ -52,9 +55,10 @@ internal sealed class DataConversionHelper
 
         var gameParamsFile = new FileInfo(options.GameParamsFile);
         var modifierDictionary = modifierProcessingService.ReadModifiersFile(Path.Combine(gameParamsFile.Directory!.FullName, "Modifiers.json"));
+        var techTreeShipsPositionsDictionary = techTreeDeserializationService.ReadTechTreeFile(Path.Combine(gameParamsFile.Directory!.FullName, "shipstree_EU.xml"));
 
         var extractionResult = unpackService.ExtractAndRefineGameParams(options.ToExtractionOptions());
-        var convertedData = await dataConverterService.ConvertRefinedData(extractionResult.FilteredData, options.WriteModifierDebugOutput, modifierDictionary);
+        var convertedData = await dataConverterService.ConvertRefinedData(extractionResult.FilteredData, options.WriteModifierDebugOutput, modifierDictionary, techTreeShipsPositionsDictionary);
         var versionInfo = await versionCheckService.CheckFileVersionsAsync(convertedData, gameVersion, Constants.CdnHost);
 
         Directory.CreateDirectory(options.OutputDirectory);
