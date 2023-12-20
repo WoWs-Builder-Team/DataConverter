@@ -237,8 +237,10 @@ public enum SubmarineBuoyancyStates
 
 [PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum SubmarineTorpedoLauncherLoaderPosition
+public enum TorpedoLauncherLoaderPosition
 {
     BowLoaders,
     SternLoaders,
+    LeftSideLoaders,
+    RightSideLoaders,
 }

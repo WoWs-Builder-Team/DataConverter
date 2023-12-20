@@ -520,7 +520,7 @@ public static class ShipConverter
             var launchers = wgTorpedoArray.TorpedoArray.Select(entry => ConvertWgTorpedoLauncher(entry.Key, entry.Value, stHull)).ToImmutableArray();
 
             // process launcher loaders
-            ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>>.Empty;
+            ImmutableDictionary<TorpedoLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = ImmutableDictionary<TorpedoLauncherLoaderPosition, ImmutableArray<string>>.Empty;
             if (wgTorpedoArray.Groups.Count > 0 && wgTorpedoArray.Loaders.Count > 0)
             {
                 torpedoLoaders = ConvertLoaders(wgTorpedoArray, launchers);
@@ -539,65 +539,94 @@ public static class ShipConverter
         return resultDictionary.ToImmutableDictionary();
     }
 
-    private static ImmutableDictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>> ConvertLoaders(WgTorpedoArray wgTorpedoArray, ImmutableArray<TorpedoLauncher> launchers)
+    private static ImmutableDictionary<TorpedoLauncherLoaderPosition, ImmutableArray<string>> ConvertLoaders(WgTorpedoArray wgTorpedoArray, ImmutableArray<TorpedoLauncher> launchers)
     {
-        Dictionary<int, int> bowLoaders = new();
-        Dictionary<int, int> sternLoaders = new();
+        Dictionary<int, (int numLaunchers, int numTubes, TorpedoLauncherLoaderPosition loaderPosition)> loadersDictionary = new();
         foreach (var jToken in wgTorpedoArray.Groups)
         {
             var groupName = jToken.First!.ToObject<int>();
             var group = jToken.Last!.ToObject<string[]>()!;
 
-            // since it is a group we can assume they are all close together so we can by checking only 1 element of the group we can address all of it
-            var launcher = launchers.First(x => x.GroupName.Equals(group[0]));
+            // since it is a group we can assume they are all close together so by checking only 1 element of the group we can address all of it
+            // we select the launcher with the least amount of tubes assuming that if WG will ever do a ship with loaders and different amount of tubes per launcher they will choose the least common multiple
+            var launcher = launchers.Where(x => group.Contains(x.GroupName)).MinBy(x => x.NumBarrels) ?? launchers.First(x => x.GroupName.Equals(group[0]));
             if (launcher.BaseAngle is <= 90 or >= 270)
             {
-                // if the launcher base angle is between 90° and -90° we cam assume it is looking forward and so positioned in the front
-                bowLoaders.Add(groupName, group.Length);
+                // if the launcher base angle is between 90° and -90° we cam assume it is looking forward and so positioned either in the front, left or right.
+                if (launcher.HorizontalSector.All(x => x <= 0))
+                {
+                    loadersDictionary.Add(groupName, (group.Length, launcher.NumBarrels, TorpedoLauncherLoaderPosition.LeftSideLoaders));
+                }
+                else if (launcher.HorizontalSector.All(x => x >= 0))
+                {
+                    loadersDictionary.Add(groupName, (group.Length, launcher.NumBarrels, TorpedoLauncherLoaderPosition.RightSideLoaders));
+                }
+                else
+                {
+                    loadersDictionary.Add(groupName, (group.Length, launcher.NumBarrels, TorpedoLauncherLoaderPosition.BowLoaders));
+                }
             }
             else
             {
-                sternLoaders.Add(groupName, group.Length);
+                // if the launcher base angle is between 90° and -90° we cam assume it is looking forward and so positioned either in the back, left or right.
+                if (launcher.HorizontalSector.All(x => x <= 0))
+                {
+                    loadersDictionary.Add(groupName, (group.Length, launcher.NumBarrels, TorpedoLauncherLoaderPosition.LeftSideLoaders));
+                }
+                else if (launcher.HorizontalSector.All(x => x >= 0))
+                {
+                    loadersDictionary.Add(groupName, (group.Length, launcher.NumBarrels, TorpedoLauncherLoaderPosition.RightSideLoaders));
+                }
+                else
+                {
+                    loadersDictionary.Add(groupName, (group.Length, launcher.NumBarrels, TorpedoLauncherLoaderPosition.SternLoaders));
+                }
             }
         }
 
-        Dictionary<int, int> loaders = wgTorpedoArray.Loaders.ToDictionary(jToken => jToken.Last!.ToObject<int[]>()!.Single(), jToken => jToken.First!.ToObject<int>());
+        var loaders = wgTorpedoArray.Loaders.ToDictionary(jToken => jToken.Last!.ToObject<int[]>()!.Single(), jToken => jToken.First!.ToObject<int>());
+
         Dictionary<string, int> bowLoadersAmounts = new();
         Dictionary<string, int> sternLoadersAmounts = new();
-        foreach (var bowLoader in bowLoaders)
+        Dictionary<string, int> leftSideLoadersAmounts = new();
+        Dictionary<string, int> rightSideLoadersAmounts = new();
+        foreach (var loader in loadersDictionary)
         {
-            var tubesPerLoader = loaders.Where(x => x.Key.Equals(bowLoader.Key)).Select(x => x.Value).Single();
-            var setup = $"{bowLoader.Value / tubesPerLoader}x{tubesPerLoader}";
-
-            // Disable CA1854 since TryGetValue would not modify the value in the dictionary
-#pragma warning disable CA1854
-            if (bowLoadersAmounts.ContainsKey(setup))
+            var tubesPerLoader = loaders.Where(x => x.Key.Equals(loader.Key)).Select(x => x.Value).Single() * loader.Value.numTubes;
+            var setup = $"{loader.Value.numLaunchers / tubesPerLoader}x{tubesPerLoader}";
+            switch (loader.Value.loaderPosition)
             {
-                bowLoadersAmounts[setup]++;
-            }
-            else
-            {
-                bowLoadersAmounts.Add(setup, 1);
+                case TorpedoLauncherLoaderPosition.BowLoaders when bowLoadersAmounts.ContainsKey(setup):
+                    bowLoadersAmounts[setup]++;
+                    break;
+                case TorpedoLauncherLoaderPosition.BowLoaders:
+                    bowLoadersAmounts.Add(setup, 1);
+                    break;
+                case TorpedoLauncherLoaderPosition.SternLoaders when sternLoadersAmounts.ContainsKey(setup):
+                    sternLoadersAmounts[setup]++;
+                    break;
+                case TorpedoLauncherLoaderPosition.SternLoaders:
+                    sternLoadersAmounts.Add(setup, 1);
+                    break;
+                case TorpedoLauncherLoaderPosition.LeftSideLoaders when leftSideLoadersAmounts.ContainsKey(setup):
+                    leftSideLoadersAmounts[setup]++;
+                    break;
+                case TorpedoLauncherLoaderPosition.LeftSideLoaders:
+                    leftSideLoadersAmounts.Add(setup, 1);
+                    break;
+                case TorpedoLauncherLoaderPosition.RightSideLoaders when rightSideLoadersAmounts.ContainsKey(setup):
+                    rightSideLoadersAmounts[setup]++;
+                    break;
+                case TorpedoLauncherLoaderPosition.RightSideLoaders:
+                    rightSideLoadersAmounts.Add(setup, 1);
+                    break;
             }
         }
-
-        foreach (var sternLoader in sternLoaders)
-        {
-            var tubesPerLoader = loaders.Where(x => x.Key.Equals(sternLoader.Key)).Select(x => x.Value).Single();
-            var setup = $"{sternLoader.Value / tubesPerLoader}x{tubesPerLoader}";
-            if (sternLoadersAmounts.ContainsKey(setup))
-            {
-                sternLoadersAmounts[setup]++;
-            }
-            else
-            {
-                sternLoadersAmounts.Add(setup, 1);
-            }
-        }
-#pragma warning restore CA1854
 
         List<string> bowLoadersSetup = new();
         List<string> sternLoadersSetup = new();
+        List<string> leftSideLoadersSetup = new();
+        List<string> rightSideLoadersSetup = new();
         foreach (var bowLoadersAmount in bowLoadersAmounts)
         {
             string setup;
@@ -630,10 +659,44 @@ public static class ShipConverter
             sternLoadersSetup.Add(setup);
         }
 
-        Dictionary<SubmarineTorpedoLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = new()
+        foreach (var leftSideLoadersAmount in leftSideLoadersAmounts)
         {
-            { SubmarineTorpedoLauncherLoaderPosition.BowLoaders, bowLoadersSetup.ToImmutableArray() },
-            { SubmarineTorpedoLauncherLoaderPosition.SternLoaders, sternLoadersSetup.ToImmutableArray() },
+            string setup;
+            if (leftSideLoadersAmount.Value > 1)
+            {
+                var t = leftSideLoadersAmount.Key.Split('x');
+                setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * leftSideLoadersAmount.Value}x{t[1]}";
+            }
+            else
+            {
+                setup = leftSideLoadersAmount.Key;
+            }
+
+            leftSideLoadersSetup.Add(setup);
+        }
+
+        foreach (var rightSideLoadersAmount in rightSideLoadersAmounts)
+        {
+            string setup;
+            if (rightSideLoadersAmount.Value > 1)
+            {
+                var t = rightSideLoadersAmount.Key.Split('x');
+                setup = $"{int.Parse(t[0], CultureInfo.InvariantCulture) * rightSideLoadersAmount.Value}x{t[1]}";
+            }
+            else
+            {
+                setup = rightSideLoadersAmount.Key;
+            }
+
+            rightSideLoadersSetup.Add(setup);
+        }
+
+        Dictionary<TorpedoLauncherLoaderPosition, ImmutableArray<string>> torpedoLoaders = new()
+        {
+            { TorpedoLauncherLoaderPosition.BowLoaders, bowLoadersSetup.ToImmutableArray() },
+            { TorpedoLauncherLoaderPosition.SternLoaders, sternLoadersSetup.ToImmutableArray() },
+            { TorpedoLauncherLoaderPosition.LeftSideLoaders, leftSideLoadersSetup.ToImmutableArray() },
+            { TorpedoLauncherLoaderPosition.RightSideLoaders, rightSideLoadersSetup.ToImmutableArray() },
         };
 
         return torpedoLoaders.ToImmutableDictionary();

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>5.1.1</VersionPrefix>
+    <VersionPrefix>5.2.0</VersionPrefix>
 <!--    <VersionSuffix>alpha3</VersionSuffix>-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>ShipBuilder Data structures</Title>
