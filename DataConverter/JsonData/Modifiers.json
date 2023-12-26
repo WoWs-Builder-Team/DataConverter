@@ -543,24 +543,22 @@
   },
   {
     "name": "burnChanceFactorHighLevel",
-    "gameLocalizationKey": "PARAMS_MODIFIER_BURNCHANCEFACTORHIGHLEVEL",
+    "gameLocalizationKey": null,
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [
-      "ShellDataContainer.FireChance.Big.Multiplier"
-    ],
-    "displayValueProcessingKind": "NegativePercentage",
-    "valueProcessingKind": "Multiplier"
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
   },
   {
     "name": "burnChanceFactorLowLevel",
     "gameLocalizationKey": "PARAMS_MODIFIER_BURNCHANCEFACTORLOWLEVEL",
     "appLocalizationKey": null,
-    "unit": "Percent",
+    "unit": "None",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Small.Multiplier"
+      "ShellDataContainer.FireChance.Multiplier"
     ],
-    "displayValueProcessingKind": "NegativePercentage",
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "Multiplier"
   },
   {
@@ -1551,9 +1549,11 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_GSPRIORITYTARGETIDEALRADIUS",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": [
+      "SecondaryBatteryDataContainer.Dispersion.IdealRadius"
+    ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "None"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "GSShotDelay",
@@ -2610,7 +2610,7 @@
   },
   {
     "name": "torpedoDetectionCoefficientByPlane",
-    "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDODETECTIONCOEFFICIENTBYPLANE",
+    "gameLocalizationKey": null,
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],
