@@ -284,7 +284,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -295,7 +296,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -306,7 +308,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -317,7 +320,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -328,7 +332,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -350,7 +355,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ShellDataContainer.Krupp"
+      "ShellDataContainer.Krupp.Main",
+      "ShellDataContainer.Krupp.Secondary"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -524,7 +530,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -535,7 +542,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Big.Additive",
+      "ShellDataContainer.FireChance.Main.Big.Additive",
+      "ShellDataContainer.FireChance.Secondary.Big.Additive",
       "BombDataContainer.FireChance"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
@@ -556,7 +564,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Multiplier"
+      "ShellDataContainer.FireChance.Main.Multiplier",
+      "ShellDataContainer.FireChance.Secondary.Multiplier"
     ],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "Multiplier"
@@ -567,8 +576,10 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Small.Additive",
-      "RocketDataContainer.FireChance"
+      "ShellDataContainer.FireChance.Main.Small.Additive",
+      "ShellDataContainer.FireChance.Secondary.Small.Additive",
+      "RocketDataContainer.FireChance.Main",
+      "RocketDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -925,7 +936,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.UnderwaterSplash"
+      "ShellDataContainer.UnderwaterSplash.Main",
+      "ShellDataContainer.UnderwaterSplash.Secondary"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1302,7 +1314,7 @@
     "unit": "Percent",
     "affectedProperties": [
       "ShellDataContainer.Damage.Ap",
-      "ShellDataContainer.Damage.HESAP"
+      "ShellDataContainer.Damage.HESAP.Main"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1324,7 +1336,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.Damage.HESAP"
+      "ShellDataContainer.Damage.HESAP.Main"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1366,7 +1378,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.Penetration.Primary"
+      "ShellDataContainer.Penetration.Main"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
