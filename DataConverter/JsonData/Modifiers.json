@@ -2812,5 +2812,16 @@
     ],
     "displayValueProcessingKind": "VariablePercentage",
     "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "asAdditionalCharges",
+    "gameLocalizationKey": "PARAMS_MODIFIER_ASADDITIONALCHARGES",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [
+      "AirstrikeDataContainer.Uses"
+    ],
+    "displayValueProcessingKind": "ToInt",
+    "valueProcessingKind": "RawAdd"
   }
 ]
