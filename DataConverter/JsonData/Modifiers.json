@@ -254,9 +254,11 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ALLCONSUMABLERELOADTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": ["ConsumableDataContainer.Reload.Ship",
+      "ConsumableDataContainer.PrepTime.PCY048"
+    ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "None"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "areaDamageMultiplier",
