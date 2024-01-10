@@ -1,8 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
-// ReSharper disable UnusedMember.Global
 namespace WoWsShipBuilder.DataStructures;
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum Nation
 {
@@ -22,6 +24,7 @@ public enum Nation
     Common,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ShipClass
 {
@@ -33,6 +36,7 @@ public enum ShipClass
     Auxiliary,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ModuleType
 {
@@ -52,6 +56,7 @@ public enum ModuleType
 }
 
 // When new types are added, make sure they are also added in ShipConverter.FindModuleType
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ComponentType
 {
@@ -73,6 +78,7 @@ public enum ComponentType
     DepthCharges,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PlaneType
 {
@@ -87,6 +93,7 @@ public enum PlaneType
     TacticalSkipBomber,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PlaneCategory
 {
@@ -96,6 +103,7 @@ public enum PlaneCategory
     Asw,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ProjectileType
 {
@@ -107,7 +115,9 @@ public enum ProjectileType
     Rocket,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
+[SuppressMessage("ReSharper", "InconsistentNaming", Justification = "WG uses this naming convention")]
 public enum ShellType
 {
     SAP,
@@ -115,6 +125,7 @@ public enum ShellType
     AP,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum TorpedoType
 {
@@ -123,20 +134,25 @@ public enum TorpedoType
     Magnetic,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
+[SuppressMessage("ReSharper", "InconsistentNaming", Justification = "WG uses this naming convention")]
 public enum BombType
 {
     HE,
     AP,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
+[SuppressMessage("ReSharper", "InconsistentNaming", Justification = "WG uses this naming convention")]
 public enum RocketType
 {
     HE,
     AP,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ExteriorType
 {
@@ -145,6 +161,7 @@ public enum ExteriorType
     Permoflage,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum AntiAirAuraType
 {
@@ -153,6 +170,7 @@ public enum AntiAirAuraType
     Far,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ShipCategory
 {
@@ -164,6 +182,7 @@ public enum ShipCategory
     Clan,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ModernizationType
 {
@@ -173,6 +192,7 @@ public enum ModernizationType
     Other,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum TurretOrientation
 {
@@ -182,6 +202,7 @@ public enum TurretOrientation
     Left,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum GameVersionType
 {
@@ -192,6 +213,7 @@ public enum GameVersionType
     Dev3,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ShipHitLocation
 {
@@ -204,17 +226,21 @@ public enum ShipHitLocation
     Hull,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum SubsBuoyancyStates
+public enum SubmarineBuoyancyStates
 {
     DeepWater,
     Periscope,
     Surface,
 }
 
+[PublicAPI]
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum SubTorpLauncherLoaderPosition
+public enum TorpedoLauncherLoaderPosition
 {
     BowLoaders,
     SternLoaders,
+    LeftSideLoaders,
+    RightSideLoaders,
 }

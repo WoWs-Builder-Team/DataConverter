@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class Engine
+public sealed class Engine
 {
     public decimal BackwardEngineUpTime { get; init; }
 

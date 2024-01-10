@@ -1,90 +1,74 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class Hull
+public sealed class Hull
 {
-    public decimal Health { get; set; }
+    public decimal Health { get; init; }
 
-    public decimal MaxSpeed { get; set; }
+    public decimal MaxSpeed { get; init; }
 
-    public decimal RudderTime { get; set; }
+    public decimal RudderTime { get; init; }
 
-    public decimal SpeedCoef { get; set; }
+    public decimal SpeedCoef { get; init; }
 
-    public decimal SteeringGearArmorCoeff { get; set; }
+    public decimal SteeringGearArmorCoeff { get; init; }
 
-    public decimal SmokeFiringDetection { get; set; }
+    public decimal SmokeFiringDetection { get; init; }
 
-    public decimal SurfaceDetection { get; set; }
+    public decimal SurfaceDetection { get; init; }
 
-    public decimal AirDetection { get; set; }
+    public decimal AirDetection { get; init; }
 
-    public decimal DetectionBySubPeriscope { get; set; }
+    public decimal DetectionBySubPeriscope { get; init; }
 
-    public decimal DetectionBySubOperating { get; set; }
+    public decimal DetectionBySubOperating { get; init; }
 
-    public AntiAir? AntiAir { get; set; }
+    public AntiAir? AntiAir { get; init; }
 
-    public TurretModule? SecondaryModule { get; set; }
+    public TurretModule? SecondaryModule { get; init; }
 
-    public DepthChargeArray? DepthChargeArray { get; set; }
+    public DepthChargeArray? DepthChargeArray { get; init; }
 
-    public int FireSpots { get; set; }
+    public int FireSpots { get; init; }
 
-    public decimal FireResistance { get; set; }
+    public decimal FireResistance { get; init; }
 
-    public decimal FireTickDamage { get; set; }
+    public decimal FireTickDamage { get; init; }
 
-    public decimal FireDuration { get; set; }
+    public decimal FireDuration { get; init; }
 
-    public int FloodingSpots { get; set; }
+    public int FloodingSpots { get; init; }
 
-    public decimal FloodingResistance { get; set; }
+    public decimal FloodingResistance { get; init; }
 
-    public decimal FloodingTickDamage { get; set; }
+    public decimal FloodingTickDamage { get; init; }
 
-    public decimal FloodingDuration { get; set; }
+    public decimal FloodingDuration { get; init; }
 
-    public int TurningRadius { get; set; }
+    public int TurningRadius { get; init; }
 
-    public ShipSize Sizes { get; set; } = new();
+    public ShipSize Sizes { get; init; } = new(default, default, default);
 
-    public int EnginePower { get; set; }
+    public int EnginePower { get; init; }
 
-    public int Tonnage { get; set; }
+    public int Tonnage { get; init; }
 
-    public List<HitLocation> HitLocations { get; set; } = new();
+    public ImmutableList<HitLocation> HitLocations { get; init; } = ImmutableList<HitLocation>.Empty;
 
-    public Dictionary<SubsBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; set; } = new();
+    public ImmutableDictionary<SubmarineBuoyancyStates, decimal> MaxSpeedAtBuoyancyStateCoeff { get; init; } = ImmutableDictionary<SubmarineBuoyancyStates, decimal>.Empty;
 
-    public decimal SubBatteryCapacity { get; set; }
+    public decimal SubBatteryCapacity { get; init; }
 
-    public decimal SubBatteryRegenRate { get; set; }
+    public decimal SubBatteryRegenRate { get; init; }
 
-    public decimal DiveSpeed { get; set; }
+    public decimal DiveSpeed { get; init; }
 
-    public decimal DivingPlaneShiftTime { get; set; }
+    public decimal DivingPlaneShiftTime { get; init; }
 }
 
-public class ShipSize
-{
-    public decimal Length { get; init; }
+public sealed record ShipSize(decimal Length, decimal Width, decimal Height);
 
-    public decimal Width { get; init; }
-
-    public decimal Height { get; init; }
-}
-
-public class HitLocation
-{
-    public ShipHitLocation Name { get; init; }
-
-    public string Type { get; init; } = string.Empty;
-
-    public float RepairableDamage { get; init; }
-
-    public int Hp { get; init; }
-}
+public sealed record HitLocation(ShipHitLocation Name, string Type, float RepairableDamage, int Hp);

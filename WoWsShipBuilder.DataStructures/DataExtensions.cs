@@ -1,8 +1,10 @@
 ﻿using System;
+using JetBrains.Annotations;
 using WoWsShipBuilder.DataStructures.Ship;
 
 namespace WoWsShipBuilder.DataStructures;
 
+[PublicAPI]
 public static class DataExtensions
 {
     public static AntiAirAura AddAura(this AntiAirAura first, AntiAirAura second)
@@ -14,7 +16,7 @@ public static class DataExtensions
 
         decimal minRange = second.FlakDamage > 0 ? first.MinRange : second.MinRange; // Use minimum range of new aura only if it is no flak cloud aura
 
-        return new AntiAirAura
+        return new()
         {
             ConstantDps = first.ConstantDps + second.ConstantDps,
             FlakDamage = second.FlakDamage,
@@ -58,7 +60,7 @@ public static class DataExtensions
         return horizontalDispersion * verticalCoeff;
     }
 
-    public static DispersionContainer CalculateDispersion(this Dispersion dispersion, double maxRange, double dispersionModifier, double range = -1)
+    public static DispersionValue CalculateDispersion(this Dispersion dispersion, double maxRange, double dispersionModifier, double range = -1)
     {
         var horizontalDisp = CalculateHorizontalDispersion(dispersion, range >= 0 ? range : maxRange, dispersionModifier);
         var verticalDisp = CalculateVerticalDispersion(dispersion, maxRange, horizontalDisp, range);
@@ -67,4 +69,4 @@ public static class DataExtensions
     }
 }
 
-public sealed record DispersionContainer(double Horizontal, double Vertical);
+public sealed record DispersionValue(double Horizontal, double Vertical);

@@ -1,26 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Projectile;
 
-public class DepthCharge : Projectile
+public sealed class DepthCharge : Projectile
 {
-    public float Damage { get; set; }
+    public float Damage { get; init; }
 
-    public float FireChance { get; set; }
+    public float FireChance { get; init; }
 
-    public float FloodChance { get; set; }
+    public float FloodChance { get; init; }
 
-    public float DetonationTimer { get; set; }
+    public float DetonationTimer { get; init; }
 
-    public float SinkingSpeed { get; set; }
+    public float SinkingSpeed { get; init; }
 
-    public float ExplosionRadius { get; set; }
+    public float ExplosionRadius { get; init; }
 
-    public float SinkingSpeedRng { get; set; }
+    public float SinkingSpeedRng { get; init; }
 
-    public float DetonationTimerRng { get; set; }
+    public float DetonationTimerRng { get; init; }
 
-    public Dictionary<float, List<float>> PointsOfDamage { get; set; } = new();
+    public ImmutableDictionary<float, ImmutableList<float>> PointsOfDamage { get; init; } = ImmutableDictionary<float, ImmutableList<float>>.Empty;
 }

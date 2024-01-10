@@ -54,7 +54,9 @@ dotnet_diagnostic.SA1600.severity = none # Elements don't have to be documented
 dotnet_diagnostic.SA1601.severity = none # Elements don't have to be documented
 dotnet_diagnostic.SA1602.severity = none # Enums don't have to be documented
 dotnet_diagnostic.SA1608.severity = none # Default summary in docs is allowed
+dotnet_diagnostic.SA1623.severity = none # Property summary documentation should match accessors
 dotnet_diagnostic.SA1625.severity = none # Copy-paste documentation is allowed
+dotnet_diagnostic.SA1629.severity = none # Documentation text should end with a period
 dotnet_diagnostic.SA1633.severity = none # File does not need a header
 dotnet_diagnostic.SA1634.severity = none # No header copyright
 dotnet_diagnostic.SA1635.severity = none # No header copyright text
@@ -82,5 +84,9 @@ csharp_remove_blank_lines_near_braces_in_code = true
 max_line_length = 160
 
 [*.{csproj,props,targets}]
+indent_size = 2
+tab_width = 2
+
+[*.json]
 indent_size = 2
 tab_width = 2

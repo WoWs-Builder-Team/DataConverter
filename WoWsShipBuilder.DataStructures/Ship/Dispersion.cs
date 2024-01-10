@@ -2,7 +2,7 @@
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
-public class Dispersion
+public sealed class Dispersion
 {
     public double IdealRadius { get; init; }
 
@@ -19,8 +19,4 @@ public class Dispersion
     public double RadiusOnMax { get; init; }
 
     public double Delim { get; init; }
-
-    public decimal MaximumHorizontalDispersion { get; set; }
-
-    public decimal MaximumVerticalDispersion { get; set; }
 }

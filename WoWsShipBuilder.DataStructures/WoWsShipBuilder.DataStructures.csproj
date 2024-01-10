@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionPrefix>4.0.0</VersionPrefix>
-<!--    <VersionSuffix>beta</VersionSuffix>-->
+    <VersionPrefix>5.2.0</VersionPrefix>
+<!--    <VersionSuffix>alpha3</VersionSuffix>-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>ShipBuilder Data structures</Title>
     <Authors>WoWs-Builder-Team</Authors>
@@ -20,6 +20,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="DataConverter" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using WoWsShipBuilder.DataStructures.Versioning;
 
 namespace DataConverter;
@@ -22,9 +23,9 @@ public static class Extensions
         }
     }
 
-    public static List<FileVersion>? GetCategoryVersions(this VersionInfo versionInfo, string category)
+    public static ImmutableList<FileVersion>? GetCategoryVersions(this VersionInfo versionInfo, string category)
     {
-        versionInfo.Categories.TryGetValue(category, out List<FileVersion>? versions);
+        versionInfo.Categories.TryGetValue(category, out ImmutableList<FileVersion>? versions);
         return versions;
     }
 }

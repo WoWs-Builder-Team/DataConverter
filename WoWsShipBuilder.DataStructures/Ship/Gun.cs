@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 using WoWsShipBuilder.DataStructures.Ship.Components;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable CollectionNeverUpdated.Global
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public class Gun : IGun
+public sealed class Gun : IGun
 {
-    public List<string> AmmoList { get; init; } = new();
+    public ImmutableArray<string> AmmoList { get; init; } = ImmutableArray<string>.Empty;
 
     public decimal BarrelDiameter { get; init; }
 
-    public decimal[] HorizontalSector { get; init; } = Array.Empty<decimal>();
+    public ImmutableArray<decimal> HorizontalSector { get; init; } = ImmutableArray<decimal>.Empty;
 
-    public decimal[][] HorizontalDeadZones { get; init; } = Array.Empty<decimal[]>();
+    public ImmutableArray<ImmutableArray<decimal>> HorizontalDeadZones { get; init; } = ImmutableArray<ImmutableArray<decimal>>.Empty;
 
     public long Id { get; init; }
 
@@ -36,7 +35,9 @@ public class Gun : IGun
 
     public decimal SmokeDetectionWhenFiring { get; init; }
 
-    public string WgGunIndex { get; set; } = string.Empty;
+    public string WgGunIndex { get; init; } = string.Empty;
 
-    public decimal BaseAngle { get; set; }
+    public decimal BaseAngle { get; init; }
+
+    public Dispersion Dispersion { get; init; } = default!;
 }

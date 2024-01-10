@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Immutable;
 
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public record ShellCompatibility(string ShellName, Dictionary<string,  List<string>> CompatibleHullArtilleryModulesCombo);
+public sealed record ShellCompatibility(string ShellName, ImmutableDictionary<string,  ImmutableList<string>> CompatibleHullArtilleryModulesCombo);

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "ModifiersSchema",
+  "description": "List of modifiers",
+  "type": "array",
+  "items": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "gameLocalizationKey": {
+          "type": ["string", "null"]
+        },
+        "appLocalizationKey": {
+          "type": ["string", "null"]
+        },
+        "unit": {
+          "enum": ["NotAssigned", "None", "Kilograms", "Millimeters", "Meters", "Kilometers", "Seconds", "Degrees", "Percent", "Hitpoints", "Knots", "MetersPerSecond", "DegreesPerSecond", "PercentPerSecond", "DamagePerSecond", "ShotsPerMinute", "FiresPerMinute"]
+        },
+        "affectedProperties": {
+          "type": "array",
+          "uniqueItems":  true,
+          "items":{
+            "type": "string",
+            "pattern": "\\w+\\.(\\w)?."
+          }
+        },
+        "displayValueProcessingKind": {
+          "enum": ["NotAssigned", "Raw", "ToNegative", "ToPositive", "Discard", "ToInt", "RawOrPercentage", "PositivePercentage", "NegativePercentage", "InverseNegativePercentage", "VariablePercentage", "IntVariablePercentage", "DecimalRoundedPercentage", "RoundedPercentage", "BigWorldToKm", "BigWorldToKmDecimal", "MeterToKm"]
+        },
+        "valueProcessingKind": {
+          "enum": ["NotAssigned", "Multiplier", "AddPercentage", "SubtractPercentage", "PositiveMultiplier", "NegativeMultiplier", "RawAdd", "None"]
+        }
+      },
+      "required": [
+        "name",
+        "gameLocalizationKey",
+        "appLocalizationKey",
+        "unit",
+        "affectedProperties",
+        "displayValueProcessingKind",
+        "valueProcessingKind"
+      ]
+    }
+}
