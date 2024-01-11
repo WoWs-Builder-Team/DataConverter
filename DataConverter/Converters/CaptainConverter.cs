@@ -379,7 +379,7 @@ public static class CaptainConverter
         var reloadCoeff = skillModifiers["reloadFactor"].Value<float>();
         var excludedConsumables = skillModifiers["excludedConsumables"].Values<string>();
         var availableConsumables = ImmutableArray.Create("airDefenseDisp", "scout", "regenCrew", "sonar", "rls", "crashCrew", "smokeGenerator", "speedBoosters", "artilleryBoosters", "fighter", "torpedoReloader");
-        return availableConsumables.Except(excludedConsumables).Select(c => $"invisible_{c}ReloadCoeff").Select(c => (c, reloadCoeff)).Append(("allConsumableReloadTime", reloadCoeff)).ToDictionary(x => x.Item1, x => x.reloadCoeff);
+        return availableConsumables.Except(excludedConsumables).Select(c => $"invisible_{c}ReloadCoeff").Select(c => (c, reloadCoeff)).Append(("consumableSpecialistReloadTime", reloadCoeff)).ToDictionary(x => x.Item1, x => x.reloadCoeff);
     }
 
     /// <summary>

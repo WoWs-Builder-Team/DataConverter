@@ -794,6 +794,15 @@
     "valueProcessingKind": "Multiplier"
   },
   {
+    "name": "consumableSpecialistReloadTime",
+    "gameLocalizationKey": "PARAMS_MODIFIER_ALLCONSUMABLERELOADTIME",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "ConsumablesWorkTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLESWORKTIME",
     "appLocalizationKey": null,
