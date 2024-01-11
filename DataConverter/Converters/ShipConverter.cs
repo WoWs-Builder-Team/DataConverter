@@ -108,7 +108,7 @@ public static class ShipConverter
 
     private static BurstModeAbility? ProcessBurstModeAbility(WgBurstArtilleryModule? module, Dictionary<string, Modifier> modifiersDictionary, string shipName)
     {
-        if (module != null)
+        if (module is { SecondaryAmmoList.Length: 0 })
         {
             var modifiers = new List<Modifier>();
             foreach (var (modifierName, modifierValue) in module.Modifiers)
@@ -287,11 +287,12 @@ public static class ShipConverter
             string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Artillery, key);
 
             var stHullModule = stShip?.GetHullModule(correspondingHull);
+            var additionalAmmoList = wgMainBattery.SwitchableModeArtilleryModule?.SecondaryAmmoList.ToImmutableArray() ?? ImmutableArray<string>.Empty;
             var turretModule = new TurretModule
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
-                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule)).ToImmutableArray(),
+                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule, additionalAmmoList)).ToImmutableArray(),
                 BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule, modifiersDictionary, wgShip.Name),
             };
 
@@ -317,14 +318,14 @@ public static class ShipConverter
             .First(u => u.Components[componentType].Contains(componentKey)).Components[ComponentType.Hull].First();
     }
 
-    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, double taperDist, ShiptoolHullModule? stHull)
+    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, double taperDist, ShiptoolHullModule? stHull, ImmutableArray<string> additionalAmmo)
     {
         if (stHull is null || !stHull.Angles.TryGetValue(mainGunKey, out decimal angle))
         {
             angle = wgGun.Position[0] < 3 ? 0 : 180;
         }
 
-        return wgGun.ConvertData(taperDist, mainGunKey, angle);
+        return wgGun.ConvertData(taperDist, mainGunKey, angle, additionalAmmo);
     }
 
     private static ImmutableDictionary<string, Hull> ProcessShipHull(WgShip wgShip, UpgradeInfo upgradeInfo)
@@ -450,7 +451,7 @@ public static class ShipConverter
                 {
                     Sigma = wgHullSecondary.SigmaCount,
                     MaxRange = wgHullSecondary.MaxDist,
-                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData(wgHullSecondary.TaperDist, string.Empty, default)).ToImmutableArray(),
+                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData(wgHullSecondary.TaperDist, string.Empty, default, ImmutableArray<string>.Empty)).ToImmutableArray(),
                 };
 
                 DataCache.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());

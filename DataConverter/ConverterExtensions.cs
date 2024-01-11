@@ -7,9 +7,9 @@ namespace DataConverter;
 
 public static class ConverterExtensions
 {
-    public static Gun ConvertData(this WgGun wgGun, double taperDist, string wgGunIndex, decimal gunBaseAngle) => new()
+    public static Gun ConvertData(this WgGun wgGun, double taperDist, string wgGunIndex, decimal gunBaseAngle, ImmutableArray<string> additionalAmmo) => new()
     {
-        AmmoList = wgGun.AmmoList.ToImmutableArray(),
+        AmmoList = wgGun.AmmoList.Concat(additionalAmmo).ToImmutableArray(),
         BarrelDiameter = wgGun.BarrelDiameter,
         HorizontalSector = wgGun.HorizSector.ToImmutableArray(),
         HorizontalDeadZones = wgGun.DeadZone.Select(x => x.ToImmutableArray()).ToImmutableArray(),

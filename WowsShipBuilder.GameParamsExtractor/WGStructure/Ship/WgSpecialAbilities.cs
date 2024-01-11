@@ -13,6 +13,8 @@ public class WgBurstArtilleryModule
     public Dictionary<string, float> Modifiers { get; init; } = new();
 
     public int ShotsCount { get; init; }
+
+    public string[] SecondaryAmmoList { get; init; } = Array.Empty<string>();
 }
 
 public class WgSpecialAbility : WgArmamentModule
