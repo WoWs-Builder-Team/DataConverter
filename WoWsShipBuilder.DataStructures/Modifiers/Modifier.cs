@@ -22,11 +22,12 @@ public sealed class Modifier
         ValueProcessingKind = valueProcessingKind;
     }
 
-    public Modifier(string name, float value, string location, Modifier? modifierData)
+    public Modifier(string name, float value, string location, ShipClass? eligibleClass, Modifier? modifierData)
     {
         Name = name;
         Value = value;
         Location = location;
+        ClassRestriction = eligibleClass;
         if (modifierData is null)
         {
             return;
@@ -38,6 +39,11 @@ public sealed class Modifier
         AffectedProperties = modifierData.AffectedProperties;
         DisplayValueProcessingKind = modifierData.DisplayValueProcessingKind;
         ValueProcessingKind = modifierData.ValueProcessingKind;
+    }
+
+    public Modifier(string name, float value, string location, Modifier? modifierData)
+        : this(name, value, location, null, modifierData)
+    {
     }
 
     public string Name { get; }
@@ -64,6 +70,11 @@ public sealed class Modifier
     public DisplayValueProcessingKind DisplayValueProcessingKind { get; internal set; }
 
     public ValueProcessingKind ValueProcessingKind { get; internal set; }
+
+    /// <summary>
+    /// Define the class for the modifier. A null value indicates the modifier is valid for all classes.
+    /// </summary>
+    public ShipClass? ClassRestriction { get; internal set; }
 
     [JsonIgnore]
     internal string Location { get; }
@@ -161,5 +172,11 @@ public sealed class Modifier
             default:
                 throw new ArgumentOutOfRangeException(null, $"ApplyValueProcessing for the modifier {Name} is not valid or not assigned.");
         }
+    }
+
+    [PublicAPI]
+    public bool IsEligibleForClass(ShipClass shipClass)
+    {
+        return ClassRestriction is null || ClassRestriction == shipClass;
     }
 }

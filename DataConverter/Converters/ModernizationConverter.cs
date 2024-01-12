@@ -101,8 +101,8 @@ public static class ModernizationConverter
                         // exclude auxiliary ship type modifiers, since they are unused
                         if (!key.Equals("auxiliary", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            modifiersDictionary.TryGetValue($"{currentWgModModifier.Key}_{key}", out Modifier? modifierData);
-                            modifiers.Add(new($"{currentWgModModifier.Key}_{key}", value, "Modernization", modifierData));
+                            modifiersDictionary.TryGetValue($"{currentWgModModifier.Key}", out Modifier? modifierData);
+                            modifiers.Add(new($"{currentWgModModifier.Key}", value, "Modernization", ConverterUtils.ProcessShipClass(key), modifierData));
                         }
                     }
                 }

@@ -349,8 +349,8 @@ public static class CaptainConverter
                         // exclude auxiliary ship type modifiers, since they are unused
                         if (!key.Equals("auxiliary", StringComparison.InvariantCultureIgnoreCase))
                         {
-                            modifierDictionary.TryGetValue($"{s}_{key}", out Modifier? modifierData);
-                            var modifier = new Modifier($"{s}_{key}", value, "CaptainSkill", modifierData);
+                            modifierDictionary.TryGetValue($"{s}", out Modifier? modifierData);
+                            var modifier = new Modifier($"{s}", value, "CaptainSkill", ConverterUtils.ProcessShipClass(key), modifierData);
                             modifiers.Add(modifier);
                         }
                     }

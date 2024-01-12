@@ -49,7 +49,7 @@ public static class ShipConverter
                 Index = wgShip.Index,
                 Name = wgShip.Name,
                 Tier = wgShip.Level,
-                ShipClass = ProcessShipClass(wgShip.TypeInfo.Species),
+                ShipClass = ConverterUtils.ProcessShipClass(wgShip.TypeInfo.Species),
                 ShipCategory = ProcessShipCategory(wgShip.Group, wgShip.Level),
                 ShipNation = Enum.Parse<Nation>(wgShip.TypeInfo.Nation.Replace("_", string.Empty), true),
                 MainBatteryModuleList = mainBatteries,
@@ -228,20 +228,6 @@ public static class ShipConverter
         };
     }
 
-    private static ShipClass ProcessShipClass(string shipClass)
-    {
-        return shipClass.ToLowerInvariant() switch
-        {
-            "cruiser" => ShipClass.Cruiser,
-            "destroyer" => ShipClass.Destroyer,
-            "battleship" => ShipClass.Battleship,
-            "aircarrier" => ShipClass.AirCarrier,
-            "submarine" => ShipClass.Submarine,
-            "auxiliary" => ShipClass.Auxiliary,
-            _ => throw new InvalidOperationException("Ship class not recognized."),
-        };
-    }
-
     private static UpgradeInfo ProcessUpgradeInfo(WgShip wgShip, ILogger? logger)
     {
         var upgrades = new List<ShipUpgrade>();
@@ -412,7 +398,7 @@ public static class ShipConverter
 
             //process subs only parameters
             Dictionary<SubmarineBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
-            if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
+            if (ConverterUtils.ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
             {
                 hullModule.DiveSpeed = wgHull.MaxBuoyancySpeed;
                 hullModule.DivingPlaneShiftTime = wgHull.BuoyancyRudderTime / 1.305M;

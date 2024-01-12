@@ -79,8 +79,8 @@ public class ExteriorConverter
                             // exclude auxiliary ship type modifiers, since they are unused
                                 if (!key.Equals("auxiliary", StringComparison.InvariantCultureIgnoreCase))
                                 {
-                                    modifiersDictionary.TryGetValue($"{currentWgExteriorModifier.Key}_{key}", out Modifier? modifierData);
-                                    modifiers.Add(new Modifier($"{currentWgExteriorModifier.Key}_{key}", value, "Exterior", modifierData));
+                                    modifiersDictionary.TryGetValue($"{currentWgExteriorModifier.Key}", out Modifier? modifierData);
+                                    modifiers.Add(new Modifier($"{currentWgExteriorModifier.Key}", value, "Exterior", ConverterUtils.ProcessShipClass(key), modifierData));
                                 }
                         }
                     }
