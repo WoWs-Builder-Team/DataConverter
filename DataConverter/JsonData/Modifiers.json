@@ -1726,26 +1726,6 @@
     "valueProcessingKind": "Multiplier"
   },
   {
-    "name": "hydrophoneUpdateFrequency",
-    "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEUPDATEFREQUENCY",
-    "appLocalizationKey": null,
-    "unit": "Seconds",
-    "affectedProperties": [],
-    "displayValueProcessingKind": "Raw",
-    "valueProcessingKind": "None"
-  },
-  {
-    "name": "hydrophoneUpdateFrequencyCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEUPDATEFREQUENCYCOEFF",
-    "appLocalizationKey": null,
-    "unit": "Percent",
-    "affectedProperties": [
-      "ConsumableDataContainer.HydrophoneUpdateFrequency.PCY045"
-    ],
-    "displayValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "Multiplier"
-  },
-  {
     "name": "hydrophoneWaveRadius",
     "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONEWAVERADIUS",
     "appLocalizationKey": null,
@@ -2832,5 +2812,27 @@
     ],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "RawAdd"
+  },
+  {
+    "name": "hydrophoneReloadCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_HYDROPHONERELOADCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY045"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "submarineLocatorReloadCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_SUBMARINELOCATORRELOADCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY048"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
   }
 ]
