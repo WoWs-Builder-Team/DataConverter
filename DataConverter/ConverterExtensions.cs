@@ -23,6 +23,7 @@ public static class ConverterExtensions
         VerticalRotationSpeed = wgGun.RotationSpeed[1],
         Reload = wgGun.ShotDelay,
         SmokeDetectionWhenFiring = wgGun.SmokePenalty,
+        AmmoSwitchCoeff = wgGun.AmmoSwitchCoeff,
         Dispersion = new()
         {
             IdealRadius = wgGun.IdealRadius,

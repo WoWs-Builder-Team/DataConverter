@@ -2518,7 +2518,7 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "None"
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "timeDelayAttack",
