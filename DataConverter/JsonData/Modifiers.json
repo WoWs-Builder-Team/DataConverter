@@ -2516,7 +2516,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_SWITCHAMMORELOADCOEF",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": [],
+    "affectedProperties": [
+      "MainBatteryDataContainer.AmmoSwitchTime"
+    ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
