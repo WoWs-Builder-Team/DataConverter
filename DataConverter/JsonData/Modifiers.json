@@ -2836,5 +2836,25 @@
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "subsEnergyFreezeWorkTimeCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_SUBSENERGYFREEZEWORKTIMECOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.WorkTime.PCY047"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "vulnerabilityDc",
+    "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYDC",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
   }
 ]
