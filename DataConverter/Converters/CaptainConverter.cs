@@ -417,10 +417,7 @@ public static class CaptainConverter
 
     private static string GetSkillTranslationId(string skillName)
     {
-        if (skillName == null)
-        {
-            throw new ArgumentNullException(nameof(skillName));
-        }
+        ArgumentNullException.ThrowIfNull(skillName);
 
         if (skillName.Length < 2)
         {

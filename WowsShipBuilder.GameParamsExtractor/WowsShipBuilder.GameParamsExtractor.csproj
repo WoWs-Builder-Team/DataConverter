@@ -7,10 +7,10 @@
 
     <ItemGroup>
         <PackageReference Include="JsonSubTypes" Version="2.0.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
-        <PackageReference Include="NLog" Version="5.2.5" />
-        <PackageReference Include="Razorvine.Pickle" Version="1.4.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+        <PackageReference Include="NLog" Version="5.2.8" />
+        <PackageReference Include="Razorvine.Pickle" Version="1.5.0" />
         <PackageReference Include="SharpZipLib" Version="1.4.2" />
     </ItemGroup>
 

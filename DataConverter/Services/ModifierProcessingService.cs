@@ -52,7 +52,7 @@ public class ModifierProcessingService : IModifierProcessingService
             .ToDictionary(x => x.Name, x => x.Location);
         var newModifiers = modifierList.Where(m => !startingModifierDictionary.ContainsKey(m.Name)).ToDictionary(x => x.Name, x => x.Location);
         var removedModifiers = startingModifierDictionary.Where(m => !modifierList.Exists(x => x.Name.Equals(m.Key))).ToDictionary(x => x.Value.Name, x => x.Value.Location);
-        if (missingTranslationsModifiers.Any() || missingUnitOrDisplayProcessingModifiers.Any() || missingPropertyOrValueProcessingModifiers.Any() || newModifiers.Any() || removedModifiers.Any())
+        if (missingTranslationsModifiers.Count != 0 || missingUnitOrDisplayProcessingModifiers.Count != 0 || missingPropertyOrValueProcessingModifiers.Count != 0 || newModifiers.Count != 0 || removedModifiers.Count != 0)
         {
             logger.LogWarning("There are {Count} modifiers without translation", missingTranslationsModifiers.Count);
             logger.LogWarning("There are {Count} modifiers without unit or display value processing kind", missingUnitOrDisplayProcessingModifiers.Count);

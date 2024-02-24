@@ -48,7 +48,7 @@ internal sealed class DataConversionHelper
         DataCache.CurrentVersion = gameVersion;
         logger.LogInformation("Starting data conversion with game version {} and version type {}", gameVersion.MainVersion, gameVersion.VersionType);
 
-        if (Directory.Exists(options.OutputDirectory) && Directory.GetFiles(options.OutputDirectory).Any())
+        if (Directory.Exists(options.OutputDirectory) && Directory.GetFiles(options.OutputDirectory).Length != 0)
         {
             logger.LogWarning("Specified output directory is not empty, old files may get mixed into the conversion results");
         }
