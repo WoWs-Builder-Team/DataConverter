@@ -819,7 +819,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.PCY009.PCY037"
+      "ConsumableDataContainer.Uses.PCY009",
+      "ConsumableDataContainer.Uses.PCY037"
     ],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "RawAdd"
@@ -830,7 +831,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Reload.PCY009.PCY037"
+      "ConsumableDataContainer.Reload.PCY009",
+      "ConsumableDataContainer.Reload.PCY037"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -841,7 +843,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.WorkTime.PCY009.PCY037"
+      "ConsumableDataContainer.WorkTime.PCY009",
+      "ConsumableDataContainer.WorkTime.PCY037"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1154,7 +1157,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ConsumableDataContainer.ExtraFighters.PCY012.PCY03"
+      "ConsumableDataContainer.ExtraFighters.PCY012",
+      "ConsumableDataContainer.ExtraFighters.PCY038"
     ],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "RawAdd"
@@ -1780,7 +1784,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Reload.PCY012.PCY038"
+      "ConsumableDataContainer.Reload.PCY012",
+      "ConsumableDataContainer.Reload.PCY038"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2072,7 +2077,8 @@
     "affectedProperties": [
       "CvAircraftDataContainer.Concealment",
       "ConsumableDataContainer.Concealment.PCY035",
-      "ConsumableDataContainer.Concealment.PCY012.PCY03"
+      "ConsumableDataContainer.Concealment.PCY012",
+      "ConsumableDataContainer.Concealment.PCY038"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
