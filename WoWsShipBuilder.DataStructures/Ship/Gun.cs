@@ -39,5 +39,7 @@ public sealed class Gun : IGun
 
     public decimal BaseAngle { get; init; }
 
+    public decimal AmmoSwitchCoeff { get; init; }
+
     public Dispersion Dispersion { get; init; } = default!;
 }

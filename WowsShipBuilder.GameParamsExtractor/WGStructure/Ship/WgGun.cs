@@ -30,6 +30,8 @@ public class WgGun
 
     public decimal SmokePenalty { get; init; }
 
+    public decimal AmmoSwitchCoeff { get; init; }
+
     public double IdealRadius { get; init; }
 
     public double MinRadius { get; init; }

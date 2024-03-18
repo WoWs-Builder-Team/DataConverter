@@ -21,7 +21,7 @@ internal sealed class DataUnpackHelper
 
     public async Task UnpackData(ExtractOptions options)
     {
-        if (Directory.Exists(options.OutputDirectory) && Directory.GetFiles(options.OutputDirectory).Any())
+        if (Directory.Exists(options.OutputDirectory) && Directory.GetFiles(options.OutputDirectory).Length != 0)
         {
             logger.LogWarning("Specified output directory is not empty, old files may get mixed into the unpacked data.");
         }
