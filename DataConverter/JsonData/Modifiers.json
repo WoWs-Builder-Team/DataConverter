@@ -512,7 +512,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
@@ -2650,7 +2650,7 @@
   },
   {
     "name": "torpedoReloaderReloadCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERRELOADCOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERRELOADCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
