@@ -509,7 +509,7 @@
   },
   {
     "name": "buoyancyRudderResetTimeCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_BUOYANCYRUDDERRESETTIMECOEFF",
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
@@ -2863,6 +2863,60 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "patrolRadius",
+    "gameLocalizationKey": "PARAMS_MODIFIER_PATROLRADIUS",
+    "appLocalizationKey": null,
+    "unit": "Kilometers",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "pointHeight",
+    "gameLocalizationKey": null,
+    "appLocalizationKey": null,
+    "unit": "Meters",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "pointRadius",
+    "gameLocalizationKey": null,
+    "appLocalizationKey": null,
+    "unit": "Kilometers",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "pursuitRadius",
+    "gameLocalizationKey": null,
+    "appLocalizationKey": null,
+    "unit": "Kilometers",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "searchForEnemyRadius",
+    "gameLocalizationKey": null,
+    "appLocalizationKey": null,
+    "unit": "Kilometers",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "smokeRadius",
+    "gameLocalizationKey": "PARAMS_MODIFIER_RADIUS",
+    "appLocalizationKey": null,
+    "unit": "Kilometers",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   }
 ]
