@@ -254,7 +254,8 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ALLCONSUMABLERELOADTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.Ship",
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Ship",
       "ConsumableDataContainer.PrepTime.PCY048"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
@@ -2838,7 +2839,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Reload.PCY048"
+      "ConsumableDataContainer.Reload.PCY048",
+      "ConsumableDataContainer.PrepTime.PCY048"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
