@@ -946,18 +946,6 @@
     "valueProcessingKind": "RawAdd"
   },
   {
-    "name": "dcSplashRadiusMultiplier",
-    "gameLocalizationKey": "PARAMS_MODIFIER_DCSPLASHRADIUSMULTIPLIER",
-    "appLocalizationKey": null,
-    "unit": "Percent",
-    "affectedProperties": [
-      "ShellDataContainer.UnderwaterSplash.Main",
-      "ShellDataContainer.UnderwaterSplash.Secondary"
-    ],
-    "displayValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "Multiplier"
-  },
-  {
     "name": "distanceToKill",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
@@ -2918,5 +2906,17 @@
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "ammoSplashRadiusMultiplier",
+    "gameLocalizationKey": "PARAMS_MODIFIER_AMMOSPLASHRADIUSMULTIPLIER",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ShellDataContainer.UnderwaterSplash.Main",
+      "ShellDataContainer.UnderwaterSplash.Secondary"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
   }
 ]
