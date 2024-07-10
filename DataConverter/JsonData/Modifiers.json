@@ -946,6 +946,18 @@
     "valueProcessingKind": "RawAdd"
   },
   {
+    "name": "ammoSplashRadiusMultiplier",
+    "gameLocalizationKey": "PARAMS_MODIFIER_AMMOSPLASHRADIUSMULTIPLIER",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ShellDataContainer.UnderwaterSplash.Main",
+      "ShellDataContainer.UnderwaterSplash.Secondary"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
     "name": "distanceToKill",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
@@ -2857,66 +2869,83 @@
     "name": "patrolRadius",
     "gameLocalizationKey": "PARAMS_MODIFIER_PATROLRADIUS",
     "appLocalizationKey": null,
-    "unit": "Kilometers",
+    "unit": "None",
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
     "name": "pointHeight",
-    "gameLocalizationKey": null,
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "Meters",
+    "unit": "None",
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
     "name": "pointRadius",
-    "gameLocalizationKey": null,
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "Kilometers",
+    "unit": "None",
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
     "name": "pursuitRadius",
-    "gameLocalizationKey": null,
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "Kilometers",
+    "unit": "None",
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
     "name": "searchForEnemyRadius",
-    "gameLocalizationKey": null,
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "Kilometers",
+    "unit": "None",
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
     "name": "smokeRadius",
-    "gameLocalizationKey": "PARAMS_MODIFIER_RADIUS",
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "Kilometers",
+    "unit": "None",
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
-    "name": "ammoSplashRadiusMultiplier",
-    "gameLocalizationKey": "PARAMS_MODIFIER_AMMOSPLASHRADIUSMULTIPLIER",
+    "name": "GSAlphaFactor",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GSALPHAFACTOR",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.UnderwaterSplash.Main",
-      "ShellDataContainer.UnderwaterSplash.Secondary"
+      "ShellDataContainer.Damage.HESAP.Secondary"
     ],
-    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "PositivePercentage",
     "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "rageModeFloorLevel",
+    "gameLocalizationKey": "PARAMS_MODIFIER_RAGEMODEFLOORLEVEL",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
+  },
+  {
+  "name": "workRange",
+  "gameLocalizationKey": "",
+  "appLocalizationKey": null,
+  "unit": "None",
+  "affectedProperties": [],
+  "displayValueProcessingKind": "Discard",
+  "valueProcessingKind": "None"
   }
 ]
