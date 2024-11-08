@@ -19,6 +19,12 @@ public static class ModuleConverter
         foreach (var currentWgModule in wgModules)
         {
             DataCache.TranslationNames.Add(currentWgModule.Name);
+            if (currentWgModule.TypeInfo.Species == "ShieldUnit")
+            {
+                Console.WriteLine("Skipping ShieldUnit module");
+                continue;
+            }
+
             var type = Enum.Parse<ModuleType>(currentWgModule.TypeInfo.Species);
 
             // create our object type

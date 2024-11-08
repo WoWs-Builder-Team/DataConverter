@@ -104,7 +104,12 @@ internal static class GameParamsUtility
         {
             "Ship" => CustomShipProcessing(nationEntries),
             "Ability" => CustomConsumableProcessing(nationEntries),
-            "Exterior" => nationEntries.Where(x => !ConvertDataValue(x["typeinfo"])["species"].Equals("Ensign")).ToList(),
+            "Exterior" => nationEntries.Where(x =>
+            {
+                var convertedDataValue = ConvertDataValue(x["typeinfo"]);
+                var species = convertedDataValue["species"];
+                return !species.Equals("Ensign") && !species.Equals("ShipDestruction");
+            }).ToList(),
             _ => nationEntries,
         };
 
