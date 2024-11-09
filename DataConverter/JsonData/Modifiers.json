@@ -2949,14 +2949,21 @@
     "valueProcessingKind": "None"
   },
   {
-    "name": "healthHullCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHHULLCOEFF",
+    "name": "photonTorpedoReloadTime",
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
-    "unit": "Percent",
-    "affectedProperties": [
-      "SurvivabilityDataContainer.Hp.Permanent"
-    ],
-    "displayValueProcessingKind": "DecimalRoundedPercentage",
-    "valueProcessingKind": "Multiplier"
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "shieldHpRegen",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
   }
 ]
