@@ -2965,5 +2965,16 @@
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "healthHullCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHHULLCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "SurvivabilityDataContainer.Hp.Permanent"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
   }
 ]
