@@ -29,6 +29,7 @@ dotnet_diagnostic.SA1135.severity = none # Allow the use of not qualified using 
 dotnet_diagnostic.SA1136.severity = none # Enum values may be on the same line
 
 # Stylecop ordering rules
+dotnet_diagnostic.SA1200.severity = none # Ignore using directive placement
 dotnet_diagnostic.SA1201.severity = none # Ignore element order by type
 dotnet_diagnostic.SA1202.severity = none # Ignore element order by access
 dotnet_diagnostic.SA1208.severity = none # Ignore using directive order
