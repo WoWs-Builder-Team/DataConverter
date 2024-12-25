@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{C3AFEB
 		.editorconfig = .editorconfig
 		DataConverter.sln.DotSettings = DataConverter.sln.DotSettings
 		global.json = global.json
+		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{BB9BB78A-347D-4F8A-8FC3-713DEAFCF3DB}"

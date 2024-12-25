@@ -11,7 +11,10 @@ public static class DataExtensions
     {
         if (first.MaxRange > 0 && (first.MaxRange != second.MaxRange || first.HitChance != second.HitChance))
         {
-            throw new InvalidOperationException("Cannot combine auras with different ranges or accuracies.");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Cannot combine auras with different ranges or accuracies");
+            Console.ResetColor();
+            //throw new InvalidOperationException("Cannot combine auras with different ranges or accuracies.");
         }
 
         decimal minRange = second.FlakDamage > 0 ? first.MinRange : second.MinRange; // Use minimum range of new aura only if it is no flak cloud aura

@@ -254,7 +254,8 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ALLCONSUMABLERELOADTIME",
     "appLocalizationKey": null,
     "unit": "Percent",
-    "affectedProperties": ["ConsumableDataContainer.Reload.Ship",
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.Ship",
       "ConsumableDataContainer.PrepTime.PCY048"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
@@ -508,11 +509,11 @@
   },
   {
     "name": "buoyancyRudderResetTimeCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_BUOYANCYRUDDERRESETTIMECOEFF",
+    "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [],
-    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
@@ -945,8 +946,8 @@
     "valueProcessingKind": "RawAdd"
   },
   {
-    "name": "dcSplashRadiusMultiplier",
-    "gameLocalizationKey": "PARAMS_MODIFIER_DCSPLASHRADIUSMULTIPLIER",
+    "name": "ammoSplashRadiusMultiplier",
+    "gameLocalizationKey": "PARAMS_MODIFIER_AMMOSPLASHRADIUSMULTIPLIER",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -2650,7 +2651,7 @@
   },
   {
     "name": "torpedoReloaderReloadCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERRELOADCOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDORELOADERRELOADCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -2838,7 +2839,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Reload.PCY048"
+      "ConsumableDataContainer.Reload.PCY048",
+      "ConsumableDataContainer.PrepTime.PCY048"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2862,5 +2864,117 @@
     "affectedProperties": [],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "patrolRadius",
+    "gameLocalizationKey": "PARAMS_MODIFIER_PATROLRADIUS",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "pointHeight",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "pointRadius",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "pursuitRadius",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "searchForEnemyRadius",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "smokeRadius",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GSAlphaFactor",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GSALPHAFACTOR",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ShellDataContainer.Damage.HESAP.Secondary"
+    ],
+    "displayValueProcessingKind": "PositivePercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "rageModeFloorLevel",
+    "gameLocalizationKey": "PARAMS_MODIFIER_RAGEMODEFLOORLEVEL",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "workRange",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "photonTorpedoReloadTime",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "shieldHpRegen",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "healthHullCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHHULLCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "SurvivabilityDataContainer.Hp.Permanent"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
   }
 ]
