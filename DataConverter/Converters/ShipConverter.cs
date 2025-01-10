@@ -210,6 +210,7 @@ public static class ShipConverter
             "specialUnsellable" when tier == 10 => ShipCategory.Special,
             "demoWithoutStats" => ShipCategory.TestShip,
             "demoWithoutStatsPrem" => ShipCategory.TestShip,
+            "demoWithoutStatsTemporary" => ShipCategory.TestShip,
             "demoWithStats" => ShipCategory.TestShip,
             "special" when tier < 10 => ShipCategory.Premium,
             "special" when tier == 10 => ShipCategory.Special,

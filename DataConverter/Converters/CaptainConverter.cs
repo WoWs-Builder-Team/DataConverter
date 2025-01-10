@@ -166,7 +166,7 @@ public static class CaptainConverter
 
                             var fixedKey = key.Equals("regenerationHPSpeed") ? "captain_" + currentWgCaptain.Name + "_" + key : key;
                             modifierDictionary.TryGetValue(fixedKey, out Modifier? modifierData);
-                            effectsModifiers.Add(new Modifier(fixedKey, value.Value<float>(), $"Skill_{currentUniqueSkillKey}", modifierData));
+                            effectsModifiers.Add(new Modifier(fixedKey, value.Value<float>(), $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
                             DataCache.TranslationNames.Add(key);
                         }
                         else if (value.Type == JTokenType.Object)
@@ -177,7 +177,7 @@ public static class CaptainConverter
                             if (allEquals)
                             {
                                 modifierDictionary.TryGetValue(key, out Modifier? modifierData);
-                                effectsModifiers.Add(new Modifier(key, modifiers.First().Value, $"Skill_{currentUniqueSkillKey}", modifierData));
+                                effectsModifiers.Add(new Modifier(key, modifiers.First().Value, $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
                                 DataCache.TranslationNames.Add(key);
                             }
                             else
@@ -185,8 +185,9 @@ public static class CaptainConverter
                                 foreach (var (modifierName, modifierValue) in modifiers)
                                 {
                                     modifierDictionary.TryGetValue($"{key}_{modifierName}", out Modifier? modifierData);
-                                    effectsModifiers.Add(new Modifier($"{key}_{modifierName}", modifierValue, $"Skill_{currentUniqueSkillKey}", modifierData));
-                                    DataCache.TranslationNames.Add($"{key}_{modifierName}");
+                                    string name = key.Equals("modifiers") ? $"{modifierName}" : $"{key}_{modifierName}";
+                                    effectsModifiers.Add(new Modifier(name, modifierValue, $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
+                                    DataCache.TranslationNames.Add(name);
                                 }
                             }
                         }
