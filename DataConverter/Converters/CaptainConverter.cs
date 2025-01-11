@@ -184,8 +184,8 @@ public static class CaptainConverter
                             {
                                 foreach (var (modifierName, modifierValue) in modifiers)
                                 {
-                                    modifierDictionary.TryGetValue($"{key}_{modifierName}", out Modifier? modifierData);
                                     string name = key.Equals("modifiers") ? $"{modifierName}" : $"{key}_{modifierName}";
+                                    modifierDictionary.TryGetValue(name, out Modifier? modifierData);
                                     effectsModifiers.Add(new Modifier(name, modifierValue, $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
                                     DataCache.TranslationNames.Add(name);
                                 }
