@@ -10,7 +10,7 @@ public static class GameVersionConverter
 {
     public static GameVersion FromVersionString(string versionString)
     {
-        var versionPattern = new Regex(@"^(?<main>\d+(\.\d+){2,3})(#(?<iteration>\d+))?(-(?<type>[a-z0-9]+))?$");
+        var versionPattern = new Regex(@"^(?<main>\d+(\.\d+){1,2})(#(?<iteration>\d+))?(-(?<type>[a-z0-9]+))?$");
         var match = versionPattern.Match(versionString);
         if (!match.Success)
         {
