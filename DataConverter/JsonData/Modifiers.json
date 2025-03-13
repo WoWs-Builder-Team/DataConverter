@@ -2174,15 +2174,6 @@
     "valueProcessingKind": "Multiplier"
   },
   {
-    "name": "PMDetonationProb",
-    "gameLocalizationKey": "PARAMS_MODIFIER_PMDETONATIONPROB",
-    "appLocalizationKey": null,
-    "unit": "Percent",
-    "affectedProperties": [],
-    "displayValueProcessingKind": "IntVariablePercentage",
-    "valueProcessingKind": "None"
-  },
-  {
     "name": "pointHeight",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,

@@ -34,7 +34,7 @@ public static class ShipConverter
         foreach (WgShip wgShip in wgShipList)
         {
             if (wgShip.TypeInfo.Species.Equals(ShipClass.Auxiliary.ToString()) || wgShip.Group.Equals("clan") || wgShip.Group.Equals("disabled") ||
-                wgShip.Group.Equals("preserved") || wgShip.Group.Equals("unavailable") || wgShip.Group.Equals("coopOnly"))
+                wgShip.Group.Equals("preserved") || wgShip.Group.Equals("unavailable") || wgShip.Group.Equals("coopOnly") || wgShip.Group.Equals("experimental"))
             {
                 continue;
             }
