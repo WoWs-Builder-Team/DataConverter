@@ -57,7 +57,7 @@ internal class DataConverterService : IDataConverterService
                 switch (categoryName)
                 {
                     case "Ability":
-                        var consumableData = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>(), modifiersDictionary);
+                        var consumableData = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>(), modifiersDictionary, logger);
                         modifiers.UnionWith(consumableData.SelectMany(consumable => consumable.Value.Modifiers));
                         convertedFileContent = JsonSerializer.Serialize(consumableData, Constants.SerializerOptions);
                         break;

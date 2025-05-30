@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using DataConverter.Data;
+using Microsoft.Extensions.Logging;
 using WoWsShipBuilder.DataStructures.Consumable;
 using WoWsShipBuilder.DataStructures.Modifiers;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
@@ -11,7 +12,7 @@ namespace DataConverter.Converters
     public static class ConsumableConverter
     {
         //convert the list of consumables from WG to our list of Consumables
-        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable, Dictionary<string, Modifier> modifierDictionary)
+        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable, Dictionary<string, Modifier> modifierDictionary, ILogger logger)
         {
             //create a List of our Objects
             Dictionary<string, Consumable> consumableList = new Dictionary<string, Consumable>();
@@ -46,7 +47,7 @@ namespace DataConverter.Converters
                         ConsumableVariantName = currentVariantKey,
                         PlaneName = stats.FightersName,
                         PreparationTime = stats.PreparationTime,
-                        Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary),
+                        Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary, logger),
                     };
                     DataCache.TranslationNames.UnionWith(consumable.Modifiers.Select(m => m.Name));
 
@@ -59,10 +60,11 @@ namespace DataConverter.Converters
             return consumableList;
         }
 
-        private static ImmutableList<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary)
+        private static ImmutableList<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary, ILogger logger)
         {
             var results = new List<Modifier>();
-            foreach ((string key, float modifierValue) in consumableStats.Modifiers)
+            var modifiers = consumableStats.RetrieveModifiers(logger);
+            foreach ((string key, float modifierValue) in modifiers)
             {
                 Modifier modifier;
                 Modifier? modifierData;

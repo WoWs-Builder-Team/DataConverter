@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -31,7 +32,8 @@ public class WgStatistics
 
     public float WorkTime { get; init; }
 
-    public string FightersName => Logic.GetValueOrDefault("fightersName", string.Empty).ToString();
+    [JsonIgnore]
+    public string FightersName => Logic.GetValueOrDefault("fightersName", RawModifiers.GetValueOrDefault("fightersName", string.Empty)).ToString();
 
     public float PreparationTime { get; init; }
 
@@ -40,18 +42,40 @@ public class WgStatistics
     [JsonExtensionData]
     public Dictionary<string, JToken> RawModifiers { get; init; } = new();
 
-    [JsonIgnore]
-    public ImmutableDictionary<string, float> Modifiers => RetrieveModifiers();
-
-    private ImmutableDictionary<string, float> RetrieveModifiers()
+    public ImmutableDictionary<string, float> RetrieveModifiers(ILogger logger)
     {
         var defaultModifiers = RawModifiers
             .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
             .Select(entry => (entry.Key, Value: entry.Value.ToObject<float>()));
-        var additionalModifiers = Logic
-            .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
-            .Select(prop => (prop.Key, Value: prop.Value.ToObject<float>()))
-            .ToList();
+
+        List<(string Key, float Value)> additionalModifiers;
+        if (RawModifiers.ContainsKey("modifiers"))
+        {
+            // Legacy processing for modifiers
+            logger.LogWarning("Legacy modifier processing detected");
+            additionalModifiers = RawModifiers
+                .Where(x => x.Key.Equals("modifiers", StringComparison.OrdinalIgnoreCase) && x.Value.Type.Equals(JTokenType.Object))
+                .SelectMany(x => x.Value.Children<JProperty>())
+                .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
+                .Select(prop => (Key: prop.Name, Value: prop.Value.ToObject<float>()))
+                .ToList();
+        }
+        else
+        {
+            // new processing for additional modifiers
+            additionalModifiers = Logic
+                .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
+                .Select(prop => (prop.Key, Value: prop.Value.ToObject<float>()))
+                .ToList();
+
+            if (Logic.TryGetValue("modifiers", out var modifiersToken) && modifiersToken is { Type: JTokenType.Object, HasValues: true })
+            {
+                modifiersToken.ToObject<Dictionary<string, JToken>>()!
+                    .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
+                    .ToList()
+                    .ForEach(prop => additionalModifiers.Add((prop.Key, Value: prop.Value.ToObject<float>())));
+            }
+        }
 
         // resolve duplicate keys, entries in `additionalModifiers` will override those in `defaultModifiers`
         var additionalKeys = additionalModifiers.Select(x => x.Key).ToImmutableHashSet();
