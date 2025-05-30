@@ -299,8 +299,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Secondary",
-      "ShellDataContainer.FireChance.Main"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -311,8 +311,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Secondary",
-      "ShellDataContainer.FireChance.Main"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -323,8 +323,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Secondary",
-      "ShellDataContainer.FireChance.Main"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -335,8 +335,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Secondary",
-      "ShellDataContainer.FireChance.Main"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -347,8 +347,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Secondary",
-      "ShellDataContainer.FireChance.Main"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -370,15 +370,15 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ShellDataContainer.Krupp.Secondary",
-      "ShellDataContainer.Krupp.Main"
+      "ShellDataContainer.Krupp.Main",
+      "ShellDataContainer.Krupp.Secondary"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
   },
   {
     "name": "artilleryReloadCoeff",
-    "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYRELOADCOEFF_SKILL",
+    "gameLocalizationKey": "PARAMS_MODIFIER_ARTILLERYRELOADCOEFF",
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
@@ -392,7 +392,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_ASADDITIONALCHARGES",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["AirstrikeDataContainer.Uses"],
+    "affectedProperties": [
+      "AirstrikeDataContainer.Uses"
+    ],
     "displayValueProcessingKind": "ToPositive",
     "valueProcessingKind": "RawAdd"
   },
@@ -554,8 +556,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Secondary",
-      "ShellDataContainer.FireChance.Main"
+      "ShellDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -566,9 +568,9 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
+      "ShellDataContainer.FireChance.Secondary.Big.Additive",
       "ShellDataContainer.FireChance.Main.Big.Additive",
-      "BombDataContainer.FireChance",
-      "ShellDataContainer.FireChance.Secondary.Big.Additive"
+      "BombDataContainer.FireChance"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -588,8 +590,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main.Multiplier",
-      "ShellDataContainer.FireChance.Secondary.Multiplier"
+      "ShellDataContainer.FireChance.Secondary.Multiplier",
+      "ShellDataContainer.FireChance.Main.Multiplier"
     ],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "Multiplier"
@@ -600,10 +602,10 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "RocketDataContainer.FireChance.Secondary",
+      "ShellDataContainer.FireChance.Main.Small.Additive",
       "ShellDataContainer.FireChance.Secondary.Small.Additive",
-      "RocketDataContainer.FireChance.Main",
-      "ShellDataContainer.FireChance.Main.Small.Additive"
+      "RocketDataContainer.FireChance.Secondary",
+      "RocketDataContainer.FireChance.Main"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -684,6 +686,15 @@
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "capacityRegenCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_CAPACITYREGENCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Seconds",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
   },
   {
     "name": "captain_PGW103_Lutjens_regenerationHPSpeed",
@@ -841,8 +852,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.PCY009",
-      "ConsumableDataContainer.Uses.PCY037"
+      "ConsumableDataContainer.Uses.PCY037",
+      "ConsumableDataContainer.Uses.PCY009"
     ],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "RawAdd"
@@ -1167,8 +1178,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ConsumableDataContainer.ExtraFighters.PCY038",
-      "ConsumableDataContainer.ExtraFighters.PCY012"
+      "ConsumableDataContainer.ExtraFighters.PCY012",
+      "ConsumableDataContainer.ExtraFighters.PCY038"
     ],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "RawAdd"
@@ -1338,8 +1349,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.Damage.HESAP.Main",
-      "ShellDataContainer.Damage.Ap"
+      "ShellDataContainer.Damage.Ap",
+      "ShellDataContainer.Damage.HESAP.Main"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1755,8 +1766,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "SurvivabilityDataContainer.FloodDuration",
-      "SurvivabilityDataContainer.FireDuration"
+      "SurvivabilityDataContainer.FireDuration",
+      "SurvivabilityDataContainer.FloodDuration"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1827,8 +1838,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Reload.PCY012",
-      "ConsumableDataContainer.Reload.PCY038"
+      "ConsumableDataContainer.Reload.PCY038",
+      "ConsumableDataContainer.Reload.PCY012"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1905,15 +1916,24 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "AntiAirDataContainer.ConstantDamage",
       "SecondaryBatteryDataContainer.Reload",
-      "PingerGunDataContainer.Reload",
-      "AirstrikeDataContainer.Reload",
       "MainBatteryDataContainer.Reload",
-      "TorpedoArmamentDataContainer.Reload"
+      "AntiAirDataContainer.ConstantDamage",
+      "TorpedoArmamentDataContainer.Reload",
+      "AirstrikeDataContainer.Reload",
+      "PingerGunDataContainer.Reload"
     ],
     "displayValueProcessingKind": "ToNegative",
     "valueProcessingKind": "NegativeMultiplier"
+  },
+  {
+    "name": "lifeCycleType",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
   },
   {
     "name": "lifeTime",
@@ -1934,6 +1954,24 @@
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "maxCapacity",
+    "gameLocalizationKey": "PARAMS_MODIFIER_MAXCAPACITY",
+    "appLocalizationKey": null,
+    "unit": "Seconds",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "minWorkTime",
+    "gameLocalizationKey": "PARAMS_MODIFIER_MINWORKTIME",
+    "appLocalizationKey": null,
+    "unit": "Seconds",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
   },
   {
     "name": "modifiers",
@@ -2056,7 +2094,9 @@
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANEEXTRAHANGARSIZE",
     "appLocalizationKey": null,
     "unit": "None",
-    "affectedProperties": ["CvAircraftDataContainer.MaxOnDeck"],
+    "affectedProperties": [
+      "CvAircraftDataContainer.MaxOnDeck"
+    ],
     "displayValueProcessingKind": "ToPositive",
     "valueProcessingKind": "RawAdd"
   },
@@ -2165,9 +2205,9 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
+      "ConsumableDataContainer.Concealment.PCY035",
       "ConsumableDataContainer.Concealment.PCY012",
       "CvAircraftDataContainer.Concealment",
-      "ConsumableDataContainer.Concealment.PCY035",
       "ConsumableDataContainer.Concealment.PCY038"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
@@ -2859,15 +2899,6 @@
   },
   {
     "name": "underwaterMaxRudderAngleCoeff",
-    "gameLocalizationKey": "",
-    "appLocalizationKey": null,
-    "unit": "None",
-    "affectedProperties": [],
-    "displayValueProcessingKind": "ToInt",
-    "valueProcessingKind": "None"
-  },
-  {
-    "name": "updatePeriod",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",

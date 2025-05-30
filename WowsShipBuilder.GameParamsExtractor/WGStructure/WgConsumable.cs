@@ -31,9 +31,11 @@ public class WgStatistics
 
     public float WorkTime { get; init; }
 
-    public string FightersName { get; init; } = string.Empty;
+    public string FightersName => Logic.GetValueOrDefault("fightersName", string.Empty).ToString();
 
     public float PreparationTime { get; init; }
+
+    public Dictionary<string, JToken> Logic { get; init; } = new();
 
     [JsonExtensionData]
     public Dictionary<string, JToken> RawModifiers { get; init; } = new();
@@ -46,12 +48,15 @@ public class WgStatistics
         var defaultModifiers = RawModifiers
             .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
             .Select(entry => (entry.Key, Value: entry.Value.ToObject<float>()));
-        var additionalModifiers = RawModifiers
-            .Where(x => x.Key.Equals("modifiers", StringComparison.OrdinalIgnoreCase) && x.Value.Type.Equals(JTokenType.Object))
-            .SelectMany(x => x.Value.Children<JProperty>())
+        var additionalModifiers = Logic
             .Where(x => x.Value.Type.Equals(JTokenType.Integer) || x.Value.Type.Equals(JTokenType.Float))
-            .Select(prop => (Key: prop.Name, Value: prop.Value.ToObject<float>()));
+            .Select(prop => (prop.Key, Value: prop.Value.ToObject<float>()))
+            .ToList();
 
-        return defaultModifiers.Concat(additionalModifiers).ToImmutableDictionary(x => x.Key, x => x.Value);
+        // resolve duplicate keys, entries in `additionalModifiers` will override those in `defaultModifiers`
+        var additionalKeys = additionalModifiers.Select(x => x.Key).ToImmutableHashSet();
+        return defaultModifiers.Where(x => !additionalKeys.Contains(x.Key))
+            .Concat(additionalModifiers)
+            .ToImmutableDictionary(x => x.Key, x => x.Value);
     }
 }
