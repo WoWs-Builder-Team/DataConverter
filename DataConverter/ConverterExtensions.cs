@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
 using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
@@ -56,7 +57,7 @@ public static class ConverterExtensions
         MaximumDistance = wgAirSupport.MaxDist,
         MaximumFlightDistance = wgAirSupport.MaxPlaneFlightDist,
         MinimumDistance = wgAirSupport.MinDist,
-        PlaneName = wgAirSupport.PlaneName,
+        PlaneName = string.IsNullOrEmpty(wgAirSupport.PlaneName) ? wgAirSupport.AmmoList.FirstOrDefault(string.Empty) : wgAirSupport.PlaneName,
         DropTime = wgAirSupport.TimeFromHeaven,
         ReloadTime = wgAirSupport.ReloadTime,
         TimeBetweenShots = wgAirSupport.TimeBetweenShots,

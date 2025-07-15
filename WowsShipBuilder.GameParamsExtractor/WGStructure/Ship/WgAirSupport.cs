@@ -24,4 +24,6 @@ public class WgAirSupport : WgArmamentModule
     public decimal TimeBetweenShots { get; init; }
 
     public decimal TimeFromHeaven { get; init; }
+
+    public List<string> AmmoList { get; init; } = new();
 }

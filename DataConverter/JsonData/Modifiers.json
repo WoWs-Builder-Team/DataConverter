@@ -388,8 +388,8 @@
     "valueProcessingKind": "Multiplier"
   },
   {
-    "name": "asAdditionalCharges",
-    "gameLocalizationKey": "PARAMS_MODIFIER_ASADDITIONALCHARGES",
+    "name": "asAdditionalChargesCombined",
+    "gameLocalizationKey": "PARAMS_MODIFIER_ASADDITIONALCHARGESCOMBINED",
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
