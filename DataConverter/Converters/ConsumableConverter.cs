@@ -31,6 +31,7 @@ namespace DataConverter.Converters
                     //mapping all the variants
                     WgStatistics stats = variant[currentVariantKey];
 
+                    var isShipFighter = string.Equals(stats.Group, "ship") && string.Equals(stats.ConsumableType, "fighter");
                     //create our object type
                     var consumable = new Consumable
                     {
@@ -45,7 +46,7 @@ namespace DataConverter.Converters
                         ReloadTime = stats.ReloadTime,
                         WorkTime = stats.WorkTime,
                         ConsumableVariantName = currentVariantKey,
-                        PlaneName = stats.FightersName,
+                        PlaneName = isShipFighter && string.IsNullOrEmpty(stats.FightersName) ? "PAAF001_Grumman_F3F" : stats.FightersName,
                         PreparationTime = stats.PreparationTime,
                         Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary, logger),
                     };

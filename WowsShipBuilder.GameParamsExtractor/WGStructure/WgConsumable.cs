@@ -26,6 +26,8 @@ public class WgStatistics
 
     public string IconIDs { get; init; } = string.Empty;
 
+    public string ConsumableType { get; init; } = string.Empty;
+
     public int NumConsumables { get; init; }
 
     public float ReloadTime { get; init; }
