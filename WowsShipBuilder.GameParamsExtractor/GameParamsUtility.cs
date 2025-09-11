@@ -52,8 +52,13 @@ internal static class GameParamsUtility
         byte[] decompressedGpBytes = Decompress(gpBytes);
         using var unpickler = new Unpickler();
         Unpickler.registerConstructor("copy_reg", "_reconstructor", new PythonDictionaryConstructor());
-        var unpickledObjectTemp = (object[])unpickler.loads(decompressedGpBytes);
-        var unpickledGp = (Hashtable)unpickledObjectTemp[0];
+        var loadedParams = unpickler.loads(decompressedGpBytes);
+        var unpickledGp = loadedParams switch
+        {
+            object[] gpRootArray => (Hashtable)gpRootArray[0],
+            Hashtable gpRootTable => (Hashtable)gpRootTable[""]!,
+            _ => throw new InvalidOperationException("Unsupported gameparams format")
+        };
 
         Dictionary<object, Dictionary<string, object>> dict = new();
         foreach (DictionaryEntry unpickledJsonEntry in unpickledGp)
