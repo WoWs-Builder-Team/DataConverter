@@ -255,8 +255,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.PrepTime.PCY048",
-      "ConsumableDataContainer.Reload.Ship"
+      "ConsumableDataContainer.Reload.Ship",
+      "ConsumableDataContainer.PrepTime.PCY048"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -267,8 +267,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.UnderwaterSplash.Main",
-      "ShellDataContainer.UnderwaterSplash.Secondary"
+      "ShellDataContainer.UnderwaterSplash.Secondary",
+      "ShellDataContainer.UnderwaterSplash.Main"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -299,8 +299,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main",
-      "ShellDataContainer.FireChance.Secondary"
+      "ShellDataContainer.FireChance.Secondary",
+      "ShellDataContainer.FireChance.Main"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -311,8 +311,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main",
-      "ShellDataContainer.FireChance.Secondary"
+      "ShellDataContainer.FireChance.Secondary",
+      "ShellDataContainer.FireChance.Main"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -323,8 +323,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main",
-      "ShellDataContainer.FireChance.Secondary"
+      "ShellDataContainer.FireChance.Secondary",
+      "ShellDataContainer.FireChance.Main"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -335,8 +335,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main",
-      "ShellDataContainer.FireChance.Secondary"
+      "ShellDataContainer.FireChance.Secondary",
+      "ShellDataContainer.FireChance.Main"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -347,8 +347,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main",
-      "ShellDataContainer.FireChance.Secondary"
+      "ShellDataContainer.FireChance.Secondary",
+      "ShellDataContainer.FireChance.Main"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -370,8 +370,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ShellDataContainer.Krupp.Main",
-      "ShellDataContainer.Krupp.Secondary"
+      "ShellDataContainer.Krupp.Secondary",
+      "ShellDataContainer.Krupp.Main"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -556,8 +556,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main",
-      "ShellDataContainer.FireChance.Secondary"
+      "ShellDataContainer.FireChance.Secondary",
+      "ShellDataContainer.FireChance.Main"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -569,8 +569,8 @@
     "unit": "Percent",
     "affectedProperties": [
       "ShellDataContainer.FireChance.Secondary.Big.Additive",
-      "ShellDataContainer.FireChance.Main.Big.Additive",
-      "BombDataContainer.FireChance"
+      "BombDataContainer.FireChance",
+      "ShellDataContainer.FireChance.Main.Big.Additive"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
@@ -590,8 +590,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Secondary.Multiplier",
-      "ShellDataContainer.FireChance.Main.Multiplier"
+      "ShellDataContainer.FireChance.Main.Multiplier",
+      "ShellDataContainer.FireChance.Secondary.Multiplier"
     ],
     "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "Multiplier"
@@ -602,13 +602,22 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.FireChance.Main.Small.Additive",
-      "ShellDataContainer.FireChance.Secondary.Small.Additive",
       "RocketDataContainer.FireChance.Secondary",
-      "RocketDataContainer.FireChance.Main"
+      "ShellDataContainer.FireChance.Main.Small.Additive",
+      "RocketDataContainer.FireChance.Main",
+      "ShellDataContainer.FireChance.Secondary.Small.Additive"
     ],
     "displayValueProcessingKind": "RawOrPercentage",
     "valueProcessingKind": "AddPercentage"
+  },
+  {
+    "name": "burnChanceGMGSMultiplier",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
   },
   {
     "name": "burnProb",
@@ -724,6 +733,24 @@
     "valueProcessingKind": "None"
   },
   {
+    "name": "captain_PUW100_Collins_regenerationHPSpeed",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "RawOrPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "citadelDamageMultiplierCSAP",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "climbAngle",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
@@ -765,8 +792,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.PrepTime.PCY048",
-      "ConsumableDataContainer.Reload.Ship"
+      "ConsumableDataContainer.Reload.Ship",
+      "ConsumableDataContainer.PrepTime.PCY048"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -852,8 +879,8 @@
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.PCY037",
-      "ConsumableDataContainer.Uses.PCY009"
+      "ConsumableDataContainer.Uses.PCY009",
+      "ConsumableDataContainer.Uses.PCY037"
     ],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "RawAdd"
@@ -864,8 +891,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Reload.PCY009",
-      "ConsumableDataContainer.Reload.PCY037"
+      "ConsumableDataContainer.Reload.PCY037",
+      "ConsumableDataContainer.Reload.PCY009"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1349,8 +1376,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ShellDataContainer.Damage.Ap",
-      "ShellDataContainer.Damage.HESAP.Main"
+      "ShellDataContainer.Damage.HESAP.Main",
+      "ShellDataContainer.Damage.Ap"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -1752,6 +1779,15 @@
     "valueProcessingKind": "Multiplier"
   },
   {
+    "name": "healthRegenPercent",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "height",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
@@ -1917,11 +1953,11 @@
     "unit": "Percent",
     "affectedProperties": [
       "SecondaryBatteryDataContainer.Reload",
-      "MainBatteryDataContainer.Reload",
       "AntiAirDataContainer.ConstantDamage",
-      "TorpedoArmamentDataContainer.Reload",
       "AirstrikeDataContainer.Reload",
-      "PingerGunDataContainer.Reload"
+      "MainBatteryDataContainer.Reload",
+      "PingerGunDataContainer.Reload",
+      "TorpedoArmamentDataContainer.Reload"
     ],
     "displayValueProcessingKind": "ToNegative",
     "valueProcessingKind": "NegativeMultiplier"
@@ -1971,6 +2007,60 @@
     "unit": "Seconds",
     "affectedProperties": [],
     "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "missileDamageCoeff",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "missileDamageCoeffIfOnFire",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "missileRangeCoefficient",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "missileSpeedMultiplier",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "missilesSearchRadiusCoeff",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "missileTimeBetweenShotsCoeff",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
@@ -2205,10 +2295,10 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Concealment.PCY035",
       "ConsumableDataContainer.Concealment.PCY012",
-      "CvAircraftDataContainer.Concealment",
-      "ConsumableDataContainer.Concealment.PCY038"
+      "ConsumableDataContainer.Concealment.PCY035",
+      "ConsumableDataContainer.Concealment.PCY038",
+      "CvAircraftDataContainer.Concealment"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2496,6 +2586,15 @@
     "valueProcessingKind": "None"
   },
   {
+    "name": "SGRudderPower",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "SGRudderTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_SGRUDDERTIME",
     "appLocalizationKey": null,
@@ -2505,15 +2604,6 @@
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
-  },
-  {
-    "name": "shieldHpRegen",
-    "gameLocalizationKey": "",
-    "appLocalizationKey": null,
-    "unit": "None",
-    "affectedProperties": [],
-    "displayValueProcessingKind": "Discard",
-    "valueProcessingKind": "None"
   },
   {
     "name": "shootShift",
@@ -2816,6 +2906,15 @@
     "valueProcessingKind": "Multiplier"
   },
   {
+    "name": "torpedoDamageCoeffIfOnFire",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "torpedoDetectionCoefficient",
     "gameLocalizationKey": "PARAMS_MODIFIER_TORPEDODETECTIONCOEFFICIENT",
     "appLocalizationKey": null,
@@ -2842,6 +2941,15 @@
     "unit": "Percent",
     "affectedProperties": [],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "torpedoRangeCoefficient",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
@@ -2929,6 +3037,15 @@
     "valueProcessingKind": "Multiplier"
   },
   {
+    "name": "visibilityFactor",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "visibilityForSubmarineCoeff",
     "gameLocalizationKey": "PARAMS_MODIFIER_VISIBILITYFORSUBMARINECOEFF",
     "appLocalizationKey": null,
@@ -2944,6 +3061,15 @@
     "unit": "Kilometers",
     "affectedProperties": [],
     "displayValueProcessingKind": "MeterToKm",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "vulnerabilityAll",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
     "valueProcessingKind": "None"
   },
   {
@@ -2978,7 +3104,7 @@
     "valueProcessingKind": "Multiplier"
   },
   {
-    "name": "workRange",
+    "name": "vulnerabilityMissile",
     "gameLocalizationKey": "",
     "appLocalizationKey": null,
     "unit": "None",
