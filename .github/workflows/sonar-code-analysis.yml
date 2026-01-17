@@ -46,7 +46,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: pwsh
         run: |
-          ./.sonar/scanner/dotnet-sonarscanner begin /k:"WoWs-Builder-Team_DataConverter" /o:"wows-builder-team" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths="TestResults/*/*.xml"
+          ./.sonar/scanner/dotnet-sonarscanner begin /k:"WoWs-Builder-Team_DataConverter" /o:"wows-builder-team" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths="TestResults/*.xml"
           dotnet build -c Release --no-restore
-          dotnet test -c Release --no-build --results-directory TestResults
+          dotnet test -c Release --no-build --results-directory TestResults --coverage --coverage-output-format xml
           ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
