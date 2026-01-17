@@ -27,12 +27,21 @@ jobs:
       - name: Build Release
         run: dotnet build --no-restore -c Release
       - name: Test Release
-        run: dotnet test --no-build -c Release --verbosity normal
+        run: dotnet test --no-build -c Release --verbosity normal --report-trx --results-directory TestResults
+      - uses: dorny/test-reporter@v2
+        with:
+          name: 'Test Results'
+          path: 'TestResults/*.trx'
+          reporter: 'dotnet-trx'
 
   publish-nuget:
     runs-on: ubuntu-latest
     name: Build and publish NuGet package
     needs: build
+    
+    permissions: 
+      id-token: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v6
