@@ -83,11 +83,6 @@ Providing a game params file (-p) and an output directory (-o) is mandatory, loc
 This project is part of the WoWs ShipBuilder project which is sponsored by the following companies through their
 Open-Source sponsorship programs:
 
-Product subscriptions provided by JetBrains through their [Open Source Support](https://jb.gg/OpenSourceSupport)
-
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo." height="120">
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/Rider.png" alt="Rider logo." height="120">
-
 Free Open-Source subscription of their localization solution provided by [Crowdin](https://crowdin.com/)
 
 Free Open-Source subscription provided by [Sentry](https://sentry.io/)

@@ -26,4 +26,10 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal --report-trx --results-directory TestResults
+      - uses: dorny/test-reporter@v2
+        with:
+          name: 'Test Results'
+          path: 'TestResults/*.trx'
+          reporter: 'dotnet-trx'
+          

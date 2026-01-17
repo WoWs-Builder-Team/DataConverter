@@ -72,6 +72,7 @@ dotnet_diagnostic.SA1648.severity = none # Inherit doc can be used wherever you 
 
 dotnet_diagnostic.CA1848.severity = none # Ignore high performance logging
 dotnet_diagnostic.CA1309.severity = none # Ordinal string comparison; TODO: enable
+dotnet_diagnostic.CA1873.severity = none # Avoid potentially expensive logging
 
 csharp_using_directive_placement = outside_namespace:warning
 
