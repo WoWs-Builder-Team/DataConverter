@@ -58,6 +58,12 @@ namespace DataConverter.Converters
                     false => PlaneCategory.Cv,
                 };
 
+                var containsDepthChargeReference = currentWgAir.BombName.Contains("depth", StringComparison.OrdinalIgnoreCase) || currentWgAir.Name.Contains("ASW", StringComparison.Ordinal);
+                if (containsDepthChargeReference && isAirSupport)
+                {
+                    planeCategory = PlaneCategory.Asw;
+                }
+
                 var planeType = PlaneType.None;
                 if (planeCategory == PlaneCategory.Cv)
                 {
