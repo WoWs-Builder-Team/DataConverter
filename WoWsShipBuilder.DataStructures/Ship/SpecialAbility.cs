@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using WoWsShipBuilder.DataStructures.Modifiers;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -27,4 +27,6 @@ public sealed class BurstModeAbility
     public ImmutableList<Modifier> Modifiers { get; init; } = ImmutableList<Modifier>.Empty;
 
     public int ShotInBurst { get; init; }
+
+    public ImmutableArray<string> AlternateShells { get; init; } = ImmutableArray<string>.Empty;
 }
