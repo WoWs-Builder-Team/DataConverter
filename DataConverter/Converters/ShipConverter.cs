@@ -1,17 +1,17 @@
+using DataConverter.Data;
+using DataConverter.JsonData;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Globalization;
 using System.Linq;
-using DataConverter.Data;
-using DataConverter.JsonData;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
+using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Modifiers;
 using WoWsShipBuilder.DataStructures.Ship;
-using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 using Hull = WoWsShipBuilder.DataStructures.Ship.Hull;
 using ShipUpgrade = WoWsShipBuilder.DataStructures.Ship.ShipUpgrade;
 
@@ -42,7 +42,7 @@ public static class ShipConverter
             DataCache.TranslationNames.Add(wgShip.Index);
             var stShip = shiptoolData.Ship.Find(s => s.Index.Equals(wgShip.Index));
             var upgradeInfo = ProcessUpgradeInfo(wgShip, logger);
-            var mainBatteries = ProcessMainBattery(wgShip, upgradeInfo, stShip, modifiersDictionary);
+            var mainBatteries = ProcessMainBattery(wgShip, upgradeInfo, stShip, logger, modifiersDictionary);
             var ship = new Ship
             {
                 Id = wgShip.Id,
@@ -108,13 +108,17 @@ public static class ShipConverter
 
     private static BurstModeAbility? ProcessBurstModeAbility(WgBurstArtilleryModule? module, Dictionary<string, Modifier> modifiersDictionary, string shipName)
     {
-        if (module is { SecondaryAmmoList.Length: 0 })
+        if (module != null)
         {
-            var modifiers = new List<Modifier>();
+            var modifiers = new List<Modifier>
+            {
+                new("BurstModeEnabled", 1, shipName, new("", 0, string.Empty, string.Empty, Unit.None, ["MainBatteryDataContainer.BurstMode"], DisplayValueProcessingKind.Discard, ValueProcessingKind.None)),
+            };
+
             foreach (var (modifierName, modifierValue) in module.Modifiers)
             {
                 modifiersDictionary.TryGetValue(modifierName, out Modifier? modifierData);
-                modifiers.Add(new(modifierName, modifierValue, shipName,  modifierData));
+                modifiers.Add(new(modifierName, modifierValue, shipName, modifierData));
             }
 
             var burstAbility = new BurstModeAbility
@@ -123,6 +127,7 @@ public static class ShipConverter
                 ReloadAfterBurst = module.FullReloadTime,
                 ReloadDuringBurst = module.BurstReloadTime,
                 Modifiers = modifiers.ToImmutableList(),
+                AlternateShells = module.SecondaryAmmoList?.ToImmutableArray() ?? ImmutableArray<string>.Empty,
             };
 
             DataCache.TranslationNames.UnionWith(burstAbility.Modifiers.Select(m => m.Name));
@@ -278,7 +283,7 @@ public static class ShipConverter
         return upgradeInfo;
     }
 
-    private static ImmutableDictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip, Dictionary<string, Modifier> modifiersDictionary)
+    private static ImmutableDictionary<string, TurretModule> ProcessMainBattery(WgShip wgShip, UpgradeInfo upgradeInfo, ShiptoolShip? stShip, ILogger? logger, Dictionary<string, Modifier> modifiersDictionary)
     {
         var resultDictionary = new Dictionary<string, TurretModule>();
         Dictionary<string, WgMainBattery> artilleryModules = wgShip.ModulesArmaments.ModulesOfType<WgMainBattery>();
@@ -288,13 +293,19 @@ public static class ShipConverter
             string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Artillery, key);
 
             var stHullModule = stShip?.GetHullModule(correspondingHull);
+            var burstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule, modifiersDictionary, wgShip.Name);
             var additionalAmmoList = wgMainBattery.SwitchableModeArtilleryModule?.SecondaryAmmoList.ToImmutableArray() ?? ImmutableArray<string>.Empty;
+            foreach (var ammoModifier in burstModeAbility?.AlternateShells ?? Enumerable.Empty<string>())
+            {
+                additionalAmmoList = additionalAmmoList.Remove(ammoModifier);
+            }
+
             var turretModule = new TurretModule
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
                 Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule, additionalAmmoList)).ToImmutableArray(),
-                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule, modifiersDictionary, wgShip.Name),
+                BurstModeAbility = burstModeAbility,
             };
 
             DataCache.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
