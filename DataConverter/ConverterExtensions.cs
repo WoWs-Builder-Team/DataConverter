@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Immutable;
 using System.Linq;
 using WoWsShipBuilder.DataStructures.Ship;
@@ -8,9 +7,9 @@ namespace DataConverter;
 
 public static class ConverterExtensions
 {
-    public static Gun ConvertData(this WgGun wgGun, double taperDist, string wgGunIndex, decimal gunBaseAngle, ImmutableArray<string> additionalAmmo) => new()
+    public static Gun ConvertData(this WgGun wgGun, double taperDist, string wgGunIndex, decimal gunBaseAngle) => new()
     {
-        AmmoList = wgGun.AmmoList.Concat(additionalAmmo).ToImmutableArray(),
+        AmmoList = wgGun.AmmoList.ToImmutableArray(),
         BarrelDiameter = wgGun.BarrelDiameter,
         HorizontalSector = wgGun.HorizSector.ToImmutableArray(),
         HorizontalDeadZones = wgGun.DeadZone.Select(x => x.ToImmutableArray()).ToImmutableArray(),

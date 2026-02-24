@@ -108,13 +108,15 @@ public static class ShipConverter
 
     private static BurstModeAbility? ProcessBurstModeAbility(WgBurstArtilleryModule? module, Dictionary<string, Modifier> modifiersDictionary, string shipName)
     {
-        if (module is { SecondaryAmmoList.Length: 0 })
+        if (module != null)
         {
-            var modifiers = new List<Modifier>();
+            modifiersDictionary.TryGetValue("BurstModeEnabled", out Modifier? modifierData);
+            var modifiers = new List<Modifier> { new("BurstModeEnabled", 1, shipName, modifierData) };
+
             foreach (var (modifierName, modifierValue) in module.Modifiers)
             {
-                modifiersDictionary.TryGetValue(modifierName, out Modifier? modifierData);
-                modifiers.Add(new(modifierName, modifierValue, shipName,  modifierData));
+                modifiersDictionary.TryGetValue(modifierName, out modifierData);
+                modifiers.Add(new(modifierName, modifierValue, shipName, modifierData));
             }
 
             var burstAbility = new BurstModeAbility
@@ -123,6 +125,7 @@ public static class ShipConverter
                 ReloadAfterBurst = module.FullReloadTime,
                 ReloadDuringBurst = module.BurstReloadTime,
                 Modifiers = modifiers.ToImmutableList(),
+                AlternateShells = module.SecondaryAmmoList?.ToImmutableArray() ?? ImmutableArray<string>.Empty,
             };
 
             DataCache.TranslationNames.UnionWith(burstAbility.Modifiers.Select(m => m.Name));
@@ -288,13 +291,14 @@ public static class ShipConverter
             string correspondingHull = FindHullForComponent(upgradeInfo, ComponentType.Artillery, key);
 
             var stHullModule = stShip?.GetHullModule(correspondingHull);
-            var additionalAmmoList = wgMainBattery.SwitchableModeArtilleryModule?.SecondaryAmmoList.ToImmutableArray() ?? ImmutableArray<string>.Empty;
+            var burstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule, modifiersDictionary, wgShip.Name);
+
             var turretModule = new TurretModule
             {
                 Sigma = wgMainBattery.SigmaCount,
                 MaxRange = wgMainBattery.MaxDist,
-                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule, additionalAmmoList)).ToImmutableArray(),
-                BurstModeAbility = ProcessBurstModeAbility(wgMainBattery.SwitchableModeArtilleryModule, modifiersDictionary, wgShip.Name),
+                Guns = wgMainBattery.Guns.Select(entry => ConvertMainBatteryGun(entry.Value, entry.Key, wgMainBattery.TaperDist, stHullModule)).ToImmutableArray(),
+                BurstModeAbility = burstModeAbility,
             };
 
             DataCache.TranslationNames.UnionWith(turretModule.Guns.Select(gun => gun.Name).Distinct());
@@ -319,14 +323,14 @@ public static class ShipConverter
             .First(u => u.Components[componentType].Contains(componentKey)).Components[ComponentType.Hull].First();
     }
 
-    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, double taperDist, ShiptoolHullModule? stHull, ImmutableArray<string> additionalAmmo)
+    private static Gun ConvertMainBatteryGun(WgGun wgGun, string mainGunKey, double taperDist, ShiptoolHullModule? stHull)
     {
         if (stHull is null || !stHull.Angles.TryGetValue(mainGunKey, out decimal angle))
         {
             angle = wgGun.Position[0] < 3 ? 0 : 180;
         }
 
-        return wgGun.ConvertData(taperDist, mainGunKey, angle, additionalAmmo);
+        return wgGun.ConvertData(taperDist, mainGunKey, angle);
     }
 
     private static ImmutableDictionary<string, Hull> ProcessShipHull(WgShip wgShip, UpgradeInfo upgradeInfo)
@@ -452,7 +456,7 @@ public static class ShipConverter
                 {
                     Sigma = wgHullSecondary.SigmaCount,
                     MaxRange = wgHullSecondary.MaxDist,
-                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData(wgHullSecondary.TaperDist, string.Empty, default, ImmutableArray<string>.Empty)).ToImmutableArray(),
+                    Guns = wgHullSecondary.AntiAirAndSecondaries.Values.Select(secondaryGun => secondaryGun.ConvertData(wgHullSecondary.TaperDist, string.Empty, default)).ToImmutableArray(),
                 };
 
                 DataCache.TranslationNames.UnionWith(secondary.Guns.Select(gun => gun.Name).Distinct());
