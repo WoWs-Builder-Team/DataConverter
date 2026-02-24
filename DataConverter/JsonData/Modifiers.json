@@ -664,6 +664,15 @@
     "valueProcessingKind": "Multiplier"
   },
   {
+    "name": "BurstModeEnabled",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "callFightersAdditionalConsumables",
     "gameLocalizationKey": "PARAMS_MODIFIER_CALLFIGHTERSADDITIONALCONSUMABLES_SKILL",
     "appLocalizationKey": null,
