@@ -3113,5 +3113,14 @@
     "affectedProperties": [],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "BurstModeEnabled",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
   }
 ]

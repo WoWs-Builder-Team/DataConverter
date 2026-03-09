@@ -874,7 +874,9 @@ public static class ShipConverter
 
     private static ImmutableDictionary<string, ShellCompatibility> CheckShellCompatibilities(ImmutableDictionary<string, TurretModule> mainBatteries, UpgradeInfo upgradeInfo)
     {
-        var shells = mainBatteries.SelectMany(pair => pair.Value.Guns.FirstOrDefault()?.AmmoList ?? ImmutableArray<string>.Empty).ToList();
+        var defaultShells = mainBatteries.SelectMany(pair => pair.Value.Guns.FirstOrDefault()?.AmmoList ?? ImmutableArray<string>.Empty);
+        var alternateShells = mainBatteries.Select(pair => pair.Value.BurstModeAbility).OfType<BurstModeAbility>().SelectMany(x => x.AlternateShells);
+        var shells = defaultShells.Concat(alternateShells).ToList();
         if (shells.Count == 0)
         {
             return ImmutableDictionary<string, ShellCompatibility>.Empty;
@@ -886,7 +888,7 @@ public static class ShipConverter
     private static ShellCompatibility CheckShellCompatibility(string shellName, ImmutableDictionary<string, TurretModule> mainBatteries, UpgradeInfo upgradeInfo)
     {
         var compatibleArtilleryModules = mainBatteries
-            .Where(pair => pair.Value.Guns[0].AmmoList.Contains(shellName))
+            .Where(pair => pair.Value.Guns[0].AmmoList.Contains(shellName) || (pair.Value.BurstModeAbility?.AlternateShells.Contains(shellName) ?? false))
             .Select(pair => pair.Key);
         var compatibleModulesCombo = upgradeInfo.ShipUpgrades
             .Where(upgrade => upgrade.UcType == ComponentType.Hull)
