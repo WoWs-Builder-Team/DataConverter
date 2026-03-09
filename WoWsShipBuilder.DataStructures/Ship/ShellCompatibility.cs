@@ -2,4 +2,4 @@
 
 namespace WoWsShipBuilder.DataStructures.Ship;
 
-public sealed record ShellCompatibility(string ShellName, ImmutableDictionary<string,  ImmutableList<string>> CompatibleHullArtilleryModulesCombo);
+public sealed record ShellCompatibility(string ShellName, ImmutableDictionary<string,  ImmutableList<string>> CompatibleHullArtilleryModulesCombo, bool IsSpecialAbilityShell);

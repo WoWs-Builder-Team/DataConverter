@@ -896,7 +896,8 @@ public static class ShipConverter
             .OrderBy(item => item, UpgradeComparer.Instance)
             .ToDictionary(hullUpgrade => hullUpgrade.Components[ComponentType.Hull].Single(), artilleryUpgrade => artilleryUpgrade.Components[ComponentType.Artillery].Intersect(compatibleArtilleryModules).ToImmutableList());
 
-        return new(shellName, compatibleModulesCombo.ToImmutableDictionary());
+        var isSpecialAbilityShell = mainBatteries.Select(pair => pair.Value.BurstModeAbility).OfType<BurstModeAbility>().Any(burstMode => burstMode.AlternateShells.Contains(shellName));
+        return new(shellName, compatibleModulesCombo.ToImmutableDictionary(), isSpecialAbilityShell);
     }
 
     private sealed class UpgradeComparer : IComparer<ShipUpgrade>
