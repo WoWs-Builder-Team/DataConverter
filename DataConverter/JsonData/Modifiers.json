@@ -3155,5 +3155,14 @@
     "affectedProperties": [],
     "displayValueProcessingKind": "ToInt",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "zoneVisibilityDistance",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "Kilometers",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "BigWorldToKmDecimal",
+    "valueProcessingKind": "None"
   }
 ]

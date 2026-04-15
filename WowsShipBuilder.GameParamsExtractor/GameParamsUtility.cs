@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Text.RegularExpressions;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Razorvine.Pickle;
+using Razorvine.Pickle.Objects;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
 
 namespace WowsShipBuilder.GameParamsExtractor;
@@ -119,6 +121,11 @@ internal static class GameParamsUtility
         };
 
         string jsonData = JsonConvert.SerializeObject(filteredEntries);
+        // Cleanup for classname properties that seem to mess up deserialization
+        var cleanupRegex = new Regex("""
+                                     "__class__":"GameParams\.[a-zA-Z]+",?
+                                     """);
+        jsonData = cleanupRegex.Replace(jsonData, string.Empty);
         var objectList = JsonConvert.DeserializeObject<List<WgObject>>(jsonData);
 
         logger?.LogInformation("End processing for {GroupName} - {Nation}", groupName, nationGroup.Key);
@@ -162,7 +169,7 @@ internal static class GameParamsUtility
             //iterate through all the stats of the module
             foreach (var singleStat in moduleData)
             {
-                if (singleStat.Value is PythonDictionary gunData)
+                if (singleStat.Value is Dictionary<string, object> gunData)
                 {
                     //if it has typeinfo, it's always a gun and not a dictionary of values.
                     if (gunData.TryGetValue("typeinfo", out object? typeInfo))
@@ -227,7 +234,9 @@ internal static class GameParamsUtility
 
         foreach (var consumableData in nationEntries)
         {
-            var variants = consumableData.Where(dataPair => dataPair.Value is PythonDictionary)
+            var variants = consumableData
+                .Where(dataPair => !dataPair.Key.Equals("typeinfo", StringComparison.OrdinalIgnoreCase))
+                .Where(dataPair => dataPair.Value is Dictionary<string, object>)
                 .ToDictionary(x => x.Key, x => x.Value);
 
             consumableData.Add("variants", variants);
@@ -261,8 +270,9 @@ internal static class GameParamsUtility
 
             var keysToMove = new Dictionary<string, object>();
 
-            var upgradeInfo = shipData["ShipUpgradeInfo"] as PythonDictionary ?? throw new InvalidOperationException();
-            var upgradeDetailEntries = upgradeInfo.Values.Where(value => value is PythonDictionary).Cast<PythonDictionary>().ToList();
+
+            var upgradeInfo = shipData["ShipUpgradeInfo"] as Dictionary<string, object> ?? throw new InvalidOperationException();
+            var upgradeDetailEntries = upgradeInfo.Values.OfType<Dictionary<string, object>>().ToList();
             List<string> components = upgradeDetailEntries
                 .Select(detailEntry => ConvertDataValue(detailEntry["components"]))
                 .SelectMany(componentDict => componentDict.Values)
