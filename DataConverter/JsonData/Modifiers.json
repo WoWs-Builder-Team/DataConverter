@@ -840,6 +840,18 @@
     "valueProcessingKind": "None"
   },
   {
+    "name": "consumableCapacityCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLECAPACITYCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.Ship",
+      "ConsumableDataContainer.Uses.Plane"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
     "name": "ConsumableReloadTime",
     "gameLocalizationKey": "PARAMS_MODIFIER_CONSUMABLERELOADTIME_DESTROYER",
     "appLocalizationKey": null,
@@ -2281,6 +2293,15 @@
     "valueProcessingKind": "Multiplier"
   },
   {
+    "name": "planeReturnSpeedAfterEscape",
+    "gameLocalizationKey": "PARAMS_MODIFIER_PLANERETURNSPEEDAFTERESCAPE",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
     "name": "planeSmokeGeneratorWorkTimeCoeff",
     "gameLocalizationKey": "PARAMS_MODIFIER_PLANESMOKEGENERATORWORKTIMECOEFF",
     "appLocalizationKey": null,
@@ -2455,6 +2476,20 @@
     "valueProcessingKind": "RawAdd"
   },
   {
+    "name": "regenCrewCapacityCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWCAPACITYCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY002",
+      "ConsumableDataContainer.Uses.PCY010",
+      "ConsumableDataContainer.Uses.PCY024",
+      "ConsumableDataContainer.Uses.PCY059"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
     "name": "regenCrewReloadCoeff",
     "gameLocalizationKey": "PARAMS_MODIFIER_REGENCREWRELOADCOEFF",
     "appLocalizationKey": null,
@@ -2563,6 +2598,20 @@
     "valueProcessingKind": "RawAdd"
   },
   {
+    "name": "scoutCapacityCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTCAPACITYCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY005",
+      "ConsumableDataContainer.Uses.PCY013",
+      "ConsumableDataContainer.Uses.PCY027",
+      "ConsumableDataContainer.Uses.PCY062"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
     "name": "scoutReloadCoeff",
     "gameLocalizationKey": "PARAMS_MODIFIER_SCOUTRELOADCOEFF_SKILL",
     "appLocalizationKey": null,
@@ -2652,6 +2701,17 @@
     "valueProcessingKind": "Multiplier"
   },
   {
+    "name": "shipConsumableCapacityCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_SHIPCONSUMABLECAPACITYCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.Ship"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
     "name": "shootShift",
     "gameLocalizationKey": "PARAMS_MODIFIER_SHOOTSHIFT",
     "appLocalizationKey": null,
@@ -2714,6 +2774,20 @@
     ],
     "displayValueProcessingKind": "ToPositive",
     "valueProcessingKind": "RawAdd"
+  },
+  {
+    "name": "smokeGeneratorCapacityCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_SMOKEGENERATORCAPACITYCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY006",
+      "ConsumableDataContainer.Uses.PCY014",
+      "ConsumableDataContainer.Uses.PCY028",
+      "ConsumableDataContainer.Uses.PCY063"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "smokeGeneratorLifeTime",
@@ -2787,6 +2861,20 @@
     "valueProcessingKind": "None"
   },
   {
+    "name": "speedBoostersCapacityCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDBOOSTERSCAPACITYCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.PCY007",
+      "ConsumableDataContainer.Uses.PCY015",
+      "ConsumableDataContainer.Uses.PCY029",
+      "ConsumableDataContainer.Uses.PCY064"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
     "name": "speedBoostersWorkTimeCoeff",
     "gameLocalizationKey": "PARAMS_MODIFIER_SPEEDBOOSTERSWORKTIMECOEFF_SKILL",
     "appLocalizationKey": null,
@@ -2827,6 +2915,17 @@
     "affectedProperties": [],
     "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "squadronConsumableCapacityCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_SQUADRONCONSUMABLECAPACITYCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Uses.Plane"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
   },
   {
     "name": "startDelayTime",
@@ -3136,6 +3235,15 @@
     "unit": "None",
     "affectedProperties": [],
     "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "workPreparationTime",
+    "gameLocalizationKey": "PARAMS_MODIFIER_PREPARATIONTIME",
+    "appLocalizationKey": null,
+    "unit": "Seconds",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
     "valueProcessingKind": "None"
   },
   {
