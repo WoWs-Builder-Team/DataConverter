@@ -48,6 +48,8 @@ namespace DataConverter.Converters
                         ConsumableVariantName = currentVariantKey,
                         PlaneName = isShipFighter && string.IsNullOrEmpty(stats.FightersName) ? "PAAF001_Grumman_F3F" : stats.FightersName,
                         PreparationTime = stats.PreparationTime,
+                        IsTimeBased = stats.LifeCycleType == 1,
+                        TimeBasedActiveTime = stats.MaxCapacity,
                         Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary, logger),
                     };
                     DataCache.TranslationNames.UnionWith(consumable.Modifiers.Select(m => m.Name));
@@ -82,6 +84,9 @@ namespace DataConverter.Converters
                     case "preparationTime":
                     case "regenerationHPSpeedUnits":
                         //Skip this modifier, it's value is always 0
+                        break;
+                    case "workPreparationTime":
+                        //Skip: near-always 0 and overlaps the consumable's preparation time; would render as untranslated noise.
                         break;
                     case "regenerationHPSpeed":
                         var fixedKey = "consumable_" + key;

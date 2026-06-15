@@ -845,8 +845,8 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.Ship",
-      "ConsumableDataContainer.Uses.Plane"
+      "ConsumableDataContainer.TimeBasedActiveTime.Ship",
+      "ConsumableDataContainer.TimeBasedActiveTime.Plane"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2481,10 +2481,10 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.PCY002",
-      "ConsumableDataContainer.Uses.PCY010",
-      "ConsumableDataContainer.Uses.PCY024",
-      "ConsumableDataContainer.Uses.PCY059"
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY002",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY010",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY024",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY059"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2603,10 +2603,10 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.PCY005",
-      "ConsumableDataContainer.Uses.PCY013",
-      "ConsumableDataContainer.Uses.PCY027",
-      "ConsumableDataContainer.Uses.PCY062"
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY005",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY013",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY027",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY062"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2706,7 +2706,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.Ship"
+      "ConsumableDataContainer.TimeBasedActiveTime.Ship"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2781,10 +2781,10 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.PCY006",
-      "ConsumableDataContainer.Uses.PCY014",
-      "ConsumableDataContainer.Uses.PCY028",
-      "ConsumableDataContainer.Uses.PCY063"
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY006",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY014",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY028",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY063"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2866,10 +2866,10 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.PCY007",
-      "ConsumableDataContainer.Uses.PCY015",
-      "ConsumableDataContainer.Uses.PCY029",
-      "ConsumableDataContainer.Uses.PCY064"
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY007",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY015",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY029",
+      "ConsumableDataContainer.TimeBasedActiveTime.PCY064"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -2922,7 +2922,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.Uses.Plane"
+      "ConsumableDataContainer.TimeBasedActiveTime.Plane"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
