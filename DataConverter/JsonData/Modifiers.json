@@ -3272,5 +3272,50 @@
     "affectedProperties": [],
     "displayValueProcessingKind": "BigWorldToKmDecimal",
     "valueProcessingKind": "None"
+  },
+  {
+    "name": "captain_PSW100_Topete_regenerationHPSpeed",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEED",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "regenerationHPSpeedUnits",
+    "gameLocalizationKey": "PARAMS_MODIFIER_REGENERATIONHPSPEEDUNITS",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Raw",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GMMaxDistAbsoluteCap",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GMMAXDISTABSOLUTECAP",
+    "appLocalizationKey": null,
+    "unit": "Kilometers",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "MeterToKm",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GSAPDamageCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GSAPDAMAGECOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "triggerDistance",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
   }
 ]
