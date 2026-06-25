@@ -31,5 +31,16 @@ public sealed class Consumable
 
     public float PreparationTime { get; init; }
 
+    /// <summary>
+    /// Indicates whether this consumable uses the time-based ("capacity") lifecycle instead of discrete charges.
+    /// </summary>
+    public bool IsTimeBased { get; init; }
+
+    /// <summary>
+    /// For time-based consumables, the total usage time pool (in seconds) that can be spent while active
+    /// (the game's <c>maxCapacity</c>). Zero for classic charge-based consumables.
+    /// </summary>
+    public float TimeBasedActiveTime { get; init; }
+
     public ImmutableList<Modifier> Modifiers { get; init; } = ImmutableList<Modifier>.Empty;
 }

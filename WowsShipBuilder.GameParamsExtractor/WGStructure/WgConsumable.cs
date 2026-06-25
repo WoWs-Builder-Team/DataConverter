@@ -39,6 +39,18 @@ public class WgStatistics
 
     public float PreparationTime { get; init; }
 
+    /// <summary>
+    /// Lifecycle type of the consumable. 0 = classic charge-based, 1 = time-based ("capacity") pool.
+    /// Declared explicitly so it is not emitted as a stray modifier.
+    /// </summary>
+    public int LifeCycleType { get; init; }
+
+    /// <summary>
+    /// For time-based consumables, the total usage time pool in seconds (game field <c>maxCapacity</c>).
+    /// Declared explicitly so it is not emitted as a stray modifier.
+    /// </summary>
+    public float MaxCapacity { get; init; }
+
     public Dictionary<string, JToken> Logic { get; init; } = new();
 
     [JsonExtensionData]

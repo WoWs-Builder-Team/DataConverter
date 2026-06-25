@@ -172,6 +172,23 @@ public static class CaptainConverter
                         else if (value.Type == JTokenType.Object)
                         {
                             JObject jObjectModifier = (JObject)value;
+
+                            // Consumable-reload talents (e.g. PSW100 Topete) nest a "modifiers" object that mixes a
+                            // float reloadFactor with an excludedConsumables string array. Mirror the regular-skill
+                            // handling instead of force-deserializing the whole object to Dictionary<string, float>.
+                            if (jObjectModifier.ContainsKey("excludedConsumables"))
+                            {
+                                var reloadModifiers = ComputeConsumableReloadModifiers(jObjectModifier.ToObject<Dictionary<string, JToken>>()!);
+                                foreach (var (modifierName, modifierValue) in reloadModifiers)
+                                {
+                                    modifierDictionary.TryGetValue(modifierName, out Modifier? reloadModifierData);
+                                    effectsModifiers.Add(new Modifier(modifierName, modifierValue, $"Skill_{captainIndex}_{currentUniqueSkillKey}", reloadModifierData));
+                                    DataCache.TranslationNames.Add(modifierName);
+                                }
+
+                                continue;
+                            }
+
                             var modifiers = jObjectModifier.ToObject<Dictionary<string, float>>();
                             bool allEquals = modifiers!.Values.Distinct().Count() == 1;
                             if (allEquals)

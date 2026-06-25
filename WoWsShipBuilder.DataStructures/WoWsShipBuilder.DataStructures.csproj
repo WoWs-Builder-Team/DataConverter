@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <VersionPrefix>6.2.0</VersionPrefix>
+    <VersionPrefix>6.3.0</VersionPrefix>
 <!--    <VersionSuffix>alpha</VersionSuffix>-->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Title>ShipBuilder Data structures</Title>
