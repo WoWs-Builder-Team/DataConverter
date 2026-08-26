@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using DataConverter.Converters;
 using DataConverter.Data;
@@ -37,6 +38,11 @@ internal class DataConverterService : IDataConverterService
     public async Task<DataConversionResult> ConvertRefinedData(Dictionary<string, Dictionary<string, List<WgObject>>> refinedData, bool writeModifierDebugOutput, Dictionary<string, Modifier> modifiersDictionary, Dictionary<long, int> techTreeShipsPositionsDictionary)
     {
         var resultFiles = new List<ResultFileContainer>();
+
+        // Both are touched from inside the Parallel.ForEachAsync below, so neither an unguarded List.Add
+        // nor a plain increment is safe: concurrent adds can drop an entry, which would silently omit a
+        // whole output file from the conversion result.
+        var resultFilesLock = new Lock();
         var counter = 0;
         Task<ShiptoolData> shipToolDataTask = LoadShiptoolData();
         foreach ((string categoryName, Dictionary<string, List<WgObject>> nationDictionary) in refinedData)
@@ -46,10 +52,10 @@ internal class DataConverterService : IDataConverterService
                 (string? nation, List<WgObject>? data) = nationDataPair;
 
                 logger.LogInformation("Converting category: {Category} - nation: {Nation}", categoryName, nation);
-                counter++;
-                if (counter % 10 == 0)
+                int processed = Interlocked.Increment(ref counter);
+                if (processed % 10 == 0)
                 {
-                    logger.LogInformation("Processed {Counter} dictionaries", counter);
+                    logger.LogInformation("Processed {Counter} dictionaries", processed);
                 }
 
                 string fileName = nation + ".json";
@@ -132,7 +138,10 @@ internal class DataConverterService : IDataConverterService
                 if (convertedFileContent is not null)
                 {
                     ResultFileContainer resultFileContainer = new(convertedFileContent, categoryName, fileName);
-                    resultFiles.Add(resultFileContainer);
+                    lock (resultFilesLock)
+                    {
+                        resultFiles.Add(resultFileContainer);
+                    }
                 }
             });
         }
