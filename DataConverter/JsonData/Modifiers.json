@@ -266,7 +266,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.WorkTime.PCY011"
+      "ConsumableDataContainer.WorkTime.PCY087"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"

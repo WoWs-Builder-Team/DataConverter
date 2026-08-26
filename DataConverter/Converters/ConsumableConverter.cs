@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using DataConverter.Data;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using WoWsShipBuilder.DataStructures.Consumable;
 using WoWsShipBuilder.DataStructures.Modifiers;
 using WowsShipBuilder.GameParamsExtractor.WGStructure;
@@ -11,8 +13,13 @@ namespace DataConverter.Converters
 {
     public static class ConsumableConverter
     {
+        /// <summary>
+        /// The fields of a consumable variant's logic block that name a buff object, in the order they are merged.
+        /// </summary>
+        private static readonly string[] BuffLogicKeys = { "buff", "buffOnSelf" };
+
         //convert the list of consumables from WG to our list of Consumables
-        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable, Dictionary<string, Modifier> modifierDictionary, ILogger logger)
+        public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable, Dictionary<string, Modifier> modifierDictionary, IReadOnlyDictionary<string, WgBuff> buffDictionary, ILogger logger)
         {
             //create a List of our Objects
             Dictionary<string, Consumable> consumableList = new Dictionary<string, Consumable>();
@@ -50,7 +57,7 @@ namespace DataConverter.Converters
                         PreparationTime = stats.PreparationTime,
                         IsTimeBased = stats.LifeCycleType == 1,
                         TimeBasedActiveTime = stats.MaxCapacity,
-                        Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary, logger),
+                        Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary, buffDictionary, logger),
                     };
                     DataCache.TranslationNames.UnionWith(consumable.Modifiers.Select(m => m.Name));
 
@@ -63,10 +70,57 @@ namespace DataConverter.Converters
             return consumableList;
         }
 
-        private static ImmutableList<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary, ILogger logger)
+        /// <summary>
+        /// Resolves the effects of the buff objects a consumable variant references.
+        /// </summary>
+        /// <remarks>
+        /// A variant may name both a buff, applied to whatever the consumable targets, and a weaker buffOnSelf
+        /// applied to the ship using it. Both are read so a self-only stat is not lost, but the plain buff wins on
+        /// a collision: it is the value the in-game consumable card advertises, and two modifiers sharing a name
+        /// would break any consumer that keys them by name.
+        /// </remarks>
+        private static Dictionary<string, float> ResolveBuffModifiers(WgStatistics consumableStats, IReadOnlyDictionary<string, WgBuff> buffDictionary, ILogger logger)
+        {
+            var results = new Dictionary<string, float>(StringComparer.Ordinal);
+            foreach (string logicKey in BuffLogicKeys)
+            {
+                if (!consumableStats.Logic.TryGetValue(logicKey, out JToken? buffToken) || buffToken.Type != JTokenType.String)
+                {
+                    continue;
+                }
+
+                var buffName = buffToken.Value<string>();
+                if (string.IsNullOrEmpty(buffName))
+                {
+                    continue;
+                }
+
+                if (!buffDictionary.TryGetValue(buffName, out WgBuff? buff))
+                {
+                    logger.LogWarning("Unable to resolve buff {Buff} referenced by a consumable", buffName);
+                    continue;
+                }
+
+                foreach ((string key, float value) in buff.RetrieveModifiers())
+                {
+                    results.TryAdd(key, value);
+                }
+            }
+
+            return results;
+        }
+
+        private static ImmutableList<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary, IReadOnlyDictionary<string, WgBuff> buffDictionary, ILogger logger)
         {
             var results = new List<Modifier>();
-            var modifiers = consumableStats.RetrieveModifiers(logger);
+
+            // A variant that also declares a stat inline is the more specific source, so it wins over its buff.
+            var modifiers = new Dictionary<string, float>(consumableStats.RetrieveModifiers(logger), StringComparer.Ordinal);
+            foreach ((string buffKey, float buffValue) in ResolveBuffModifiers(consumableStats, buffDictionary, logger))
+            {
+                modifiers.TryAdd(buffKey, buffValue);
+            }
+
             foreach ((string key, float modifierValue) in modifiers)
             {
                 Modifier modifier;
@@ -87,6 +141,13 @@ namespace DataConverter.Converters
                         break;
                     case "workPreparationTime":
                         //Skip: near-always 0 and overlaps the consumable's preparation time; would render as untranslated noise.
+                        break;
+                    case "GMMaxDistAbsoluteCap":
+                        //Skip: a template sentinel every buff carries with the same value. Modifiers.json treats it as a distance,
+                        //so it would render as a "10 000 km" main battery range bonus on every consumable that resolves a buff.
+                        break;
+                    case "aimRange":
+                        //Skip: the matching sentinel, always 100 on every buff, and never an effect of the consumable itself.
                         break;
                     case "regenerationHPSpeed":
                         var fixedKey = "consumable_" + key;

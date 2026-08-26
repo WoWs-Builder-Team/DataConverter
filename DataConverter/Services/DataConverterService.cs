@@ -45,7 +45,14 @@ internal class DataConverterService : IDataConverterService
         var resultFilesLock = new Lock();
         var counter = 0;
         Task<ShiptoolData> shipToolDataTask = LoadShiptoolData();
-        foreach ((string categoryName, Dictionary<string, List<WgObject>> nationDictionary) in refinedData)
+
+        // Consumables name the buff that holds their effects, but refinedData is iterated in non-deterministic
+        // order, so the buff category cannot be relied on to have been converted before "Ability". Resolving it up
+        // front also keeps the category out of the loop below, where it would only be reported as an unknown type:
+        // buffs are an input to other converters, not an output file of their own.
+        var buffDictionary = ExtractBuffs(refinedData);
+        var categoriesToConvert = refinedData.Where(category => !category.Key.Equals(WgBuff.GameParamsType, StringComparison.Ordinal));
+        foreach ((string categoryName, Dictionary<string, List<WgObject>> nationDictionary) in categoriesToConvert)
         {
             await Parallel.ForEachAsync(nationDictionary, async (nationDataPair, _) =>
             {
@@ -63,7 +70,7 @@ internal class DataConverterService : IDataConverterService
                 switch (categoryName)
                 {
                     case "Ability":
-                        var consumableData = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>(), modifiersDictionary, logger);
+                        var consumableData = ConsumableConverter.ConvertConsumable(data.Cast<WgConsumable>(), modifiersDictionary, buffDictionary, logger);
                         modifiers.UnionWith(consumableData.SelectMany(consumable => consumable.Value.Modifiers));
                         convertedFileContent = JsonSerializer.Serialize(consumableData, Constants.SerializerOptions);
                         break;
@@ -158,6 +165,23 @@ internal class DataConverterService : IDataConverterService
         {
             await resultFile.WriteFileAsync(outputBasePath);
         }
+    }
+
+    /// <summary>
+    /// Collects the buff objects of every nation into a single lookup, keyed the way consumables reference them.
+    /// </summary>
+    private static Dictionary<string, WgBuff> ExtractBuffs(Dictionary<string, Dictionary<string, List<WgObject>>> refinedData)
+    {
+        if (!refinedData.TryGetValue(WgBuff.GameParamsType, out Dictionary<string, List<WgObject>>? nationDictionary))
+        {
+            return new(StringComparer.Ordinal);
+        }
+
+        return nationDictionary.Values
+            .SelectMany(buffs => buffs)
+            .OfType<WgBuff>()
+            .DistinctBy(buff => buff.Name, StringComparer.Ordinal)
+            .ToDictionary(buff => buff.Name, StringComparer.Ordinal);
     }
 
     private async Task<ShiptoolData> LoadShiptoolData()

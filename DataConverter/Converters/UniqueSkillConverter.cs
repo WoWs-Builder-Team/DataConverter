@@ -322,7 +322,9 @@ internal static class UniqueSkillConverter
         IEnumerable<string?> excludedConsumables = skillModifiers.TryGetValue("excludedConsumables", out JToken? excluded)
             ? excluded.Values<string>()
             : [];
-        var availableConsumables = ImmutableArray.Create("airDefenseDisp", "scout", "regenCrew", "sonar", "rls", "crashCrew", "smokeGenerator", "speedBoosters", "artilleryBoosters", "fighter", "torpedoReloader");
+        // Hardcoded because the game lists only the exclusions. "auxTorpBooster" is the slot PCY087 took over from
+        // the dropped defensive AA fire consumable in update 15.7, so a talent that reloads consumables must reach it.
+        var availableConsumables = ImmutableArray.Create("airDefenseDisp", "scout", "regenCrew", "sonar", "rls", "crashCrew", "smokeGenerator", "speedBoosters", "artilleryBoosters", "fighter", "torpedoReloader", "auxTorpBooster");
         return availableConsumables.Except(excludedConsumables).Select(c => $"invisible_{c}ReloadCoeff").Select(c => (c, reloadCoeff)).Append(("consumableSpecialistReloadTime", reloadCoeff)).ToDictionary(x => x.Item1, x => x.reloadCoeff);
     }
 
