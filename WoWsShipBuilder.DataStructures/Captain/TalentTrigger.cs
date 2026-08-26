@@ -1,4 +1,4 @@
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 
 namespace WoWsShipBuilder.DataStructures.Captain;
 
@@ -10,7 +10,11 @@ namespace WoWsShipBuilder.DataStructures.Captain;
 /// It determines which key in <paramref name="Parameters"/> and in each level's thresholds is meaningful.
 /// </param>
 /// <param name="Parameters">Numeric activator settings, such as requiredCount or thresholdPerMaxHealth.</param>
-/// <param name="MaxActivations">How often the talent may fire in a battle. -1 means unlimited.</param>
+/// <param name="MaxActivations">
+/// The activator's own repeat limit, where -1 means the activator itself imposes none. This is NOT the number of
+/// times the talent can fire: 17 of the 48 activators in build 13015811 report -1 while the talent is capped by
+/// <see cref="UniqueSkill.MaxTriggerNum"/>. Use that for the talent's cap.
+/// </param>
 /// <param name="Levels">
 /// Escalation thresholds for a tiered talent, ordered by level. Empty for a talent that does not escalate.
 /// </param>

@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using WoWsShipBuilder.DataStructures;
 using WoWsShipBuilder.DataStructures.Ship;
 using WowsShipBuilder.GameParamsExtractor.WGStructure.Ship;
 
@@ -48,6 +50,38 @@ public static class ConverterExtensions
         MaxRange = wgAura.MaxDistance,
         MinRange = wgAura.MinDistance,
     };
+
+    /// <summary>
+    /// Converts the Aimed Fire block of an air defense module.
+    /// </summary>
+    /// <param name="wgAimedFire">The raw Aimed Fire parameters.</param>
+    /// <param name="shipClass">
+    /// The class of the ship owning the module. The game data tunes the two damage multipliers per owning class, so
+    /// they are resolved here into plain numbers instead of being carried around as a map or as a modifier.
+    /// </param>
+    /// <returns>The converted Aimed Fire parameters.</returns>
+    public static AntiAirAimedFire ConvertData(this WgAimedFire wgAimedFire, ShipClass shipClass)
+    {
+        // The game states the charge gain as an increment applied on a repeating timer. Every module currently uses a
+        // one second period, but guard the division rather than assume it.
+        decimal tickPeriod = wgAimedFire.GameLogicTrigger?.Activator?.Duration ?? 0;
+        decimal chargePerTick = wgAimedFire.GameLogicTrigger?.Action?.ProgressIncrement ?? 0;
+
+        return new()
+        {
+            RequiredCharge = wgAimedFire.RequiredCharge,
+            ChargeGainRate = tickPeriod > 0 ? chargePerTick / tickPeriod : 0,
+            ChargeSpendingRate = wgAimedFire.ChargeSpendingRate,
+            DecrementDelay = wgAimedFire.DecrementDelay,
+            DecrementRate = wgAimedFire.DecrementRate,
+            InstantDamageCooldown = wgAimedFire.InstantDamageCooldown,
+            InstantDamagePercentage = wgAimedFire.InstantDamagePercentage.ToImmutableDictionary(),
+
+            // A class missing from the map means the mechanic does not change that stat, which is a factor of one.
+            AuraDamageMultiplier = wgAimedFire.Modifiers.AuraDamage.GetValueOrDefault(shipClass, 1m),
+            BubbleDamageMultiplier = wgAimedFire.Modifiers.BubbleDamage.GetValueOrDefault(shipClass, 1m),
+        };
+    }
 
     public static AirStrike ConvertData(this WgAirSupport wgAirSupport) => new()
     {

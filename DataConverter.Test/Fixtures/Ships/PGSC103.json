@@ -1,0 +1,5327 @@
+[
+  {
+    "AIParams": {
+      "max_distance": 0,
+      "min_distance": 0,
+      "default_distance": 0
+    },
+    "alternateFlags": [],
+    "apDamageLimitCoeff": 0,
+    "archetype": "Undefined",
+    "battleSignalsModifiersOrder": [],
+    "battleSignalsOrder": [],
+    "BattleUpgradeInfo": {},
+    "Cameras": {
+      "smartZoomAngleCoef": 1.0,
+      "Artillery": {
+        "tags": "AT",
+        "castZoom": {},
+        "InnerTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            5.616,
+            5.126
+          ],
+          "semiAxisV": [
+            8.0,
+            8.0
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            89.0,
+            89.0
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              1.632,
+              0.0
+            ],
+            [
+              0.0,
+              1.673,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            5.0,
+            2.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        },
+        "weapons": [],
+        "hulls": [],
+        "OuterTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            15.028,
+            13.852
+          ],
+          "semiAxisV": [
+            15.028,
+            13.852
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            49.84,
+            73.336
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              4.199,
+              0.0
+            ],
+            [
+              0.0,
+              6.023,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            10.0,
+            4.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "Death": {
+        "tags": "D",
+        "castZoom": {},
+        "InnerTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            7.0,
+            7.0
+          ],
+          "semiAxisV": [
+            9.8,
+            9.8
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            9.79,
+            57.316
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              0.2,
+              0.0
+            ],
+            [
+              0.0,
+              1.28,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            2.0,
+            0.8
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        },
+        "weapons": [],
+        "hulls": [],
+        "OuterTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            19.6,
+            16.24
+          ],
+          "semiAxisV": [
+            19.6,
+            16.24
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            9.79,
+            57.316
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              2.0,
+              0.0
+            ],
+            [
+              0.0,
+              2.0,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            10.0,
+            4.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "Observe": {
+        "tags": "CO",
+        "castZoom": {},
+        "InnerTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            1.638,
+            1.495
+          ],
+          "semiAxisV": [
+            6.2,
+            6.2
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            89.0,
+            89.0
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              0.15,
+              0.0
+            ],
+            [
+              0.0,
+              0.15,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            5.0,
+            2.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        },
+        "weapons": [],
+        "hulls": [],
+        "OuterTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            15.028,
+            13.852
+          ],
+          "semiAxisV": [
+            15.028,
+            13.852
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            49.84,
+            73.336
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              4.199,
+              0.0
+            ],
+            [
+              0.0,
+              6.023,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            10.0,
+            4.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "inertialRollCoef": 1.0,
+      "Guns2": {
+        "InnerTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            0.8,
+            0.692
+          ],
+          "semiAxisV": [
+            0.515,
+            0.515
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            89.0,
+            89.0
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              0.68,
+              -3.5
+            ],
+            [
+              0.0,
+              0.68,
+              -3.5
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            0.0,
+            0.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        },
+        "hulls": [],
+        "castZoom": {},
+        "tags": "Ca",
+        "weapons": [
+          "HP_GGM_7",
+          "HP_GGM_8",
+          "HP_GGM_9",
+          "HP_GGM_10",
+          "HP_GGM_11",
+          "HP_GGM_12"
+        ]
+      },
+      "Obstacle": {
+        "InnerTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            0.7,
+            0.7
+          ],
+          "semiAxisV": [
+            2.66,
+            2.66
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            89.0,
+            89.0
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              1.8,
+              0.0
+            ],
+            [
+              0.0,
+              1.8,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            0.0,
+            0.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        },
+        "hulls": [],
+        "castZoom": {},
+        "tags": "#",
+        "weapons": []
+      },
+      "rockingCompensationCoef": 1.0,
+      "Spectator": {
+        "tags": "S",
+        "castZoom": {},
+        "InnerTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            1.638,
+            1.495
+          ],
+          "semiAxisV": [
+            6.2,
+            6.2
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            89.0,
+            89.0
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              0.672,
+              0.0
+            ],
+            [
+              0.0,
+              0.689,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            5.0,
+            2.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        },
+        "weapons": [],
+        "hulls": [],
+        "OuterTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            15.96,
+            13.584
+          ],
+          "semiAxisV": [
+            15.96,
+            13.584
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            49.84,
+            73.336
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              4.8,
+              0.0
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            10.0,
+            4.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "Guns1": {
+        "InnerTrajectory": {
+          "horizontalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreControllerPitch": false,
+          "minPosY": [
+            0.0,
+            0.0
+          ],
+          "lookOnCenter": false,
+          "semiAxisH": [
+            0.774,
+            0.67
+          ],
+          "semiAxisV": [
+            0.5,
+            0.5
+          ],
+          "maxYaw": [
+            0.0,
+            0.0
+          ],
+          "lockOnDefaultYaw": false,
+          "minPitch": [
+            -89.0,
+            -89.0
+          ],
+          "disablePullbackEffect": false,
+          "lockOnDefaultPitch": false,
+          "verticalResistance": [
+            0.0,
+            0.0
+          ],
+          "ignoreHeightMultiplier": false,
+          "forwardResistance": [
+            0.0,
+            0.0
+          ],
+          "backwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "defaultPitch": [
+            0.0,
+            0.0
+          ],
+          "horizontalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineV": [
+            0.0,
+            0.0
+          ],
+          "maxPitch": [
+            89.0,
+            89.0
+          ],
+          "bevelAngle": [
+            0.0,
+            0.0
+          ],
+          "backwardResistance": [
+            0.0,
+            0.0
+          ],
+          "minYaw": [
+            -0.0,
+            -0.0
+          ],
+          "defaultYaw": [
+            0.0,
+            0.0
+          ],
+          "forwardResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "zoomControllerCoef": [
+            1.0,
+            1.0
+          ],
+          "posCenter": [
+            [
+              0.0,
+              0.63,
+              3.2
+            ],
+            [
+              0.0,
+              0.63,
+              3.2
+            ]
+          ],
+          "pitchInfluenceOnHeight": [
+            0.0,
+            0.0
+          ],
+          "bevelRange": [
+            0.0,
+            0.0
+          ],
+          "verticalResistanceTime": [
+            0.0,
+            0.0
+          ],
+          "inclineH": [
+            0.0,
+            0.0
+          ]
+        },
+        "hulls": [],
+        "castZoom": {},
+        "tags": "Ca",
+        "weapons": [
+          "HP_GGM_1",
+          "HP_GGM_2",
+          "HP_GGM_3",
+          "HP_GGM_4",
+          "HP_GGM_5",
+          "HP_GGM_6"
+        ]
+      }
+    },
+    "canCharge": true,
+    "canEquipCamouflage": true,
+    "defaultCrew": null,
+    "DockCamera": {
+      "targetXTopNear": null,
+      "mouseXNear": null,
+      "observeZNear": null,
+      "zVal1": null,
+      "mouseXFar": null,
+      "mouseYFar": null,
+      "smoothY": null,
+      "smoothZoom": null,
+      "heightFar": null,
+      "targetXFar": null,
+      "targetXTopFar": null,
+      "pitchUpNear": null,
+      "degree": null,
+      "pitchUpFar": null,
+      "targetYFar": null,
+      "targetBowFar": null,
+      "pitchDownFar": null,
+      "length": null,
+      "targetBowNear": null,
+      "mouseYNear": null,
+      "zValMid": null,
+      "degreeNear": null,
+      "degreeFar": null,
+      "targetYNear": null,
+      "targetXNear": null,
+      "smoothX": null,
+      "targetSternFar": null,
+      "targetSternNear": null,
+      "observeZFar": null,
+      "pitchDownNear": null,
+      "heightNear": null,
+      "targetCoef": null,
+      "zBorder1": null,
+      "zValCenter": null,
+      "zBorder0": null,
+      "zVal0": null
+    },
+    "flagsScale": 0.6,
+    "foghornEventName": "Ship_Horn_Cruiser_1",
+    "group": "upgradeable",
+    "id": 4186879792,
+    "index": "PGSC103",
+    "isPaperShip": false,
+    "level": 3,
+    "maxEquippedFlags": 8,
+    "ModulesArmaments": {
+      "A_Hull": {
+        "acidDamage": 0,
+        "acidDuration": 0,
+        "Ammo_1": {
+          "ramExtraDamage": 0.0,
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 1.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_bow_ammo1_1",
+            "CM_SB_bow_ammo1_2"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.6,
+          "maxHP": 8600.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 40,
+          "hlType": "powdermagazine_hitlocation",
+          "guns": [],
+          "moduleCritCoeffXP": 1.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "coeffReloadDamaged": 1.0,
+          "canBeDestroyed": true,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "Ammo_2": {
+          "ramExtraDamage": 0.0,
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 1.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_stern_ammo1_1",
+            "CM_SB_stern_ammo1_2"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.4,
+          "maxHP": 8600.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 40,
+          "hlType": "powdermagazine_hitlocation",
+          "guns": [],
+          "moduleCritCoeffXP": 1.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "coeffReloadDamaged": 1.0,
+          "canBeDestroyed": true,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "armor": {
+          "65587": 0.0,
+          "65585": 6.0,
+          "65584": 6.0,
+          "65583": 10.0,
+          "131165": 10.0,
+          "131164": 10.0,
+          "131162": 0.0,
+          "131161": 0.0,
+          "131159": 0.0,
+          "131158": 50.0,
+          "131155": 10.0,
+          "65645": 19.0,
+          "65644": 100.0,
+          "65643": 50.0,
+          "65642": 80.0,
+          "65639": 50.0,
+          "65638": 10.0,
+          "65632": 0.0,
+          "65630": 6.0,
+          "65629": 6.0,
+          "65628": 10.0,
+          "65626": 6.0,
+          "65625": 6.0,
+          "65624": 9.0,
+          "65623": 10.0,
+          "65622": 10.0,
+          "65620": 9.0,
+          "65619": 50.0,
+          "65618": 80.0,
+          "65617": 10.0,
+          "65616": 80.0,
+          "65603": 9.0,
+          "65602": 80.0,
+          "65601": 10.0,
+          "65600": 50.0,
+          "65598": 10.0,
+          "65595": 10.0,
+          "1": 0.0
+        },
+        "armourCas": [
+          -1,
+          -1
+        ],
+        "armourCit": [
+          -1,
+          -1
+        ],
+        "armourDeck": [
+          -1,
+          -1
+        ],
+        "armourExtremities": [
+          -1,
+          -1
+        ],
+        "attachToShip": true,
+        "backwardMovementDragCoef": 0.25,
+        "backwardPowerCoef": 3.0,
+        "barbettes": {},
+        "baseUnderwaterPitchAngle": 0.0,
+        "bodyType": "dynamic",
+        "boilerExplosionPostDeath": "particles/Empty_FX.xml",
+        "Bow": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_bow_1",
+            "CM_SB_bow_2",
+            "CM_SB_bow_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 1000.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 0.45,
+          "autoRepairTime": 10,
+          "hlType": "simple_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "buoyancy": 200000,
+        "buoyancyEffects": [],
+        "buoyancyHighlightEffect": "particles/submarines/Sub_location.xml",
+        "buoyancyRudderDepths": [
+          0,
+          -8,
+          -16,
+          -24,
+          -32,
+          -40,
+          -48,
+          -56,
+          -64,
+          -72,
+          -80
+        ],
+        "buoyancyRudderResetTime": 1.0,
+        "buoyancyRudderTime": 1.0,
+        "buoyancyStates": {
+          "DEEP_WATER_INVUL": [
+            [
+              -59.0,
+              -80.0
+            ],
+            0.63,
+            10.0
+          ],
+          "DEEP_WATER": [
+            [
+              -34.0,
+              -59.0
+            ],
+            0.63,
+            10.0
+          ],
+          "SURFACE": [
+            [
+              0.0,
+              -4.0
+            ],
+            1.0,
+            1.0
+          ],
+          "PERISCOPE": [
+            [
+              -4.0,
+              -13.0
+            ],
+            0.63,
+            10.0
+          ],
+          "SEMI_DEEP_WATER": [
+            [
+              -13.0,
+              -34.0
+            ],
+            0.63,
+            10.0
+          ]
+        },
+        "buoyancyStopLine": 10.0,
+        "buoyancyStopLineMinSpeedCoeff": 0.35,
+        "burnNodes": [
+          [
+            1.0,
+            0.3,
+            30.0
+          ],
+          [
+            1.0,
+            0.3,
+            30.0
+          ],
+          [
+            1.0,
+            0.3,
+            30.0
+          ],
+          [
+            1.0,
+            0.3,
+            30.0
+          ]
+        ],
+        "canReceiveAcid": false,
+        "canReceiveWildFire": true,
+        "chimneyMaxAngle": 45.0,
+        "Cit": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_cit_1",
+            "CM_SB_cit_2",
+            "CM_SB_cit_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 165500,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.5,
+          "regeneratedHPPart": 0.1,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.09,
+          "autoRepairTime": 10,
+          "hlType": "citadel_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "consumablePlaneTypes": {
+          "fighter": "",
+          "scout": "",
+          "smokePlane": ""
+        },
+        "coolingOffSpeed": 0.1,
+        "crackCoords": [
+          0.25,
+          0.0,
+          -0.25
+        ],
+        "customSkeletonExtenders": {},
+        "deathBubblesEffect": "particles/NF_CC_seething_bubbles_post_death.xml",
+        "deathFaultEffect": "particles/Empty_FX.xml",
+        "deathFireEffect": "particles/Empty_FX.xml",
+        "deathFoamEffect": "particles/vehicles/Death_foam_medium.xml",
+        "deathFountainsEffect": "particles/NF_CC_water_fountains_post_death.xml",
+        "deathFumingEffect": "particles/NF_CC_fuming_at_flooding_post_death.xml",
+        "deathNodes": [
+          "HP_Ship_death_1",
+          "HP_Ship_death_2",
+          "HP_Ship_death_3"
+        ],
+        "deathPlaneEffect": "particles/NF_AA_death_catapult_ships.xml",
+        "deathPostFireEffect": "particles/NF_CC_fuming_post_fire.xml",
+        "deathSettings": "PCOS001_Default",
+        "deathShellEffect": "particles/Empty_FX.xml",
+        "deathSoundEvent": "Damage_Death",
+        "deathTorpedoEffect": "particles/NF_death_torpedo.xml",
+        "deathUnderWaterBubblesEffects": [
+          "particles/guns/DEPTH_Tracer_UWater.xml",
+          "particles/guns/DEPTH_Tracer_UWater.xml"
+        ],
+        "deckHeight": 6.0,
+        "deepwaterVisionCoeff": {},
+        "deepwaterVisionToPlaneCoeff": {},
+        "defaultCamouflage": "",
+        "dockYOffset": -0.0315,
+        "draft": 11,
+        "effectCauldronExplosion": "particles/Empty_FX.xml",
+        "effectOnDeath": [
+          "content/animation_state_machines/gameplay/custom_death/Death_002_Default_Cruiser.ssm"
+        ],
+        "effectOnFloodDeath": [
+          "content/animation_state_machines/gameplay/custom_death/Death_002_Default_Cruiser.ssm"
+        ],
+        "effectOnSubmarineUnderWaterDeath": [
+          "content/animation_state_machines/gameplay/custom_death/Death_005_Default_Submarine.ssm"
+        ],
+        "effectOnUnderWaterDeath": [],
+        "effects": {
+          "fixLight": [
+            [
+              "EP_FloodLight_left_1",
+              "particles/vehicles/FixLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_left_2",
+              "particles/vehicles/FixLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_1",
+              "particles/vehicles/FixLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_2",
+              "particles/vehicles/FixLight_medium.xml"
+            ]
+          ],
+          "horn": [
+            [
+              "EP_Smoke_1",
+              "particles/vehicles/Horn.xml"
+            ],
+            [
+              "EP_Smoke_2",
+              "particles/vehicles/Horn.xml"
+            ],
+            [
+              "EP_Smoke_3",
+              "particles/vehicles/Horn.xml"
+            ]
+          ],
+          "idlePort": [
+            [
+              "EP_Flood_water_left",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_left_2",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right_2",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Smoke_1",
+              "particles/vehicles/idlePort_RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_2",
+              "particles/vehicles/idlePort_RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_3",
+              "particles/vehicles/idlePort_RunSmoke_small.xml"
+            ]
+          ],
+          "fire1": [
+            [
+              "EP_Fire_1",
+              "particles/vehicles/Fire_vsmall.xml"
+            ]
+          ],
+          "floodLight": [
+            [
+              "EP_FloodLight_left_1",
+              "particles/vehicles/FloodLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_left_2",
+              "particles/vehicles/FloodLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_1",
+              "particles/vehicles/FloodLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_2",
+              "particles/vehicles/FloodLight_medium.xml"
+            ]
+          ],
+          "death": [
+            [
+              "EP_Death_1",
+              "particles/vehicles/Death_foam_medium.xml"
+            ],
+            [
+              "EP_Death_2",
+              "particles/vehicles/Death_foam_medium.xml"
+            ],
+            [
+              "EP_Death_3",
+              "particles/vehicles/Death_foam_medium.xml"
+            ]
+          ],
+          "fireResistance": [],
+          "flood": [
+            [
+              "EP_Flood_steam_1",
+              "particles/vehicles/Flood_steam_exhaust_big_delayed.xml"
+            ],
+            [
+              "EP_Flood_steam_1",
+              "particles/vehicles/Flood_steam_medium.xml"
+            ],
+            [
+              "EP_Flood_steam_2",
+              "particles/vehicles/Flood_steam_medium.xml"
+            ],
+            [
+              "EP_Flood_steam_3",
+              "particles/vehicles/Flood_steam_exhaust_big.xml"
+            ],
+            [
+              "EP_Flood_steam_3",
+              "particles/vehicles/Flood_steam_medium.xml"
+            ],
+            [
+              "EP_Flood_steam_left",
+              "particles/vehicles/Flood_steam_side_small.xml"
+            ],
+            [
+              "EP_Flood_steam_right",
+              "particles/vehicles/Flood_steam_side_small.xml"
+            ]
+          ],
+          "idle": [],
+          "fire4": [
+            [
+              "EP_Fire_4",
+              "particles/vehicles/Fire_vsmall_2.xml"
+            ]
+          ],
+          "repairLight": [],
+          "smoke": [
+            [
+              "EP_Smoke_1",
+              "particles/vehicles/RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_2",
+              "particles/vehicles/RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_3",
+              "particles/vehicles/RunSmoke_small.xml"
+            ]
+          ],
+          "fire3": [
+            [
+              "EP_Fire_3",
+              "particles/vehicles/Fire_small_2.xml"
+            ],
+            [
+              "EP_Fire_3_side_1",
+              "particles/vehicles/Fire_side_medium.xml"
+            ]
+          ],
+          "waketraceback": [
+            [
+              "EP_WakeTraceBack",
+              "particles/vehicles/WakeTraceReverce_back.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_1",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_2",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_3",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_4",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ]
+          ],
+          "fire2": [
+            [
+              "EP_Fire_2",
+              "particles/vehicles/Fire_small.xml"
+            ],
+            [
+              "EP_Fire_2_side_1",
+              "particles/vehicles/Fire_side_medium.xml"
+            ],
+            [
+              "EP_Fire_2_side_2",
+              "particles/vehicles/Fire_side_medium.xml"
+            ]
+          ],
+          "fixDeluge": [
+            [
+              "EP_Flood_water_left",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_left_2",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right_2",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ]
+          ],
+          "waketracefront": [
+            [
+              "EP_WakeTrace",
+              "particles/vehicles/WakeTraceForward_front.xml"
+            ],
+            [
+              "EP_WakeTraceBack",
+              "particles/vehicles/WakeTraceForward_back.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_1",
+              "particles/vehicles/WakeTraceForward_screw_left_side.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_1",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_2",
+              "particles/vehicles/WakeTraceForward_screw_right_side.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_2",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_3",
+              "particles/vehicles/WakeTraceForward_screw_left_center.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_3",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_4",
+              "particles/vehicles/WakeTraceForward_screw_right_center.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_4",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ]
+          ]
+        },
+        "effectShipCracksAndOilPuddle": "particles/Empty_FX.xml",
+        "elasticity": 0.1,
+        "enemyEngineEffects": false,
+        "enemyVisibilityCoeffByDepth": {
+          "-44": 1.0,
+          "0": 1.0
+        },
+        "enginePower": 31000.0,
+        "finderBase": 1.5,
+        "finderHeight": 12.3,
+        "flagPoleModelName": "content/gameplay/common/misc/CM500_Flagpole/CM500_Flagpole.model",
+        "floodNodes": [
+          [
+            0.333,
+            0.25,
+            40.0
+          ],
+          [
+            0.333,
+            0.25,
+            40.0
+          ]
+        ],
+        "foghornEffect": "particles/Hooter.xml",
+        "friction": 0.05,
+        "health": 17200.0,
+        "heatChangeValue": 1,
+        "heightIntensityEffects": [],
+        "Hull": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 12900.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 10,
+          "hlType": "hull_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "isBlind": false,
+        "isFakeSubmarine": false,
+        "mass": 4915000.0,
+        "maxBuoyancyLevel": 0.0,
+        "maxBuoyancySpeed": 0.0,
+        "maxHeatValue": 100.0,
+        "maxRudderAngle": 30.0,
+        "maxSpeed": 27.0,
+        "minVisionDistance": 0.0,
+        "model": "content/gameplay/germany/ship/cruiser/GSC003_Kolberg_1910/GSC003_Kolberg_1910.model",
+        "numOfParts": 0,
+        "oilLeakDuration": 40.0,
+        "oilLeakIntervalInvisible": 5.0,
+        "oilLeakStartDelay": 5.0,
+        "partialHpDecalsAmount": 16,
+        "partialHpHitDecalSize": 0.37,
+        "propellerEffect": "",
+        "propellerEffectReversed": "",
+        "pushingMaxRudderAngle": 16.0,
+        "pushingMinRudderAngle": 1.0,
+        "regenerationHPSpeed": 0.0,
+        "repairingCoeff": 0.0,
+        "rollEffect": 7.4,
+        "rudderPower": 35500000.0,
+        "rudderTime": 9.74,
+        "SG": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_ruder1_1",
+            "CM_SB_ruder1_2",
+            "CM_SB_ruder1_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 40,
+          "armorCoeff": 0.4,
+          "maxHP": 5200.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 40,
+          "hlType": "steering_gear_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "shipBodySunkDifferenceCoeff": 2.0,
+        "shipBodySunkStartMassCoeff": 1.0,
+        "shipPartSunkDifferenceCoeff": 2.2,
+        "shipPartSunkStartMassCoeff": 2.2,
+        "shipWheelsPresent": false,
+        "sideDragCoef": 180000.0,
+        "sinkingEffects": "PCXS008_Cruiser",
+        "sinkStartTime": [
+          [
+            4.0,
+            10.0
+          ],
+          [
+            2.0,
+            4.0
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            4.0,
+            1.0
+          ]
+        ],
+        "sinkTime": [
+          [
+            45.0,
+            130.0
+          ],
+          [
+            18.0,
+            30.0
+          ],
+          [
+            21.0,
+            27.0
+          ],
+          [
+            27.0,
+            15.0
+          ]
+        ],
+        "size": [
+          129.93,
+          13.93,
+          20.3
+        ],
+        "smokeScanRadius": 27.0,
+        "speedCoef": 1.0,
+        "SS": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_ss_1_1",
+            "CM_SB_ss_1_2",
+            "CM_SB_ss_1_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 400.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 0.18,
+          "autoRepairTime": 10,
+          "hlType": "supersctructure_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "SSC": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_ssc_1",
+            "CM_SB_ssc_2",
+            "CM_SB_ssc_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 3000.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.38,
+          "autoRepairTime": 10,
+          "hlType": "simple_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "St": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_stern_1",
+            "CM_SB_stern_2",
+            "CM_SB_stern_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 900.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 0.4,
+          "autoRepairTime": 10,
+          "hlType": "simple_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "startHealthCoeff": 1.0,
+        "startHealthToRegenerationCoeff": 0.5,
+        "surfaceOilLeakEffect": "particles/OnBomb_Oil.xml",
+        "timeBeforeCauldronExplosion": 4.0,
+        "timeBeforeDeathEffect": 0.2,
+        "toMineVisionDistance": [
+          600.0,
+          600.0,
+          100.0
+        ],
+        "tonnage": 4362.0,
+        "torpedoImpactMassImpulseCoeff": 0.5,
+        "turningRadius": 470.0,
+        "underwaterMaxRudderAngle": 0.0,
+        "underwaterRollEffect": 0.0,
+        "unpeculiarCamouflage": "",
+        "unpeculiarCamouflageColorSchemeId": 0,
+        "visibilityCoefAirDefense": 1e-06,
+        "visibilityCoefATBAByPlane": 1e-06,
+        "visibilityCoefFire": 2.0,
+        "visibilityCoefFireByPlane": 2.0,
+        "visibilityCoeffUnderwaterDepths": {
+          "0": 1.0
+        },
+        "visibilityCoeffUnderwaterDepthsByPlane": {
+          "0": 1.0
+        },
+        "visibilityCoefGK": 1e-06,
+        "visibilityCoefGKByPlane": 1e-06,
+        "visibilityCoefGKInSmoke": 3.5,
+        "visibilityCoefPinger": {
+          "0": 0.0
+        },
+        "visibilityCoefPingerByPlane": {
+          "0": 0.0
+        },
+        "visibilityCoefPingerInSmoke": 1e-06,
+        "visibilityFactor": 9.43,
+        "visibilityFactorByPlane": 3.94,
+        "visibilityFactorInSmoke": 1e-06,
+        "visibilityFactorsBySubmarine": {
+          "DEEP_WATER_INVUL": 0.0,
+          "DEEP_WATER": 2.0,
+          "SURFACE": 0.0,
+          "PERISCOPE": 3.94,
+          "SEMI_DEEP_WATER": 2.0
+        },
+        "visionDistance": 0.0,
+        "wildFireDamage": 0.0,
+        "wildFireDuration": -1.0
+      },
+      "AB1_Artillery": {
+        "ammoPool": {
+          "impulseLaser": 99999,
+          "chargeLaser": 99999,
+          "axisLaser": 99999,
+          "CS": 99999,
+          "HE": 99999,
+          "phaserLaser": 99999,
+          "AP": 99999
+        },
+        "artificialOffset": 0,
+        "guns": {
+          "HP_GGM_1": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -148.0,
+              16.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              -0.25,
+              1.5
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_10": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4281984816,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 1.0,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [
+              [
+                -1.0,
+                -0.0
+              ]
+            ],
+            "model": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -159.0,
+              0.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              4.75,
+              0.0
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM012",
+            "name": "PGGM012_105mm_SK_L45",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 6.0,
+              "65636": 6.0,
+              "65635": 6.0,
+              "65571": 6.0,
+              "65569": 6.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_11": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              0.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -22.0,
+              147.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              6.0,
+              1.75
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_12": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              0.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -147.0,
+              22.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              6.0,
+              0.25
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_2": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -16.0,
+              148.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              -0.25,
+              0.5
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_3": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4281984816,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 1.0,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -159.0,
+              1.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              1.0,
+              1.75
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM012",
+            "name": "PGGM012_105mm_SK_L45",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 6.0,
+              "65636": 6.0,
+              "65635": 6.0,
+              "65571": 6.0,
+              "65569": 6.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_4": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4281984816,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 1.0,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -1.0,
+              159.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              1.0,
+              0.25
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM012",
+            "name": "PGGM012_105mm_SK_L45",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 6.0,
+              "65636": 6.0,
+              "65635": 6.0,
+              "65571": 6.0,
+              "65569": 6.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_5": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -139.0,
+              0.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              2.25,
+              2.0
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_6": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              0.0,
+              139.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              2.25,
+              0.0
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_7": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              0.0,
+              141.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              3.5,
+              2.0
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_8": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4251576112,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 0.5,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [],
+            "model": "content/gameplay/germany/gun/main/GGM041_105mm_SK_L45_shield/GGM041_105mm_SK_L45_shield.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              -141.0,
+              0.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              3.5,
+              0.0
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM041",
+            "name": "PGGM041_105mm_SK_L45_shield",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 50.0,
+              "65636": 50.0,
+              "65635": 0.0,
+              "65571": 0.0,
+              "65569": 50.0
+            },
+            "maxEllipseRanging": 1.003
+          },
+          "HP_GGM_9": {
+            "deadMesh": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45_dead.model",
+            "radiusOnMax": 0.6,
+            "onMoveTarPosDelim": 0.1,
+            "brokenEffect": "particles/guns/Gun_Damage_vvsmall.xml",
+            "smokePenalty": 0.0001,
+            "medEllipseRanging": 1.002,
+            "minRadius": 1.1,
+            "radiusOnZero": 0.2,
+            "minEllipseRanging": 1.001,
+            "numBarrels": 1,
+            "idealDistance": 1000.0,
+            "reduceTime": 0.1,
+            "ammoSwitchCoeff": 1.0,
+            "radiusOnDelim": 0.5,
+            "id": 4281984816,
+            "reloadBoostEffect": "particles/guns/GK_Reload.xml",
+            "miscFilter": [],
+            "shotEffect": "particles/guns/GK_Shot.xml",
+            "idealRadius": 8,
+            "HitLocationArtillery": {
+              "ramExtraDamage": 0.0,
+              "transmitHPDamageToParentFactor": 1.0,
+              "tbSkipProbMin": 0.0,
+              "antiRamCoeff": 1.0,
+              "moduleCritCoeffCR": 1.0,
+              "buoyancyShipPercent": 0.0,
+              "damageEffects": [],
+              "critProb": [
+                0.0,
+                0.0
+              ],
+              "splashBoxes": [],
+              "maxBuoyancy": 0.0,
+              "brokenRepairHealthCoefficient": 0.5,
+              "shouldDrawDamage": true,
+              "volumeCoeff": 0.1,
+              "autoRepairTimeMin": 25,
+              "armorCoeff": 1.0,
+              "maxHP": 2000.0,
+              "startHPCoeff": 1.0,
+              "enhancedRegeneratedHPPart": 0.0,
+              "regeneratedHPPart": 1.0,
+              "tbSkipProbMax": 0.0,
+              "volume": 0.5,
+              "autoRepairTime": 30,
+              "hlType": "artillery_hitlocation",
+              "critProbHP": [
+                1.0,
+                0.02
+              ],
+              "moduleCritCoeffXP": 1.0,
+              "brokenRepairTime": 45.0,
+              "ramCoeff": 1.0,
+              "canBeDestroyed": false,
+              "parentHL": null,
+              "burnNode": ""
+            },
+            "lensEffect": "particles/guns/GK_Lens.xml",
+            "antiAirAuraStrength": 0.0,
+            "shotDelay": 4.0,
+            "delim": 0.5,
+            "onMoveTarPosCoeffDelim": 1.001,
+            "vertSector": [
+              -2.0,
+              30.0
+            ],
+            "deadZone": [
+              [
+                0.0,
+                1.0
+              ]
+            ],
+            "model": "content/gameplay/germany/gun/main/GGM012_105mm_SK_L45/GGM012_105mm_SK_L45.model",
+            "onMoveTarPosCoeffZero": 1.0,
+            "aiMGmedEllipseRanging": 3.7,
+            "rotationSpeed": [
+              10.0,
+              10.0
+            ],
+            "aiMGmaxEllipseRanging": 4.0,
+            "smallGun": null,
+            "purgingEffect": "particles/guns/GK_Purging.xml",
+            "barrelDiameter": 0.105,
+            "horizSector": [
+              0.0,
+              159.0
+            ],
+            "typeinfo": {
+              "species": "Main",
+              "type": "Gun",
+              "nation": "Germany"
+            },
+            "position": [
+              4.75,
+              2.0
+            ],
+            "antiAirAuraDistance": 0.0,
+            "aiMGminEllipseRanging": 3.5,
+            "ellipseRangeMin": 50.0,
+            "index": "PGGM012",
+            "name": "PGGM012_105mm_SK_L45",
+            "customMiscs": {},
+            "ellipseRangeMax": 250.0,
+            "damagedEffect": "particles/guns/Gun_Broken_vvsmall.xml",
+            "ammoList": [
+              "PGPA008_105MM_HE_SPRGR",
+              "PGPA007_105MM_AP_PSGR"
+            ],
+            "pitchDeadZones": [],
+            "onMoveTarPosCoeffMaxDist": 1.002,
+            "effectIntensityModifier": 1.0,
+            "miscFilterMode": false,
+            "coeffPerSecondMin": 0.3,
+            "armor": {
+              "65568": 6.0,
+              "65636": 6.0,
+              "65635": 6.0,
+              "65571": 6.0,
+              "65569": 6.0
+            },
+            "maxEllipseRanging": 1.003
+          }
+        },
+        "maxDist": 10080.0,
+        "minDistH": 50.0,
+        "minDistV": 110.0,
+        "normalDistribution": true,
+        "sigmaCount": 2.0,
+        "taperDist": 4000.0,
+        "targetWeightAllyAttacker": 1.0,
+        "targetWeightDist": 1.0,
+        "targetWeightHealth": 1.0,
+        "targetWeightIncoming": 10.0,
+        "targetWeightMaxDist": 2.0,
+        "targetWeightMaxHealth": 1.0,
+        "targetWeightMinDist": 10.0,
+        "targetWeightMinHealth": 5.0,
+        "targetWeightMyAttacker": 1.0,
+        "targetWeightOutcoming": 0.1,
+        "targetWeightYaw": 1.0
+      },
+      "AB1_Engine": {
+        "backwardEngineForsag": 2.5,
+        "backwardEngineForsagMaxSpeed": 2.5,
+        "backwardEngineUpTime": 20.0,
+        "backwardSpeedOnFlood": -0.6,
+        "damagedEnginePowerMultiplier": -0.6,
+        "damagedEnginePowerTimeMultiplier": 5.5,
+        "engineType": "SteamTurbine",
+        "forwardEngineForsag": 1.75,
+        "forwardEngineForsagMaxSpeed": 9.45,
+        "forwardEngineUpTime": 25.0,
+        "forwardSpeedOnFlood": -0.3,
+        "histEnginePower": 31000.0,
+        "HitLocationEngine": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 1.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_engine1_1",
+            "CM_SB_engine1_2",
+            "CM_SB_engine1_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 60,
+          "armorCoeff": 0.2,
+          "maxHP": 18300.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 10.0,
+          "autoRepairTime": 60,
+          "hlType": "engine_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 1.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "sound": "GameLogic.Engines.Battleship.Turbine.Type_1",
+        "speedCoef": 0.0
+      },
+      "AB1_FireControl": {
+        "maxDistCoef": 1.0,
+        "sigmaCountCoef": 1.0
+      },
+      "AB2_FireControl": {
+        "maxDistCoef": 1.1,
+        "sigmaCountCoef": 1.0
+      },
+      "B_Hull": {
+        "acidDamage": 0,
+        "acidDuration": 0,
+        "Ammo_1": {
+          "ramExtraDamage": 0.0,
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 1.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_bow_ammo1_1",
+            "CM_SB_bow_ammo1_2"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.4,
+          "maxHP": 9200.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 40,
+          "hlType": "powdermagazine_hitlocation",
+          "guns": [],
+          "moduleCritCoeffXP": 1.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "coeffReloadDamaged": 1.0,
+          "canBeDestroyed": true,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "Ammo_2": {
+          "ramExtraDamage": 0.0,
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 1.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_stern_ammo1_1",
+            "CM_SB_stern_ammo1_2"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.4,
+          "maxHP": 9200.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 40,
+          "hlType": "powdermagazine_hitlocation",
+          "guns": [],
+          "moduleCritCoeffXP": 1.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "coeffReloadDamaged": 1.0,
+          "canBeDestroyed": true,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "armor": {
+          "65587": 0.0,
+          "65585": 6.0,
+          "65584": 6.0,
+          "65583": 10.0,
+          "131165": 10.0,
+          "131164": 10.0,
+          "131162": 0.0,
+          "131161": 0.0,
+          "131159": 0.0,
+          "131158": 50.0,
+          "131155": 10.0,
+          "65645": 19.0,
+          "65644": 100.0,
+          "65643": 50.0,
+          "65642": 80.0,
+          "65639": 50.0,
+          "65638": 10.0,
+          "65632": 0.0,
+          "65630": 6.0,
+          "65629": 6.0,
+          "65628": 10.0,
+          "65626": 6.0,
+          "65625": 6.0,
+          "65624": 9.0,
+          "65623": 10.0,
+          "65622": 10.0,
+          "65620": 9.0,
+          "65619": 50.0,
+          "65618": 80.0,
+          "65617": 10.0,
+          "65616": 80.0,
+          "65603": 9.0,
+          "65602": 80.0,
+          "65601": 10.0,
+          "65600": 50.0,
+          "65598": 10.0,
+          "65595": 10.0,
+          "1": 0.0
+        },
+        "armourCas": [
+          -1,
+          -1
+        ],
+        "armourCit": [
+          -1,
+          -1
+        ],
+        "armourDeck": [
+          -1,
+          -1
+        ],
+        "armourExtremities": [
+          -1,
+          -1
+        ],
+        "attachToShip": true,
+        "backwardMovementDragCoef": 0.25,
+        "backwardPowerCoef": 3.0,
+        "barbettes": {},
+        "baseUnderwaterPitchAngle": 0.0,
+        "bodyType": "dynamic",
+        "boilerExplosionPostDeath": "particles/Empty_FX.xml",
+        "Bow": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_bow_1",
+            "CM_SB_bow_2",
+            "CM_SB_bow_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 1000.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 0.45,
+          "autoRepairTime": 10,
+          "hlType": "simple_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "buoyancy": 200000,
+        "buoyancyEffects": [],
+        "buoyancyHighlightEffect": "particles/submarines/Sub_location.xml",
+        "buoyancyRudderDepths": [
+          0,
+          -8,
+          -16,
+          -24,
+          -32,
+          -40,
+          -48,
+          -56,
+          -64,
+          -72,
+          -80
+        ],
+        "buoyancyRudderResetTime": 1.0,
+        "buoyancyRudderTime": 1.0,
+        "buoyancyStates": {
+          "DEEP_WATER_INVUL": [
+            [
+              -59.0,
+              -80.0
+            ],
+            0.63,
+            10.0
+          ],
+          "DEEP_WATER": [
+            [
+              -34.0,
+              -59.0
+            ],
+            0.63,
+            10.0
+          ],
+          "SURFACE": [
+            [
+              0.0,
+              -4.0
+            ],
+            1.0,
+            1.0
+          ],
+          "PERISCOPE": [
+            [
+              -4.0,
+              -13.0
+            ],
+            0.63,
+            10.0
+          ],
+          "SEMI_DEEP_WATER": [
+            [
+              -13.0,
+              -34.0
+            ],
+            0.63,
+            10.0
+          ]
+        },
+        "buoyancyStopLine": 10.0,
+        "buoyancyStopLineMinSpeedCoeff": 0.35,
+        "burnNodes": [
+          [
+            0.9667,
+            0.3,
+            30.0
+          ],
+          [
+            0.9667,
+            0.3,
+            30.0
+          ],
+          [
+            0.9667,
+            0.3,
+            30.0
+          ],
+          [
+            0.9667,
+            0.3,
+            30.0
+          ]
+        ],
+        "canReceiveAcid": false,
+        "canReceiveWildFire": true,
+        "chimneyMaxAngle": 45.0,
+        "Cit": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_cit_1",
+            "CM_SB_cit_2",
+            "CM_SB_cit_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 165500,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.5,
+          "regeneratedHPPart": 0.1,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.09,
+          "autoRepairTime": 10,
+          "hlType": "citadel_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "consumablePlaneTypes": {
+          "fighter": "",
+          "scout": "",
+          "smokePlane": ""
+        },
+        "coolingOffSpeed": 0.1,
+        "crackCoords": [
+          0.25,
+          0.0,
+          -0.25
+        ],
+        "customSkeletonExtenders": {},
+        "deathBubblesEffect": "particles/NF_CC_seething_bubbles_post_death.xml",
+        "deathFaultEffect": "particles/Empty_FX.xml",
+        "deathFireEffect": "particles/Empty_FX.xml",
+        "deathFoamEffect": "particles/vehicles/Death_foam_medium.xml",
+        "deathFountainsEffect": "particles/NF_CC_water_fountains_post_death.xml",
+        "deathFumingEffect": "particles/NF_CC_fuming_at_flooding_post_death.xml",
+        "deathNodes": [
+          "HP_Ship_death_1",
+          "HP_Ship_death_2",
+          "HP_Ship_death_3"
+        ],
+        "deathPlaneEffect": "particles/NF_AA_death_catapult_ships.xml",
+        "deathPostFireEffect": "particles/NF_CC_fuming_post_fire.xml",
+        "deathSettings": "PCOS001_Default",
+        "deathShellEffect": "particles/Empty_FX.xml",
+        "deathSoundEvent": "Damage_Death",
+        "deathTorpedoEffect": "particles/NF_death_torpedo.xml",
+        "deathUnderWaterBubblesEffects": [
+          "particles/guns/DEPTH_Tracer_UWater.xml",
+          "particles/guns/DEPTH_Tracer_UWater.xml"
+        ],
+        "deckHeight": 6.0,
+        "deepwaterVisionCoeff": {},
+        "deepwaterVisionToPlaneCoeff": {},
+        "defaultCamouflage": "",
+        "dockYOffset": -0.0315,
+        "draft": 11,
+        "effectCauldronExplosion": "particles/Empty_FX.xml",
+        "effectOnDeath": [
+          "content/animation_state_machines/gameplay/custom_death/Death_002_Default_Cruiser.ssm"
+        ],
+        "effectOnFloodDeath": [
+          "content/animation_state_machines/gameplay/custom_death/Death_002_Default_Cruiser.ssm"
+        ],
+        "effectOnSubmarineUnderWaterDeath": [
+          "content/animation_state_machines/gameplay/custom_death/Death_005_Default_Submarine.ssm"
+        ],
+        "effectOnUnderWaterDeath": [],
+        "effects": {
+          "fixLight": [
+            [
+              "EP_FloodLight_left_1",
+              "particles/vehicles/FixLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_left_2",
+              "particles/vehicles/FixLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_1",
+              "particles/vehicles/FixLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_2",
+              "particles/vehicles/FixLight_medium.xml"
+            ]
+          ],
+          "horn": [
+            [
+              "EP_Smoke_1",
+              "particles/vehicles/Horn.xml"
+            ],
+            [
+              "EP_Smoke_2",
+              "particles/vehicles/Horn.xml"
+            ],
+            [
+              "EP_Smoke_3",
+              "particles/vehicles/Horn.xml"
+            ]
+          ],
+          "idlePort": [
+            [
+              "EP_Flood_water_left",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_left_2",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right_2",
+              "particles/vehicles/idlePort_Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Smoke_1",
+              "particles/vehicles/idlePort_RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_2",
+              "particles/vehicles/idlePort_RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_3",
+              "particles/vehicles/idlePort_RunSmoke_small.xml"
+            ]
+          ],
+          "fire1": [
+            [
+              "EP_Fire_1",
+              "particles/vehicles/Fire_vsmall.xml"
+            ]
+          ],
+          "floodLight": [
+            [
+              "EP_FloodLight_left_1",
+              "particles/vehicles/FloodLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_left_2",
+              "particles/vehicles/FloodLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_1",
+              "particles/vehicles/FloodLight_medium.xml"
+            ],
+            [
+              "EP_FloodLight_right_2",
+              "particles/vehicles/FloodLight_medium.xml"
+            ]
+          ],
+          "death": [
+            [
+              "EP_Death_1",
+              "particles/vehicles/Death_foam_medium.xml"
+            ],
+            [
+              "EP_Death_2",
+              "particles/vehicles/Death_foam_medium.xml"
+            ],
+            [
+              "EP_Death_3",
+              "particles/vehicles/Death_foam_medium.xml"
+            ]
+          ],
+          "fireResistance": [],
+          "flood": [
+            [
+              "EP_Flood_steam_1",
+              "particles/vehicles/Flood_steam_exhaust_big_delayed.xml"
+            ],
+            [
+              "EP_Flood_steam_1",
+              "particles/vehicles/Flood_steam_medium.xml"
+            ],
+            [
+              "EP_Flood_steam_2",
+              "particles/vehicles/Flood_steam_medium.xml"
+            ],
+            [
+              "EP_Flood_steam_3",
+              "particles/vehicles/Flood_steam_exhaust_big.xml"
+            ],
+            [
+              "EP_Flood_steam_3",
+              "particles/vehicles/Flood_steam_medium.xml"
+            ],
+            [
+              "EP_Flood_steam_left",
+              "particles/vehicles/Flood_steam_side_small.xml"
+            ],
+            [
+              "EP_Flood_steam_right",
+              "particles/vehicles/Flood_steam_side_small.xml"
+            ]
+          ],
+          "idle": [],
+          "fire4": [
+            [
+              "EP_Fire_4",
+              "particles/vehicles/Fire_vsmall_2.xml"
+            ]
+          ],
+          "repairLight": [],
+          "smoke": [
+            [
+              "EP_Smoke_1",
+              "particles/vehicles/RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_2",
+              "particles/vehicles/RunSmoke_small.xml"
+            ],
+            [
+              "EP_Smoke_3",
+              "particles/vehicles/RunSmoke_small.xml"
+            ]
+          ],
+          "fire3": [
+            [
+              "EP_Fire_3",
+              "particles/vehicles/Fire_small_2.xml"
+            ],
+            [
+              "EP_Fire_3_side_1",
+              "particles/vehicles/Fire_side_medium.xml"
+            ]
+          ],
+          "waketraceback": [
+            [
+              "EP_WakeTraceBack",
+              "particles/vehicles/WakeTraceReverce_back.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_1",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_2",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_3",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_4",
+              "particles/vehicles/WakeTraceReverce_screw_small_2.xml"
+            ]
+          ],
+          "fire2": [
+            [
+              "EP_Fire_2",
+              "particles/vehicles/Fire_small.xml"
+            ],
+            [
+              "EP_Fire_2_side_1",
+              "particles/vehicles/Fire_side_medium.xml"
+            ],
+            [
+              "EP_Fire_2_side_2",
+              "particles/vehicles/Fire_side_medium.xml"
+            ]
+          ],
+          "fixDeluge": [
+            [
+              "EP_Flood_water_left",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_left_2",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ],
+            [
+              "EP_Flood_water_right_2",
+              "particles/vehicles/Flood_deluge_small.xml"
+            ]
+          ],
+          "waketracefront": [
+            [
+              "EP_WakeTrace",
+              "particles/vehicles/WakeTraceForward_front.xml"
+            ],
+            [
+              "EP_WakeTraceBack",
+              "particles/vehicles/WakeTraceForward_back.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_1",
+              "particles/vehicles/WakeTraceForward_screw_left_side.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_1",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_2",
+              "particles/vehicles/WakeTraceForward_screw_right_side.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_2",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_3",
+              "particles/vehicles/WakeTraceForward_screw_left_center.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_3",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_4",
+              "particles/vehicles/WakeTraceForward_screw_right_center.xml"
+            ],
+            [
+              "EP_WakeTrace_screw_4",
+              "particles/vehicles/WakeTrace_screw_small_2.xml"
+            ]
+          ]
+        },
+        "effectShipCracksAndOilPuddle": "particles/Empty_FX.xml",
+        "elasticity": 0.1,
+        "enemyEngineEffects": false,
+        "enemyVisibilityCoeffByDepth": {
+          "-44": 1.0,
+          "0": 1.0
+        },
+        "enginePower": 31000.0,
+        "finderBase": 1.5,
+        "finderHeight": 12.3,
+        "flagPoleModelName": "content/gameplay/common/misc/CM500_Flagpole/CM500_Flagpole.model",
+        "floodNodes": [
+          [
+            0.333,
+            0.25,
+            40.0
+          ],
+          [
+            0.333,
+            0.25,
+            40.0
+          ]
+        ],
+        "foghornEffect": "particles/Hooter.xml",
+        "friction": 0.05,
+        "health": 18300.0,
+        "heatChangeValue": 1,
+        "heightIntensityEffects": [],
+        "Hull": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 13700.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 10,
+          "hlType": "hull_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "isBlind": false,
+        "isFakeSubmarine": false,
+        "mass": 4915000.0,
+        "maxBuoyancyLevel": 0.0,
+        "maxBuoyancySpeed": 0.0,
+        "maxHeatValue": 100.0,
+        "maxRudderAngle": 30.0,
+        "maxSpeed": 27.0,
+        "minVisionDistance": 0.0,
+        "model": "content/gameplay/germany/ship/cruiser/GSC003_Kolberg_1910/GSC003_Kolberg_1910.model",
+        "numOfParts": 0,
+        "oilLeakDuration": 40.0,
+        "oilLeakIntervalInvisible": 5.0,
+        "oilLeakStartDelay": 5.0,
+        "partialHpDecalsAmount": 16,
+        "partialHpHitDecalSize": 0.37,
+        "propellerEffect": "",
+        "propellerEffectReversed": "",
+        "pushingMaxRudderAngle": 16.0,
+        "pushingMinRudderAngle": 1.0,
+        "regenerationHPSpeed": 0.0,
+        "repairingCoeff": 0.0,
+        "rollEffect": 7.4,
+        "rudderPower": 35500000.0,
+        "rudderTime": 6.96,
+        "SG": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_ruder1_1",
+            "CM_SB_ruder1_2",
+            "CM_SB_ruder1_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 1.0,
+          "autoRepairTimeMin": 40,
+          "armorCoeff": 0.4,
+          "maxHP": 5500.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.0,
+          "autoRepairTime": 40,
+          "hlType": "steering_gear_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": null,
+          "burnNode": ""
+        },
+        "shipBodySunkDifferenceCoeff": 2.0,
+        "shipBodySunkStartMassCoeff": 1.0,
+        "shipPartSunkDifferenceCoeff": 2.2,
+        "shipPartSunkStartMassCoeff": 2.2,
+        "shipWheelsPresent": false,
+        "sideDragCoef": 180000.0,
+        "sinkingEffects": "PCXS008_Cruiser",
+        "sinkStartTime": [
+          [
+            4.0,
+            10.0
+          ],
+          [
+            2.0,
+            4.0
+          ],
+          [
+            3.0,
+            3.0
+          ],
+          [
+            4.0,
+            1.0
+          ]
+        ],
+        "sinkTime": [
+          [
+            45.0,
+            130.0
+          ],
+          [
+            18.0,
+            30.0
+          ],
+          [
+            21.0,
+            27.0
+          ],
+          [
+            27.0,
+            15.0
+          ]
+        ],
+        "size": [
+          129.93,
+          13.93,
+          20.3
+        ],
+        "smokeScanRadius": 27.0,
+        "speedCoef": 1.0,
+        "SS": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_ss_1_1",
+            "CM_SB_ss_1_2",
+            "CM_SB_ss_1_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 400.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 0.18,
+          "autoRepairTime": 10,
+          "hlType": "supersctructure_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "SSC": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_ssc_1",
+            "CM_SB_ssc_2",
+            "CM_SB_ssc_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 3100.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 1.38,
+          "autoRepairTime": 10,
+          "hlType": "simple_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "St": {
+          "ramExtraDamage": 0.0,
+          "transmitHPDamageToParentFactor": 1.0,
+          "tbSkipProbMin": 0.0,
+          "antiRamCoeff": 1.0,
+          "moduleCritCoeffCR": 0.0,
+          "buoyancyShipPercent": 0.0,
+          "damageEffects": [
+            [
+              0.1,
+              ""
+            ],
+            [
+              0.3,
+              ""
+            ],
+            [
+              0.6,
+              ""
+            ]
+          ],
+          "critProb": [
+            0.0,
+            0.0
+          ],
+          "splashBoxes": [
+            "CM_SB_stern_1",
+            "CM_SB_stern_2",
+            "CM_SB_stern_3"
+          ],
+          "maxBuoyancy": 0.0,
+          "brokenRepairHealthCoefficient": 0.5,
+          "shouldDrawDamage": true,
+          "volumeCoeff": 0.165,
+          "autoRepairTimeMin": 5,
+          "armorCoeff": 0.0,
+          "maxHP": 900.0,
+          "startHPCoeff": 1.0,
+          "enhancedRegeneratedHPPart": 0.0,
+          "regeneratedHPPart": 0.5,
+          "tbSkipProbMax": 0.0,
+          "volume": 0.4,
+          "autoRepairTime": 10,
+          "hlType": "simple_hitlocation",
+          "critProbHP": [
+            1.0,
+            0.0
+          ],
+          "moduleCritCoeffXP": 0.0,
+          "brokenRepairTime": 90.0,
+          "ramCoeff": 1.0,
+          "canBeDestroyed": false,
+          "parentHL": "Hull",
+          "burnNode": ""
+        },
+        "startHealthCoeff": 1.0,
+        "startHealthToRegenerationCoeff": 0.5,
+        "surfaceOilLeakEffect": "particles/OnBomb_Oil.xml",
+        "timeBeforeCauldronExplosion": 4.0,
+        "timeBeforeDeathEffect": 0.2,
+        "toMineVisionDistance": [
+          600.0,
+          600.0,
+          100.0
+        ],
+        "tonnage": 4915.0,
+        "torpedoImpactMassImpulseCoeff": 0.5,
+        "turningRadius": 470.0,
+        "underwaterMaxRudderAngle": 0.0,
+        "underwaterRollEffect": 0.0,
+        "unpeculiarCamouflage": "",
+        "unpeculiarCamouflageColorSchemeId": 0,
+        "visibilityCoefAirDefense": 1e-06,
+        "visibilityCoefATBAByPlane": 1e-06,
+        "visibilityCoefFire": 2.0,
+        "visibilityCoefFireByPlane": 2.0,
+        "visibilityCoeffUnderwaterDepths": {
+          "0": 1.0
+        },
+        "visibilityCoeffUnderwaterDepthsByPlane": {
+          "0": 1.0
+        },
+        "visibilityCoefGK": 1e-06,
+        "visibilityCoefGKByPlane": 1e-06,
+        "visibilityCoefGKInSmoke": 3.5,
+        "visibilityCoefPinger": {
+          "0": 0.0
+        },
+        "visibilityCoefPingerByPlane": {
+          "0": 0.0
+        },
+        "visibilityCoefPingerInSmoke": 1e-06,
+        "visibilityFactor": 9.43,
+        "visibilityFactorByPlane": 3.94,
+        "visibilityFactorInSmoke": 1e-06,
+        "visibilityFactorsBySubmarine": {
+          "DEEP_WATER_INVUL": 0.0,
+          "DEEP_WATER": 2.0,
+          "SURFACE": 0.0,
+          "PERISCOPE": 3.94,
+          "SEMI_DEEP_WATER": 2.0
+        },
+        "visionDistance": 0.0,
+        "wildFireDamage": 0.0,
+        "wildFireDuration": -1.0
+      }
+    },
+    "multiboosts": [
+      "PCEU003_Multi_std3"
+    ],
+    "name": "PGSC103_Kolberg",
+    "nationFlagScale": 1.0,
+    "nativeMultiboost": "",
+    "nativePermoflage": "",
+    "navalFlag": "germany1921",
+    "needShowProjectYear": true,
+    "originShipName": "",
+    "peculiarity": "default",
+    "peculiarityEffects": {},
+    "peculiarityFlag": "",
+    "peculiarityModels": {},
+    "peculiarityStateMachines": {},
+    "permoflages": [],
+    "pveAutoPickCard": "",
+    "RarityCategory": {
+      "name": "Common"
+    },
+    "ShipAbilities": {
+      "AbilitySlot2": {
+        "isSpecial": false,
+        "slot": 2,
+        "abils": []
+      },
+      "AbilitySpecial": {
+        "isSpecial": true,
+        "slot": 5,
+        "abils": []
+      },
+      "AbilitySlot4": {
+        "isSpecial": false,
+        "slot": 4,
+        "abils": []
+      },
+      "AbilitySlot1": {
+        "isSpecial": false,
+        "slot": 1,
+        "abils": []
+      },
+      "AbilitySlot3": {
+        "isSpecial": false,
+        "slot": 3,
+        "abils": []
+      },
+      "AbilitySlot0": {
+        "isSpecial": false,
+        "slot": 0,
+        "abils": [
+          [
+            "PCY009_CrashCrewPremium",
+            "CV_CA_CL_Gold"
+          ]
+        ]
+      }
+    },
+    "shipBattleCards": {
+      "ranked": 0,
+      "pvp": 0,
+      "test": 0,
+      "intro": 0,
+      "clan": 0,
+      "pve": 0,
+      "brawl": 0,
+      "cooperative": 0,
+      "event": 0
+    },
+    "ShipUpgradeInfo": {
+      "costGold": 0,
+      "costSaleGold": 0,
+      "PGUA201_C3_ART_STOCK": {
+        "prev": "",
+        "ucType": "_Artillery",
+        "nextShips": [
+          "PGSB103_Nassau"
+        ],
+        "canBuy": true,
+        "isDefaultStock": false,
+        "components": {
+          "artillery": [
+            "AB1_Artillery"
+          ]
+        }
+      },
+      "PGUS201_SUO": {
+        "prev": "",
+        "ucType": "_Suo",
+        "nextShips": [],
+        "canBuy": true,
+        "isDefaultStock": false,
+        "components": {
+          "fireControl": [
+            "AB1_FireControl"
+          ]
+        }
+      },
+      "PGUE201_C3_ENG_STOCK": {
+        "prev": "",
+        "ucType": "_Engine",
+        "nextShips": [],
+        "canBuy": true,
+        "isDefaultStock": false,
+        "components": {
+          "engine": [
+            "AB1_Engine"
+          ]
+        }
+      },
+      "costXP": 2200,
+      "lockedConfig": [],
+      "value": 1,
+      "PGUH201_KOLBERG_A": {
+        "prev": "",
+        "ucType": "_Hull",
+        "nextShips": [],
+        "canBuy": true,
+        "disabledAbilities": [],
+        "isDefaultStock": false,
+        "components": {
+          "directors": [],
+          "pinger": [],
+          "hull": [
+            "A_Hull"
+          ],
+          "finders": [],
+          "torpedoes": [],
+          "airArmament": [],
+          "radars": [],
+          "depthCharges": [],
+          "airDefense": [],
+          "artillery": [
+            "AB1_Artillery"
+          ],
+          "atba": []
+        }
+      },
+      "PGUS202_SUO": {
+        "prev": "PGUS201_SUO",
+        "ucType": "_Suo",
+        "nextShips": [],
+        "canBuy": true,
+        "isDefaultStock": false,
+        "components": {
+          "fireControl": [
+            "AB2_FireControl"
+          ]
+        }
+      },
+      "PGUH202_KOLBERG_B": {
+        "prev": "PGUH201_KOLBERG_A",
+        "ucType": "_Hull",
+        "nextShips": [
+          "PGSC104_Karlsruhe"
+        ],
+        "canBuy": true,
+        "disabledAbilities": [],
+        "isDefaultStock": false,
+        "components": {
+          "directors": [],
+          "pinger": [],
+          "hull": [
+            "B_Hull"
+          ],
+          "finders": [],
+          "torpedoes": [],
+          "airArmament": [],
+          "radars": [],
+          "depthCharges": [],
+          "airDefense": [],
+          "artillery": [
+            "AB1_Artillery"
+          ],
+          "atba": []
+        }
+      },
+      "requiredShip": "",
+      "costCR": 255000
+    },
+    "Specials": {
+      "buffsStartPool": 0,
+      "buffsShiftSpeed": 1.0,
+      "modifiers": {},
+      "buffsShiftMaxLevel": 0
+    },
+    "steerAngle": [
+      0.2,
+      0.7,
+      1.0
+    ],
+    "steerDist": null,
+    "subnation": "",
+    "tags": [],
+    "typeinfo": {
+      "species": "Cruiser",
+      "type": "Ship",
+      "nation": "Germany"
+    },
+    "UnderwaterCamera": {
+      "cameraDragOnTime": 5,
+      "maxZoomLength": 5.0,
+      "castZoom": {},
+      "cameraDragOffTime": 5,
+      "shipWidthCoeff": 3.0,
+      "shipHeigthCoeff": 3.0,
+      "cameraDragOff": 1000,
+      "shipLengthCoeff": 1.0
+    },
+    "unpeculiarShip": "",
+    "usePeculiaritySounds": true
+  }
+]

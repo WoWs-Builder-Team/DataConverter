@@ -37,7 +37,7 @@ public static class ProjectileConverter
             DataCache.TranslationNames.Add(currentWgProjectile.Name);
             if (!Enum.TryParse(currentWgProjectile.TypeInfo.Species, out ProjectileType currentWgProjectileType))
             {
-                if (ReportedProjectileTypes.TryAdd(currentWgProjectile.TypeInfo.Species, 0))
+                if (ReportedProjectileTypes.TryAdd(currentWgProjectile.TypeInfo.Species ?? string.Empty, 0))
                 {
                     logger?.LogWarning("Projectile type not recognized: {}", currentWgProjectile.TypeInfo.Species);
                 }
