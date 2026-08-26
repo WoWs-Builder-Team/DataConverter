@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DataConverter.Converters;
 using DataConverter.Data;
 using DataConverter.Services;
@@ -20,7 +21,7 @@ namespace DataConverter.Test.ConverterTests;
 /// Tests for talent (unique skill) conversion, driven by per-captain fixtures extracted from game build 13015811.
 /// </summary>
 [TestFixture]
-public class CaptainConverterTest
+public partial class CaptainConverterTest
 {
     /// <summary>
     /// Keys that belong to a talent's trigger definition rather than its effect. None of them may ever become a
@@ -99,18 +100,21 @@ public class CaptainConverterTest
     }
 
     /// <summary>
-    /// A "modifiers" wrapper groups several distinct stats. Collapsing it into one entry named after the wrapper
-    /// produced a modifier literally called "modifiers", whose metadata is Discard, so the talent effect was
-    /// silently dropped from the app - and every stat but the first was lost outright.
+    /// Wrappers such as "modifiers" and "level_1" group several distinct stats, unlike the per-ship-class maps the
+    /// all-equal collapse is meant for. Collapsing them emitted a modifier named after the wrapper itself - a name
+    /// with no metadata, so the effect vanished from the app - and discarded every stat but the first.
     /// </summary>
     [TestCaseSource(nameof(LegendaryCaptains))]
-    public void ConvertCaptain_ModifierWrapper_IsNeverEmittedAsAModifierName(string captainIndex)
+    public void ConvertCaptain_StatWrapper_IsNeverEmittedAsAModifierName(string captainIndex)
     {
         var captain = this.ConvertSingle(captainIndex);
 
         var modifierNames = AllTalentModifiers(captain).Select(modifier => modifier.Name).ToList();
 
         modifierNames.Should().NotContain("modifiers");
+
+        // "level_1" is a wrapper; "level_1_speedCoef" is a real stat inside it.
+        modifierNames.Should().NotContain(name => BareLevelWrapper().IsMatch(name));
     }
 
     [Test]
@@ -135,6 +139,62 @@ public class CaptainConverterTest
         modifiers.Should().ContainSingle(modifier => modifier.Name.Equals("shipConsumableCapacityCoeff", StringComparison.Ordinal))
             .Which.Value.Should().BeApproximately(1.025f, 0.0001f);
     }
+
+    /// <summary>
+    /// The game keys a talent by its position in the captain's talent list, not by trigger type. Since update 15.7
+    /// every talent reports triggerType "ribbons", so the old scheme generated keys that match no game string.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_TranslationId_UsesCaptainSortIndexAndUniqueTypes()
+    {
+        var captain = this.ConvertSingle("PIW101");
+
+        var translationIds = captain.UniqueSkills.Values.Select(talent => talent.TranslationId).Distinct().ToList();
+
+        translationIds.Should().BeEquivalentTo("TALENT_PIW101_1_13", "TALENT_PIW101_2_9", "TALENT_PIW101_3_10_21");
+    }
+
+    [TestCaseSource(nameof(LegendaryCaptains))]
+    public void ConvertCaptain_TranslationId_DoesNotContainTriggerType(string captainIndex)
+    {
+        var captain = this.ConvertSingle(captainIndex);
+
+        captain.UniqueSkills.Values.Select(talent => talent.TranslationId)
+            .Should().OnlyContain(id => !id.Contains("ribbons", StringComparison.Ordinal));
+    }
+
+    [Test]
+    public void ConvertCaptain_BattleGroups_AreMapped()
+    {
+        var captain = this.ConvertSingle("PIW101");
+
+        var byGroup = captain.UniqueSkills.Values.GroupBy(talent => talent.BattleGroup).ToDictionary(group => group.Key, group => group.Count());
+
+        byGroup.Should().Contain(new KeyValuePair<TalentBattleGroup, int>(TalentBattleGroup.Regular, 1));
+        byGroup.Should().Contain(new KeyValuePair<TalentBattleGroup, int>(TalentBattleGroup.Operations, 1));
+        byGroup.Should().Contain(new KeyValuePair<TalentBattleGroup, int>(TalentBattleGroup.Every, 2));
+    }
+
+    /// <summary>
+    /// A talent tuned differently for operations ships as two entries that share a translation id. Consumers rely on
+    /// the battle group to pick one, so the pairing must survive conversion.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_PairedTalent_SharesTranslationIdAcrossBattleGroups()
+    {
+        var captain = this.ConvertSingle("PIW101");
+
+        var paired = captain.UniqueSkills.Values
+            .GroupBy(talent => talent.TranslationId)
+            .Where(group => group.Count() > 1)
+            .ToList();
+
+        paired.Should().ContainSingle().Which.Select(talent => talent.BattleGroup)
+            .Should().BeEquivalentTo([TalentBattleGroup.Regular, TalentBattleGroup.Operations]);
+    }
+
+    [GeneratedRegex(@"^level_\d+$")]
+    private static partial Regex BareLevelWrapper();
 
     private static IEnumerable<Modifier> AllTalentModifiers(Captain captain)
     {

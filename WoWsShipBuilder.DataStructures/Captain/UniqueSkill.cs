@@ -15,4 +15,11 @@ public sealed class UniqueSkill
     public string TriggerType { get; init; } = string.Empty;
 
     public string TranslationId { get; init; } = string.Empty;
+
+    /// <summary>
+    /// Gets the battle types this talent variant applies to. Talents tuned differently for operations ship as two
+    /// entries sharing a <see cref="TranslationId"/>, one Regular and one Operations; consumers that only model
+    /// random battles should skip <see cref="TalentBattleGroup.Operations"/> to avoid listing a talent twice.
+    /// </summary>
+    public TalentBattleGroup BattleGroup { get; init; } = TalentBattleGroup.Every;
 }
