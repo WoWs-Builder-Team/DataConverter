@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
@@ -130,13 +130,15 @@ public static class CaptainConverter
                 //create the skill effect object
                 var skillEffect = new UniqueSkillEffectBuilder();
 
-                // take into account only the properties containing "unique", that are the talent effects.
-                if (currentWgUniqueSkillEffectKey.Contains("Unique"))
+                // Talent effects are the objects carrying a "uniqueType" discriminator. Sibling "GameLogicTrigger*"
+                // objects describe what fires the talent, not its effect, and also match a name-based "Unique" check
+                // because the talent itself may be named "...TriggerUniqueDamage1". Their nested activators hold
+                // strings such as "TargetsDamagedActivator", which cannot be read as modifiers.
+                if (currentWgUniqueSkillEffectValue is JObject jObject && jObject.ContainsKey("uniqueType"))
                 {
                     //create a modifiers dictionary for the current effect
                     var effectsModifiers = new List<Modifier>();
 
-                    var jObject = (JObject)currentWgUniqueSkillEffectValue;
                     var values = jObject.ToObject<Dictionary<string, JToken>>()!;
 
                     //iterate through the entire object fields
@@ -189,8 +191,22 @@ public static class CaptainConverter
                                 continue;
                             }
 
-                            var modifiers = jObjectModifier.ToObject<Dictionary<string, float>>();
-                            bool allEquals = modifiers!.Values.Distinct().Count() == 1;
+                            // Only numeric leaves are modifiers. Nested objects can also carry strings, arrays and
+                            // booleans (activator descriptors, flags), which must never be coerced to float.
+                            var modifiers = jObjectModifier.ToObject<Dictionary<string, JToken>>()!
+                                .Where(entry => entry.Value.Type is JTokenType.Float or JTokenType.Integer)
+                                .ToDictionary(entry => entry.Key, entry => entry.Value.Value<float>());
+                            if (modifiers.Count == 0)
+                            {
+                                continue;
+                            }
+
+                            // A "modifiers" wrapper holds several distinct stats, unlike the per-ship-class maps this
+                            // collapse is meant for. Collapsing it would emit a single modifier named after the wrapper
+                            // itself - a name whose metadata is "Discard", so the talent effect silently vanished - and
+                            // would drop every entry but the first.
+                            bool isModifierWrapper = key.Equals("modifiers", StringComparison.Ordinal);
+                            bool allEquals = !isModifierWrapper && modifiers.Values.Distinct().Count() == 1;
                             if (allEquals)
                             {
                                 modifierDictionary.TryGetValue(key, out Modifier? modifierData);
@@ -201,7 +217,7 @@ public static class CaptainConverter
                             {
                                 foreach (var (modifierName, modifierValue) in modifiers)
                                 {
-                                    string name = key.Equals("modifiers") ? $"{modifierName}" : $"{key}_{modifierName}";
+                                    string name = isModifierWrapper ? $"{modifierName}" : $"{key}_{modifierName}";
                                     modifierDictionary.TryGetValue(name, out Modifier? modifierData);
                                     effectsModifiers.Add(new Modifier(name, modifierValue, $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
                                     DataCache.TranslationNames.Add(name);
