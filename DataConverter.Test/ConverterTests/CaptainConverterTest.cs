@@ -193,6 +193,139 @@ public partial class CaptainConverterTest
             .Should().BeEquivalentTo([TalentBattleGroup.Regular, TalentBattleGroup.Operations]);
     }
 
+    /// <summary>
+    /// Tiers arrive out of order in the game data (Yamamoto's are level_2, level_3, level_1) and must be sorted.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_TieredEffect_LevelsAreOrdered()
+    {
+        var effect = TieredEffect("PJW018", TalentBattleGroup.Regular, "UniqueMainReloadBooster1");
+
+        effect.Levels.Select(level => level.Level).Should().Equal(1, 2, 3);
+    }
+
+    /// <summary>
+    /// For a multiplicative stat the game ships the per-tier increment under the bare name and the effective value
+    /// under a "...UI" twin. The twin is the running product and is the number shown in game, so both must survive.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_TieredEffect_CumulativeValuesAreTheRunningProduct()
+    {
+        var effect = TieredEffect("PJW018", TalentBattleGroup.Regular, "UniqueMainReloadBooster1");
+
+        Increment(effect, 1, "GMShotDelay").Should().BeApproximately(0.95f, 0.0001f);
+        Increment(effect, 2, "GMShotDelay").Should().BeApproximately(0.78947f, 0.0001f);
+        Increment(effect, 3, "GMShotDelay").Should().BeApproximately(0.8f, 0.0001f);
+
+        Cumulative(effect, 1, "GMShotDelay").Should().BeApproximately(0.95f, 0.0001f);
+        Cumulative(effect, 2, "GMShotDelay").Should().BeApproximately(0.75f, 0.0001f);
+        Cumulative(effect, 3, "GMShotDelay").Should().BeApproximately(0.6f, 0.0001f);
+
+        // Sanity-check the relationship the twin encodes rather than just the literals.
+        (Cumulative(effect, 1, "GMShotDelay") * Increment(effect, 2, "GMShotDelay"))
+            .Should().BeApproximately(Cumulative(effect, 2, "GMShotDelay"), 0.0001f);
+    }
+
+    /// <summary>
+    /// An absolute stat has no "...UI" twin, so a blanket "recompute the cumulative value as a product" rule would
+    /// be wrong. Its effective value is simply the tier's own.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_TieredEffectWithoutUiTwin_CumulativeEqualsIncrement()
+    {
+        var effect = TieredEffect("PJW018", TalentBattleGroup.Regular, "UniqueRegen1");
+
+        foreach (var level in effect.Levels)
+        {
+            level.CumulativeModifiers.Should().BeEquivalentTo(level.Modifiers);
+        }
+    }
+
+    /// <summary>
+    /// Consumers that predate tiers read the flat modifier list, so it must describe the fully escalated talent.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_TieredEffect_FlatModifiersHoldTopTierCumulativeValues()
+    {
+        var effect = TieredEffect("PJW018", TalentBattleGroup.Regular, "UniqueMainReloadBooster1");
+
+        effect.Modifiers.Should().BeEquivalentTo(effect.Levels[^1].CumulativeModifiers);
+    }
+
+    /// <summary>
+    /// A stat is often declared both at effect level, as a zero placeholder, and again per tier. The flat list must
+    /// report it once, with the tier value, or a consumer keying modifiers by name throws.
+    /// </summary>
+    [TestCaseSource(nameof(LegendaryCaptains))]
+    public void ConvertCaptain_TieredEffect_FlatModifiersHaveNoDuplicateNames(string captainIndex)
+    {
+        var captain = this.ConvertSingle(captainIndex);
+
+        foreach (var effect in captain.UniqueSkills.Values.SelectMany(talent => talent.SkillEffects.Values))
+        {
+            effect.Modifiers.Select(modifier => modifier.Name).Should().OnlyHaveUniqueItems();
+        }
+    }
+
+    [Test]
+    public void ConvertCaptain_TieredEffect_FlatModifiersPreferTheTierValueOverThePlaceholder()
+    {
+        var effect = TieredEffect("PJW018", TalentBattleGroup.Regular, "UniqueRegen1");
+
+        effect.Modifiers.Single(modifier => modifier.Name.Equals("workTime", StringComparison.Ordinal))
+            .Value.Should().Be(120f);
+    }
+
+    [Test]
+    public void ConvertCaptain_Trigger_IsParsedFromTheGameLogicTriggerSibling()
+    {
+        var talent = Talent("PJW018", TalentBattleGroup.Regular, hasLevels: true);
+
+        talent.Trigger.Should().NotBeNull();
+        talent.Trigger!.ActivatorType.Should().Be("RibbonActivator");
+        talent.Trigger.MaxActivations.Should().Be(3);
+        talent.Trigger.Levels.Select(level => level.Thresholds["requiredCount"]).Should().Equal(2m, 5m, 7m);
+    }
+
+    /// <summary>
+    /// Topete escalates the trigger without escalating the effect, and the threshold key differs per activator type,
+    /// so tier thresholds cannot be modelled as a single requiredCount field.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_TieredTriggerWithoutTieredEffect_StillCarriesThresholds()
+    {
+        var captain = this.ConvertSingle("PSW100");
+
+        var talent = captain.UniqueSkills.Values.Single(t => t.Trigger?.Levels.IsEmpty == false);
+
+        talent.Trigger!.ActivatorType.Should().Be("RemainingHealthActivator");
+        talent.Trigger.Levels.Select(level => level.Thresholds["thresholdPerMaxHealth"]).Should().Equal(0.75m, 0.5m, 0.25m);
+        talent.SkillEffects.Values.Should().OnlyContain(effect => effect.Levels.IsEmpty);
+    }
+
+    /// <summary>
+    /// regenerationHPSpeed is tuned per captain and has per-captain metadata, so the tiered path must namespace it
+    /// exactly like the flat one does.
+    /// </summary>
+    [Test]
+    public void ConvertCaptain_TieredRegenerationHpSpeed_IsNamespacedPerCaptain()
+    {
+        var effect = TieredEffect("PJW018", TalentBattleGroup.Regular, "UniqueRegen1");
+
+        effect.Levels[0].Modifiers.Select(modifier => modifier.Name)
+            .Should().Contain("captain_PJW018_Yamamoto_regenerationHPSpeed").And.NotContain("regenerationHPSpeed");
+    }
+
+    private static float Increment(UniqueSkillEffect effect, int level, string statName)
+    {
+        return effect.Levels.Single(l => l.Level == level).Modifiers.Single(m => m.Name.Equals(statName, StringComparison.Ordinal)).Value;
+    }
+
+    private static float Cumulative(UniqueSkillEffect effect, int level, string statName)
+    {
+        return effect.Levels.Single(l => l.Level == level).CumulativeModifiers.Single(m => m.Name.Equals(statName, StringComparison.Ordinal)).Value;
+    }
+
     [GeneratedRegex(@"^level_\d+$")]
     private static partial Regex BareLevelWrapper();
 
@@ -207,6 +340,21 @@ public partial class CaptainConverterTest
     {
         string path = Path.Combine(TestContext.CurrentContext.TestDirectory, "Fixtures", "Captains", captainIndex + ".json");
         return JsonConvert.DeserializeObject<List<WgCaptain>>(File.ReadAllText(path)) ?? throw new InvalidOperationException($"Unable to read fixture for {captainIndex}");
+    }
+
+    private UniqueSkill Talent(string captainIndex, TalentBattleGroup battleGroup, bool hasLevels)
+    {
+        return this.ConvertSingle(captainIndex).UniqueSkills.Values
+            .Single(talent => talent.BattleGroup == battleGroup && talent.SkillEffects.Values.Any(effect => !effect.Levels.IsEmpty) == hasLevels && talent.Trigger is not null);
+    }
+
+    private UniqueSkillEffect TieredEffect(string captainIndex, TalentBattleGroup battleGroup, string effectName)
+    {
+        return this.ConvertSingle(captainIndex).UniqueSkills.Values
+            .Where(talent => talent.BattleGroup == battleGroup)
+            .SelectMany(talent => talent.SkillEffects)
+            .Single(effect => effect.Key.Equals(effectName, StringComparison.Ordinal) && !effect.Value.Levels.IsEmpty)
+            .Value;
     }
 
     private Dictionary<string, Captain> Convert(string captainIndex)

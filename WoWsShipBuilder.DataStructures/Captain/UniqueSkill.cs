@@ -22,4 +22,9 @@ public sealed class UniqueSkill
     /// random battles should skip <see cref="TalentBattleGroup.Operations"/> to avoid listing a talent twice.
     /// </summary>
     public TalentBattleGroup BattleGroup { get; init; } = TalentBattleGroup.Every;
+
+    /// <summary>
+    /// Gets what makes this talent fire, or null if the game data carried no trigger definition.
+    /// </summary>
+    public TalentTrigger? Trigger { get; init; }
 }

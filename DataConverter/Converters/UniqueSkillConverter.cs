@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Globalization;
 using System.Linq;
 using DataConverter.Data;
 using Newtonsoft.Json.Linq;
@@ -13,6 +14,11 @@ namespace DataConverter.Converters;
 
 internal static class UniqueSkillConverter
 {
+    /// <summary>
+    /// Suffix the game uses for the effective-value twin of a tiered multiplicative stat.
+    /// </summary>
+    private const string CumulativeSuffix = "UI";
+
     internal static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WgCaptain currentWgCaptain, string captainIndex, Dictionary<string, Modifier> modifierDictionary)
     {
         var skills = new Dictionary<string, UniqueSkill>();
@@ -41,9 +47,19 @@ internal static class UniqueSkillConverter
 
                     var values = jObject.ToObject<Dictionary<string, JToken>>()!;
 
+                    // Tier definitions of an escalating talent, keyed level_1..level_N.
+                    var levelObjects = new Dictionary<string, JObject>();
+
                     //iterate through the entire object fields
                     foreach ((string key, var value) in values)
                     {
+                        // A "level_N" object holds this tier's stat values, not a modifier of its own.
+                        if (key.StartsWith("level_", StringComparison.Ordinal) && value is JObject levelObject)
+                        {
+                            levelObjects[key] = levelObject;
+                            continue;
+                        }
+
                         //if the field is "uniqueType", i'll save it in the skillEffect, it's not a modifier
                         if (key.Contains("uniqueType"))
                         {
@@ -66,7 +82,7 @@ internal static class UniqueSkillConverter
                                 continue;
                             }
 
-                            var fixedKey = key.Equals("regenerationHPSpeed") ? "captain_" + currentWgCaptain.Name + "_" + key : key;
+                            var fixedKey = ResolveModifierName(key, currentWgCaptain.Name);
                             modifierDictionary.TryGetValue(fixedKey, out Modifier? modifierData);
                             effectsModifiers.Add(new Modifier(fixedKey, value.Value<float>(), $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
                             DataCache.TranslationNames.Add(key);
@@ -106,7 +122,7 @@ internal static class UniqueSkillConverter
                             // "level_1", ...) group *distinct stats*, so collapsing them would emit one modifier named
                             // after the wrapper - a name with no metadata - and discard every stat but the first.
                             // Decide by looking at the keys rather than by listing wrapper names.
-                            bool isPerShipClassMap = modifiers.Keys.All(name => Enum.TryParse<ShipClass>(name, out _));
+                            bool isPerShipClassMap = modifiers.Keys.All(name => Enum.TryParse<ShipClass>(name, true, out _));
                             bool isModifierWrapper = key.Equals("modifiers", StringComparison.Ordinal);
                             bool allEquals = isPerShipClassMap && modifiers.Values.Distinct().Count() == 1;
                             if (allEquals)
@@ -130,6 +146,7 @@ internal static class UniqueSkillConverter
 
                     //after iterating through the entire thing, put the modifiers in the skill effect
                     skillEffect.Modifiers = effectsModifiers;
+                    skillEffect.Levels = BuildEffectLevels(levelObjects, $"Skill_{captainIndex}_{currentUniqueSkillKey}", currentWgCaptain.Name, modifierDictionary);
                 }
 
                 //value is not an actual modifier/effect, skip it
@@ -155,6 +172,15 @@ internal static class UniqueSkillConverter
             DataCache.TranslationNames.Add($"{translationId}_DESCRIPTION_BATTLE_GROUP_REGULAR");
             DataCache.TranslationNames.Add($"{translationId}_DESCRIPTION_BATTLE_GROUP_OPERATIONS");
 
+            var trigger = BuildTrigger(currentUniqueSkillValue);
+            if (skillEffectDictionary.Values.Any(effect => !effect.Levels.IsEmpty) || trigger?.Levels.IsEmpty == false)
+            {
+                // Only escalating talents carry these. LEVEL_ACTIVATION is a gettext plural array of one sentence,
+                // not one entry per tier, so only its singular form survives translation extraction.
+                DataCache.TranslationNames.Add($"{translationId}_LEVEL_ACTIVATION");
+                DataCache.TranslationNames.Add($"{translationId}_PROGRESSION_DESC");
+            }
+
             //create our talent data
             UniqueSkill uniqueSkill = new()
             {
@@ -163,6 +189,7 @@ internal static class UniqueSkillConverter
                 TriggerType = currentUniqueSkillValue.TriggerType,
                 TranslationId = translationId,
                 BattleGroup = ParseBattleGroup(currentUniqueSkillValue.BattleGroup),
+                Trigger = trigger,
                 SkillEffects = skillEffectDictionary.ToImmutableDictionary(),
             };
 
@@ -170,6 +197,106 @@ internal static class UniqueSkillConverter
         }
 
         return skills;
+    }
+
+    /// <summary>
+    /// Builds the escalation steps of a tiered talent effect.
+    /// </summary>
+    /// <remarks>
+    /// The game ships two numbers per multiplicative stat: the bare name is the increment applied when the tier is
+    /// reached, and a "...UI" twin is the effective value once it is active. Yamamoto's main battery reload, for
+    /// example, runs 0.95 / 0.78947 / 0.8 as increments and 0.95 / 0.75 / 0.6 as effective values - the latter being
+    /// the running product, and the number shown in game. Absolute stats such as workTime have no twin.
+    /// </remarks>
+    private static ImmutableList<UniqueSkillEffectLevel> BuildEffectLevels(Dictionary<string, JObject> levelObjects, string location, string captainName, Dictionary<string, Modifier> modifierDictionary)
+    {
+        var levels = new List<UniqueSkillEffectLevel>();
+        foreach ((string levelKey, JObject levelObject) in levelObjects)
+        {
+            var stats = NumericEntries(levelObject);
+            var increments = new List<Modifier>();
+            var cumulative = new List<Modifier>();
+
+            foreach ((string statName, float statValue) in stats)
+            {
+                if (statName.EndsWith(CumulativeSuffix, StringComparison.Ordinal))
+                {
+                    continue;
+                }
+
+                string modifierName = ResolveModifierName(statName, captainName);
+                modifierDictionary.TryGetValue(modifierName, out Modifier? modifierData);
+                increments.Add(new(modifierName, statValue, location, modifierData));
+
+                float effectiveValue = stats.TryGetValue(statName + CumulativeSuffix, out float uiValue) ? uiValue : statValue;
+                cumulative.Add(new(modifierName, effectiveValue, location, modifierData));
+                DataCache.TranslationNames.Add(statName);
+            }
+
+            levels.Add(new(ParseLevelNumber(levelKey), increments.ToImmutableList(), cumulative.ToImmutableList()));
+        }
+
+        return levels.OrderBy(level => level.Level).ToImmutableList();
+    }
+
+    /// <summary>
+    /// Reads the talent's trigger definition, which lives in a "GameLogicTrigger..." sibling of the effect objects.
+    /// </summary>
+    private static TalentTrigger? BuildTrigger(WgUniqueSkill talent)
+    {
+        JObject? triggerObject = talent.SkillEffects
+            .Where(entry => entry.Key.StartsWith("GameLogicTrigger", StringComparison.Ordinal))
+            .Select(entry => entry.Value as JObject)
+            .FirstOrDefault(value => value is not null);
+
+        // The container is Activator1 on most talents but Activator2 on at least one, so match on the prefix.
+        JObject? activator = triggerObject?.Properties()
+            .Where(property => property.Name.StartsWith("Activator", StringComparison.Ordinal))
+            .Select(property => property.Value as JObject)
+            .FirstOrDefault(value => value is not null);
+
+        if (activator is null)
+        {
+            return null;
+        }
+
+        var entries = activator.ToObject<Dictionary<string, JToken>>()!;
+        var parameters = entries
+            .Where(entry => entry.Value.Type is JTokenType.Float or JTokenType.Integer)
+            .ToDictionary(entry => entry.Key, entry => entry.Value.Value<decimal>());
+
+        var levels = entries
+            .Where(entry => entry.Key.StartsWith("level_", StringComparison.Ordinal) && entry.Value is JObject)
+            .Select(entry => new TalentTriggerLevel(
+                ParseLevelNumber(entry.Key),
+                NumericEntries((JObject)entry.Value).ToImmutableDictionary(stat => stat.Key, stat => (decimal)stat.Value)))
+            .OrderBy(level => level.Level)
+            .ToImmutableList();
+
+        // Every activator in build 13015811 states this, but default to the "unlimited" sentinel rather than 0,
+        // which would read as "never fires".
+        int maxActivations = parameters.TryGetValue("maxActivations", out decimal stated) ? (int)stated : -1;
+        return new(activator.Value<string>("type") ?? string.Empty, parameters.ToImmutableDictionary(), maxActivations, levels);
+    }
+
+    /// <summary>
+    /// Some stats are tuned per captain and carry per-captain metadata, so their modifier name is namespaced.
+    /// </summary>
+    private static string ResolveModifierName(string statName, string captainName)
+    {
+        return statName.Equals("regenerationHPSpeed", StringComparison.Ordinal) ? $"captain_{captainName}_{statName}" : statName;
+    }
+
+    private static Dictionary<string, float> NumericEntries(JObject source)
+    {
+        return source.ToObject<Dictionary<string, JToken>>()!
+            .Where(entry => entry.Value.Type is JTokenType.Float or JTokenType.Integer)
+            .ToDictionary(entry => entry.Key, entry => entry.Value.Value<float>());
+    }
+
+    private static int ParseLevelNumber(string levelKey)
+    {
+        return int.TryParse(levelKey.AsSpan("level_".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int level) ? level : 0;
     }
 
     /// <summary>
@@ -207,9 +334,27 @@ internal static class UniqueSkillConverter
 
         public List<Modifier> Modifiers { get; set; } = new();
 
+        public ImmutableList<UniqueSkillEffectLevel> Levels { get; set; } = ImmutableList<UniqueSkillEffectLevel>.Empty;
+
         public UniqueSkillEffect ToUniqueSkillEffect()
         {
-            return new(IsPercent, UniqueType, Modifiers.ToImmutableList());
+            // Consumers that do not model tiers read Modifiers, so for an escalating talent report the fully
+            // escalated values rather than nothing. A stat is often declared both at effect level - as a zero
+            // placeholder - and again per tier; the tier value wins, otherwise the list would carry the same name
+            // twice and a consumer keying by name would throw or read the placeholder.
+            ImmutableList<Modifier> modifiers;
+            if (Levels.IsEmpty)
+            {
+                modifiers = Modifiers.ToImmutableList();
+            }
+            else
+            {
+                var topTier = Levels[^1].CumulativeModifiers;
+                var tieredNames = topTier.Select(modifier => modifier.Name).ToHashSet(StringComparer.Ordinal);
+                modifiers = Modifiers.Where(modifier => !tieredNames.Contains(modifier.Name)).Concat(topTier).ToImmutableList();
+            }
+
+            return new(IsPercent, UniqueType, modifiers) { Levels = Levels };
         }
     }
 }
