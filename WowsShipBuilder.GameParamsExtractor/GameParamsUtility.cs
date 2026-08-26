@@ -86,7 +86,12 @@ internal static class GameParamsUtility
     /// </remarks>
     private static bool ShouldProcess(Dictionary<string, object> typeInfo)
     {
-        string type = typeInfo["type"].ToString()!;
+        // The previous Contains(object) check simply returned false for a missing or null type; keep that.
+        if (!typeInfo.TryGetValue("type", out object? typeValue) || typeValue?.ToString() is not { } type)
+        {
+            return false;
+        }
+
         if (GroupsToProcess.Contains(type))
         {
             return true;

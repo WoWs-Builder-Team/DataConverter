@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -103,6 +103,10 @@ namespace DataConverter.Converters
 
                 foreach ((string key, float value) in buff.RetrieveModifiers())
                 {
+                    // BuffLogicKeys is ordered so that the effect on the target is read before the effect on the
+                    // caster. Both use the same stat names - PCY086 heals an ally for 0.5 and its user for 0.25 -
+                    // and the data structures carry one value per name, so the target effect wins and the
+                    // self effect is only surfaced for stats the target effect does not mention.
                     results.TryAdd(key, value);
                 }
             }

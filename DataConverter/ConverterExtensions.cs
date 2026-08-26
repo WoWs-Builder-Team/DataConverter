@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using WoWsShipBuilder.DataStructures;
@@ -75,11 +75,11 @@ public static class ConverterExtensions
             DecrementDelay = wgAimedFire.DecrementDelay,
             DecrementRate = wgAimedFire.DecrementRate,
             InstantDamageCooldown = wgAimedFire.InstantDamageCooldown,
-            InstantDamagePercentage = wgAimedFire.InstantDamagePercentage.ToImmutableDictionary(),
+            InstantDamagePercentage = wgAimedFire.InstantDamagePercentageByClass.ToImmutableDictionary(),
 
             // A class missing from the map means the mechanic does not change that stat, which is a factor of one.
-            AuraDamageMultiplier = wgAimedFire.Modifiers.AuraDamage.GetValueOrDefault(shipClass, 1m),
-            BubbleDamageMultiplier = wgAimedFire.Modifiers.BubbleDamage.GetValueOrDefault(shipClass, 1m),
+            AuraDamageMultiplier = wgAimedFire.Modifiers.AuraDamageFor(shipClass),
+            BubbleDamageMultiplier = wgAimedFire.Modifiers.BubbleDamageFor(shipClass),
         };
     }
 

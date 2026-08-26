@@ -67,7 +67,32 @@ public class WgAimedFire
     /// Instant damage per hit as a share of maximum health, keyed by the class of the ship being attacked rather
     /// than of the ship carrying the module: every ship class ships the same map, and it singles out Destroyer.
     /// </summary>
-    public Dictionary<ShipClass, decimal> InstantDamagePercentage { get; init; } = new();
+    /// <remarks>
+    /// Deserialized with string keys because a strongly typed dictionary throws on an unknown key, which would fail
+    /// a whole nation's conversion. Buff data already mixes in non-ship entity types such as SpaceStation, so a
+    /// future build doing the same here should drop the entry rather than abort.
+    /// </remarks>
+    public Dictionary<string, decimal> InstantDamagePercentage { get; init; } = new();
+
+    /// <summary>
+    /// Gets <see cref="InstantDamagePercentage"/> reduced to the entries that name a real ship class.
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<ShipClass, decimal> InstantDamagePercentageByClass => ToShipClassMap(InstantDamagePercentage);
+
+    internal static Dictionary<ShipClass, decimal> ToShipClassMap(Dictionary<string, decimal> source)
+    {
+        var result = new Dictionary<ShipClass, decimal>();
+        foreach ((string key, decimal value) in source)
+        {
+            if (Enum.TryParse(key, true, out ShipClass shipClass))
+            {
+                result[shipClass] = value;
+            }
+        }
+
+        return result;
+    }
 
     public WgAimedFireModifiers Modifiers { get; init; } = new();
 
@@ -82,13 +107,27 @@ public class WgAimedFire
 /// The damage multipliers Aimed Fire applies while active. Both are keyed by the class of the ship that owns the
 /// module, so exactly one entry of each map is ever relevant.
 /// </summary>
+/// <remarks>
+/// Both maps use string keys for the same reason as <see cref="WgAimedFire.InstantDamagePercentage"/>: a strongly
+/// typed dictionary throws on an unknown key and would fail a whole nation's conversion.
+/// </remarks>
 public class WgAimedFireModifiers
 {
     [JsonProperty("AAAuraDamage")]
-    public Dictionary<ShipClass, decimal> AuraDamage { get; init; } = new();
+    public Dictionary<string, decimal> AuraDamage { get; init; } = new();
 
     [JsonProperty("AABubbleDamage")]
-    public Dictionary<ShipClass, decimal> BubbleDamage { get; init; } = new();
+    public Dictionary<string, decimal> BubbleDamage { get; init; } = new();
+
+    /// <summary>
+    /// Gets the continuous-damage multiplier for the given ship class, or one if the map does not mention it.
+    /// </summary>
+    public decimal AuraDamageFor(ShipClass shipClass) => WgAimedFire.ToShipClassMap(AuraDamage).GetValueOrDefault(shipClass, 1m);
+
+    /// <summary>
+    /// Gets the flak-damage multiplier for the given ship class, or one if the map does not mention it.
+    /// </summary>
+    public decimal BubbleDamageFor(ShipClass shipClass) => WgAimedFire.ToShipClassMap(BubbleDamage).GetValueOrDefault(shipClass, 1m);
 }
 
 public class WgAimedFireTrigger
