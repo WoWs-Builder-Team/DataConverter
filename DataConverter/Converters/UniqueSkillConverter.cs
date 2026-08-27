@@ -19,6 +19,16 @@ internal static class UniqueSkillConverter
     /// </summary>
     private const string CumulativeSuffix = "UI";
 
+    /// <summary>
+    /// Key under which a talent effect groups several distinct stats, as opposed to one stat listed per entity.
+    /// </summary>
+    private const string ModifierWrapperKey = "modifiers";
+
+    /// <summary>
+    /// Prefix of the per-tier blocks of an escalating talent.
+    /// </summary>
+    private const string LevelPrefix = "level_";
+
     internal static Dictionary<string, UniqueSkill> ProcessUniqueSkills(WgCaptain currentWgCaptain, string captainIndex, Dictionary<string, Modifier> modifierDictionary)
     {
         var skills = new Dictionary<string, UniqueSkill>();
@@ -54,7 +64,7 @@ internal static class UniqueSkillConverter
                     foreach ((string key, var value) in values)
                     {
                         // A "level_N" object holds this tier's stat values, not a modifier of its own.
-                        if (key.StartsWith("level_", StringComparison.Ordinal) && value is JObject levelObject)
+                        if (key.StartsWith(LevelPrefix, StringComparison.Ordinal) && value is JObject levelObject)
                         {
                             levelObjects[key] = levelObject;
                             continue;
@@ -117,18 +127,17 @@ internal static class UniqueSkillConverter
                                 continue;
                             }
 
-                            // The collapse below exists for per-ship-class maps: one stat listed once per class, which
-                            // becomes a single modifier when every class shares a value. Other wrappers ("modifiers",
-                            // "level_1", ...) group *distinct stats*, so collapsing them would emit one modifier named
-                            // after the wrapper - a name with no metadata - and discard every stat but the first.
-                            // Decide by looking at the keys rather than by listing wrapper names.
-                            bool isPerShipClassMap = modifiers.Keys.All(name => Enum.TryParse<ShipClass>(name, true, out _));
-                            bool isModifierWrapper = key.Equals("modifiers", StringComparison.Ordinal);
-                            bool allEquals = isPerShipClassMap && modifiers.Values.Distinct().Count() == 1;
+                            // A map listing one stat once per entity collapses to a single modifier when every entry
+                            // agrees. A "modifiers" wrapper is the opposite shape - distinct stats under one name - so
+                            // collapsing it would emit a modifier named after the wrapper, which has no metadata, and
+                            // discard every stat but the first. Tier wrappers never reach here; they are taken above.
+                            bool isModifierWrapper = key.Equals(ModifierWrapperKey, StringComparison.Ordinal);
+                            float first = modifiers.Values.First();
+                            bool allEquals = !isModifierWrapper && modifiers.Values.All(value => Math.Abs(value - first) < Constants.Tolerance);
                             if (allEquals)
                             {
                                 modifierDictionary.TryGetValue(key, out Modifier? modifierData);
-                                effectsModifiers.Add(new Modifier(key, modifiers.First().Value, $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
+                                effectsModifiers.Add(new Modifier(key, first, $"Skill_{captainIndex}_{currentUniqueSkillKey}", modifierData));
                                 DataCache.TranslationNames.Add(key);
                             }
                             else
@@ -224,11 +233,17 @@ internal static class UniqueSkillConverter
                     continue;
                 }
 
+                // The flat path drops a multiplier of one as "this stat is unchanged"; a tier that has not started
+                // improving a stat yet says the same thing, and would otherwise render as a "+0%" row.
+                float effectiveValue = stats.TryGetValue(statName + CumulativeSuffix, out float uiValue) ? uiValue : statValue;
+                if (Math.Abs(statValue - 1f) < Constants.Tolerance && Math.Abs(effectiveValue - 1f) < Constants.Tolerance)
+                {
+                    continue;
+                }
+
                 string modifierName = ResolveModifierName(statName, captainName);
                 modifierDictionary.TryGetValue(modifierName, out Modifier? modifierData);
                 increments.Add(new(modifierName, statValue, location, modifierData));
-
-                float effectiveValue = stats.TryGetValue(statName + CumulativeSuffix, out float uiValue) ? uiValue : statValue;
                 cumulative.Add(new(modifierName, effectiveValue, location, modifierData));
                 DataCache.TranslationNames.Add(statName);
             }
@@ -261,17 +276,23 @@ internal static class UniqueSkillConverter
         }
 
         var entries = activator.ToObject<Dictionary<string, JToken>>()!;
-        var parameters = entries
-            .Where(entry => entry.Value.Type is JTokenType.Float or JTokenType.Integer)
-            .ToDictionary(entry => entry.Key, entry => entry.Value.Value<decimal>());
 
         var levels = entries
-            .Where(entry => entry.Key.StartsWith("level_", StringComparison.Ordinal) && entry.Value is JObject)
+            .Where(entry => entry.Key.StartsWith(LevelPrefix, StringComparison.Ordinal) && entry.Value is JObject)
             .Select(entry => new TalentTriggerLevel(
                 ParseLevelNumber(entry.Key),
                 NumericEntries((JObject)entry.Value).ToImmutableDictionary(stat => stat.Key, stat => (decimal)stat.Value)))
             .OrderBy(level => level.Level)
             .ToImmutableList();
+
+        // An escalating activator states a placeholder for the stat it escalates and the real figures per tier:
+        // Yamamoto reports requiredCount 1 next to tiers of 2/5/7, Topete thresholdPerMaxHealth 0.1 next to
+        // 0.75/0.5/0.25. Drop any parameter a tier overrides, so the two collections cannot disagree.
+        var tieredKeys = levels.SelectMany(level => level.Thresholds.Keys).ToHashSet(StringComparer.Ordinal);
+        var parameters = entries
+            .Where(entry => entry.Value.Type is JTokenType.Float or JTokenType.Integer)
+            .Where(entry => !tieredKeys.Contains(entry.Key))
+            .ToDictionary(entry => entry.Key, entry => entry.Value.Value<decimal>());
 
         // Every activator in build 13015811 states this, but default to the "unlimited" sentinel rather than 0,
         // which would read as "never fires".
@@ -296,7 +317,7 @@ internal static class UniqueSkillConverter
 
     private static int ParseLevelNumber(string levelKey)
     {
-        return int.TryParse(levelKey.AsSpan("level_".Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int level) ? level : 0;
+        return int.TryParse(levelKey.AsSpan(LevelPrefix.Length), NumberStyles.Integer, CultureInfo.InvariantCulture, out int level) ? level : 0;
     }
 
     /// <summary>
