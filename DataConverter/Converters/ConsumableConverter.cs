@@ -75,15 +75,6 @@ namespace DataConverter.Converters
         }
 
         /// <summary>
-        /// Resolves the effects of the buff objects a consumable variant references.
-        /// </summary>
-        /// <remarks>
-        /// A variant may name both a buff, applied to whatever the consumable targets, and a weaker buffOnSelf
-        /// applied to the ship using it. Both are read so a self-only stat is not lost, but the plain buff wins on
-        /// a collision: it is the value the in-game consumable card advertises, and two modifiers sharing a name
-        /// would break any consumer that keys them by name.
-        /// </remarks>
-        /// <summary>
         /// Reads the effect a consumable references by name rather than declaring inline.
         /// </summary>
         /// <remarks>
