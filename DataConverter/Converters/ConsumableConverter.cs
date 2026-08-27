@@ -16,7 +16,9 @@ namespace DataConverter.Converters
         /// <summary>
         /// The fields of a consumable variant's logic block that name a buff object, in the order they are merged.
         /// </summary>
-        private static readonly string[] BuffLogicKeys = { "buff", "buffOnSelf" };
+        private const string TargetBuffKey = "buff";
+
+        private const string SelfBuffKey = "buffOnSelf";
 
         //convert the list of consumables from WG to our list of Consumables
         public static Dictionary<string, Consumable> ConvertConsumable(IEnumerable<WgConsumable> wgConsumable, Dictionary<string, Modifier> modifierDictionary, IReadOnlyDictionary<string, WgBuff> buffDictionary, ILogger logger)
@@ -39,6 +41,7 @@ namespace DataConverter.Converters
                     WgStatistics stats = variant[currentVariantKey];
 
                     var isShipFighter = string.Equals(stats.Group, "ship") && string.Equals(stats.ConsumableType, "fighter");
+                    (var modifiers, var selfModifiers) = ConvertModifiers(currentWgConsumable, stats, modifierDictionary, buffDictionary, logger);
                     //create our object type
                     var consumable = new Consumable
                     {
@@ -57,9 +60,10 @@ namespace DataConverter.Converters
                         PreparationTime = stats.PreparationTime,
                         IsTimeBased = stats.LifeCycleType == 1,
                         TimeBasedActiveTime = stats.MaxCapacity,
-                        Modifiers = ConvertModifiers(currentWgConsumable, stats, modifierDictionary, buffDictionary, logger),
+                        Modifiers = modifiers,
+                        SelfModifiers = selfModifiers,
                     };
-                    DataCache.TranslationNames.UnionWith(consumable.Modifiers.Select(m => m.Name));
+                    DataCache.TranslationNames.UnionWith(consumable.Modifiers.Concat(consumable.SelfModifiers).Select(m => m.Name));
 
                     //dictionary with consumable name and variant name separated by an empty space as keys
                     var consumableKey = $"{consumable.Name} {currentVariantKey}";
@@ -79,51 +83,73 @@ namespace DataConverter.Converters
         /// a collision: it is the value the in-game consumable card advertises, and two modifiers sharing a name
         /// would break any consumer that keys them by name.
         /// </remarks>
-        private static Dictionary<string, float> ResolveBuffModifiers(WgStatistics consumableStats, IReadOnlyDictionary<string, WgBuff> buffDictionary, ILogger logger)
+        /// <summary>
+        /// Reads the effect a consumable references by name rather than declaring inline.
+        /// </summary>
+        /// <remarks>
+        /// A squadron support consumable names two buffs: one applied to its target and one to the ship using it.
+        /// They share stat names but not values - the support heal restores 50% to its target and 25% to its user -
+        /// so merging them into one map by name silently reports the ally's figure as the user's.
+        /// </remarks>
+        private static (ImmutableSortedDictionary<string, float> Target, ImmutableSortedDictionary<string, float> Self) ResolveBuffModifiers(
+            WgStatistics consumableStats,
+            IReadOnlyDictionary<string, WgBuff> buffDictionary,
+            ILogger logger)
         {
-            var results = new Dictionary<string, float>(StringComparer.Ordinal);
-            foreach (string logicKey in BuffLogicKeys)
-            {
-                if (!consumableStats.Logic.TryGetValue(logicKey, out JToken? buffToken) || buffToken.Type != JTokenType.String)
-                {
-                    continue;
-                }
+            var target = ResolveBuff(consumableStats, TargetBuffKey, buffDictionary, logger);
+            var self = ResolveBuff(consumableStats, SelfBuffKey, buffDictionary, logger);
 
-                var buffName = buffToken.Value<string>();
-                if (string.IsNullOrEmpty(buffName))
-                {
-                    continue;
-                }
-
-                if (!buffDictionary.TryGetValue(buffName, out WgBuff? buff))
-                {
-                    logger.LogWarning("Unable to resolve buff {Buff} referenced by a consumable", buffName);
-                    continue;
-                }
-
-                foreach ((string key, float value) in buff.RetrieveModifiers())
-                {
-                    // BuffLogicKeys is ordered so that the effect on the target is read before the effect on the
-                    // caster. Both use the same stat names - PCY086 heals an ally for 0.5 and its user for 0.25 -
-                    // and the data structures carry one value per name, so the target effect wins and the
-                    // self effect is only surfaced for stats the target effect does not mention.
-                    results.TryAdd(key, value);
-                }
-            }
-
-            return results;
+            // The fire extinguishing consumable names the same buff on both sides, meaning it treats its user like any
+            // other target. Reporting that as a separate self effect would claim a difference that does not exist.
+            return (target, self.SequenceEqual(target) ? ImmutableSortedDictionary<string, float>.Empty : self);
         }
 
-        private static ImmutableList<Modifier> ConvertModifiers(WgConsumable wgConsumable, WgStatistics consumableStats, Dictionary<string, Modifier> modifierDictionary, IReadOnlyDictionary<string, WgBuff> buffDictionary, ILogger logger)
+        private static ImmutableSortedDictionary<string, float> ResolveBuff(WgStatistics consumableStats, string logicKey, IReadOnlyDictionary<string, WgBuff> buffDictionary, ILogger logger)
         {
-            var results = new List<Modifier>();
+            if (!consumableStats.Logic.TryGetValue(logicKey, out JToken? buffToken) || buffToken.Type != JTokenType.String)
+            {
+                return ImmutableSortedDictionary<string, float>.Empty;
+            }
+
+            var buffName = buffToken.Value<string>();
+            if (string.IsNullOrEmpty(buffName))
+            {
+                return ImmutableSortedDictionary<string, float>.Empty;
+            }
+
+            if (!buffDictionary.TryGetValue(buffName, out WgBuff? buff))
+            {
+                logger.LogWarning("Unable to resolve buff {Buff} referenced by a consumable", buffName);
+                return ImmutableSortedDictionary<string, float>.Empty;
+            }
+
+            return buff.RetrieveModifiers();
+        }
+
+        private static (ImmutableList<Modifier> Modifiers, ImmutableList<Modifier> SelfModifiers) ConvertModifiers(
+            WgConsumable wgConsumable,
+            WgStatistics consumableStats,
+            Dictionary<string, Modifier> modifierDictionary,
+            IReadOnlyDictionary<string, WgBuff> buffDictionary,
+            ILogger logger)
+        {
+            (var targetBuff, var selfBuff) = ResolveBuffModifiers(consumableStats, buffDictionary, logger);
 
             // A variant that also declares a stat inline is the more specific source, so it wins over its buff.
-            var modifiers = new Dictionary<string, float>(consumableStats.RetrieveModifiers(logger), StringComparer.Ordinal);
-            foreach ((string buffKey, float buffValue) in ResolveBuffModifiers(consumableStats, buffDictionary, logger))
+            // Sorted because the inline stats arrive hash-ordered, and that order would otherwise reach the output
+            // and change the file's checksum on every run.
+            var modifiers = new SortedDictionary<string, float>(consumableStats.RetrieveModifiers(logger), StringComparer.Ordinal);
+            foreach ((string buffKey, float buffValue) in targetBuff)
             {
                 modifiers.TryAdd(buffKey, buffValue);
             }
+
+            return (BuildModifiers(modifiers, wgConsumable, modifierDictionary), BuildModifiers(selfBuff, wgConsumable, modifierDictionary));
+        }
+
+        private static ImmutableList<Modifier> BuildModifiers(IEnumerable<KeyValuePair<string, float>> modifiers, WgConsumable wgConsumable, Dictionary<string, Modifier> modifierDictionary)
+        {
+            var results = new List<Modifier>();
 
             foreach ((string key, float modifierValue) in modifiers)
             {

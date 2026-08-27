@@ -184,16 +184,45 @@ public class ConsumableConverterTest
     }
 
     /// <summary>
-    /// The support heal restores 50% to its target and 25% to the ship using it, through two separate buffs that
-    /// set the same stat. Emitting both would put the same modifier name into the list twice.
+    /// The support heal restores 50% to its target and 25% to the ship using it, through two separate buffs that set
+    /// the same stat. Merging them into one list by name would report the ally's figure as the user's.
     /// </summary>
     [Test]
-    public void ConvertConsumable_BuffAndBuffOnSelf_ReportTheTargetValueOnce()
+    public void ConvertConsumable_BuffAndBuffOnSelf_ReportBothEffects()
     {
         var variant = this.ConvertVariants(SupportHeal)["BR_CV_6"];
 
         variant.Modifiers.Where(modifier => modifier.Name.Equals("healthRegenPercentAbsolute", StringComparison.Ordinal))
             .Should().ContainSingle().Which.Value.Should().Be(0.5f);
+        variant.SelfModifiers.Where(modifier => modifier.Name.Equals("healthRegenPercentAbsolute", StringComparison.Ordinal))
+            .Should().ContainSingle().Which.Value.Should().Be(0.25f);
+    }
+
+    /// <summary>
+    /// A consumable that affects only the ship using it states that in its own effect list, so nothing should end up
+    /// duplicated into the caster-side one.
+    /// </summary>
+    [Test]
+    public void ConvertConsumable_WithoutABuffOnSelf_ReportsNoSelfEffects()
+    {
+        this.ConvertVariants(AuxiliaryTorpedoArmamentBooster)["Default_Aux"].SelfModifiers.Should().BeEmpty();
+    }
+
+    /// <summary>
+    /// The emitted order has to follow the ordinal order of the stat names the game states, not the order a hash set
+    /// happens to enumerate them in. Otherwise every conversion rewrites the file with a new checksum.
+    /// </summary>
+    /// <remarks>
+    /// Asserted as an exact sequence rather than as "ascending", because the conversion renames some stats on the way
+    /// out - <c>regenerationHPSpeed</c> becomes <c>consumable_regenerationHPSpeed</c> - so the emitted names are not
+    /// sorted among themselves. It is the source names that are.
+    /// </remarks>
+    [Test]
+    public void ConvertConsumable_Modifiers_FollowTheOrdinalOrderOfTheirSourceNames()
+    {
+        var names = this.ConvertVariants(AuxiliaryTorpedoArmamentBooster)["Default_Aux"].Modifiers.Select(modifier => modifier.Name);
+
+        names.Should().Equal("GSAlphaFactor", "GTShotDelay", "aimedFireProgressBonus", "asReloadTimeCoeff");
     }
 
     /// <summary>
