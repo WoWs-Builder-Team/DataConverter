@@ -77,9 +77,10 @@ public static class ConverterExtensions
             InstantDamageCooldown = wgAimedFire.InstantDamageCooldown,
             InstantDamagePercentage = wgAimedFire.InstantDamagePercentageByClass.ToImmutableDictionary(),
 
-            // A class missing from the map means the mechanic does not change that stat, which is a factor of one.
-            AuraDamageMultiplier = wgAimedFire.Modifiers.AuraDamageFor(shipClass),
-            BubbleDamageMultiplier = wgAimedFire.Modifiers.BubbleDamageFor(shipClass),
+            // A class missing from the map - or a module stating no multipliers at all - means the mechanic does not
+            // change that stat, which is a factor of one.
+            AuraDamageMultiplier = wgAimedFire.Modifiers?.AuraDamageFor(shipClass) ?? 1m,
+            BubbleDamageMultiplier = wgAimedFire.Modifiers?.BubbleDamageFor(shipClass) ?? 1m,
         };
     }
 

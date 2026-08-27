@@ -80,10 +80,10 @@ public class WgAimedFire
     [JsonIgnore]
     public Dictionary<ShipClass, decimal> InstantDamagePercentageByClass => ToShipClassMap(InstantDamagePercentage);
 
-    internal static Dictionary<ShipClass, decimal> ToShipClassMap(Dictionary<string, decimal> source)
+    internal static Dictionary<ShipClass, decimal> ToShipClassMap(Dictionary<string, decimal>? source)
     {
         var result = new Dictionary<ShipClass, decimal>();
-        foreach ((string key, decimal value) in source)
+        foreach ((string key, decimal value) in source ?? [])
         {
             if (Enum.TryParse(key, true, out ShipClass shipClass))
             {
@@ -94,7 +94,11 @@ public class WgAimedFire
         return result;
     }
 
-    public WgAimedFireModifiers Modifiers { get; init; } = new();
+    /// <summary>
+    /// The damage multipliers granted while Aimed Fire is active. Nullable rather than defaulted because an explicit
+    /// null in the game data overwrites a property initializer, exactly as it does for the trigger below.
+    /// </summary>
+    public WgAimedFireModifiers? Modifiers { get; init; }
 
     /// <summary>
     /// Defines how the charge builds up: a fixed increment applied on a repeating timer. The converter turns the two
