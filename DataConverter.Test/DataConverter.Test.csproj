@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Fixtures\**\*.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataConverter\DataConverter.csproj" />
     <ProjectReference Include="..\WowsShipBuilder.GameParamsExtractor\WowsShipBuilder.GameParamsExtractor.csproj" />
   </ItemGroup>

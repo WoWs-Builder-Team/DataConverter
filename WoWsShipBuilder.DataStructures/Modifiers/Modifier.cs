@@ -87,7 +87,9 @@ public sealed class Modifier
             case DisplayValueProcessingKind.RawOrPercentage:
                 return Value > 1 ? $"+{Value}" : $"+{Math.Round(Value * 100, 2)}";
             case DisplayValueProcessingKind.PositivePercentage:
-                return $"+{(Value - 1) * 100}";
+                // Rounded like DecimalRoundedPercentage below. Value is a float, so a coefficient such as 1.1 that
+                // is not exactly representable would otherwise render as "+10.000002384185791".
+                return $"+{Math.Round((Value - 1) * 100, 2)}";
             case DisplayValueProcessingKind.NegativePercentage:
                 return $"-{(int)Math.Round(Value * 100)}";
             case DisplayValueProcessingKind.InverseNegativePercentage:

@@ -266,7 +266,7 @@
     "appLocalizationKey": null,
     "unit": "Percent",
     "affectedProperties": [
-      "ConsumableDataContainer.WorkTime.PCY011"
+      "ConsumableDataContainer.WorkTime.PCY087"
     ],
     "displayValueProcessingKind": "DecimalRoundedPercentage",
     "valueProcessingKind": "Multiplier"
@@ -3312,6 +3312,154 @@
   {
     "name": "triggerDistance",
     "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "auxTorpBoosterReloadCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_AUXTORPBOOSTERRELOADCOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY087"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "invisible_auxTorpBoosterReloadCoeff",
+    "gameLocalizationKey": "",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [
+      "ConsumableDataContainer.Reload.PCY087"
+    ],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "Multiplier"
+  },
+  {
+    "name": "aimedFireProgressBonus",
+    "gameLocalizationKey": "PARAMS_MODIFIER_AIMEDFIREPROGRESSBONUS",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GMHEDamageCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GMHEDAMAGECOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GMCSDamageCoeff",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GMCSDAMAGECOEFF",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GMShotDelayAbsolute",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GMSHOTDELAYABSOLUTE",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GSShotDelayAbsolute",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GSSHOTDELAYABSOLUTE",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "GTShotDelayAbsolute",
+    "gameLocalizationKey": "PARAMS_MODIFIER_GTSHOTDELAYABSOLUTE",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "AAAuraDamageAbsolute",
+    "gameLocalizationKey": "PARAMS_MODIFIER_AAAURADAMAGEABSOLUTE",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "allConsumableReloadTimeAbsolute",
+    "gameLocalizationKey": "PARAMS_MODIFIER_ALLCONSUMABLERELOADTIMEABSOLUTE",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "vulnerabilityTorpedoShips",
+    "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYTORPEDOSHIPS",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "vulnerabilityTorpedoAvia",
+    "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYTORPEDOAVIA",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "vulnerabilityRocketAvia",
+    "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYROCKETAVIA",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "vulnerabilityBombAvia",
+    "gameLocalizationKey": "PARAMS_MODIFIER_VULNERABILITYBOMBAVIA",
+    "appLocalizationKey": null,
+    "unit": "Percent",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "DecimalRoundedPercentage",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "healthRegenPercentAbsolute",
+    "gameLocalizationKey": "PARAMS_MODIFIER_HEALTHREGENPERCENTABSOLUTE",
+    "appLocalizationKey": null,
+    "unit": "None",
+    "affectedProperties": [],
+    "displayValueProcessingKind": "Discard",
+    "valueProcessingKind": "None"
+  },
+  {
+    "name": "fireImmunityEnabled",
+    "gameLocalizationKey": "PARAMS_MODIFIER_FIREIMMUNITYENABLED",
     "appLocalizationKey": null,
     "unit": "None",
     "affectedProperties": [],

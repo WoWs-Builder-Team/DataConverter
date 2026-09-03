@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using DataConverter.Data;
 using DataConverter.JsonData;
 using Microsoft.Extensions.Logging;
@@ -21,6 +22,15 @@ public static class ShipConverter
 {
     private static readonly ConcurrentBag<string> ReportedTypes = new();
 
+    /// <summary>
+    /// Guards <see cref="ShipSummaries"/>. ConvertShips runs once per nation inside a Parallel.ForEachAsync,
+    /// so the summary list is appended to from several threads at once.
+    /// </summary>
+    private static readonly Lock ShipSummariesLock = new();
+
+    /// <summary>
+    /// Gets the summaries of every converted ship. Only safe to read once conversion has finished.
+    /// </summary>
     public static List<ShipSummary> ShipSummaries { get; } = new();
 
     public static Dictionary<string, Ship> ConvertShips(IEnumerable<WgShip> wgShipList, string nation, ShiptoolData shiptoolData, ILogger? logger, Dictionary<string, Modifier> modifiersDictionary, Dictionary<long, int> techTreeShipsPositionsDictionary)
@@ -98,7 +108,10 @@ public static class ShipConverter
         {
             shipToPreviousShipMapper.TryGetValue(ship.Index, out string? previousShip);
             shipToNextShipMapper.TryGetValue(ship.Index, out List<string>? nextShips);
-            ShipSummaries.Add(new(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips?.ToImmutableArray()));
+            lock (ShipSummariesLock)
+            {
+                ShipSummaries.Add(new(ship.Index, ship.ShipNation, ship.Tier, ship.ShipClass, ship.ShipCategory, previousShip, nextShips?.ToImmutableArray()));
+            }
         }
 
         return results;
@@ -337,6 +350,7 @@ public static class ShipConverter
     {
         var resultDictionary = new Dictionary<string, Hull>();
         Dictionary<string, WgHull> hullModules = wgShip.ModulesArmaments.ModulesOfType<WgHull>();
+        ShipClass shipClass = ProcessShipClass(wgShip.TypeInfo.Species);
 
         foreach ((string key, WgHull wgHull) in hullModules)
         {
@@ -417,7 +431,7 @@ public static class ShipConverter
 
             //process subs only parameters
             Dictionary<SubmarineBuoyancyStates, decimal> maxSpeedAtBuoyancyStateCoeff = new();
-            if (ProcessShipClass(wgShip.TypeInfo.Species) == ShipClass.Submarine)
+            if (shipClass == ShipClass.Submarine)
             {
                 hullModule.DiveSpeed = wgHull.MaxBuoyancySpeed;
                 hullModule.DivingPlaneShiftTime = wgHull.BuoyancyRudderTime / 1.305M;
@@ -469,6 +483,11 @@ public static class ShipConverter
                 {
                     var airDefenseArmament = (WgAirDefense)wgShip.ModulesArmaments[airDefenseKey];
                     AssignAurasToProperty(airDefenseArmament.AntiAirAuras, antiAir);
+
+                    // A hull may list several air defense modules, but they all repeat the same Aimed Fire block, so
+                    // the first one that defines it decides. Note this is deliberately outside the aura handling:
+                    // some ships define Aimed Fire on a module that carries no aura at all.
+                    antiAir.AimedFire ??= airDefenseArmament.AimedFire?.ConvertData(shipClass);
                 }
             }
 
@@ -948,6 +967,8 @@ public static class ShipConverter
 
         public AntiAirAura? ShortRangeAura { get; set; }
 
+        public AntiAirAimedFire? AimedFire { get; set; }
+
         public AntiAir Build()
         {
             return new()
@@ -955,6 +976,7 @@ public static class ShipConverter
                 LongRangeAura = LongRangeAura,
                 MediumRangeAura = MediumRangeAura,
                 ShortRangeAura = ShortRangeAura,
+                AimedFire = AimedFire,
             };
         }
     }

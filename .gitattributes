@@ -64,3 +64,11 @@
 
 *.mo binary
 *.data binary
+
+###############################################################################
+# test fixtures
+#
+# Per-entity slices cut straight out of a game build. They are inputs, not
+# hand-written source, and they outweigh the code in every diff that adds one.
+###############################################################################
+DataConverter.Test/Fixtures/**/*.json linguist-generated=true -diff

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 using DataConverter.Data;
@@ -22,11 +23,28 @@ public class ModifierProcessingService : IModifierProcessingService
         this.logger = logger;
     }
 
+    /// <summary>
+    /// Reads the modifier metadata bundled with this assembly. Conversion runs read a copy placed next to the
+    /// GameParams input instead, but tests need the repository's own copy without depending on an input directory.
+    /// </summary>
+    /// <returns>A dictionary mapping a modifier name to its metadata.</returns>
+    public static Dictionary<string, Modifier> LoadEmbeddedModifiers()
+    {
+        using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("DataConverter.JsonData.Modifiers.json") ??
+                           throw new FileNotFoundException("Unable to locate embedded modifier data.");
+        using var reader = new StreamReader(stream);
+        return ParseModifiers(reader.ReadToEnd());
+    }
+
     public Dictionary<string, Modifier> ReadModifiersFile(string modifiersFilePath)
     {
         var data = File.ReadAllText(modifiersFilePath);
-        var modifierDictionary = JsonSerializer.Deserialize<List<Modifier>>(data, Constants.ModifierSerializerOptions)!.ToDictionary(x => x.Name, x => x);
-        return modifierDictionary;
+        return ParseModifiers(data);
+    }
+
+    private static Dictionary<string, Modifier> ParseModifiers(string data)
+    {
+        return JsonSerializer.Deserialize<List<Modifier>>(data, Constants.ModifierSerializerOptions)!.ToDictionary(x => x.Name, x => x);
     }
 
     public async Task WriteDebugModifierFiles(List<Modifier> modifierList, Dictionary<string, Modifier> startingModifierDictionary, List<string> localizationKeys, string outputPath)

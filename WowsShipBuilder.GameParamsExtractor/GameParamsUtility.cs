@@ -13,6 +13,7 @@ internal static class GameParamsUtility
 {
     private const string ModuleContainerName = "ModulesArmaments";
 
+    // Groups taken whole: every object carrying one of these types has a converter.
     private static readonly string[] GroupsToProcess = { "Exterior", "Ability", "Modernization", "Crew", "Ship", "Aircraft", "Unit", "Projectile" };
 
     private static readonly Dictionary<string, string> SpeciesMap = new()
@@ -28,7 +29,7 @@ internal static class GameParamsUtility
         logger?.LogInformation("Filtering extracted gameparams and converting to WGObject structure");
         ParallelQuery<IGrouping<object, KeyValuePair<object, Dictionary<string, object>>>> groups = rawGameParams
             .AsParallel()
-            .Where(x => GroupsToProcess.Contains(ConvertDataValue(x.Value["typeinfo"])["type"]))
+            .Where(x => ShouldProcess(ConvertDataValue(x.Value["typeinfo"])))
             .GroupBy(x => ConvertDataValue(x.Value["typeinfo"])["type"]);
 
         var data = new Dictionary<string, Dictionary<string, List<WgObject>>>();
@@ -72,6 +73,35 @@ internal static class GameParamsUtility
 
         GC.Collect();
         return dict;
+    }
+
+    /// <summary>
+    /// Decides whether a game object is worth extracting, based on its typeinfo.
+    /// </summary>
+    /// <remarks>
+    /// Every entry of <see cref="GroupsToProcess"/> is taken whole. The buff type is the one exception: it is a
+    /// grab bag in which only the <see cref="WgBuff.GameParamsSpecies"/> species describes an effect, while the
+    /// remaining two thirds (interactive objects, weather, camera paths, ...) have no converter and would only be
+    /// reported as an unknown type.
+    /// </remarks>
+    private static bool ShouldProcess(Dictionary<string, object> typeInfo)
+    {
+        // The previous Contains(object) check simply returned false for a missing or null type; keep that.
+        if (!typeInfo.TryGetValue("type", out object? typeValue) || typeValue?.ToString() is not { } type)
+        {
+            return false;
+        }
+
+        if (GroupsToProcess.Contains(type))
+        {
+            return true;
+        }
+
+        // 2869 objects report a null species, so TryGetValue succeeding does not mean the value is usable.
+        // Only "Other" reaches this line, and none of those are null today, but the guard costs nothing.
+        return type.Equals(WgBuff.GameParamsType, StringComparison.Ordinal) &&
+               typeInfo.TryGetValue("species", out object? species) &&
+               WgBuff.GameParamsSpecies.Equals(species?.ToString(), StringComparison.Ordinal);
     }
 
     private static TypeUnpackResult UnpackType(IGrouping<object, KeyValuePair<object, Dictionary<string, object>>> group, bool returnUnfiltered, ILogger? logger = null)

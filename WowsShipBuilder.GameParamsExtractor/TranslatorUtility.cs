@@ -33,15 +33,35 @@ internal static class TranslatorUtility
         return results;
     }
 
+    /// <summary>
+    /// Suffix under which the plural variant of a gettext plural-forms string is exposed.
+    /// </summary>
+    public const string PluralSuffix = "_PLURAL";
+
+    private const int IdsPrefixLength = 4;
+
     public static IEnumerable<LocalizationData> ProcessTranslations(IEnumerable<RawLocalizationData> rawTranslations, HashSet<string> translationKeys, ILogger? logger = null)
     {
         var results = new ConcurrentBag<LocalizationData>();
         Parallel.ForEach(rawTranslations, translation =>
         {
             logger?.LogInformation("Processing localization {}", translation.Language);
-            Dictionary<string, string> filteredTranslations = translation.Translations
-                .Where(entry => translationKeys.Contains(entry.Key))
-                .ToDictionary(x => x.Key[4..], x => x.Value.FirstOrDefault() ?? string.Empty);
+            var filteredTranslations = new Dictionary<string, string>();
+            foreach ((string key, var forms) in translation.Translations.Where(entry => translationKeys.Contains(entry.Key)))
+            {
+                string strippedKey = key[IdsPrefixLength..];
+                filteredTranslations[strippedKey] = forms.FirstOrDefault() ?? string.Empty;
+
+                // A few strings are gettext plural forms: the same sentence once per plural category, with a
+                // placeholder for the count. Only the first form fits the flat key/value shape of the output, so
+                // expose the plural variant under a suffixed key rather than silently discarding it - otherwise a
+                // count of two renders as "destroying 2 ship".
+                if (forms.Length > 1 && !string.IsNullOrEmpty(forms[1]) && !forms[1].Equals(forms[0], StringComparison.Ordinal))
+                {
+                    filteredTranslations[strippedKey + PluralSuffix] = forms[1];
+                }
+            }
+
             results.Add(new(translation.Language, filteredTranslations));
         });
 

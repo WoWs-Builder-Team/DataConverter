@@ -244,3 +244,23 @@ public enum TorpedoLauncherLoaderPosition
     LeftSideLoaders,
     RightSideLoaders,
 }
+
+[PublicAPI]
+[JsonConverter(typeof(JsonStringEnumConverter))]
+public enum TalentBattleGroup
+{
+    /// <summary>
+    /// The talent is tuned identically for every battle type and is listed once.
+    /// </summary>
+    Every,
+
+    /// <summary>
+    /// The variant used in random and ranked battles.
+    /// </summary>
+    Regular,
+
+    /// <summary>
+    /// The variant used in operations. Paired talents ship a Regular and an Operations copy with different tuning.
+    /// </summary>
+    Operations,
+}

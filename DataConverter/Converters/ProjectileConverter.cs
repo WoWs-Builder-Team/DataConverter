@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -12,7 +13,11 @@ namespace DataConverter.Converters;
 
 public static class ProjectileConverter
 {
-    private static readonly HashSet<string> ReportedProjectileTypes = new();
+    /// <summary>
+    /// Species already reported as unrecognised. ConvertProjectile runs once per nation inside a
+    /// Parallel.ForEachAsync, so this is written from several threads at once.
+    /// </summary>
+    private static readonly ConcurrentDictionary<string, byte> ReportedProjectileTypes = new();
 
     /// <summary>
     /// Converter method that transforms a <see cref="WgProjectile"/> object into a <see cref="Projectile"/> object.
@@ -32,7 +37,7 @@ public static class ProjectileConverter
             DataCache.TranslationNames.Add(currentWgProjectile.Name);
             if (!Enum.TryParse(currentWgProjectile.TypeInfo.Species, out ProjectileType currentWgProjectileType))
             {
-                if (ReportedProjectileTypes.Add(currentWgProjectile.TypeInfo.Species))
+                if (ReportedProjectileTypes.TryAdd(currentWgProjectile.TypeInfo.Species ?? string.Empty, 0))
                 {
                     logger?.LogWarning("Projectile type not recognized: {}", currentWgProjectile.TypeInfo.Species);
                 }

@@ -14,6 +14,10 @@ namespace WowsShipBuilder.GameParamsExtractor.WGStructure;
 [JsonSubtypes.KnownSubType(typeof(WgCaptain), "Crew")]
 [JsonSubtypes.KnownSubType(typeof(WgExterior), "Exterior")]
 [JsonSubtypes.KnownSubType(typeof(WgModernization), "Modernization")]
+
+// Safe even though the type also covers hundreds of non-buff objects: the extraction filters that type down to
+// species "Modifier" before anything is deserialized.
+[JsonSubtypes.KnownSubType(typeof(WgBuff), WgBuff.GameParamsType)]
 [JsonSubtypes.KnownSubType(typeof(WgProjectile), "Projectile")]
 [JsonSubtypes.KnownSubType(typeof(WgShip), "Ship")]
 [JsonSubtypes.KnownSubType(typeof(WgModule), "Unit")]

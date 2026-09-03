@@ -1,0 +1,183 @@
+[
+  {
+    "canBuy": false,
+    "costCR": -1,
+    "costGold": -1,
+    "freeOfCharge": true,
+    "id": 4202864560,
+    "index": "PCY087",
+    "name": "PCY087_AuxiliaryTorpedoArmamentBooster",
+    "typeinfo": {
+      "nation": "Common",
+      "species": null,
+      "type": "Ability"
+    },
+    "variants": {
+      "Aux_Airstrike": {
+        "availableActivationModes": [
+          "MANUAL"
+        ],
+        "availableBuoyancyStates": [],
+        "consumableType": "auxTorpBooster",
+        "defaultActivationMode": "MANUAL",
+        "descIDs": "",
+        "group": "ship",
+        "iconIDs": "",
+        "isFake": false,
+        "lifeCycleType": 0,
+        "logic": {
+          "applyType": "personal",
+          "buff": "PCOM917_AuxiliaryTorpedoArmamentBoosterAS",
+          "descIDs": "",
+          "effectsSet": "",
+          "iconIDs": "",
+          "specialSoundID": "Default",
+          "titleIDs": ""
+        },
+        "numConsumables": 3,
+        "periodical": true,
+        "preparationTime": 0.0,
+        "reloadTime": 120.0,
+        "tacticalParams": {
+          "usageType": "default",
+          "workRange": 1000.0
+        },
+        "titleIDs": "",
+        "workPreparationTime": 0.0,
+        "workTime": 30.0
+      },
+      "Aux_Improved": {
+        "availableActivationModes": [
+          "MANUAL"
+        ],
+        "availableBuoyancyStates": [],
+        "consumableType": "auxTorpBooster",
+        "defaultActivationMode": "MANUAL",
+        "descIDs": "",
+        "group": "ship",
+        "iconIDs": "",
+        "isFake": false,
+        "lifeCycleType": 0,
+        "logic": {
+          "applyType": "personal",
+          "buff": "PCOM916_AuxiliaryTorpedoArmamentBoosterImp",
+          "descIDs": "",
+          "effectsSet": "",
+          "iconIDs": "",
+          "specialSoundID": "Default",
+          "titleIDs": ""
+        },
+        "numConsumables": 3,
+        "periodical": true,
+        "preparationTime": 0.0,
+        "reloadTime": 120.0,
+        "tacticalParams": {
+          "usageType": "default",
+          "workRange": 1000.0
+        },
+        "titleIDs": "",
+        "workPreparationTime": 0.0,
+        "workTime": 30.0
+      },
+      "Aux_More_Charges": {
+        "availableActivationModes": [
+          "MANUAL"
+        ],
+        "availableBuoyancyStates": [],
+        "consumableType": "auxTorpBooster",
+        "defaultActivationMode": "MANUAL",
+        "descIDs": "",
+        "group": "ship",
+        "iconIDs": "",
+        "isFake": false,
+        "lifeCycleType": 0,
+        "logic": {
+          "applyType": "personal",
+          "buff": "PCOM915_AuxiliaryTorpedoArmamentBooster",
+          "descIDs": "",
+          "effectsSet": "",
+          "iconIDs": "",
+          "specialSoundID": "Default",
+          "titleIDs": ""
+        },
+        "numConsumables": 4,
+        "periodical": true,
+        "preparationTime": 0.0,
+        "reloadTime": 120.0,
+        "tacticalParams": {
+          "usageType": "default",
+          "workRange": 1000.0
+        },
+        "titleIDs": "",
+        "workPreparationTime": 0.0,
+        "workTime": 30.0
+      },
+      "Aux_long_cooldown": {
+        "availableActivationModes": [
+          "MANUAL"
+        ],
+        "availableBuoyancyStates": [],
+        "consumableType": "auxTorpBooster",
+        "defaultActivationMode": "MANUAL",
+        "descIDs": "",
+        "group": "ship",
+        "iconIDs": "",
+        "isFake": false,
+        "lifeCycleType": 0,
+        "logic": {
+          "applyType": "personal",
+          "buff": "PCOM915_AuxiliaryTorpedoArmamentBooster",
+          "descIDs": "",
+          "effectsSet": "",
+          "iconIDs": "",
+          "specialSoundID": "Default",
+          "titleIDs": ""
+        },
+        "numConsumables": 3,
+        "periodical": true,
+        "preparationTime": 0.0,
+        "reloadTime": 180.0,
+        "tacticalParams": {
+          "usageType": "default",
+          "workRange": 1000.0
+        },
+        "titleIDs": "",
+        "workPreparationTime": 0.0,
+        "workTime": 30.0
+      },
+      "Default_Aux": {
+        "availableActivationModes": [
+          "MANUAL"
+        ],
+        "availableBuoyancyStates": [],
+        "consumableType": "auxTorpBooster",
+        "defaultActivationMode": "MANUAL",
+        "descIDs": "",
+        "group": "ship",
+        "iconIDs": "",
+        "isFake": false,
+        "lifeCycleType": 0,
+        "logic": {
+          "applyType": "personal",
+          "buff": "PCOM915_AuxiliaryTorpedoArmamentBooster",
+          "descIDs": "",
+          "effectsSet": "",
+          "iconIDs": "",
+          "specialSoundID": "Default",
+          "titleIDs": ""
+        },
+        "numConsumables": 3,
+        "periodical": true,
+        "preparationTime": 0.0,
+        "reloadTime": 120.0,
+        "tacticalParams": {
+          "usageType": "default",
+          "workRange": 1000.0
+        },
+        "titleIDs": "",
+        "workPreparationTime": 0.0,
+        "workTime": 30.0
+      }
+    }
+  }
+]

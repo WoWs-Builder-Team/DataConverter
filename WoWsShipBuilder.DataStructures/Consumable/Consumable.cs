@@ -43,4 +43,15 @@ public sealed class Consumable
     public float TimeBasedActiveTime { get; init; }
 
     public ImmutableList<Modifier> Modifiers { get; init; } = ImmutableList<Modifier>.Empty;
+
+    /// <summary>
+    /// Gets the effect this consumable has on the ship using it, where that differs from the effect on its target.
+    /// </summary>
+    /// <remarks>
+    /// Squadron support consumables buff an ally and their own carrier by different amounts under the same stat
+    /// names - the support heal restores 50% to its target and 25% to its user - so the two cannot share one list.
+    /// Empty for the majority of consumables, which affect only the ship using them and report that in
+    /// <see cref="Modifiers"/>.
+    /// </remarks>
+    public ImmutableList<Modifier> SelfModifiers { get; init; } = ImmutableList<Modifier>.Empty;
 }
